@@ -20,6 +20,7 @@ Current implementation scope:
 - Phase 1: repository structure and fresh-start setup files
 - Phase 2: copied Discobole service/UI source and runtime strategy
 - Phase 3: local infrastructure stack
+- Phase 4: security seed data
 
 Later phases will add security seed data, catalog data, UI adaptations, gateway implementation, simulator services, event integration, fallout/retry flows, and tests.
 
@@ -97,11 +98,13 @@ make help
 make verify-phase1
 make verify-phase2
 make verify-phase3
+make verify-phase4
 make list-discobole-images
 make infra-up
 make infra-bootstrap
 make infra-verify
 make infra-down
+make security-verify-keycloak
 ```
 
 Most runtime commands are placeholders until the owning implementation phases add Compose files, service projects, and tests.

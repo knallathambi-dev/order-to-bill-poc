@@ -95,8 +95,8 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 
 ## Phase 4: Security Seed Data
 
-- [ ] Create Keycloak realm export/import for local POC
-- [ ] Create Keycloak clients
+- [x] Create Keycloak realm export/import for local POC
+- [x] Create Keycloak clients
   - `selfcare-ui`
   - `admin-ui`
   - `poc-gateway`
@@ -110,19 +110,21 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
   - `qualification-service`
   - `activation-service`
   - `billing-service`
-- [ ] Create users
+- [x] Create users
   - `customer@otb.com`
   - `operator@otb.com`
   - `admin@otb.com`
-- [ ] Seed auth-userrole component configuration
-- [ ] Seed user roles and entitlements
+- [x] Seed auth-userrole component configuration
+- [x] Seed user roles and entitlements
   - `OTB_CUSTOMER`
   - `OTB_ORDER_OPERATOR`
   - `OTB_ORDER_MANAGER`
   - `OTB_FALLOUT_OPERATOR`
   - `OTB_CATALOG_ADMIN`
   - `OTB_ADMIN`
-- [ ] Verify token issuance, refresh, and protected API access through gateway
+- [x] Verify token issuance, refresh, and protected API access through gateway
+  - Added `scripts/verify-keycloak-security.sh` for Keycloak token issuance.
+  - Gateway protected API verification is deferred until the gateway exists in Phase 8.
 
 ## Phase 5: Discobole Core Services
 

@@ -1,4 +1,4 @@
-.PHONY: help verify-phase1 verify-phase2 verify-phase3 list-discobole-images infra-up infra-bootstrap infra-verify infra-down status
+.PHONY: help verify-phase1 verify-phase2 verify-phase3 verify-phase4 list-discobole-images infra-up infra-bootstrap infra-verify infra-down security-verify-keycloak security-seed-auth-userrole status
 
 help:
 	@printf '%s\n' 'Order-to-Bill POC commands'
@@ -7,11 +7,14 @@ help:
 	@printf '%s\n' '  make verify-phase1  Verify the Phase 1 repository skeleton'
 	@printf '%s\n' '  make verify-phase2  Verify copied Discobole source inventory'
 	@printf '%s\n' '  make verify-phase3  Verify infrastructure files and scripts'
+	@printf '%s\n' '  make verify-phase4  Verify security seed files and scripts'
 	@printf '%s\n' '  make list-discobole-images  List local Discobole Docker image targets'
 	@printf '%s\n' '  make infra-up        Start Phase 3 infrastructure'
 	@printf '%s\n' '  make infra-bootstrap Create topics and register Debezium connectors'
 	@printf '%s\n' '  make infra-verify    Verify running infrastructure'
 	@printf '%s\n' '  make infra-down      Stop Phase 3 infrastructure'
+	@printf '%s\n' '  make security-verify-keycloak  Verify Keycloak realm token issuance'
+	@printf '%s\n' '  make security-seed-auth-userrole Seed auth-userrole once service is running'
 	@printf '%s\n' '  make status         Show git status'
 	@printf '%s\n' ''
 	@printf '%s\n' 'Runtime commands will be added in later phases.'
@@ -105,6 +108,31 @@ infra-verify:
 
 infra-down:
 	@docker compose --profile infra down
+
+verify-phase4: verify-phase3
+	@test -f docs/phase-4-security-seed.md
+	@test -f infrastructure/keycloak/import/discobole-realm.json
+	@test -f infrastructure/auth-userrole/component-configurations.json
+	@test -f infrastructure/auth-userrole/function-configurations.json
+	@test -f infrastructure/auth-userrole/entitlements.json
+	@test -f infrastructure/auth-userrole/user-roles.json
+	@test -x scripts/verify-keycloak-security.sh
+	@test -x scripts/seed-auth-userrole.sh
+	@grep -q '"realm": "discobole"' infrastructure/keycloak/import/discobole-realm.json
+	@grep -q '"clientId": "selfcare-ui"' infrastructure/keycloak/import/discobole-realm.json
+	@grep -q '"clientId": "billing-service"' infrastructure/keycloak/import/discobole-realm.json
+	@grep -q 'customer@otb.com' infrastructure/keycloak/import/discobole-realm.json
+	@grep -q 'operator@otb.com' infrastructure/keycloak/import/discobole-realm.json
+	@grep -q 'admin@otb.com' infrastructure/keycloak/import/discobole-realm.json
+	@grep -q 'OTB_CUSTOMER' infrastructure/auth-userrole/user-roles.json
+	@grep -q 'OTB_ADMIN' infrastructure/auth-userrole/user-roles.json
+	@printf '%s\n' 'Phase 4 security seed files verified.'
+
+security-verify-keycloak:
+	@scripts/verify-keycloak-security.sh
+
+security-seed-auth-userrole:
+	@scripts/seed-auth-userrole.sh
 
 status:
 	@git status --short

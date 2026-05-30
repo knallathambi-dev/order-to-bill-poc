@@ -1,0 +1,60 @@
+[
+  {
+    "involvementRole": "OTB_CUSTOMER",
+    "component": "selfcare-ui",
+    "entitlement": [
+      { "id": "ENT_ORDER_CREATE", "action": "create", "function": "order.create" },
+      { "id": "ENT_ORDER_READ_OWN", "action": "read", "function": "order.read.own" }
+    ]
+  },
+  {
+    "involvementRole": "OTB_ORDER_OPERATOR",
+    "component": "order-inventory",
+    "entitlement": [
+      { "id": "ENT_ORDER_READ_ALL", "action": "read", "function": "order.read.all" },
+      { "id": "ENT_ORCHESTRATION_READ", "action": "read", "function": "orchestration.read" },
+      { "id": "ENT_FALLOUT_READ", "action": "read", "function": "fallout.read" }
+    ]
+  },
+  {
+    "involvementRole": "OTB_ORDER_MANAGER",
+    "component": "order-inventory",
+    "entitlement": [
+      { "id": "ENT_ORDER_READ_ALL", "action": "read", "function": "order.read.all" },
+      { "id": "ENT_ORDER_UPDATE", "action": "update", "function": "order.update" }
+    ]
+  },
+  {
+    "involvementRole": "OTB_FALLOUT_OPERATOR",
+    "component": "orchestration-delivery-fallout",
+    "entitlement": [
+      { "id": "ENT_FALLOUT_READ", "action": "read", "function": "fallout.read" },
+      { "id": "ENT_FALLOUT_RESOLVE", "action": "update", "function": "fallout.resolve" },
+      { "id": "ENT_ORCHESTRATION_RETRY", "action": "execute", "function": "orchestration.retry" }
+    ]
+  },
+  {
+    "involvementRole": "OTB_CATALOG_ADMIN",
+    "component": "product-catalog",
+    "entitlement": [
+      { "id": "ENT_CATALOG_MANAGE", "action": "manage", "function": "catalog.manage" }
+    ]
+  },
+  {
+    "involvementRole": "OTB_ADMIN",
+    "component": "auth-userrole",
+    "entitlement": [
+      { "id": "ENT_ORDER_CREATE", "action": "create", "function": "order.create" },
+      { "id": "ENT_ORDER_READ_OWN", "action": "read", "function": "order.read.own" },
+      { "id": "ENT_ORDER_READ_ALL", "action": "read", "function": "order.read.all" },
+      { "id": "ENT_ORDER_UPDATE", "action": "update", "function": "order.update" },
+      { "id": "ENT_ORCHESTRATION_READ", "action": "read", "function": "orchestration.read" },
+      { "id": "ENT_ORCHESTRATION_RETRY", "action": "execute", "function": "orchestration.retry" },
+      { "id": "ENT_FALLOUT_READ", "action": "read", "function": "fallout.read" },
+      { "id": "ENT_FALLOUT_RESOLVE", "action": "update", "function": "fallout.resolve" },
+      { "id": "ENT_CATALOG_MANAGE", "action": "manage", "function": "catalog.manage" },
+      { "id": "ENT_SECURITY_MANAGE", "action": "manage", "function": "security.manage" }
+    ]
+  }
+]
+

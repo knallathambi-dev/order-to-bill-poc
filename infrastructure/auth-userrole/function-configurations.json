@@ -1,0 +1,13 @@
+[
+  { "id": "order.create", "functionName": "order.create" },
+  { "id": "order.read.own", "functionName": "order.read.own" },
+  { "id": "order.read.all", "functionName": "order.read.all" },
+  { "id": "order.update", "functionName": "order.update" },
+  { "id": "orchestration.read", "functionName": "orchestration.read" },
+  { "id": "orchestration.retry", "functionName": "orchestration.retry" },
+  { "id": "fallout.read", "functionName": "fallout.read" },
+  { "id": "fallout.resolve", "functionName": "fallout.resolve" },
+  { "id": "catalog.manage", "functionName": "catalog.manage" },
+  { "id": "security.manage", "functionName": "security.manage" }
+]
+

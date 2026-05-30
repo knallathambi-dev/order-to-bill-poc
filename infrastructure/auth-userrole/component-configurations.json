@@ -1,0 +1,15 @@
+[
+  { "id": "selfcare-ui", "componentName": "selfcare-ui" },
+  { "id": "admin-ui", "componentName": "admin-ui" },
+  { "id": "order-capture", "componentName": "order-capture" },
+  { "id": "order-inventory", "componentName": "order-inventory" },
+  { "id": "orchestration-delivery", "componentName": "orchestration-delivery" },
+  { "id": "orchestration-delivery-management", "componentName": "orchestration-delivery-management" },
+  { "id": "orchestration-delivery-fallout", "componentName": "orchestration-delivery-fallout" },
+  { "id": "auth-userrole", "componentName": "auth-userrole" },
+  { "id": "product-catalog", "componentName": "product-catalog" },
+  { "id": "qualification-service", "componentName": "qualification-service" },
+  { "id": "activation-service", "componentName": "activation-service" },
+  { "id": "billing-service", "componentName": "billing-service" }
+]
+
