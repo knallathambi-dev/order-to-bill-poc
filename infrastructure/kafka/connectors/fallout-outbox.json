@@ -1,0 +1,25 @@
+{
+  "name": "fallout-outbox-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.mongodb.MongoDbConnector",
+    "tasks.max": "1",
+    "topic.prefix": "otb-fallout",
+    "mongodb.connection.string": "mongodb://mongodb:27017/?replicaSet=rs0",
+    "database.include.list": "falloutmanagement",
+    "collection.include.list": "falloutmanagement.events",
+    "transforms": "outbox",
+    "transforms.outbox.type": "io.debezium.connector.mongodb.transforms.outbox.MongoEventRouter",
+    "transforms.outbox.route.topic.replacement": "${routedByValue}",
+    "transforms.outbox.collection.expand.json.payload": "true",
+    "transforms.outbox.collection.field.event.timestamp": "timestamp",
+    "transforms.outbox.collection.fields.additional.placement": "type:header:eventType",
+    "transforms.outbox.route.by.field": "type",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "include.schema.changes": "false",
+    "errors.tolerance": "all",
+    "errors.log.enable": "true",
+    "errors.log.include.messages": "true"
+  }
+}
+

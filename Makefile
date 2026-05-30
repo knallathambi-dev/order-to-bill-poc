@@ -1,4 +1,4 @@
-.PHONY: help verify-phase1 verify-phase2 list-discobole-images status
+.PHONY: help verify-phase1 verify-phase2 verify-phase3 list-discobole-images infra-up infra-bootstrap infra-verify infra-down status
 
 help:
 	@printf '%s\n' 'Order-to-Bill POC commands'
@@ -6,7 +6,12 @@ help:
 	@printf '%s\n' 'Available now:'
 	@printf '%s\n' '  make verify-phase1  Verify the Phase 1 repository skeleton'
 	@printf '%s\n' '  make verify-phase2  Verify copied Discobole source inventory'
+	@printf '%s\n' '  make verify-phase3  Verify infrastructure files and scripts'
 	@printf '%s\n' '  make list-discobole-images  List local Discobole Docker image targets'
+	@printf '%s\n' '  make infra-up        Start Phase 3 infrastructure'
+	@printf '%s\n' '  make infra-bootstrap Create topics and register Debezium connectors'
+	@printf '%s\n' '  make infra-verify    Verify running infrastructure'
+	@printf '%s\n' '  make infra-down      Stop Phase 3 infrastructure'
 	@printf '%s\n' '  make status         Show git status'
 	@printf '%s\n' ''
 	@printf '%s\n' 'Runtime commands will be added in later phases.'
@@ -63,6 +68,43 @@ verify-phase2: verify-phase1
 
 list-discobole-images:
 	@scripts/build-discobole-images.sh --list
+
+verify-phase3: verify-phase2
+	@test -f docker-compose.yml
+	@test -f docs/phase-3-infrastructure.md
+	@test -f docs/phase-3-debezium-decision.md
+	@test -f infrastructure/mongodb/init-replica-set.js
+	@test -f infrastructure/kafka/topics.txt
+	@test -f infrastructure/kafka/connectors/orchestration-delivery-outbox.json
+	@test -f infrastructure/kafka/connectors/fallout-outbox.json
+	@test -d infrastructure/keycloak/import
+	@test -x scripts/create-kafka-topics.sh
+	@test -x scripts/register-debezium-connectors.sh
+	@test -x scripts/verify-infrastructure.sh
+	@grep -q 'apache/kafka:4.3.0' .env.example
+	@grep -q 'KAFKA_PROCESS_ROLES' docker-compose.yml
+	@grep -q 'CONTROLLER' docker-compose.yml
+	@grep -q 'quay.io/debezium/connect:3.0' .env.example
+	@grep -q 'MongoEventRouter' infrastructure/kafka/connectors/orchestration-delivery-outbox.json
+	@grep -q 'MongoEventRouter' infrastructure/kafka/connectors/fallout-outbox.json
+	@if grep -R 'zookeeper\|ZOOKEEPER\|ZooKeeper' docker-compose.yml infrastructure/kafka infrastructure/mongodb; then \
+		printf '%s\n' 'ZooKeeper reference found in Phase 3 runtime files.'; \
+		exit 1; \
+	fi
+	@printf '%s\n' 'Phase 3 infrastructure files verified.'
+
+infra-up:
+	@docker compose --profile infra up -d
+
+infra-bootstrap:
+	@scripts/create-kafka-topics.sh
+	@scripts/register-debezium-connectors.sh
+
+infra-verify:
+	@scripts/verify-infrastructure.sh
+
+infra-down:
+	@docker compose --profile infra down
 
 status:
 	@git status --short

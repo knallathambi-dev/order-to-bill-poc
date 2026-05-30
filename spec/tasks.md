@@ -76,20 +76,22 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 
 ## Phase 3: Infrastructure From Scratch
 
-- [ ] Create root `docker-compose.yml`
-- [ ] Create infrastructure-only compose profile
-- [ ] Add MongoDB configured as replica set if required by Discobole outbox/Debezium
-- [ ] Add Kafka
-- [ ] Add Kafka UI
-- [ ] Add Kafka Connect/Debezium for copied Discobole order-orchestration outbox routing
+- [x] Create root `docker-compose.yml`
+- [x] Create infrastructure-only compose profile
+- [x] Add MongoDB configured as replica set if required by Discobole outbox/Debezium
+- [x] Add Kafka
+  - Kafka default: `apache/kafka:4.3.0` with KRaft mode and no ZooKeeper.
+- [x] Add Kafka UI
+- [x] Add Kafka Connect/Debezium for copied Discobole order-orchestration outbox routing
   - Decision recorded in `docs/phase-3-debezium-decision.md`.
   - Keep Kafka KRaft-only; do not reuse upstream ZooKeeper-based Debezium sample Compose.
-- [ ] Add Keycloak
-- [ ] Add Keycloak import directory
-- [ ] Add health checks for platform services
-- [ ] Add topic creation/bootstrap script
-- [ ] Add infrastructure verification script
-- [ ] Document ports and access URLs
+- [x] Add Keycloak
+- [x] Add Keycloak import directory
+- [x] Add health checks for platform services
+- [x] Add topic creation/bootstrap script
+- [x] Add infrastructure verification script
+- [x] Document ports and access URLs
+  - Documented in `docs/phase-3-infrastructure.md`.
 
 ## Phase 4: Security Seed Data
 
