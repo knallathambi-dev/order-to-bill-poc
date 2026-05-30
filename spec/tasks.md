@@ -2,44 +2,53 @@
 
 ## Current Repository Baseline
 
-Reference implementation and reusable Discobole code remain outside this repo at:
+Reference implementation and reusable Discobole code will be copied from:
 
 ```text
 /Users/knallathambi/Engineering/projects/java-apps/discoble-monorepo
 ```
+
+This repository is now intended to become the full POC mono-repo containing selected Discobole services, selected Discobole UI portals, POC-specific services, gateway code, infrastructure, scripts, seed data, and documentation.
 
 ## Phase 0: Scope Confirmation
 
 - [x] Reframe POC as Discobole-first, not custom OMS-first
 - [x] Identify Discobole UI portals to reuse
 - [x] Confirm repository is now specs-only outside `spec/`
-- [ ] Review and confirm updated specs with user
-- [ ] Decide whether this repo will copy/adapt Discobole UI/service code or reference/build it from the external Discobole monorepo
-- [ ] Decide gateway implementation style:
-  - extend/reuse `selfcare-ui/server`
-  - create a Spring Boot gateway
-  - create a lightweight Node/Express gateway
+- [x] Review and confirm updated specs with user
+- [x] Decide whether this repo will copy Discobole UI/service code into this mono-repo
+  - Decision: copy selected Discobole services and UI portals from `/Users/knallathambi/Engineering/projects/java-apps/discoble-monorepo` into this repo during Phase 2. This repo will be the full POC mono-repo and required POC changes may be applied in-repo.
+- [x] Decide gateway implementation style:
+  - Decision: prefer extending/reusing `selfcare-ui/server` for portal session/proxy behavior; fall back to a lightweight Node/Express gateway if a standalone gateway is required.
+  - Spring Boot gateway is not the Phase 0 default.
+
+Phase 0 decision record: `spec/phase-0-decisions.md`.
 
 ## Phase 1: Fresh Repository Structure
 
-- [ ] Create root project layout
+- [x] Create root project layout
   - `infrastructure/`
   - `infrastructure/keycloak/`
   - `infrastructure/kafka/`
   - `infrastructure/mongodb/`
-  - `discobole-runtime/` or `discobole-components/`
+  - `discobole-runtime/`
+  - `discobole-services/`
+  - `discobole-ui/`
   - `custom-services/`
   - `custom-services/qualification-service/`
   - `custom-services/activation-service/`
   - `custom-services/billing-service/`
   - `gateway/`
-  - `ui/` or `ui-overrides/`
+  - `ui-overrides/`
   - `scripts/`
   - `docs/`
-- [ ] Add root README with fresh-start setup assumptions
-- [ ] Add `.env.example` for local ports, service URLs, Keycloak clients, and secrets
-- [ ] Add `.gitignore` for Java, Node, Docker, logs, generated data, and IDE files
-- [ ] Add a root `Makefile` or task runner script for common commands
+- [x] Add root README with fresh-start setup assumptions
+- [x] Add `.env.example` for local ports, service URLs, Keycloak clients, and secrets
+  - Kafka default: `apache/kafka:4.3.0` with KRaft mode and no ZooKeeper.
+- [x] Add `.gitignore` for Java, Node, Docker, logs, generated data, and IDE files
+- [x] Add a root `Makefile` or task runner script for common commands
+  - Current command: `make verify-phase1`.
+  - Updated mono-repo landing folders: `discobole-services/` and `discobole-ui/`.
 
 ## Phase 2: Discobole Runtime Strategy
 
@@ -53,12 +62,14 @@ Reference implementation and reusable Discobole code remain outside this repo at
   - Fallout/ProcessFlow
   - selected UI portals
 - [ ] Define how each Discobole service will be run locally
-  - Docker image built from reference monorepo
-  - checked-out/copied code under this repo
-  - external service reference
+  - copied code under this repo
+  - Docker image built from this repo
+  - external source monorepo retained only as upstream reference
 - [ ] Document build order and dependency requirements for Discobole modules
 - [ ] Create build scripts for selected Discobole images if images are built locally
-- [ ] Avoid modifying Discobole source unless needed; prefer POC profiles/configuration and documented patches
+- [ ] Copy required Discobole service source into `discobole-services/`
+- [ ] Copy required Discobole UI portal source into `discobole-ui/`
+- [ ] Track POC changes to copied Discobole source directly in this repo, keeping changes scoped and documented
 
 ## Phase 3: Infrastructure From Scratch
 

@@ -1,0 +1,49 @@
+# macOS
+.DS_Store
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.iml
+
+# Java
+target/
+build/
+.gradle/
+out/
+*.class
+*.jar
+*.war
+*.ear
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+.next/
+.turbo/
+coverage/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+
+# Docker and generated runtime data
+.docker/
+docker-data/
+data/
+logs/
+tmp/
+
+# Test and reports
+reports/
+test-results/
+
