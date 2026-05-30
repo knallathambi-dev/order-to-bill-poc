@@ -1,0 +1,32 @@
+{
+  "DefineRelationship" : {
+    "required" : [ "id", "relationshipType" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "relationshipType" : {
+          "type" : "string",
+          "enum" : [ "reliesOn", "complements", "incompatible", "prerequisite" ]
+        },
+        "validFor" : {
+          "required" : [ "startDateTime" ],
+          "type" : "object",
+          "properties" : {
+            "endDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            },
+            "startDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            }
+          }
+        }
+      }
+    }
+  }
+}

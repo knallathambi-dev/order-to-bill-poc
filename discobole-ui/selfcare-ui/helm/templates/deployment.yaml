@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "selfcareui.fullname" . }}
+  labels:
+    {{- include "selfcareui.labels" . | nindent 4 }}
+    {{- include "selfcareui.shutdownLabels" . | nindent 4 }}
+spec:
+  strategy:
+    type: Recreate
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "selfcareui.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "selfcareui.selectorLabels" . | nindent 8 }}
+        {{- include "selfcareui.monitoringLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "selfcareui.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: selfcare-ui
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "selfcareui.fullname" . }}-config
+            - secretRef:
+                name: {{ include "selfcareui.fullname" . }}-secrets
+          env:
+            - name: ENV_TYPE
+              value: {{ .Values.environmentType | quote }}
+            - name: GATEWAY
+              value: {{ .Values.selfcareui.service.gateway | quote }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

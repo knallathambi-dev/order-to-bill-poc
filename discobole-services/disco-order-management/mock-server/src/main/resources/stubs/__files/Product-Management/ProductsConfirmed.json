@@ -1,0 +1,433 @@
+[
+  {
+    "@type": "Product",
+    "id": "6515511338290b3d9c1356ba",
+    "href": "localhost:8082/productManagement/v1/product/6515511338290b3d9c1356ba",
+    "productCharacteristic": [
+      {
+        "name": "ICCID",
+        "valueType": "string"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "6",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productSpecification": {
+      "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+      "name": "Connectivity",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "12x",
+        "@type": "Resource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356bb",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356bb",
+    "productCharacteristic": [
+      {
+        "name": "MSISDN",
+        "valueType": "string"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "4",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productSpecification": {
+      "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+      "name": "Mobile line",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "12x",
+        "@type": "Resource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356bc",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356bc",
+    "productCharacteristic": [
+      {
+        "name": "volume",
+        "valueType": "string"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "8",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productSpecification": {
+      "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+      "name": "Time Bundle",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "12x",
+        "@type": "Resource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356bd",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356bd",
+    "productCharacteristic": [
+      {
+        "name": "IMSI",
+        "valueType": "string"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "10",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productSpecification": {
+      "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+      "name": "SIM CARD",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "12x",
+        "@type": "Resource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356be",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356be",
+    "productOffering": {
+      "id": "0200ecae-4b1e-41c1-a177-750a2a266f09",
+      "name": "Connectivity",
+      "@type": "AtomicProductOffering"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "5",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "sells",
+        "product": {
+          "@type": "Product",
+          "id": "6515511338290b3d9c1356ba"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356bf",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356bf",
+    "productOffering": {
+      "id": "c8846e4c-ecca-40b2-b7de-9c130f4f3466",
+      "name": "Mobile line",
+      "@type": "AtomicProductOffering"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "3",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productPrice": [
+      {
+        "description": "POP_5Euro",
+        "name": "POP_5Euro",
+        "priceType": "NRC",
+        "price": {
+          "percentage": 0.0,
+          "taxRate": 0.0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 5.0
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 5.0
+          }
+        }
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "sells",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356bb"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356c0",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356c0",
+    "productOffering": {
+      "id": "8740a910-38d9-4c6d-8150-8f840c3c37ea",
+      "name": "Time Bundle",
+      "@type": "AtomicProductOffering"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "7",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productPrice": [
+      {
+        "description": "POP_5Euro",
+        "name": "POP_5Euro",
+        "priceType": "NRC",
+        "price": {
+          "percentage": 0.0,
+          "taxRate": 0.0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 5.0
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 5.0
+          }
+        }
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "sells",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356bc"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356c1",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356c1",
+    "productOffering": {
+      "id": "a52ed0ff-e1a1-45de-822a-9db878b0e4fc",
+      "name": "Sim Card",
+      "@type": "AtomicProductOffering"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "9",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "sells",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356bd"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356c2",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356c2",
+    "productOffering": {
+      "id": "cb07fd83-8f41-4cd2-97f5-5989f3ab2bd8",
+      "name": "Mobile Package 1",
+      "@type": "BundledProductOffering"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "2",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356be"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356bf"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356c0"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356c1"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356c3",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356c3",
+    "productOffering": {
+      "id": "5fe032f0-fa01-42ec-afeb-920f74c2eae3",
+      "name": "Mobile Package 1",
+      "@type": "Contract"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "1",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356c2"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  }
+]

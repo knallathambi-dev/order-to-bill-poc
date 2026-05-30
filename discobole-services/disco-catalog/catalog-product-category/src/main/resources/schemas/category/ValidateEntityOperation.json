@@ -1,0 +1,12 @@
+{
+  "ValidateEntityOperation" : {
+    "required" : [ "isValidated" ],
+    "type" : "object",
+    "properties" : {
+      "isValidated" : {
+        "type" : "boolean",
+        "default" : true
+      }
+    }
+  }
+}

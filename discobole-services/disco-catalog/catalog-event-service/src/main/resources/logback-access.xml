@@ -1,0 +1,19 @@
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+<configuration>
+    <appender name="ACCESS_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%h %l %u %t "%r" %s %b "%i{Referer}" "%i{User-Agent}"</pattern>
+        </encoder>
+    </appender>
+    
+    <appender-ref ref="ACCESS_CONSOLE"/>
+</configuration>

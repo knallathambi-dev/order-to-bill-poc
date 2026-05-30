@@ -1,0 +1,526 @@
+meta {
+  name: contract 1
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "isBundle": "true",
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "productCharacteristic": [
+      {
+        "name": "volume",
+        "@type": "StringCharacteristic",
+        "valueType": "string",
+        "value": "1h"
+      },
+      {
+        "name": "test",
+        "valueType": "test",
+        "@type": "ValidityCharacteristic",
+        "value": {
+          "value": 30,
+          "unitOfMeasure": "day"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "role": "Seller",
+        "partyOrPartyRole": {
+          "id": "456-dd-df45",
+          "href": "https://host:port/partyManagement/v5/individual/456-dd-df45",
+          "name": "Joe Doe",
+          "@type": "PartyRef",
+          "@referredType": "Individual"
+        },
+        "@type": "RelatedPartyRefOrPartyRoleRef"
+      },
+      {
+        "role": "Seller",
+        "partyOrPartyRole": {
+          "id": "456-dd-df45",
+          "href": "https://host:port/partyManagement/v5/individual/456-dd-df45",
+          "name": "Joe Doe 1",
+          "partyName": "Joe Doe 1",
+          "partyId": "Joe Doe 1",
+          "@type": "PartyRoleRef",
+          "@referredType": "Individual"
+        },
+        "@type": "RelatedPartyRefOrPartyRoleRef"
+      }
+    ],
+    "productOffering": {
+      "id": "772056cd-485b-4877-8453-1648a07c43f7",
+      "name": "Mobile Package Basic",
+      "@type": "Contract"
+    },
+    "productOrderItem": [
+      {
+        "productOrderId": "{{productOrderID}}",
+        "orderItemId": "01",
+        "orderItemAction": "add"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "status": "Created",
+          "operationalStatus": "Confirmed",
+          "relatedParty": [
+            {
+              "id": "45hj-8888",
+              "name": "Jean",
+              "role": "Customer",
+              "@referredType": "Individual"
+            }
+          ],
+          "productOffering": {
+            "id": "414e3b5e-7fca-4b7e-bf73-51fa1e66b87f",
+            "name": "Mobile Package Basic",
+            "@type": "BundleProductOffering"
+          },
+          "productOrderItem": [
+            {
+              "productOrderId": "{{productOrderID}}",
+              "orderItemId": "02",
+              "orderItemAction": "add"
+            }
+          ],
+          "productRelationship": [
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "@type": "Product",
+                "isBundle": false,
+                "name": "Data Bundle",
+                "billingAccount": {
+                  "id": "138139-5176-b6a4-7ff2-3bdc8d2b96eb",
+                  "@referredType": "BillingAccount"
+                },
+                "productCharacteristic": [
+                  {
+                    "@type": "ObjectCharacteristic",
+                    "id": "9cb0766f-56cc-41b7-a058-2e07e08a1228.10",
+                    "name": "Quantity",
+                    "value": {
+                      "unitOfMeasure": "GB",
+                      "value": "10"
+                    }
+                  },
+                  {
+                    "@type": "StringCharacteristic",
+                    "id": "b92591e0-8b1f-4202-b6c8-9cc8ab341514.8",
+                    "name": "Frequency",
+                    "value": "Month"
+                  },
+                  {
+                    "@type": "StringCharacteristic",
+                    "id": "b0cd1541-c6b3-46b3-ad47-c2fb98c733f4.9",
+                    "name": "Recurring",
+                    "value": "Yes"
+                  }
+                ],
+                "productOffering": {
+                  "id": "abe1bdfd-21de-4454-b703-398771d5ea85",
+                  "name": "Data Bundle",
+                  "version": "1.0",
+                  "@type": "AtomicProductOffering",
+                  "@referredType": "ProductOfferingRef"
+                },
+                "productOrderItem": [
+                  {
+                    "orderItemAction": "add",
+                    "orderItemId": "a83dc6fc-2009-4973-9bca-53067838f953",
+                    "productOrderId": "67a4ffc8e617d5009d32cac8"
+                  }
+                ],
+                "productPrice": [
+                  {
+                    "description": "Charge 10 eur",
+                    "name": "Charge 10 eur",
+                    "priceType": "recurringCharge",
+                    "recurringChargePeriod": {
+                      "amount": 1,
+                      "units": "month"
+                    },
+                    "productOfferingPrice": {
+                      "id": "b12913ca-8e74-4e83-8502-5d53ccf1572d",
+                      "name": "Charge 10 eur",
+                      "@type": "ProductOfferingPriceRef",
+                      "@referredType": "ProductOfferingPriceCharge"
+                    },
+                    "price": {
+                      "taxRate": 0,
+                      "dutyFreeAmount": {
+                        "unit": "EUR",
+                        "value": 7
+                      },
+                      "taxIncludedAmount": {
+                        "unit": "EUR",
+                        "value": 7
+                      }
+                    },
+                    "productPriceAlteration": [
+                      {
+                        "description": "Discount 3 Eur RC",
+                        "name": "Discount 3 Eur RC",
+                        "priceType": "recurringDiscount",
+                        "priority": 1,
+                        "price": {
+                          "taxRate": 0,
+                          "taxIncludedAmount": {
+                            "unit": "EUR",
+                            "value": 3
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "productRelationship": [],
+                "productSpecification": {
+                  "id": "b9267954-7027-4588-a36e-b4a0c0448693",
+                  "name": "Data Bundle",
+                  "version": "0.1",
+                  "@type": "ProductSpecificationRef"
+                },
+                "realizingResource": [
+                  {
+                    "id": "12x",
+                    "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+                    "@type": "LogicalResource"
+                  }
+                ],
+                "relatedParty": [
+                  {
+                    "@type": "RelatedPartyRefOrPartyRoleRef",
+                    "role": "customer",
+                    "partyOrPartyRole": {
+                      "@type": "PartyRef",
+                      "id": "231-mf20",
+                      "name": "homer",
+                      "@referredType": "individual"
+                    }
+                  }
+                ],
+                "status": "Created",
+                "operationalStatus": "Confirmed"
+              }
+            },
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "@type": "Product",
+                "isBundle": false,
+                "name": "Mobile Line",
+                "productCharacteristic": [
+                  {
+                    "@type": "ValidityCharacteristic",
+                    "id": "519e569a-08a8-4e11-ad47-9997c3766a5e.4",
+                    "name": "Validity",
+                    "value": {
+                      "value": 30,
+                      "unitOfMeasure": "Days"
+                    }
+                  }
+                ],
+                "productOffering": {
+                  "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+                  "name": "Mobile Line",
+                  "version": "2.7",
+                  "@type": "AtomicProductOffering",
+                  "@referredType": "ProductOfferingRef"
+                },
+                "productOrderItem": [
+                  {
+                    "orderItemAction": "add",
+                    "orderItemId": "88094b4d-37a5-4f54-9298-537647e65ad7",
+                    "productOrderId": "67a4ffc8e617d5009d32cac8"
+                  }
+                ],
+                "productPrice": [
+                  {
+                    "description": "MobileLine",
+                    "name": "NRC 5 Euro",
+                    "priceType": "nonRecurringCharge",
+                    "unitOfMeasure": "units",
+                    "productOfferingPrice": {
+                      "id": "b1a14825-ffa7-4a27-841f-16f798650de3",
+                      "name": "NRC 5 Euro",
+                      "@type": "ProductOfferingPriceRef",
+                      "@referredType": "ProductOfferingPriceCharge"
+                    },
+                    "price": {
+                      "taxRate": 0,
+                      "dutyFreeAmount": {
+                        "unit": "EUR",
+                        "value": 0
+                      },
+                      "taxIncludedAmount": {
+                        "unit": "EUR",
+                        "value": 0
+                      }
+                    },
+                    "productPriceAlteration": [
+                      {
+                        "description": "100% dicount",
+                        "name": "100% dicount",
+                        "priceType": "nonRecurringDiscount",
+                        "priority": 1,
+                        "price": {
+                          "percentage": 100,
+                          "taxRate": 0
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "productRelationship": [],
+                "productSpecification": {
+                  "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+                  "name": "Mobile Line",
+                  "version": "1.0.0",
+                  "@type": "ProductSpecificationRef"
+                },
+                "realizingResource": [
+                  {
+                    "id": "12x",
+                    "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+                    "@type": "LogicalResource"
+                  },
+                  {
+                    "id": "12x",
+                    "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+                    "@type": "LogicalResource"
+                  }
+                ],
+                "relatedParty": [
+                  {
+                    "@type": "RelatedPartyRefOrPartyRoleRef",
+                    "role": "customer",
+                    "partyOrPartyRole": {
+                      "@type": "PartyRef",
+                      "id": "231-mf20",
+                      "name": "homer",
+                      "@referredType": "individual"
+                    }
+                  }
+                ],
+                "status": "Created",
+                "operationalStatus": "Confirmed"
+              }
+            },
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "@type": "Product",
+                "isBundle": false,
+                "name": "Unlimited Time Bundle",
+                "productCharacteristic": [
+                  {
+                    "@type": "ObjectCharacteristic",
+                    "id": "72147f55-f9ac-4f45-9bc3-258638972e14.10",
+                    "name": "Quantity",
+                    "value": {
+                      "unitOfMeasure": "Hour",
+                      "value": "9999"
+                    }
+                  },
+                  {
+                    "@type": "ValidityCharacteristic",
+                    "id": "827586eb-c419-4090-9449-92bd4fe150df.6",
+                    "name": "Validity",
+                    "value": {
+                      "value": 30,
+                      "unitOfMeasure": "Days"
+                    }
+                  }
+                ],
+                "productOffering": {
+                  "id": "2490022a-f419-4f3d-aa26-e6bb3f74841f",
+                  "name": "Unlimited Time Bundle",
+                  "version": "1.0",
+                  "@type": "AtomicProductOffering",
+                  "@referredType": "ProductOfferingRef"
+                },
+                "productOrderItem": [
+                  {
+                    "orderItemAction": "add",
+                    "orderItemId": "7386d54d-f286-4d55-acb2-e9be6ace3ba9",
+                    "productOrderId": "67a4ffc8e617d5009d32cac8"
+                  }
+                ],
+                "productRelationship": [],
+                "productSpecification": {
+                  "id": "e56d8af2-d7cc-46c9-8489-a5b301908400",
+                  "name": "Time Bundle",
+                  "version": "0.2",
+                  "@type": "ProductSpecificationRef"
+                },
+                "realizingResource": [
+                  {
+                    "id": "12x",
+                    "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+                    "@type": "LogicalResource"
+                  }
+                ],
+                "relatedParty": [
+                  {
+                    "@type": "RelatedPartyRefOrPartyRoleRef",
+                    "role": "customer",
+                    "partyOrPartyRole": {
+                      "@type": "PartyRef",
+                      "id": "231-mf20",
+                      "name": "homer",
+                      "@referredType": "individual"
+                    }
+                  }
+                ],
+                "status": "Created",
+                "operationalStatus": "Confirmed"
+              }
+            }
+          ],
+          "@type": "Product"
+        }
+      }
+    ],
+    "productPrice": [
+      {
+        "validFor": {
+          "endDateTime": "2026-01-16T15:34:59Z",
+          "startDateTime": "2025-01-16T15:34:59Z"
+        },
+        "description": "NRC 100 Euro",
+        "name": "NRC 100 Euro",
+        "priceType": "NRC",
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 100
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 100
+          }
+        }
+      },
+      {
+        "productPriceAlteration": [
+          {
+            "description": "productPriceAlteration description 1",
+            "name": "productPriceAlteration name 1",
+            "priceType": "productPriceAlteration priceType 1",
+            "recurringChargePeriod": {
+              "amount": 1,
+              "units": "Month"
+            },
+            "price": {
+              "percentage": 1
+            }
+          },
+          {
+            "description": "productPriceAlteration description 2",
+            "name": "productPriceAlteration name 2",
+            "priceType": "productPriceAlteration priceType2",
+            "recurringChargePeriod": {
+              "amount": 1,
+              "units": "Month"
+            },
+            "price": {
+              "percentage": 1
+            }
+          }
+        ],
+        "description": "NRC 100 Euro",
+        "name": "NRC 100 Euro",
+        "priceType": "NRC",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "Month"
+        },
+        "unitOfMeasure": "DAY",
+        "productOfferingPrice": {
+          "id": "d45ba2c5-2863-41c6-8069-052b909aea2e"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 100
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 100
+          }
+        }
+      }
+    ],
+    "@type": "Product"
+  }
+}
+
+script:post-response {
+  var responseBody = res.body;
+  
+  var productsInfo = [];
+  var productsIds= [];
+  
+  function extractProductInfo(products) {
+      products.forEach(function(product) {
+          if (product.productOffering || product.productSpecification) {
+              var productInfo = {
+                  id: product.id,
+                  type: product.productOffering ? product.productOffering['@type'] : 'productSpecification',
+                  name: product.productOffering ? product.productOffering.name : (product.productSpecification ? product.productSpecification.name : null)
+              };
+              productsInfo.push(productInfo);
+            productsIds.push(product.id);
+          }
+          if (product.productRelationship) {
+              product.productRelationship.forEach(function(relationship) {
+                  if (relationship.relationshipType !== "ParentContract") {
+                      extractProductInfo([relationship.product]);
+                  }
+              });
+          }
+      });
+  }
+  
+  extractProductInfo([responseBody]);
+  bru.setEnvVar("oldContractId", (productsInfo.find(item => item.type == "Contract") || {}).id);
+  bru.setEnvVar("oldBundleId", (productsInfo.find(item => item.type == "BundleProductOffering") || {}).id);
+  bru.setEnvVar("oldAtomicId", (productsInfo.find(item => item.type == "AtomicProductOffering") || {}).id);
+  let patchAtivationRequest="[";
+  productsIds.forEach(id=>{patchAtivationRequest+=`
+   {
+      "op": "replace",
+      "path": "/productInventoryManagement/v1/product/${id}/status",
+      "value": "Active"
+    },
+    {
+      "op": "replace",
+      "path": "/productInventoryManagement/v1/product/${id}/operationalStatus",
+      "value": "Active"
+    },`})
+  patchAtivationRequest = patchAtivationRequest.slice(0, -1); // Removes the last character
+  
+  patchAtivationRequest+="]";
+  console.log("oldContractId: ",bru.getEnvVar("oldContractId"));
+  console.log("oldBundleId: ",bru.getEnvVar("oldBundleId"));
+  console.log("oldAtomicId: ",bru.getEnvVar("oldAtomicId"));
+  bru.setEnvVar("patchAtivationRequest", patchAtivationRequest);
+  console.log("patchAtivationRequest: ",bru.getEnvVar("patchAtivationRequest"));
+  
+}

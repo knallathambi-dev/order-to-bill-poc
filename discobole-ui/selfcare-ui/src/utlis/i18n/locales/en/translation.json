@@ -1,0 +1,377 @@
+{
+  "access": {
+    "noPermission": "You don't have permission to view this page",
+    "restricted": "Access Restricted"
+  },
+  "actions": {
+    "accessRestricted": "Access Restricted",
+    "addToOrder": "Add to Order",
+    "back": "Back",
+    "backToHomepage": "Back to Homepage",
+    "backToLogin": "Back to Login",
+    "cancel": "Cancel",
+    "cancelModify": "Cancel Modify",
+    "cancelOrder": "Cancel Order",
+    "cancelPayment": "Cancel Payment",
+    "cancelTerminate": "Cancel Terminate",
+    "changePlan": "Change Plan",
+    "checkEligibility": "Check Eligibility",
+    "close": "Close",
+    "confirmOrder": "Confirm Order",
+    "continueToPayment": "Continue to Payment",
+    "edit": "Edit",
+    "editAddress": "Edit Address",
+    "editPlan": "Edit Plan",
+    "goToOffers": "Go to Offers",
+    "login": "Login",
+    "logout": "Logout",
+    "modify": "Modify",
+    "myOrders": "My Orders",
+    "next": "Next",
+    "orderNow": "Order Now",
+    "placeOrder": "Place Order",
+    "proceedToChange": "Proceed to Change",
+    "proceedToOrder": "Proceed to Order",
+    "register": "Register",
+    "reload": "Reload",
+    "save": "Save",
+    "saveChanges": "Save Changes",
+    "terminate": "Terminate",
+    "terminatePlan": "Terminate Plan",
+    "trackYourOrder": "Track Your Order",
+    "unlimited": "Unlimited",
+    "viewDetails": "View Details"
+  },
+  "appointment": {
+    "description": "Please select your appointment date to set up your fiber",
+    "title": "Book an Agent Appointment"
+  },
+  "auth": {
+    "agreeToTerms": "By checking this box, you are agreeing to our Terms & Conditions",
+    "greeting": "Hello There!",
+    "logout": {
+      "confirmations": {
+        "confirm": "Yes, Logout",
+        "message": "You are about to log out",
+        "question": "Do you want to continue?",
+        "title": "Are You Sure?"
+      },
+      "title": "Logout"
+    },
+    "pleaseLoginOrRegister": "Please login or register to validate your order",
+    "registerSuccessPleaseLogin": "Registration successful. Please log in to continue."
+  },
+  "common": {
+    "addUpTo": "Add up to",
+    "beforeDiscount": "Before Discount",
+    "commitmentTerm": "Commitment Term",
+    "confirm": "Confirm",
+    "confirmPlacement": "By placing your order, you are agreeing to our Terms of Service and Privacy Policy",
+    "creationDate": "Creation Date",
+    "discount": "Discount",
+    "installment": {
+      "info": {
+        "paymentNote": "Pay only the down payment now. Monthly and total prices are estimates of your future costs."
+      },
+      "labels": {
+        "estimatedInstallments": "Installments (Est.)",
+        "estimatedTotalPrice": "Total Price (Est.)",
+        "initialPayment": "Down Payment",
+        "monthlyAmount": "Monthly Payment",
+        "totalAmount": "Total Payment",
+        "duration": "for",
+        "installmentPeriod": "Installments over",
+        "afterCompletion": "After finishing installments"
+      },
+      "tabs": {
+        "fullPrice": "Full Price",
+        "installment": "Installment"
+      },
+      "comparison": {
+        "title": "Compare Installment Plans",
+        "description": "Here is a simulator rate for different installment payment options",
+        "loadingOptions": "Loading partner options...",
+        "tableHeaders": {
+          "durationMonths": "Number of Months",
+          "monthlyAmount": "Monthly Payment",
+          "totalAmount": "Total Payment"
+        },
+        "interestTypes": {
+          "noInterest": "without interest",
+          "withInterest": "with interest rate"
+        }
+      }
+    },
+    "loading": "Loading...",
+    "orderId": "Order ID",
+    "orderPreview": "Order Preview",
+    "planPreview": "Plan Preview",
+    "selectAnotherOffer": "Please select another offer",
+    "selectToOrder": "Select to Order",
+    "shipping": "Shipping",
+    "state": "State",
+    "subtotal": "Subtotal",
+    "taxExcluded": "Tax excluded",
+    "taxIncluded": "Tax included",
+    "terminationDate": "Termination Date",
+    "total": "Total",
+    "unlimited": "Unlimited",
+    "warning": "Warning",
+    "payment": "Payment"
+  },
+  "device": {
+    "title": "Set Up Your Device"
+  },
+  "eligibility": {
+    "description": "Test your address to see if your area is covered and eligible for that offer",
+    "failure": {
+      "notEligibleFiber": "The mentioned address is not eligible for fiber",
+      "updateAddress": "Please update the address or select another offer"
+    },
+    "success": {
+      "message": "You are eligible for this offer",
+      "title": "Congratulations!"
+    },
+    "title": "Offer Eligibility",
+    "types": {
+      "basic": "Basic",
+      "satellite": "Satellite"
+    }
+  },
+  "footer": {
+    "accessibilityStatement": "Accessibility Statement",
+    "cookiePolicy": "Cookie Policy",
+    "privacy": "Privacy",
+    "termsAndConditions": "Terms and Conditions"
+  },
+  "forms": {
+    "labels": {
+      "address": "Address",
+      "appointmentDate": "Appointment Date",
+      "city": "City",
+      "contactNumber": "Contact Number",
+      "country": "Country",
+      "creditCardNumber": "Credit Card Number",
+      "cvv": "CVV",
+      "deliveryDate": "Delivery Date",
+      "email": "Email",
+      "emailMobileNumber": "Email / Mobile Number",
+      "expiration": "Expiration",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "nameOnCard": "Name on Card",
+      "password": "Password",
+      "pickUpFromStore": "Pick Up from Store",
+      "postalCode": "Postal Code",
+      "reEnterPassword": "Re-enter Password",
+      "requestedDeliveryDate": "Requested Delivery Date",
+      "shippingAddress": "Shipping Address",
+      "title": "Title"
+    },
+    "placeholders": {
+      "emailMobileNumber": "Enter your email or mobile number",
+      "enterYourAddress": "Enter your address",
+      "enterYourPostalCode": "Enter your postal code",
+      "fullNameAsDisplayedOnCard": "Full name as displayed on card",
+      "nameOnCard": "Name on card",
+      "password": "Enter your password",
+      "searchDevices": "Search devices...",
+      "searchOffers": "Search offers...",
+      "searchPlans": "Search plans...",
+      "selectACity": "Select a City",
+      "selectACountry": "Select a country"
+    },
+    "titles": {
+      "mr": "Mr",
+      "mrs": "Mrs"
+    }
+  },
+  "home": {
+    "active": "Active",
+    "greeting": "Hello There,",
+    "noMatchesFound": "No matches found for this search",
+    "subtitle": "You can now choose from the available variety of offers and products that fulfill your needs"
+  },
+  "myPlans": {
+    "noProductsFound": "No products found",
+    "migrationInProgress": "Migration in Progress",
+    "migrationInProgressDesc": "Your products are being migrated to this contract. They will appear here once the migration is complete."
+  },
+  "order": {
+    "confirmations": {
+      "cancel": {
+        "body": "Are you sure you want to cancel this order?",
+        "confirm": "Yes, Cancel It",
+        "decline": "No, Thanks",
+        "title": "Cancel Order"
+      }
+    },
+    "notes": {
+      "terminationPenalty": "Please note that the bundle cannot be terminated before the end of the product term without incurring penalty charges"
+    },
+    "status": {
+      "cancelled": "cancelled",
+      "confirmed": "confirmed"
+    },
+    "statusUpdate": {
+      "completedBy": "Order will be completed by {{date}}",
+      "title": "Your order has been {{status}} successfully"
+    },
+    "notEligibleInstallment": {
+      "ineligibleMessage": "You are not eligible to purchase a device with installment option.",
+      "proceedUpfront": "Please proceed with upfront payment."
+    },
+    "summary": {
+      "sections": {
+        "devices": "Devices",
+        "includedItems": "Included Items",
+        "optionalItems": "Optional Items",
+        "terminatedItems": "Terminated Items"
+      }
+    }
+  },
+  "pageNotFound": {
+    "message": "The page you're looking for doesn't exist or may have been moved"
+  },
+  "pages": {
+    "bookAppointment": "Book Appointment",
+    "changePlan": "Change Plan",
+    "checkEligibility": "Check Eligibility",
+    "completeOrder": "Complete Order",
+    "deviceSetUp": "Device Set Up",
+    "devicesAndElectronics": "Devices & Electronics",
+    "editPlan": "Edit Plan",
+    "eligiblePlans": "Eligible Plans",
+    "home": "Home",
+    "migratePlan": "Migrate Plan",
+    "myAccount": "My Account",
+    "myOrders": "My Orders",
+    "myPlans": "My Plans",
+    "offers": "Offers",
+    "orderStatusUpdate": "Order Status Update",
+    "orderSummary": "Order Summary",
+    "pageNotFound": "Page Not Found",
+    "setUpPlan": "Set Up Plan",
+    "shippingDetails": "Shipping Details",
+    "terminatePlan": "Terminate Plan",
+    "trackOrder": "Track Your Order"
+  },
+  "payment": {
+    "account": "account",
+    "billableItems": "Billable Items",
+    "billableItemsNote": "Those items will be charged to your billing account",
+    "billedOn": "This offer will be billed on",
+    "billingDetails": "Billing Details",
+    "byEndOfMonth": "by the end of the month",
+    "methods": {
+      "creditCard": "Credit Card",
+      "eWallet": "E-Wallet"
+    },
+    "paymentDetails": "Payment Details",
+    "purchasedItems": "Purchased Items",
+    "purchasedItemsNote": "Those items should be paid immediately",
+    "savePaymentMethod": "Save Payment Method",
+    "selectPaymentMethod": "Select your payment method"
+  },
+  "plan": {
+    "confirmations": {
+      "general": {
+        "cancel": "No, Thanks",
+        "question": "Do you want to continue?",
+        "title": "Are You Sure?"
+      },
+      "incompatibleOffer": "We are sorry, you can't subscribe to this offer since it is incompatible with one of your existing subscribed offers",
+      "modify": {
+        "confirm": "Yes, Modify it",
+        "message": "Once confirmed, your order will be processed",
+        "proceed": "Are you sure you want to proceed with this order?"
+      },
+      "terminate": {
+        "bundle": "Are you sure you want to terminate this bundle?",
+        "confirm": "Yes, Terminate it",
+        "message": "Once terminated, this plan will be removed",
+        "plan": "Are you sure you want to terminate this plan?"
+      }
+    },
+    "contract": "Contract",
+    "currentValue": "Current Value",
+    "editAddress": "Edit Address",
+    "migrate": {
+      "changeSelectedPlan": "Change Selected Plan",
+      "currentPlan": "Current Plan",
+      "planSelection": "Plan Selection",
+      "selectDescription": "Please choose from the available eligible plans above",
+      "yourPlanBenefits": "Your Plan Benefits"
+    },
+    "modify": {
+      "includedOptions": "Those options are included in your plan and cannot be terminated unless you terminate the whole plan",
+      "modificationsNotAuthorized": "Modifications to this contract are not authorized",
+      "noItemsToTerminate": "No items to terminate"
+    },
+    "myPlanDetails": "My Plan Details",
+    "planPreview": {
+      "applicationOffset": "Application starting from {{unit}}#{{offset}}",
+      "included": "Included",
+      "options": "Options"
+    },
+    "sections": {
+      "includedOffers": "Included Offers",
+      "optionalOffers": "Optional Offers"
+    },
+    "selectionPreview": "Selection Preview",
+    "title": "Set Up Your Plan",
+    "warnings": {
+      "terminationPenalty": "Please be advised that terminating this contract before the end of the product term will result in a penalty fee",
+      "terminationPenaltyWithCharges": "The plan includes a product term. Once terminated, the plan will be removed and incur penalty charges. Do you want to continue?"
+    }
+  },
+  "shipping": {
+    "edit": "Edit",
+    "itemCount": "{{count}} item",
+    "itemCount_plural": "{{count}} items",
+    "offerShipping": "{{count}} of your offer {{verb}} going to be shipped",
+    "pickUpMessage": "You can pick up your items from the selected store starting from tomorrow",
+    "shippingItems": "Shipping Items",
+    "shippingMethod": "Shipping Method",
+    "verbs": {
+      "are": "are",
+      "is": "is"
+    }
+  },
+  "validation": {
+    "custom": {
+      "deliveryDateMinimum": "Please select a delivery date 3 days from now or later"
+    },
+    "invalid": {
+      "creditCardNumber": "Please enter a valid 16-digit credit card number",
+      "cvv": "Please enter a valid 3-digit security code",
+      "email": "Please enter a valid email address",
+      "emailMobileNumber": "Please provide a valid email or mobile number",
+      "expirationDate": "Please select a valid expiration date in the future",
+      "nameOnCard": "Please enter a valid name as it appears on the card",
+      "password": "Please provide a valid password"
+    },
+    "length": {
+      "passwordMin": "Password must be at least 8 characters"
+    },
+    "match": {
+      "passwordMismatch": "Passwords do not match",
+      "reEnterPassword": "Please re-enter your password"
+    },
+    "required": {
+      "address": "Address is required",
+      "city": "City is required",
+      "country": "Country is required",
+      "creditCardNumber": "Credit card number is required",
+      "cvv": "Security code is required",
+      "deliveryDate": "Delivery date is required",
+      "email": "Email is required",
+      "emailMobileNumber": "Email or mobile number is required",
+      "expirationDate": "Expiration date is required",
+      "firstName": "First name is required",
+      "nameOnCard": "Name on card is required",
+      "password": "Password is required",
+      "postalCode": "Postal code is required"
+    }
+  }
+}

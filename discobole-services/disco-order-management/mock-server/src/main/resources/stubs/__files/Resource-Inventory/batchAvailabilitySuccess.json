@@ -1,0 +1,54 @@
+[
+  {
+    "id": "12x",
+    "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+    "resourceCharacteristic": [
+      {
+        "value": "0170123456"
+      }
+    ],
+    "@type": "product",
+    "category": "SIM",
+    "name": "MSISDN",
+    "resourceStatus": "available"
+  },
+  {
+    "id": "13x",
+    "href": "http://server:port/resourceInventoryManagement/logicalResource/13x",
+    "resourceCharacteristic": [
+      {
+        "value": "0170123456"
+      }
+    ],
+    "@type": "product",
+    "category": "SIM",
+    "name": "ICCID",
+    "resourceStatus": "available"
+  },
+  {
+    "id": "14x",
+    "href": "http://server:port/resourceInventoryManagement/logicalResource/14x",
+    "resourceCharacteristic": [
+      {
+        "value": "0170123456"
+      }
+    ],
+    "@type": "product",
+    "category": "SIM",
+    "name": "IMSI",
+    "resourceStatus": "available"
+  },
+  {
+    "id": "15x",
+    "href": "http://server:port/resourceInventoryManagement/logicalResource/15x",
+    "resourceCharacteristic": [
+      {
+        "value": "0170123456"
+      }
+    ],
+    "@type": "product",
+    "category": "SIM",
+    "name": "VOIP phone number",
+    "resourceStatus": "available"
+  }
+]

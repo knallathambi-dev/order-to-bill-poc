@@ -1,0 +1,44 @@
+[
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ea",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ea",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"07",
+        "productOrderId":"1109"
+      }
+    ],
+    "productSpecification":{
+      "id":"c458d968-3718-4754-9408-7bd81526e7b2",
+      "name":"Mobile line",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+      {
+        "id":"1108_10"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ed"
+        }
+      }
+    ]
+  }
+]

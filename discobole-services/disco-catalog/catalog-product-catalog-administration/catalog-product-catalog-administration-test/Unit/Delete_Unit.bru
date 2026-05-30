@@ -1,0 +1,15 @@
+meta {
+  name: Delete_Unit
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{Admin_URL}}/unit/{{Unit_id}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

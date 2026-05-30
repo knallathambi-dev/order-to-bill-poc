@@ -1,0 +1,120 @@
+{
+  "@type": "PhysicalProduct",
+  "id": "67c08a6d3e0a2f1fdb75e7ec",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ec",
+  "isBundle": false,
+  "name": "Router",
+  "productSerialNumber": "67890543219876511223",
+  "startDate": "2025-02-27T15:54:01Z",
+  "billingAccount": {
+    "id": "130565-0896-1414-46e4-391dcbb62381",
+    "@referredType": "BillingAccount"
+  },
+  "productOffering": {
+    "id": "ca4d5345-71d5-4206-b137-aaf332d5dfde",
+    "name": "Router",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "ced95179-df32-46f1-96de-116f157057c2",
+      "productOrderId": "67c08a62311d586dbf8fe175"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "Internet Router Charge",
+      "name": "Internet Router Charge",
+      "priceType": "recurringCharge",
+      "recurringChargePeriod": {
+        "amount": 1,
+        "units": "month"
+      },
+      "productOfferingPrice": {
+        "id": "c8b2aca7-90a9-4fb9-acd7-00807d1c649a",
+        "name": "Internet Router Charge",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 2
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 2
+        }
+      },
+      "productPriceAlteration": []
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e2",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "483d25e5-1ea0-4380-ab40-6cea8ac0dfeb",
+    "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=483d25e5-1ea0-4380-ab40-6cea8ac0dfeb",
+    "name": "Router PS",
+    "version": "0.2",
+    "@type": "ProductSpecificationRef"
+  },
+  "realizingResource": [
+    {
+      "id": "69x",
+      "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+      "@type": "PhysicalResource"
+    }
+  ],
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "qwy2rhnix",
+        "name": "ii",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Sold",
+  "operationalStatus": "Sold",
+  "creationDate": "2025-02-27T15:53:17Z",
+  "lastUpdateDate": "2025-02-27T15:54:01Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-27T15:54:01Z",
+      "status": "Sold"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-27T15:53:33Z",
+      "status": "PendingDelivery"
+    },
+    {
+      "changeDate": "2025-02-27T15:54:01Z",
+      "status": "Sold"
+    }
+  ]
+}

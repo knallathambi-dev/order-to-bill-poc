@@ -1,0 +1,30 @@
+meta {
+  name: Create Import Job specification- Immediate
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/jobSpecification
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "@type": "ImportJobSpecification",
+    "schedule": {
+      "@type": "ImmediateJobScheduler"
+    },
+    "importType":"insert",
+    "contentType": "json"
+  }
+}
+
+body:multipart-form {
+  : 
+}
+
+tests {
+  bru.setEnvVar("taskId", res.body.id);
+}

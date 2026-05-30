@@ -1,0 +1,69 @@
+{
+  "DefineTaxProductOfferingPriceAlterationIdentity" : {
+    "type" : "object",
+    "properties" : {
+      "defineTaxPOPAlterationIdentityData" : {
+        "required" : [ "name", "priceAlterationType" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "percentage" : {
+            "type" : "number"
+          },
+          "price" : {
+            "type" : "object",
+            "properties" : {
+              "unit" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "number"
+              }
+            }
+          },
+          "priceAlterationType" : {
+            "type" : "string",
+            "enum" : [ "Price", "Percentage" ]
+          }
+        }
+      },
+      "validityMinCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validityMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validity" : {
+        "required" : [ "validFor" ],
+        "type" : "object",
+        "properties" : {
+          "lifecycleStatus" : {
+            "type" : "string",
+            "enum" : [ "launched", "unavailable", "retired", "obsolete" ]
+          },
+          "validFor" : {
+            "required" : [ "startDateTime" ],
+            "type" : "object",
+            "properties" : {
+              "endDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "startDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

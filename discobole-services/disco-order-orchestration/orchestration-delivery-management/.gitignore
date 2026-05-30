@@ -1,0 +1,40 @@
+# Software Name: orchestration-delivery-management
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+.DS_Store
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+/logs/*
+./logs/*

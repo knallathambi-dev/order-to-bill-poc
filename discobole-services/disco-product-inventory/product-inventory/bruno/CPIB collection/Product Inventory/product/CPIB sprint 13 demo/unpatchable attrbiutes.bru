@@ -1,0 +1,54 @@
+meta {
+  name: unpatchable attrbiutes
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{AtomicPhyscialProductId}}/id",
+          "value": "newID"
+      }
+  ]
+}
+
+script:pre-request {
+  var productsInfo = bru.getEnvVar("productsInfo");
+  if (!productsInfo) {
+      productsInfo = pm.globals.get("productsInfo");
+  }
+  productsInfo = JSON.parse(productsInfo);
+  
+  function getByType(products, type) {
+      let res = null;
+      products.forEach(function(product) {
+          if (product.type === type) {
+              res = product.id;
+          }
+      });
+      return res;
+  }
+  
+  bru.setEnvVar("AtomicPhyscialProductId", getByType(productsInfo, 'AtomicProductOffering'));
+  bru.setEnvVar("SpecPhyscialProductId", getByType(productsInfo, 'productSpecification'));
+  bru.setEnvVar("BundlePhyscialProductId", getByType(productsInfo, 'BundleProductOffering'));
+  bru.setEnvVar("ParentContractPhyscialProductId", getByType(productsInfo, 'Contract'));
+  
+}

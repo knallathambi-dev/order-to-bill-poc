@@ -1,0 +1,303 @@
+[
+  {
+    "id": "65321ec159ce096cc4b2bd5a",
+    "involvementRole": "Product Cat test",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x21",
+        "action": "Consultation",
+        "function": "Product Spec",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x22",
+        "action": "Consultation",
+        "function": "Atomic PO",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "653f955e7f950a501d855160",
+    "involvementRole": "ProductCatalogAdmin",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x20",
+        "action": "Consultation",
+        "function": "CFS Spec",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x21",
+        "action": "Consultation",
+        "function": "Product Spec",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x22",
+        "action": "Consultation",
+        "function": "Atomic PO",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x23",
+        "action": "Consultation",
+        "function": "Bundle PO",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x24",
+        "action": "Consultation",
+        "function": "POP",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "653f99aa7f950a501d855161",
+    "involvementRole": "ProductSpecAdmin",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x1",
+        "action": "Create",
+        "function": "create ps",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x5",
+        "action": "CreateNewVersion",
+        "function": "create new version",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x9",
+        "action": "ModifyPS",
+        "function": "modify ps",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x100",
+        "action": "ModifyCFS",
+        "function": "modify cfs",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "653f9a797f950a501d855162",
+    "involvementRole": "ProductOfferingAdmin",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x2",
+        "action": "Create",
+        "function": "create Atomic PO",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x3",
+        "action": "Create",
+        "function": "create Atomic Bundle",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x6",
+        "action": "CreateNewVersion",
+        "function": "create new version Atomic PO",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x7",
+        "action": "CreateNewVersion",
+        "function": "create new version Bundle PO",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x10",
+        "action": "ModifyPS",
+        "function": "modify atomic po",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x11",
+        "action": "ModifyPS",
+        "function": "modify bundle po",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "653f9b087f950a501d855163",
+    "involvementRole": "ProductOfferingPriceAdmin",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x4",
+        "action": "Create",
+        "function": "create POP",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x8",
+        "action": "CreateNewVersion",
+        "function": "create POP",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x12",
+        "action": "ModifyPS",
+        "function": "modify pop",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "653f9c2d7f950a501d855164",
+    "involvementRole": "LifecycleAdmin",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x100",
+        "action": "cfs_lifecycle",
+        "function": "cfs lifecycle",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x14",
+        "action": "ps_lifecycle",
+        "function": "ps lifecycle",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x15",
+        "action": "atomic_lifecycle",
+        "function": "apo lifecycle",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x16",
+        "action": "bundle_lifecycle",
+        "function": "bpo lifecycle",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x17",
+        "action": "pop_lifecycle",
+        "function": "pop lifecycle",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x102",
+        "action": "config lifecycle",
+        "function": "config lifecycle",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "656da3b37f950a501d855165",
+    "involvementRole": " Orchestration plans Admin",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x200",
+        "action": "Consultation",
+        "function": "Orchestration plan",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "65a902195b658e0987f3d43c",
+    "involvementRole": "ProductOrderAdmin",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x300",
+        "action": "Consultation",
+        "function": "Product Order",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x301",
+        "action": "Create",
+        "function": "Product Order",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "65aa444e5b658e0987f3d43d",
+    "involvementRole": "ReadProductOrder",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x300",
+        "action": "Consultation",
+        "function": "Product Order",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "65ae763f5b658e0987f3d43e",
+    "involvementRole": "OrderCaptureAdmin",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x302",
+        "action": "Consultation",
+        "function": "Order apture",
+        "@type": "Entitlement"
+      },
+      {
+        "id": "x303",
+        "action": "Create",
+        "function": "Order capture",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "65bfd452cad4ad9e1043f629",
+    "involvementRole": "CreateProduct",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x500",
+        "action": "Create",
+        "function": "Product",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "65bfd452cad4ad9e1043f62a",
+    "involvementRole": "ReadProduct",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x501",
+        "action": "Consultation",
+        "function": "Product",
+        "@type": "Entitlement"
+      }
+    ]
+  },
+  {
+    "id": "65bfd452cad4ad9e1043f62b",
+    "involvementRole": "UpdateProduct",
+    "@type": "UserRole",
+    "entitlement": [
+      {
+        "id": "x502",
+        "action": "Modify",
+        "function": "Product",
+        "@type": "Entitlement"
+      }
+    ]
+  }
+]

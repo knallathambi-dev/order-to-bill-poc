@@ -1,0 +1,59 @@
+{
+  "auth": {
+    "loginFailed": "Email ou senha inválidos. Por favor, tente novamente.",
+    "registrationFailed": "Não foi possível criar a conta. Verifique suas informações e tente novamente.",
+    "sessionExpired": "A sua sessão expirou. Por favor, inicie sessão novamente."
+  },
+  "common": {
+    "fetchConfigurationFailed": "Lamentamos, não foi possível carregar a sua configuração. Tente novamente.",
+    "fetchOrderFailed": "Lamentamos, não foi possível carregar o seu pedido. Tente novamente.",
+    "processFlowCreateFailed": "Lamentamos, não foi possível iniciar o seu pedido. Tente novamente."
+  },
+  "completeOrder": {
+    "completeFailed": "Lamentamos, não foi possível concluir o seu pedido. Tente novamente."
+  },
+  "eligiblePlans": {
+    "fetchEligiblePlansFailed": "Lamentamos, não foi possível carregar os planos disponíveis. Tente novamente.",
+    "loadPlanDetailsFailed": "Lamentamos, não foi possível carregar os detalhes do plano. Tente novamente.",
+    "proceedChangeFailed": "Lamentamos, não foi possível continuar com a alteração do plano. Tente novamente."
+  },
+  "eligibility": {
+    "updateAddressFailed": "Lamentamos, não foi possível atualizar a sua morada. Tente novamente."
+  },
+  "home": {
+    "devices": {
+      "configureFailed": "Lamentamos, não foi possível configurar este dispositivo. Tente novamente.",
+      "loadFailed": "Lamentamos, não foi possível carregar os seus dispositivos. Tente novamente."
+    },
+    "offers": {
+      "configureFailed": "Lamentamos, não foi possível configurar esta oferta. Tente novamente.",
+      "loadFailed": "Lamentamos, não foi possível carregar as suas ofertas. Tente novamente."
+    }
+  },
+  "myOrders": {
+    "fetchOrderDetailsPartialFailed": "Alguns detalhes do pedido não foram carregados. Tente novamente.",
+    "fetchOrdersFailed": "Lamentamos, não foi possível carregar os seus pedidos. Tente novamente."
+  },
+  "myPlans": {
+    "fetchPlanDetailsFailed": "Alguns detalhes do plano não foram carregados. Tente novamente.",
+    "fetchPlansFailed": "Lamentamos, não foi possível carregar os seus planos. Tente novamente.",
+    "modifyContractFailed": "Lamentamos, não foi possível preparar a alteração do seu plano. Tente novamente."
+  },
+  "orderSummary": {
+    "cancelOrderFailed": "Lamentamos, não foi possível cancelar o seu pedido. Tente novamente.",
+    "validateOrderFailed": "Lamentamos, não foi possível confirmar o seu pedido. Tente novamente."
+  },
+  "plan": {
+    "processFailed": "Lamentamos, não foi possível processar o seu plano. Tente novamente.",
+    "terminateFailed": "Lamentamos, não foi possível terminar o seu plano. Tente novamente.",
+    "updateCharacteristicFailed": "Lamentamos, não foi possível atualizar a sua seleção. Tente novamente.",
+    "updateCommitmentFailed": "Lamentamos, não foi possível atualizar o período de fidelização. Tente novamente."
+  },
+  "shipping": {
+    "createFailed": "Lamentamos, não foi possível guardar os seus dados de envio. Tente novamente.",
+    "updateShippingMethodFailed": "Lamentamos, não foi possível aplicar a sua opção de entrega. Tente novamente."
+  },
+  "trackOrder": {
+    "fetchFailed": "Lamentamos, não foi possível carregar o estado do seu pedido. Tente novamente."
+  }
+}

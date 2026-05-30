@@ -1,0 +1,59 @@
+{
+  "auth": {
+    "loginFailed": "Invalid email or password. Please try again.",
+    "registrationFailed": "Unable to create account. Please check your information and try again.",
+    "sessionExpired": "Your session has expired. Please log in again."
+  },
+  "common": {
+    "fetchConfigurationFailed": "Sorry, we couldn't load your configuration. Please try again.",
+    "fetchOrderFailed": "Sorry, we couldn't load your order. Please try again.",
+    "processFlowCreateFailed": "Sorry, we couldn't start your order. Please try again."
+  },
+  "completeOrder": {
+    "completeFailed": "Sorry, we couldn't complete your order. Please try again."
+  },
+  "eligiblePlans": {
+    "fetchEligiblePlansFailed": "Sorry, we couldn't load eligible plans. Please try again.",
+    "loadPlanDetailsFailed": "Sorry, we couldn't load plan details. Please try again.",
+    "proceedChangeFailed": "Sorry, we couldn't continue with the plan change. Please try again."
+  },
+  "eligibility": {
+    "updateAddressFailed": "Sorry, we couldn't update your address. Please try again."
+  },
+  "home": {
+    "devices": {
+      "configureFailed": "Sorry, we couldn't set up this device. Please try again.",
+      "loadFailed": "Sorry, we couldn't load your devices. Please try again."
+    },
+    "offers": {
+      "configureFailed": "Sorry, we couldn't set up this offer. Please try again.",
+      "loadFailed": "Sorry, we couldn't load your offers. Please try again."
+    }
+  },
+  "myOrders": {
+    "fetchOrderDetailsPartialFailed": "Some order details didn't load. Please try again.",
+    "fetchOrdersFailed": "Sorry, we couldn't load your orders. Please try again."
+  },
+  "myPlans": {
+    "fetchPlanDetailsFailed": "Some plan details didn't load. Please try again.",
+    "fetchPlansFailed": "Sorry, we couldn't load your plans. Please try again.",
+    "modifyContractFailed": "Sorry, we couldn't prepare your plan change. Please try again."
+  },
+  "orderSummary": {
+    "cancelOrderFailed": "Sorry, we couldn't cancel your order. Please try again.",
+    "validateOrderFailed": "Sorry, we couldn't confirm your order. Please try again."
+  },
+  "plan": {
+    "processFailed": "Sorry, we couldn't process your plan. Please try again.",
+    "terminateFailed": "Sorry, we couldn't end your plan. Please try again.",
+    "updateCharacteristicFailed": "Sorry, we couldn't update your selection. Please try again.",
+    "updateCommitmentFailed": "Sorry, we couldn't update your commitment term. Please try again."
+  },
+  "shipping": {
+    "createFailed": "Sorry, we couldn't save your shipping details. Please try again.",
+    "updateShippingMethodFailed": "Sorry, we couldn't apply your delivery option. Please try again."
+  },
+  "trackOrder": {
+    "fetchFailed": "Sorry, we couldn't load your order status. Please try again."
+  }
+}

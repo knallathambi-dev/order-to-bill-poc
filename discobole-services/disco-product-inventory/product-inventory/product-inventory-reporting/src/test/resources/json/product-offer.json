@@ -1,0 +1,38 @@
+[
+  {
+    "id": "678ad9a70deb0518e00e3752",
+    "productOfferId": "7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+    "productOfferName": "Mobile Package Max Plus",
+    "productOfferType": "BundleProductOffering"
+  },
+  {
+    "id": "678ad9a70deb0518e00e3758",
+    "productOfferId": "24b34407-3c7d-4228-ba45-feff73ec4f05",
+    "productOfferName": "Samsung galaxy S10 reconditioned",
+    "productOfferType": "AtomicProductOffering"
+  },
+  {
+    "id": "678ad9a70deb0518e00e375d",
+    "productOfferId": "dbbc92f9-faf2-4886-8749-0f07abfc1971",
+    "productOfferName": "Mobile Package Max Plus",
+    "productOfferType": "Contract"
+  },
+  {
+    "id": "6551f60613607b0b686366e6",
+    "productOfferId": "772056cd-485b-4877-8453-1648a07c43f7",
+    "productOfferName": "Mobile Package Basic",
+    "productOfferType": "Contract"
+  },
+  {
+    "id": "6551f60713607b0b686366e7",
+    "productOfferId": "414e3b5e-7fca-4b7e-bf73-51fa1e66b87f",
+    "productOfferName": "Mobile Package Basic",
+    "productOfferType": "BundleProductOffering"
+  },
+  {
+    "id": "6551f60713607b0b686366e8",
+    "productOfferId": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+    "productOfferName": "MobileLine",
+    "productOfferType": "AtomicProductOffering"
+  }
+]

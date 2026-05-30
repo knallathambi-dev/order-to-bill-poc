@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.orange.discobole.productcatalog</groupId>
+		<artifactId>discobole-productcatalog-administration</artifactId>
+		<version>1.7.0</version>
+	</parent>
+	<artifactId>product-catalog-administration-spec</artifactId>
+	<version>1.0.2</version>
+	<name>discobole-admin-spec</name>
+	<description>Demo project for Spring Boot</description>
+
+	<url>https://gitlab.ow2.org/discobole/disco-oda-components/disco-catalog/catalog-product-catalog-administration/product-catalog-administration-spec</url>
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/license/mit</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<properties>
+		<maven.providedr.source>17</maven.providedr.source>
+		<maven.providedr.target>17</maven.providedr.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations-jakarta</artifactId>
+			<version>2.2.15</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.annotation</groupId>
+			<artifactId>jakarta.annotation-api</artifactId>
+		</dependency>
+
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>7.0.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>
+								${project.basedir}/src/main/resources/catalog-administration-api-spec.yaml
+							</inputSpec>
+							<generatorName>spring</generatorName>
+							<configOptions>
+								<useJakartaEe>true</useJakartaEe>
+								<interfaceOnly>true</interfaceOnly>
+								<dateLibrary>java8-localdatetime</dateLibrary>
+								<generatedConstructorWithRequiredArgs>false</generatedConstructorWithRequiredArgs>
+						<additionalModelTypeAnnotations>@lombok.experimental.Accessors(chain = true);@lombok.NoArgsConstructor;@lombok.AllArgsConstructor;</additionalModelTypeAnnotations>
+							</configOptions>
+							<apiPackage>com.orange.disco.admin</apiPackage>
+							<modelPackage>com.orange.disco.admin</modelPackage>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

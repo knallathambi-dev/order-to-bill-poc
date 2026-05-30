@@ -1,0 +1,87 @@
+{
+  "id": "648077d13b328b176cd126eb",
+  "relatedProductOrder": {
+    "id": "646c7cf0a567d501359e091d"
+  },
+  "relatedParty": [
+    {
+      "id": "231-mf4",
+      "href": null,
+      "role": "customer",
+      "name": "Abir"
+    }
+  ],
+  "state": "Initialized",
+  "requestedDeliveryDate": "2023-06-23T08:44:32.157Z",
+  "orchestrationPlanNodes": [
+    {
+      "id": "c0180f55-195b-4269-a9aa-96c141b3eaa1",
+      "state": "Initialized",
+      "relatedServiceOrderItem": null,
+      "relatedProductOrderItem": [{
+        "id": "8",
+        "action": "add",
+        "quantity": 1
+      }],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "a484f66c-1347-4022-9426-e85de294df5d",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    },
+    {
+      "id": "a484f66c-1347-4022-9426-e85de294df5d",
+      "state": "Initialized",
+      "relatedServiceOrderItem": null,
+      "relatedProductOrderItem": [{
+        "id": "4",
+        "action": "add",
+        "quantity": 1
+      }],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "e0ec244e-2a82-47e1-926e-df9751c39b46",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    },
+    {
+      "id": "e0ec244e-2a82-47e1-926e-df9751c39b46",
+      "state": "Initialized",
+      "relatedServiceOrderItem": null,
+      "relatedProductOrderItem": [{
+        "id": "10",
+        "action": "add",
+        "quantity": 1
+      },
+        {"id": "11",
+          "action": "add",
+          "quantity": 1
+        }],
+      "relatedOrchestrationPlanNode": []
+    },
+    {
+      "id": "d8159064-3954-419e-8625-ab99152dbb0e",
+      "state": "Initialized",
+      "relatedServiceOrderItem": null,
+      "relatedProductOrderItem": [{
+        "id": "6",
+        "action": "add",
+        "quantity": 1
+      }],
+      "@type": "CFS",
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "e0ec244e-2a82-47e1-926e-df9751c39b46",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    }
+  ],
+  "receivedDate": "2023-06-07T12:28:01.04Z",
+  "orderStartDate": "2025-09-03T10:21:26.529Z",
+  "expectedOrderCompletionDate": "2025-09-06T10:21:26.529Z",
+  "actualOrderStartDate": "2025-09-04T10:21:26.529Z",
+  "actualOrderCompletionDate": "2025-09-06T10:21:26.529Z"
+}

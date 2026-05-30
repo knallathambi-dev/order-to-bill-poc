@@ -1,0 +1,82 @@
+meta {
+  name: DefineProductOfferingPriceChargeIdentityData
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "DefineProductOfferingPriceChargeIdentity",
+        "valueType": "Object",
+        "value": {
+          "definePOPChargeIdentityData": {
+            "name": "POPC_test",
+            "description": "POPC_test",
+            "priceType": "NRC",
+            "prorationType": null,
+            "chargeCycle": null,
+            "recurringChargePeriodLength": null,
+            "recurringChargePeriodType": null,
+            "immediatePayment": false,
+            "price": {
+              "unit": "EUR",
+              "value": "100"
+            },
+            "unitOfMeasure": null
+          },
+          "validity": {
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "{{startDate}}T12:58:56.027Z"
+            },
+            "lifecycleStatus": "launched"
+          },
+          "relationships": [
+            {
+              "id": "{{POPTax_id}}",
+              "relationshipType": "alteredBy",
+              "validFor": null
+            }, {
+              "id": "{{POPA_id}}",
+              "relationshipType": "alteredBy",
+              "validFor": null
+            }
+            
+          ]
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  test("to verify Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+}

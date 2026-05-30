@@ -1,0 +1,66 @@
+meta {
+  name: defBundledPO
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "ManageProductOfferingBundling",
+        "valueType": "Object",
+        "value": {
+          "globalMinCardinality": 1,
+          "globalMaxCardinality": 1,
+          "bundledProductOffering": [
+            {
+              "id": "{{BPO_id}}",
+            
+              "bundledProductOfferingOption": {
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferDefault": 1,
+                "numberRelOfferUpperLimit": 1
+              }
+            }
+          ]
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  test("To verify that next task is  SelectAllowedAction", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[0].title).to.equals("ProductOfferingCreation.selectAllowedAction");
+  });
+}

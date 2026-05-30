@@ -1,0 +1,755 @@
+{
+  "mappings": [
+    {
+      "name": "Get product specification Active Mobile Package Comfort",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67f3fff127434975dbb90206"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveMobilePackageComfort.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Connectivity",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67f3fff127434975dbb90208"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/Connectivity.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Mobile Line",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67f3fff127434975dbb90209"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/MobileLine.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Data Bundle",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67f3fff127434975dbb9020a"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/DataBundle.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification SIM Card",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67f3fff127434975dbb9020b"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/SIMCard.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Mobile Package Comfort Bundle",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67f3fff127434975dbb90207"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/MobilePackageComfortBundle.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Add-on HBO",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7e5"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/AddOnHBO.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Add-on Netflix",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7e4"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/AddOnNetflix.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Fibra 1000",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7ea"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/Fibra1000.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Fibra 1000 contract",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7e2"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/Fibra1000Contract.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Fix communication",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7eb"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/FixCommunication.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Internet Box",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7e9"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/InternetBox.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Internet Fiber",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7e8"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/InternetFiber.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Router",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7ec"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/Router.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification TV Box",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7e7"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/TVBox.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification TV Channels",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7e6"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/TVChannels.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification TV Premium",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67c08a6d3e0a2f1fdb75e7e3"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/TVPreimum.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification SimCardPs",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67ab50b537fe5a1967b9858e"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/SIMCardPS.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification ActiveMobileLine",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67ab50b537fe5a1967b9858c"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveMobileLine.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification SmartViewWalletGalaxyA55Case",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67ab50b537fe5a1967b98597"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/SmartViewWalletGalaxyA55Case.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification SamsungGalaxyA55",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67ab50b537fe5a1967b98596"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/SamsungGalaxyA55.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Device insurance",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67ab50b537fe5a1967b98598"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/DeviceInsurancePS.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Data bundle EU",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67ab50b537fe5a1967b9858f"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/DataBundleEURoaming.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Data bundle National",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67ab50b537fe5a1967b98590"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/UnlimitedMessagingBundleNationalAndRoamingEU.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification Data bundle National",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67ab50b537fe5a1967b98593"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveDataBundleNational.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification time bundle roaming",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "67ab50b537fe5a1967b98594"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveTimeBundleRoaming.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification connectivity",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737eb"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveConnectivityProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product status connectivity",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737eb"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ConnectivityProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification sim card",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ed"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveSimCardProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product status sim card",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ed"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveSimCardProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification hanset",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ef"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveSimCardProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product status handset",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ef"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveSimCardProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification time bundle",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ec"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveTimeBundleProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product status time bundle",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ec"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveTimeBundleProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product status mobile line",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ea"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveMobileLineProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification mobile line",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ea"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveMobileLineProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}
+

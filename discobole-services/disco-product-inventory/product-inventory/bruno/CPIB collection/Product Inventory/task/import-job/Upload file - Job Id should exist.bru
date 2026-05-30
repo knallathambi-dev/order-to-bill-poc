@@ -1,0 +1,24 @@
+meta {
+  name: Upload file - Job Id should exist
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/product/uploadFile
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Content-Type: multipart/form-data
+}
+
+body:json {
+  {"file": null}
+}
+
+body:multipart-form {
+  file: @file(D:\OIT\DISCO\CPIB\UploadFiles exam\empty.json)
+  jobId: JobIdNotExist
+}

@@ -1,0 +1,33 @@
+meta {
+  name: Retrieve_Currency
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{Admin_URL}}/currency
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  var jsonData = res.getBody();
+  var size=jsonData.length;
+  console.log(size);
+  for(let i=0;i<size;i++)
+    {
+  if(jsonData[i].code == 'INR' )
+  
+      bru.setEnvVar("INR",jsonData[i].id);
+  else if(jsonData[i].code == 'CNY')
+  
+        bru.setEnvVar("CNY",jsonData[i].id);
+         
+    }
+  
+  
+}

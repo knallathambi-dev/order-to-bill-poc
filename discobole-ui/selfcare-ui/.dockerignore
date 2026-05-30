@@ -1,0 +1,94 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# Dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+package-lock.json.bak
+
+# Build outputs
+dist
+build
+.next
+out
+
+# Testing
+coverage
+.nyc_output
+test
+tests
+__tests__
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+jest.config.js
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+Jenkinsfile
+
+# Documentation
+*.md
+!README.md
+docs
+LICENSE
+CONTRIBUTORS.txt
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Helm charts
+helm
+charts
+*.tgz
+Chart.yaml
+values*.yaml
+templates
+
+# Cache directories
+.npm
+.cache
+.parcel-cache
+.eslintcache
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+tmp
+temp
+*.tmp

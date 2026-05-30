@@ -1,0 +1,198 @@
+[
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4722",
+    "isBundle": false,
+    "name": "Mobile Smart Contract",
+    "startDate": "2025-03-07T10:38:40Z",
+    "billingAccount": {
+      "id": "139cc7-5210-752e-09b1-848269184a2c",
+      "@referredType": "BillingAccount"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4723"
+        }
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:40Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4723",
+    "isBundle": false,
+    "name": "Smart Bundle",
+    "startDate": "2025-03-07T10:38:40Z",
+    "productOffering": {
+      "id": "c83a604c-c847-4d23-ab04-1706be6def04",
+      "name": "Smart Bundle",
+      "version": "1.0",
+      "@type": "BundleProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4724"
+        }
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:40Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4724",
+    "isBundle": false,
+    "name": "Orange TV and Movie Go",
+    "startDate": "2025-03-07T10:38:31Z",
+    "productOffering": {
+      "id": "15b306a8-5fe6-4e48-bf3f-f6f8f32812b0",
+      "name": "Orange TV and Movie Go",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "e59abf2e-4ccd-4e6a-96b2-29e702d5c419",
+      "name": "Orange TV and Movie Go PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:31Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4725",
+    "isBundle": false,
+    "name": "Data Bundle National",
+    "startDate": "2025-03-07T10:38:31Z",
+    "productOffering": {
+      "id": "90f78fed-8af2-4012-bf2d-cedac38833ae",
+      "name": "Data Bundle National",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba",
+      "name": "Data Bundle National PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:31Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4728",
+    "isBundle": false,
+    "name": "Mobile Line",
+    "startDate": "2025-03-07T10:38:01Z",
+    "productOffering": {
+      "id": "87e81e5a-ce79-4b85-8183-d0f8733985da",
+      "name": "Mobile Line",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [],
+    "productSpecification": {
+      "id": "f18a3fe0-1e61-419a-b7d8-dd68215b3705",
+      "name": "Mobile Line PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:01Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4729",
+    "isBundle": false,
+    "name": "Time Bundle Roaming",
+    "startDate": "2025-03-07T10:38:31Z",
+    "productOffering": {
+      "id": "4bbaa24a-5f2a-4e00-b1c6-8be2531a8003",
+      "name": "Time Bundle Roaming",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "94780e6a-9e82-421a-8bc0-d83db169d132",
+      "name": "Time Bundle Roaming PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:31Z"
+  }
+]

@@ -1,0 +1,47 @@
+meta {
+  name: Bulk with relationshipType relieon
+  type: http
+  seq: 14
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/659feecc82023b7f07b05c1e/productRelationship/-",
+          "value": {
+              "relationshipType": "reliesOn",
+              "product": {
+                  "id": "659feaa782023b7f07b05c1a",
+                  "@type": "ProductRef"
+              }
+          }
+      },
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/659feaa782023b7f07b05c1a/productRelationship/-",
+          "value": {
+              "relationshipType": "reliesFrom",
+              "product": {
+                  "id": "659feecc82023b7f07b05c1e",
+                  "@type": "ProductRef"
+              }
+          }
+      }
+  ]
+}

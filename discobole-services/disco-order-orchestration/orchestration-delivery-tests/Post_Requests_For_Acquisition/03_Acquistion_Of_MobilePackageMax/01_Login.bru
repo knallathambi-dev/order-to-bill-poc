@@ -1,0 +1,487 @@
+meta {
+  name: 01_Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Auth}}
+  body: formUrlEncoded
+  auth: none
+}
+
+body:json {
+  {
+        "id": "1209",
+        "orderDate": "2024-02-12T15:52:39.105Z",
+        "productOrderItem": [
+          {
+            "id": "41878c29-4f14-402d-bc7f-fbd3f20aadba",
+            "quantity": 1,
+            "action": "add",
+            "productOffering": {
+              "id": "b5ec542f-ba20-4615-9403-05ab39eea3ed",
+              "name": "Mobile Package 1 PRO MAX",
+              "@type": "Contract"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "4ceb7852-41af-488e-acdb-1d06e400c16e",
+                "relationshipType": "bundles"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": true
+          },
+          {
+            "id": "4ceb7852-41af-488e-acdb-1d06e400c16e",
+            "quantity": 1,
+            "action": "add",
+            "productOffering": {
+              "id": "0d22dda9-4023-4f9c-bcce-c7867a22f234",
+              "name": "Mobile Package 1 PRO MAX",
+              "@type": "BundledProductOffering"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "41878c29-4f14-402d-bc7f-fbd3f20aadba",
+                "relationshipType": "isChild"
+              },
+              {
+                "id": "82032024-2829-4818-ba0c-5201691dc62c",
+                "relationshipType": "bundles"
+              },
+              {
+                "id": "ae58ce7f-bb76-4642-a259-76e543fc2965",
+                "relationshipType": "bundles"
+              },
+              {
+                "id": "b19f6040-4638-4548-8b9d-d3c13a34c850",
+                "relationshipType": "bundles"
+              },
+              {
+                "id": "3367fd28-fe4f-4541-a6ff-09d2d02499b6",
+                "relationshipType": "bundles"
+              },
+              {
+                "id": "d36714b9-b89f-44b4-acaf-09f9af0a3779",
+                "relationshipType": "bundles"
+              },
+              {
+                "id": "9b5e5a9d-ce61-4d74-82ed-c1be6cad4f0f",
+                "relationshipType": "bundles"
+              },
+              {
+                "id": "b80ad57d-d206-4501-a64d-d11842fb2359",
+                "relationshipType": "bundles"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": true
+          },
+          {
+            "id": "82032024-2829-4818-ba0c-5201691dc62c",
+            "quantity": 1,
+            "action": "add",
+            "itemPrice": [
+              {
+                "description": "POP_5Euro",
+                "name": "POP_5Euro",
+                "priceType": "NRC",
+                "price": {
+                  "taxRate": 0,
+                  "dutyFreeAmount": {
+                    "unit": "EUR",
+                    "value": 5
+                  },
+                  "taxIncludedAmount": {
+                    "unit": "EUR",
+                    "value": 5
+                  }
+                },
+                "productOfferingPrice": {
+                  "id": "0610b720-fd9f-4585-af01-4dbfbad9a1a1",
+                  "immediatePayment": true
+                }
+              }
+            ],
+            "payment": [
+              {
+                "id": "paid_100",
+                "@referredType": "Payment"
+              },
+              {
+                "id": "paid_110",
+                "@referredType": "Payment"
+              }
+            ],
+            "productOffering": {
+              "id": "3d142e30-cab2-40d9-841b-70174df320d7",
+              "name": "Mobile Line",
+              "@type": "AtomicProductOffering"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "4ceb7852-41af-488e-acdb-1d06e400c16e",
+                "relationshipType": "isChild"
+              },
+              {
+                "id": "07",
+                "relationshipType": "sells"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": true
+          },
+          {
+            "id": "07",
+            "quantity": 1,
+            "action": "add",
+            "product": {
+              "isBundle": false,
+              "productCharacteristic": [
+                {
+                  "name": "MSISDN",
+                  "valueType": "string",
+                  "value": "4152797439",
+                  "@type": "StringCharacteristic",
+                  "id": "001"
+                }
+              ],
+              "productSpecification": {
+                "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+                "name": "Mobile Line",
+                "@type": "ProductSpecificationRef"
+              },
+              "@type": "Product"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "82032024-2829-4818-ba0c-5201691dc62c",
+                "relationshipType": "isSold"
+              },
+              {
+                "id": "10",
+                "relationshipType": "reliesOn"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": true
+          },
+          {
+            "id": "ae58ce7f-bb76-4642-a259-76e543fc2965",
+            "quantity": 1,
+            "action": "add",
+            "productOffering": {
+              "id": "0200ecae-4b1e-41c1-a177-750a2a266f09",
+              "name": "Connectivity",
+              "@type": "AtomicProductOffering"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "4ceb7852-41af-488e-acdb-1d06e400c16e",
+                "relationshipType": "isChild"
+              },
+              {
+                "id": "08",
+                "relationshipType": "sells"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": true
+          },
+          {
+            "id": "08",
+            "quantity": 1,
+            "action": "add",
+            "product": {
+              "isBundle": false,
+              "productCharacteristic": [
+                {
+                  "name": "ICCID",
+                  "valueType": "string",
+                  "value": "891004234814455936",
+                  "@type": "StringCharacteristic",
+                  "id": "002"
+                }
+              ],
+              "productSpecification": {
+                "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+                "name": "Connectivity",
+                "@type": "ProductSpecificationRef"
+              },
+              "@type": "Product"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "ae58ce7f-bb76-4642-a259-76e543fc2965",
+                "relationshipType": "isSold"
+              },
+              {
+                "id": "10",
+                "relationshipType": "reliesOn"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": true
+          },
+          {
+            "id": "b19f6040-4638-4548-8b9d-d3c13a34c850",
+            "quantity": 1,
+            "action": "add",
+            "itemPrice": [
+              {
+                "description": "POP_5Euro",
+                "name": "POP_5Euro",
+                "priceType": "NRC",
+                "price": {
+                  "taxRate": 0,
+                  "dutyFreeAmount": {
+                    "unit": "EUR",
+                    "value": 5
+                  },
+                  "taxIncludedAmount": {
+                    "unit": "EUR",
+                    "value": 5
+                  }
+                },
+                "productOfferingPrice": {
+                  "id": "33971893-80c5-4af8-975b-7590ad8c9cad",
+                  "immediatePayment": true
+                }
+              }
+            ],
+            "payment": [
+              {
+                "id": "Paid_200",
+                "@referredType": "Payment"
+              }
+            ],
+            "productOffering": {
+              "id": "3240b426-1b52-4680-aec2-1be06b34cc17",
+              "name": "Time Bundle",
+              "@type": "AtomicProductOffering"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "4ceb7852-41af-488e-acdb-1d06e400c16e",
+                "relationshipType": "isChild"
+              },
+              {
+                "id": "09",
+                "relationshipType": "sells"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": true
+          },
+          {
+            "id": "09",
+            "quantity": 1,
+            "action": "add",
+            "product": {
+              "isBundle": false,
+              "productCharacteristic": [
+                {
+                  "name": "volume",
+                  "valueType": "string",
+                  "value": "1h",
+                  "@type": "StringCharacteristic",
+                  "id": "003"
+                }
+              ],
+              "productSpecification": {
+                "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+                "name": "Time Bundle",
+                "@type": "ProductSpecificationRef"
+              },
+              "@type": "Product"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "b19f6040-4638-4548-8b9d-d3c13a34c850",
+                "relationshipType": "isSold"
+              },
+              {
+                "id": "07",
+                "relationshipType": "reliesOn"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": true
+          },
+          {
+            "id": "3367fd28-fe4f-4541-a6ff-09d2d02499b6",
+            "quantity": 1,
+            "action": "add",
+            "productOffering": {
+              "id": "a52ed0ff-e1a1-45de-822a-9db878b0e4fc",
+              "name": "SIM Card",
+              "@type": "AtomicProductOffering"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "4ceb7852-41af-488e-acdb-1d06e400c16e",
+                "relationshipType": "isChild"
+              },
+              {
+                "id": "10",
+                "relationshipType": "sells"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": true
+          },
+          {
+            "id": "10",
+            "quantity": 1,
+            "action": "add",
+            "product": {
+              "isBundle": false,
+              "productCharacteristic": [
+                {
+                  "name": "IMSI",
+                  "valueType": "string",
+                  "value": "310478356879098",
+                  "@type": "StringCharacteristic",
+                  "id": "004"
+                }
+              ],
+              "productSpecification": {
+                "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+                "name": "SIM Card",
+                "@type": "ProductSpecificationRef"
+              },
+              "@type": "Product"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "3367fd28-fe4f-4541-a6ff-09d2d02499b6",
+                "relationshipType": "isSold"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": true
+          },
+          {
+            "id": "b80ad57d-d206-4501-a64d-d11842fb2359",
+            "quantity": 1,
+            "action": "add",
+            "productOffering": {
+              "id": "22f2a6b8-ae17-407e-bde8-9d461c458904",
+              "name": "Shipping",
+              "@type": "AtomicProductOffering"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "4ceb7852-41af-488e-acdb-1d06e400c16e",
+                "relationshipType": "isChild"
+              },
+              {
+                "id": "f60fbfac-ce01-43d2-80f5-263ae55f1188",
+                "relationshipType": "sells"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": false
+          },
+          {
+            "id": "f60fbfac-ce01-43d2-80f5-263ae55f1188",
+            "quantity": 1,
+            "action": "add",
+            "product": {
+              "isBundle": false,
+              "productCharacteristic": [
+                {
+                  "name": "Shipping mode",
+                  "valueType": "string",
+                  "value": "In Shop",
+                  "@type": "StringCharacteristic",
+                  "id": "01"
+                },
+                {
+                  "name": "Shipping address",
+                  "valueType": "string",
+                  "value": "Lac Biwa",
+                  "@type": "StringCharacteristic",
+                  "id": "02"
+                },
+                {
+                  "name": "requested delivery date",
+                  "valueType": "Date",
+                  "value": "2024-02-14",
+                  "@type": "DateCharacteristic",
+                  "id": "03"
+                }
+              ],
+              "productSpecification": {
+                "id": "75bbc52e-1e76-4c0f-9804-04f171a4f438",
+                "name": "Shipping",
+                "@type": "ProductSpecificationRef",
+                "@baseType": "ShippingProductSpecification"
+              },
+              "@type": "Product"
+            },
+            "productOrderItemRelationship": [
+              {
+                "id": "b80ad57d-d206-4501-a64d-d11842fb2359",
+                "relationshipType": "isSold"
+              },
+              {
+                "id": "10",
+                "relationshipType": "reliesOn"
+              }
+            ],
+            "state": "accepted",
+            "@type": "ProductOrderItem",
+            "isInstallable": false
+          }
+        ],
+        "relatedParty": [
+          {
+            "id": "227-mf30",
+            "name": "Lisa",
+            "role": "customer",
+            "@referredType": "individual"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrder"
+      }
+  
+}
+
+body:form-urlencoded {
+  username: {{admin_username}}
+  password: {{admin_password}}
+  grant_type: password
+  client_id: {{client_id}}
+  client_secret: {{client_secret}}
+}
+
+script:post-response {
+  //bru.setEnvVar("TOKEN", res.getBody().access_token);
+  var response = res.body;
+  console.log(res.body);
+   
+  var token = "Bearer " + response.access_token;
+  bru.setEnvVar('token',token);
+  
+}
+
+tests {
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+}

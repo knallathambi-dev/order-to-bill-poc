@@ -1,0 +1,58 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  config:
+    activate:
+      on-profile: openshift
+  keycloak: http://${KEYCLOAK_SERVICE}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x4, x8, x12, lc_w, pop_w
+  userRoleRetrievalUrl: http://${USERROLE-RETRIEVE-SERVICE-NAME}/userRolePermission/v1/userRole
+  keycloakAuthUrl: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/auth
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: ${KAFKA}
+  data:
+    mongodb:
+      delete: true
+      host: ${DB_SERVICE}
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+config:
+  productOfferingPriceUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/productOfferingPrice
+  productOfferingUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/productOffering
+  catProdCatUrl: ${CAT-PROD-CAT-URL}/productCatalogManagement/v1/productOfferingPrice
+  currencyUrl: http://${CAT_ADMINISTRATION_URL}/productCatalogAdministration/v5/currency
+  frequencyUrl: http://${CAT_ADMINISTRATION_URL}/productCatalogAdministration/v5/frequencyTypes
+cqrs:
+  queryBaseUrl: http://${GATEWAY-SERVICE-NAME}
+cron:
+  productOfferingPriceExpression: 0 47 14 * * ?
+  jobInterval: 24
+  intervalUnit: HOURS
+  job-enabled: true
+management:
+    server:
+      port: 9000
+
+
+
+Dotel:
+  instrumentation:
+    kafka:
+      enabled: true
+    spring-kafka:
+      enabled: true
+    messaging:
+      experimental:
+        receive-telemetry:
+          enabled: false

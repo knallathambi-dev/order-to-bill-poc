@@ -1,0 +1,77 @@
+meta {
+  name: SelectLifecycleEntity
+  type: http
+  seq: 13
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "characteristic": [
+          {
+              "name": "SelectLifecycleEntity",
+              "valueType": "Object",
+              "value": {
+                  "entity.id": "{{BPO_id}}",
+                  "entityType": "BundleProductOffering"
+              },
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": "ObjectCharacteristic"
+          }
+      ]
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  await bru.sleep(3000);
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  
+  
+  
+  
+  test("To verify that available lifecycle status are 'ACTIVE/REJECTED'", function () {
+      var status = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.DefineLifecycleState.properties.state.enum;
+  
+    expect(status[0]).to.eql("rejected");
+  expect(status[1]).to.eql("active");
+  });
+  
+  
+  
+  test("To verify that the  next task is updateStatus", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[0].title).to.equals("ManageEntityLifecycle.updateStatus");
+  });
+  
+  test("To verify that cancel task is present", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[1].title).to.equals("ManageEntityLifecycle.lifecycleCancel");
+  });
+  
+}

@@ -1,0 +1,33 @@
+meta {
+  name: get PO
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/productOffering/{{BPO_id}}
+  body: none
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+vars:post-response {
+  : 
+}
+
+assert {
+  res.status: eq 200
+  res.body.name: eq Test_Po_{{Entity_name}}_mod
+}
+
+script:pre-request {
+  await bru.sleep(3000);
+}

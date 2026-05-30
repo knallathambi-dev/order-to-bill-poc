@@ -1,0 +1,23 @@
+[{
+  "id": "ea2beca7-9ec1-4a05-a84d-2bbbef11b8b5",
+  "description": "POP charging",
+  "lastUpdate": "2023-04-22T12:18:05.006Z",
+  "lifecycleStatus": "launched",
+  "name": "POP_Mobile Line",
+  "priceType": "NRC",
+  "version": "1.0.0",
+  "popRelationship": [],
+  "price": {
+    "unit": "Euro",
+    "value": 5
+  },
+  "unitOfMeasure": {
+    "amount": 2.5,
+    "units": "units"
+  },
+  "validFor": {
+    "endDateTime": null,
+    "startDateTime": "1985-04-12T23:20:50.520Z"
+  },
+  "@type": "ProductOfferingPriceCharge"
+}]

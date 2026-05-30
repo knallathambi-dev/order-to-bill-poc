@@ -1,0 +1,40 @@
+{
+  "DefineContractIdentityData" : {
+    "required" : [ "name", "description", "billingType" ],
+    "type" : "object",
+    "properties" : {
+      "name" : {
+        "type" : "string"
+      },
+      "description" : {
+        "type" : "string"
+      },
+      "brand" : {
+        "type" : "string",
+        "default" : "Orange"
+      },
+      "productNumber" : {
+        "type" : "string"
+      },
+      "isInstallable" : {
+        "type" : "boolean",
+        "default" : true
+      },
+      "isSellable" : {
+        "type" : "boolean",
+        "default" : true
+      },
+      "isVisible" : {
+        "type" : "boolean",
+        "default" : true
+      },
+      "isBundle" : {
+        "type" : "boolean"
+      },
+      "billingType" : {
+        "type" : "string",
+        "enum" : [ "prepaid", "postpaid", "hybrid" ]
+      }
+    }
+  }
+}

@@ -1,0 +1,158 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      retries: 0
+      properties:
+        spring.kafka.topic.auto-create: true
+    consumer:
+      enableAutoCommit: true
+      autoCommitInterval: 5000ms
+      groupId: cpib-consumer-group
+      clientId: cpib
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.kafka.consumer.auto-offset-reset: earliest
+        spring.kafka.topic.auto-create: true
+        spring.kafka.consumer.max-poll-interval-ms: 0
+  mvc:
+    throw-exception-if-no-handler-found: 'true'
+  web:
+    application:
+      name: cpib
+      version: 0.0.1
+    resources:
+      add-mappings: 'false'
+  jackson:
+    default-leniency: false
+  data:
+    mongodb:
+      database: CPIBTest
+      auto-index-creation: true
+  security:
+    oauth2:
+      resourceServer:
+        jwt:
+          issuer-uri: https://localhost
+config:
+  pagination:
+    limit: 100
+  export:
+    limit: 1073741824  #1 GB in bytes
+  path:
+    productCatalogUrl: http://localhost:9273
+    resourceInventoryManagementUrl: http://localhost:9273/api/resourceInventoryManagement/v1/resource
+  enable:
+    productCatalog: true
+    resourceInventoryManagement: true
+  security:
+    userRoleRetrievalUrl: http://localhost:9273/userRolePermission/v1/userRoles
+    enableTmf627Validation : "true"
+    rolesAuthClientId: gateway
+    discoAdminRole: disco-admin
+    defaultRoles:
+      CreateProduct: x500
+      ReadProduct: x501
+      UpdateProduct: x502
+      DeleteProduct: x503
+      ExportProduct: x504
+      PurgeProduct: x505
+      PurgeTask: x506
+  cache:
+    caffeine:
+      spec:
+        maximumSize: 1000
+        expireAfterWrite: 15m
+  aws:
+    s3:
+      bucketRegion: us-east-1
+      accessKeyId: dummyAccessKeyId
+      secretAccessKey: dummySecretAccessKey
+      bucketName: cpib
+      linkExpirationMinutes: 1
+  tempPath: temp
+  purgeBatchSize: 2
+  webclient:
+    useServiceAccount: false
+    connectTimeout: 1s
+    responseTimeout: 1s
+    retry:
+      max-attempts: '3'
+      max-retry-delay: '1000'
+  reporting:
+    status:
+      kafka:
+        consumer:
+          groupId: reporting-status-consumer-group
+    offer:
+      kafka:
+        consumer:
+          groupId: reporting-offer-consumer-group
+  importing:
+    externalIdentifier:
+      type: "ExternalIdentifier"
+      owner: "DISCO"
+app:
+  security:
+    ssl:
+      enabled: false
+
+logging:
+  level:
+    root: info
+    com:
+      orange:
+        disco:
+          productinventory:
+            service: debug
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n"
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+mongock:
+  migration-scan-package:
+    - com.orange.discobole.productinventory.migration
+  transaction-enabled: false
+
+scheduling:
+  reporting:
+    cronExpression: "0 0 0 * * *"
+    lockName: "reportingJobLock"
+    lockAtMostFor: "PT1M"
+    lockAtLeastFor: "PT5S"
+  jobScheduler:
+    cronExpression: "0 * * * * *"
+    lockName: "jobScheduler"
+    lockAtMostFor: "PT0M"
+    lockAtLeastFor: "PT0M"
+terminateProductParameters:
+  runs: '1000'
+  count: '1000'
+
+springdoc:
+  packagesToScan:
+    - com.orange.discobole.productinventory.controller
+  swagger-ui:
+    use-root-path: true
+    configUrl: '/api-docs/swagger-config.json'
+  api-docs:
+    path: '/doc'

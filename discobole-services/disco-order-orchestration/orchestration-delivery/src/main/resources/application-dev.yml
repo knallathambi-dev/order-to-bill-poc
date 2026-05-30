@@ -1,0 +1,99 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: 8086
+spring:
+  banner:
+    location: classpath:banner.txt
+  config:
+    activate:
+      on-profile: dev,plaintextconsole
+  data:
+    mongodb:
+      auto-index-creation: 'true'
+      uri: ${MONGO_URI:mongodb://localhost:27017/orchestration_delivery?replicaSet=rs0&directConnection=true}
+  devtools:
+    restart:
+      exclude: target/classes/**, build/**, bin/**
+  cloud:
+    kubernetes:
+      config:
+        enabled: false
+      enabled: false
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.orange.discobole.orderorchestration.orchestrationdelivery.config.CustomSerializer
+      retries: 0
+      properties:
+        spring.kafka.topic.auto-create: true
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.orange.discobole.orderorchestration.orchestrationdelivery.config.CustomDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.kafka.consumer.auto-offset-reset: earliest
+        spring.kafka.topic.auto-create: true
+        spring.kafka.consumer.max-poll-interval-ms: 10000
+        spring.json.remove.type.headers: true
+        spring.json.use.type.headers: false
+        spring.json.value.type.method: com.orange.discobole.orderorchestration.orchestrationdelivery.config.KafkaTyper.typer
+
+retry:
+  maxAttempts: '1'
+  maxDelay: '2000'
+
+config:
+  productSpecByIdCatalogUrl: ${PRODUCT_CATALOG_BASEURL}/productCatalogManagement/v1/productSpecification
+  productManagementUrl: ${CPIB_BASE_URL}/productInventoryManagement/v1/product
+  serviceCatalogManagementUrl: http://localhost:8082/serviceCatalogManagement/v1/serviceSpecification
+  serviceOrderingUrl: http://localhost:8082/serviceOrdering/v1/serviceOrder
+  productOrderByIdUrl: http://localhost:8082/v1/productOrder
+  falloutUrl: http://localhost:8090/processManagement/v1/processFlow
+  plannedToAcknowledgedTransition:
+    recommendedBatchSize: 100
+    jobExecutionDelay: PT1H
+    windowStartTimeUtc: "01:00"
+    windowEndTimeUtc: "06:00"
+  aggregateSpecIdAverageLeadTimeSchedulerDuration: PT30S
+  enableOrchestrationPlanPurgeCronExpression: false
+
+mocks:
+  serviceOrderStateChangeScheduler:
+    cronExpression: "0 */1 * * * *"
+    enable: false
+app:
+  kafka:
+    retry:
+      attempts: 3
+      delay: 2000
+  security:
+    ssl:
+      enabled: false
+    userRoleRetrievalUrl: http://localhost:8082/userRolePermission/v1/userRole
+    keycloakEntitlements: x200
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          mongodb:
+            core:
+              MongoTemplate: INFO
+
+processFlowSpecification: Fallout
+processFlowChannelItem: Internal
+processFlowReferredType: OrchestrationPlanNode
+
+management:
+  server:
+    port: 0

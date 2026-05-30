@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<included>
+    <property name="FLUENTD_TAG" value="${FLUENTD_TAG:-discobole-catalog}" />
+    <property name="FLUENTD_CONTAINER_NAME" value="${FLUENTD_CONTAINER_NAME:-discobole-catalog}" />
+    <property name="FLUENTD_HOST" value="${FLUENTD_HOST:-${DOCKER_HOST:-localhost}}" />
+    <property name="FLUENTD_PORT" value="${FLUENTD_PORT:-24224}" />
+    <property name="STE_EXCLUSIONS" value="\$\$FastClassByCGLIB\$\$,\$\$EnhancerBySpringCGLIB\$\$,^sun\.reflect\..*\.invoke,^com\.sun\.,^sun\.net\.,^net\.sf\.cglib\.proxy\.MethodProxy\.invoke,^org\.springframework\.cglib\.,^org\.springframework\.transaction\.,^org\.springframework\.validation\.,^org\.springframework\.app\.,^org\.springframework\.aop\.,^java\.lang\.reflect\.Method\.invoke,^org\.springframework\.ws\..*\.invoke,^org\.springframework\.ws\.transport\.,^org\.springframework\.ws\.soap\.saaj\.SaajSoapMessage\.,^org\.springframework\.ws\.client\.core\.WebServiceTemplate\.,^org\.springframework\.web\.filter\.,^org\.springframework\.boot\.web\.filter\.,^org\.springframework\.util\.ReflectionUtils\.invokeMethod$,^org\.apache\.tomcat\.,^org\.apache\.catalina\.,^org\.apache\.coyote\.,^java\.util\.concurrent\.ThreadPoolExecutor\.runWorker,^java\.lang\.Thread\.run$,^rx\." />
+    <!-- Fluency -->
+    <appender name="FLUENCY_SYNC" class="ch.qos.logback.more.appenders.FluencyLogbackAppender">
+        <!-- Tag for Fluentd. Farther information: http://docs.fluentd.org/articles/config-file -->
+        <tag>${FLUENTD_TAG}</tag>
+        <!-- [Optional] Label for Fluentd. Farther information: http://docs.fluentd.org/articles/config-file -->
+
+        <!-- Host name/address and port number which Fluentd placed -->
+        <remoteHost>${FLUENTD_HOST}</remoteHost>
+        <port>${FLUENTD_PORT}</port>
+
+        <!-- [Optional] Multiple name/addresses and port numbers which Fluentd placed -->
+        <!-- [Optional] Additional fields(Pairs of key: value) -->
+        <additionalField>
+            <key>app</key>
+            <value>discobole</value>
+        </additionalField>
+        <additionalField>
+            <key>container.name</key>
+            <value>${FLUENTD_CONTAINER_NAME}</value>
+        </additionalField>
+
+        <!-- [Optional] Ignored fields. The fields won't be emitted to Fluentd -->
+        <ignoredField>throwable</ignoredField>
+        <ignoredField>thread</ignoredField>
+
+        <!-- [Optional] Configurations to customize Fluency's behavior: https://github.com/komamitsu/fluency#usage -->
+        <ackResponseMode>true</ackResponseMode>
+        <bufferChunkInitialSize>2097152</bufferChunkInitialSize>
+        <bufferChunkRetentionSize>16777216</bufferChunkRetentionSize>
+        <maxBufferSize>268435456</maxBufferSize>
+        <bufferChunkRetentionTimeMillis>1000</bufferChunkRetentionTimeMillis>
+        <connectionTimeoutMilli>5000</connectionTimeoutMilli>
+        <readTimeoutMilli>5000</readTimeoutMilli>
+        <waitUntilBufferFlushed>30</waitUntilBufferFlushed>
+        <waitUntilFlusherTerminated>40</waitUntilFlusherTerminated>
+        <flushAttemptIntervalMillis>200</flushAttemptIntervalMillis>
+        <senderMaxRetryCount>12</senderMaxRetryCount>
+        <!-- [Optional] Enable/Disable use of EventTime to get sub second resolution
+          of log event date-time -->
+        <useEventTime>true</useEventTime>
+        <sslEnabled>false</sslEnabled>
+        <!-- [Optional] Enable/Disable use the of JVM Heap for buffering -->
+        <jvmHeapBufferMode>false</jvmHeapBufferMode>
+        <!-- [Optional] If true, Map Marker is expanded instead of nesting in the
+          marker name -->
+        <flattenMapMarker>false</flattenMapMarker>
+        <!-- [Optional] default "marker" -->
+        <markerPrefix></markerPrefix>
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <mdc/>
+                <pattern>
+                    <pattern>
+                        {
+                        "@project":"discobole-product-offering",
+                        "service.name": "discobole-product-offering",
+                        "@type":"event",
+                        "trace.id": "%X{trace_id}",
+                        "span.id": "%X{span_id}",
+                        "process.pid": "${PID:-}",
+                        "@timestamp": "%date{yyyy-MM-dd'T'HH:mm:ss.SSSZ,UTC}",
+                        "log.level": "%level",
+                        "message": "%message",
+                        "log.logger": "%logger",
+                        "process.thread.name": "%thread",
+                        "relative":"%relative",
+                        "log.origin.file.name": "%file",
+                        "log.origin.file.line": "%line",
+                        "log.origin.method": "%method",
+                        "log.origin.class.name": "%class"
+                        }
+                    </pattern>
+                </pattern>
+                <stackHash>
+                    <fieldName>error.stack_hash</fieldName>
+                    <exclusions>
+                        ${STE_EXCLUSIONS}
+                    </exclusions>
+                </stackHash>
+                <stackTrace>
+                    <fieldName>error.stack_trace</fieldName>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <inlineHash>true</inlineHash>
+                        <exclusions>${STE_EXCLUSIONS}</exclusions>
+                    </throwableConverter>
+                </stackTrace>
+            </providers>
+        </encoder>
+
+        <!-- [Optional] Message field key name. Default: "message" -->
+        <messageFieldKeyName>json_message</messageFieldKeyName>
+
+    </appender>
+
+    <appender name="FLUENCY" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- Max queue size of logs which is waiting to be sent (When it reach
+          to the max size, the log will be disappeared). -->
+        
+        <!-- Never block when the queue becomes full. -->
+       
+        <appender-ref ref="FLUENCY_SYNC" />
+    </appender>
+</included>

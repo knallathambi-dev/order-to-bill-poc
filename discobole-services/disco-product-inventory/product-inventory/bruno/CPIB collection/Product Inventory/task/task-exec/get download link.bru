@@ -1,0 +1,11 @@
+meta {
+  name: get download link
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{dev_url}}/productInventoryManagement/v1/job/{{jobId}}/downloadLink
+  body: none
+  auth: inherit
+}

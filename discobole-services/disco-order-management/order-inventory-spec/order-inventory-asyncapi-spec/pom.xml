@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.orange.discobole.ordermanagement</groupId>
+        <artifactId>discobole-ordermanagement-order-inventory-spec</artifactId>
+        <version>1.7.1</version>
+    </parent>
+
+    <artifactId>discobole-ordermanagement-order-inventory-asyncapi-spec</artifactId>
+    <name>ODA - OM - Order Inventory AsyncAPI Specification</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.orange.discobole.ordermanagement</groupId>
+            <artifactId>discobole-ordermanagement-order-inventory-restapi-spec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.orange.discobole.ordermanagement</groupId>
+                        <artifactId>discobole-ordermanagement-order-inventory-lombok-annotator</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/asyncapi-files/schemas</sourceDirectory>
+                    <excludes>
+                        <exclude>cood/**</exclude>
+                    </excludes>
+                    <targetPackage>com.orange.discobole.ordermanagement.event</targetPackage>
+                    <sourceType>yamlschema</sourceType>
+                    <customAnnotator>com.orange.discobole.ordermanagement.orderinventory.LombokAnnotator
+                    </customAnnotator>
+                    <includeAdditionalProperties>false</includeAdditionalProperties>
+                    <addCompileSourceRoot>true</addCompileSourceRoot>
+                    <includeGetters>false</includeGetters>
+                    <includeSetters>false</includeSetters>
+                    <includeHashcodeAndEquals>false</includeHashcodeAndEquals>
+                    <includeToString>false</includeToString>
+                    <removeOldOutput>true</removeOldOutput>
+                    <serializable>true</serializable>
+                    <includeJsr303Annotations>true</includeJsr303Annotations>
+                    <useJakartaValidation>true</useJakartaValidation>
+                    <includeDynamicBuilders>true</includeDynamicBuilders>
+                    <sourceSortOrder>FILES_FIRST</sourceSortOrder>
+                    <dateTimeType>java.time.Instant</dateTimeType>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

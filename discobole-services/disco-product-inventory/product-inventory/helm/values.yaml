@@ -1,0 +1,292 @@
+# SPDX-FileCopyrightText: 2025, 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Application replica count
+replicaCount: 1
+
+# -- Enable or disable application daily shutdown
+scheduledshutdown: disabled
+
+# -- Keystore in P12 format, base64 encoded
+keyStoreP12: ""
+
+# -- JDK options for application container
+jdkJavaOptions: ""
+
+# -- Application container image configuration
+image:
+  # -- docker image repository
+  repository: "${docker_repository}"
+  # -- image pull policy
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart version.
+  tag: "${docker_tag}"
+
+# -- Specify pulling image secrets if your image repository requires it
+imagePullSecrets: []
+
+# Set create to true if you want this chart to create a secret for you. Default is false.
+registryCredentials:
+  # -- specifies whether a secret should be created for pulling images from a private registry
+  create: false
+  # -- the URL of the private registry.
+  url: ""
+  # -- the access token of the private registry
+  token:
+    userName: ""
+    password: ""
+
+# -- Override default fully qualified app name and chart name
+nameOverride: ""
+
+# -- Override fully qualified app name
+fullnameOverride: ""
+
+# Specifies whether a service account should be created
+serviceAccount:
+  # -- specifies whether a service account should be created
+  create: true
+  # -- annotations to add to the service account
+  annotations: {}
+  # -- the name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# -- Enable monitoring and supervision of pods
+podAnnotations: {}
+  #prometheus.io/port: '9000'
+  #prometheus.io/scrape: 'true'
+  #metrics: '/actuator/prometheus'
+
+# -- Security context for the containers
+podSecurityContext: {}
+  # fsGroup: 1000
+  # runAsNonRoot: true
+
+# -- Security context
+securityContext: {}
+  # allowPrivilegeEscalation: false
+  # readOnlyRootFilesystem: true
+  # runAsGroup: 1000
+  # runAsNonRoot: true
+  # runAsUser: 1000
+  # capabilities:
+  #   drop:
+  #   - ALL
+
+# Set to true if you want to have CertManager issue a Certificate for your service
+certManager:
+  # -- specify whether a certificate should be created for this service
+  create: false
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 8080
+  # -- enable monitoring and supervision of service
+  annotations: {}
+  #  prometheus.io/port: '9000'
+  #  prometheus.io/scrape: 'true'
+
+# Ingress configuration
+ingress:
+  # -- Enable ingress controller
+  enabled: false
+  # -- Ingress annotations
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  # -- host names for the ingress controller
+  hosts:
+    ## -- host names for the ingress controller
+    - host: ""
+      paths: [/] # align with contextPath
+
+# Horizontal Pod Autoscaler configuration
+autoscaling:
+  # -- Enable Horizontal Pod Autoscaler
+  enabled: false
+  # -- Minimum number of pod replicas
+  minReplicas: "2"
+  # -- Maximum number of pod replicas
+  maxReplicas: "5"
+  # -- Target CPU utilization percentages for pod scaling
+  targetCPUUtilizationPercentage: "70"
+  # -- Target Memory utilization percentages for pod scaling
+  targetMemoryUtilizationPercentage: ""
+
+# -- Node selectorfor pod assignment
+nodeSelector: {}
+
+# -- Node tolerations for pod assignment
+tolerations: []
+
+# -- Node affinity for pod assignment
+affinity: {}
+
+# OpenTelemetry configuration
+otel:
+  # -- activate Open Telemetry instrumentation
+  enabled: false
+  sidecar:
+    # -- use collector agent sidecar
+    enabled: false
+    # -- main collector address
+    jaeger:
+      # collector host
+      host: ""
+      # collector port
+      port: 14250
+    # main receiver address
+    otlp:
+      # receiver host
+      host: ""
+      # receiver port
+      port: 4317
+  # resource attributes to be set on telemetry data
+  attributes:
+    # -- resource attribute to be set on telemetry data
+    platform: ""
+    # -- resource attribute to be set on telemetry data
+    region: ""
+    # -- resource attribute to be set on telemetry data
+    cluster: ""
+    # -- resource attribute to be set on telemetry data
+    namespace: ""
+    # -- resource attribute to be set on telemetry data
+    hostname: ""
+
+# fluentd sidecar for logs forwarding
+fluentd:
+  # -- enable fluentd sidecar container
+  enabled: false
+  # -- tag value being set on log events and used by fluentd to route logs
+  tag: ""
+  # -- hostname of the fluentd instance this application should send logs to. Defaults to localhost
+  host: ""
+
+# Monitoring values
+monitoring:
+  # -- label to specify application monitoring
+  application: ""
+  # -- label to specify application monitoring
+  app: ""
+  # -- label to specify product name (chart name by default)
+  productName: ""
+  # -- label for environment being deployed
+  environment: ""
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # -- resource requests
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  # -- resource limits
+  limits:
+    cpu: 500m
+    memory: 500Mi
+
+# Default hostnames and ports of dependent services
+productInventory:
+  service:
+    # -- paging size
+    pagination:
+      limit: '10000'
+
+services:
+  # -- service name of kafka
+  kafka: kafka
+  # -- service name of product catalog API
+  productCatalog: catalog-product-catalog
+  # -- enable product catalog checks
+  productCatalogEnable: false
+  # -- service name of inventory resource API
+  inventoryResource: mock-server
+  # -- enable resource inventory checks
+  resourceInventoryManagementEnable: false
+  # -- service name of user role and permission API
+  userRoleRetrieval: auth-userrole
+  # -- enable user role validation
+  userRoleValidationEnable: false
+
+# Mongo database configuration
+mongo:
+  # -- enable MongoDB deployment
+  enabled: false
+  metrics:
+    # -- enable MongoDB exporter for monitoring
+    enabled: false
+  # -- labels to specify application monitoring
+  podLabels:
+    domain: dbms
+    productname: mongodb
+  persistence:
+    # -- MongoDB data persistence configuration
+    storageClass: ""
+  replicaSet:
+    # -- Enables/Disable replica set deployment mode
+    enabled: false
+    # -- Replica set name
+    name: ""
+    # -- Key for internal replica set authentication (base64 encoded string 6-1024 chars.)
+    key: ""
+    # -- Number of secondary instances (should be at least 2 - or - one secondary and an arbiter)
+    secondaries: 0
+  # -- Additional environment variables to set
+  extraEnvVars: []
+  resources:
+    limits:
+      # -- memory limit for MongoDB container
+      memory: 1500Mi
+  # -- annotations to specify monitoring and supervision of MongoDB pods
+  podAnnotations:
+    prometheus.io/port: '9216'
+    prometheus.io/scrape: 'true'
+    prometheus.io/path: "/metrics"
+  # -- MongoDB replica count
+  replicaCount: 1
+  # -- fullname override for MongoDB resources
+  fullnameOverride: ""
+  auth:
+    # -- enable MongoDB authentication
+    enabled: false
+    # -- MongoDB root user password
+    rootPassword: ""
+    # -- MongoDB root user name
+    rootUsername: ""
+  service:
+    # -- override MongoDB service name
+    nameOverride: ""
+    ports:
+      # -- MongoDB service port
+      mongodb: 27017
+
+# Keycloak configuration
+keycloak:
+  # -- enable Keycloak integration
+  enabled: false
+  # -- client secret
+  clientSecret: ""
+  # -- issuer URI to validate access tokens against
+  issuerURI: "https://keycloak/realms/SpringBootKeycloak"
+
+# Used to change the api version in URL path
+api:
+  # -- context path for the API
+  contextPath: "/api/v2/"
+
+# -- context path for the application. Defaults to root context.
+contextPath: ""

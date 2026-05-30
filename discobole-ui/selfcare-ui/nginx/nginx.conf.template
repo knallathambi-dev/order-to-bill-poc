@@ -1,0 +1,62 @@
+server {
+  listen 8080;
+
+  # Security headers
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header X-Frame-Options "SAMEORIGIN" always;
+  add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+  # Health -> Express health (so container healthchecks hit Node)
+  location = /health {
+    proxy_pass http://127.0.0.1:5000/health;
+    proxy_http_version 1.1;
+    proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+  }
+
+  # API -> Express (keeps /api prefix)
+  location /api/ {
+    proxy_pass http://127.0.0.1:5000;
+    proxy_http_version 1.1;
+    proxy_redirect off;
+
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+
+    # Internal secret header (only Nginx adds this)
+    proxy_set_header X-Internal-Secret ${INTERNAL_SECRET};
+
+    proxy_buffer_size 32k;
+    proxy_buffers 8 32k;
+    proxy_busy_buffers_size 64k;
+
+    proxy_request_buffering off;
+    proxy_buffering off;
+    proxy_connect_timeout 5s;
+    proxy_send_timeout 60s;
+    proxy_read_timeout 60s;
+  }
+
+  # Serve static React app
+  location / {
+    root   /usr/share/nginx/html;
+    index  index.html index.htm;
+    try_files $uri $uri/ /index.html;
+
+    # Cache static assets
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {
+      expires 1y;
+      add_header Cache-Control "public, immutable";
+      add_header X-Content-Type-Options "nosniff" always;
+      add_header X-Frame-Options "SAMEORIGIN" always;
+    }
+  }
+
+  error_page 404 /index.html;
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+    root /usr/share/nginx/html;
+    internal;
+  }
+}

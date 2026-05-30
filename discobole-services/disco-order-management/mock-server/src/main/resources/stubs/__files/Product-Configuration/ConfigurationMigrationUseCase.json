@@ -1,0 +1,1779 @@
+{
+  "id": "fa3ce1f8-9f3f-4fc1-b042-199459e42667",
+  "href": "http://product-configurator-integration.disco-dev.svc.cluster.local:8080/v1/queryProductConfiguration?id=fa3ce1f8-9f3f-4fc1-b042-199459e42667",
+  "instantSync": true,
+  "state": "done",
+  "contextCharacteristic": [
+    {
+      "name": "salesModel",
+      "valueType": "string",
+      "value": "B2C",
+      "@type": "StringCharacteristic"
+    }
+  ],
+  "computedProductConfigurationItem": [
+    {
+      "id": "99be2770-f97a-4670-a6ce-7c37d7d94f8e",
+      "productConfiguration": {
+        "id": "a3bd4954-e6ab-448e-925d-b78cb55032cc",
+        "isSelectable": false,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "product": {
+          "id": "{{request.query.id.0}}",
+          "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676a7f5692ba636a992b26dc",
+          "isBundle": false,
+          "name": "Mobile Package Comfort",
+          "productRelationship": [
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "id": "676a7f5692ba636a992b26dd",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676a7f5692ba636a992b26dd",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            }
+          ],
+          "@type": "Product"
+        },
+        "bundledGroupProductOffering": {
+          "bundledProductOfferings": [
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "aafbd483-1fde-4297-aea5-f24b88e1a905",
+                "@type": "BundleProductOffering"
+              }
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "030520ea-6953-4e3d-90db-87b3887f87c0",
+          "name": "Mobile Package Comfort",
+          "@type": "ProductOfferingRef",
+          "@referredType": "Contract",
+          "version": "1.1"
+        },
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "migrate",
+            "isSelected": true,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": false,
+            "isSelectable": false
+          }
+        ]
+      },
+      "productConfigurationItemRelationship": [
+        {
+          "id": "e930b4c8-8dba-4d77-bbf7-6d52c2b12245",
+          "relationshipType": "requestedItem"
+        },
+        {
+          "id": "8ba847f7-8948-4bf5-8f45-dae744ce5b3c",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "8ba847f7-8948-4bf5-8f45-dae744ce5b3p",
+          "relationshipType": "migrateTo"
+        }
+      ],
+      "state": "approved"
+    },
+    {
+      "id": "8ba847f7-8948-4bf5-8f45-dae744ce5b3c",
+      "productConfiguration": {
+        "id": "82bbfc98-43ae-453a-848e-7300f915b922",
+        "isSelectable": false,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "product": {
+          "id": "{{request.query.id.1}}",
+          "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676a7f5692ba636a992b26dd",
+          "isBundle": false,
+          "name": "Mobile Package Comfort Bundle",
+          "productRelationship": [
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "id": "676a7f5692ba636a992b26de",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676a7f5692ba636a992b26de",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "id": "676a7f5692ba636a992b26df",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676a7f5692ba636a992b26df",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "id": "676a7f5692ba636a992b26e0",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676a7f5692ba636a992b26e0",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "id": "676a7f5692ba636a992b26e1",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676a7f5692ba636a992b26e1",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "id": "676a7f5692ba636a992b26e2",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676a7f5692ba636a992b26e2",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "rootProduct",
+              "product": {
+                "id": "676a7f5692ba636a992b26dc",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676a7f5692ba636a992b26dc",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            }
+          ],
+          "@type": "Product"
+        },
+        "bundledGroupProductOffering": {
+          "bundledProductOfferings": [
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 0,
+                "numberRelOfferLowerLimit": 0,
+                "numberRelOfferUpperLimit": 9999,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "aad8e497-7b04-4020-ac2a-428d4daa5600",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "21935e5f-101f-4fd6-bf39-9fa8dfbefeda",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+                "@type": "AtomicProductOffering"
+              }
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "aafbd483-1fde-4297-aea5-f24b88e1a905",
+          "name": "Mobile Package Comfort Bundle",
+          "@type": "ProductOfferingRef",
+          "@referredType": "BundleProductOffering",
+          "version": "1.5"
+        },
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "migrate",
+            "isSelected": true,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": false,
+            "isSelectable": false
+          }
+        ]
+      },
+      "productConfigurationItemRelationship": [
+        {
+          "id": "66bca8af-9135-4abc-9b8f-153a430067c9",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "148c4e5e-0ea0-4f05-bc86-2d98668ee63f",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "c2ee01db-4021-4637-9884-c96486c7d83b",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "ef350268-f323-4625-8af8-6b213ad75460",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "ba25ea76-1ee2-456c-b7c9-629319c10651",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "da0f3766-feea-43a8-ae60-f450044b54a6",
+          "relationshipType": "migrateTo"
+        }
+      ],
+      "state": "approved"
+    },
+    {
+      "id": "66bca8af-9135-4abc-9b8f-153a430067c9",
+      "productConfiguration": {
+        "id": "46862da0-13fe-40ca-8a20-68be08663aac",
+        "isSelectable": false,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "product": {
+          "id": "{{request.query.id.2}}",
+          "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/6763e356034dab187e0d9302",
+          "isBundle": false,
+          "name": "Mobile Line",
+          "productCharacteristic": [
+            {
+              "name": "Validity",
+              "value": "30",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "productPrice": [
+            {
+              "description": "MobileLine",
+              "name": "NRC 5 Euro",
+              "priceType": "nonRecurringCharge",
+              "unitOfMeasure": "units",
+              "price": {
+                "taxRate": 0,
+                "dutyFreeAmount": {
+                  "unit": "EUR",
+                  "value": 0
+                },
+                "taxIncludedAmount": {
+                  "unit": "EUR",
+                  "value": 0
+                }
+              }
+            }
+          ],
+          "productRelationship": [
+            {
+              "relationshipType": "rootProduct",
+              "product": {
+                "id": "6763e356034dab187e0d9300",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/6763e356034dab187e0d9300",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "reliesOn",
+              "product": {
+                "id": "{{request.query.id.6}}",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/{{request.query.id.6}}",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "reliesFrom",
+              "product": {
+                "id": "6763e356034dab187e0d9304",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/6763e356034dab187e0d9304",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "reliesFrom",
+              "product": {
+                "id": "6763e356034dab187e0d9306",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/6763e356034dab187e0d9306",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "reliesFrom",
+              "product": {
+                "id": "67642066034dab187e0d9571",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/67642066034dab187e0d9571",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            }
+          ],
+          "@type": "Product"
+        },
+        "productOffering": {
+          "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+          "name": "Mobile Line",
+          "@type": "ProductOfferingRef",
+          "@referredType": "AtomicProductOffering",
+          "version": "2.7"
+        },
+        "productSpecification": {
+          "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+          "name": "Mobile Line",
+          "version": "1.0.0",
+          "@type": "ProductSpecification"
+        },
+        "configurationCharacteristic": [
+          {
+            "description": "MSISDN (Mobile Station ISDN Number) - number uniquely identifying a subscription in a Mobile Telecommunications network",
+            "id": "5f621760-1f3c-4b44-be85-14249d6099bf.2",
+            "isConfigurable": true,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "MSISDN",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": true,
+                "isSelected": false,
+                "characteristic": {
+                  "id": "5f621760-1f3c-4b44-be85-14249d6099bf.2",
+                  "name": "MSISDN"
+                }
+              }
+            ]
+          },
+          {
+            "description": "Enables Voice over Wifi feature",
+            "id": "0ab3b24e-9fdc-480c-a085-beeb289590ac.3",
+            "isConfigurable": true,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "VoWifi",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": true,
+                "isSelected": false,
+                "characteristic": {
+                  "id": "0ab3b24e-9fdc-480c-a085-beeb289590ac.3",
+                  "name": "VoWifi"
+                }
+              }
+            ]
+          },
+          {
+            "description": "Validity of Mobile Line",
+            "id": "519e569a-08a8-4e11-ad47-9997c3766a5e.4",
+            "isConfigurable": false,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "Validity",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "@type": "ValidityCharacteristic",
+                  "value": 30,
+                  "id": "519e569a-08a8-4e11-ad47-9997c3766a5e.4",
+                  "name": "Validity",
+                  "unitOfMeasure": "Days"
+                }
+              }
+            ],
+            "@type": "ValidityCharacteristic"
+          }
+        ],
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "migrate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": true,
+            "isSelectable": false
+          }
+        ]
+      },
+      "state": "approved"
+    },
+    {
+      "id": "148c4e5e-0ea0-4f05-bc86-2d98668ee63f",
+      "productConfiguration": {
+        "id": "234e5d4a-262d-4958-b14d-2d03fafb28ee",
+        "isSelectable": false,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "product": {
+          "id": "{{request.query.id.3}}",
+          "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/6763e356034dab187e0d9303",
+          "isBundle": false,
+          "name": "Connectivity",
+          "productCharacteristic": [
+            {
+              "name": "ICCID",
+              "value": "ICCID",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "productPrice": [
+            {
+              "description": "test_pop2",
+              "name": "test_pop2",
+              "priceType": "nonRecurringCharge",
+              "unitOfMeasure": "units",
+              "price": {
+                "taxRate": 0,
+                "dutyFreeAmount": {
+                  "unit": "EUR",
+                  "value": 2
+                },
+                "taxIncludedAmount": {
+                  "unit": "EUR",
+                  "value": 2
+                }
+              }
+            }
+          ],
+          "productRelationship": [
+            {
+              "relationshipType": "rootProduct",
+              "product": {
+                "id": "6763e356034dab187e0d9300",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/6763e356034dab187e0d9300",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "reliesOn",
+              "product": {
+                "id": "{{request.query.id.6}}",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/{{request.query.id.6}}",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            }
+          ],
+          "@type": "Product"
+        },
+        "productOffering": {
+          "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+          "name": "Connectivity",
+          "@type": "ProductOfferingRef",
+          "@referredType": "AtomicProductOffering",
+          "version": "1.2"
+        },
+        "productSpecification": {
+          "id": "e90a1274-7dc0-4259-a344-362b55edfc58",
+          "name": "Connectivity",
+          "version": "1.0.0",
+          "@type": "ProductSpecification"
+        },
+        "configurationCharacteristic": [
+          {
+            "description": " ICCID",
+            "id": "5a5d753a-553b-49e7-81a5-83f9892ca7c1.1",
+            "isConfigurable": true,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "ICCID",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "id": "5a5d753a-553b-49e7-81a5-83f9892ca7c1.1",
+                  "name": "ICCID",
+                  "value": "ICCID"
+                }
+              }
+            ]
+          }
+        ],
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "migrate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": true,
+            "isSelectable": false
+          }
+        ]
+      },
+      "state": "approved"
+    },
+    {
+      "id": "c2ee01db-4021-4637-9884-c96486c7d83b",
+      "productConfiguration": {
+        "id": "a9dccab5-06db-41fc-8d71-74c9d5d1cc5e",
+        "isSelectable": true,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "product": {
+          "id": "{{request.query.id.4}}",
+          "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676978f14eb15130c7dca09f",
+          "isBundle": false,
+          "name": "Data Pass",
+          "productCharacteristic": [
+            {
+              "name": "Volume",
+              "value": "1",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "Recurring",
+              "value": "N",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "Blocked",
+              "value": "Y",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "Validity",
+              "value": "Bill cycle end",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "productPrice": [
+            {
+              "description": "Data Pass one time charge for 1 GB data",
+              "name": "Data Pass one time charge for 1 GB data",
+              "priceType": "nonRecurringCharge",
+              "price": {
+                "taxRate": 0,
+                "dutyFreeAmount": {
+                  "unit": "EUR",
+                  "value": 2
+                },
+                "taxIncludedAmount": {
+                  "unit": "EUR",
+                  "value": 2
+                }
+              }
+            }
+          ],
+          "productRelationship": [
+            {
+              "relationshipType": "rootProduct",
+              "product": {
+                "id": "676978f14eb15130c7dca09c",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676978f14eb15130c7dca09c",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "reliesOn",
+              "product": {
+                "id": "676978f14eb15130c7dca0a2",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676978f14eb15130c7dca0a2",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            }
+          ],
+          "@type": "Product"
+        },
+        "productOffering": {
+          "id": "aad8e497-7b04-4020-ac2a-428d4daa5600",
+          "name": "Data Pass",
+          "@type": "ProductOfferingRef",
+          "@referredType": "AtomicProductOffering",
+          "version": "0.3"
+        },
+        "configurationPrice": [
+          {
+            "description": "Data Pass one time charge for 1 GB data",
+            "name": "Data Pass one time charge for 1 GB data",
+            "priceType": "nonRecurringCharge",
+            "price": {
+              "taxRate": 0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 2
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 2
+              }
+            },
+            "productOfferingPrice": {
+              "id": "4a343123-0ff3-4b8f-996b-23497f865119",
+              "name": "Data Pass one time charge for 1 GB data",
+              "@type": "productOfferingPrice",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "ConfigurationPrice"
+          }
+        ],
+        "productSpecification": {
+          "id": "b0b98589-acaf-445c-9339-f2bd6e124f39",
+          "name": "Data Pass",
+          "version": "0.1",
+          "@type": "ProductSpecification"
+        },
+        "configurationCharacteristic": [
+          {
+            "description": " Quantity",
+            "id": "02faff9f-b9c2-4d33-b2b0-96bd4c381a56.10",
+            "isConfigurable": true,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "Quantity",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "@type": "ObjectCharacteristic",
+                  "value": "1",
+                  "id": "02faff9f-b9c2-4d33-b2b0-96bd4c381a56.10",
+                  "name": "Quantity",
+                  "unitOfMeasure": "GB"
+                }
+              },
+              {
+                "isSelectable": true,
+                "isSelected": false,
+                "characteristic": {
+                  "@type": "ObjectCharacteristic",
+                  "value": "2",
+                  "id": "02faff9f-b9c2-4d33-b2b0-96bd4c381a56.10",
+                  "name": "Quantity",
+                  "unitOfMeasure": "GB"
+                }
+              }
+            ],
+            "@type": "ObjectCharacteristic"
+          },
+          {
+            "description": " Validity",
+            "id": "799d01eb-09ff-408c-942d-1c8f7e3f76d3.6",
+            "isConfigurable": false,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "Validity",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "@type": "ValidityCharacteristic",
+                  "id": "799d01eb-09ff-408c-942d-1c8f7e3f76d3.6",
+                  "name": "Validity",
+                  "validTo": "2100-01-01T23:20:50.520Z"
+                }
+              }
+            ],
+            "@type": "ValidityCharacteristic"
+          }
+        ],
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": true
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": true
+          },
+          {
+            "action": "migrate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": true,
+            "isSelectable": true
+          }
+        ]
+      },
+      "state": "approved"
+    },
+    {
+      "id": "ef350268-f323-4625-8af8-6b213ad75460",
+      "productConfiguration": {
+        "id": "9215f77e-0650-4c24-bc25-b5abeffde73c",
+        "isSelectable": false,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "product": {
+          "id": "{{request.query.id.5}}",
+          "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676978f14eb15130c7dca0a0",
+          "isBundle": false,
+          "name": "Data Bundle",
+          "productCharacteristic": [
+            {
+              "name": "Volume",
+              "value": "50",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "Recurring",
+              "value": "Y",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "Blocked",
+              "value": "Y",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "Validity",
+              "value": "1",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "productPrice": [
+            {
+              "description": "Data Bundle recurring charge for 50 GB of data",
+              "name": "Data Bundle recurring charge for 50 GB of data",
+              "priceType": "recurringCharge",
+              "recurringChargePeriod": {
+                "amount": 1,
+                "units": "month"
+              },
+              "price": {
+                "taxRate": 0,
+                "dutyFreeAmount": {
+                  "unit": "EUR",
+                  "value": 20
+                },
+                "taxIncludedAmount": {
+                  "unit": "EUR",
+                  "value": 20
+                }
+              }
+            }
+          ],
+          "productRelationship": [
+            {
+              "relationshipType": "rootProduct",
+              "product": {
+                "id": "676978f14eb15130c7dca09c",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676978f14eb15130c7dca09c",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "reliesOn",
+              "product": {
+                "id": "676978f14eb15130c7dca0a2",
+                "href": "http://product-inventory-integration.disco-dev.svc.cluster.local:8080/productManagement/v1/product/676978f14eb15130c7dca0a2",
+                "isBundle": false,
+                "@type": "ProductRef"
+              }
+            }
+          ],
+          "@type": "Product"
+        },
+        "productOffering": {
+          "id": "21935e5f-101f-4fd6-bf39-9fa8dfbefeda",
+          "name": "Data Bundle",
+          "@type": "ProductOfferingRef",
+          "@referredType": "AtomicProductOffering",
+          "version": "0.3"
+        },
+        "configurationPrice": [
+          {
+            "description": "Data Bundle recurring charge for 50 GB of data",
+            "name": "Data Bundle recurring charge for 50 GB of data",
+            "priceType": "recurringCharge",
+            "recurringChargePeriod": {
+              "amount": 1,
+              "units": "month"
+            },
+            "price": {
+              "taxRate": 0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 20
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 20
+              }
+            },
+            "productOfferingPrice": {
+              "id": "f28361a7-2c0b-4e57-ab7a-eb712a7b49ca",
+              "name": "Data Bundle recurring charge for 50 GB of data",
+              "@type": "productOfferingPrice",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "ConfigurationPrice"
+          }
+        ],
+        "productSpecification": {
+          "id": "c89411cd-967d-4d06-866d-a10b7e710d1d",
+          "name": "Data Bundle",
+          "version": "0.1",
+          "@type": "ProductSpecification"
+        },
+        "configurationCharacteristic": [
+          {
+            "description": " Quantity",
+            "id": "9cb0766f-56cc-41b7-a058-2e07e08a1228.10",
+            "isConfigurable": true,
+            "maxCardinality": 4,
+            "minCardinality": 0,
+            "name": "Quantity",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "@type": "ObjectCharacteristic",
+                  "value": "10",
+                  "id": "9cb0766f-56cc-41b7-a058-2e07e08a1228.10",
+                  "name": "Quantity",
+                  "unitOfMeasure": "GB"
+                }
+              },
+              {
+                "isSelectable": true,
+                "isSelected": false,
+                "characteristic": {
+                  "@type": "ObjectCharacteristic",
+                  "value": "20",
+                  "id": "9cb0766f-56cc-41b7-a058-2e07e08a1228.10",
+                  "name": "Quantity",
+                  "unitOfMeasure": "GB"
+                }
+              },
+              {
+                "isSelectable": true,
+                "isSelected": false,
+                "characteristic": {
+                  "@type": "ObjectCharacteristic",
+                  "value": "50",
+                  "id": "9cb0766f-56cc-41b7-a058-2e07e08a1228.10",
+                  "name": "Quantity",
+                  "unitOfMeasure": "GB"
+                }
+              },
+              {
+                "isSelectable": true,
+                "isSelected": false,
+                "characteristic": {
+                  "@type": "ObjectCharacteristic",
+                  "value": "80",
+                  "id": "9cb0766f-56cc-41b7-a058-2e07e08a1228.10",
+                  "name": "Quantity",
+                  "unitOfMeasure": "GB"
+                }
+              }
+            ],
+            "@type": "ObjectCharacteristic"
+          },
+          {
+            "description": " Frequency",
+            "id": "b92591e0-8b1f-4202-b6c8-9cc8ab341514.8",
+            "isConfigurable": true,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "Frequency",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "@type": "StringCharacteristic",
+                  "id": "b92591e0-8b1f-4202-b6c8-9cc8ab341514.8",
+                  "name": "Frequency",
+                  "value": "Month"
+                }
+              }
+            ],
+            "@type": "StringCharacteristic"
+          },
+          {
+            "description": " Recurring",
+            "id": "b0cd1541-c6b3-46b3-ad47-c2fb98c733f4.9",
+            "isConfigurable": true,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "Recurring",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "@type": "StringCharacteristic",
+                  "id": "b0cd1541-c6b3-46b3-ad47-c2fb98c733f4.9",
+                  "name": "Recurring",
+                  "value": "Yes"
+                }
+              }
+            ],
+            "@type": "StringCharacteristic"
+          }
+        ],
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": true
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "migrate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": true,
+            "isSelectable": true
+          }
+        ]
+      },
+      "state": "approved"
+    },
+    {
+      "id": "ba25ea76-1ee2-456c-b7c9-629319c10651",
+      "productConfiguration": {
+        "id": "c4839a3f-2cb4-4ff9-9889-3595e08ad78e",
+        "isSelectable": false,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "product": {
+          "id": "{{request.query.id.6}}",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/{{request.query.id.6}}",
+          "isBundle": false,
+          "name": "SIM Card",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "1",
+              "name": "IMSI",
+              "value": "IMSI#123"
+            }
+          ],
+          "productPrice": [
+            {
+              "description": "SIM",
+              "name": "NRC 0 Euro",
+              "priceType": "nonRecurringCharge",
+              "unitOfMeasure": "units",
+              "productOfferingPrice": {
+                "id": "2ec30651-981d-423b-87c6-90f9d5d65ca0",
+                "name": "NRC 0 Euro",
+                "@type": "productOfferingPrice",
+                "@referredType": "ProductOfferingPriceCharge"
+              },
+              "price": {
+                "taxRate": 0,
+                "dutyFreeAmount": {
+                  "unit": "EUR",
+                  "value": 0
+                },
+                "taxIncludedAmount": {
+                  "unit": "EUR",
+                  "value": 0
+                }
+              }
+            }
+          ],
+          "productRelationship": [
+            {
+              "relationshipType": "rootProduct",
+              "product": {
+                "@type": "ProductRef",
+                "id": "6763e356034dab187e0d9300",
+                "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/6763e356034dab187e0d9300"
+              }
+            },
+            {
+              "relationshipType": "reliesFrom",
+              "product": {
+                "@type": "ProductRef",
+                "id": "{{request.query.id.2}}",
+                "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/6763e356034dab187e0d9302"
+              }
+            },
+            {
+              "relationshipType": "reliesFrom",
+              "product": {
+                "@type": "ProductRef",
+                "id": "{{request.query.id.3}}",
+                "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/{{request.query.id.3}}"
+              }
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+          "name": "SIM Card",
+          "@type": "ProductOfferingRef",
+          "@referredType": "AtomicProductOffering",
+          "version": "2.0"
+        },
+        "configurationPrice": [
+          {
+            "description": "SIM",
+            "name": "NRC 0 Euro",
+            "priceType": "nonRecurringCharge",
+            "unitOfMeasure": {
+              "amount": 0.0,
+              "units": "units"
+            },
+            "price": {
+              "taxRate": 0.0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 0.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 0.0
+              }
+            },
+            "productOfferingPrice": {
+              "id": "2ec30651-981d-423b-87c6-90f9d5d65ca0",
+              "name": "NRC 0 Euro",
+              "@type": "productOfferingPrice",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "ConfigurationPrice"
+          }
+        ],
+        "productSpecification": {
+          "id": "191424cb-6002-46aa-a5a9-0602cfba83c7",
+          "name": "SIM card",
+          "version": "1.0.0",
+          "@type": "ProductSpecification"
+        },
+        "configurationCharacteristic": [
+          {
+            "description": " IMSI",
+            "id": "1",
+            "isConfigurable": true,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "IMSI",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "id": "1",
+                  "name": "IMSI",
+                  "value": "IMSI#123"
+                }
+              }
+            ]
+          }
+        ],
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "migrate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": true,
+            "isSelectable": false
+          }
+        ]
+      },
+      "state": "approved"
+    },
+    {
+      "id": "8ba847f7-8948-4bf5-8f45-dae744ce5b3p",
+      "productConfiguration": {
+        "id": "82bbfc98-43ae-453a-848e-7300f915b922",
+        "isSelectable": false,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "bundledGroupProductOffering": {
+          "bundledProductOfferings": [
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "b0270a82-9154-4651-a0dd-688cec6c7e50",
+                "@type": "BundleProductOffering"
+              }
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "2aecbbb0-aefc-4845-a4c3-03971214da6c",
+          "name": "Mobile Package Relax ",
+          "@type": "ProductOfferingRef",
+          "@referredType": "Contract",
+          "version": "1.1"
+        },
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "migrate",
+            "isSelected": true,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": false,
+            "isSelectable": false
+          }
+        ]
+      },
+      "productConfigurationItemRelationship": [
+        {
+          "id": "e930b4c8-8dba-4d77-bbf7-6d52c2b12248",
+          "relationshipType": "requestedItem"
+        },
+        {
+          "id": "da0f3766-feea-43a8-ae60-f450044b54a6",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "99be2770-f97a-4670-a6ce-7c37d7d94f8e",
+          "relationshipType": "migrateFrom"
+        }
+      ],
+      "state": "approved"
+    },
+    {
+      "id": "da0f3766-feea-43a8-ae60-f450044b54a6",
+      "productConfiguration": {
+        "id": "f64b997d-b891-470d-b5ed-cb305d7704f4",
+        "isSelectable": false,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "bundledGroupProductOffering": {
+          "bundledProductOfferings": [
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "aad8e497-7b04-4020-ac2a-428d4daa5600",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "21935e5f-101f-4fd6-bf39-9fa8dfbefeda",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "04269404-d03d-471a-bc02-c6c46793d4c9",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "2490022a-f419-4f3d-aa26-e6bb3f74841f",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 1,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1,
+                "@baseType": null,
+                "@schemaLocation": null,
+                "@type": null
+              },
+              "productOfferingRef": {
+                "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+                "@type": "AtomicProductOffering"
+              }
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "b0270a82-9154-4651-a0dd-688cec6c7e50",
+          "name": "Mobile Package Relax Bundle",
+          "@type": "ProductOfferingRef",
+          "@referredType": "BundleProductOffering",
+          "version": "1.0"
+        },
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "migrate",
+            "isSelected": true,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": false,
+            "isSelectable": false
+          }
+        ]
+      },
+      "productConfigurationItemRelationship": [
+        {
+          "id": "66bca8af-9135-4abc-9b8f-153a430067c9",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "148c4e5e-0ea0-4f05-bc86-2d98668ee63f",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "c2ee01db-4021-4637-9884-c96486c7d83b",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "6d5a620c-0691-4131-8518-d27e4e527a49",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "2b59b503-4f4a-43ef-ba28-9cee46d4105c",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "ba25ea76-1ee2-456c-b7c9-629319c10651",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "ef350268-f323-4625-8af8-6b213ad75460",
+          "relationshipType": "bundles"
+        },
+        {
+          "id": "8ba847f7-8948-4bf5-8f45-dae744ce5b3c",
+          "relationshipType": "migrateFrom"
+        }
+
+      ],
+      "state": "approved"
+    },
+    {
+      "id": "6d5a620c-0691-4131-8518-d27e4e527a49",
+      "productConfiguration": {
+        "id": "3ab0b050-2362-4b35-a506-9fd5b3c2f623",
+        "isSelectable": false,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "productOffering": {
+          "id": "04269404-d03d-471a-bc02-c6c46793d4c9",
+          "name": "SMS",
+          "@type": "ProductOfferingRef",
+          "@referredType": "AtomicProductOffering",
+          "version": "1.0"
+        },
+        "productSpecification": {
+          "id": "32a508f8-6671-4810-9423-fb7424a23d9c",
+          "name": "SMS",
+          "version": "0.1",
+          "@type": "ProductSpecification"
+        },
+        "configurationCharacteristic": [
+          {
+            "description": " Quantity",
+            "id": "1369b260-8212-4847-9ed8-a0b118131b18.10",
+            "isConfigurable": true,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "Quantity",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "@type": "ObjectCharacteristic",
+                  "value": "99999",
+                  "id": "1369b260-8212-4847-9ed8-a0b118131b18.10",
+                  "name": "Quantity",
+                  "unitOfMeasure": "SMS"
+                }
+              }
+            ],
+            "@type": "ObjectCharacteristic"
+          }
+        ],
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": true,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "migrate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": false,
+            "isSelectable": false
+          }
+        ]
+      },
+      "state": "approved"
+    },
+    {
+      "id": "2b59b503-4f4a-43ef-ba28-9cee46d4105c",
+      "productConfiguration": {
+        "id": "d862a35d-b116-429a-a131-6394da192921",
+        "isSelectable": false,
+        "isSelected": true,
+        "isInstallable": true,
+        "quantity": 1,
+        "version": "1.0",
+        "productOffering": {
+          "id": "2490022a-f419-4f3d-aa26-e6bb3f74841f",
+          "name": "Time Bundle",
+          "@type": "ProductOfferingRef",
+          "@referredType": "AtomicProductOffering",
+          "version": "1.0"
+        },
+        "productSpecification": {
+          "id": "e56d8af2-d7cc-46c9-8489-a5b301908400",
+          "name": "Time Bundle",
+          "version": "0.2",
+          "@type": "ProductSpecification"
+        },
+        "configurationCharacteristic": [
+          {
+            "description": " Quantity",
+            "id": "72147f55-f9ac-4f45-9bc3-258638972e14.10",
+            "isConfigurable": true,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "Quantity",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "@type": "ObjectCharacteristic",
+                  "value": "9999",
+                  "id": "72147f55-f9ac-4f45-9bc3-258638972e14.10",
+                  "name": "Quantity",
+                  "unitOfMeasure": "Hour"
+                }
+              }
+            ],
+            "@type": "ObjectCharacteristic"
+          },
+          {
+            "description": " Validity",
+            "id": "827586eb-c419-4090-9449-92bd4fe150df.6",
+            "isConfigurable": false,
+            "maxCardinality": 1,
+            "minCardinality": 0,
+            "name": "Validity",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": false,
+                "isSelected": true,
+                "characteristic": {
+                  "@type": "ValidityCharacteristic",
+                  "value": 30,
+                  "id": "827586eb-c419-4090-9449-92bd4fe150df.6",
+                  "name": "Validity",
+                  "unitOfMeasure": "Days"
+                }
+              }
+            ],
+            "@type": "ValidityCharacteristic"
+          }
+        ],
+        "configurationAction": [
+          {
+            "action": "add",
+            "isSelected": true,
+            "isSelectable": false
+          },
+          {
+            "action": "modify",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "terminate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "migrate",
+            "isSelected": false,
+            "isSelectable": false
+          },
+          {
+            "action": "noChange",
+            "isSelected": false,
+            "isSelectable": false
+          }
+        ]
+      },
+      "state": "approved"
+    }
+  ],
+  "requestProductConfigurationItem": [
+    {
+      "@type": "SourceQueryProductConfigurationItem",
+      "contextItem": {
+        "name": "Quote item 01",
+        "itemId": "01",
+        "entityId": "3472",
+        "entityHref": "https://host:port/quoteManagement/v5/quote/3472",
+        "@type": "ItemRef",
+        "@referredType": "QuoteItem"
+      },
+      "productConfiguration": {
+        "id": "e930b4c8-8dba-4d77-bbf7-6d52c2b12245",
+        "@type": "ProductConfiguration",
+        "product": {
+          "id": "{{request.query.id.0}}",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/6697888c43be6774c4d3e788",
+          "@type": "ProductRef"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "migrate",
+            "isSelected": true,
+            "isSelectable": true,
+            "description": "terminate operation action"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "TargetQueryProductConfigurationItem",
+      "contextItem": {
+        "name": "Quote item 01",
+        "itemId": "01",
+        "entityId": "3472",
+        "entityHref": "https://host:port/quoteManagement/v5/quote/3472",
+        "@type": "ItemRef",
+        "@referredType": "QuoteItem"
+      },
+      "productConfiguration": {
+        "id": "e930b4c8-8dba-4d77-bbf7-6d52c2b12248",
+        "@type": "ProductConfiguration",
+        "productOffering": {
+          "id": "2aecbbb0-aefc-4845-a4c3-03971214da6c",
+          "@type": "ProductOfferingRef"
+        }
+      }
+    }
+  ],
+  "relatedParty": [
+    {
+      "role": "prospect",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "rel1",
+        "href": "https://host:port/partyManagement/v5/party/456",
+        "name": "cs",
+        "@referredType": "Individual"
+      },
+      "@type": "RelatedPartyRefOrPartyRoleRef"
+    }
+  ],
+  "channel": {
+    "id": "Selfcare",
+    "name": "Selfcare"
+  },
+  "contextEntity": {
+    "id": "3472",
+    "href": "https://host:port/quoteManagement/v5/quote/3472",
+    "name": "March 2019 Order",
+    "@type": "EntityRef",
+    "@referredType": "Quote"
+  }
+}

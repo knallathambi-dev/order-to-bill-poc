@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "delivery_management.fullname" . }}-network-policy
+  labels:
+    {{- include "delivery_management.labels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      {{- include "delivery_management.selectorLabels" . | nindent 6 }}
+  policyTypes:
+  - Ingress
+  ingress:
+  - {}

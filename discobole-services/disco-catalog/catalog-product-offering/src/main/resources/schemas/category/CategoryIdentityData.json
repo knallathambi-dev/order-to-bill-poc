@@ -1,0 +1,21 @@
+{
+  "CategoryIdentityData" : {
+    "required" : [ "name", "description" ],
+    "type" : "object",
+    "properties" : {
+      "name" : {
+        "type" : "string"
+      },
+      "description" : {
+        "type" : "string"
+      },
+      "isRoot" : {
+        "type" : "boolean",
+        "default" : true
+      },
+      "parentId" : {
+        "type" : "string"
+      }
+    }
+  }
+}

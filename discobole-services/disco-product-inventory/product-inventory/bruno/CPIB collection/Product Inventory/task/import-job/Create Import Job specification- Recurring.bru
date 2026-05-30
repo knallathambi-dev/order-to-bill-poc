@@ -1,0 +1,35 @@
+meta {
+  name: Create Import Job specification- Recurring
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/jobSpecification
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "@type": "ImportJobSpecification",
+    "schedule": {
+     "frequency": {
+        "amount": 1,
+        "timePeriod": "Day"
+      },
+      "scheduledPeriod": {
+        "endDateTime": "2024-11-13",
+        "startDateTime": "2024-08-13"
+      },
+      "executionTime": "10:59:00",
+      "@type": "RecurringJobScheduler"
+    },
+    "importType":"insert",
+    "contentType": "json"
+  }
+}
+
+tests {
+  bru.setEnvVar("taskId", res.body.id);
+}

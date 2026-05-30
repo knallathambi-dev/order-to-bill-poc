@@ -1,0 +1,2822 @@
+[
+  {{#each request.query.id as |id|}}
+  {{#not @first}}
+  {{#if (contains (array 'Connectivity' 'ConnectivityFO' 'Connectivity FO' 'Time bundle' 'MobileLine' 'MobileLineFO' 'MobileLine FO' 'SMS Option' 'SMS option 11' 'Ring Back Tone_02' 'Connectivity_2' 'Time Bundle3' 'Ring Back Tone' 'Data Bundle_2' '10000000002' 'SMS' 'Voice' 'Data Pass' 'Device Insurance' 'Connectivity V2' 'Mobile Line V2' 'Data Bundle V2' 'Time Bundle V2' 'Messaging Bundle V2' 'Orange TV' 'Netflix' 'Shipment V2' 'Fiber Access Fibra 1000' 'Fix Communication' 'Norton Security' 'TV Channels' 'HBO' 'Data' 'Fiber access' 'AddressCharCheck' 'Microsoft 365 Licence' 'Internet Boost' 'Static IPV4 Address' 'Internet Service' 'Fiber Access V3' 'CD5 Mobile Line' 'CD5 Time Bundle' 'Mobile Line V3' 'Time Bundle V3' 'Data Bundle V3' 'Messaging Bundle V3') id)}},{{/if}}
+  {{/not}}
+  {{#eq id 'Connectivity'}}
+  {
+    "id": "Connectivity",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Connectivity",
+    "name": "Connectivity",
+    "description": "Connectivity.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "ICCID",
+        "id": "5843",
+        "description": "This characteristic describes the ICCID of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Rollover",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Validity",
+        "id": "5843R",
+        "description": "This characteristic describes the Validity of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2020-09-25T00:00",
+          "endDateTime": "2022-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+  {{#or (eq id 'ConnectivityFO') (eq id 'Connectivity FO')}}
+  {
+    "id": "ConnectivityFO",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Connectivity",
+    "name": "ConnectivityFO",
+    "description": "ConnectivityFO.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "ICCID",
+        "id": "5843",
+        "description": "This characteristic describes the ICCID of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Validity",
+        "id": "5843R",
+        "description": "This characteristic describes the Validity of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2020-09-25T00:00",
+          "endDateTime": "2022-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/or}}
+  {{#eq id 'Connectivity_2'}}
+  {
+    "id": "Connectivity_2",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Connectivity",
+    "name": "Connectivity",
+    "description": "Connectivity.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "ICCID",
+        "id": "5843",
+        "description": "This characteristic describes the ICCID of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2020-09-25T00:00",
+          "endDateTime": "2022-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+  {{#eq id 'Time bundle'}}
+  {
+    "id": "Time bundle",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "Time Bundle",
+    "description": "Time Bundle.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Frequency",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Rollover",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "volume",
+        "id": "5243",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Recurring",
+        "value": "Y",
+        "@type": "stringCharacteristic",
+        "id": "5c482b74-21d6-4218-a79d-07670b3f6617.2"
+      },
+      {
+        "name": "Blocked",
+        "value": "Y",
+        "@type": "stringCharacteristic",
+        "id": "38c40f6d-fcb8-478c-bba8-7feb062f26fe.3"
+      },
+      {
+        "name": "Validity of rollovers",
+        "id": "5243v",
+        "description": "This characteristic describes the Validity of rollovers of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Quantity",
+        "value": "123",
+        "@type": "stringCharacteristic",
+        "id": "5c482b74-21d6-4218-a79d-07670b3f6617.2"
+      },
+      {
+        "name": "Validity",
+        "id": "5843R",
+        "description": "This characteristic describes the Validity of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "Mobile Line",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+        "name": "Mobile Line",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceFacingServiceSpecification",
+        "@type": "ServiceSpecRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  }
+  {{/eq}}
+  {{#eq id 'Data Bundle_2'}}
+  {
+    "id": "Data Bundle_2",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "Data Bundle",
+    "description": "Data Bundle.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Volume",
+        "id": "5243",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Recurring",
+        "value": "Y",
+        "@type": "stringCharacteristic",
+        "id": "5c482b74-21d6-4218-a79d-07670b3f6617.2"
+      },
+      {
+        "name": "Blocked",
+        "value": "Y",
+        "@type": "stringCharacteristic",
+        "id": "38c40f6d-fcb8-478c-bba8-7feb062f26fe.3"
+      },
+      {
+        "name": "Validity",
+        "value": "1",
+        "@type": "validityCharacteristic",
+        "id": "bc7d2144-327c-4038-ac2d-f4c9a35af56a.4",
+        "unitOfMeasure": "Month"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id '10000000002'}}
+  {
+    "id": "10000000002",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "Data Bundle",
+    "description": "Data Bundle.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Volume",
+        "id": "5",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Recurring",
+        "value": "Y",
+        "@type": "stringCharacteristic",
+        "id": "5c482b74-21d6-4218-a79d-07670b3f6617.2"
+      },
+      {
+        "name": "Blocked",
+        "value": "Y",
+        "@type": "stringCharacteristic",
+        "id": "38c40f6d-fcb8-478c-bba8-7feb062f26fe.3"
+      },
+      {
+        "name": "Validity",
+        "value": "1",
+        "@type": "validityCharacteristic",
+        "id": "bc7d2144-327c-4038-ac2d-f4c9a35af56a.4",
+        "unitOfMeasure": "Month"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Time Bundle3'}}
+  {
+    "id": "Time Bundle3",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "Time Bundle",
+    "description": "Time Bundle.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "volume",
+        "id": "5243",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Recurring",
+        "value": "Y",
+        "@type": "stringCharacteristic",
+        "id": "5c482b74-21d6-4218-a79d-07670b3f6617.2"
+      },
+      {
+        "name": "Blocked",
+        "value": "Y",
+        "@type": "stringCharacteristic",
+        "id": "38c40f6d-fcb8-478c-bba8-7feb062f26fe.3"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "Mobile Line",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+        "name": "Mobile Line",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceFacingServiceSpecification",
+        "@type": "ServiceSpecRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  }
+  {{/eq}}
+  {{#eq id 'MobileLine'}}
+  {
+    "id": "Mobile Line",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+    "name": "Mobile Line",
+    "description": "Mobile Line.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "MSISDN",
+        "id": "5243",
+        "description": "This characteristic describes the MSISDN of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "RolloverML",
+        "id": "5243RML",
+        "description": "This characteristic describes the RolloverML of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Validity",
+        "value": "30",
+        "id": "519e569a-08a8-4e11-ad47-9997c3766a5e.4",
+        "unitOfMeasure": "Days"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+  {{#or (eq id 'MobileLineFO') (eq id 'MobileLine FO')}}
+  {
+    "id": "MobileLineFO",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+    "name": "Mobile Line FO",
+    "description": "Mobile Line FO",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "MSISDN",
+        "@type": "stringCharacteristic",
+        "id": "f18a3fe0-1e61-419a-b7d8-dd68215b3705.a",
+        "value": ""
+      },
+      {
+        "name": "Recurring",
+        "value": "Y",
+        "@type": "stringCharacteristic",
+        "id": "5c482b74-21d6-4218-a79d-07670b3f6617.2"
+      },
+      {
+        "name": "Blocked",
+        "value": "Y",
+        "@type": "stringCharacteristic",
+        "id": "38c40f6d-fcb8-478c-bba8-7feb062f26fe.3"
+      },
+      {
+        "name": "VoWifi",
+        "@type": "stringCharacteristic",
+        "id": "f18a3fe0-1e61-419a-b7d8-dd68215b3705.b",
+        "value": ""
+      },
+      {
+        "name": "Validity",
+        "value": "null",
+        "@type": "validityCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.f",
+        "unitOfMeasure": "Days"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/or}}
+  {{#eq id 'SMS Option'}}
+  {
+    "id": "SMS Option",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "SMS Option",
+    "description": "SMS Option.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Volume",
+        "id": "5243",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "recurring",
+        "value": "N",
+        "id": "bb398e87-12e2-4399-888c-f0901a1ce149.charrecur"
+      },
+      {
+        "name": "blocked",
+        "value": "Y",
+        "id": "32367c73-85b7-45bf-bd19-46aba6b5acad.charablocked"
+      },
+      {
+        "name": "Validity",
+        "valueType": "string",
+        "unitOfMeasure": "days",
+        "timeRange": {
+          "validTo": null,
+          "validFrom": null
+        },
+        "value": "30"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "Mobile Line",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+        "name": "Mobile Line",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceFacingServiceSpecification",
+        "@type": "ServiceSpecRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'SMS option 11'}}
+  {
+    "id": "SMS option 11",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "SMS option 11",
+    "description": "SMS Option.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Volume",
+        "id": "5243",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "recurring",
+        "value": "N",
+        "id": "bb398e87-12e2-4399-888c-f0901a1ce149.charrecur"
+      },
+      {
+        "name": "blocked",
+        "value": "Y",
+        "id": "32367c73-85b7-45bf-bd19-46aba6b5acad.charablocked"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "Mobile Line",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+        "name": "Mobile Line",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceFacingServiceSpecification",
+        "@type": "ServiceSpecRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  }
+  {{/eq}}
+  {{#eq id 'Ring Back Tone_02'}}
+  {
+    "id": "Ring Back Tone_02",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "Ring Back Tone",
+    "description": "Ring Back Tone.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Tone",
+        "id": "5243",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "Mobile Line",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+        "name": "Mobile Line",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceFacingServiceSpecification",
+        "@type": "ServiceSpecRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  }
+  {{/eq}}
+  {{#eq id 'Ring Back Tone'}}
+  {
+    "id": "Ring Back Tone",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "Ring Back Tone",
+    "description": "Ring Back Tone.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Tone",
+        "id": "5243",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "Mobile Line",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+        "name": "Mobile Line",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceFacingServiceSpecification",
+        "@type": "ServiceSpecRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'SMS'}}
+  {
+    "id": "SMS",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Connectivity",
+    "name": "SMS",
+    "description": "SMS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Recurring",
+        "id": "5843",
+        "description": "This characteristic describes the ICCID of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Rollover",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Validity",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Quantity",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Blocked",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2020-09-25T00:00",
+          "endDateTime": "2022-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Data'}}
+  {
+    "id": "Data",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Connectivity",
+    "name": "Data",
+    "description": "Data",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Rollover",
+        "id": "5843",
+        "description": "This characteristic describes the ICCID of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Validity",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Quantity",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Frequency",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Recurring",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Blocked",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2020-09-25T00:00",
+          "endDateTime": "2022-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Voice'}}
+  {
+    "id": "Voice",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Connectivity",
+    "name": "Voice",
+    "description": "Voice",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Rollover",
+        "id": "5843",
+        "description": "This characteristic describes the ICCID of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Validity",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Quantity",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Frequency",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Recurring",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "Blocked",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2020-09-25T00:00",
+          "endDateTime": "2022-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Data Pass'}}
+  {
+    "id": "Data Pass",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Connectivity",
+    "name": "Data Pass",
+    "description": "Data Pass",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "validity of rollovers",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "quantity",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "recurring",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "blocked",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      },
+      {
+        "name": "volume",
+        "id": "5843R",
+        "description": "This characteristic describes the Rollover of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2020-09-25T00:00",
+          "endDateTime": "2022-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Device Insurance'}}
+  {
+    "id": "Device Insurance",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/DeviceInsurance",
+    "name": "Device Insurance PS",
+    "description": "Device Insurance PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Level",
+        "value": "Basic",
+        "@type": "stringCharacteristic",
+        "id": "582f8dac-e268-401e-ac83-a5df73f8a83f.a"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Connectivity V2'}}
+  {
+    "id": "Connectivity V2",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/ConnectivityV2",
+    "name": "Connectivity PS",
+    "description": "Connectivity PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "ICCID",
+        "value": "ICCID",
+        "@type": "stringCharacteristic",
+        "id": "12a34481-debc-4316-98d1-acc046f99416.a"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Mobile Line V2'}}
+  {
+    "id": "Mobile Line V2",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLineV2",
+    "name": "Mobile Line PS",
+    "description": "Mobile Line PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "MSISDN",
+        "@type": "stringCharacteristic",
+        "id": "f18a3fe0-1e61-419a-b7d8-dd68215b3705.a",
+        "value": ""
+      },
+      {
+        "name": "VoWifi",
+        "@type": "stringCharacteristic",
+        "id": "f18a3fe0-1e61-419a-b7d8-dd68215b3705.b",
+        "value": ""
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Data Bundle V2'}}
+  {
+    "id": "Data Bundle V2",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/DataBundleV2",
+    "name": "Data Bundle National PS",
+    "description": "Data Bundle National PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Blocked",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.a"
+      },
+      {
+        "name": "Rollover",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.b"
+      },
+      {
+        "name": "Rollover usage priority",
+        "value": "1",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.b"
+      },
+      {
+        "name": "Validity of rollover",
+        "value": {
+          "value": "1",
+          "unitOfMeasure": "week"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.b"
+      },
+      {
+        "name": "No of rollover",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.b"
+      },
+      {
+        "name": "Recurring",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.c"
+      },
+      {
+        "name": "Frequency",
+        "value": "Month",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.d"
+      },
+      {
+        "name": "Quantity",
+        "value": {
+          "value": "999999",
+          "unitOfMeasure": "GB"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.e"
+      },
+      {
+        "name": "Validity",
+        "value": "null",
+        "@type": "validityCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.f",
+        "unitOfMeasure": "Days"
+      },
+      {
+        "name": "Auto recharge date",
+        "value": "null",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.g"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Data Bundle V3'}}
+  {
+    "id": "Data Bundle V3",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/DataBundleV3",
+    "name": "Data Bundle V3",
+    "description": "Data Bundle V3",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Launched",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Blocked",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.a"
+      },
+      {
+        "name": "Rollover",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.b"
+      },
+      {
+        "name": "Rollover usage priority",
+        "value": "1",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.b"
+      },
+      {
+        "name": "Validity of rollover",
+        "value": {
+          "value": "1",
+          "unitOfMeasure": "week"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.b"
+      },
+      {
+        "name": "No of rollover",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.b"
+      },
+      {
+        "name": "Recurring",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.c"
+      },
+      {
+        "name": "Frequency",
+        "value": "Month",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.d"
+      },
+      {
+        "name": "Quantity",
+        "value": {
+          "value": "999999",
+          "unitOfMeasure": "GB"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.e"
+      },
+      {
+        "name": "Validity",
+        "value": "null",
+        "@type": "validityCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.f",
+        "unitOfMeasure": "Days"
+      },
+      {
+        "name": "Auto recharge date",
+        "value": "null",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.g"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Time Bundle V2'}}
+  {
+    "id": "Time Bundle V2",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/TimeBundleV2",
+    "name": "Time Bundle National Unlimited PS",
+    "description": "Time Bundle National Unlimited PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Blocked",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.a"
+      },
+      {
+        "name": "Rollover",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.b"
+      },
+      {
+        "name": "Recurring",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.c"
+      },
+      {
+        "name": "Frequency",
+        "value": "Month",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.d"
+      },
+      {
+        "name": "Quantity",
+        "value": {
+          "value": "999999",
+          "unitOfMeasure": "Hour"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.e"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Messaging Bundle V2'}}
+  {
+    "id": "Messaging Bundle V2",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MessagingBundleV2",
+    "name": "Messaging Bundle National and Roaming EU PS",
+    "description": "Messaging Bundle National and Roaming EU PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Blocked",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "4034ea31-a688-406f-9576-4913cfbba18d.a"
+      },
+      {
+        "name": "Rollover",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "4034ea31-a688-406f-9576-4913cfbba18d.b"
+      },
+      {
+        "name": "Recurring",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "4034ea31-a688-406f-9576-4913cfbba18d.c"
+      },
+      {
+        "name": "Frequency",
+        "value": "Month",
+        "@type": "stringCharacteristic",
+        "id": "4034ea31-a688-406f-9576-4913cfbba18d.d"
+      },
+      {
+        "name": "Quantity",
+        "value": {
+          "value": "999999",
+          "unitOfMeasure": "SMS"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.e"
+      },
+      {
+        "name": "Validity",
+        "value": "null",
+        "@type": "validityCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.f",
+        "unitOfMeasure": "Days"
+      },
+      {
+        "name": "Rollover usage priority",
+        "value": "1",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.b"
+      },
+      {
+        "name": "Validity of rollover",
+        "value": {
+          "value": "1",
+          "unitOfMeasure": "week"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.b"
+      },
+      {
+        "name": "No of rollover",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.b"
+      },
+      {
+        "name": "Auto recharge date",
+        "value": "null",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.g"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Messaging Bundle V3'}}
+  {
+    "id": "Messaging Bundle V3",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MessagingBundleV3",
+    "name": "Messaging Bundle V3",
+    "description": "Messaging Bundle V3",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Launched",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Blocked",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "4034ea31-a688-406f-9576-4913cfbba18d.a"
+      },
+      {
+        "name": "Rollover",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "4034ea31-a688-406f-9576-4913cfbba18d.b"
+      },
+      {
+        "name": "Recurring",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "4034ea31-a688-406f-9576-4913cfbba18d.c"
+      },
+      {
+        "name": "Frequency",
+        "value": "Month",
+        "@type": "stringCharacteristic",
+        "id": "4034ea31-a688-406f-9576-4913cfbba18d.d"
+      },
+      {
+        "name": "Quantity",
+        "value": {
+          "value": "999999",
+          "unitOfMeasure": "SMS"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.e"
+      },
+      {
+        "name": "Validity",
+        "value": "null",
+        "@type": "validityCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.f",
+        "unitOfMeasure": "Days"
+      },
+      {
+        "name": "Rollover usage priority",
+        "value": "1",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.b"
+      },
+      {
+        "name": "Validity of rollover",
+        "value": {
+          "value": "1",
+          "unitOfMeasure": "week"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.b"
+      },
+      {
+        "name": "No of rollover",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.b"
+      },
+      {
+        "name": "Auto recharge date",
+        "value": "null",
+        "@type": "stringCharacteristic",
+        "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba.g"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Netflix'}}
+  {
+    "id": "Netflix",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Netflix",
+    "name": "Add-on Netflix PS",
+    "description": "Add-on Netflix PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Level",
+        "value": "Basic",
+        "@type": "stringCharacteristic",
+        "id": "80adcad3-dbac-4e5e-8a5e-d9ec60a180db.a"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Orange TV'}}
+  {
+    "id": "Orange TV",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/OrangeTV",
+    "name": "Orange TV and Movie Go",
+    "description": "Orange TV and Movie Go",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Shipment V2'}}
+  {
+    "id": "Shipment V2",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/ShipmentV2",
+    "name": "Shipment PS (remains unchanged)",
+    "description": "Shipment PS (remains unchanged)",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Shipping mode",
+        "value": "Instore",
+        "@type": "stringCharacteristic",
+        "id": "22f26f29-724e-4eff-83a1-d27e1627f2ba.a"
+      },
+      {
+        "name": "Shipping Address",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "22f26f29-724e-4eff-83a1-d27e1627f2ba.b"
+      },
+      {
+        "name": "Requested delivery date",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "22f26f29-724e-4eff-83a1-d27e1627f2ba.c"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Fiber Access Fibra 1000'}}
+  {
+    "id": "Fiber Access Fibra 1000",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/FiberAccessFibra1000",
+    "name": "Fiber access 1000 PS",
+    "description": "Fiber access 1000 PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Downstream Max Throughput",
+        "value": {
+          "value": "940",
+          "unitOfMeasure": "Mbps"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "307db8b2-bdec-4062-a27a-f0e881b5d84b.a"
+      },
+      {
+        "name": "Upstream Max Throughput",
+        "value": {
+          "value": "480",
+          "unitOfMeasure": "Mbps"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "307db8b2-bdec-4062-a27a-f0e881b5d84b.b"
+      },
+      {
+        "name": "Address",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "22f26f29-724e-4eff-83a1-d27e1627f2ba.c"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Microsoft 365 Licence'}}
+  {
+    "id": "Microsoft 365 Licence",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Microsoft365",
+    "name": "Microsoft 365 Licence",
+    "description": "Microsoft 365 Licence",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "License Name",
+        "value": "Premium",
+        "@type": "StringCharacteristic",
+        "id": "f700a36a-5064-4dbc-84e7-bc9286077fff"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Internet Boost'}}
+  {
+    "id": "Internet Boost",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/InternetBoost",
+    "name": "Internet Boost",
+    "description": "Internet Boost",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Profile",
+        "value": "50GB",
+        "@type": "StringCharacteristic",
+        "id": "a40b28bb-0848-4c5f-a0bf-500e87a4351b"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Static IPV4 Address'}}
+  {
+    "id": "Static IPV4 Address",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/StaticIPV4Address",
+    "name": "Static IPV4 Address",
+    "description": "Static IPV4 Address",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Static IPV4 Address",
+        "@type": "StringCharacteristic",
+        "id": "1fcd7569-2de7-4383-ae9e-4a2c1234660b"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Internet Service'}}
+  {
+    "id": "Internet Service",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/InternetService",
+    "name": "Internet Service",
+    "description": "Internet Service",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Profile",
+        "value": "200GB",
+        "@type": "StringCharacteristic",
+        "id": "94d1d81e-7a55-4e0a-9f1c-641061fa2a6e"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Fiber Access V3'}}
+  {
+    "id": "Fiber Access V3",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/FiberAccessV3",
+    "name": "Fiber Access",
+    "description": "Fiber Access V3",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Address",
+        "@type": "AddressCharacteristic",
+        "id": "2f1ce6c4-3d80-40eb-a1aa-81d0555d1103"
+      },
+      {
+        "name": "Requested installation date",
+        "@type": "DateCharacteristic",
+        "id": "2f1ce6c4-3d80-40eb-a1aa-81d0555d1103"
+      },
+      {
+        "name": "Installation mode",
+        "value": "Basic",
+        "@type": "StringCharacteristic",
+        "id": "2f1ce6c4-3d80-40eb-a1aa-81d0555d1103"
+      },
+      {
+        "name": "Fiber Identifier",
+        "@type": "StringCharacteristic",
+        "id": "2f1ce6c4-3d80-40eb-a1aa-81d0555d1103"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Fix Communication'}}
+  {
+    "id": "Fix Communication",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/FixCommunication",
+    "name": "Fix Communication Service PS",
+    "description": "Fix Communication Service PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Number of mailbox",
+        "value": "10",
+        "@type": "stringCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.a"
+      },
+      {
+        "name": "Size of mailbox in GB",
+        "value": {
+          "value": "10",
+          "unitOfMeasure": "GB"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.b"
+      },
+      {
+        "name": "Number of mailbox",
+        "value": "10",
+        "@type": "stringCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.c"
+      },
+      {
+        "name": "Antispam service",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.d"
+      },
+      {
+        "name": "VoIP CLIP supplementary service",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.e"
+      },
+      {
+        "name": "VOIP phone number",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.e"
+      },
+      {
+        "name": "VoIP Number Call Forwarding Service",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.e"
+      },
+      {
+        "name": "VoIP CLIR supplementary service",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.f"
+      },
+      {
+        "name": "VoIP Calling Signal supplementary service",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.g"
+      },
+      {
+        "name": "VoIP Call Forwarding Service",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.h"
+      },
+      {
+        "name": "VoIP Event Call Forwarding Service",
+        "value": "Not reachable (CFNRC)",
+        "@type": "stringCharacteristic",
+        "id": "f17da494-f936-4c32-9fc7-afb815290165.i"
+      }
+
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Norton Security'}}
+  {
+    "id": "Norton Security",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/NortonSecurity",
+    "name": "Norton Security PS",
+    "description": "Norton Security PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'TV Channels'}}
+  {
+    "id": "TV Channels",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/TVChannels",
+    "name": "TV Channels PS",
+    "description": "TV Channels PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Included Channels",
+        "value": "Basic channels",
+        "@type": "stringCharacteristic",
+        "id": "da87beb0-ddca-45e0-922d-33f64f50741e.1"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'HBO'}}
+  {
+    "id": "HBO",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/HBO",
+    "name": "Add-on HBO PS",
+    "description": "Add-on HBO PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Level",
+        "value": "Basic",
+        "@type": "stringCharacteristic",
+        "id": "80adcad3-dbac-4e5e-8a5e-d9ec60a180db.a"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Fiber access'}}
+  {
+    "id": "Fiber access",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Fiberaccess",
+    "name": "Fiber access",
+    "description": "Add-on HBO PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Downstream Max Throughput",
+        "value": {
+          "value": "940",
+          "unitOfMeasure": "Mbps"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "307db8b2-bdec-4062-a27a-f0e881b5d84b.a"
+      },
+      {
+        "name": "Upstream Max Throughput",
+        "value": {
+          "value": "480",
+          "unitOfMeasure": "Mbps"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "307db8b2-bdec-4062-a27a-f0e881b5d84b.b"
+      },
+      {
+        "name": "Address",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "22f26f29-724e-4eff-83a1-d27e1627f2ba.c"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+  {{#eq id 'AddressCharCheck'}}
+  {
+    "id": "AddressCharCheck",
+    "href": "https://fix-factory-integration.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification",
+    "description": "Address Characteristic Test",
+    "isBundle": false,
+    "lastUpdate": "2024-10-11T23:20:50.52Z",
+    "lifecycleStatus": "launched",
+    "name": "AddressCharCheck",
+    "version": "2",
+    "specCharacteristic": [
+      {
+        "name": "Downstream Max Throughput",
+        "value": {
+          "value": "940",
+          "unitOfMeasure": "Mbps"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "307db8b2-bdec-4062-a27a-f0e881b5d84b.a"
+      },
+      {
+        "name": "Upstream Max Throughput",
+        "value": {
+          "value": "480",
+          "unitOfMeasure": "Mbps"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "307db8b2-bdec-4062-a27a-f0e881b5d84b.b"
+      },
+      {
+        "name": "Address",
+        "value": "",
+        "@type": "stringCharacteristic",
+        "id": "22f26f29-724e-4eff-83a1-d27e1627f2ba.c"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2025-01-01T23:20:50.520Z"
+    },
+    "@type": "CFSSpec",
+    "operationSpecification": [
+      {
+        "id": "1",
+        "name": "add",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2025-01-01T23:20:50.520Z"
+        },
+        "description": "add",
+        "isQualificationRequested": true,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "5",
+        "name": "noChange",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2025-01-01T23:20:50.520Z"
+        },
+        "description": "noChange",
+        "isQualificationRequested": true,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "relatedResource": [
+      {
+        "id": "FixSOM",
+        "href": "https://fix-factory-integration.apps.fr01.paas.tech.orange/serviceOrdering/v1/serviceOrder",
+        "name": "SOM Application in charge of the Service Delivery",
+        "role": "serviceDelivery",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'CD5 Mobile Line'}}
+  {
+    "id": "CD5 Mobile Line",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/CD5MobileLine",
+    "name": "CD5 Mobile Line PS",
+    "description": "CD5 Mobile Line PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Launched",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "MSISDN",
+        "@type": "stringCharacteristic",
+        "id": "913fa5f0-83b8-48a0-82b5-0d32e5c2d7c1.1",
+        "value": ""
+      },
+      {
+        "name": "IMSI",
+        "@type": "stringCharacteristic",
+        "id": "4d133a5d-3d30-49c9-8fdd-e56a8d587b81.2",
+        "value": ""
+      },
+      {
+        "name": "ICCID",
+        "@type": "stringCharacteristic",
+        "id": "2e0982f0-ca77-49e7-a4b5-e430b3558435.3",
+        "value": ""
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }    
+  {{/eq}}
+
+  {{#eq id 'Mobile Line V3'}}
+  {
+    "id": "Mobile Line V3",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLineV3",
+    "name": "Mobile Line V3",
+    "description": "Mobile Line V3",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Launched",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "MSISDN",
+        "@type": "stringCharacteristic",
+        "id": "913fa5f0-83b8-48a0-82b5-0d32e5c2d7c1.1",
+        "value": ""
+      },
+      {
+        "name": "IMSI",
+        "@type": "stringCharacteristic",
+        "id": "4d133a5d-3d30-49c9-8fdd-e56a8d587b81.2",
+        "value": ""
+      },
+      {
+        "name": "ICCID",
+        "@type": "stringCharacteristic",
+        "id": "2e0982f0-ca77-49e7-a4b5-e430b3558435.3",
+        "value": ""
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }    
+  {{/eq}}
+
+  {{#eq id 'CD5 Time Bundle'}}
+  {
+    "id": "CD5 Time Bundle",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/CD5TimeBundle",
+    "name": "CD5 Time Bundle PS",
+    "description": "CD5 Time Bundle PS",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2025-08-23T00:00",
+      "endDateTime": "2025-03-25T00:00"
+    },
+    "lastUpdate": "2025-08-15T00:00",
+    "lifecycleStatus": "Launched",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Blocked",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.a"
+      },
+      {
+        "name": "Rollover",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.b"
+      },
+      {
+        "name": "Recurring",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.c"
+      },
+      {
+        "name": "Frequency",
+        "value": "Month",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.d"
+      },
+      {
+        "name": "Quantity",
+        "value": {
+          "value": "1",
+          "unitOfMeasure": "Hour"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.e"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{#eq id 'Time Bundle V3'}}
+  {
+    "id": "Time Bundle V3",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/TimeBundleV3",
+    "name": "Time Bundle V3",
+    "description": "Time Bundle V3",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2026-02-01T00:00",
+      "endDateTime": "2026-02-01T00:00"
+    },
+    "lastUpdate": "2026-02-01T00:00",
+    "lifecycleStatus": "Launched",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Blocked",
+        "value": "Yes",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.a"
+      },
+      {
+        "name": "Rollover",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.b"
+      },
+      {
+        "name": "Recurring",
+        "value": "No",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.c"
+      },
+      {
+        "name": "Frequency",
+        "value": "Month",
+        "@type": "stringCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.d"
+      },
+      {
+        "name": "Quantity",
+        "value": {
+          "value": "1",
+          "unitOfMeasure": "Hour"
+        },
+        "@type": "ObjectCharacteristic",
+        "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8.e"
+      }
+    ],
+    "serviceSpecRelationship": [],
+    "@baseType": "ResourceSpecification"
+  }
+  {{/eq}}
+
+  {{/each}}
+]

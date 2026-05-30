@@ -1,0 +1,65 @@
+meta {
+  name: DefineProductOfferingPriceChargeIdentityData
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "DefineTaxProductOfferingPriceAlterationIdentity",
+        "valueType": "Object",
+        "value": {
+          "defineTaxPOPAlterationIdentityData": {
+            "name": "TaxPOPA%_checkPrice",
+            "description": "test_po%",
+            "priceAlterationType": "Price",
+            "percentage": null,
+            "price": {
+              "unit": "EUR",
+              "value": 10
+            }
+          },
+          "validity": {
+            "lifecycleStatus": "launched",
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "1985-04-12T23:20:50.520Z"
+            }
+          }
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  test("to verify Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+}

@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+$id: "https://event.com/ShippingOrderStateChangeEvent.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "ShippingOrderStateChangeEvent"
+description: "A Shipping Order State Change Event communicates updates about the state of a shipping order."
+type: "object"
+allOf:
+  - $ref: "../Base_event.yaml"
+extends:
+  $ref: "../Base_event.yaml"
+
+properties:
+  event:
+    $ref: "#/definitions/ShippingOrderStateChangeEventPayload"
+required:
+  - "event"
+
+definitions:
+  ShippingOrderStateChangeEventPayload:
+    type: "object"
+    description: "The event data structure"
+    properties:
+      shippingOrder:
+        description: "The involved resource data for the event"
+        $ref: "./ShippingOrder.yaml"
+    required:
+      - "shippingOrder"
+    title: "ShippingOrderStateChangeEventPayload"

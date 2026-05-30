@@ -1,0 +1,576 @@
+{
+  "name": "UserRoleCreationCollection_Catalog",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Step 1 Generate Token",
+      "filename": "Step 1 Generate Token.bru",
+      "seq": 1,
+      "request": {
+        "url": "{{keycloak_url}}/realms/SpringBootKeycloak/protocol/openid-connect/token",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "enabled": true
+          },
+          {
+            "name": "Authorization",
+            "value": "Basic Ym9zLWNsaWVudDpib3MtY2xpZW50LXNlY3JldA==",
+            "enabled": true
+          },
+          {
+            "name": "X-Device-Id",
+            "value": "{{X-Device-Id}}",
+            "enabled": false
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "formUrlEncoded",
+          "formUrlEncoded": [
+            {
+              "name": "username",
+              "value": "{{username}}",
+              "enabled": true
+            },
+            {
+              "name": "password",
+              "value": "{{password}}",
+              "enabled": true
+            },
+            {
+              "name": "grant_type",
+              "value": "password",
+              "enabled": true
+            },
+            {
+              "name": "client_id",
+              "value": "{{client_id}}",
+              "enabled": true
+            },
+            {
+              "name": "client_secret",
+              "value": "{{client_secret}}",
+              "enabled": true
+            },
+            {
+              "name": "scope",
+              "value": "openid",
+              "enabled": true
+            }
+          ],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {
+          "res": [
+            {
+              "name": "token_ORO",
+              "value": "res.body.access_token",
+              "enabled": true,
+              "local": false
+            }
+          ]
+        },
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "folder",
+      "name": "UserRole",
+      "filename": "UserRole",
+      "items": [
+        {
+          "type": "http",
+          "name": "userrole AdminPortalRole",
+          "filename": "userrole AdminPortalRole.bru",
+          "seq": 5,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\r\n    \"involvementRole\": \"AdminPortalRole\",\r\n    \"@type\": \"UserRole\",\r\n    \"entitlement\": [\r\n        {\r\n            \"id\": \"x26\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"Admin Portal All Roles\",\r\n            \"@type\": \"Entitlement\"\r\n        }\r\n    ]\r\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [
+              {
+                "name": "res.status",
+                "value": "eq 201",
+                "enabled": true,
+                "uid": "xzd3nYJb5c4iar2qcZ8q0"
+              }
+            ],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole category",
+          "filename": "userrole category.bru",
+          "seq": 8,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\r\n    \"involvementRole\": \"CategoryAdmin\",\r\n    \"@type\": \"UserRole\",\r\n    \"entitlement\": [\r\n        {\r\n            \"id\": \"x2\",\r\n            \"action\": \"readAndWrite\",    \r\n            \"function\": \"create category with AtomicPO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x3\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"update category with AtomicPO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x6\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"create category with BundlePO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x7\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"update category with BundlePO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x10\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"create category with ContractPO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x11\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"update category with ContractPO\",\r\n            \"@type\": \"Entitlement\"\r\n        }\r\n    ]\r\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [
+              {
+                "name": "res.status",
+                "value": "eq 201",
+                "enabled": true,
+                "uid": "86n2dR9WbG6R1b1B6foTR"
+              }
+            ],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole lifecycle",
+          "filename": "userrole lifecycle.bru",
+          "seq": 1,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n    \"involvementRole\": \"LifecycleAdminTest\",\n    \"@type\": \"UserRole\",\n    \"entitlement\": [\n        {\n            \"id\": \"x100\",\n            \"action\": \"readAndWrite\",\n            \"function\": \"cfs lifecycle\",\n            \"@type\": \"Entitlement\"\n        },\n        {\n            \"id\": \"x14\",\n            \"action\": \"readAndWrite\",\n            \"function\": \"ps lifecycle\",\n            \"@type\": \"Entitlement\"\n        },\n        {\n            \"id\": \"x15\",\n            \"action\": \"readAndWrite\",\n            \"function\": \"apo lifecycle\",\n            \"@type\": \"Entitlement\"\n        },\n        {\n            \"id\": \"x16\",\n            \"action\": \"readAndWrite\",\n            \"function\": \"bpo lifecycle\",\n            \"@type\": \"Entitlement\"\n        },\n        {\n            \"id\": \"x17\",\n            \"action\": \"readAndWrite\",\n            \"function\": \"pop lifecycle\",\n            \"@type\": \"Entitlement\"\n        },\n        {\n            \"id\": \"x102\",\n            \"action\": \"readAndWrite\",\n            \"function\": \"config lifecycle\",\n            \"@type\": \"Entitlement\"\n        }\n    ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [
+              {
+                "name": "res.status",
+                "value": "eq 201",
+                "enabled": true,
+                "uid": "fvYz1oP4pVaOqAIxiwaX0"
+              }
+            ],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole PolicyRule",
+          "filename": "userrole PolicyRule.bru",
+          "seq": 6,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\r\n    \"involvementRole\": \"Policy Rule Admin\",\r\n    \"@type\": \"UserRole\",\r\n    \"entitlement\": [\r\n        {\r\n            \"id\": \"x107\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"Policy Rule\",\r\n            \"@type\": \"Entitlement\"\r\n        }\r\n    ]\r\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [
+              {
+                "name": "res.status",
+                "value": "eq 201",
+                "enabled": true,
+                "uid": "37yr51933IvXwo8gCy5T8"
+              }
+            ],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole POP",
+          "filename": "userrole POP.bru",
+          "seq": 7,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\r\n    \"involvementRole\": \"ProductOfferingPriceAdmin\",\r\n    \"@type\": \"UserRole\",\r\n    \"entitlement\": [\r\n        {\r\n            \"id\": \"x4\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"create POP\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x8\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"create POP with new Version\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x12\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"modify pop without lifecycle state change\",\r\n            \"@type\": \"Entitlement\"\r\n        }\r\n    ]\r\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [
+              {
+                "name": "res.status",
+                "value": "eq 201",
+                "enabled": true,
+                "uid": "WBk1hjMIT076OzJIcPGQk"
+              }
+            ],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole ProductCatalog",
+          "filename": "userrole ProductCatalog.bru",
+          "seq": 3,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\r\n    \"involvementRole\": \"ProductCatalogAdmin\",\r\n    \"@type\": \"UserRole\",\r\n    \"entitlement\": [\r\n        {\r\n            \"id\": \"x20\",\r\n            \"action\": \"read\",\r\n            \"function\": \"CFS Spec\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"21\",\r\n            \"action\": \"read\",\r\n            \"function\": \"Product Spec\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x22\",\r\n            \"action\": \"read\",\r\n            \"function\": \"Atomic PO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x23\",\r\n            \"action\": \"read\",\r\n            \"function\": \"Bundle PO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x24\",\r\n            \"action\": \"read\",\r\n            \"function\": \"Product Offering Price\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x26\",\r\n            \"action\": \"read\",\r\n            \"function\": \"Product Administration\",\r\n            \"@type\": \"Entitlement\"\r\n        }\r\n    ]\r\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [
+              {
+                "name": "res.status",
+                "value": "eq 201",
+                "enabled": true,
+                "uid": "BUmPI3gkIr2DpSKnxwuL9"
+              }
+            ],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole ProductOffering",
+          "filename": "userrole ProductOffering.bru",
+          "seq": 4,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\r\n    \"involvementRole\": \"ProductOfferingAdmin\",\r\n    \"@type\": \"UserRole\",\r\n    \"entitlement\": [\r\n        {\r\n            \"id\": \"x2\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"create Atomic PO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x3\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"create Bundle PO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x6\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"create new version Atomic PO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x7\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"create new version Bundle PO\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x10\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"modify atomic po\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x11\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"modify bundle po\",\r\n            \"@type\": \"Entitlement\"\r\n        }\r\n    ]\r\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [
+              {
+                "name": "res.status",
+                "value": "eq 201",
+                "enabled": true,
+                "uid": "z2sSFaPL4ysMfiU3HrViS"
+              }
+            ],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole ProductSpec",
+          "filename": "userrole ProductSpec.bru",
+          "seq": 2,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\r\n    \"involvementRole\": \"ProductSpecAdmin\",\r\n    \"@type\": \"UserRole\",\r\n    \"entitlement\": [\r\n        {\r\n            \"id\": \"x5\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"Product Spec\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x9\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"Product Spec\",\r\n            \"@type\": \"Entitlement\"\r\n        },\r\n        {\r\n            \"id\": \"x100\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"CFS Spec\",\r\n            \"@type\": \"Entitlement\"\r\n        }\r\n    ]\r\n}\r\n\r\n\r\n",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [
+              {
+                "name": "res.status",
+                "value": "eq 201",
+                "enabled": true,
+                "uid": "IbeJbfdtaFxO1BhFuSdBy"
+              }
+            ],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole",
+          "filename": "userrole.bru",
+          "seq": 10,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "GET",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [
+              {
+                "name": "res.status",
+                "value": "eq 200",
+                "enabled": true,
+                "uid": "I2t75bM3SXO99HOjsb6PF"
+              }
+            ],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "activeEnvironmentUid": "WwTcF8niWgFKPMtoCs4UJ",
+  "environments": [
+    {
+      "variables": [
+        {
+          "name": "base_uri",
+          "value": "http://34.118.100.96:80",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "keycloak_url",
+          "value": "http://34.116.158.27",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "token",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_id",
+          "value": "gateway",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_secret",
+          "value": "ruNK3jNJ0fZ2g6qrY5V5JxIzHTuGhvAd",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "username",
+          "value": "admin-test",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "password",
+          "value": "abcd",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+		   {
+          "name": "lc_Role",
+          "value": "LifecycleAdminTest",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+		   {
+          "name": "ps_Role",
+          "value": "ProductSpecAdmin",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+		   {
+          "name": "pc_Role",
+          "value": "ProductCatalogAdmin",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+		   {
+          "name": "po_Role",
+          "value": "ProductOfferingAdmin",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+		   {
+          "name": "admin_Role",
+          "value": "AdminPortalRole",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+		   {
+          "name": "pop_Role",
+          "value": "ProductOfferingPriceAdmin",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+		 {
+          "name": "policy_Role",
+          "value": "PolicyRuleAdmin",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+		 {
+          "name": "cat_Role",
+          "value": "CategoryAdmin",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        }
+      ],
+      "name": "ORO"
+    }
+  ],
+  "brunoConfig": {
+    "version": "1",
+    "name": "UserRoleCreationCollection_Catalog",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+[{
+  "@type": "Product",
+  "id": "67f3fff127434975dbb90206",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206",
+  "isBundle": false,
+  "name": "Active Mobile Package Comfort",
+  "startDate": "2025-04-07T16:41:40Z",
+  "productOffering": {
+    "id": "ada4e4de-d94c-44e6-bb36-6e02487b7ebd",
+    "name": "Active Mobile Package Comfort",
+    "version": "0.2",
+    "@type": "Contract",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "3f7b0a8a-522f-47fa-b148-3dbadcacc243",
+      "productOrderId": "67f3ffef0651d05b5b35d893"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "test_pop2",
+      "name": "test_pop2",
+      "priceType": "nonRecurringCharge",
+      "unitOfMeasure": "units",
+      "productOfferingPrice": {
+        "id": "54502ea5-14a2-40fe-b42f-0b3afdb96f8a",
+        "name": "test_pop2",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 2
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 2
+        }
+      },
+      "productPriceAlteration": []
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90207",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90207"
+      }
+    }
+  ],
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Confirmed",
+  "creationDate": "2025-04-07T16:40:17Z",
+  "lastUpdateDate": "2025-04-07T16:41:40Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:40Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:22Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:40Z",
+      "status": "Active"
+    }
+  ]
+}]

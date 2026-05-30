@@ -1,0 +1,138 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: ${PORT:8086}
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  banner:
+    location: classpath:banner.txt
+  data:
+    mongodb:
+      auto-index-creation: 'true'
+      database: COOD
+      port: '27017'
+      host: localhost
+  devtools:
+    restart:
+      exclude: target/classes/**, build/**, bin/**
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.orange.discobole.orderorchestration.orchestrationdelivery.config.CustomSerializer
+      retries: 0
+      properties:
+        spring.kafka.topic.auto-create: true
+        spring.json.add.type.headers: false
+    consumer:
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: com.orange.discobole.orderorchestration.orchestrationdelivery.config.CustomDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.kafka.consumer.auto-offset-reset: earliest
+        spring.kafka.topic.auto-create: true
+        spring.kafka.consumer.max-poll-interval-ms: 10000
+        spring.json.remove.type.headers: true
+        spring.json.use.type.headers: false
+        spring.json.value.type.method: com.orange.discobole.orderorchestration.orchestrationdelivery.config.KafkaTyper.typer
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+  profiles:
+    active: test
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dummy-host/realms/SpringBootKeycloak
+          jwk-set-uri: https://dummy-host/realms/SpringBootKeycloak/protocol/openid-connect/certs
+
+mocks:
+  serviceOrderStateChangeScheduler:
+    cronExpression: "0 */2 * * * *"
+    enable: true
+config:
+  productSpecByIdCatalogUrl: http://localhost:${config.wireMockPort}/productCatalogManagement/v1/productSpecification
+  productManagementUrl: http://localhost:${config.wireMockPort}/productInventoryManagement/v1/product
+  serviceCatalogManagementUrl: http://localhost:${config.wireMockPort}/serviceCatalogManagement/v1/serviceSpecification
+  productOrderByIdUrl: http://localhost:${config.wireMockPort}/orderManagement/v1/productOrder
+  serviceOrderingUrl: http://localhost:${config.wireMockPort}/serviceOrdering/v1/serviceOrder
+  falloutUrl: http://localhost:${config.wireMockPort}/processManagement/v1/processFlow
+  orchestrationPlanPurgeCronExpression: "0 0 0 * * *"
+  eventPurgeCronExpression: "0 0 0 * * *"
+  deleteEventsThresholdDuration: P90D
+  deletePlanThresholdDuration: P0DT0H10M
+  archivePlanThresholdDuration: P0DT0H10M
+  deleteArchivedPlanThresholdDuration: P0DT0H10M
+  storePlanStatisticsDuration: PT10S
+  storeNodeStatisticsDuration: PT10S
+  aggregateSpecIdAverageLeadTimeSchedulerDuration: PT1H
+  aggregateSpecIdAverageLeadTimeWindow: P2D
+  enableUpdateCpibProduct: true
+  wireMockPort: 9997
+  heldNodeProcessFlowCountThreshold: 3
+  enableOperationalStatusValidationForDelivery: false
+  enablePrerequisiteValidation: true
+  plannedToAcknowledgedTransition:
+    recommendedBatchSize: 100
+    jobExecutionDelay: PT1H
+    windowStartTimeUtc: "01:00"
+    windowEndTimeUtc: "06:00"
+  adaptiveOrchestrationPlanScheduling: false
+  rootNodeStartTimeCronExpression: "0 0 * * * *"
+app:
+  kafka:
+    default-group-id: ${random.uuid}
+    batch-process-group-id: ${random.uuid}
+    fallout-node-group-id: ${random.uuid}
+    plan-group-id: ${random.uuid}
+    update-product-group-id: ${random.uuid}
+    retry:
+      attempts: 1
+      delay: 10
+  security:
+    ssl:
+      enabled: false
+    userRoleRetrievalUrl: http://localhost:8089/userRolePermission/v1/userRole
+    keycloakEntitlements: x200
+retry:
+  maxAttempts: '1'
+  maxDelay: '6000'
+
+logging:
+  level:
+    root: ERROR
+    org:
+      springframework:
+        kafka: ERROR
+        integration:
+          config: WARN
+    com:
+      orange:
+        disco:
+          orderorchestration:
+            orchestrationdelivery: ERROR
+
+
+processFlowSpecification: Fallout
+processFlowChannelItem: Internal
+processFlowReferredType: OrchestrationPlanNode
+
+management:
+  metrics:
+    enabled: false
+
+kafka:
+  consumer:
+    enable: false
+
+mongock:
+  migration-scan-package:
+    - com.orange.discobole.orderorchestration.orchestrationdelivery.db.migration
+

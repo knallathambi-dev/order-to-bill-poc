@@ -1,0 +1,151 @@
+{
+  "id": "646c7cf0a567d501359e091d",
+  "orderDate": "2023-05-23T08:44:32.157581800Z",
+  "state": "accepted",
+  "requestedCompletionDate": "2023-05-23T08:44:32.157581800Z",
+  "relatedParty": [
+{
+    "@type": "RelatedPartyRef",
+    "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "231-mf4",
+        "name": "Abir",
+        "role": "customer",
+        "@referredType": "individual"
+    },
+    "role": "customer"
+}
+  ],
+  "productOrderItem": [
+    {
+      "id": "10",
+      "quantity": 1,
+      "action": "add",
+      "state": "accepted",
+      "product": {
+        "@type": "Product",
+        "isBundle": false,
+        "productSpecification": {},
+        "productCharacteristic": [
+          {
+            "@type" : "StringCharacteristic",
+            "name": "IMSI",
+            "valueType": "string",
+            "value": "310478356879098"
+          }
+        ],
+        "realizingResource": [
+          {
+            "id": "122",
+            "@type": "Resource"
+          }
+        ]
+      },
+      "productOrderItemRelationship": [
+        {
+          "id": "9",
+          "relationshipType": "isSold"
+        }
+      ],
+      "@type": "ProductOrderItem"
+    },
+    {
+      "id": "6",
+      "quantity": 1,
+      "action": "add",
+      "state": "accepted",
+      "product": {        "@type": "Product",
+
+        "isBundle": false,
+        "productSpecification": {},
+        "productCharacteristic": [
+          {            "@type" : "StringCharacteristic",
+
+            "name": "ICCID",
+            "valueType": "string",
+            "value": "891004234814455936"
+          }
+        ],
+        "realizingResource": [
+          {
+            "id": "122",
+            "@type": "Resource"
+          }
+        ]
+      },
+      "productOrderItemRelationship": [
+        {
+          "id": "5",
+          "relationshipType": "isSold"
+        }
+      ],
+      "@type": "ProductOrderItem"
+    },
+    {
+      "id": "4",
+      "quantity": 1,
+      "action": "add",
+      "state": "accepted",
+      "product": {        "@type": "Product",
+
+        "isBundle": false,
+        "productSpecification": {},
+        "productCharacteristic": [
+          {            "@type" : "StringCharacteristic",
+
+            "name": "MSISDN",
+            "valueType": "string",
+            "value": "4152797439"
+          }
+        ],
+        "realizingResource": [
+          {
+            "id": "122",
+            "@type": "Resource"
+          }
+        ]
+      },
+      "productOrderItemRelationship": [
+        {
+          "id": "3",
+          "relationshipType": "isSold"
+        }
+      ],
+      "@type": "ProductOrderItem"
+    },
+    {
+      "id": "8",
+      "quantity": 1,
+      "action": "add",
+      "state": "accepted",
+      "product": {        "@type": "Product",
+
+        "isBundle": false,
+        "productSpecification": {},
+        "productCharacteristic": [
+          {            "@type" : "StringCharacteristic",
+
+            "name": "volume",
+            "valueType": "string",
+            "value": "1h"
+          }
+        ],
+        "realizingResource": [
+          {
+            "id": "122",
+            "@type": "Resource"
+          }
+        ]
+      },
+      "productOrderItemRelationship": [
+        {
+          "id": "7",
+          "relationshipType": "isSold"
+        }
+      ],
+      "@type": "ProductOrderItem"
+    }
+  ],
+  "@type": "ProductOrder"
+}
+

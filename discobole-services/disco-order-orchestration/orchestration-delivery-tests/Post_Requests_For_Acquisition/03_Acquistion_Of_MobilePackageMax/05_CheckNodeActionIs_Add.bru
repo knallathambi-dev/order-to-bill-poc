@@ -1,0 +1,61 @@
+meta {
+  name: 05_CheckNodeActionIs_Add
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{BASE_URL}}/orchestrationPlan/{{plan_id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: {{token}}
+}
+
+script:pre-request {
+   
+}
+
+tests {
+    test("Status code is 200", function () {
+        expect(res.getStatus()).to.equal(200);
+    });
+    
+    var jsonData = res.body; 
+   test("Check SIM Card node action is add", function () { 
+        expect(jsonData.orchestrationPlanNodes[0].relatedProductOrderItem[0].action).to.be.oneOf(["add"]);
+        console.log("Orchestration Node action = " + jsonData.orchestrationPlanNodes[0].relatedProductOrderItem[0].action);
+    });
+    
+    test("Check Mobile Line node action is add", function () { 
+        expect(jsonData.orchestrationPlanNodes[1].relatedProductOrderItem[0].action).to.be.oneOf(["add"]);
+        console.log("Orchestration Node action = " + jsonData.orchestrationPlanNodes[1].relatedProductOrderItem[0].action);
+    });
+  //check nod action for time conectivity 
+    
+    test("Check Conectivity node action is add", function () { 
+        expect(jsonData.orchestrationPlanNodes[2].relatedProductOrderItem[0].action).to.be.oneOf(["add"]);
+        console.log("Orchestration Node action = " + jsonData.orchestrationPlanNodes[2].relatedProductOrderItem[0].action);
+    });
+  
+  // check node action on Time Bundel
+    test("Check Time Bundel node action is add", function () { 
+        expect(jsonData.orchestrationPlanNodes[3].relatedProductOrderItem[0].action).to.be.oneOf(["add"]);
+        console.log("Orchestration Node action = " + jsonData.orchestrationPlanNodes[3].relatedProductOrderItem[0].action);
+    });
+  
+  // check node action on Handset
+    test("Check Handset node action is add", function () { 
+        expect(jsonData.orchestrationPlanNodes[4].relatedProductOrderItem[0].action).to.be.oneOf(["add"]);
+        console.log("Orchestration Node action = " + jsonData.orchestrationPlanNodes[3].relatedProductOrderItem[0].action);
+    });
+   
+   
+   
+}
+
+docs {
+  this request for check node action
+}

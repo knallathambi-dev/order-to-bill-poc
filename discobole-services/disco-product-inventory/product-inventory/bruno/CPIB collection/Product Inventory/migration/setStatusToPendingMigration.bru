@@ -1,0 +1,25 @@
+meta {
+  name: setStatusToPendingMigration
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+    {
+      "op": "replace",
+      "path": "/productInventoryManagement/v1/product/{{oldContractId}}/operationalStatus",
+      "value": "PendingMigrate"
+    }
+  ]
+}

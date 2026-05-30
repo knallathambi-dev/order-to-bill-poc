@@ -1,0 +1,22 @@
+{
+  "mappings": [
+    {
+      "name": "Create shipping order - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/shippingOrder/v1/shippingOrder",
+        "method": "POST"
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Shipping-Order/ShippingOrderResponse.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformers": [
+          "response-template"
+        ]
+      }
+    }
+  ]
+}

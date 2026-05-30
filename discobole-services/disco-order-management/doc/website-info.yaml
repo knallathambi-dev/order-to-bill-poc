@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2025, 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# https://backstage.io/docs/features/software-catalog/descriptor-format/#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: order-website
+  description: DISCOBOLE - Order Management website
+  tags:
+    - documentation
+  annotations:
+    backstage.io/techdocs-ref: ./docs
+  links:
+    - url: https://discobole.ow2.io/disco-oda-components/disco-order-management
+      title: DISCOBOLE - Order Management website
+      icon: website
+spec:
+  type: website
+  lifecycle: production
+  owner: discobole-team
+  system: discobole-app

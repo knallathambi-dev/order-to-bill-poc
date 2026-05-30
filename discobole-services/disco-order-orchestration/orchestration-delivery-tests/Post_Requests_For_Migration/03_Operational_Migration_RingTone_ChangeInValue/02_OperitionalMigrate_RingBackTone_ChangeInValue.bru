@@ -1,0 +1,141 @@
+meta {
+  name: 02_OperitionalMigrate_RingBackTone_ChangeInValue
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/api/cood/test/productOrderStatChange/sendMessage
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: {{token}}
+}
+
+body:json {
+  {
+    "id": "1109{{Random_number}}",
+    "orderDate": "2024-02-12T15:52:39.105Z",
+    "productOrderItem": [
+      {
+        "id": "1497c727-6fcd-4dcb-b851-0d99b89742c4",
+        "quantity": 1,
+        "action": "migrate",
+        "product": {
+          "id": "67486c19128cb843ea9346ba",
+          "productCharacteristic": [
+            {
+              "name": "Tone",
+              "value": "Free Tone",
+              "id": "48e09935-db45-4755-8f4b-cb004932da691",
+              "@type" : "StringCharacteristic"
+            }
+          ],
+          "productSpecification": {
+            "id": "f6fe64ec-108a-4275-9f0e-12636acb6524",
+            "name": "Ring back Tone",
+            "version": "1.0.0",
+            "@type": "ProductSpecification"
+          },
+          "@type": "Product"
+        },
+        "productOffering": {
+          "id": "a055e826-633e-4b36-bd72-9774df80b769",
+          "name": "Ring Back Tone",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "2.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "1497c727-6fcd-4dcb-b851-0d99b89742c5",
+            "relationshipType": "migrateTo",
+            "@type" : "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "1497c727-6fcd-4dcb-b851-0d99b89742c5",
+        "quantity": 1,
+        "action": "migrate",
+        "product": {
+          "id": "67486c19128cb843ea931111",
+          "productCharacteristic": [
+            {
+              "name": "Tone",
+              "value": "VIP Tone",
+              "id": "48e09935-tb45-4755-8f4b-cb00493211111",
+              "@type" : "StringCharacteristic"
+            }
+          ],
+          "productSpecification": {
+            "id": "abe401bc-76b8-4811-8fef-98d5d10d979c",
+            "name": "Ring back Tone VIP",
+            "version": "1.0.0",
+            "@type": "ProductSpecification"
+          },
+          "@type": "Product"
+        },
+        "productOffering": {
+          "id": "a055e826-633e-4b36-bd72-9774df801111",
+          "name": "Ring Back Tone",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "2.0"
+        },
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      }
+    ],
+    "relatedParty": [
+      {
+        "partyOrPartyRole" : {
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@type" : "PartyRef"
+        },
+        "@type" : "RelatedPartyRefOrPartyRoleRef",
+        "role" : "customer"
+      }
+    ],
+    "state": "accepted",
+    "@type": "ProductOrder"
+  }
+}
+
+script:pre-request {
+  bru.setVar("Random_number", Math.random()*Math.random()*100000);
+}
+
+script:post-response {
+  var jsonData = req.body ;
+  
+  //Get Order ID
+  bru.setVar("order_id", jsonData.id);
+   
+  console.log("order_id:"+bru.getVar("order_id"));
+}
+
+tests {
+  test("should plan created sucessfuly", function() {
+    const data = res.getBody();
+    expect(res.getStatus()).to.equal(200);
+  });
+}
+
+docs {
+  - this request for create plan with CFS product” RingBackTone “
+  - OM body has two product order items and the  new product order item has relationship type” migratedTo “ with  the old product order item
+  - there is diferent in value of characteristics btween two product as below 
+  - The product Characteristics for old product  order item 
+                 "productCharacteristic":  { "name": "Tone", "value"                       : "Free Tone", }
+  - The product Characteristics for new product  order item 
+  "productCharacteristic":  { "name": "Tone", "value": "VIP", }
+  
+}

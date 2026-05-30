@@ -1,0 +1,336 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+asyncapi: 3.0.0
+info:
+  title: Product Inventory (PI) Kafka API
+  version: 1.0.0
+  description: >
+    Product Inventory async API allows you to publish or consume
+    Product change events
+defaultContentType: application/json
+servers:
+  develop:
+    host: 'localhost:9092'
+    protocol: kafka
+    description: Localhost development server
+  integration:
+    host: kafka-integration-disco.apps.fr01.paas.tech.orange
+    protocol: kafka
+    description: Integration server
+channels:
+  productAttributeValueChangeEvent:
+    bindings:
+      kafka:
+        topic: 'disco.product-inventory.productAttributeValueChangeEvent-event'
+    address: productAttributeValueChangeEvent
+    messages:
+      productAttributeValueChangeEventProducer.message:
+        $ref: '#/components/messages/ProductAttributeValueChangeEvent'
+  productDeleteEvent:
+    bindings:
+      kafka:
+        topic: 'disco.product-inventory.productDeleteEvent-event'
+    address: productDeleteEvent
+    messages:
+      productDeleteEventProducer.message:
+        $ref: '#/components/messages/ProductDeleteEvent'
+  productCreateEvent:
+    bindings:
+      kafka:
+        topic: 'disco.product-inventory.productCreateEvent-event'
+    address: productCreateEvent
+    messages:
+      productCreateEventProducer.message:
+        $ref: '#/components/messages/ProductCreateEvent'
+  productStateChangeEvent:
+    bindings:
+      kafka:
+        topic: 'disco.product-inventory.productStateChangeEvent-event'
+    address: productStateChangeEvent
+    messages:
+      productStateChangeEventProducer.message:
+        $ref: '#/components/messages/ProductStateChangeEvent'
+  productOrderStateChangeEvent:
+    bindings:
+      kafka:
+        topic: 'disco.order-management.productOrderStateChange-event'
+    address: ProductOrderStateChangeEvent
+    messages:
+      productOrderStateChangeEventConsumer.message:
+        $ref: '#/components/messages/ProductOrderStateChangeEvent'
+operations:
+  productAttributeValueChangeEventProducer:
+    action: send
+    channel:
+      $ref: '#/channels/productAttributeValueChangeEvent'
+    x-scs-function-name: productAttributeValueChangeEventProducer
+    messages:
+      - $ref: >-
+          #/channels/productAttributeValueChangeEvent/messages/productAttributeValueChangeEventProducer.message
+  productDeleteEventProducer:
+    action: send
+    channel:
+      $ref: '#/channels/productDeleteEvent'
+    x-scs-function-name: productDeleteEventProducer
+    messages:
+      - $ref: >-
+          #/channels/productDeleteEvent/messages/productDeleteEventProducer.message
+  productCreateEventProducer:
+    action: send
+    channel:
+      $ref: '#/channels/productCreateEvent'
+    x-scs-function-name: productCreateEventProducer
+    messages:
+      - $ref: >-
+          #/channels/productCreateEvent/messages/productCreateEventProducer.message
+  productStateChangeEventProducer:
+    action: send
+    channel:
+      $ref: '#/channels/productStateChangeEvent'
+    x-scs-function-name: productStateChangeEventProducer
+    messages:
+      - $ref: >-
+          #/channels/productStateChangeEvent/messages/productStateChangeEventProducer.message
+  productOrderStateChangeEventConsumer:
+    action: receive
+    channel:
+      $ref: '#/channels/productOrderStateChangeEvent'
+    x-scs-function-name: productOrderStateChangeEventConsumer
+    messages:
+      - $ref: >-
+          #/channels/productOrderStateChangeEvent/messages/productOrderStateChangeEventConsumer.message
+components:
+  messages:
+    ProductAttributeValueChangeEvent:
+      name: ProductAttributeValueChangeEvent
+      title: Product Attribute Value Change Event
+      payload:
+        $ref: '#/components/schemas/ProductAttributeValueChangeEvent'
+    ProductDeleteEvent:
+      name: ProductDeleteEvent
+      title: Product Delete Event
+      payload:
+        $ref: '#/components/schemas/ProductDeleteEvent'
+    ProductCreateEvent:
+      name: ProductCreateEvent
+      title: Product Create Event
+      payload:
+        $ref: '#/components/schemas/ProductCreateEvent'
+    ProductStateChangeEvent:
+      name: ProductStateChangeEvent
+      title: Product State Change Event
+      payload:
+        $ref: '#/components/schemas/ProductStateChangeEvent'
+    ProductOrderStateChangeEvent:
+      name: ProductStateChangeEvent
+      title: Product State Change Event
+      payload:
+        $ref: '#/components/schemas/ProductOrderStateChangeEvent'
+  schemas:
+    Product:
+      title: Product Attribute Value Change Event
+      type: object
+      properties:
+        id:
+          description: Unique identifier of the product
+          type: string
+        href:
+          description: Reference of the product
+          type: string
+        description:
+          description: >-
+            Is the description of the product. It could be copied from the
+            description of the Product Offering.
+          type: string
+        isBundle:
+          description: >-
+            If true, the product is a ProductBundle which is an instantiation of
+            a BundledProductOffering. If false, the product is a
+            ProductComponent which is an instantiation of a
+            SimpleProductOffering.
+          type: boolean
+        isCustomerVisible:
+          description: 'If true, the product is visible by the customer.'
+          type: boolean
+        name:
+          description: >-
+            Name of the product. It could be the same as the name of the product
+            offering
+          type: string
+        orderDate:
+          description: Is the date when the product was ordered
+          type: string
+          format: date-time
+        productSerialNumber:
+          description: >-
+            Is the serial number for the product. This is typically applicable
+            to tangible products e.g. Broadband Router.
+          type: string
+        startDate:
+          description: Is the date from which the product starts
+          type: string
+          format: date-time
+        terminationDate:
+          description: Is the date when the product was terminated
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - Aborted
+            - Active
+            - Cancelled
+            - Created
+            - Terminated
+            - Sold
+        operationalStatus:
+          type: string
+          enum:
+            - Aborted
+            - Active
+            - Cancelled
+            - Confirmed
+            - Created
+            - InDisturbance
+            - Locked
+            - PendingActive
+            - PendingCancel
+            - PendingModification
+            - PendingTerminate
+            - Terminated
+            - Sold
+        creationDate:
+          type: string
+          description: date when the product was created
+          format: date-time
+        lastUpdateDate:
+          type: string
+          description: date when the product was last updated
+          format: date-time
+        '@type':
+          description: 'When sub-classing, this defines the sub-class entity name'
+          type: string
+          default: Product
+    ProductStateChangeEvent:
+      title: Product State Change Event
+      type: object
+      properties:
+        event:
+          type: object
+          $ref: '#/components/schemas/ProductStateChangeEventPayload'
+    ProductStateChangeEventPayload:
+      title: Product State Change Event Payload
+      type: object
+      properties:
+        product:
+          type: object
+          $ref: '#/components/schemas/StateChangeProduct'
+    StateChangeProduct:
+      title: State Change Product
+      description: an extended Product object with oldStatus property
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Product'
+      extends:
+        $ref: '#/components/schemas/Product'
+      properties:
+        oldStatus:
+          type: string
+          enum:
+            - Aborted
+            - Active
+            - Cancelled
+            - Created
+            - Terminated
+            - Sold
+    ProductAttributeValueChangeEvent:
+      title: Product Attribute Value Change Event
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseEvent'
+      extends:
+        $ref: '#/components/schemas/BaseEvent'
+      properties:
+        event:
+          type: object
+          properties:
+            product:
+              $ref: '#/components/schemas/Product'
+    ProductDeleteEvent:
+      title: Product Delete Event
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseEvent'
+      extends:
+        $ref: '#/components/schemas/BaseEvent'
+      properties:
+        event:
+          type: object
+          properties:
+            product:
+              $ref: '#/components/schemas/Product'
+    ProductCreateEvent:
+      title: Product Create Event
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseEvent'
+      extends:
+        $ref: '#/components/schemas/BaseEvent'
+      properties:
+        event:
+          type: object
+          properties:
+            product:
+              $ref: '#/components/schemas/Product'
+    ProductOrderStateChangeEvent:
+      title: Product Attribute Value Change Event
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaseEvent'
+      extends:
+        $ref: '#/components/schemas/BaseEvent'
+      properties:
+        event:
+          type: object
+          $ref: '#/components/schemas/ProductOrderStateChangeEventPayload'
+    ProductOrderStateChangeEventPayload:
+      title: Product Attribute Value Change Event Payload
+      type: object
+      properties:
+        productOrder:
+          type: object
+          $ref: './schemas/om/productOrder.yaml'
+    BaseEvent:
+      title: Base Event
+      type: object
+      properties:
+        eventId:
+          type: string
+          description: The identifier of the notification.
+        eventTime:
+          type: string
+          format: date-time
+          description: Time of the event occurrence.
+        eventType:
+          type: string
+          description: The type of the notification.
+        correlationId:
+          type: string
+          description: The correlation id for this event.
+        title:
+          type: string
+          description: The title of this event.
+        domain:
+          type: string
+          description: The domain of this event.
+        '@type':
+          description: 'When sub-classing, this defines the sub-class entity name'
+          type: string
+          default: event

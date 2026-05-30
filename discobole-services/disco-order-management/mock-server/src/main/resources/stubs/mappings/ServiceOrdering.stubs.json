@@ -1,0 +1,100 @@
+{
+  "mappings": [
+    {
+      "name": "create  service order  - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/serviceOrdering/v1/serviceOrder",
+        "method": "POST"
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Service-Ordering-Management/ServiceOrderResponse.hbs",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformers": ["response-template"]
+      }
+    },
+    {
+      "name": "create  service order  - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/serviceOrdering/v1/serviceOrder/batch",
+        "method": "POST"
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Service-Ordering-Management/ServiceOrderBatchResponse.hbs",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformers": ["response-template"]
+      }
+    },
+    {
+      "name": "create  service order  - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/tmf-api/serviceOrdering/v1/serviceOrder/batch",
+        "method": "POST"
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Service-Ordering-Management/ServiceOrderBatchResponse.hbs",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformers": ["response-template"]
+      }
+    },
+    {
+      "name": "create  service order tmf-api - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/tmf-api/serviceOrdering/v1/serviceOrder",
+        "method": "POST"
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Service-Ordering-Management/ServiceOrderResponse.hbs",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformers": ["response-template"]
+      }
+    },
+    {
+      "name": "create  service order - Success - send held",
+      "priority": 1,
+      "request": {
+        "urlPath": "/serviceOrdering/v1/serviceOrder/held",
+        "method": "POST"
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Service-Ordering-Management/ServiceOrderResponse.hbs",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformers": ["response-template"]
+      }
+    },
+    {
+      "name": "create  service order tmf-api - Success - send held",
+      "priority": 1,
+      "request": {
+        "urlPath": "/tmf-api/serviceOrdering/v1/serviceOrder/held",
+        "method": "POST"
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Service-Ordering-Management/ServiceOrderResponse.hbs",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformers": ["response-template"]
+      }
+    }
+  ]
+}

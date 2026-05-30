@@ -1,0 +1,54 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+config:
+  path:
+    productCatalogUrl: http://${PRODUCT_CATALOG_SERVICE}
+    resourceInventoryManagementUrl: http://${INVENTORY_RESOURCE_SERVICE}/api/resourceInventoryManagement/v1/resource
+  enable:
+    productCatalog: ${PRODUCT_CATALOG_SERVICE_ENABLE:"true"}
+    resourceInventoryManagement: ${RESOURCE_INVENTORY_MANAGEMENT_SERVICE_ENABLE:"true"}
+  security:
+    userRoleRetrievalUrl: http://${USER_ROLE_RETRIEVAL}/userRolePermission/v1/userRole
+    enableTmf627Validation: ${USER_ROLE_VALIDATION_ENABLE:"true"}
+  tempPath: /tmp
+  pagination:
+    limit: ${PAGINATION_LIMIT:'10000'}
+  purgeBatchSize: 100
+  aws:
+    s3:
+      bucketHost: ${BUCKET_HOST:"https://s3-region01.cloudavenue.orange-business.com"}
+      bucketName: ${BUCKET_NAME:"pr-diod-ocp-fr01-disco-dev-disco-common-s3"}
+      bucketPort: 443
+      bucketRegion: s-east-1
+      linkExpirationMinutes: 30
+      httpProxy: cs.pr-proxy.service.sd.diod.tech:3128
+spring:
+  application:
+    name: cpib-${ENV_TYPE}
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVICE_NAME}:9092
+    producer:
+      properties:
+        spring.kafka.topic.auto-create: true
+    consumer:
+      properties:
+        spring.kafka.topic.auto-create: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_ISSUER_URI}
+      resourceServer:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI}
+
+server:
+  shutdown: graceful

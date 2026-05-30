@@ -1,0 +1,49 @@
+meta {
+  name: action_Get
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{host}}/policyRule/v1/action/{{action_id}}
+  body: none
+  auth: none
+}
+
+body:json {
+  {
+    "fields": "Configurations Price",
+    "actionSequence": 0,
+    "actionStrategy": "Strategy1",
+    "description": "test_policy{{random}}",
+    "name": "test_policy{{random}}",
+    "actionCondition": [],
+    "note": [],
+    "@type": "PolicyActionOperation",
+    "actionValue": {
+      "value": {
+        "objectType": "ProductOfferingPrice",
+        "objectId": "{{POPC_id}}",
+        "objectName": "test_policy{{random}}"
+      }
+    },
+    "policyAction": [
+      {
+        "actionSequence": 1,
+        "actionStrategy": "Strategy1",
+        "validFor": {
+          "endDateTime": "2025-12-01T07:44:37.158Z",
+          "startDateTime": "2024-04-01T07:44:37.158Z"
+        }
+      }
+    ],
+    "validFor": {
+      "endDateTime": "2025-12-01T07:44:37.158Z",
+      "startDateTime": "2024-04-01T07:44:37.158Z"
+    }
+  }
+}
+
+assert {
+  res.status: eq 200
+}

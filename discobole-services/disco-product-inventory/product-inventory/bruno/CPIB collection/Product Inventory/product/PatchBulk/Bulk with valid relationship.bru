@@ -1,0 +1,47 @@
+meta {
+  name: Bulk with valid relationship
+  type: http
+  seq: 15
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/656e32f8daf33f29ec2e3f38/productRelationship/-",
+          "value": {
+              "relationshipType": "sells",
+              "product": {
+                  "id": "656e32f8daf33f29ec2e3f3a",
+                  "@type": "ProductRef"
+              }
+          }
+      },
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/651edc777411e974c97761b4/productRelationship/-",
+          "value": {
+              "relationshipType": "reliesOn",
+              "product": {
+                  "id": "64e7b3e18c4421781ad10a27",
+                  "@type": "ProductRef"
+              }
+          }
+      }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "DefineProductOfferingPriceChargeIdentityData" : {
+    "required" : [ "name", "priceType", "price" ],
+    "type" : "object",
+    "properties" : {
+      "name" : {
+        "type" : "string"
+      },
+      "description" : {
+        "type" : "string"
+      },
+      "priceType" : {
+        "type" : "string",
+        "enum" : [ "RC", "NRC", "Usage" ]
+      },
+      "recurringChargePeriodLength" : {
+        "type" : "number"
+      },
+      "recurringChargePeriodType" : {
+        "type" : "string",
+        "enum" : [ "HOUR", "DAY", "WEEK", "MONTH", "TRIMESTER", "YEAR" ]
+      },
+      "price" : {
+        "required" : [ "unit", "value" ],
+        "type" : "object",
+        "properties" : {
+          "unit" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "number"
+          }
+        }
+      },
+      "unitOfMeasure" : {
+        "required" : [ "amount", "units" ],
+        "type" : "object",
+        "properties" : {
+          "amount" : {
+            "type" : "number",
+            "default" : 1.0
+          },
+          "units" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}

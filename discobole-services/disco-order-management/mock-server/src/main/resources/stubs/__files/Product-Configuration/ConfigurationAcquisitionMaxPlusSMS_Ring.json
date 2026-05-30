@@ -1,0 +1,864 @@
+{
+  "@type": "QueryProductConfiguration",
+  "href": "https://host:port/tmfapi/productConfiguration/v5/QueryProductConfiguration/789",
+  "id": "789",
+  "state": "done",
+  "channel": {
+    "id": "4407",
+    "name": "Web",
+    "@type": "ChannelRef"
+  },
+  "relatedParty": [
+    {
+      "role": "prospect",
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "236-mf",
+        "name": "Hector",
+        "@referredType": "Individual"
+      }
+    }
+  ],
+  "contextCharacteristic": [
+    {
+      "name": "salesModel",
+      "valueType": "string",
+      "value": "B2C",
+      "@type": "StringCharacteristic"
+    }
+  ],
+  "requestProductConfigurationItem": [
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "01",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "productOffering": {
+          "id": "dbbc92f9-faf2-4886-8749-0f07abfc1971",
+          "name": "Mobile Package Max Plus",
+          "@type": "Contract"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "add",
+            "isSelected": true
+          }
+        ]
+      }
+    }
+  ],
+  "computedProductConfigurationItem": [
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "02",
+      "state": "approved",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "id": "02",
+        "isSelectable": true,
+        "isBundle": true,
+        "isInstallable": true,
+        "isSelected": true,
+        "isVisible": true,
+        "version": "1.0",
+        "quantity": 1,
+        "productOffering": {
+          "id": "dbbc92f9-faf2-4886-8749-0f07abfc1971",
+          "name": "Mobile Package Max Plus",
+          "@type": "Contract",
+          "@referredType": "ProductOfferingRef"
+        },
+        "bundledGroupProductOffering": {
+          "bundledProductOfferings": [
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 0,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1
+              },
+              "productOfferingRef": {
+                "id": "7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+                "@type": "BundleProductOffering"
+              }
+            }
+          ]
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "add",
+            "description": "Add new product",
+            "isSelected": true
+          }
+        ]
+      },
+      "productConfigurationItemRelationship": [
+        {
+          "@type": "ProductConfigurationItemRelationship",
+          "id": "01",
+          "relationshipType": "requestItem"
+        },
+        {
+          "@type": "ProductConfigurationItemRelationship",
+          "id": "03",
+          "relationshipType": "bundles"
+        }
+      ]
+    },
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "03",
+      "state": "approved",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "id": "03",
+        "isSelectable": false,
+        "isBundle": true,
+        "isInstallable": true,
+        "isSelected": true,
+        "isVisible": true,
+        "version": "1.0",
+        "quantity": 1,
+        "productOffering": {
+          "id": "7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+          "name": "Mobile Package Max Plus",
+          "@type": "BundleProductOffering",
+          "@referredType": "ProductOfferingRef"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "add",
+            "description": "Add new product",
+            "isSelected": true
+          }
+        ],
+        "bundledGroupProductOffering": {
+          "bundledProductOfferings": [
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 0,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1
+              },
+              "productOfferingRef": {
+                "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 0,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1
+              },
+              "productOfferingRef": {
+                "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 0,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1
+              },
+              "productOfferingRef": {
+                "id": "95023bc2-151d-4bf2-bb87-1b7d6cd2e847",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 0,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1
+              },
+              "productOfferingRef": {
+                "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 0,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1
+              },
+              "productOfferingRef": {
+                "id": "889058f0-1ce8-4973-bc35-849766bdf6a4",
+                "@type": "AtomicProductOffering"
+              }
+            },{
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 0,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1
+              },
+              "productOfferingRef": {
+                "id": "a055e826-633e-4b36-bd72-9774df80b769",
+                "@type": "AtomicProductOffering"
+              }
+            },
+            {
+              "bundledProductOfferingOption": {
+                "numberRelOfferDefault": 0,
+                "numberRelOfferLowerLimit": 1,
+                "numberRelOfferUpperLimit": 1
+              },
+              "productOfferingRef": {
+                "id": "78bc2297-cb07-4161-babb-35fc6b55979f",
+                "@type": "AtomicProductOffering"
+              }
+            }
+          ]
+        }
+      },
+      "productConfigurationItemRelationship": [
+        {
+          "@type": "ProductConfigurationItemRelationship",
+          "id": "04",
+          "relationshipType": "bundles"
+        },
+        {
+          "@type": "ProductConfigurationItemRelationship",
+          "id": "05",
+          "relationshipType": "bundles"
+        },
+        {
+          "@type": "ProductConfigurationItemRelationship",
+          "id": "06",
+          "relationshipType": "bundles"
+        },
+        {
+          "@type": "ProductConfigurationItemRelationship",
+          "id": "07",
+          "relationshipType": "bundles"
+        },
+        {
+          "@type": "ProductConfigurationItemRelationship",
+          "id": "08",
+          "relationshipType": "bundles"
+        },
+        {
+          "@type": "ProductConfigurationItemRelationship",
+          "id": "09",
+          "relationshipType": "bundles"
+        },
+        {
+          "@type": "ProductConfigurationItemRelationship",
+          "id": "10",
+          "relationshipType": "bundles"
+        }
+      ]
+    },
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "04",
+      "state": "approved",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "id": "04",
+        "isSelectable": false,
+        "isBundle": false,
+        "isInstallable": true,
+        "isSelected": true,
+        "isVisible": true,
+        "version": "1.0",
+        "quantity": 1,
+        "productOffering": {
+          "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+          "name": "Mobile Line",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef"
+        },
+        "productSpecification": {
+          "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+          "name": "Mobile Line",
+          "@type": "ProductSpecificationRef"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "add",
+            "description": "Add new product",
+            "isSelected": true
+          }
+        ],
+        "configurationCharacteristic": [
+          {
+            "@type": "ConfigurationCharacteristic",
+            "id": "97f9e351-95b4-4f98-b845-fe8889688ce1.2",
+            "name": "MSISDN",
+            "valueType": "string",
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "isConfigurable": true,
+            "isVisible": true,
+            "configurationCharacteristicValue": [
+              {
+                "@type": "ConfigurationCharacteristicValue",
+                "isSelectable": true,
+                "isSelected": true,
+                "isVisible": true,
+                "characteristicValue": {
+                  "id": "5fb7ac6e-688f-43c0-acc6-e53b23a648d0.2",
+                  "name": "MSISDN",
+                  "value": "4152797439",
+                  "@type": "StringCharacteristic"
+                }
+              }
+            ]
+          }
+        ],
+        "configurationPrice": [
+          {
+            "@type": "ConfigurationPrice",
+            "name": "NRC 5 Euro",
+            "priceType": "NRC",
+            "productOfferingPrice": {
+              "id": "b1a14825-ffa7-4a27-841f-16f798650de3",
+              "name": "NRC 5 Euro",
+              "@referredType": "ProductOfferingPrice",
+              "@type": "ProductOfferingPrice"
+            },
+            "price": {
+              "taxRate": "0",
+              "@type": "Price",
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 5,
+                "@type": "Money"
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 5,
+                "@type": "Money"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "05",
+      "state": "approved",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "id": "05",
+        "isSelectable": false,
+        "isBundle": false,
+        "isInstallable": true,
+        "isSelected": true,
+        "isVisible": true,
+        "version": "1.0",
+        "quantity": 1,
+        "productOffering": {
+          "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+          "name": "Connectivity",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef"
+        },
+        "productSpecification": {
+          "id": "e90a1274-7dc0-4259-a344-362b55edfc58",
+          "name": "Connectivity",
+          "@type": "ProductSpecificationRef"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "add",
+            "description": "Add new product",
+            "isSelected": true
+          }
+        ],
+        "configurationCharacteristic": [
+          {
+            "@type": "ConfigurationCharacteristic",
+            "id": "273f800e-cdbf-4fdf-bee4-21883d9fa5a8.1",
+            "name": "ICCID",
+            "valueType": "string",
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "isConfigurable": false,
+            "isVisible": false,
+            "configurationCharacteristicValue": [
+              {
+                "@type": "ConfigurationCharacteristicValue",
+                "isSelectable": true,
+                "isSelected": true,
+                "isVisible": true,
+                "characteristicValue": {
+                  "id": "5a5d753a-553b-49e7-81a5-83f9892ca7c1.1",
+                  "name": "ICCID",
+                  "value": "891004234814455936",
+                  "@type": "StringCharacteristic"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "06",
+      "state": "approved",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "id": "06",
+        "isSelectable": false,
+        "isBundle": false,
+        "isInstallable": true,
+        "isSelected": true,
+        "isVisible": true,
+        "version": "1.0",
+        "quantity": 1,
+        "productOffering": {
+          "id": "95023bc2-151d-4bf2-bb87-1b7d6cd2e847",
+          "name": "Time Bundle",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef"
+        },
+        "productSpecification": {
+          "id": "63d24f7e-c529-404c-911b-7c7926fd12ff",
+          "name": "Time Bundle",
+          "@type": "ProductSpecificationRef"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "add",
+            "description": "Add new product",
+            "isSelected": true
+          }
+        ],
+        "configurationCharacteristic": [
+          {
+            "@type": "ConfigurationCharacteristic",
+            "id": "6a815c71-c6aa-434a-b81a-53bcab82e0be.1",
+            "name": "Volume",
+            "valueType": "string",
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "isConfigurable": true,
+            "isVisible": true,
+            "configurationCharacteristicValue": [
+              {
+                "@type": "ConfigurationCharacteristicValue",
+                "isSelectable": true,
+                "isSelected": true,
+                "isVisible": true,
+                "characteristicValue": {
+                  "id": "6d8a4224-a0ca-4fd6-9655-05db9528683c.1",
+                  "name": "Volume",
+                  "value": "1h",
+                  "@type": "StringCharacteristic"
+                }
+              }
+            ]
+          }
+        ],
+        "configurationPrice": [
+          {
+            "@type": "ConfigurationPrice",
+            "name": "5 euro",
+            "priceType": "NRC",
+            "productOfferingPrice": {
+              "id": "9202f373-8605-4890-9801-a779a183a89b",
+              "name": "5 euro",
+              "@referredType": "ProductOfferingPrice",
+              "@type": "ProductOfferingPrice"
+            },
+            "price": {
+              "taxRate": "0",
+              "@type": "Price",
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 5,
+                "@type": "Money"
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 5,
+                "@type": "Money"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "07",
+      "state": "approved",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "id": "07",
+        "isSelectable": false,
+        "isBundle": false,
+        "isInstallable": true,
+        "isSelected": true,
+        "isVisible": true,
+        "version": "1.0",
+        "quantity": 1,
+        "productOffering": {
+          "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+          "name": "SIM Card",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef"
+        },
+        "productSpecification": {
+          "id": "191424cb-6002-46aa-a5a9-0602cfba83c7",
+          "name": "SIM Card",
+          "@type": "ProductSpecificationRef"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "add",
+            "description": "Add new product",
+            "isSelected": true
+          }
+        ],
+        "configurationCharacteristic": [
+          {
+            "@type": "ConfigurationCharacteristic",
+            "id": "1",
+            "name": "IMSI",
+            "valueType": "string",
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "isConfigurable": true,
+            "isVisible": true,
+            "configurationCharacteristicValue": [
+              {
+                "@type": "ConfigurationCharacteristicValue",
+                "isSelectable": true,
+                "isSelected": true,
+                "isVisible": true,
+                "characteristicValue": {
+                  "name": "IMSI",
+                  "value": "310478356879098",
+                  "@type": "StringCharacteristic"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "productConfigurationItemRelationship": [
+        {
+          "@type": "ProductConfigurationItemRelationship",
+          "id": "10",
+          "relationshipType": "requires"
+        }
+      ]
+    },
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "08",
+      "state": "approved",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "id": "08",
+        "isSelectable": true,
+        "isBundle": false,
+        "isInstallable": true,
+        "isSelected": true,
+        "isVisible": true,
+        "version": "1.0",
+        "quantity": 1,
+        "productOffering": {
+          "id": "889058f0-1ce8-4973-bc35-849766bdf6a4",
+          "name": "SMS",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef"
+        },
+        "productSpecification": {
+          "id": "c1b8052d-5de9-4719-b0e2-de327455884d",
+          "name": "SMS",
+          "@type": "ProductSpecificationRef"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "add",
+            "description": "Add new product",
+            "isSelected": true
+          }
+        ],
+        "configurationCharacteristic": [
+          {
+            "@type": "ConfigurationCharacteristic",
+            "id": "3e5bba3a-6d5c-4a2c-a6db-078eb4a1800a.charvolume",
+            "name": "Volume",
+            "valueType": "string",
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "isConfigurable": true,
+            "isVisible": true,
+            "configurationCharacteristicValue": [
+              {
+                "@type": "ConfigurationCharacteristicValue",
+                "isSelectable": true,
+                "isSelected": true,
+                "isVisible": true,
+                "characteristicValue": {
+                  "id": "08cdeae4-2f65-45f1-b144-e055ddd181ef.charvolume",
+                  "name": "Volume",
+                  "value": "1000 SMS",
+                  "@type": "StringCharacteristic"
+                }
+              }
+            ]
+          }
+        ],
+        "configurationPrice": [
+          {
+            "@type": "ConfigurationPrice",
+            "name": "3 euro",
+            "priceType": "NRC",
+            "productOfferingPrice": {
+              "id": "e807a56a-4244-44e4-a52c-4f24a57bbd0b",
+              "name": "3 euro",
+              "@referredType": "ProductOfferingPrice",
+              "@type": "ProductOfferingPrice"
+            },
+            "price": {
+              "taxRate": 0,
+              "@type": "Price",
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 3,
+                "@type": "Money"
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 3,
+                "@type": "Money"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "09",
+      "state": "approved",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "id": "09",
+        "isSelectable": true,
+        "isBundle": false,
+        "isInstallable": true,
+        "isSelected": true,
+        "isVisible": true,
+        "version": "1.0",
+        "quantity": 1,
+        "productOffering": {
+          "id": "a055e826-633e-4b36-bd72-9774df80b769",
+          "name": "Ring Back Tone",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef"
+        },
+        "productSpecification": {
+          "id": "10e9ee72-2aff-4f25-904c-e6003fa3718b",
+          "name": "Ring Back Tone",
+          "@type": "ProductSpecificationRef"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "add",
+            "description": "Add new product",
+            "isSelected": true
+          }
+        ],
+        "configurationCharacteristic": [
+          {
+            "@type": "ConfigurationCharacteristic",
+            "id": "0324ddb9-d627-4d24-813e-e272440104ad.1",
+            "name": "Tone",
+            "valueType": "string",
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "isConfigurable": true,
+            "isVisible": true,
+            "configurationCharacteristicValue": [
+              {
+                "@type": "ConfigurationCharacteristicValue",
+                "isSelectable": true,
+                "isSelected": true,
+                "isVisible": true,
+                "characteristicValue": {
+                  "id": "48e09935-db45-4755-8f4b-cb004932da69.1",
+                  "name": "Tone",
+                  "value": "Free tone",
+                  "@type": "StringCharacteristic"
+                }
+              },
+              {
+                "@type": "ConfigurationCharacteristicValue",
+                "isSelectable": true,
+                "isSelected": false,
+                "isVisible": true,
+                "characteristicValue": {
+                  "id": "48e09935-db45-4755-8f4b-cb004932da69.1",
+                  "name": "Tone",
+                  "value": "Tone 2",
+                  "@type": "StringCharacteristic"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "10",
+      "state": "approved",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "id": "10",
+        "isSelectable": true,
+        "isBundle": false,
+        "isInstallable": false,
+        "isSelected": true,
+        "isVisible": true,
+        "version": "1.0",
+        "quantity": 1,
+        "productOffering": {
+          "id": "78bc2297-cb07-4161-babb-35fc6b55979f",
+          "name": "Shipping",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef"
+        },
+        "productSpecification": {
+          "id": "3e828676-7345-4ac9-92f3-7606857fa588",
+          "name": "Shipping",
+          "@baseType": "ShippingProductSpecification",
+          "@type": "ProductSpecificationRef"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "add",
+            "description": "Add new product",
+            "isSelected": true
+          }
+        ],
+        "configurationCharacteristic": [
+          {
+            "@type": "ConfigurationCharacteristic",
+            "id": "602d2c9a-eab7-4457-9da8-93d33ffb11b0.1",
+            "name": "Shipping Mode",
+            "valueType": "string",
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "isConfigurable": true,
+            "isVisible": true,
+            "configurationCharacteristicValue": [
+              {
+                "@type": "ConfigurationCharacteristicValue",
+                "isSelectable": true,
+                "isSelected": true,
+                "isVisible": true,
+                "characteristicValue": {
+                  "id": "5fd4c7dd-4c85-4e4c-8467-5c7ddcd0ddea.1",
+                  "name": "Shipping mode",
+                  "value": "{{request.query.id.0}}",
+                  "@type": "StringCharacteristic"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "ConfigurationCharacteristic",
+            "id": "602d2c9a-eab7-4457-9da8-93d33ffb11b0.2",
+            "name": "Shipping address",
+            "valueType": "string",
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "isConfigurable": true,
+            "isVisible": true,
+            "configurationCharacteristicValue": [
+              {
+                "@type": "ConfigurationCharacteristicValue",
+                "isSelectable": true,
+                "isSelected": true,
+                "isVisible": true,
+                "characteristicValue": {
+                  "id": "ea40eada-7ef1-4313-af01-9eb51e25121a.2",
+                  "name": "Shipping address",
+                  "value": "{{request.query.id.1}}",
+                  "@type": "StringCharacteristic"
+                }
+              }
+            ]
+          },
+          {
+            "@type": "ConfigurationCharacteristic",
+            "id": "602d2c9a-eab7-4457-9da8-93d33ffb11b0.3",
+            "name": "Requested delivery date",
+            "valueType": "string",
+            "minCardinality": 1,
+            "maxCardinality": 1,
+            "isConfigurable": true,
+            "isVisible": true,
+            "configurationCharacteristicValue": [
+              {
+                "@type": "ConfigurationCharacteristicValue",
+                "isSelectable": true,
+                "isSelected": true,
+                "isVisible": true,
+                "characteristicValue": {
+                  "id": "256db1df-695b-47d7-a20d-08c32a05cae1.3",
+                  "name": "Requested delivery date",
+                  "value": "{{request.query.id.2}}",
+                  "@type": "DateCharacteristic"
+                }
+              }
+            ]
+          }
+        ]
+
+    {{#neq request.query.id.0 'In store'}}
+  ,"configurationPrice": [
+      {
+        "@type": "ConfigurationPrice",
+        "name": "5 eur: Delivery shipping charge",
+        "priceType": "NRC",
+        "productOfferingPrice": {
+          "id": "8867e9fc-80b8-409a-b267-bef68fc96a95",
+          "name": "5 eur: Delivery shipping charge",
+          "@referredType": "ProductOfferingPrice",
+          "@type": "ProductOfferingPrice"
+        },
+        "price": {
+          "taxRate": "0",
+          "@type": "Price",
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": "5",
+            "@type": "Money"
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": "5",
+            "@type": "Money"
+          }
+        }
+      }
+    ]
+    {{/neq}}
+  }
+  }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "serviceOrder": {
+    "id": "faad6ae7-405f-4b25-be5a-0f5a859d2572",
+    "orderDate": 1698120600.0018272,
+    "note": [
+      {
+        "id": "1243",
+        "author": "string",
+        "date": "2023-06-13T09:11:59.120Z",
+        "text": "string"
+      }
+    ],
+    "relatedParty": [
+      {
+        "@baseType": null,
+        "@referredType": "customer",
+        "@schemaLocation": null,
+        "@type": null,
+        "href": null,
+        "id": "231-mf4",
+        "name": "Abir",
+        "role": "customer"
+      }
+    ],
+    "serviceOrderItem": [
+      {
+        "id": "1",
+        "action": "add",
+        "errorMessage": [
+          {
+            "code": "string",
+            "message": "string",
+            "reason": "string"
+          }
+        ],
+        "service": {
+          "id": "3179dee9-dece-4415-ad79-d21a36ac7f61",
+          "href": "http://serverlocation:port/serviceInventory/3153",
+          "description": "Connectivity",
+          "endDate": 1698120600.0018406,
+          "name": "Connectivity",
+          "serviceType": "CFS",
+          "startDate": 1698120600.0018408,
+          "note": [
+            {
+              "id": "1243",
+              "author": "string",
+              "date": "2023-06-13T09:11:59.120Z",
+              "text": "string"
+            }
+          ],
+          "serviceCharacteristic": [
+            {
+              "id": "232-342",
+              "name": "ICCID",
+              "valueType": "string",
+              "value": 70.0
+            }
+          ],
+          "serviceRelationship": [
+            {
+              "id": "4321",
+              "serviceRelationshipType": "reliesOn"
+            }
+          ],
+          "serviceSpecification": {
+            "id": "Time bundle",
+            "name": "Connectivity",
+            "@type": "ServiceSpecificationRef"
+          },
+          "state": "active"
+        },
+        "state": "completed",
+        "serviceRelationship": [
+          {
+            "serviceRelationshipType": "reliesOn"
+          }
+        ]
+      }
+    ],
+    "state": "completed",
+    "@type": "ServiceOrder"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "mappings": [
+    {
+      "name": "create  products - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productManagement/v1/product",
+        "method": "PATCH"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Management/ProductsUpdated.json",
+        "headers": {
+          "Content-Type": "application/json-patch+json"
+        }
+      }
+    }
+  ]
+}
+

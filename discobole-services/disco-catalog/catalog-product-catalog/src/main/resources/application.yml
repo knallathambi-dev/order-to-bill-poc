@@ -1,0 +1,467 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  cloud:
+    function:
+      definition: handle;productOfferingPrice;productOffering;serviceSpec;productSpec;lifeCycleManagement;category;stockItem
+    discovery:
+      enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+    stream:
+      kafka.binder:
+        brokers: localhost
+        defaultBrokerPort: 9092
+        auto-add-partitions: true
+        auto-create-topics: true
+      default:
+        contentType: application/json
+      bindings:
+        productOffering-in-0:
+          contentType: application/json
+          group: product-offering
+          destination: catalog.product-offering
+        productOfferingPrice-in-0:
+          contentType: application/json
+          group: product-offering-price
+          destination: catalog.product-offering-price
+        serviceSpec-in-0:
+          contentType: application/json
+          group: catalog          
+          destination: catalog.service-spec                    
+        productSpec-in-0:
+          contentType: application/json
+          group: catalog
+          destination: catalog.product-spec   
+        handle-in-0:
+          contentType: application/json
+          group: envelope
+          destination: envelope               
+        lifeCycleManagement-in-0:
+          contentType: application/json
+          group: lifecycle-management
+          destination: catalog.lifecycle-management
+        stockItem-in-0:
+          contentType: application/json
+          group: stockItem
+          destination: catalog.stockItem
+        category-in-0:
+          contentType: application/json
+          group: category
+          destination: catalog.category
+      default-binder: kafka
+  zipkin:
+    discoveryClientEnabled: false
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 0.0
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  main:
+    allow-bean-definition-overriding: true
+management:
+  endpoint:
+    health:
+      show-details: always
+      probes:
+       enabled: true 
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: discobole-productcatalog-catalog
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  health:
+    redis:
+      enabled: false
+  server:
+    port: 9000
+
+retry:
+  maxAttempts: '3'
+  maxDelay: '1000'
+  
+
+app:
+  version: @project.version@
+  name: @project.name@
+  description: @project.description@
+  ownerName: Herve Bouvier
+  ownerMail: herve.bouvier@orange.com
+  
+cqrs:
+  command-enabled: false
+  query-enabled: true
+  commandBaseUrl: http://localhost:8086
+config:
+  commandPsUpdate: http://localhost:8086/updateStatus/productSpecification
+
+signing-key: BOS-OTB_COOD
+
+role: CatalogAdministrator
+
+Dotel:
+  instrumentation:
+    kafka:
+      enabled: true
+    spring-kafka:
+      enabled: true
+    messaging:
+      experimental:
+        receive-telemetry:
+          enabled: false
+process-flow:
+  role:
+    admin: disco-admin
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: catalog
+      username: root
+      password: root
+  # --- CLOUD AVENUE S3 CONFIG --
+  cloud:
+    aws:
+      s3:
+        bucket: pr-diod-paasprd1-discobole-review-discobole-review-catalog-s3
+      credentials:
+        access-key: ${AWS_ACCESS_KEY_ID}
+        secret-key: ${AWS_SECRET_ACCESS_KEY}
+      region:
+        static: us-east-1
+      endpoint: https://s3-region01.cloudavenue.orange-business.com
+      path-style-access: true
+
+  keycloak: https://keycloak-integration-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x2, x3, x6, x7, x10, x11, cat_r
+  userRoleRetrievalUrl: https://auth-userrole-integration-disco.apps.prd1.c1.paas.tech.orange/userRolePermission/v1/userRole
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+  
+server:
+  port: 8087
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    accesslog:
+      enabled: true
+  
+logging:
+  level:
+    root: info
+    java:
+      util:
+        logging: OFF
+    org:
+      apache:
+        catalina: OFF
+        juli:
+          logging:
+            DirectJDKLog: OFF
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: WARN
+            FrameworkServlet: WARN
+            mvc:
+              method:
+                annotation:
+                  RequestResponseBodyMethodProcessor: WARN
+    com:
+      orange:
+        discobole:
+          productcatalog:
+            catalog: DEBUG
+    
+
+
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile: test
+#  data:
+#    mongodb:
+#      database: catalog-test
+
+
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile:  cloud, orange-cf
+#  cloud:
+#    discovery:
+#      enabled: true
+#    service-registry:
+#      auto-registration:
+#        enabled: true
+#    stream:
+#      kafka.binder:
+#        brokers: ${vcap.services.kafka.credentials.uri}
+#  data:
+#    mongodb:
+#      uri: ${vcap.services.catalog-mongodb.credentials.uri}
+#  zipkin:
+#    discovery-client-enabled: true
+#  sleuth:
+#    sampler:
+#      probability: 1.0
+#eureka:
+#  instance:
+#    hostname: ${vcap.application.uris[0]}
+#    non-secure-port: 80
+#  client:
+#    service-url:
+#      defaultZone: ${vcap.services.discovery.credentials.uri}
+#server:
+#  port: ${PORT:8080}
+
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile:  ibm-cf
+#  cloud:
+#    stream:
+#      kafka.binder:
+#        brokers: ${vcap.services.kafka.credentials.kafka_brokers_sasl}
+#        configuration:
+#          security:
+#            protocol: SASL_SSL
+#          sasl:
+#            mechanism: PLAIN
+#        jaas:
+#          loginModule: org.apache.kafka.common.security.plain.PlainLoginModule
+#          options:
+#            username: "${vcap.services.kafka.credentials.user}"
+#            password: "${vcap.services.kafka.credentials.password}"
+#  zipkin:
+#    discoveryClientEnabled: false
+#  sleuth:
+#    enabled: true
+#    sampler:
+#      probability: 0.0
+#  data:
+#    mongodb:
+#      uri: ${vcap.services.catalog-mongodb.credentials.connection.mongodb.composed[0]}
+#      b64-cert: ${vcap.services.catalog-mongodb.credentials.connection.mongodb.certificate.certificate_base64}
+
+
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile: kubernetes
+#  data:
+#    mongodb:
+#      host: ${DATABASE_HOST}
+#      database: ${DATABASE_NAME}
+#      username: ${DATABASE_USER}
+#      password: ${DATABASE_PASSWORD}
+#  cloud:
+#    stream:
+#      kafka.binder:
+#        brokers: kafka:9092
+
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile: openshift
+#  cloud:
+#    stream:
+#      kafka.binder:
+#        brokers: kafka:9092
+#  data:
+#    mongodb:
+#      delete: true
+#      host: catalog-mongodb
+#      port: 27017
+#      database: catalog
+#      username: ${DATABASE_USER}
+#      password: ${DATABASE_PASSWORD}
+#  keycloak: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+#config:
+#  commandPsUpdate: http://gateway-bos-dev.kermit-noprod-b.itn.intraorange/catalog-configurator/updateStatus/productSpecification
+#cqrs:
+#  commandBaseUrl: http://gateway-bos-dev.kermit-noprod-b.itn.intraorange/catalog-configurator
+
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile: openshift-review
+#  cloud:
+#    stream:
+#      kafka.binder:
+#        brokers: kafka-review:9092
+#  data:
+#    mongodb:
+#      delete: true
+#      host: catalog-mongo-review
+#      port: 27017
+#      database: catalog
+#      username: ${DATABASE_USER}
+#      password: ${DATABASE_PASSWORD}
+#  keycloak: https://keycloak-review-disco-dev.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile: openshift-integration
+#  cloud:
+#    stream:
+#      kafka.binder:
+#        brokers: kafka:9092
+#  data:
+#    mongodb:
+#      delete: true
+#      host: catalog-mongo-integration
+#      port: 27017
+#      database: catalog
+#      username: ${DATABASE_USER}
+#      password: ${DATABASE_PASSWORD}
+#  keycloak: https://keycloak-integration-disco-dev.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile: openshift-staging
+#  cloud:
+#    stream:
+#      kafka.binder:
+#        brokers: kafka-staging:9092
+#  data:
+#    mongodb:
+#      delete: true
+#      host: catalog-mongo-staging
+#      port: 27017
+#      database: catalog
+#      username: ${DATABASE_USER}
+#      password: ${DATABASE_PASSWORD}
+#  keycloak: https://keycloak-staging-disco-staging.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile: openshift-production
+#  cloud:
+#    stream:
+#      kafka.binder:
+#        brokers: kafka:9092
+#  data:
+#    mongodb:
+#      delete: true
+#      host: catalog-mongo-production
+#      port: 27017
+#      database: catalog
+#      username: ${DATABASE_USER}
+#      password: ${DATABASE_PASSWORD}
+#  keycloak: https://keycloak-disco-prod.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-review
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka-review:9092
+#   data:
+#     mongodb:
+#       delete: true
+#       host: catalog-mongo-review
+#       port: 27017
+#       database: catalog
+#       username: ${DATABASE_USER}
+#       password: ${DATABASE_PASSWORD}
+#   keycloakRolesEntitlements: x21, x22, x23, x24, x25
+#   userRoleRetrievalUrl: https://auth-userrole-retrieve-review-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles    
+#   keycloak: https://keycloak-review-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+#   keycloakAuthUrl: https://keycloak-review-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-integration
+#   keycloak: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+#   keycloakRolesEntitlements: x21, x22, x23, x24, x25
+#   userRoleRetrievalUrl: https://auth-userrole-retrieve-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+#   keycloakAuthUrl: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka:9092
+#   data:
+#     mongodb:
+#       delete: true
+#       host: catalog-mongo-integration
+#       port: 27017
+#       database: catalog
+#       username: ${DATABASE_USER}
+#       password: ${DATABASE_PASSWORD}
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-staging
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka-staging:9092
+#   data:
+#     mongodb:
+#       delete: true
+#       host: catalog-mongo-staging
+#       port: 27017
+#       database: catalog
+#       username: ${DATABASE_USER}
+#       password: ${DATABASE_PASSWORD}
+#   keycloakRolesEntitlements: x21, x22, x23, x24, x25
+#   userRoleRetrievalUrl: https://auth-userrole-retrieve-staging-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+#   keycloak: https://keycloak-staging-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+#   keycloakAuthUrl: https://keycloak-staging-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-production
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka:9092
+#   data:
+#     mongodb:
+#       delete: true
+#       host: catalog-mongo-production
+#       port: 27017
+#       database: catalog
+#       username: ${DATABASE_USER}
+#       password: ${DATABASE_PASSWORD}
+#   keycloakRolesEntitlements: x21, x22, x23, x24, x25
+#   userRoleRetrievalUrl: https://auth-userrole-retrieve-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles      
+#   keycloak: https://keycloak-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+#   keycloakAuthUrl: https://keycloak-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth

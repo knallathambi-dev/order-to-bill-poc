@@ -1,0 +1,18 @@
+meta {
+  name: Get Product By multiple criteria with sort by ProductRelationship-type
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{dev_url}}/productInventoryManagement/v1/product?limit=4&offset=0&fields=startDate&sort=-ProductRelationship.type
+  body: none
+  auth: none
+}
+
+query {
+  limit: 4
+  offset: 0
+  fields: startDate
+  sort: -ProductRelationship.type
+}

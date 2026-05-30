@@ -1,0 +1,46 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-service
+  labels:
+    oda.tmforum.org/componentName: orange-event-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-service
+  template:
+    metadata:
+      labels:
+        app: event-service
+    spec:
+      serviceAccountName: config-reader
+      imagePullSecrets:
+        - name: orange-bos-regcred
+      containers:
+        - name: event-service
+          image: registry.forge.orange-labs.fr/orange-bos/poc/docker-images/event-service
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: event-app
+              containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kubernetes
+          resources:
+            limits:
+              cpu: 250m
+              memory: 512Mi
+            requests:
+              cpu: 125m
+              memory: 256Mi

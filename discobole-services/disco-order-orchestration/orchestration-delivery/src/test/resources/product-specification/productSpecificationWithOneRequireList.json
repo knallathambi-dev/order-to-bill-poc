@@ -1,0 +1,103 @@
+[
+  {
+    "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+    "brand": "Orange",
+    "description": "Mobile Line",
+    "isBundle": false,
+    "lastUpdate": "2023-05-19T09:05:22.404Z",
+    "lifecycleStatus": "launched",
+    "name": "Mobile Line",
+    "productNumber": "ML",
+    "version": "1.1.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "97f9e351-95b4-4f98-b845-fe8889688ce1.2",
+        "configurable": true,
+        "description": "MSISDN (Mobile Station ISDN Number) - number uniquely identifying a subscription in a Mobile Telecommunications network",
+        "extensible": false,
+        "isUnique": true,
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "MSISDN",
+        "regex": "10[0,9]",
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "10001",
+        "href": null,
+        "name": null,
+        "role": "marketingContact",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "serviceSpecification": [
+      {
+        "id": "MobileLine",
+        "href": null,
+        "name": "MobileLine",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2017-10-11T23:20:50.520Z"
+    },
+    "relatedResource": [
+      {
+        "id": "1",
+        "href": null,
+        "name": "related resource",
+        "role": "abc",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "operationSpecification": [
+      {
+        "id": "747f9607-fb77-403d-a34e-3e94607b5f1f.1",
+        "name": "Add a new mobile line on the network",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "Provision a new mobile line",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ]
+  }
+]

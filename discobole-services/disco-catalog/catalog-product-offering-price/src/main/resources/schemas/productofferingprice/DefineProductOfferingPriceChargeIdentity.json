@@ -1,0 +1,133 @@
+{
+  "DefineProductOfferingPriceChargeIdentity" : {
+    "type" : "object",
+    "properties" : {
+      "definePOPChargeIdentityData" : {
+        "required" : [ "name", "priceType", "immediatePayment", "price" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "priceType" : {
+            "type" : "string",
+            "enum" : [ "RC", "NRC" ]
+          },
+          "chargeCycle" : {
+            "type" : "string",
+            "enum" : [ "cycleForward", "cycleArrears" ]
+          },
+          "prorationType" : {
+            "type" : "string",
+            "enum" : [ "subscription", "subscriptionAndTermination", "noProration", "termination" ]
+          },
+          "immediatePayment" : {
+            "type" : "boolean"
+          },
+          "recurringChargePeriodLength" : {
+            "type" : "number"
+          },
+          "recurringChargePeriodType" : {
+            "type" : "string"
+          },
+          "price" : {
+            "type" : "object",
+            "properties" : {
+              "unit" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "number"
+              }
+            }
+          },
+          "unitOfMeasure" : {
+            "type" : "object",
+            "properties" : {
+              "amount" : {
+                "type" : "number",
+                "default" : 1.0
+              },
+              "units" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "relationshipMinCardinality" : {
+        "type" : "number",
+        "default" : 0
+      },
+      "relationshipMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "relationships" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "id", "relationshipType" ],
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "relationshipType" : {
+              "type" : "string",
+              "enum" : [ "alteredBy", "replacedBy" ]
+            },
+            "validFor" : {
+              "required" : [ "startDateTime" ],
+              "type" : "object",
+              "properties" : {
+                "endDateTime" : {
+                  "type" : "string",
+                  "format" : "date-time"
+                },
+                "startDateTime" : {
+                  "type" : "string",
+                  "format" : "date-time"
+                }
+              }
+            }
+          }
+        }
+      },
+      "validityMinCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validityMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validity" : {
+        "required" : [ "validFor" ],
+        "type" : "object",
+        "properties" : {
+          "lifecycleStatus" : {
+            "type" : "string",
+            "enum" : [ "launched", "unavailable", "retired", "obsolete" ]
+          },
+          "validFor" : {
+            "required" : [ "startDateTime" ],
+            "type" : "object",
+            "properties" : {
+              "endDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "startDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

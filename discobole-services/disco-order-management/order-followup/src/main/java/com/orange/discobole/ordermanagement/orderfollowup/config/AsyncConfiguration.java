@@ -1,0 +1,57 @@
+// SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT License,
+// the text of which is available at https://opensource.org/license/mit
+// or see the "LICENSE.txt" file for more details.
+//
+// Authors: See CONTRIBUTORS.txt
+
+package com.orange.discobole.ordermanagement.orderfollowup.config;
+
+import com.orange.discobole.ordermanagement.orderfollowup.handler.ExceptionHandlingAsyncTaskExecutor;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
+import org.springframework.boot.autoconfigure.task.TaskExecutionProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.Executor;
+
+@Configuration
+@EnableAsync
+@EnableScheduling
+public class AsyncConfiguration implements AsyncConfigurer {
+
+    private static final Logger log = LoggerFactory.getLogger(AsyncConfiguration.class);
+    private final TaskExecutionProperties taskExecutionProperties;
+
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
+    public AsyncConfiguration(TaskExecutionProperties taskExecutionProperties) {
+        this.taskExecutionProperties = taskExecutionProperties;
+    }
+
+    @Override
+    @Bean(name = "taskExecutor")
+    public Executor getAsyncExecutor() {
+        log.debug("Creating Async Task Executor");
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(taskExecutionProperties.getPool().getCoreSize());
+        executor.setMaxPoolSize(taskExecutionProperties.getPool().getMaxSize());
+        executor.setQueueCapacity(taskExecutionProperties.getPool().getQueueCapacity());
+        executor.setThreadNamePrefix(taskExecutionProperties.getThreadNamePrefix());
+        return new ExceptionHandlingAsyncTaskExecutor(executor);
+    }
+
+    @Override
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+        return new SimpleAsyncUncaughtExceptionHandler();
+    }
+}

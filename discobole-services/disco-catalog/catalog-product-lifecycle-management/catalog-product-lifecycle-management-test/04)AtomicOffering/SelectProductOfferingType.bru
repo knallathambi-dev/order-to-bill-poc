@@ -1,0 +1,59 @@
+meta {
+  name: SelectProductOfferingType
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "characteristic": [
+          {
+              "name": "SelectProductOfferingType",
+              "valueType": "Object",
+              "value": {
+                
+                  "productOfferingType":"AtomicProductOffering"
+  
+              },
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": "ObjectCharacteristic"
+          }
+      ]
+  }
+}
+
+vars:post-response {
+  APO_id: res.body.characteristic[0].value
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  
+  test("To verify next task is productOffering creation", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[0].title).to.equals("ProductOfferingCreation.creation");
+  });
+  
+}

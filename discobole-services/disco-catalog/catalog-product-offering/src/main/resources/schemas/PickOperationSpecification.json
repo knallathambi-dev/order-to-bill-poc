@@ -1,0 +1,35 @@
+{
+  "PickOperationSpecification" : {
+    "required" : [ "serviceSpecification.operationSpecification.id", "name" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "serviceSpecification.operationSpecification.id" : {
+          "type" : "string",
+          "readOnly" : true
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "validFor" : {
+          "required" : [ "startDateTime" ],
+          "type" : "object",
+          "properties" : {
+            "endDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            },
+            "startDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            }
+          }
+        }
+      }
+    }
+  }
+}

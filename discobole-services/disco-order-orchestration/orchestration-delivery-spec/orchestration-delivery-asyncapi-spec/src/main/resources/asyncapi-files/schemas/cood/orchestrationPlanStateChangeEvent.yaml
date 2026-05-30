@@ -1,0 +1,89 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+$id: "https://event.com/orchestrationPlanStateChangeEvent.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "OrchestrationPlanStateChangeEvent"
+description: "An Orchestration Plan is how the order will be executed in a plan"
+type: "object"
+allOf:
+  - $ref: "../Base_event.yaml"
+extends:
+  $ref: "../Base_event.yaml"
+
+properties:
+  event:
+    $ref: "#/OrchestrationPlanStateChangePayloadEvent"
+required:
+  - "event"
+OrchestrationPlanStateChangePayloadEvent:
+  type: "object"
+  properties:
+    orchestrationPlan:
+      $ref: "#/OrchestrationPlan"
+  required:
+    - "orchestrationPlan"
+  title: "OrchestrationPlanStateChangePayloadEvent"
+
+OrchestrationPlan:
+  type: "object"
+  existingJavaType: "com.orange.discobole.orderorchestration.orchestrationdelivery.model.OrchestrationPlan"
+  properties:
+    id:
+      description: "Identifier of the line item (generally it is a sequence number\
+        \ 01, 02, 03, ...)"
+      type: "string"
+    relatedProductOrder:
+      $ref: "#/RelatedProductOrder"
+    relatedParty:
+      type: array
+      items:
+        $ref: "#/RelatedParty"
+    state:
+      type: "string"
+      enum:
+        - "Initialized"
+        - "Acknowledged"
+        - "Planned"
+        - "InProgress"
+        - "Executed"
+        - "Held"
+        - "Rejected"
+    receivedDate:
+      type: string
+      format: date-time
+    requestedDeliveryDate:
+      type: string
+      format: date-time
+    orchestrationPlanNodes:
+      type: array
+      items:
+        $ref: "../cood/orchestrationPlanNodeStateChangeEvent.yaml#/OrchestrationPlanNode"
+
+RelatedProductOrder:
+  properties:
+    id:
+      description: "Identifier of the line item (generally it is a sequence number 01, 02, 03, ...)"
+      type: string
+
+RelatedParty:
+  properties:
+    id:
+      description: "Identifier of the line item (generally it is a sequence number 01, 02, 03, ...)"
+      type: string
+    href:
+      type: string
+    role:
+      description: "Identifier of the line item (generally it is a sequence number 01, 02, 03, ...)"
+      type: string
+    name:
+      description: "Identifier of the line item (generally it is a sequence number 01, 02, 03, ...)"
+      type: string
+

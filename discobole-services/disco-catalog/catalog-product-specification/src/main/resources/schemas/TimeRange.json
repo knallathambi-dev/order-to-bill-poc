@@ -1,0 +1,13 @@
+{
+  "TimeRange" : {
+    "type" : "object",
+    "properties" : {
+      "validTo" : {
+        "type" : "string"
+      },
+      "validFrom" : {
+        "type" : "string"
+      }
+    }
+  }
+}

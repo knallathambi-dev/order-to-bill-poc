@@ -1,0 +1,122 @@
+meta {
+  name: Bulk with relationshipType relieon
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/{{connectivityPSId}}/productRelationship/-",
+          "value": {
+              "relationshipType": "reliesOn",
+              "product": {
+                  "id": "{{simCardPSId}}",
+                  "@type": "ProductRef"
+              }
+          }
+      },
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/{{mobileLinePSId}}/productRelationship/-",
+          "value": {
+              "relationshipType": "reliesOn",
+              "product": {
+                  "id": "{{simCardPSId}}",
+                  "@type": "ProductRef"
+              }
+          }
+      },
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/{{timeBundlePSId}}/productRelationship/-",
+          "value": {
+              "relationshipType": "reliesOn",
+              "product": {
+                  "id": "{{mobileLinePSId}}",
+                  "@type": "ProductRef"
+              }
+          }
+      },
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/{{simCardPSId}}/productRelationship/-",
+          "value": {
+              "relationshipType": "reliesFrom",
+              "product": {
+                  "id": "{{connectivityPSId}}",
+                  "@type": "ProductRef"
+              }
+          }
+      },
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/{{simCardPSId}}/productRelationship/-",
+          "value": {
+              "relationshipType": "reliesFrom",
+              "product": {
+                  "id": "{{mobileLinePSId}}",
+                  "@type": "ProductRef"
+              }
+          }
+      },
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/{{mobileLinePSId}}/productRelationship/-",
+          "value": {
+              "relationshipType": "reliesFrom",
+              "product": {
+                  "id": "{{timeBundlePSId}}",
+                  "@type": "ProductRef"
+              }
+          }
+      }
+  ]
+}
+
+script:pre-request {
+  function getProductSpecificationIDByName(productsInfo, productName) {
+      productName = productName.toLowerCase();
+      for (var i = 0; i < productsInfo.length; i++) {
+          var currentProductName = productsInfo[i].name.toLowerCase();
+          if (currentProductName === productName && productsInfo[i].type === "productSpecification") {
+              return productsInfo[i].id;
+          }
+      }
+      return null;
+  }
+  
+  var productsInfo = bru.getEnvVar("productsInfo");
+  if (!productsInfo) {
+      productsInfo = globals.get("productsInfo"); 
+  }
+  productsInfo = JSON.parse(productsInfo || '[]'); 
+  
+  var simCardPSId = getProductSpecificationIDByName(productsInfo, "SIM CARD");
+  var connectivityPSId = getProductSpecificationIDByName(productsInfo, "Connectivity");
+  var mobileLinePSId = getProductSpecificationIDByName(productsInfo, "MobileLine");
+  var timeBundlePSId = getProductSpecificationIDByName(productsInfo, "Time Bundle");
+  
+  console.log(simCardPSId, connectivityPSId, mobileLinePSId, timeBundlePSId);
+  
+  bru.setEnvVar("simCardPSId", simCardPSId);
+  bru.setEnvVar("connectivityPSId", connectivityPSId);
+  bru.setEnvVar("mobileLinePSId", mobileLinePSId);
+  bru.setEnvVar("timeBundlePSId", timeBundlePSId);
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <springProperty scope="context" name="service" source="spring.application.name" />
+    <property name="LOG_EXCEPTION_CONVERSION_WORD"
+              value="%ex{full,
+          java.base,
+          java.lang,
+          javax,
+          jdk.internal.reflect,
+          com.fasterxml.jackson.databind,
+          com.sun,
+          feign,
+          io.opentracing.contrib,
+          org.apache,
+          org.springframework,
+          sun.reflect,
+          net.sf.cglib,
+          ByCGLIB
+        }" />
+    <!--  defaults need to be place after LOG_EXCEPTION_CONVERSION_WORD definition -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+    <logger name="com.orange.discobole.productcatalog" level="INFO" />
+    <logger name="org.apache.cxf.services" level="WARN" />
+    <logger name="org.apache.cxf.summary" level="INFO" />
+    <logger name="java.util.logging" level="OFF" />
+    <logger name="org.apache.catalina" level="OFF" />
+    <logger name="org.apache.juli.logging.DirectJDKLog" level="OFF" />
+    <logger name="org.springframework.web.servlet.DispatcherServlet" level="WARN" />
+    <logger name="org.springframework.web.servlet.FrameworkServlet" level="WARN" />
+    <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor" level="WARN" />
+    <!-- Display Tomcat started on port(s): 8080 (http) with context path '' -->
+    <logger name="org.springframework.boot.web.embedded.tomcat.TomcatWebServer" level="INFO" />
+    <logger name="org.apache.kafka.clients" level="WARN"/>
+    <root level="INFO">
+        <!--
+        define appender by specific profiles,  at least a "default" profile
+        -->
+    </root>
+
+    <springProfile name="jsonfile">
+        <include resource="logback-appender-jsonfile.xml" />
+        <root>
+            <appender-ref ref="JSONFILE" />
+        </root>
+    </springProfile>
+    <springProfile name="jsonconsole">
+        <include resource="logback-appender-console.xml" />
+        <root>
+            <appender-ref ref="JSON" />
+        </root>
+    </springProfile>
+
+    <springProfile name="plaintextconsole">
+        <include resource="logback-appender-console.xml" />
+        <root>
+            <appender-ref ref="PLAIN" />
+        </root>
+    </springProfile>
+
+    <springProfile name="fluentd">
+        <include resource="logback-appender-fluentd.xml" />
+        <root>
+            <appender-ref ref="FLUENCY" />
+        </root>
+    </springProfile>
+</configuration>

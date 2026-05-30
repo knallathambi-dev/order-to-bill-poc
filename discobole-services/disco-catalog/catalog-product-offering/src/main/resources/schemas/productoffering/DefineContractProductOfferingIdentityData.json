@@ -1,0 +1,204 @@
+{
+  "DefineContractProductOfferingIdentityData" : {
+    "type" : "object",
+    "properties" : {
+      "defineData" : {
+        "required" : [ "name", "description", "billingType" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "brand" : {
+            "type" : "string",
+            "default" : "Orange"
+          },
+          "productNumber" : {
+            "type" : "string"
+          },
+          "isInstallable" : {
+            "type" : "boolean",
+            "default" : true
+          },
+          "isSellable" : {
+            "type" : "boolean",
+            "default" : true
+          },
+          "isVisible" : {
+            "type" : "boolean",
+            "default" : true
+          },
+          "isBundle" : {
+            "type" : "boolean"
+          },
+          "billingType" : {
+            "type" : "string",
+            "enum" : [ "prepaid", "postpaid", "hybrid" ]
+          }
+        }
+      },
+      "channelMinCardinality" : {
+        "type" : "number",
+        "default" : 0
+      },
+      "channelMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "channels" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "channelId" ],
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "channelId" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "marketSegmentMinCardinality" : {
+        "type" : "number",
+        "default" : 0
+      },
+      "marketSegmentMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "marketSegments" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "segmentId" ],
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "segmentId" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      },
+      "relatedPartyMinCardinality" : {
+        "type" : "number",
+        "default" : 0
+      },
+      "relatedPartyMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "relatedParties" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "@referredType", "role" ],
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "@referredType" : {
+                "type" : "string",
+                "enum" : [ "individual", "organization" ]
+              },
+              "role" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string",
+                "readOnly" : true
+              }
+            }
+          }
+        }
+      },
+      "poTermMinCardinality" : {
+        "type" : "number",
+        "default" : 0
+      },
+      "poTermMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "poTerms" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "duration", "name" ],
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "duration" : {
+                "required" : [ "amount", "units" ],
+                "type" : "object",
+                "properties" : {
+                  "amount" : {
+                    "type" : "number"
+                  },
+                  "units" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "description" : {
+                "type" : "string"
+              },
+              "validFor" : {
+                "required" : [ "startDateTime" ],
+                "type" : "object",
+                "properties" : {
+                  "endDateTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  },
+                  "startDateTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "validityPeriodMinCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validityPeriodMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validityPeriod" : {
+        "type" : "object",
+        "properties" : {
+          "validFor" : {
+            "required" : [ "startDateTime" ],
+            "type" : "object",
+            "properties" : {
+              "endDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "startDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

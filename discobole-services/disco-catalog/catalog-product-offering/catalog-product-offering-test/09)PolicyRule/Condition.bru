@@ -1,0 +1,40 @@
+meta {
+  name: Condition
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{host}}/policyRule/v1/condition
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "description": "Test_condition{{random}}",
+    "name": "Test_condition{{random}}",
+    "policyConditionStrategy": null,
+    "note": [],
+    "policyCondition": [],
+    "policyConditionStatement": [
+      {
+        "PolicyConditionValue": [],
+        "PolicyConditionVariable": {
+          "path": "(@.name == 'Volume') $ (@.characteristic.value== '1') $ (@.characteristic.unitOfMeasure== 'hr')"
+        }
+      }
+    ],
+    "validFor": {
+      "startDateTime": null
+    }
+  }
+}
+
+vars:post-response {
+  condition_id: res.body.id
+}
+
+assert {
+  res.status: eq 201
+}

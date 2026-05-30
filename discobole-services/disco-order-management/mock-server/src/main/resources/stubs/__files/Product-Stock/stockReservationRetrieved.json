@@ -1,0 +1,15 @@
+[
+  {
+    "id": "46",
+    "href": "http://serverlocation:port/stockManagement/v4/productStock/46",
+    "productStockStatusType": "reserved",
+    "stockedProduct": {
+      "serialNumber": "67890543219876511223"
+    },
+    "resource": {
+      "id": "69x",
+      "href": "http://server:port/resourceInventoryManagement/physicalResource/69x"
+    }
+  }
+]
+

@@ -1,0 +1,267 @@
+// SPDX-FileCopyrightText: 2025 Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT License,
+// the text of which is available at https://opensource.org/license/mit
+// or see the "LICENSE.txt" file for more details.
+//
+// Authors: See CONTRIBUTORS.txt
+
+package com.orange.discobole.productcatalog.productspecification.dto.generated.productoffering;
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.orange.discobole.productcatalog.productspecification.dto.generated.common.ProductOfferingPriceRef;
+import com.orange.discobole.productcatalog.productspecification.dto.generated.common.TimePeriod;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import jakarta.annotation.Generated;
+
+/**
+ * An operation specification for an entity.
+ */
+@ApiModel(description = "An operation specification for an entity.")
+@Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-07-30T16:59:05.795+05:30")
+public class CommercialOperation {
+	@JsonProperty("id")
+	private String id = null;
+
+	@JsonProperty("name")
+	private String name = null;
+
+	@JsonProperty("description")
+	private String description = null;
+
+	@JsonProperty("validFor")
+	private TimePeriod validFor = null;
+
+	@JsonProperty("carries")
+	private List<ProductOfferingPriceRef> carries = null;
+
+	@JsonProperty("@type")
+	private String type = null;
+
+	@JsonProperty("@baseType")
+	private String baseType = null;
+
+	@JsonProperty("@schemaLocation")
+	private String schemaLocation = null;
+
+	public CommercialOperation id(String id) {
+		this.id = id;
+		return this;
+	}
+
+	/**
+	 * Identifier of the commercial operation.
+	 * 
+	 * @return id
+	 **/
+	@ApiModelProperty(required = true, value = "Identifier of the commercial operation.")
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public CommercialOperation name(String name) {
+		this.name = name;
+		return this;
+	}
+
+	/**
+	 * Name of the commercial operation as add, migrate,change, terminate, etc...
+	 * 
+	 * @return name
+	 **/
+	@ApiModelProperty(value = "Name of the commercial operation as add, migrate,change, terminate, etc...")
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public CommercialOperation description(String description) {
+		this.description = description;
+		return this;
+	}
+
+	/**
+	 * Description of the commercial operation.
+	 * 
+	 * @return description
+	 **/
+	@ApiModelProperty(value = "Description of the commercial operation.")
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public CommercialOperation validFor(TimePeriod validFor) {
+		this.validFor = validFor;
+		return this;
+	}
+
+	/**
+	 * Get validFor
+	 * 
+	 * @return validFor
+	 **/
+	@ApiModelProperty(required = true, value = "")
+	public TimePeriod getValidFor() {
+		return validFor;
+	}
+
+	public void setValidFor(TimePeriod validFor) {
+		this.validFor = validFor;
+	}
+
+	public CommercialOperation carries(List<ProductOfferingPriceRef> carries) {
+		this.carries = carries;
+		return this;
+	}
+
+	public CommercialOperation addCarriesItem(ProductOfferingPriceRef carriesItem) {
+		if (this.carries == null) {
+			this.carries = new ArrayList<ProductOfferingPriceRef>();
+		}
+		this.carries.add(carriesItem);
+		return this;
+	}
+
+	/**
+	 * Get carries
+	 * 
+	 * @return carries
+	 **/
+	@ApiModelProperty(value = "")
+	public List<ProductOfferingPriceRef> getCarries() {
+		return carries;
+	}
+
+	public void setCarries(List<ProductOfferingPriceRef> carries) {
+		this.carries = carries;
+	}
+
+	public CommercialOperation type(String type) {
+		this.type = type;
+		return this;
+	}
+
+	/**
+	 * When sub-classing, this defines the sub-class entity name
+	 * 
+	 * @return type
+	 **/
+	@ApiModelProperty(value = "When sub-classing, this defines the sub-class entity name")
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public CommercialOperation baseType(String baseType) {
+		this.baseType = baseType;
+		return this;
+	}
+
+	/**
+	 * When sub-classing, this defines the super-class
+	 * 
+	 * @return baseType
+	 **/
+	@ApiModelProperty(value = "When sub-classing, this defines the super-class")
+	public String getBaseType() {
+		return baseType;
+	}
+
+	public void setBaseType(String baseType) {
+		this.baseType = baseType;
+	}
+
+	public CommercialOperation schemaLocation(String schemaLocation) {
+		this.schemaLocation = schemaLocation;
+		return this;
+	}
+
+	/**
+	 * A URI to a JSON-Schema file that defines additional attributes and
+	 * relationships
+	 * 
+	 * @return schemaLocation
+	 **/
+	@ApiModelProperty(value = "A URI to a JSON-Schema file that defines additional attributes and relationships")
+	public String getSchemaLocation() {
+		return schemaLocation;
+	}
+
+	public void setSchemaLocation(String schemaLocation) {
+		this.schemaLocation = schemaLocation;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		CommercialOperation commercialOperation = (CommercialOperation) o;
+		return Objects.equals(this.id, commercialOperation.id) && Objects.equals(this.name, commercialOperation.name)
+				&& Objects.equals(this.description, commercialOperation.description)
+				&& Objects.equals(this.validFor, commercialOperation.validFor)
+				&& Objects.equals(this.carries, commercialOperation.carries)
+				&& Objects.equals(this.type, commercialOperation.type)
+				&& Objects.equals(this.baseType, commercialOperation.baseType)
+				&& Objects.equals(this.schemaLocation, commercialOperation.schemaLocation);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, description, validFor, carries, type, baseType, schemaLocation);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class CommercialOperation {\n");
+
+		sb.append("    id: ").append(toIndentedString(id)).append("\n");
+		sb.append("    name: ").append(toIndentedString(name)).append("\n");
+		sb.append("    description: ").append(toIndentedString(description)).append("\n");
+		sb.append("    validFor: ").append(toIndentedString(validFor)).append("\n");
+		sb.append("    carries: ").append(toIndentedString(carries)).append("\n");
+		sb.append("    type: ").append(toIndentedString(type)).append("\n");
+		sb.append("    baseType: ").append(toIndentedString(baseType)).append("\n");
+		sb.append("    schemaLocation: ").append(toIndentedString(schemaLocation)).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
+
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
+
+}

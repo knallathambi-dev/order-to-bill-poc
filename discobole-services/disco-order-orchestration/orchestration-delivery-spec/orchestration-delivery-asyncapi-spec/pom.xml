@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.orange.discobole.orderorchestration</groupId>
+        <artifactId>discobole-orderorchestration-orchestration-delivery-spec</artifactId>
+        <version>1.6.0</version>
+    </parent>
+
+    <artifactId>discobole-orderorchestration-orchestration-delivery-asyncapi-spec</artifactId>
+    <name>ODA - COOD - Orchestration Delivery API Async Specification</name>
+
+   <url>https://gitlab.ow2.org/discobole/disco-oda-components/disco-order-orchestration/orchestration-delivery-spec/</url>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/groups/${GROUP_ID}/-/packages/maven</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.orange.discobole.orderorchestration</groupId>
+            <artifactId>discobole-orderorchestration-orchestration-delivery-commons-exception</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.orange.discobole.orderorchestration</groupId>
+            <artifactId>discobole-orderorchestration-orchestration-delivery-commons-pojo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.orange.discobole.orderorchestration</groupId>
+            <artifactId>discobole-orderorchestration-orchestration-delivery-restapi-spec</artifactId> 
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>    
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations-jakarta</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.parser.v3</groupId>
+            <artifactId>swagger-parser</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.orange.discobole.orderorchestration</groupId>
+                        <artifactId>discobole-orderorchestration-orchestration-delivery-commons-pojo</artifactId>
+                        <version>${discobole-orderorchestration-orchestration-delivery-commons-pojo.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/asyncapi-files/schemas</sourceDirectory>
+                    <targetPackage>com.orange.discobole.orderorchestration.orchestrationdelivery.generated</targetPackage>
+                    <sourceType>yamlschema</sourceType>
+                    <customAnnotator>com.orange.discobole.orderorchestration.customAnnotator.LombokAnnotator</customAnnotator>
+                    <includeAdditionalProperties>false</includeAdditionalProperties>
+                    <addCompileSourceRoot>true</addCompileSourceRoot>
+                    <includeGetters>false</includeGetters>
+                    <includeSetters>false</includeSetters>
+                    <includeHashcodeAndEquals>false</includeHashcodeAndEquals>
+                    <includeToString>false</includeToString>
+                    <removeOldOutput>true</removeOldOutput>
+                    <serializable>true</serializable>
+                    <includeJsr303Annotations>true</includeJsr303Annotations>
+                    <useJakartaValidation>true</useJakartaValidation>
+                    <includeDynamicBuilders>true</includeDynamicBuilders>
+                    <sourceSortOrder>FILES_FIRST</sourceSortOrder>
+                    <dateTimeType>java.time.Instant</dateTimeType>
+                    <useDoubleNumbers>false</useDoubleNumbers>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

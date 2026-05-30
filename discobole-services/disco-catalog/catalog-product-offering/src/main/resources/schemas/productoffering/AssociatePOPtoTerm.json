@@ -1,0 +1,20 @@
+{
+  "AssociatePOPtoTerm" : {
+    "required" : [ "duration" ],
+    "type" : "object",
+    "properties" : {
+      "duration" : {
+        "required" : [ "amount", "units" ],
+        "type" : "object",
+        "properties" : {
+          "amount" : {
+            "type" : "number"
+          },
+          "units" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}

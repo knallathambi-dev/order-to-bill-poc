@@ -1,0 +1,50 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: cood-${ENV_TYPE}
+  profiles:
+    default: kubernetes
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVICE_NAME}:9092
+    producer:
+      properties:
+        spring.kafka.topic.auto-create: true
+    consumer:
+      properties:
+        spring.kafka.topic.auto-create: true
+
+retry:
+  maxDelay: '6000'
+config:
+  productSpecByIdCatalogUrl: http://${PRODUCT_CATALOG_SERVICE:catalog-product-catalog-review}/productCatalogManagement/v1/productSpecification
+  productOrderByIdUrl: http://${POI_SERVICE:poi-integration}/productOrderingManagement/v1/productOrder
+  serviceCatalogManagementUrl: http://${MOCK_SERVICE:mock-server-integration}/serviceCatalogManagement/v1/serviceSpecification
+  serviceOrderingUrl: http://${MOCK_SERVICE:mock-server-integration}/serviceOrdering/v1/serviceOrder
+  startPurgeCronExpression: "*/30 * * * * *"
+  deleteFalloutThresholdDuration: P0DT0H10M # P?DT?H?M = 0? -> count of days, 1? -> count of hours, 2? -> count of minutes
+
+app:
+  security:
+    userRoleRetrievalUrl: http://${USER_ROLE_RETRIEVAL}/userRolePermission/v1/userRole
+
+
+# order orchestration service have client COOD in keycloak,
+# this client must have the below role in order to read all process flows.
+process-flow:
+  role:
+    admin: FalloutIncidentAdminWrite
+
+
+otel:
+  service:
+    name: ${OTEL_SERVICE_NAME:disco-service}

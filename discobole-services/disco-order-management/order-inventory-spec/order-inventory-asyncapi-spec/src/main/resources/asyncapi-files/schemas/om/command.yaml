@@ -1,0 +1,48 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+$id: "https://orange.com/command.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "Command"
+type: "object"
+properties:
+  eventId:
+    type: "string"
+    description: "The identifier of the notification."
+  title:
+    type: "string"
+    description: "The title of the command"
+  description:
+    type: "string"
+    description: "The description of the command"
+  eventTime:
+    type: "string"
+    format: "date-time"
+    description: "Time of the event occurrence."
+  eventType:
+    type: "string"
+    description: "The type of the notification."
+    enum:
+      - "OrderItemsAndOrderTotalPriceValueChangeCommand"
+      - "PaymentValueChangeCommand"
+      - "realizingResourceValueChangeCommand"
+      - "ProductOrderStateChangeCommand"
+      - "RelatedPartiesValueChangeCommand"
+      - "BillingAccountValueChangeCommand"
+      - "ProductValueChangeCommand"
+      - "AppointmentValueChangeCommand"
+      - "RequestedCompletionDateValueChangeCommand"
+  priority:
+    type: "string"
+    description: "The priority of this event."
+required:
+  - "eventId"
+  - "eventType"
+  - "eventTime"

@@ -1,0 +1,88 @@
+meta {
+  name: CreateProcessFlow
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{host}}/ps/processManagement/v1/processFlow
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: bearer {{token}}
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "processFlowSpecification": "ProductSpecCreation"
+  }
+}
+
+body:text {
+  file:1.json
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 201
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  
+  
+  
+  
+  test("to verify Next task to be performed is :ProductSpecCreation.selectSupportEntity ", function(){
+      expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql("ProductSpecCreation.selectSupportEntity");
+  
+  });
+  test("to verify that supportEntityType.enum present in the response are  correct ", ()=>{
+      expect(jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.SelectSupportEntity.properties.supportEntityType.enum[1]).to.eql("StockItemType");
+  })
+  
+  
+  
+  test("to verify ProductSpecCreation.cancel task is present", function () {
+      
+      expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql("ProductSpecCreation.cancel");
+  });
+  
+  
+  
+  test("to verify _links task is present", function () {
+   
+  
+    if (!jsonData || !jsonData._links) {
+      throw new Error("❌ '_links' property is missing from the response.");
+    }
+  
+    console.log("✅ '_links' property is present.");
+  });
+  
+}
+
+docs {
+  this folder will create a Product specification
+  and change its status to active.
+  
+  IF there is a change in characterstics in Stockitem then for eg:id,name,value then those changes has to be made in "defCharacteristics" request body present in this folder
+   
+  
+}

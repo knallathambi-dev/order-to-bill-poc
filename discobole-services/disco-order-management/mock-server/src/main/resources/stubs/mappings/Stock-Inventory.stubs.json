@@ -1,0 +1,44 @@
+{
+  "mappings": [
+    {
+      "name": "Post Reserve Product Stocks Batch - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/stock/v4/productStock",
+        "method": "POST",
+        "headers": {
+          "Content-Type": {
+            "equalTo": "application/json"
+          }
+        }
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Product-Stock/stockReservationCreated.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Reserved Product Stocks Batch - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/stock/v4/productStock",
+        "method": "GET",
+        "queryParameters": {
+          "ids": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Stock/stockReservationRetrieved.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

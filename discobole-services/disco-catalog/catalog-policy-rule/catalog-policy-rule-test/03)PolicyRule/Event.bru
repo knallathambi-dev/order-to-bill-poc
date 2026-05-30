@@ -1,0 +1,28 @@
+meta {
+  name: Event
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{host}}/policyRule/v1/event
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "description": "Event_{{random}}",
+      "name": "Event_{{random}}",
+      "query": "(@.productConfiguration.productOffering.id=='{{PO_act_id}}')&&(@.action=='Add')",
+      "event": []
+  }
+}
+
+vars:post-response {
+  event_id: res.body.id
+}
+
+assert {
+  res.status: eq 201
+}

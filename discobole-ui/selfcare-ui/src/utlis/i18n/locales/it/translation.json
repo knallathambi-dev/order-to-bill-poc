@@ -1,0 +1,377 @@
+{
+  "access": {
+    "noPermission": "Non hai il permesso di visualizzare questa pagina",
+    "restricted": "Accesso ristretto"
+  },
+  "actions": {
+    "accessRestricted": "Accesso ristretto",
+    "addToOrder": "Aggiungi all'ordine",
+    "back": "Indietro",
+    "backToHomepage": "Torna alla home page",
+    "backToLogin": "Torna al login",
+    "cancel": "Annulla",
+    "cancelModify": "Annulla modifica",
+    "cancelOrder": "Annulla ordine",
+    "cancelPayment": "Annulla pagamento",
+    "cancelTerminate": "Annulla terminazione",
+    "changePlan": "Cambia piano",
+    "checkEligibility": "Verifica idoneità",
+    "close": "Chiudi",
+    "confirmOrder": "Conferma ordine",
+    "continueToPayment": "Procedi al pagamento",
+    "edit": "Modifica",
+    "editAddress": "Modifica indirizzo",
+    "editPlan": "Modifica piano",
+    "goToOffers": "Vai alle offerte",
+    "login": "Accedi",
+    "logout": "Esci",
+    "modify": "Modifica",
+    "myOrders": "I miei ordini",
+    "next": "Avanti",
+    "orderNow": "Ordina ora",
+    "placeOrder": "Effettua l'ordine",
+    "proceedToChange": "Procedi con la modifica",
+    "proceedToOrder": "Procedi con l'ordine",
+    "register": "Registrati",
+    "reload": "Ricarica",
+    "save": "Salva",
+    "saveChanges": "Salva modifiche",
+    "terminate": "Termina",
+    "terminatePlan": "Termina piano",
+    "trackYourOrder": "Traccia il tuo ordine",
+    "unlimited": "Illimitato",
+    "viewDetails": "Vedi dettagli"
+  },
+  "appointment": {
+    "description": "Seleziona la data dell'appuntamento per installare la tua fibra",
+    "title": "Prenota un appuntamento con un agente"
+  },
+  "auth": {
+    "agreeToTerms": "Selezionando questa casella, accetti i nostri Termini e Condizioni",
+    "greeting": "Ciao!",
+    "logout": {
+      "confirmations": {
+        "confirm": "Sì, esci",
+        "message": "Stai per disconnetterti",
+        "question": "Vuoi continuare?",
+        "title": "Sei sicuro?"
+      },
+      "title": "Esci"
+    },
+    "pleaseLoginOrRegister": "Accedi o registrati per convalidare il tuo ordine",
+    "registerSuccessPleaseLogin": "Registrazione completata con successo. Accedi per continuare."
+  },
+  "common": {
+    "addUpTo": "Aggiungi fino a",
+    "beforeDiscount": "Prima dello sconto",
+    "commitmentTerm": "Periodo di impegno",
+    "confirm": "Conferma",
+    "confirmPlacement": "Effettuando l'ordine accetti i nostri Termini di servizio e l'Informativa sulla privacy",
+    "creationDate": "Data di creazione",
+    "discount": "Sconto",
+    "installment": {
+      "info": {
+        "paymentNote": "Paga solo l'acconto ora. I prezzi mensili e totali sono stime dei tuoi costi futuri."
+      },
+      "labels": {
+        "estimatedInstallments": "Rate (Stim.)",
+        "estimatedTotalPrice": "Prezzo Totale (Stim.)",
+        "initialPayment": "Acconto",
+        "monthlyAmount": "Pagamento Mensile",
+        "totalAmount": "Pagamento Totale",
+        "duration": "per",
+        "installmentPeriod": "Rate in",
+        "afterCompletion": "Dopo il completamento delle rate"
+      },
+      "tabs": {
+        "fullPrice": "Prezzo Intero",
+        "installment": "Pagamento Rateale"
+      },
+      "comparison": {
+        "title": "Confronta Piani di Pagamento",
+        "description": "Ecco un simulatore di tassi per diverse opzioni di pagamento rateale",
+        "loadingOptions": "Caricamento opzioni partner...",
+        "tableHeaders": {
+          "durationMonths": "Numero di Mesi",
+          "monthlyAmount": "Pagamento Mensile",
+          "totalAmount": "Pagamento Totale"
+        },
+        "interestTypes": {
+          "noInterest": "senza interessi",
+          "withInterest": "con tasso di interesse"
+        }
+      }
+    },
+    "loading": "Caricamento...",
+    "orderId": "ID dell'ordine",
+    "orderPreview": "Anteprima dell'ordine",
+    "planPreview": "Anteprima del piano",
+    "selectAnotherOffer": "Seleziona un'altra offerta",
+    "selectToOrder": "Seleziona per ordinare",
+    "shipping": "Spedizione",
+    "state": "Stato",
+    "subtotal": "Subtotale",
+    "taxExcluded": "Imposta esclusa",
+    "taxIncluded": "Tasse incluse",
+    "terminationDate": "Data di cessazione",
+    "total": "Totale",
+    "unlimited": "Illimitato",
+    "warning": "Avviso",
+    "payment": "Pagamento"
+  },
+  "device": {
+    "title": "Configura Il Tuo Dispositivo"
+  },
+  "eligibility": {
+    "description": "Testa il tuo indirizzo per verificare se la tua zona è coperta ed idonea per questa offerta",
+    "failure": {
+      "notEligibleFiber": "L'indirizzo indicato non è idoneo alla fibra",
+      "updateAddress": "Aggiorna l'indirizzo o seleziona un'altra offerta"
+    },
+    "success": {
+      "message": "Sei idoneo a questa offerta",
+      "title": "Congratulazioni!"
+    },
+    "title": "Idoneità dell'offerta",
+    "types": {
+      "basic": "Base",
+      "satellite": "Satellite"
+    }
+  },
+  "footer": {
+    "accessibilityStatement": "Dichiarazione di accessibilità",
+    "cookiePolicy": "Informativa sui cookie",
+    "privacy": "Privacy",
+    "termsAndConditions": "Termini e condizioni"
+  },
+  "forms": {
+    "labels": {
+      "address": "Indirizzo",
+      "appointmentDate": "Data dell'appuntamento",
+      "city": "Città",
+      "contactNumber": "Numero di contatto",
+      "country": "Paese",
+      "creditCardNumber": "Numero della carta di credito",
+      "cvv": "CVV",
+      "deliveryDate": "Data di consegna",
+      "email": "Email",
+      "emailMobileNumber": "Email / Numero di cellulare",
+      "expiration": "Scadenza",
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "nameOnCard": "Nome sulla carta",
+      "password": "Password",
+      "pickUpFromStore": "Ritiro in negozio",
+      "postalCode": "CAP",
+      "reEnterPassword": "Reinserisci la password",
+      "requestedDeliveryDate": "Data di consegna richiesta",
+      "shippingAddress": "Indirizzo di spedizione",
+      "title": "Titolo"
+    },
+    "placeholders": {
+      "emailMobileNumber": "Inserisci la tua email o il numero di cellulare",
+      "enterYourAddress": "Inserisci il tuo indirizzo",
+      "enterYourPostalCode": "Inserisci il tuo CAP",
+      "fullNameAsDisplayedOnCard": "Nome completo come indicato sulla carta",
+      "nameOnCard": "Nome sulla carta",
+      "password": "Inserisci la tua password",
+      "searchDevices": "Cerca dispositivi...",
+      "searchOffers": "Cerca offerte...",
+      "searchPlans": "Cerca piani...",
+      "selectACity": "Seleziona una città",
+      "selectACountry": "Seleziona un paese"
+    },
+    "titles": {
+      "mr": "Sig.",
+      "mrs": "Sig.ra"
+    }
+  },
+  "home": {
+    "active": "Attivo",
+    "greeting": "Ciao,",
+    "noMatchesFound": "Nessun risultato trovato per questa ricerca",
+    "subtitle": "Ora puoi scegliere tra la varietà di offerte e prodotti disponibili che soddisfano le tue esigenze"
+  },
+  "myPlans": {
+    "noProductsFound": "Nessun prodotto trovato",
+    "migrationInProgress": "Migrazione in corso",
+    "migrationInProgressDesc": "I tuoi prodotti sono in fase di migrazione a questo contratto. Appariranno qui una volta completata la migrazione."
+  },
+  "order": {
+    "confirmations": {
+      "cancel": {
+        "body": "Sei sicuro di voler annullare questo ordine?",
+        "confirm": "Sì, annulla",
+        "decline": "No, grazie",
+        "title": "Annulla ordine"
+      }
+    },
+    "notes": {
+      "terminationPenalty": "Tieni presente che il bundle non può essere terminato prima della fine del periodo del prodotto senza incorrere in penali"
+    },
+    "status": {
+      "cancelled": "annullato",
+      "confirmed": "confermato"
+    },
+    "statusUpdate": {
+      "completedBy": "L'ordine sarà completato entro il {{date}}",
+      "title": "Il tuo ordine è stato {{status}} con successo"
+    },
+    "notEligibleInstallment": {
+      "ineligibleMessage": "Non sei idoneo all'acquisto di un dispositivo con opzione di rateizzazione.",
+      "proceedUpfront": "Si prega di procedere con il pagamento anticipato."
+    },
+    "summary": {
+      "sections": {
+        "devices": "Dispositivi",
+        "includedItems": "Articoli inclusi",
+        "optionalItems": "Articoli opzionali",
+        "terminatedItems": "Articoli terminati"
+      }
+    }
+  },
+  "pageNotFound": {
+    "message": "La pagina che stai cercando non esiste o potrebbe essere stata spostata"
+  },
+  "pages": {
+    "bookAppointment": "Prenota appuntamento",
+    "changePlan": "Cambia piano",
+    "checkEligibility": "Verifica idoneità",
+    "completeOrder": "Completa l'ordine",
+    "deviceSetUp": "Configurazione dispositivo",
+    "devicesAndElectronics": "Dispositivi ed elettronica",
+    "editPlan": "Modifica piano",
+    "eligiblePlans": "Piani idonei",
+    "home": "Home",
+    "migratePlan": "Migra piano",
+    "myAccount": "Il mio account",
+    "myOrders": "I miei ordini",
+    "myPlans": "I miei piani",
+    "offers": "Offerte",
+    "orderStatusUpdate": "Aggiornamento stato ordine",
+    "orderSummary": "Riepilogo ordine",
+    "pageNotFound": "Pagina non trovata",
+    "setUpPlan": "Configura piano",
+    "shippingDetails": "Dettagli di spedizione",
+    "terminatePlan": "Termina Piano",
+    "trackOrder": "Traccia il tuo ordine"
+  },
+  "payment": {
+    "account": "account",
+    "billableItems": "Articoli fatturabili",
+    "billableItemsNote": "Questi articoli verranno addebitati sul tuo conto di fatturazione",
+    "billedOn": "Questa offerta verrà fatturata il",
+    "billingDetails": "Dettagli di fatturazione",
+    "byEndOfMonth": "entro la fine del mese",
+    "methods": {
+      "creditCard": "Carta di credito",
+      "eWallet": "Portafoglio elettronico"
+    },
+    "paymentDetails": "Dettagli di pagamento",
+    "purchasedItems": "Articoli acquistati",
+    "purchasedItemsNote": "Questi articoli devono essere pagati immediatamente",
+    "savePaymentMethod": "Salva metodo di pagamento",
+    "selectPaymentMethod": "Seleziona il metodo di pagamento"
+  },
+  "plan": {
+    "confirmations": {
+      "general": {
+        "cancel": "No, grazie",
+        "question": "Vuoi continuare?",
+        "title": "Sei sicuro?"
+      },
+      "incompatibleOffer": "Siamo spiacenti, non puoi sottoscrivere questa offerta poiché è incompatibile con una delle offerte a cui sei già iscritto",
+      "modify": {
+        "confirm": "Sì, modifica",
+        "message": "Una volta confermato, il tuo ordine verrà elaborato",
+        "proceed": "Sei sicuro di voler procedere con questo ordine?"
+      },
+      "terminate": {
+        "bundle": "Sei sicuro di voler terminare questo bundle?",
+        "confirm": "Sì, termina",
+        "message": "Una volta terminato, questo piano sarà rimosso",
+        "plan": "Sei sicuro di voler terminare questo piano?"
+      }
+    },
+    "contract": "Contratto",
+    "currentValue": "Valore attuale",
+    "editAddress": "Modifica indirizzo",
+    "migrate": {
+      "changeSelectedPlan": "Cambia piano selezionato",
+      "currentPlan": "Piano attuale",
+      "planSelection": "Selezione del piano",
+      "selectDescription": "Scegli tra i piani idonei disponibili sopra",
+      "yourPlanBenefits": "I vantaggi del tuo piano"
+    },
+    "modify": {
+      "includedOptions": "Queste opzioni sono incluse nel tuo piano e non possono essere terminate a meno che tu non termini l'intero piano",
+      "modificationsNotAuthorized": "Modifiche a questo contratto non autorizzate",
+      "noItemsToTerminate": "Nessun elemento da terminare"
+    },
+    "myPlanDetails": "Dettagli del mio piano",
+    "planPreview": {
+      "applicationOffset": "Applicazione a partire da {{unit}}#{{offset}}",
+      "included": "Incluso",
+      "options": "Opzioni"
+    },
+    "sections": {
+      "includedOffers": "Offerte incluse",
+      "optionalOffers": "Offerte opzionali"
+    },
+    "selectionPreview": "Anteprima selezione",
+    "title": "Configura il tuo piano",
+    "warnings": {
+      "terminationPenalty": "Tieni presente che la cessazione di questo contratto prima della fine del periodo del prodotto comporterà una penale",
+      "terminationPenaltyWithCharges": "Il piano include un periodo del prodotto. Una volta terminato, il piano sarà rimosso e verranno applicate penali. Vuoi continuare?"
+    }
+  },
+  "shipping": {
+    "edit": "Modifica",
+    "itemCount": "{{count}} articolo",
+    "itemCount_plural": "{{count}} articoli",
+    "offerShipping": "{{count}} della tua offerta {{verb}} in spedizione",
+    "pickUpMessage": "Puoi ritirare i tuoi articoli presso il negozio selezionato a partire da domani",
+    "shippingItems": "Articoli da spedire",
+    "shippingMethod": "Metodo di spedizione",
+    "verbs": {
+      "are": "sono",
+      "is": "è"
+    }
+  },
+  "validation": {
+    "custom": {
+      "deliveryDateMinimum": "Seleziona una data di consegna tra 3 giorni o successiva"
+    },
+    "invalid": {
+      "creditCardNumber": "Inserisci un numero di carta di credito valido di 16 cifre",
+      "cvv": "Inserisci un codice di sicurezza valido di 3 cifre",
+      "email": "Inserisci un indirizzo email valido",
+      "emailMobileNumber": "Fornisci un'email o un numero di cellulare valido",
+      "expirationDate": "Seleziona una data di scadenza valida nel futuro",
+      "nameOnCard": "Inserisci un nome valido come indicato sulla carta",
+      "password": "Fornisci una password valida"
+    },
+    "length": {
+      "passwordMin": "La password deve contenere almeno 8 caratteri"
+    },
+    "match": {
+      "passwordMismatch": "Le password non corrispondono",
+      "reEnterPassword": "Reinserisci la tua password"
+    },
+    "required": {
+      "address": "L'indirizzo è obbligatorio",
+      "city": "La città è obbligatoria",
+      "country": "Il paese è obbligatorio",
+      "creditCardNumber": "Il numero della carta di credito è obbligatorio",
+      "cvv": "Il codice di sicurezza è obbligatorio",
+      "deliveryDate": "La data di consegna è obbligatoria",
+      "email": "L'email è obbligatoria",
+      "emailMobileNumber": "L'email o il numero di cellulare è obbligatorio",
+      "expirationDate": "La data di scadenza è obbligatoria",
+      "firstName": "Il nome è obbligatorio",
+      "nameOnCard": "Il nome sulla carta è obbligatorio",
+      "password": "La password è obbligatoria",
+      "postalCode": "Il CAP è obbligatorio"
+    }
+  }
+}

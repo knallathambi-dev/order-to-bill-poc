@@ -1,0 +1,29 @@
+{
+  "SelectEntityOfferingType" : {
+    "required" : [ "supportEntitySpecification.id", "supportEntityType", "productofferingType" ],
+    "type" : "object",
+    "properties" : {
+      "supportEntitySpecification.id" : {
+        "type" : "string",
+        "readOnly" : true
+      },
+      "supportEntityType" : {
+        "type" : "string",
+        "enum" : [ "CFSSpec", "StockItem", "SupplierProduct", "ProductSpec" ]
+      },
+      "productofferingType" : {
+        "type" : "string",
+        "enum" : [ "Contract", "BundleProductOffering", "AtomicProductOffering" ]
+      },
+      "isSellable" : {
+        "type" : "boolean"
+      },
+      "isBundle" : {
+        "type" : "boolean"
+      },
+      "isInstallable" : {
+        "type" : "boolean"
+      }
+    }
+  }
+}

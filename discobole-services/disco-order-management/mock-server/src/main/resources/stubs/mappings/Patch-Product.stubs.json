@@ -1,0 +1,88 @@
+{
+  "mappings": [
+    {
+      "name": "Updated Product Status: Created to Confirmed - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productManagement/v1/product",
+        "method": "PATCH",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": {
+              "expression": "$[0].value",
+              "equalTo": "Created"
+            }
+          },
+          {
+            "matchesJsonPath": {
+              "expression": "$[1].value",
+              "equalTo": "Confirmed"
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Management/ProductsConfirmed.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Updated Product Status: Created to Cancelled - Success",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productManagement/v1/product",
+        "method": "PATCH",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": {
+              "expression": "$[0].value",
+              "equalTo": "Cancelled"
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Management/ProductsCancelled.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Updated Product Status - Success",
+      "priority": 3,
+      "request": {
+        "urlPath": "/productManagement/v1/product",
+        "method": "PATCH",
+        "bodyPatterns": [
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Management/ProductsPatched.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad url - Not found",
+      "priority": 4,
+      "request": {
+        "urlPattern": "/productManagement/v1/produ.*",
+        "method": "PATCH"
+      },
+      "response": {
+        "status": 404,
+        "bodyFileName": "NotFound.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

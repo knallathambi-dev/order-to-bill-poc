@@ -1,0 +1,26 @@
+{
+  "Contract_Mobile_Package_ProductOffering_Id": "dbbc92f9-faf2-4886-8749-0f07abfc1971",
+
+  "BundlePO_Mobile_Package_ProductOffering_Id": "7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+  "AtomicPO_Mobile_Line_ProductOffering_Id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+  "Mobile_line_ProductSpecification_Id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+  "AtomicPO_Mobile_Handset_ProductOffering_Id": "d38215f7-d631-4949-b6a7-f206245b9880",
+  "Mobile_Handset_ProductSpecification_Id": "b8d35bcf-fab9-4fb0-b317-2c02a70bfd75",
+  "AtomicPO_Sim_Card_ProductOffering_Id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+  "Sim_Card_ProductSpecification_Id": "191424cb-6002-46aa-a5a9-0602cfba83c7",
+  "AtomicPO_Connectivity_ProductOffering_Id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+  "Connectivity_ProductSpecification_Id": "e90a1274-7dc0-4259-a344-362b55edfc58",
+  "AtomicPO_Time_Bundle_ProductOffering_Id": "95023bc2-151d-4bf2-bb87-1b7d6cd2e847",
+  "Time_Bundle_ProductSpecification_Id": "63d24f7e-c529-404c-911b-7c7926fd12ff",
+  "AtomicPO_Ring_Back_Tone_ProductOffering_Id": "a055e826-633e-4b36-bd72-9774df80b769",
+  "Ring_Back_Tone_ProductSpecification_Id": "10e9ee72-2aff-4f25-904c-e6003fa3718b",
+  "AtomicPO_SMS_Option_ProductOffering_Id": "889058f0-1ce8-4973-bc35-849766bdf6a4",
+  "SMS_Option_ProductSpecification_Id": "c1b8052d-5de9-4719-b0e2-de327455884d",
+  "AtomicPO_Samsung_Galaxy_S10_ProductOffering_Id": "889058f0-1ce8-4973-bc35-849766bdf6a4",
+  "AtomicPO_Samsung_Galaxy_ProductOffering_Id": "889058f0-1ce8-4973-bc35-849766bdf6a4",
+  "Shipement_ProductSpecification_Id": "b8d35bcf-fab9-4fb0-b317-2c02a70bfd75",
+  "Product_Id": "69a7181d35a5a63b2f5345ae",
+  "Contract_Product_Id": "69a7180035a5a63b2f534538",
+  "Contract_Mobile_Package_Basic_ProductOffering_Id": "772056cd-485b-4877-8453-1648a07c43f7",
+  "BundlePO_Mobile_Package_Basic_ProductOffering_Id": "414e3b5e-7fca-4b7e-bf73-51fa1e66b87f"
+}

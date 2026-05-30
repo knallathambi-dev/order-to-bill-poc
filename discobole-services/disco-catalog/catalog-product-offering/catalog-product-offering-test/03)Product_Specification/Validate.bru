@@ -1,0 +1,67 @@
+meta {
+  name: Validate
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "characteristic": [
+                      {
+                          "name": "ValidateEntityOperation",
+                          "valueType": "Object",
+                          "value": {
+                              "isValidated": true
+                          },
+                          "@baseType": null,
+                          "@schemaLocation": null,
+                          "@type": "ObjectCharacteristic"
+                      }
+                  ]
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  test("to verify Next task is empty", function(){
+      expect(jsonData._links.nextTaskstoBePerformed).to.eql([]);
+  
+  });
+  
+  
+  test("to verify existingTaskEditable is empty", function(){
+      expect(jsonData._links.existingTaskEditable).to.eql([]);
+    
+    
+    
+  });
+  
+  
+  
+}
+
+docs {
+  Request to validate the creation of PS process.
+  this step is the last step in order to create a PS
+}

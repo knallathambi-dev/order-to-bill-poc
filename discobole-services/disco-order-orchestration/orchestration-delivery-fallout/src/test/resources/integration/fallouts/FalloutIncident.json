@@ -1,0 +1,41 @@
+{
+  "id": "1198a228-28ee-43e5-a5e6-d08e440c8847",
+  "state": "COMPLETED",
+  "creationDate": "2024-08-11T12:24:58.394Z",
+  "modificationDate": "2024-08-12T09:21:05.472Z",
+  "relatedEntity": [
+    {
+      "id": "1f8f62f8-be7a-4fa6-a0c6-1e83c9467dd5",
+      "@referredType": "OrchestrationPlan",
+      "role": "initiator",
+      "href": "/orchestrationPlan/1f8f62f8-be7a-4fa6-a0c6-1e83c9467dd5"
+    },
+    {
+      "id": "1f8f62f8-be7a-4fa6-a0c6-1e83c9467dd5",
+      "@referredType": "OrchestrationPlan",
+      "role": "relatedOrchestrationPlan",
+      "href": "/orchestrationPlan/1f8f62f8-be7a-4fa6-a0c6-1e83c9467dd5"
+    },
+    {
+      "id": "1120941349287752312",
+      "@referredType": "ProductOrder",
+      "role": "relatedProductOrder"
+    }
+  ],
+  "relatedParty": {
+    "id": "227-mf30",
+    "role": "customer",
+    "name": "Lisa"
+  },
+  "errorMessage": {
+    "code": "HTTP_BAD_REQUEST",
+    "reason": "The requested resource could not be found.",
+    "message": "{http://om-mock-server-review:8080/productInventoryManagement/v1/product?productOrderItem.productOrderId=1120941349287752312&productOrderItem.orderItemId=10} responded with a 404 Not found and message {\n                                               Request was not matched\n                                               =======================\n\n-----------------------------------------------------------------------------------------------------------------------\n| Closest stub                                             | Request                                                  |\n-----------------------------------------------------------------------------------------------------------------------\n                                                           |\nGet products                                               |\n                                                           |\nGET                                                        | GET\n[path] /productInventoryManagement/v1/product                       | /productInventoryManagement/v1/product?productOrderItem.productOrd\n                                                           | erId=1120941349287752312&productOrderItem.orderItemId=10\n                                                           |\nQuery: productOrderItem.productOrderId [matches] 1113.*    | productOrderItem.productOrderId: 1120941349287752312<<<<< Query does not match\nQuery: productOrderItem.orderItemId [matches] .*           | productOrderItem.orderItemId: 10\n                                                           |\n                                                           |\n-----------------------------------------------------------------------------------------------------------------------\n}",
+    "timestamp": "2024-08-11T12:24:57.353Z"
+  },
+  "href": "https://orchestration-delivery-fallout-review.apps.fr01.paas.tech.orange/falloutIncident/1198a228-28ee-43e5-a5e6-d08e440c8847",
+  "resolution": {
+    "status": "UNRESOLVED",
+    "comment": "unresolved data"
+  }
+}

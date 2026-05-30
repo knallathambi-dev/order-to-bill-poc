@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "orchestration_delivery.fullname" . }}
+  labels:
+    {{- include "orchestration_delivery.labels" . | nindent 4 }}
+data:
+  {{- (.Files.Glob "config/orchestration-delivery.yml").AsConfig | nindent 2 }}

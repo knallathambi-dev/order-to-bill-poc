@@ -1,0 +1,12 @@
+{
+  "SelectPO" : {
+    "required" : [ "productOffering.id" ],
+    "type" : "object",
+    "properties" : {
+      "productOffering.id" : {
+        "type" : "string",
+        "readOnly" : true
+      }
+    }
+  }
+}

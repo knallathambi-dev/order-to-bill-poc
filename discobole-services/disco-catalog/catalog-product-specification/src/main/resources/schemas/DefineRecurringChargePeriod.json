@@ -1,0 +1,13 @@
+{
+  "DefineRecurringChargePeriod" : {
+    "type" : "object",
+    "properties" : {
+      "recurringChargePeriodLength" : {
+        "type" : "number"
+      },
+      "recurringChargePeriodType" : {
+        "type" : "string"
+      }
+    }
+  }
+}

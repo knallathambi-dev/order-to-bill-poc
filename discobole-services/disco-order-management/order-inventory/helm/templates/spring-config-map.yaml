@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "order_inventory.fullname" . }}
+  labels:
+    {{- include "order_inventory.labels" . | nindent 4 }}
+data:
+  {{- (.Files.Glob "config/order-inventory.yml").AsConfig | nindent 2 }}

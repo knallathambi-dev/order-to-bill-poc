@@ -1,0 +1,77 @@
+meta {
+  name: BulkUpdateStatusActive
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{SpecProductId}}/operationalStatus",
+          "value": "Confirmed"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{SpecProductId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{SpecProductId}}/operationalStatus",
+          "value": "Active"
+      }
+  ]
+}
+
+script:pre-request {
+  var productsInfo = bru.getEnvVar("productsInfo");
+  if (!productsInfo) {
+      productsInfo = globals.get("productsInfo"); 
+  }
+  productsInfo = JSON.parse(productsInfo || '[]'); 
+  
+  function getByType(products,type) {
+      let res = null;
+      products.forEach(function(product) {
+          if (product.type==type) {
+              res= product.id;
+          }
+      });
+      return res;
+  }
+  
+  bru.setEnvVar("SpecProductId", getByType(productsInfo,'productSpecification'));
+  
+  
+  
+  
+  
+}
+
+tests {
+  var responseBody = res.body;
+  responseBody.forEach(function(product) { 
+      if(product.startDate!=null){
+          const datePart = product.startDate.split('T')[0];
+  
+          bru.setEnvVar("startDate", datePart);
+  
+      }
+   });
+}

@@ -1,0 +1,120 @@
+{
+  "@type": "Product",
+  "id": "67c08a6d3e0a2f1fdb75e7e4",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e4",
+  "isBundle": false,
+  "name": "Add-on Netflix",
+  "startDate": "2025-02-27T15:54:02Z",
+  "billingAccount": {
+    "id": "13c281-1626-f765-3610-eb36424e5241",
+    "@referredType": "BillingAccount"
+  },
+  "productCharacteristic": [
+    {
+      "@type": "StringCharacteristic",
+      "id": "68e5f15c-e34d-469e-bdbe-523f66fe9826.1",
+      "name": "Level",
+      "value": "Basic"
+    }
+  ],
+  "productOffering": {
+    "id": "c2c07f99-a99b-4e0d-9eff-eb76ad4600af",
+    "name": "Add-on Netflix",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "5ecae042-b365-42e7-a29f-41c54078d05b",
+      "productOrderId": "67c08a62311d586dbf8fe175"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "Netflix Basic Level Charge",
+      "name": "Netflix Basic Level Charge",
+      "priceType": "recurringCharge",
+      "recurringChargePeriod": {
+        "amount": 1,
+        "units": "month"
+      },
+      "productOfferingPrice": {
+        "id": "aa6ad047-a0b1-428c-b583-18eaf7f43ff1",
+        "name": "Netflix Basic Level Charge",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 5
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 5
+        }
+      },
+      "productPriceAlteration": []
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e2",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "80adcad3-dbac-4e5e-8a5e-d9ec60a180db",
+    "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=80adcad3-dbac-4e5e-8a5e-d9ec60a180db",
+    "name": "Add-on Netflix PS",
+    "version": "0.2",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "qwy2rhnix",
+        "name": "ii",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Active",
+  "operationalStatus": "Active",
+  "creationDate": "2025-02-27T15:53:17Z",
+  "lastUpdateDate": "2025-02-27T15:54:02Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-27T15:54:02Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-27T15:53:33Z",
+      "status": "PendingActive"
+    },
+    {
+      "changeDate": "2025-02-27T15:54:02Z",
+      "status": "Active"
+    }
+  ]
+}

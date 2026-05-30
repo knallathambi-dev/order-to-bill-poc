@@ -1,0 +1,119 @@
+{
+  "@type": "PhysicalProduct",
+  "id": "67c08a6d3e0a2f1fdb75e7e7",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e7",
+  "isBundle": false,
+  "name": "TV Box",
+  "productSerialNumber": "67890543219876511223",
+  "startDate": "2025-02-27T15:54:02Z",
+  "billingAccount": {
+    "id": "138d0b-655c-7389-561a-8175cc6a2584",
+    "@referredType": "BillingAccount"
+  },
+  "productOffering": {
+    "id": "26ae3fe7-ac98-47b6-8509-c14a82efd8f9",
+    "name": "TV Box",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "faefcf0f-d804-41b3-842d-c6a6dfee9ee6",
+      "productOrderId": "67c08a62311d586dbf8fe175"
+    }
+  ],
+  "productPrice": [
+    {
+      "name": "TV Box Charge",
+      "priceType": "recurringCharge",
+      "recurringChargePeriod": {
+        "amount": 1,
+        "units": "month"
+      },
+      "productOfferingPrice": {
+        "id": "566b85e4-29db-4edd-9642-25aa9f3367e8",
+        "name": "TV Box Charge",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 2
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 2
+        }
+      },
+      "productPriceAlteration": []
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e2",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "e200d3a6-7039-48a3-b613-db21f81dd66e",
+    "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=e200d3a6-7039-48a3-b613-db21f81dd66e",
+    "name": "TV Box PS",
+    "version": "0.2",
+    "@type": "ProductSpecificationRef"
+  },
+  "realizingResource": [
+    {
+      "id": "69x",
+      "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+      "@type": "PhysicalResource"
+    }
+  ],
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "qwy2rhnix",
+        "name": "ii",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Sold",
+  "operationalStatus": "Sold",
+  "creationDate": "2025-02-27T15:53:17Z",
+  "lastUpdateDate": "2025-02-27T15:54:02Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-27T15:54:02Z",
+      "status": "Sold"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-27T15:53:33Z",
+      "status": "PendingDelivery"
+    },
+    {
+      "changeDate": "2025-02-27T15:54:02Z",
+      "status": "Sold"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+# SPDX-FileCopyrightText: 2025, 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+## --- MkDocs configuration (https://www.mkdocs.org/user-guide/configuration/)
+
+site_name: DISCOBOLE - Product Inventory
+site_url: !ENV [SITE_URL, CI_PAGES_URL, 'https://discobole.ow2.io/disco-oda-components/disco-product-inventory/doc/']
+site_author: DISCOBOLE Team
+repo_url: !ENV [REPO_URL, CI_PROJECT_URL, 'https://gitlab.ow2.org/discobole/disco-oda-components/disco-product-inventory']
+site_dir: public
+# edit_uri: discobole.ow2.io/edit/main/docs/
+
+extra:
+  generator: false
+
+plugins:
+  - git-revision-date
+  - material/search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - plantuml: # visit https://medium.com/@michkravets/add-inline-plantuml-to-your-mkdocs-documentation-9a2acb7599a6
+      puml_url: https://www.plantuml.com/plantuml/
+      num_workers: 8
+  - swagger-ui-tag # visit https://github.com/blueswen/mkdocs-swagger-ui-tag
+
+markdown_extensions:
+  - toc:
+      toc_depth: 3
+      permalink: True
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+  - mdx_truly_sane_lists
+  - md_in_html
+  - meta
+  - codehilite
+  - admonition
+  - attr_list
+  - def_list
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+          # enable extended formatting (https://squidfunk.github.io/mkdocs-material/reference/formatting/)
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+
+## --- Material theme for MkDocs configuration (https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
+
+theme:
+  name: material
+  #custom_dir: overrides
+  favicon: img/logo.svg
+  logo: img/logo.svg
+  font: false
+  icon:
+    repo: fontawesome/brands/gitlab
+  palette:
+    primary: "black"
+    accent: "deep orange"
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.instant
+    - navigation.indexes
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.action.edit
+    - content.code.annotate
+  language: "en"
+
+## --- Orange specific and Product inventory configuration
+
+extra_javascript:
+  - https://unpkg.com/zooming/build/zooming.min.js
+  - js/jquery.min.js
+  # - js/boosted.min.js
+  - js/tracking.js
+  - js/discobole-custom.js
+  - js/zoom.js
+
+extra_css:
+  #- assets/stylesheets/orange_new.css
+  - css/orange.css
+  - css/custom-admonition.css
+
+nav:
+  - Get Started:
+    - Introduction: about/introduction.md
+    - Use Cases: about/use-cases.md
+    - Roadmap: about/roadmap.md
+    - People and Collaboration: about/collaboration.md
+  - API Reference Guides:
+    - API Specifications:
+      - About API Specifications: api-references/specification-apis.md
+      # INSERT_API_SPECIFICATIONS_TOC_HERE
+      - Event > product-inventory: api-references/specifications/product-inventory-asyncapi-spec.yaml
+    - API User Guides:
+      - About API User Guide: api-references/overall-apis.md
+      # INSERT_API_USER_GUIDES_TOC_HERE
+    - API Compliance:
+      - About Compliance: api-references/compliance-apis.md
+      # INSERT_API_COMPLIANCE_REPORTS_TOC_HERE
+    - API Conformance:
+      - About Conformance: api-references/conformance-apis.md
+      # INSERT_API_CONFORMANCE_REPORT_TOC_HERE
+  - Architecture:
+    - Overall Architecture: architecture/overall-architecture.md
+    - Performance Benchmarks: architecture/performance.md
+    - Security: architecture/security.md
+    - Observability: architecture/observability.md
+    - Architecture Decisions:
+      - About Architecture Decisions Records: architecture/about-adr.md
+      # INSERT_ARCHITECTURE_DECISIONS_TOC_HERE
+    # INSERT_DETAILED_ARCHITECTURE_TOC_HERE
+  - Frontend:
+    - Introduction: frontend/introduction.md
+    - Admin Portal:
+      - Monitoring: frontend/monitoring.md
+      - Administration: frontend/administration.md
+      - Exporting: frontend/exporting.md
+      - Reporting: frontend/reporting.md
+    - Software Architecture: frontend/software-architecture.md
+  - Deployment & Operations:
+    - Live Environments: deployments/live-environments.md
+    - Development Ecosystem: deployments/development-ecosystem.md
+    - Deployment Pipelines: deployments/deployment-pipelines.md
+    - Deploy your Product Inventory: deployments/deployment-component.md
+    - Network flows: deployments/network-flows.md

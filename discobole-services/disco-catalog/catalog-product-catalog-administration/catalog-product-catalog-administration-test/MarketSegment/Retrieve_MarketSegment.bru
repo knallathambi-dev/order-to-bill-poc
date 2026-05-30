@@ -1,0 +1,23 @@
+meta {
+  name: Retrieve_MarketSegment
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{Admin_URL}}/marketSegment/{{MS_id}}
+  body: none
+  auth: none
+}
+
+body:json {
+  {  "name": "mk1",
+    "id": "mk1",
+    "@type": "MarketSegment"
+    
+  }
+}
+
+assert {
+  res.status: eq 200
+}

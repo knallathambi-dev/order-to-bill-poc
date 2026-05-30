@@ -1,0 +1,85 @@
+meta {
+  name: defineidentitydata
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "DefineIdentityData",
+        "valueType": "Object",
+        "value": {
+          "identityData": {
+            "name": "{{Entity_name}}_mod",
+            "description": "{{Entity_name}}_mod",
+            "brand": "Orange"
+          },
+          "lifecycleStatus":"{{status}}",
+          "relatedParty": [],
+          "validityPeriod": {
+            "validFor": {
+              "startDateTime": "{{startDate}}T23:20:50.520Z",
+              "endDateTime": null
+            }
+          }
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+  
+  
+  
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[4].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  await bru.sleep(3000);
+}
+
+tests {
+  var jsonData = res.getBody();
+  test("to verify Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+  
+  test("to verify Next task to be performed is defCharacteristics", function(){
+      expect(jsonData._links.nextTaskstoBePerformed[2].title).to.eql("ProductSpecModification.modifyCharacteristics");
+  
+  });
+  
+  
+  
+}
+
+docs {
+  This step is defines the  Identitydata of the PS.
+  it sends the entity name(variebles) and description in the payload if present in the environment else generates a random value.
+}

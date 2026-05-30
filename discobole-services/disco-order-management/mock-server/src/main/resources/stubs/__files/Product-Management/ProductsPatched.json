@@ -1,0 +1,131 @@
+[
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356c3",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356c3",
+    "productOffering": {
+      "id": "5fe032f0-fa01-42ec-afeb-920f74c2eae3",
+      "name": "Mobile Package 1",
+      "@type": "Contract"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "1",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356c2"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356c2",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356c2",
+    "productOffering": {
+      "id": "cb07fd83-8f41-4cd2-97f5-5989f3ab2bd8",
+      "name": "Mobile Package 1",
+      "@type": "BundledProductOffering"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "2",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356be"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356bf"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356c0"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356c1"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356c1",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356c1",
+    "productOffering": {
+      "id": "a52ed0ff-e1a1-45de-822a-9db878b0e4fc",
+      "name": "Sim Card",
+      "@type": "AtomicProductOffering"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "9",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "sells",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356bd"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "Active"
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "DefineBundledOperationSpecification" : {
+    "required" : [ "name" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "productOffering.commercialOperationSpecification.id" : {
+          "type" : "string",
+          "readOnly" : true,
+          "enum" : [ "1", "2", "3", "4" ]
+        },
+        "name" : {
+          "type" : "string",
+          "enum" : [ "Add", "Modify", "Terminate", "Migrate" ]
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "validFor" : {
+          "required" : [ "startDateTime" ],
+          "type" : "object",
+          "properties" : {
+            "endDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            },
+            "startDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            }
+          }
+        }
+      }
+    }
+  }
+}

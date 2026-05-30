@@ -1,0 +1,128 @@
+{
+  "DefineIdentityData" : {
+    "type" : "object",
+    "properties" : {
+      "identityData" : {
+        "required" : [ "name", "description" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "brand" : {
+            "type" : "string",
+            "default" : "Orange"
+          },
+          "productNumber" : {
+            "type" : "string"
+          }
+        }
+      },
+      "relatedParty" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "@referredType", "role" ],
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "@referredType" : {
+                "type" : "string",
+                "enum" : [ "individual", "organization" ]
+              },
+              "role" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string",
+                "readOnly" : true
+              }
+            }
+          }
+        }
+      },
+      "relatedResource" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "role" ],
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "role" : {
+                "type" : "string"
+              },
+              "@referredType" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "id" : {
+                "type" : "string",
+                "readOnly" : true
+              }
+            }
+          }
+        }
+      },
+      "validityPeriod" : {
+        "type" : "object",
+        "properties" : {
+          "validFor" : {
+            "required" : [ "startDateTime" ],
+            "type" : "object",
+            "properties" : {
+              "endDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "startDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              }
+            }
+          }
+        }
+      },
+      "identityDataMinCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "identityDataMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "relatedPartyMinCardinality" : {
+        "type" : "number",
+        "default" : 0
+      },
+      "relatedPartyMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "relatedResourceMinCardinality" : {
+        "type" : "number",
+        "default" : 0
+      },
+      "relatedResourceMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validityPeriodMinCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validityPeriodMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      }
+    }
+  }
+}

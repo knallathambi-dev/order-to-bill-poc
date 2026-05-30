@@ -1,0 +1,966 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: 8080
+  shutdown: graceful
+  tomcat:
+    accesslog:
+      enabled: true
+    mbeanregistry:
+      enabled: true
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: order-capture-${ENV_TYPE}
+  keycloakAuthUrl: ${KEYCLOAK_URL}
+  cloud:
+    stream:
+      kafka:
+        binder:
+          enableObservation: true
+          brokers: ${KAFKA_SERVICE}
+          auto-create-topics: false
+          auto-add-partitions: false
+      bindings:
+        productOrderCommand:
+          destination: disco.order-management.productOrderChange-command
+          producer:
+            partition-key-expression: headers['partitionKey']
+          content-type: application/json
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_URL}/realms/SpringBootKeycloak
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ${ORDER_KEYCLOAK_CLIENT_ID}
+            authorization-grant-type: client_credentials
+            client-secret: ${ORDER_KEYCLOAK_CLIENT_SECRET}
+      resourceServer:
+        jwt:
+          issuer-uri: ${KEYCLOAK_URL}/realms/SpringBootKeycloak
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  main:
+    allow-bean-definition-overriding: true
+
+# Metrics config
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  server:
+    port: 9000
+
+logging:
+  level:
+    root: INFO
+    com.orange.discobole.ordermanagement.ordercapture: INFO
+
+cqrs:
+  command-enabled: true
+  query-enabled: true
+  error-enabled: false
+
+app:
+  version: 1.14.0
+  name: order-capture
+  description: order-capture-description
+  ownerName: Herve Bouvier
+  ownerMail: herve.bouvier@orange.com
+  security:
+    userRoleRetrievalUrl: http://${AUTH_USER_ROLE_SERVICE}/userRolePermission/v1/userRole
+    roleEntitlements: x302,x303
+    ssl:
+      enabled: true
+  webclient:
+    connectTimeout: 30s
+    responseTimeout: 30s
+  cache:
+    caffeine:
+      spec:
+        maximumSize: 1000
+        expireAfterWrite: 15m
+
+process-flow:
+  role:
+    admin: disco-admin
+
+config:
+  productOfferingUrl: http://${PRODUCT_CATALOG_SERVICE:catalog-product-catalog-integration}/productCatalogManagement/v1/productOffering
+  productOfferingQualificationUrl: http://${PRODUCT_CONFIGURATOR_SERVICE:product-configurator-integration}/productOfferingQualification/v1/productOfferingQualification
+  productConfigurationUrl: http://${PRODUCT_CONFIGURATOR_SERVICE:product-configurator-integration}/v1/queryProductConfiguration
+  productConfigurationMockedUrl: http://${MOCK_SERVER_SERVICE:mock-server-integration:8080}/v1/QueryProductConfiguration
+  productSpecificationUrl: http://${PRODUCT_CATALOG_SERVICE:catalog-product-catalog-integration}/productCatalogManagement/v1/productSpecification
+  productOfferingPriceUrl: http://${PRODUCT_CATALOG_SERVICE:catalog-product-catalog-integration}/productCatalogManagement/v1/productOfferingPrice
+  inventoryManagementUrl: http://${MOCK_SERVER_SERVICE:mock-server-integration:8080}/api/resourceInventoryManagement/v1/resource
+  productInventoryUrl: http://${PRODUCT_INVENTORY_SERVICE:product-inventory-integration:8080}/productInventoryManagement/v1/product
+  orderInventoryUrl: http://${ORDER_INVENTORY_SERVICE:order-inventory-integration:8080}/productOrderingManagement/v1/productOrder
+  partyRoleManagementUrl: http://${MOCK_SERVER_SERVICE:mock-server-integration:8080}/api/partyRoleManagement/v5/partyRole
+  productStockManagementUrl: http://${MOCK_SERVER_SERVICE:mock-server-integration:8080}/api/stock/v4/productStock
+  paymentManagementUrl: http://${MOCK_SERVER_SERVICE:mock-server-integration:8080}/paymentManagement/v4/payment
+  accountManagementUrl: http://${MOCK_SERVER_SERVICE:mock-server-integration:8080}/accountManagement/v5/billingAccount
+  serviceQualificationManagementUrl: http://${MOCK_SERVER_SERVICE:mock-server-integration:8080}/api/serviceQualificationManagement/v5/checkServiceQualification
+  appointmentManagementUrl: http://${MOCK_SERVER_SERVICE:mock-server-integration:8080}/appointmentManagement/v4/appointment
+  partyManagementUrl: http://${MOCK_SERVER_SERVICE:mock-server-integration:8080}/partyManagement/v1/individual
+
+retry:
+  maxAttempts: 3
+  maxDelay: 1000
+
+package-element:
+  state-machines:
+    - name: OrderCapture
+      states:
+        - name: InitialAutomatedTask
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: OrderCaptureRegion
+          pseudoStateKind: INITIAL
+        - name: initialChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: OrderCaptureRegion
+          pseudoStateKind: CHOICE
+        - name: FORK
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: OrderCaptureRegion
+          pseudoStateKind: FORK
+        - name: REGION
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: OrderCaptureRegion
+          pseudoStateKind:
+        - name: cancelOrder
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: CancelRegion
+          pseudoStateKind: INITIAL
+        - name: terminateFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: CancelRegion
+          pseudoStateKind: END
+        - name: selectOfferOrContract
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: INITIAL
+          editable: false
+        - name: checkIfPartyIdentifiedOnPostChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkIfPartyIdentifiedOnPatchChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkOfferOrContractTypeChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: validateProductIdentifierChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkProductOfferingOnModificationContractChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkEligibilityOnContractModificationChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkEligibilityChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: confirmConfiguration
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind:
+          editable: false
+        - name: checkProvidedUseCaseChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: reCheckEligibilityChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkIfPartyIdentifiedChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: identifyParty
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind:
+          editable: false
+        - name: checkIfPartyRolesCheckedChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkPartyRolesChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkProspectPartyRoleCreationChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: validateProductOrderIdChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          editable: false
+          pseudoStateKind: CHOICE
+        - name: checkIfProspectPartyRoleChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          editable: false
+          pseudoStateKind: CHOICE
+        - name: checkCustomerPartyRoleCreationChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+          editable: false
+        - name: checkIfOrderInstantiatedChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkTechnicalEligibilityChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkIfCatalogDrivenTasksSetChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkIfReservationNeededChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkIfResourcesReservedChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: validateOrder
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind:
+          editable: false
+        - name: updateProductOrderChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: createInstalledBaseChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: setCompletionTasksChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: orderCompletionChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: orderAcceptationChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: productsUpdateChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: referencesValidationChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: addReferencesChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkFinancialEligibilityChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: completeOrder
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind:
+          editable: false
+        - name: endMainRegion
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: MainRegion
+          pseudoStateKind: END
+          editable: false
+        - name: JOIN
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: OrderCaptureRegion
+          pseudoStateKind: JOIN
+        - name: endProcess
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: OrderCaptureRegion
+          pseudoStateKind: END
+      transitions:
+        - event: InitialAutomatedEvent
+          source: InitialAutomatedTask
+          target: initialChoice
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: checkPartyIdentificationEvent1
+          source: initialChoice
+          target: checkIfPartyIdentifiedOnPostChoice
+          actions:
+          guard: isExistProductOfferingGuard
+          kind: EXTERNAL
+        - event: partyIdentifiedEvent1
+          source: checkIfPartyIdentifiedOnPostChoice
+          target: checkEligibilityChoice
+          actions:
+          guard: isPartyIdentifiedOnPostGuard
+          kind: EXTERNAL
+        - event: partyNotIdentifiedEvent1
+          source: checkIfPartyIdentifiedOnPostChoice
+          target: confirmConfiguration
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: initialChoiceAutomatedTaskEvent2
+          source: initialChoice
+          target: validateProductIdentifierChoice
+          actions:
+          guard: isExistProductIdentifierGuard
+          kind: EXTERNAL
+        - event: initialChoiceUserTaskEvent
+          source: initialChoice
+          target: selectOfferOrContract
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: FORK
+          target: REGION
+          actions:
+          guard:
+          kind:
+        - event: offerSelectedEvent
+          source: selectOfferOrContract
+          target: checkOfferOrContractTypeChoice
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: checkPartyIdentificationEvent2
+          source: checkOfferOrContractTypeChoice
+          target: checkIfPartyIdentifiedOnPatchChoice
+          actions:
+          guard: isProductOfferingProvidedOnPatchGuard
+          kind: EXTERNAL
+        - event: partyIdentifiedEvent2
+          source: checkIfPartyIdentifiedOnPatchChoice
+          target: checkEligibilityChoice
+          actions:
+          guard: isPartyIdentifiedOnPatchGuard
+          kind: EXTERNAL
+        - event: partyNotIdentifiedEvent2
+          source: checkIfPartyIdentifiedOnPatchChoice
+          target: confirmConfiguration
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: productModificationEvent
+          source: checkOfferOrContractTypeChoice
+          target: validateProductIdentifierChoice
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: validProductIdentifierEvent
+          source: validateProductIdentifierChoice
+          target: checkProductOfferingOnModificationContractChoice
+          actions:
+          guard: isValidProductIdentifierGuard
+          kind: EXTERNAL
+        - event: notValidProductIdentifierEvent
+          source: validateProductIdentifierChoice
+          target: selectOfferOrContract
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: providedProductOfferingIdOnModificationEvent
+          source: checkProductOfferingOnModificationContractChoice
+          target: checkEligibilityOnContractModificationChoice
+          actions:
+          guard: isProductOfferingIdProvidedOnModificationGuard
+          kind: EXTERNAL
+        - event: productOfferingNotProvidedIdOnModificationEvent
+          source: checkProductOfferingOnModificationContractChoice
+          target: confirmConfiguration
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: eligibleProductOfferingOnModificationEvent
+          source: checkEligibilityOnContractModificationChoice
+          target: confirmConfiguration
+          actions:
+          guard: isEligibleModificationGuard
+          kind: EXTERNAL
+        - event: productOfferingNotEligibleOnModificationEvent
+          source: checkEligibilityOnContractModificationChoice
+          target: selectOfferOrContract
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: eligibilityValidatedEvent
+          source: checkEligibilityChoice
+          target: confirmConfiguration
+          actions:
+          guard: isEligibleAcquisitionGuard
+          kind: EXTERNAL
+        - event: eligibilityNotValidatedEvent
+          source: checkEligibilityChoice
+          target: selectOfferOrContract
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: checkProvidedUseCaseEvent
+          source: confirmConfiguration
+          target: checkProvidedUseCaseChoice
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: modificationUseCaseProvidedEvent
+          source: checkProvidedUseCaseChoice
+          target: checkTechnicalEligibilityChoice
+          actions:
+          guard: isModificationOrTerminationUseCaseGuard
+        - event: technicalEligibilityOnConfirmConfigurationValidatedEvent
+          source: checkTechnicalEligibilityChoice
+          target: checkIfOrderInstantiatedChoice
+          actions:
+            - instantiateOrderAction
+          guard: isTechnicalEligibleGuard
+        - event: technicalEligibilityOnConfirmConfigurationNotValidatedEvent
+          source: checkTechnicalEligibilityChoice
+          target: selectOfferOrContract
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: acquisitionUseCaseProvidedEvent
+          source: checkProvidedUseCaseChoice
+          target: checkIfPartyIdentifiedChoice
+          actions:
+          guard: isAcquisitionUseCaseGuard
+          kind: EXTERNAL
+        - event: unsupportedUseCaseEvent
+          source: checkProvidedUseCaseChoice
+          target: confirmConfiguration
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: partyIdentifiedEvent3
+          source: checkIfPartyIdentifiedChoice
+          target: reCheckEligibilityChoice
+          actions:
+          guard: isPartyIdentifiedOnPatchGuard
+          kind: EXTERNAL
+        - event: eligibilityOnConfirmConfigurationValidatedEvent
+          source: reCheckEligibilityChoice
+          target: checkTechnicalEligibilityChoice
+          actions:
+          guard: isEligibleAcquisitionGuard
+        - event: technicalEligibilityOnConfirmConfigurationValidatedEvent
+          source: checkTechnicalEligibilityChoice
+          target: checkIfOrderInstantiatedChoice
+          actions:
+            - instantiateOrderAction
+          guard: isTechnicalEligibleGuard
+        - event: eligibilityOnConfirmConfigurationNotValidatedEvent
+          source: reCheckEligibilityChoice
+          target: selectOfferOrContract
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: partyNotIdentifiedEvent3
+          source: checkIfPartyIdentifiedChoice
+          target: identifyParty
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: partyIdentifiedEvent
+          source: identifyParty
+          target: checkIfPartyRolesCheckedChoice
+          actions:
+            - checkPartyRolesAction
+          guard:
+          kind: EXTERNAL
+        - event: partyRolesCheckedEvent
+          source: checkIfPartyRolesCheckedChoice
+          target: checkPartyRolesChoice
+          actions:
+          guard: arePartyRolesCheckedGuard
+          kind: EXTERNAL
+        - event: customerOrProspectPartyRoleEvent
+          source: checkPartyRolesChoice
+          target: reCheckEligibilityChoice
+          actions:
+          guard: isCustomerOrProspectPartyRoleGuard
+          kind: EXTERNAL
+        - event: notCustomerAndNotProspectPartyRoleEvent
+          source: checkPartyRolesChoice
+          target: checkProspectPartyRoleCreationChoice
+          actions:
+            - createProspectPartyRoleAction
+          guard: isNotCustomerAndNotProspectPartyRoleGuard
+          kind: EXTERNAL
+        - event: uncheckedPartyRolesEvent
+          source: checkPartyRolesChoice
+          target: identifyParty
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: partyRoleProspectCreatedEvent
+          source: checkProspectPartyRoleCreationChoice
+          target: reCheckEligibilityChoice
+          actions:
+          guard: isProspectPartyRoleCreatedGuard
+          kind: EXTERNAL
+        - event: partyRoleProspectNotCreatedEvent
+          source: checkProspectPartyRoleCreationChoice
+          target: identifyParty
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: partyRoleProspectNotCreatedEvent
+          source: checkIfPartyRolesCheckedChoice
+          target: identifyParty
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: productOrderInstantiatedEvent
+          source: checkIfOrderInstantiatedChoice
+          target: validateOrder
+          actions:
+          guard: isProductOrderInstantiatedGuard
+          kind: EXTERNAL
+        - event: productOrderNotInstantiatedEvent
+          source: checkIfOrderInstantiatedChoice
+          target: confirmConfiguration
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: orderValidatedEvent
+          source: validateOrder
+          target: validateProductOrderIdChoice
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: validProductOrderIdEvent
+          source: validateProductOrderIdChoice
+          target: checkIfProspectPartyRoleChoice
+          actions:
+          guard: isValidProductOrderIdGuard
+          kind: EXTERNAL
+        - event: invalidProductOrderIdEvent
+          source: validateProductOrderIdChoice
+          target: validateOrder
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: prospectPartyRoleEvent
+          source: checkIfProspectPartyRoleChoice
+          target: checkCustomerPartyRoleCreationChoice
+          actions:
+            - customerPartyRoleCreationAction
+          guard: isProspectPartyRoleGuard
+          kind: EXTERNAL
+        - event: customerPartyRoleEvent
+          source: checkIfProspectPartyRoleChoice
+          target: checkIfCatalogDrivenTasksSetChoice
+          actions:
+            - setCatalogDrivenTasksAction
+          guard:
+          kind: EXTERNAL
+        - event: customerCreatedPartyRoleEvent
+          source: checkCustomerPartyRoleCreationChoice
+          target: checkIfCatalogDrivenTasksSetChoice
+          actions:
+            - setCatalogDrivenTasksAction
+          guard: isCustomerPartyRoleCreatedGuard
+          kind: EXTERNAL
+        - event: partyRoleCustomerNotCreatedEvent
+          source: checkCustomerPartyRoleCreationChoice
+          target: validateOrder
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: catalogDrivenTasksSetEvent
+          source: checkIfCatalogDrivenTasksSetChoice
+          target: checkIfReservationNeededChoice
+          actions:
+          guard: areCatalogDrivenTasksSetGuard
+          kind: EXTERNAL
+        - event: catalogDrivenTasksNotSetEvent
+          source: checkIfCatalogDrivenTasksSetChoice
+          target: validateOrder
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: reservationNeededEvent
+          source: checkIfReservationNeededChoice
+          target: checkIfResourcesReservedChoice
+          actions:
+            - reserveResourcesAction
+          guard: isReservationNeededGuard
+          kind: EXTERNAL
+        - event: reservationNotNeededEvent
+          source: checkIfReservationNeededChoice
+          target: updateProductOrderChoice
+          actions:
+            - updateProductOrderAction
+          guard:
+          kind: EXTERNAL
+        - event: resourcesReservedEvent
+          source: checkIfResourcesReservedChoice
+          target: updateProductOrderChoice
+          actions:
+            - updateProductOrderAction
+          guard: areResourcesReservedGuard
+          kind: EXTERNAL
+        - event: resourcesNotReservedEvent
+          source: checkIfResourcesReservedChoice
+          target: confirmConfiguration
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: orderUpdatedEvent
+          source: updateProductOrderChoice
+          target: createInstalledBaseChoice
+          actions:
+            - createInstalledBaseAction
+          guard: isProductOrderUpdatedGuard
+          kind: EXTERNAL
+        - event: orderNotUpdatedEvent
+          source: updateProductOrderChoice
+          target: validateOrder
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: checkEligibilityEvent
+          source: createInstalledBaseChoice
+          target: checkFinancialEligibilityChoice
+          actions:
+          guard: isInstalledBaseCreatedGuard
+          kind: EXTERNAL
+        - event: installedBaseNotCreatedEvent
+          source: createInstalledBaseChoice
+          target: validateOrder
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: checkFinancialEligibilityEvent
+          source: checkFinancialEligibilityChoice
+          target: setCompletionTasksChoice
+          actions:
+            - setCompletionTasksAction
+          guard: isFinanciallyEligibleGuard
+          kind: EXTERNAL
+        - event: notFinancialEligibleEvent
+          source: checkFinancialEligibilityChoice
+          target: selectOfferOrContract
+          kind: EXTERNAL
+        - event: completionTasksSetEvent
+          source: setCompletionTasksChoice
+          target: orderCompletionChoice
+          actions:
+          guard: areCompletionTasksSetGuard
+          kind: EXTERNAL
+        - event: completionTasksNotSetEvent
+          source: setCompletionTasksChoice
+          target: validateOrder
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: completeOrderRequiredEvent
+          source: orderCompletionChoice
+          target: completeOrder
+          actions:
+          guard: isOrderCompletedGuard
+          kind: EXTERNAL
+        - event: completeOrderNotRequiredEvent
+          source: orderCompletionChoice
+          target: productsUpdateChoice
+          actions:
+            - updateProductsAction
+          guard:
+          kind: EXTERNAL
+        - event: referencesValidationEvent
+          source: completeOrder
+          target: referencesValidationChoice
+          actions:
+            - validateReferencesAction
+          guard:
+          kind: EXTERNAL
+        - event: referencesValidatedEvent
+          source: referencesValidationChoice
+          target: addReferencesChoice
+          actions:
+            - addReferencesAction
+          guard: areReferencesValidated
+          kind: EXTERNAL
+        - event: referencesNotValidatedEvent
+          source: referencesValidationChoice
+          target: completeOrder
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: referencesAddedEvent
+          source: addReferencesChoice
+          target: productsUpdateChoice
+          actions:
+            - updateProductsAction
+          guard: areReferencesAddedGuard
+          kind: EXTERNAL
+        - event: referencesNotAddedEvent
+          source: addReferencesChoice
+          target: completeOrder
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: productsUpdatedEvent
+          source: productsUpdateChoice
+          target: orderAcceptationChoice
+          actions:
+            - acceptProductOrderAction
+          guard: areProductsUpdatedGuard
+          kind: EXTERNAL
+        - event: productsNotUpdatedEvent
+          source: productsUpdateChoice
+          target: validateOrder
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: orderAcceptedEvent
+          source: orderAcceptationChoice
+          target: endMainRegion
+          actions:
+            - endProcessAction
+          guard: isProductOrderAcceptedGuard
+          kind: EXTERNAL
+        - event: orderNotAcceptedEvent
+          source: orderAcceptationChoice
+          target: validateOrder
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: orderTerminatedEvent
+          source: cancelOrder
+          target: terminateFLow
+          actions:
+            - terminateProcessAction
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: REGION
+          target: JOIN
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: JOIN
+          target: endProcess
+          actions:
+          guard:
+          kind: EXTERNAL

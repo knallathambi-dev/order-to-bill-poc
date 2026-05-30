@@ -1,0 +1,164 @@
+{
+  "mappings": [
+    {
+      "name": "Get products",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "productOrderItem.productOrderId": {
+            "matches": "1113.*"
+          },
+          "productOrderItem.orderItemId": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/AddSms&ModifyRingBackTone/AllProducts.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification sms option",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5sdsdsd-addSMSModifyRing"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/AddSms&ModifyRingBackTone/SMSProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification mobile line",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ea-addSMSModifyRing"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/AddSms&ModifyRingBackTone/MobileLineProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification connectivity",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737eb-addSMSModifyRing"
+          },
+            "fields": {
+              "equalTo": "productSpecification.id"
+            }
+          }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/AddSms&ModifyRingBackTone/ConnectivityProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get status ring back tone",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649adsdsdsds-addSMSModifyRing"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/AddSms&ModifyRingBackTone/RingBackToneProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get status mobile line",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ea-addSMSModifyRing"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/AddSms&ModifyRingBackTone/MobileLineProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get status sms option",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5sdsdsd-addSMSModifyRing"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/AddSms&ModifyRingBackTone/SMSProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+    ]}

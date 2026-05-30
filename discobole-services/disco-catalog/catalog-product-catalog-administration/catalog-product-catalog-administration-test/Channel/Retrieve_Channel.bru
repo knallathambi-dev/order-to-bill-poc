@@ -1,0 +1,15 @@
+meta {
+  name: Retrieve_Channel
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{Admin_URL}}/channel/{{Channel_id}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

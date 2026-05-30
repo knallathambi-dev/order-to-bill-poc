@@ -1,0 +1,32 @@
+meta {
+  name: get stk
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{host}}/serviceCatalogManagement/v1/stockItem
+  body: json
+  auth: none
+}
+
+params:query {
+  ~ServiceSpecification.name: StockItemType for Mobile phone
+  ~ServiceSpecification.version: 
+  ~StockItemType.id: STK09
+  ~id: ff838114-a10a-4596-87c9-51d79babd89f
+  ~limit: 
+  ~offset: 
+  ~relatedParty.id: 
+  ~relatedParty.name: 
+  ~relatedParty.role: 
+  ~sort: 
+  ~supportEntity: 
+  ~validFor.gt: 
+  ~validFor.lt: 
+  ~ProductSpecificationRelationship.id: 499d1e12-9f93-4a6e-b036-5d14c4bf246a
+  ~ServiceSpecification.id: access01b01
+  ~name: Csps3!
+  ~brand: Csps3+
+  ~lifecycleStatus: active
+}

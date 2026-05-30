@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "selfcareui.fullname" . }}-config
+  labels:
+    {{- include "selfcareui.labels" . | nindent 4 }}
+data:
+  EXPRESS_APP_KEYCLOAK_URL: {{ .Values.selfcareui.service.keycloak | quote }}
+  EXPRESS_APP_PROXY_URL: {{ .Values.selfcareui.service.gateway | quote }}
+  ALLOWED_ORIGINS: {{ include "selfcareui.allowedOrigins" . | quote }}

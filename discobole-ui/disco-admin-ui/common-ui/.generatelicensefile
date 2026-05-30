@@ -1,0 +1,18 @@
+{
+  "inputs": ["./package.json" ],
+  "output": "./THIRD-PARTY.txt",
+  "overwrite": true,
+  "ci": true,
+  "replace": {
+    "doctrine": "./node_modules/doctrine/LICENSE",
+    "sockjs": "./node_modules/sockjs/LICENSE",
+    "@bcoe/v8-coverage": "./node_modules/@bcoe/v8-coverage/LICENSE.md",
+    "harmony-reflect": "https://github.com/tvcutsem/harmony-reflect/blob/master/LICENSE",
+    "type-fest": "./node_modules/type-fest/license",
+    "rc": "./node_modules/rc/LICENSE.MIT",
+    "axe-core": "./node_modules/axe-core/LICENSE",
+    "JSONStream": "./node_modules/JSONStream/LICENSE.MIT",
+    "through": "./node_modules/through/LICENSE.MIT"
+  },
+  "exclude": [ "ccap", "json-schema" ]
+}

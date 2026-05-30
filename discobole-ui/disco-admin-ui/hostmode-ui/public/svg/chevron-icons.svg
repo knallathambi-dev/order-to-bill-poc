@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <symbol fill="currentColor" viewBox="0 0 1000 1000" id="form-chevron-down">
+        <path d="M208 396.286 416.214 604.5l83.286 83.286 83.286-83.286L791 396.286 707.714 313 499.5 521.214 291.286 313z"/>
+    </symbol>
+    <symbol fill="currentColor" viewBox="0 0 1000 1000" id="form-chevron-up">
+        <path d="M791 604.5 582.786 396.286 499.5 313l-83.286 83.286L208 604.5l83.286 83.286L499.5 479.57l208.214 208.215z"/>
+    </symbol>
+</svg>

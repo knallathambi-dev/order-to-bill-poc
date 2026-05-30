@@ -1,0 +1,120 @@
+{
+  "@type": "Product",
+  "id": "67c08a6d3e0a2f1fdb75e7e3",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e3",
+  "isBundle": false,
+  "name": "TV Premium",
+  "productOffering": {
+    "id": "5fabc4e1-0df5-47d4-8dff-951319ae2d54",
+    "name": "TV Premium",
+    "version": "1.0",
+    "@type": "BundleProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "e7f88a71-bc01-48ca-9089-a6a4881f4032",
+      "productOrderId": "67c08a62311d586dbf8fe175"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "TV Premium Charge",
+      "name": "TV Premium Charge",
+      "priceType": "recurringCharge",
+      "recurringChargePeriod": {
+        "amount": 1,
+        "units": "month"
+      },
+      "productOfferingPrice": {
+        "id": "98518328-0161-46cc-8e80-db6d9e8a68c1",
+        "name": "TV Premium Charge",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 6
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 6
+        }
+      },
+      "productPriceAlteration": []
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e4",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e4"
+      }
+    },
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e5",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e5"
+      }
+    },
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e6",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e6"
+      }
+    },
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e7",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e7"
+      }
+    },
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e2",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+      }
+    }
+  ],
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "qwy2rhnix",
+        "name": "ii",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Confirmed",
+  "creationDate": "2025-02-27T15:53:17Z",
+  "lastUpdateDate": "2025-02-27T15:54:40Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    }
+  ]
+}

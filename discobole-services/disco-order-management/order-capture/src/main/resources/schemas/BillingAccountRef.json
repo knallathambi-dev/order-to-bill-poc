@@ -1,0 +1,11 @@
+{
+  "BillingAccountRef" : {
+    "type" : "object",
+    "properties" : {
+      "baRefId" : {
+        "type" : "string",
+        "readOnly" : true
+      }
+    }
+  }
+}

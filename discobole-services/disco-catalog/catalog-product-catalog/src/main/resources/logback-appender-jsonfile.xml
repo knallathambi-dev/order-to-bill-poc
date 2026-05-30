@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<!--
+File appender logback configuration provided for import, equivalent to the programmatic
+initialization performed by Boot
+-->
+
+<included>
+    <!-- define exclusion patterns as a property -->
+    <property name="STE_EXCLUSIONS"
+              value="\$\$FastClassByCGLIB\$\$,\$\$EnhancerBySpringCGLIB\$\$,^sun\.reflect\..*\.invoke,^com\.sun\.,^sun\.net\.,^net\.sf\.cglib\.proxy\.MethodProxy\.invoke,^org\.springframework\.cglib\.,^org\.springframework\.transaction\.,^org\.springframework\.validation\.,^org\.springframework\.app\.,^org\.springframework\.aop\.,^java\.lang\.reflect\.Method\.invoke,^org\.springframework\.ws\..*\.invoke,^org\.springframework\.ws\.transport\.,^org\.springframework\.ws\.soap\.saaj\.SaajSoapMessage\.,^org\.springframework\.ws\.client\.core\.WebServiceTemplate\.,^org\.springframework\.web\.filter\.,^org\.springframework\.boot\.web\.filter\.,^org\.springframework\.util\.ReflectionUtils\.invokeMethod$,^org\.apache\.tomcat\.,^org\.apache\.catalina\.,^org\.apache\.coyote\.,^java\.util\.concurrent\.ThreadPoolExecutor\.runWorker,^java\.lang\.Thread\.run$,^rx\." />
+    <appender name="JSONFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <stackTrace/>
+                <mdc/>
+                <pattern>
+                    <pattern>
+                        {
+                        "@project":"product-catalog",
+                        "service.name": "product-catalog",
+                        "trace.id": "%X{trace_id}",
+                        "span.id": "%X{span_id}",
+                        "process.pid": "${PID:-}",
+                        "@timestamp": "%date{ISO8601}",
+                        "log.level": "%level",
+                        "message": "%message",
+                        "log.logger": "%logger",
+                        "process.thread.name": "%thread",
+                        "relative":"%relative",
+                        "exception":"%ex{short}",
+                        "log.origin.file.name": "%file",
+                        "log.origin.file.line": "%line",
+                        "log.origin.method": "%method",
+                        "log.origin.class.name": "%class"
+                        }
+                    </pattern>
+                </pattern>
+                <stackHash>
+                    <fieldName>error.stack_hash</fieldName>
+                    <exclusions>
+                        ${STE_EXCLUSIONS}
+                    </exclusions>
+                </stackHash>
+                <stackTrace>
+                    <fieldName>error.stack_trace</fieldName>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <inlineHash>true</inlineHash>
+                        <exclusions>${STE_EXCLUSIONS}</exclusions>
+                    </throwableConverter>
+                </stackTrace>
+            </providers>
+        </encoder>
+
+        <file>${LOG_FILE:-logs/catalog-events.log}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-${LOG_FILE:-logs/catalog-events.log}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-10MB}</maxFileSize>
+            <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+            <maxHistory>${LOGBACK_ROLLINGPOLICY_MAX_HISTORY:-7}</maxHistory>
+        </rollingPolicy>
+    </appender>
+</included>

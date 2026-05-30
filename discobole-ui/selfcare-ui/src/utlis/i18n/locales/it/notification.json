@@ -1,0 +1,59 @@
+{
+  "auth": {
+    "loginFailed": "Email o password non validi. Riprova di nuovo.",
+    "registrationFailed": "Impossibile creare l'account. Controlla le tue informazioni e riprova.",
+    "sessionExpired": "La sessione è scaduta. Effettua nuovamente l'accesso."
+  },
+  "common": {
+    "fetchConfigurationFailed": "Ci dispiace, non siamo riusciti a caricare la sua configurazione. Riprovi.",
+    "fetchOrderFailed": "Ci dispiace, non siamo riusciti a caricare il suo ordine. Riprovi.",
+    "processFlowCreateFailed": "Ci dispiace, non siamo riusciti ad avviare il suo ordine. Riprovi."
+  },
+  "completeOrder": {
+    "completeFailed": "Ci dispiace, non siamo riusciti a completare il suo ordine. Riprovi."
+  },
+  "eligiblePlans": {
+    "fetchEligiblePlansFailed": "Ci dispiace, non siamo riusciti a caricare i piani disponibili. Riprovi.",
+    "loadPlanDetailsFailed": "Ci dispiace, non siamo riusciti a caricare i dettagli del piano. Riprovi.",
+    "proceedChangeFailed": "Ci dispiace, non siamo riusciti a procedere con il cambio del piano. Riprovi."
+  },
+  "eligibility": {
+    "updateAddressFailed": "Ci dispiace, non siamo riusciti ad aggiornare il suo indirizzo. Riprovi."
+  },
+  "home": {
+    "devices": {
+      "configureFailed": "Ci dispiace, non siamo riusciti a configurare questo dispositivo. Riprovi.",
+      "loadFailed": "Ci dispiace, non siamo riusciti a caricare i suoi dispositivi. Riprovi."
+    },
+    "offers": {
+      "configureFailed": "Ci dispiace, non siamo riusciti a configurare questa offerta. Riprovi.",
+      "loadFailed": "Ci dispiace, non siamo riusciti a caricare le sue offerte. Riprovi."
+    }
+  },
+  "myOrders": {
+    "fetchOrderDetailsPartialFailed": "Alcuni dettagli dell'ordine non sono stati caricati. Riprovi.",
+    "fetchOrdersFailed": "Ci dispiace, non siamo riusciti a caricare i suoi ordini. Riprovi."
+  },
+  "myPlans": {
+    "fetchPlanDetailsFailed": "Alcuni dettagli del piano non sono stati caricati. Riprovi.",
+    "fetchPlansFailed": "Ci dispiace, non siamo riusciti a caricare i suoi piani. Riprovi.",
+    "modifyContractFailed": "Ci dispiace, non siamo riusciti a preparare il cambio del piano. Riprovi."
+  },
+  "orderSummary": {
+    "cancelOrderFailed": "Ci dispiace, non siamo riusciti ad annullare il suo ordine. Riprovi.",
+    "validateOrderFailed": "Ci dispiace, non siamo riusciti a confermare il suo ordine. Riprovi."
+  },
+  "plan": {
+    "processFailed": "Ci dispiace, non siamo riusciti a elaborare il suo piano. Riprovi.",
+    "terminateFailed": "Ci dispiace, non siamo riusciti a terminare il suo piano. Riprovi.",
+    "updateCharacteristicFailed": "Ci dispiace, non siamo riusciti ad aggiornare la sua selezione. Riprovi.",
+    "updateCommitmentFailed": "Ci dispiace, non siamo riusciti ad aggiornare la durata del contratto. Riprovi."
+  },
+  "shipping": {
+    "createFailed": "Ci dispiace, non siamo riusciti a salvare i suoi dati di spedizione. Riprovi.",
+    "updateShippingMethodFailed": "Ci dispiace, non siamo riusciti ad applicare la sua opzione di consegna. Riprovi."
+  },
+  "trackOrder": {
+    "fetchFailed": "Ci dispiace, non siamo riusciti a caricare lo stato del suo ordine. Riprovi."
+  }
+}

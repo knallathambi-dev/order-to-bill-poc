@@ -1,0 +1,15 @@
+{
+  "id": "4314",
+  "state": "done",
+  "qualificationResult": "unqualified",
+  "productOfferingQualificationItem": [
+    {
+      "id": "1",
+      "qualificationItemResult": "unqualified",
+      "productOffering": {
+        "id": "65466654",
+        "name": "Mobile line"
+      }
+    }
+  ]
+}

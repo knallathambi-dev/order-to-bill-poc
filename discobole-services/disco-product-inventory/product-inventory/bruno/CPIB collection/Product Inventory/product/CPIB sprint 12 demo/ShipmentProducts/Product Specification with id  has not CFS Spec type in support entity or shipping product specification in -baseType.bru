@@ -1,0 +1,165 @@
+meta {
+  name: Product Specification with id  has not CFS Spec type in support entity or shipping product specification in -baseType
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  User-Agent: insomnia/2023.5.8
+}
+
+body:json {
+  {
+      "isBundle": "true",
+      "status": "Created",
+      "operationalStatus": "Confirmed",
+      "relatedParty": [
+           {
+      "role": "Seller",
+      "partyOrPartyRole": {
+        "id": "456-dd-df45",
+        "href": "https://host:port/partyManagement/v5/individual/456-dd-df45",
+        "name": "Joe Doe",
+        "@type": "PartyRef",
+        "@referredType": "Individual"
+      },
+      "@type": "RelatedPartyRefOrPartyRoleRef"
+    }
+      ],
+      "productOffering": {
+          "id": "dbbc92f9-faf2-4886-8749-0f07abfc1971",
+          "name": "Mobile Package Max Plus",
+          "@type": "Contract"
+      },
+      "productOrderItem": [
+          {
+              "productOrderId": "{{productOrderID}}",
+              "orderItemId": "1",
+              "orderItemAction": "add"
+          }
+      ],
+      "productRelationship": [
+          {
+              "relationshipType": "bundles",
+              "product": {
+                  "status": "Created",
+                  "operationalStatus": "Confirmed",
+                  "relatedParty": [
+                      {
+                          "id": "45hj-8888",
+                          "name": "Jean",
+                          "role": "Customer",
+                          "@referredType": "Individual"
+                      }
+                  ],
+                  "productOffering": {
+                      "id": "7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+                      "name": "Mobile Package Max Plus",
+                      "@type": "BundleProductOffering"
+                  },
+                  "productOrderItem": [
+                      {
+                          "productOrderId": "{{productOrderID}}",
+                          "orderItemId": "2",
+                          "orderItemAction": "add"
+                      }
+                  ],
+                  "productRelationship": [
+                      {
+                          "relationshipType": "bundles",
+                          "product": {
+                              "status": "Created",
+                              "operationalStatus": "Confirmed",
+                              "relatedParty": [
+                                  {
+                                      "id": "45hj-8888",
+                                      "name": "Jean",
+                                      "role": "Customer",
+                                      "@referredType": "Individual"
+                                  }
+                              ],
+                              "productPrice": [
+                                  {
+                                      "description": "POP_5Euro",
+                                      "name": "POP_5Euro",
+                                      "priceType": "NRC",
+                                      "price": {
+                                          "taxRate": 0,
+                                          "dutyFreeAmount": {
+                                              "unit": "EUR",
+                                              "value": 5
+                                          },
+                                          "taxIncludedAmount": {
+                                              "unit": "EUR",
+                                              "value": 5
+                                          }
+                                      }
+                                  }
+                              ],
+                              "productOffering": {
+                                  "id": "78bc2297-cb07-4161-babb-35fc6b55979f",
+                                  "name": "Shipment",
+                                  "@type": "AtomicProductOffering"
+                              },
+                              "productOrderItem": [
+                                  {
+                                      "productOrderId": "{{productOrderID}}",
+                                      "orderItemId": "3",
+                                      "orderItemAction": "add"
+                                  }
+                              ],
+                              "productRelationship": [
+                                  {
+                                      "relationshipType": "sells",
+                                      "product": {
+                                       
+                                          "productSerialNumber": "5678",
+                                     
+                                          "productOrderItem": [
+                                              {
+                                                  "orderItemAction": "add",
+                                                  "orderItemId": "4",
+                                                  "productOrderId": "{{productOrderID}}"
+                                              }
+                                          ],
+                                          "productSpecification": {
+                                              "id": "838298e8-8121-4291-8b6e-9ac5690caf6c",
+                                              "name": "Shipment",
+                                              "@type": "ProductSpecificationRef"
+                                          },
+                                          "relatedParty": [
+                                              {
+                                                  "id": "231-mf4",
+                                                  "name": "Abir",
+                                                  "role": "customer",
+                                                  "@referredType": "individual"
+                                              }
+                                          ],
+                                          "status": "Created",
+                                          "operationalStatus": "Created",
+                                          "@type": "ShipmentProduct"
+                                      }
+                                  }
+                              ],
+                              "@type": "ShipmentProduct"
+                          }
+                      }
+                  ],
+                  "@type": "Product"
+              }
+          }
+      ],
+      "@type": "Product"
+  }
+}
+
+script:pre-request {
+  bru.setEnvVar("productOrderID", Math.floor((Math.random()*100000 +1)));
+}

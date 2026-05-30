@@ -1,0 +1,41 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# ==================================================
+# Include pipeline templates
+# ==================================================
+
+include:
+  # Gitleaks template
+  - remote: 'https://gitlab.com/to-be-continuous/gitleaks/-/raw/2.6.0/templates/gitlab-ci-gitleaks.yml'
+  # semantic-release template
+  - remote: 'https://gitlab.com/to-be-continuous/semantic-release/-/raw/3.11.3/templates/gitlab-ci-semrel.yml'
+
+# ==================================================
+# Pipeline variables
+# ==================================================
+
+# secret variables
+# (define the variables below in your GitLab group/project variables)
+
+variables:
+  # Gitleaks template parameters
+  GITLEAKS_IMAGE: "registry.hub.docker.com/zricethezav/gitleaks:v8.15.0"
+
+# ==================================================
+# Pipeline stages
+# ==================================================
+
+stages:
+  - build
+  - test
+  - publish
+
+
+

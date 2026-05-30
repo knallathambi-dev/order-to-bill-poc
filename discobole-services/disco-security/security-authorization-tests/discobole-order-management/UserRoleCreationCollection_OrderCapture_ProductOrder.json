@@ -1,0 +1,170 @@
+{
+  "name": "UserRoleCreationCollection_OrderCapture_ProductOrder",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Step 1 Generate Token",
+      "filename": "Step 1 Generate Token.bru",
+      "seq": 1,
+      "request": {
+        "url": "http://34.116.158.27/SpringBootKeycloak/protocol/openid-connect/token",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "formUrlEncoded",
+          "formUrlEncoded": [
+            {
+              "name": "username",
+              "value": "",
+              "enabled": true
+            },
+            {
+              "name": "password",
+              "value": "",
+              "enabled": true
+            },
+            {
+              "name": "grant_type",
+              "value": "password",
+              "enabled": true
+            },
+            {
+              "name": "client_id",
+              "value": "",
+              "enabled": true
+            },
+            {
+              "name": "client_secret",
+              "value": "",
+              "enabled": true
+            },
+            {
+              "name": "scope",
+              "value": "openid",
+              "enabled": true
+            }
+          ],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {
+          "res": "bru.setEnvVar(\"token\", res.body.access_token);"
+        },
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "folder",
+      "name": "UserRole",
+      "filename": "UserRole",
+      "items": [
+        {
+          "type": "http",
+          "name": "userrole orderCapture ORO",
+          "filename": "userrole orderCapture ORO.bru",
+          "seq": 1,
+          "request": {
+            "url": "http://34.118.100.96:80/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"involvementRole\": \"OrderCaptureAdmin\",\n  \"entitlement\": [\n    {\n      \"id\": \"x302\",\n      \"action\": \"readAndWrite\",\n      \"function\": \"Order Capture\",\n      \"@type\": \"Entitlement\"\n    },\n    {\n      \"id\": \"x303\",\n      \"action\": \"readAndWrite\",\n      \"function\": \"Order Capture\",\n      \"@type\": \"Entitlement\"\n    }\n  ],\n  \"@type\": \"UserRole\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole ORO",
+          "filename": "userrole ORO.bru",
+          "seq": 3,
+          "request": {
+            "url": "http://34.118.100.96:80/userRolePermission/v1/userRole",
+            "method": "GET",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole ProductOrder ORO",
+          "filename": "userrole ProductOrder ORO.bru",
+          "seq": 2,
+          "request": {
+            "url": "http://34.118.100.96:80/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"involvementRole\": \"ProductOrderAdmin\",\n  \"entitlement\": [\n    {\n      \"id\": \"x300\",\n      \"action\": \"readAndWrite\",\n      \"function\": \"Product Order\",\n      \"@type\": \"Entitlement\"\n    },\n    {\n      \"id\": \"x301\",\n      \"action\": \"readAndWrite\",\n      \"function\": \"Product Order\",\n      \"@type\": \"Entitlement\"\n    }\n  ],\n  \"@type\": \"UserRole\"\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "bearer",
+              "bearer": {
+                "token": "{{token}}"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "UserRoleCreationCollection_OrderCapture_ProductOrder",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "size": 0.0016527175903320312,
+    "filesCount": 5
+  }
+}

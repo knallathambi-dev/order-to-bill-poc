@@ -1,0 +1,88 @@
+meta {
+  name: Create Product attach - Copysss
+  type: http
+  seq: 25
+}
+
+post {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: inherit
+}
+
+params:query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "@type": "Product",
+    "isBundle": false,
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "ToneCharId",
+        "name": "Tone",
+        "value": "Free tone"
+      }
+    ],
+    "productOffering": {
+      "id": "a055e826-633e-4b36-bd72-9774df80b769",
+      "name": "Ring Back Tone",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "d0e7ab28-8b9d-4b42-9563-8230992a27ce",
+        "productOrderId": "6694f5051d51b61869fac652"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "hasParent",
+        "product": {
+          "@type": "ProductRef",
+          "id": "6694fe3bf6c18a645e069432"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "10e9ee72-2aff-4f25-904c-e6003fa3718b",
+      "name": "Ring Back Tone",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "12x",
+        "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+        "@type": "LogicalResource"
+      },
+      {
+        "id": "12x",
+        "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+        "@type": "LogicalResource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "227-mf30",
+        "name": "Lisa",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created"
+  }
+}
+
+script:pre-request {
+  bru.setEnvVar("productOrderID", Math.floor((Math.random()*10000 +1)));
+}

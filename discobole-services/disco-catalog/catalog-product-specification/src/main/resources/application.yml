@@ -1,0 +1,1059 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  cloud:
+    function:
+      definition: producerNotification
+    discovery:
+      enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+    stream:
+      kafka.binder:
+        brokers: localhost
+        defaultBrokerPort: 9092
+        auto-add-partitions: true
+        auto-create-topics: true
+      default:
+        contentType: application/json
+      bindings:
+        serviceSpec-out-0:
+          contentType: application/json
+          destination: catalog.service-spec
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 4
+            replication-factor: 1
+        productSpec-out-0:
+          contentType: application/json
+          destination: catalog.product-spec
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 4
+            replication-factor: 1
+        producerNotification-out-0:
+          contentType: application/json
+          destination: external-notification
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 4
+            replication-factor: 1
+        handle-out-0:
+          contentType: application/json
+          destination: envelope
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 4
+            replication-factor: 1
+        producerNotification-in-0:
+          contentType: application/json
+          group: catalog
+          destination: external-notification
+        stockItem-out-0:
+          contentType: application/json
+          destination: catalog.stockItem
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 4
+            replication-factor: 1
+      default-binder: kafka
+  zipkin:
+    discoveryClientEnabled: false
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 0.0
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  main:
+    allow-bean-definition-overriding: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: discobole-productcatalog-productspecification
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  server:
+    port: 9000
+resilience4j.retry:
+  instances:
+    configuratorRetry:
+      max-attempts: 3
+      wait-duration: 500ms
+      retry-exceptions:
+        # This is the one thrown by your custom error handler for 5xx errors.
+        - com.orange.discobole.productcatalog.productspecification.exception.DiscoClientException
+        # This is for network-level errors (e.g., connection refused, host not found).
+        - org.springframework.web.client.ResourceAccessException
+
+retry:
+  maxAttempts: '3'
+  maxDelay: '1000'
+  
+app:
+  version: @project.version@
+  name: @project.name@
+  description: @project.description@
+  ownerName: Herve Bouvier
+  ownerMail: herve.bouvier@orange.com
+
+process-flow:
+  role:
+    admin: disco-admin
+
+cqrs:
+  command-enabled: true
+  query-enabled: false
+  queryBaseUrl: http://localhost:8087
+
+config:
+  cfsQuery: http://localhost:8087/serviceCatalogManagement/v1/serviceSpecification
+  productSpecQuery: http://localhost:8087/productCatalogManagement/v1/productSpecification
+  marketUrl: http://localhost:3000/market
+  channelUrl: http://localhost:3000/channel
+  productOfferingUrl: http://localhost:8087/productCatalogManagement/v1/productOffering
+  productOfferingPriceUrl: http://localhost:8087/productCatalogManagement/v1/productOfferingPrice
+  stockItemTypeUrl: http://localhost:8087/serviceCatalogManagement/v1/stockItemType
+  stockItemUrl: http://localhost:8087/serviceCatalogManagement/v1/stockItem
+  categoryUrl: http://localhost:8087/productCatalogManagement/v1/category
+  categoryEntityUrl: http://localhost:8087/productCatalogManagement/v1/categoryEntity
+  cpibProductUrl: https://cpib-integration.apps.fr01.paas.tech.orange/productInventoryManagement/v1/product
+  adminCPIBConfigUrl: http://localhost:8080/cpibConfiguration
+  cfsrelationshipUrl: http://localhost:8080/productCatalogAdministration/v5/cfsRelationshipRestriction
+  #expression: 0 50 21 * * ?
+  event-type:
+    - ServiceSpecificationStateChange
+    - ServiceSpecificationAttributeValueChange
+    - StockItemStateChange
+    - StockItemAttributeValueChange
+cron:
+  productSpecExpression: 0 21 17 * * ?
+  productOfferingExpression: 0 4 14 * * ?
+  productOfferingPriceExpression: 0 17 13 * * ?
+  jobInterval: 12
+  intervalUnit: HOURS
+  job-enabled: true
+eventstore:
+  host: localhost
+  port: 1113
+  username: admin
+  password: changeit
+
+axon:
+  serializer:
+    general: jackson
+    events: jackson
+    messages: jackson
+  axonserver:
+    enabled: false
+
+package-element:
+  state-machines:
+    - name: ProductSpecCreation
+      states:
+        - name: FORK
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region1
+          pseudoStateKind: FORK
+        - name: REGION
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region1
+          pseudoStateKind: INITIAL
+        - name: cancel
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion2
+          pseudoStateKind: INITIAL
+        - name: terminateFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion2
+          pseudoStateKind: END
+        - name: selectSupportEntity
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind: INITIAL
+          editable: false
+        - name: defineIdentityData
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: decisionTask2
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind: CHOICE
+        - name: defCharacteristics
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: defStockItemCharacteristics
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: defRelationship
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: validate
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: false
+        - name: done
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind: END
+        - name: JOIN
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region1
+          pseudoStateKind: JOIN
+        - name: endFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region1
+          pseudoStateKind:
+          end: true
+      transitions:
+        - event:
+          source: FORK
+          target: REGION
+          actions:
+          guard:
+          kind:
+        - event:
+          source: REGION
+          target: cancel
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: endCancelFlow
+          source: cancel
+          target: terminateFLow
+          actions:
+            - endRegionFlow
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: REGION
+          target: selectSupportEntity
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: supportEntitySelected
+          source: selectSupportEntity
+          target: defineIdentityData
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: described
+          source: defineIdentityData
+          target: decisionTask2
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: decisionTask2
+          target: defStockItemCharacteristics
+          actions:
+          guard: isSupportEntityStockItemType
+          kind: EXTERNAL
+        - event: opDefined
+          source: decisionTask2
+          target: defCharacteristics
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: defCharacteristics
+          target: defRelationship
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: relDefined
+          source: defRelationship
+          target: validate
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: defStockItemCharacteristics
+          target: validate
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: validated
+          source: validate
+          target: done
+          actions:
+            - endRegionFlow
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: REGION
+          target: JOIN
+          actions:
+          guard:
+          kind:
+        - event:
+          source: JOIN
+          target: endFlow
+          actions:
+          guard:
+          kind: EXTERNAL
+    - name: ProductSpecModification
+      states:
+        - name: OUTERFORK
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region
+          pseudoStateKind: FORK
+        - name: OUTERREGION
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region
+          pseudoStateKind: INITIAL
+        - name: productSpecModificationCancel
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region2
+          pseudoStateKind: INITIAL
+        - name: terminateFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region2
+          pseudoStateKind: END
+        - name: selectProductSpecification
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region1
+          pseudoStateKind: INITIAL
+        - name: FORK
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region1
+          pseudoStateKind: FORK
+        - name: INNERREGION
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region1
+          pseudoStateKind: INITIAL
+        - name: modifyDefineIdentityData
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion1
+          pseudoStateKind: INITIAL
+        - name: identityDataModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion1
+          pseudoStateKind: END
+        - name: modifyCharacteristics
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion2
+          pseudoStateKind: INITIAL
+        - name: characteristicsModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion2
+          pseudoStateKind: END
+        - name: modifyStockCharacteristics
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion5
+          pseudoStateKind: INITIAL
+        - name: stockCharacteristicsModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion5
+          pseudoStateKind: END
+        - name: modifyRelationship
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion3
+          pseudoStateKind: INITIAL
+        - name: relationshipModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion3
+          pseudoStateKind: END
+        - name: validate
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion4
+          pseudoStateKind: INITIAL
+          editable: false
+        - name: validated
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion4
+          pseudoStateKind: END          
+        - name: JOIN
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region1
+          pseudoStateKind: JOIN
+        - name: endFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region1
+          pseudoStateKind:
+          end: true
+        - name: OUTERJOIN
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region
+          pseudoStateKind: JOIN
+        - name: outerEndFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region
+          pseudoStateKind:
+          end: true
+      transitions:
+        - event:
+          source: OUTERFORK
+          target: OUTERREGION
+          actions:
+          guard:
+          kind:
+        - event:
+          source: OUTERREGION
+          target: productSpecModificationCancel
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: modificationCancelled
+          source: productSpecModificationCancel
+          target: terminateFLow
+          actions:
+            - endRegionFlow
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: OUTERREGION
+          target: selectProductSpecification
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: productSpecSelected
+          source: selectProductSpecification
+          target: FORK
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: FORK
+          target: INNERREGION
+          actions:
+          guard:
+          kind:
+        - event:
+          source: INNERREGION
+          target: modifyDefineIdentityData
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: identityDataModified
+          source: modifyDefineIdentityData
+          target: identityDataModified
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifyCharacteristics
+          actions:
+          guard: isSupportEntityCFS
+          kind: EXTERNAL
+        - event: characteristicsModified
+          source: modifyCharacteristics
+          target: characteristicsModified
+          actions:
+          guard: isSupportEntityCFS
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifyStockCharacteristics
+          actions:
+          guard: isSupportEntityStockItemType
+          kind: EXTERNAL
+        - event: stockCharacteristicsModified
+          source: modifyStockCharacteristics
+          target: stockCharacteristicsModified
+          actions:
+          guard: isSupportEntityStockItemType
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifyRelationship
+          actions:
+          guard: isCFSGuard
+          kind: EXTERNAL
+        - event: relationshipModified
+          source: modifyRelationship
+          target: relationshipModified
+          actions:
+          guard: isCFSGuard
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: validate
+          guard:
+          kind: EXTERNAL
+        - event: validated
+          source: validate
+          target: validated
+          actions:
+            - endRegionFlow
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: JOIN
+          actions:
+          guard:
+          kind:
+        - event:
+          source: JOIN
+          target: endFlow
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: OUTERREGION
+          target: OUTERJOIN
+          actions:
+          guard:
+          kind:
+        - event:
+          source: OUTERJOIN
+          target: outerEndFlow
+          actions:
+          guard:
+          kind: EXTERNAL
+
+Dotel:
+  instrumentation:
+    kafka:
+      enabled: true
+    spring-kafka:
+      enabled: true
+    messaging:
+      experimental:
+        receive-telemetry:
+          enabled: false
+
+CPIB:
+  limit: 100
+  offset: 0
+
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  cloud:
+    config:
+      import-check:
+        enabled: false
+  data:
+    mongodb:
+      host: localhost
+      port: 27017  
+      database: catalog
+      username: root
+      password: root
+  keycloak: https://keycloak-integration-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x1, x5, x9, ps_w
+  userRoleRetrievalUrl: https://auth-userrole-integration-disco.apps.prd1.c1.paas.tech.orange/userRolePermission/v1/userRole
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+
+server:
+  port: 8086
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    accesslog:
+      enabled: true
+  
+logging:
+  level:
+    
+    root: info
+    java:
+      util:
+        logging: OFF
+    org:
+      apache:
+        catalina: OFF
+        juli:
+          logging:
+            DirectJDKLog: OFF
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: WARN
+            FrameworkServlet: WARN
+            mvc:
+              method:
+                annotation:
+                  RequestResponseBodyMethodProcessor: WARN
+    com:
+      orange:
+        discobole:
+          productcatalog:
+            productspecification: DEBUG
+    
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test,cucumbertest
+
+---
+spring:
+  config:
+    activate:
+      on-profile: cloud, orange-cf
+  cloud:
+    discovery:
+      enabled: true
+    service-registry:
+      auto-registration:
+        enabled: true
+    stream:
+      kafka.binder:
+        brokers: ${vcap.services.kafka.credentials.uri}
+  zipkin:
+    discovery-client-enabled: true
+  sleuth:
+    sampler:
+      probability: 1.0
+eureka:
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    non-secure-port: 80
+  client:
+    service-url:
+      defaultZone: ${vcap.services.discovery.credentials.uri}
+server:
+  port: ${PORT:8080}
+
+config:
+  cfsQuery: bos-catalog.cf.nd-pass.itn.ftgroup/serviceCatalogManagement/v1/serviceSpecification
+
+---
+spring:
+  config:
+    activate:
+      on-profile: ibm-cf
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: ${vcap.services.kafka.credentials.kafka_brokers_sasl}
+        configuration:
+          security:
+            protocol: SASL_SSL
+          sasl:
+            mechanism: PLAIN
+        jaas:
+          loginModule: org.apache.kafka.common.security.plain.PlainLoginModule
+          options:
+            username: "${vcap.services.kafka.credentials.user}"
+            password: "${vcap.services.kafka.credentials.password}"
+        replication-factor: 3
+  zipkin:
+    discoveryClientEnabled: false
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 0.0
+
+---
+spring:
+  config:
+    activate:
+      on-profile: kubernetes
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: kafka:9092
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift
+  cloud:
+    config:
+      import-check:
+        enabled: false
+    stream:
+      kafka.binder:
+        brokers: kafka:9092
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongodb
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+eventstore:
+  host: eventstore
+config:
+  cfsQuery: http://product-catalog-integration-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification
+  productSpecQuery: http://product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification
+  categoryUrl: http://product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/category
+  categoryEntityUrl: http://product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/categoryEntity
+  marketUrl: http://mock-server-integration-disco.apps.fr01.paas.tech.orange/market
+  channelUrl: http://mock-server-integration-disco.apps.fr01.paas.tech.orange/channel
+  productOfferingUrl: http://product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOffering
+  productOfferingPriceUrl: http://product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+  stockItemTypeUrl: http://product-catalog-integration-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/stockItemType
+  stockItemUrl: http://product-catalog-integration-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/stockItem
+  cfsrelationshipUrl: https://catalog-product-catalog-administration-integration-disco.apps.fr01.paas.tech.orange/productCatalogAdministration/v5/cfsRelationshipRestriction
+
+
+  #expression: 0 55 17 * * ?
+cqrs:
+  queryBaseUrl: https://gateway-integration-disco.apps.fr01.paas.tech.orange
+cron:
+  productSpecExpression: 0 27 14 * * ?
+  productOfferingExpression: 0 37 14 * * ?
+  productOfferingPriceExpression: 0 47 14 * * ?
+  jobInterval: 24
+  intervalUnit: HOURS
+  job-enabled: true
+
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-review
+#   keycloak: https://keycloak-review-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+#   keycloakRolesEntitlements: x1, x5, x9
+#   userRoleRetrievalUrl: https://auth-userrole-retrieve-review-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+#   keycloakAuthUrl: https://keycloak-review-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka-review:9092
+#     config:
+#       import-check:
+#         enabled: false
+#   data:
+#     mongodb:
+#       delete: true
+#       host: catalog-mongo-review
+#       port: 27017
+#       database: catalog
+#       username: ${DATABASE_USER}
+#       password: ${DATABASE_PASSWORD}
+# eventstore:
+#   host: eventstore
+# config:
+#   cfsQuery: https://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification
+#   productSpecQuery: https://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification
+#   categoryUrl: https://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/category
+#   categoryEntityUrl: https://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/categoryEntity
+#   marketUrl: https://mock-server-review-disco.apps.fr01.paas.tech.orange/market
+#   channelUrl: https://mock-server-review-disco.apps.fr01.paas.tech.orange/channel
+#   productOfferingUrl: https://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOffering
+#   productOfferingPriceUrl: https://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+#   stockItemTypeUrl: https://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/stockItemType
+#   stockItemUrl: https://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/stockItem
+#   #expression: 0 55 17 * * ?
+# cqrs:
+#   queryBaseUrl: https://disco-gateway-review-disco.apps.fr01.paas.tech.orange
+# cron:
+#   productSpecExpression: 0 27 14 * * ?
+#   productOfferingExpression: 0 37 14 * * ?
+#   productOfferingPriceExpression: 0 47 14 * * ?
+#   jobInterval: 24
+#   intervalUnit: HOURS
+#   job-enabled: true
+
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-integration
+#   keycloak: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+#   keycloakRolesEntitlements: x1, x5, x9
+#   userRoleRetrievalUrl: https://auth-userrole-retrieve-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+#   keycloakAuthUrl: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka:9092
+#     config:
+#       import-check:
+#         enabled: false
+#   data:
+#     mongodb:
+#       delete: true
+#       host: catalog-mongo-integration
+#       port: 27017
+#       database: catalog
+#       username: ${DATABASE_USER}
+#       password: ${DATABASE_PASSWORD}
+# eventstore:
+#   host: eventstore
+# config:
+#   cfsQuery: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification
+#   productSpecQuery: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification
+#   categoryUrl: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/category
+#   categoryEntityUrl: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/categoryEntity
+#   marketUrl: https://mock-server-integration-disco.apps.fr01.paas.tech.orange/market
+#   channelUrl: https://mock-server-integration-disco.apps.fr01.paas.tech.orange/channel
+#   productOfferingUrl: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOffering
+#   productOfferingPriceUrl: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+#   stockItemTypeUrl: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/stockItemType
+#   stockItemUrl: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/stockItem
+#   #expression: 0 55 17 * * ?
+# cqrs:
+#   queryBaseUrl: https://disco-gateway-integration-disco.apps.fr01.paas.tech.orange
+# cron:
+#   productSpecExpression: 0 27 14 * * ?
+#   productOfferingExpression: 0 37 14 * * ?
+#   productOfferingPriceExpression: 0 47 14 * * ?
+#   jobInterval: 24
+#   intervalUnit: HOURS
+#   job-enabled: true
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-staging
+#   keycloak: https://keycloak-staging-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+#   keycloakRolesEntitlements: x1, x5, x9
+#   userRoleRetrievalUrl: https://auth-userrole-retrieve-staging-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+#   keycloakAuthUrl: https://keycloak-staging-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka-staging:9092
+#     config:
+#       import-check:
+#         enabled: false
+#   data:
+#     mongodb:
+#       delete: true
+#       host: catalog-mongo-staging
+#       port: 27017
+#       database: catalog
+#       username: ${DATABASE_USER}
+#       password: ${DATABASE_PASSWORD}
+# eventstore:
+#   host: eventstore
+# config:
+#   cfsQuery: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification
+#   productSpecQuery: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification
+#   categoryUrl: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/category
+#   categoryEntityUrl: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/categoryEntity
+#   marketUrl: http://mock-server-staging-disco.apps.fr01.paas.tech.orange/market
+#   channelUrl: http://mock-server-staging-disco.apps.fr01.paas.tech.orange/channel
+#   productOfferingUrl: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOffering
+#   productOfferingPriceUrl: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+#   stockItemTypeUrl: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/stockItemType
+#   stockItemUrl: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/stockItem
+#   #expression: 0 55 17 * * ?
+# cqrs:
+#   queryBaseUrl: https://disco-gateway-staging-disco.apps.fr01.paas.tech.orange
+# cron:
+#   productSpecExpression: 0 27 14 * * ?
+#   productOfferingExpression: 0 37 14 * * ?
+#   productOfferingPriceExpression: 0 47 14 * * ?
+#   jobInterval: 24
+#   intervalUnit: HOURS
+#   job-enabled: true
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-production
+#   keycloak: https://keycloak-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+#   keycloakRolesEntitlements: x1, x5, x9
+#   userRoleRetrievalUrl: https://auth-userrole-retrieve-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+#   keycloakAuthUrl: https://keycloak-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka:9092
+#     config:
+#       import-check:
+#         enabled: false
+#   data:
+#     mongodb:
+#       delete: true
+#       host: catalog-mongo-production
+#       port: 27017
+#       database: catalog
+#       username: ${DATABASE_USER}
+#       password: ${DATABASE_PASSWORD}
+# eventstore:
+#   host: eventstore
+# config:
+#   cfsQuery: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification
+#   productSpecQuery: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification
+#   categoryUrl: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/category
+#   categoryEntityUrl: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/categoryEntity
+#   marketUrl: http://mock-server-disco.apps.fr01.paas.tech.orange/market
+#   channelUrl: http://mock-server-disco.apps.fr01.paas.tech.orange/channel
+#   productOfferingUrl: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOffering
+#   productOfferingPriceUrl: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+#   stockItemTypeUrl: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/stockItemType
+#   stockItemUrl: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/stockItem
+#   #expression: 0 55 17 * * ?
+# cqrs:
+#   queryBaseUrl: https://disco-gateway-disco.apps.fr01.paas.tech.orange
+# cron:
+#   productSpecExpression: 0 27 14 * * ?
+#   productOfferingExpression: 0 37 14 * * ?
+#   productOfferingPriceExpression: 0 47 14 * * ?
+#   jobInterval: 24
+#   intervalUnit: HOURS
+#   job-enabled: true

@@ -1,0 +1,29 @@
+headers {
+  Authorization: bearer {{token}}
+}
+
+script:pre-request {
+   function sleep (ms) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve();
+          }, ms ? ms : 500);
+        });
+      }
+      
+      bru.setEnvVar("sleep",sleep);
+    await bru.getEnvVar("sleep")(1000);
+}
+
+docs {
+  //Do not change the structure of the folder
+  
+  This collection contains 8 folders each belong to different services.
+  
+  Any modification in CFS will lead to changes in subsequent folders aswell.
+  
+  
+  
+  
+  
+}

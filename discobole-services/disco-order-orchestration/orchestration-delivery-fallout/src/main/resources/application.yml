@@ -1,0 +1,192 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: ${PORT:8090}
+spring:
+  keycloakAuthUrl: ${KEYCLOAK_URI}
+  data:
+    mongodb:
+      auto-index-creation: 'true'
+      uri: mongodb://localhost:27017/falloutManagement
+  profiles:
+    default: dev
+    active: plaintextconsole,dev
+  main:
+    allow-bean-definition-overriding: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_URI}/realms/SpringBootKeycloak
+          jwk-set-uri: ${KEYCLOAK_URI}/realms/SpringBootKeycloak/protocol/openid-connect/certs
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_URI}/realms/SpringBootKeycloak
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ${KEYCLOAK_CLIENT_ID}
+            authorization-grant-type: client_credentials
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+  cloud:
+    stream:
+      kafka.binder:
+        enableObservation: true
+        brokers: localhost
+        defaultBrokerPort: 9092
+        auto-create-topics: false
+        auto-add-partitions: false
+      default:
+        contentType: application/json
+      bindings:
+        productOrderCommand:
+          destination: disco.order-management.productOrderChange-command
+          producer:
+            partition-key-expression: headers['partitionKey']
+      default-binder: kafka
+
+# order orchestration service have client COOD in keycloak,
+# this client must have the below role in order to read all process flows.
+process-flow:
+  role:
+    admin: FalloutIncidentAdminWrite
+
+app:
+  security:
+    ssl:
+      enabled: true
+    userRoleRetrievalUrl: https://auth-userrole-review-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRole
+    keycloakReadEntitlements: x600
+    keycloakReadAndWriteEntitlements: x601
+
+package-element:
+  state-machines:
+    - name: Fallout
+      states:
+        - name: InitialAutomatedTask
+          entryActions:
+          exitActions:
+            - InitialTaskAction
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: MainRegion
+          pseudoStateKind: INITIAL
+        - name: Created
+          entryActions:
+          exitActions:
+            - CreatedAction
+          stateActions:
+          initialAction:
+          regionId: MainRegion
+          pseudoStateKind:
+        - name: Analysing
+          entryActions:
+          exitActions:
+            - AnalysingAction
+          stateActions:
+          initialAction:
+          regionId: MainRegion
+          pseudoStateKind:
+        - name: Held
+          entryActions:
+          exitActions:
+            - HeldAction
+          stateActions:
+          initialAction:
+          regionId: MainRegion
+          pseudoStateKind:
+        - name: SelectResolveOrUnresolvedUserAction
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          regionId: MainRegion
+          pseudoStateKind:
+        - name: Completed
+          entryActions:
+          exitActions: PersistFalloutEntityStateAction
+          stateActions:
+          initialAction:
+          regionId: MainRegion
+          pseudoStateKind: END
+      transitions:
+        - event: InitialAutomatedEvent
+          source: InitialAutomatedTask
+          target: Created
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: AUTOMATE-event
+          source: Created
+          target: Analysing
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: AUTOMATE
+          source: Analysing
+          target: Held
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: resolutionRequiredEvent
+          source: Held
+          target: SelectResolveOrUnresolvedUserAction
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: CompletedEvent
+          source: Held
+          target: Completed
+          actions:
+            - PersistFalloutEntityStateAction
+          guard:
+          kind: EXTERNAL
+        - event: orderPaymentEvent
+          source: SelectResolveOrUnresolvedUserAction
+          target: Completed
+          actions:
+            - PersistFalloutEntityStateAction
+          guard:
+          kind: EXTERNAL
+config:
+  startPurgeCronExpression: "*/30 * * * * *"
+  deleteFalloutThresholdDuration: P0DT0H10M # P?DT?H?M = 0? -> count of days, 1? -> count of hours, 2? -> count of minutes
+  eventPurgeCronExpression: "0 0 12 * * *"
+  deleteEventsThresholdDuration: P90D
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: fallout
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+    enabled: true
+    web:
+      server:
+        auto-time-requests: true
+  server:
+    port: 9000
+
+springdoc:
+  packagesToScan:
+    - com.orange.disco.orchestration.fallout.controller
+  swagger-ui:
+    configUrl: '/api-docs/swagger-config.json'
+    disable-swagger-default-url: true

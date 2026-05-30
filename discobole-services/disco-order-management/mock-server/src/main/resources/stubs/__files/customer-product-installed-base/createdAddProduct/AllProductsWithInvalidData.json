@@ -1,0 +1,408 @@
+[
+  {{#each request.query.[productOrderItem.orderItemId] as |id|}}
+  {{#not @first}}
+  {{#if (contains (array '08' '07' '11' '10' '09' '101' '103') id)}},{{/if}}
+  {{/not}}
+
+  {{#eq id '08'}}
+  {
+    "@type": "Productt",
+    "id":"649aaf9f2b4b3225cb5737eb",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737eb",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"08",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T14:52:51.543Z",
+        "status":"Created"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T14:52:51.543Z",
+        "Status":"Created"
+      }
+    ],
+    "productSpecification":{
+      "id":"5e18402d-c964-4d52-b362-22ef79c27c01",
+      "name":"Connectivity",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ed"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '07'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ea",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ea",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"07",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productSpecification":{
+      "id":"c458d968-3718-4754-9408-7bd81526e7b2",
+      "name":"Mobile line",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+      {
+        "id":"1108_10"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ed"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '11'}}
+  {
+    "@type": "Productt",
+    "id":"649aaf9f2b4b3225cb5737ef",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ed",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"11",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"f0dad0dd-d276-4aa2-9ec5-e6b955e505e4",
+      "name":"Mobile Handset",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+      {
+        "id":"1108_10"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created"
+  }
+  {{/eq}}
+
+  {{#eq id '10'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ed",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ed",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"10",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"df32402e-ceb9-4467-aafd-fec0bbff3124",
+      "name":"SIM CARD",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+      {
+        "id":"1108_10"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Createdd",
+    "operationalStatus":"Created"
+  }
+  {{/eq}}
+
+  {{#eq id '09'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ec",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ec",
+    "isBundle":false,
+    "productCharacteristic":[
+      {
+        "@type" : "StringCharacteristic",
+        "name":"volume",
+        "valueType":"string"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"09",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productSpecification":{
+      "id":"82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+      "name":"Time Bundle",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '101'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5sdsdsd-addSMSModifyRing",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5sdsdsd-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"101",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"c1b8052d-5de9-4719-b0e2-de327455884d",
+      "name":"SMS Option",
+      "@type":"ProductSpecificationRef"
+    },
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '103'}}
+  {
+    "@type": "Product",
+    "id":"649adsdsdsds-addSMSModifyRing",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649adsdsdsds-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"103",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification": {
+      "id": "abe401bc-76b8-4811-8fef-98d5d10d979c",
+      "name": "Ring Back Tone",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea-addSMSModifyRing"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '106'}}
+  {
+    "@type": "Product",
+    "id":"649adsdsdsds-deleteRing",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649adsdsdsds-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"delete",
+        "orderItemId":"106",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"3f53cbde-73be-405a-8684-60c4993fe2ad",
+      "name":"649adsdsdsds-addSMSModifyRing",
+      "@type":"ProductSpecificationRef"
+    },
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Active",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea-addSMSModifyRing"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{/each}}
+]

@@ -1,0 +1,2819 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+openapi: "3.0.0"
+info:
+  description: "### Release 2.0.0 Dec 2024\n\n#### Goal\n\nThe user role and permissions\
+    \ management API allows the management of the user roles, permissions, and privileges.\n\
+    \n#### Operations\n\nThe DISCO implementation of Authorization API to manage users.\n\
+    \n### TMF API Reference\n\nTMF672 User Roles & Permissions Management\n\n| User\
+    \ Roles & Permissions Management API version |  TMF API version  |\n| -----------------------------------------------\
+    \ |:-----------------:| \n| 1.0.0                                           |\
+    \  4.0.1            | \n| 2.0.0                                           |  4.0.1\
+    \            | Added component in user role resource.\n| 2.1.0               \
+    \                            |  4.0.1            | Aligned API Design\n"
+  version: "2.1.0_release"
+  title: "UserRolePermissionManagement"
+tags:
+- name: "Permission"
+- name: "UserRole"
+- name: "Hub"
+- name: "Listener"
+- name: "Entitlement"
+  description: "Manage a  entitlement"
+- name: "ComponentConfiguration"
+  description: "Exposes the list of components managed by the user role API"
+- name: "FunctionConfiguration"
+paths:
+  /permission:
+    get:
+      tags:
+      - "Permission"
+      operationId: "listPermission"
+      summary: "List or find Permission objects"
+      description: "This operation list or find Permission entities"
+      parameters:
+      - name: "fields"
+        required: false
+        in: "query"
+        description: "Comma-separated properties to be provided in response"
+        schema:
+          type: "string"
+      - name: "offset"
+        required: false
+        in: "query"
+        description: "Requested index for start of resources to be provided in response"
+        schema:
+          type: "integer"
+          format: "int32"
+      - name: "limit"
+        required: false
+        in: "query"
+        description: "Requested number of resources to be provided in response"
+        schema:
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          headers:
+            X-Total-Count:
+              description: "Total number of items matching criteria"
+              schema:
+                type: "integer"
+                format: "int32"
+            X-Result-Count:
+              description: "Actual number of items returned in the response body"
+              schema:
+                type: "integer"
+                format: "int32"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Permission"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      tags:
+      - "Permission"
+      operationId: "createPermission"
+      summary: "Creates a Permission"
+      description: "This operation creates a Permission entity."
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Permission_Create"
+        description: "The Permission to be created"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Permission"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /permission/{id}:
+    get:
+      tags:
+      - "Permission"
+      operationId: "retrievePermission"
+      summary: "Retrieves a Permission by ID"
+      description: "This operation retrieves a Permission entity. Attribute selection\
+        \ is enabled for all first level attributes."
+      parameters:
+      - name: "id"
+        required: true
+        in: "path"
+        schema:
+          type: "string"
+      - name: "fields"
+        required: false
+        in: "query"
+        description: "Comma-separated properties to provide in response"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Permission"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      tags:
+      - "Permission"
+      operationId: "patchPermission"
+      summary: "Updates partially a Permission"
+      description: "This operation updates partially a Permission entity."
+      parameters:
+      - name: "id"
+        required: true
+        in: "path"
+        schema:
+          type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Permission_Update"
+        description: "The Permission to be updated"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Permission"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /userRole:
+    get:
+      tags:
+      - "UserRole"
+      operationId: "listUserRole"
+      summary: "List or find UserRole objects"
+      description: "This operation list or find UserRole entities"
+      parameters:
+      - name: "fields"
+        required: false
+        in: "query"
+        description: "Comma-separated properties to be provided in response"
+        schema:
+          type: "string"
+      - name: "offset"
+        required: false
+        in: "query"
+        description: "Requested index for start of resources to be provided in response"
+        schema:
+          type: "integer"
+          format: "int32"
+      - name: "limit"
+        required: false
+        in: "query"
+        description: "Requested number of resources to be provided in response"
+        schema:
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          headers:
+            X-Total-Count:
+              description: "Total number of items matching criteria"
+              schema:
+                type: "integer"
+                format: "int32"
+            X-Result-Count:
+              description: "Actual number of items returned in the response body"
+              schema:
+                type: "integer"
+                format: "int32"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/UserRole"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      tags:
+      - "UserRole"
+      operationId: "createUserRole"
+      summary: "Creates a UserRole"
+      description: "This operation creates a UserRole entity."
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UserRole_Create"
+        description: "The UserRole to be created"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/UserRole"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /userRole/{id}:
+    get:
+      tags:
+      - "UserRole"
+      operationId: "retrieveUserRole"
+      summary: "Retrieves a UserRole by ID"
+      description: "This operation retrieves a UserRole entity. Attribute selection\
+        \ is enabled for all first level attributes."
+      parameters:
+      - name: "id"
+        required: true
+        in: "path"
+        schema:
+          type: "string"
+      - name: "fields"
+        required: false
+        in: "query"
+        description: "Comma-separated properties to provide in response"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/UserRole"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      tags:
+      - "UserRole"
+      operationId: "patchUserRole"
+      summary: "Updates partially a UserRole"
+      description: "This operation updates partially a UserRole entity."
+      parameters:
+      - name: "id"
+        required: true
+        in: "path"
+        schema:
+          type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UserRole_Update"
+        description: "The UserRole to be updated"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/UserRole"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /hub:
+    post:
+      tags:
+      - "Hub"
+      operationId: "registerListener"
+      summary: "Register a listener"
+      description: "Sets the communication endpoint address the service instance must\
+        \ use to deliver information about its health state, execution state, failures\
+        \ and metrics."
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/EventSubscriptionInput"
+        description: "Data containing the callback endpoint to deliver the information"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /hub/{id}:
+    delete:
+      tags:
+      - "Hub"
+      operationId: "unregisterListener"
+      summary: "Unregister a listener"
+      description: "Resets the communication endpoint address the service instance\
+        \ must use to deliver information about its health state, execution state,\
+        \ failures and metrics."
+      parameters:
+      - name: "id"
+        required: true
+        in: "path"
+        schema:
+          type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/permissionCreateEvent:
+    post:
+      tags:
+      - "Listener"
+      operationId: "listenToPermissionCreateEvent"
+      summary: "Client listener for entity PermissionCreateEvent"
+      description: "Example of a client listener for receiving the notification PermissionCreateEvent"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PermissionCreateEvent"
+        description: "The event data"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/permissionAttributeValueChangeEvent:
+    post:
+      tags:
+      - "Listener"
+      operationId: "listenToPermissionAttributeValueChangeEvent"
+      summary: "Client listener for entity PermissionAttributeValueChangeEvent"
+      description: "Example of a client listener for receiving the notification PermissionAttributeValueChangeEvent"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PermissionAttributeValueChangeEvent"
+        description: "The event data"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/permissionStateChangeEvent:
+    post:
+      tags:
+      - "Listener"
+      operationId: "listenToPermissionStateChangeEvent"
+      summary: "Client listener for entity PermissionStateChangeEvent"
+      description: "Example of a client listener for receiving the notification PermissionStateChangeEvent"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PermissionStateChangeEvent"
+        description: "The event data"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/permissionDeleteEvent:
+    post:
+      tags:
+      - "Listener"
+      operationId: "listenToPermissionDeleteEvent"
+      summary: "Client listener for entity PermissionDeleteEvent"
+      description: "Example of a client listener for receiving the notification PermissionDeleteEvent"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/PermissionDeleteEvent"
+        description: "The event data"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/userRoleCreateEvent:
+    post:
+      tags:
+      - "Listener"
+      operationId: "listenToUserRoleCreateEvent"
+      summary: "Client listener for entity UserRoleCreateEvent"
+      description: "Example of a client listener for receiving the notification UserRoleCreateEvent"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UserRoleCreateEvent"
+        description: "The event data"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/userRoleAttributeValueChangeEvent:
+    post:
+      tags:
+      - "Listener"
+      operationId: "listenToUserRoleAttributeValueChangeEvent"
+      summary: "Client listener for entity UserRoleAttributeValueChangeEvent"
+      description: "Example of a client listener for receiving the notification UserRoleAttributeValueChangeEvent"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UserRoleAttributeValueChangeEvent"
+        description: "The event data"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/userRoleStateChangeEvent:
+    post:
+      tags:
+      - "Listener"
+      operationId: "listenToUserRoleStateChangeEvent"
+      summary: "Client listener for entity UserRoleStateChangeEvent"
+      description: "Example of a client listener for receiving the notification UserRoleStateChangeEvent"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UserRoleStateChangeEvent"
+        description: "The event data"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /listener/userRoleDeleteEvent:
+    post:
+      tags:
+      - "Listener"
+      operationId: "listenToUserRoleDeleteEvent"
+      summary: "Client listener for entity UserRoleDeleteEvent"
+      description: "Example of a client listener for receiving the notification UserRoleDeleteEvent"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/UserRoleDeleteEvent"
+        description: "The event data"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /entitlement:
+    post:
+      tags:
+      - "Entitlement"
+      operationId: "entitlementCreate"
+      summary: "create entitlement"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Entitlement"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Entitlement"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+      - "Entitlement"
+      operationId: "entitlementFind"
+      summary: "find entitlement"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Entitlement"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /entitlement/{entitlementId}:
+    get:
+      tags:
+      - "Entitlement"
+      operationId: "entitlementGet"
+      summary: "get entitlement"
+      description: "Get an existing entitlement"
+      parameters:
+      - name: "entitlementId"
+        required: true
+        in: "path"
+        description: "ID of the entitlement"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Entitlement"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+      - "Entitlement"
+      operationId: "entitlementUpdate"
+      summary: "update entitlement"
+      parameters:
+      - name: "entitlementId"
+        required: true
+        in: "path"
+        description: "ID of the entitlement"
+        schema:
+          type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Entitlement"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Entitlement"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+      - "Entitlement"
+      operationId: "entitlementDelete"
+      summary: "delete entitlement"
+      description: "Create a new entitlement"
+      parameters:
+      - name: "entitlementId"
+        required: true
+        in: "path"
+        description: "ID of the entitlement"
+        schema:
+          type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /componentConfiguration:
+    post:
+      tags:
+      - "ComponentConfiguration"
+      operationId: "componentConfigurationCreate"
+      summary: "create componentConfiguration"
+      description: "Create a new component for user role API"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ComponentConfiguration"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ComponentConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+      - "ComponentConfiguration"
+      operationId: "componentConfigurationFind"
+      summary: "find componentConfiguration"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/ComponentConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /componentConfiguration/{componentConfigurationId}:
+    get:
+      tags:
+      - "ComponentConfiguration"
+      operationId: "componentConfigurationGet"
+      summary: "get componentConfiguration"
+      description: "Get components for user role API"
+      parameters:
+      - name: "componentConfigurationId"
+        required: true
+        in: "path"
+        description: "ID of components managed by the user role API"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ComponentConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+      - "ComponentConfiguration"
+      operationId: "componentConfigurationUpdate"
+      summary: "update componentConfiguration"
+      parameters:
+      - name: "componentConfigurationId"
+        required: true
+        in: "path"
+        description: "ID of components managed by the user role API"
+        schema:
+          type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ComponentConfiguration"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ComponentConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+      - "ComponentConfiguration"
+      operationId: "componentConfigurationDelete"
+      summary: "delete componentConfiguration"
+      description: "Delete component from user role API"
+      parameters:
+      - name: "componentConfigurationId"
+        required: true
+        in: "path"
+        description: "ID of components managed by the user role API"
+        schema:
+          type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /functionConfiguration:
+    post:
+      tags:
+      - "FunctionConfiguration"
+      operationId: "functionConfigurationCreate"
+      summary: "create functionConfiguration"
+      description: "functionConfigurationCreate"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/FunctionConfiguration"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/FunctionConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+      - "FunctionConfiguration"
+      operationId: "functionConfigurationFind"
+      summary: "find functionConfiguration"
+      description: "functionConfigurationFind"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/FunctionConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /functionConfiguration/{functionConfigurationId}:
+    get:
+      tags:
+      - "FunctionConfiguration"
+      operationId: "functionConfigurationGet"
+      summary: "get functionConfiguration"
+      description: "functionConfiguration Get"
+      parameters:
+      - name: "functionConfigurationId"
+        required: true
+        in: "path"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/FunctionConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+      - "FunctionConfiguration"
+      operationId: "functionConfigurationUpdate"
+      summary: "update functionConfiguration"
+      description: "functionConfigurationUpdate"
+      parameters:
+      - name: "functionConfigurationId"
+        required: true
+        in: "path"
+        schema:
+          type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/FunctionConfiguration"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/FunctionConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+      - "FunctionConfiguration"
+      operationId: "functionConfigurationDelete"
+      summary: "delete functionConfiguration"
+      description: "functionConfigurationDelete"
+      parameters:
+      - name: "functionConfigurationId"
+        required: true
+        in: "path"
+        schema:
+          type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+servers:
+- url: "https://auth-userrole-review-disco.apps.fr01.paas.tech.orange//userRolePermission/v1"
+components:
+  schemas:
+    AssetUserRole:
+      description: "The AssetUserRole is the detailed information concerning an individual\
+        \ user role"
+      required:
+      - "manageableAsset"
+      - "userRole"
+      type: "object"
+      properties:
+        manageableAsset:
+          $ref: "#/components/schemas/EntityRef"
+        userRole:
+          $ref: "#/components/schemas/UserRoleRef"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+    ComponentConfiguration:
+      description: "To manage the name of the components which are managed by the\
+        \ userRole API"
+      required:
+      - "id"
+      - "componentName"
+      type: "object"
+      properties:
+        id:
+          description: "Autogenerated ID of the component"
+          type: "string"
+        componentName:
+          description: "Name of the component"
+          type: "string"
+    Entitlement:
+      description: "An Entitlement defines access levels to operate over a given function\
+        \ that can be included in an asset."
+      required:
+      - "id"
+      type: "object"
+      properties:
+        action:
+          description: "Level of access granted as part of the permission."
+          type: "string"
+        function:
+          description: "Specific function that can be managed over a given asset."
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        id:
+          type: "string"
+    EntityRef:
+      description: "Entity reference schema to be use for all entityRef class."
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of a related entity."
+          type: "string"
+        href:
+          description: "Reference of the related entity."
+          type: "string"
+        name:
+          description: "Name of the related entity."
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    Error:
+      description: "Used when an API throws an Error, typically with a HTTP error\
+        \ response-code (3xx, 4xx, 5xx)"
+      required:
+      - "code"
+      - "reason"
+      type: "object"
+      properties:
+        code:
+          description: "Application relevant detail, defined in the API or a common\
+            \ list."
+          type: "string"
+        reason:
+          description: "Explanation of the reason for the error which can be shown\
+            \ to a client user."
+          type: "string"
+        message:
+          description: "More details and corrective actions related to the error which\
+            \ can be shown to a client user."
+          type: "string"
+        status:
+          description: "HTTP Error code extension"
+          type: "string"
+        referenceError:
+          description: "URI of documentation describing the error."
+          type: "string"
+          format: "uri"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+    EventSubscription:
+      description: "Sets the communication endpoint address the service instance must\
+        \ use to deliver notification information"
+      required:
+      - "id"
+      - "callback"
+      type: "object"
+      properties:
+        id:
+          description: "Id of the listener"
+          type: "string"
+        callback:
+          description: "The callback being registered."
+          type: "string"
+        query:
+          description: "additional data to be passed"
+          type: "string"
+    EventSubscriptionInput:
+      description: "Sets the communication endpoint address the service instance must\
+        \ use to deliver notification information"
+      required:
+      - "callback"
+      type: "object"
+      properties:
+        callback:
+          description: "The callback being registered."
+          type: "string"
+        query:
+          description: "additional data to be passed"
+          type: "string"
+    FunctionConfiguration:
+      description: "Used for configuration of \"functions\" in the entitlements object\
+        \ of the user role API."
+      required:
+      - "id"
+      - "functionName"
+      type: "object"
+      properties:
+        id:
+          description: "Auto generated ID for the function"
+          type: "string"
+        functionName:
+          description: "Name of the function, which maps to the \"function\" attribute."
+          type: "string"
+    Permission:
+      description: "The Permission resource represents the entitlement given by an\
+        \ individual (granter) to another individual (user) to get access to a set\
+        \ of his owned manageable assets. One single permission resource can hold\
+        \ information referring to privileges granted for multiple manageable assets."
+      required:
+      - "user"
+      - "validFor"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of the permission"
+          type: "string"
+        href:
+          description: "Hypertext Reference of the permission"
+          type: "string"
+        creationDate:
+          description: "Date when the payment was performed"
+          type: "string"
+          format: "date-time"
+        description:
+          description: "Text describing the contents of the payment"
+          type: "string"
+        assetUserRole:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/AssetUserRole"
+        granter:
+          $ref: "#/components/schemas/RelatedParty"
+        privilege:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Privilege"
+        user:
+          $ref: "#/components/schemas/RelatedParty"
+        validFor:
+          $ref: "#/components/schemas/TimePeriod"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+    PermissionAttributeValueChangeEvent:
+      description: "The notification data structure"
+      type: "object"
+      properties:
+        eventId:
+          description: "The identifier of the notification."
+          type: "string"
+        eventTime:
+          description: "Time of the event occurrence."
+          type: "string"
+          format: "date-time"
+        eventType:
+          description: "The type of the notification."
+          type: "string"
+        correlationId:
+          description: "The correlation id for this event."
+          type: "string"
+        domain:
+          description: "The domain of the event."
+          type: "string"
+        title:
+          description: "The title of the event."
+          type: "string"
+        description:
+          description: "An explnatory of the event."
+          type: "string"
+        priority:
+          description: "A priority."
+          type: "string"
+        timeOcurred:
+          description: "The time the event occured."
+          type: "string"
+          format: "date-time"
+        fieldPath:
+          description: "The path identifying the object field concerned by this notification."
+          type: "string"
+        event:
+          $ref: "#/components/schemas/PermissionAttributeValueChangeEventPayload"
+    PermissionAttributeValueChangeEventPayload:
+      description: "The event data structure"
+      type: "object"
+      properties:
+        permission:
+          $ref: "#/components/schemas/Permission"
+    PermissionCreateEvent:
+      description: "The notification data structure"
+      type: "object"
+      properties:
+        id:
+          description: "Identifier of the Process flow"
+          type: "string"
+        href:
+          description: "Reference of the ProcessFlow"
+          type: "string"
+        eventId:
+          description: "The identifier of the notification."
+          type: "string"
+        eventTime:
+          description: "Time of the event occurrence."
+          type: "string"
+          format: "date-time"
+        eventType:
+          description: "The type of the notification."
+          type: "string"
+        correlationId:
+          description: "The correlation id for this event."
+          type: "string"
+        domain:
+          description: "The domain of the event."
+          type: "string"
+        title:
+          description: "The title of the event."
+          type: "string"
+        description:
+          description: "An explnatory of the event."
+          type: "string"
+        priority:
+          description: "A priority."
+          type: "string"
+        timeOcurred:
+          description: "The time the event occured."
+          type: "string"
+          format: "date-time"
+        event:
+          $ref: "#/components/schemas/PermissionCreateEventPayload"
+    PermissionCreateEventPayload:
+      description: "The event data structure"
+      type: "object"
+      properties:
+        permission:
+          $ref: "#/components/schemas/Permission"
+    PermissionDeleteEvent:
+      description: "The notification data structure"
+      type: "object"
+      properties:
+        id:
+          description: "Identifier of the Process flow"
+          type: "string"
+        href:
+          description: "Reference of the ProcessFlow"
+          type: "string"
+        eventId:
+          description: "The identifier of the notification."
+          type: "string"
+        eventTime:
+          description: "Time of the event occurrence."
+          type: "string"
+          format: "date-time"
+        eventType:
+          description: "The type of the notification."
+          type: "string"
+        correlationId:
+          description: "The correlation id for this event."
+          type: "string"
+        domain:
+          description: "The domain of the event."
+          type: "string"
+        title:
+          description: "The title of the event."
+          type: "string"
+        description:
+          description: "An explnatory of the event."
+          type: "string"
+        priority:
+          description: "A priority."
+          type: "string"
+        timeOcurred:
+          description: "The time the event occured."
+          type: "string"
+          format: "date-time"
+        event:
+          $ref: "#/components/schemas/PermissionDeleteEventPayload"
+    PermissionDeleteEventPayload:
+      description: "The event data structure"
+      type: "object"
+      properties:
+        permission:
+          $ref: "#/components/schemas/Permission"
+    PermissionStateChangeEvent:
+      description: "The notification data structure"
+      type: "object"
+      properties:
+        id:
+          description: "Identifier of the Process flow"
+          type: "string"
+        href:
+          description: "Reference of the ProcessFlow"
+          type: "string"
+        eventId:
+          description: "The identifier of the notification."
+          type: "string"
+        eventTime:
+          description: "Time of the event occurrence."
+          type: "string"
+          format: "date-time"
+        eventType:
+          description: "The type of the notification."
+          type: "string"
+        correlationId:
+          description: "The correlation id for this event."
+          type: "string"
+        domain:
+          description: "The domain of the event."
+          type: "string"
+        title:
+          description: "The title of the event."
+          type: "string"
+        description:
+          description: "An explnatory of the event."
+          type: "string"
+        priority:
+          description: "A priority."
+          type: "string"
+        timeOcurred:
+          description: "The time the event occured."
+          type: "string"
+          format: "date-time"
+        event:
+          $ref: "#/components/schemas/PermissionStateChangeEventPayload"
+    PermissionStateChangeEventPayload:
+      description: "The event data structure"
+      type: "object"
+      properties:
+        permission:
+          $ref: "#/components/schemas/Permission"
+    Permission_Create:
+      description: "The Permission resource represents the entitlement given by an\
+        \ individual (granter) to another individual (user) to get access to a set\
+        \ of his owned manageable assets. One single permission resource can hold\
+        \ information referring to privileges granted for multiple manageable assets.\n\
+        Skipped properties: id,href,creationDate"
+      required:
+      - "user"
+      - "validFor"
+      type: "object"
+      properties:
+        description:
+          description: "Text describing the contents of the payment"
+          type: "string"
+        assetUserRole:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/AssetUserRole"
+        granter:
+          $ref: "#/components/schemas/RelatedParty"
+        privilege:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Privilege"
+        user:
+          $ref: "#/components/schemas/RelatedParty"
+        validFor:
+          $ref: "#/components/schemas/TimePeriod"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+    Permission_Update:
+      description: "The Permission resource represents the entitlement given by an\
+        \ individual (granter) to another individual (user) to get access to a set\
+        \ of his owned manageable assets. One single permission resource can hold\
+        \ information referring to privileges granted for multiple manageable assets.\n\
+        Skipped properties: id,href,creationDate"
+      required:
+      - "user"
+      - "validFor"
+      type: "object"
+      properties:
+        description:
+          description: "Text describing the contents of the payment"
+          type: "string"
+        assetUserRole:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/AssetUserRole"
+        granter:
+          $ref: "#/components/schemas/RelatedParty"
+        privilege:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Privilege"
+        user:
+          $ref: "#/components/schemas/RelatedParty"
+        validFor:
+          $ref: "#/components/schemas/TimePeriod"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+    Privilege:
+      description: "A Privilege is a detailed information concerning an individual\
+        \ access entitlement."
+      required:
+      - "action"
+      - "function"
+      - "manageableAsset"
+      type: "object"
+      properties:
+        action:
+          description: "Level of access granted as part of the permission."
+          type: "string"
+        function:
+          description: "Specific function that can be managed over a given asset."
+          type: "string"
+        manageableAsset:
+          $ref: "#/components/schemas/EntityRef"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+    RelatedParty:
+      description: "Related Entity reference. A related party defines party or party\
+        \ role linked to a specific entity."
+      required:
+      - "id"
+      - "@referredType"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of a related entity."
+          type: "string"
+        href:
+          description: "Reference of the related entity."
+          type: "string"
+        name:
+          description: "Name of the related entity."
+          type: "string"
+        role:
+          description: "Role played by the related party"
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    TimePeriod:
+      description: "A period of time, either as a deadline (endDateTime only) a startDateTime\
+        \ only, or both"
+      type: "object"
+      properties:
+        endDateTime:
+          description: "End of the time period, using IETC-RFC-3339 format"
+          type: "string"
+          format: "date-time"
+        startDateTime:
+          description: "Start of the time period, using IETC-RFC-3339 format. If you\
+            \ define a start, you must also define an end"
+          type: "string"
+          format: "date-time"
+    UserRole:
+      description: "A UserRole defines access levels to operate over a given function\
+        \ that can be included in an asset."
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of the userRole"
+          type: "string"
+        href:
+          description: "Unique URI used to access to the userRole resource"
+          type: "string"
+        involvementRole:
+          description: "Indication of the part that a user plays in its involvement\
+            \ with a manageable asset (product, service or resource)"
+          type: "string"
+        entitlement:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Entitlement"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        component:
+          description: "Describes the name of the component for which the user role\
+            \ has been created."
+          type: "string"
+    UserRoleAttributeValueChangeEvent:
+      description: "The notification data structure"
+      type: "object"
+      properties:
+        eventId:
+          description: "The identifier of the notification."
+          type: "string"
+        eventTime:
+          description: "Time of the event occurrence."
+          type: "string"
+          format: "date-time"
+        eventType:
+          description: "The type of the notification."
+          type: "string"
+        correlationId:
+          description: "The correlation id for this event."
+          type: "string"
+        domain:
+          description: "The domain of the event."
+          type: "string"
+        title:
+          description: "The title of the event."
+          type: "string"
+        description:
+          description: "An explnatory of the event."
+          type: "string"
+        priority:
+          description: "A priority."
+          type: "string"
+        timeOcurred:
+          description: "The time the event occured."
+          type: "string"
+          format: "date-time"
+        fieldPath:
+          description: "The path identifying the object field concerned by this notification."
+          type: "string"
+        event:
+          $ref: "#/components/schemas/UserRoleAttributeValueChangeEventPayload"
+    UserRoleAttributeValueChangeEventPayload:
+      description: "The event data structure"
+      type: "object"
+      properties:
+        userRole:
+          $ref: "#/components/schemas/UserRole"
+    UserRoleCreateEvent:
+      description: "The notification data structure"
+      type: "object"
+      properties:
+        id:
+          description: "Identifier of the Process flow"
+          type: "string"
+        href:
+          description: "Reference of the ProcessFlow"
+          type: "string"
+        eventId:
+          description: "The identifier of the notification."
+          type: "string"
+        eventTime:
+          description: "Time of the event occurrence."
+          type: "string"
+          format: "date-time"
+        eventType:
+          description: "The type of the notification."
+          type: "string"
+        correlationId:
+          description: "The correlation id for this event."
+          type: "string"
+        domain:
+          description: "The domain of the event."
+          type: "string"
+        title:
+          description: "The title of the event."
+          type: "string"
+        description:
+          description: "An explnatory of the event."
+          type: "string"
+        priority:
+          description: "A priority."
+          type: "string"
+        timeOcurred:
+          description: "The time the event occured."
+          type: "string"
+          format: "date-time"
+        event:
+          $ref: "#/components/schemas/UserRoleCreateEventPayload"
+    UserRoleCreateEventPayload:
+      description: "The event data structure"
+      type: "object"
+      properties:
+        userRole:
+          $ref: "#/components/schemas/UserRole"
+    UserRoleDeleteEvent:
+      description: "The notification data structure"
+      type: "object"
+      properties:
+        id:
+          description: "Identifier of the Process flow"
+          type: "string"
+        href:
+          description: "Reference of the ProcessFlow"
+          type: "string"
+        eventId:
+          description: "The identifier of the notification."
+          type: "string"
+        eventTime:
+          description: "Time of the event occurrence."
+          type: "string"
+          format: "date-time"
+        eventType:
+          description: "The type of the notification."
+          type: "string"
+        correlationId:
+          description: "The correlation id for this event."
+          type: "string"
+        domain:
+          description: "The domain of the event."
+          type: "string"
+        title:
+          description: "The title of the event."
+          type: "string"
+        description:
+          description: "An explnatory of the event."
+          type: "string"
+        priority:
+          description: "A priority."
+          type: "string"
+        timeOcurred:
+          description: "The time the event occured."
+          type: "string"
+          format: "date-time"
+        event:
+          $ref: "#/components/schemas/UserRoleDeleteEventPayload"
+    UserRoleDeleteEventPayload:
+      description: "The event data structure"
+      type: "object"
+      properties:
+        userRole:
+          $ref: "#/components/schemas/UserRole"
+    UserRoleRef:
+      description: "A UserRoleRef is a detailed information concerning an individual\
+        \ access entitlement."
+      required:
+      - "id"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of the user role"
+          type: "string"
+        href:
+          description: "Hypertext Reference of the user role."
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    UserRoleStateChangeEvent:
+      description: "The notification data structure"
+      type: "object"
+      properties:
+        id:
+          description: "Identifier of the Process flow"
+          type: "string"
+        href:
+          description: "Reference of the ProcessFlow"
+          type: "string"
+        eventId:
+          description: "The identifier of the notification."
+          type: "string"
+        eventTime:
+          description: "Time of the event occurrence."
+          type: "string"
+          format: "date-time"
+        eventType:
+          description: "The type of the notification."
+          type: "string"
+        correlationId:
+          description: "The correlation id for this event."
+          type: "string"
+        domain:
+          description: "The domain of the event."
+          type: "string"
+        title:
+          description: "The title of the event."
+          type: "string"
+        description:
+          description: "An explnatory of the event."
+          type: "string"
+        priority:
+          description: "A priority."
+          type: "string"
+        timeOcurred:
+          description: "The time the event occured."
+          type: "string"
+          format: "date-time"
+        event:
+          $ref: "#/components/schemas/UserRoleStateChangeEventPayload"
+    UserRoleStateChangeEventPayload:
+      description: "The event data structure"
+      type: "object"
+      properties:
+        userRole:
+          $ref: "#/components/schemas/UserRole"
+    UserRole_Create:
+      description: "A UserRole defines access levels to operate over a given function\
+        \ that can be included in an asset.\nSkipped properties: id,href"
+      required:
+      - "entitlement"
+      type: "object"
+      properties:
+        involvementRole:
+          description: "Indication of the part that a user plays in its involvement\
+            \ with a manageable asset (product, service or resource)"
+          type: "string"
+        entitlement:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Entitlement"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+    UserRole_Update:
+      description: "A UserRole defines access levels to operate over a given function\
+        \ that can be included in an asset.\nSkipped properties: id,href"
+      type: "object"
+      properties:
+        involvementRole:
+          description: "Indication of the part that a user plays in its involvement\
+            \ with a manageable asset (product, service or resource)"
+          type: "string"
+        entitlement:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Entitlement"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"

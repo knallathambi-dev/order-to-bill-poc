@@ -1,0 +1,29 @@
+meta {
+  name: get Po_ChecklifecycleStatus_launch
+  type: http
+  seq: 24
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/productOffering/{{APO_id}}
+  body: none
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+  res.body.lifecycleStatus: eq launched
+}
+
+docs {
+  Request to check lifecycle status is changed to desired state
+}

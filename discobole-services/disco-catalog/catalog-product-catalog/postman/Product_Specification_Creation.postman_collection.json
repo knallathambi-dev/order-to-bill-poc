@@ -1,0 +1,860 @@
+{
+	"info": {
+		"_postman_id": "0f4f4513-bd42-4dd7-a601-35be38d04121",
+		"name": "Product Specification Creation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateProcessFlow",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id\", jsonData.id); \r",
+							"console.log(pm.environment.get(\"id\"));\r",
+							"\r",
+							"pm.environment.set(\"task_href1\", jsonData._links.nextTaskstoBePerformed[0].href);\r",
+							"pm.environment.set(\"cancel_href\", jsonData._links.nextTaskstoBePerformed[1].href);\r",
+							"var Prod=jsonData.processFlowSpecification;\r",
+							"\r",
+							"pm.test(\"to verify ProductSpecCreation flow request is succesful with Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"to verify Next task to be performed is :ProductSpecCreation.selectSupportEntity \", function(){\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql(\"ProductSpecCreation.selectSupportEntity\");\r",
+							"\r",
+							"});\r",
+							"pm.test(\"to verify that supportEntityType.enum present in the response are  correct \", ()=>{\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.SelectSupportEntity.properties.supportEntityType.enum[1]).to.eql(\"StockItemType\");\r",
+							"})\r",
+							"\r",
+							"pm.environment.set(\"SupportEntityValue\",jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.SelectSupportEntity.properties.supportEntityType.enum[0]);\r",
+							"\r",
+							"pm.test(\"to verify ProductSpecCreation.cancel task is present\", function () {\r",
+							"    //var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql(\"ProductSpecCreation.cancel\");\r",
+							"});\r",
+							"var resp = [] \r",
+							"resp[0] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.SelectSupportEntity.required[0];\r",
+							"resp[1] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.SelectSupportEntity.required[1];\r",
+							"\r",
+							"pm.test(\"to verify Next task 'required' field is correct\", function () {\r",
+							"    pm.expect(resp[0],resp[1]).to.eql(\"supportEntitySpecification.id\",\"supportEntityType\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"processFlowSpecification\": \"ProductSpecCreation\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Host}}/catalog-configurator/processManagement/v4/processFlow",
+					"host": [
+						"{{Host}}"
+					],
+					"path": [
+						"catalog-configurator",
+						"processManagement",
+						"v4",
+						"processFlow"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get CFS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"to verify request is succesfull with Status code 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.environment.set(\"id\", jsonData.id); \r",
+							"console.log(pm.environment.get(\"id\"));\r",
+							"\r",
+							"pm.environment.set(\"task_href1\", jsonData._links.nextTaskstoBePerformed[0].href);\r",
+							"\r",
+							"pm.environment.set(\"cancel_href\", jsonData._links.nextTaskstoBePerformed[1].href);\r",
+							"//pm.test(pm.expect(\"The next task is : ProductSpecCreation.description\"))\r",
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+							"    console.log(response.json());\r",
+							"});\r",
+							"pm.test(\"to verify that Next task is: ProductSpecCreation.description \", function () {\r",
+							"  pm.expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql(\"ProductSpecCreation.description\");\r",
+							"});\r",
+							"pm.test(\"to verify that ProductSpecCreation.cancel task is present\", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql(\"ProductSpecCreation.cancel\");\r",
+							"});\r",
+							"var resp = [] \r",
+							"resp[0] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.DefineIdentityData.required[0];\r",
+							"resp[1] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.DefineIdentityData.required[1];\r",
+							"pm.test(\"to verify nextTaskstoBePerformed 'required' fields\", function () {\r",
+							"    pm.expect(resp[0],resp[1]).to.eql(\"name\",\"description\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"characteristic\": [\r\n                    {\r\n                        \"name\": \"SelectSupportEntity\",\r\n                        \"valueType\": \"Object\",\r\n                        \"value\":{\r\n                            \"supportEntitySpecification.id\":3001,\r\n                            \"supportEntityType\":\"{{SupportEntityValue}}\"\r\n                        },\r\n                        \"@baseType\": null,\r\n                        \"@schemaLocation\": null,\r\n                        \"@type\": \"ObjectCharacteristic\"\r\n                    }\r\n                ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{task_href1}}",
+					"host": [
+						"{{task_href1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "selectSupportEntity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"to verify request is succesfull with Status code 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.environment.set(\"id\", jsonData.id); \r",
+							"console.log(pm.environment.get(\"id\"));\r",
+							"\r",
+							"pm.environment.set(\"task_href1\", jsonData._links.nextTaskstoBePerformed[0].href);\r",
+							"\r",
+							"pm.environment.set(\"cancel_href\", jsonData._links.nextTaskstoBePerformed[1].href);\r",
+							"//pm.test(pm.expect(\"The next task is : ProductSpecCreation.description\"))\r",
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+							"    console.log(response.json());\r",
+							"});\r",
+							"pm.test(\"to verify that Next task is: ProductSpecCreation.description \", function () {\r",
+							"  pm.expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql(\"ProductSpecCreation.description\");\r",
+							"});\r",
+							"pm.test(\"to verify that ProductSpecCreation.cancel task is present\", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql(\"ProductSpecCreation.cancel\");\r",
+							"});\r",
+							"var resp = [] \r",
+							"resp[0] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.DefineIdentityData.required[0];\r",
+							"resp[1] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.DefineIdentityData.required[1];\r",
+							"pm.test(\"to verify nextTaskstoBePerformed 'required' fields\", function () {\r",
+							"    pm.expect(resp[0],resp[1]).to.eql(\"name\",\"description\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"characteristic\": [\r\n                    {\r\n                        \"name\": \"SelectSupportEntity\",\r\n                        \"valueType\": \"Object\",\r\n                        \"value\":{\r\n                            \"supportEntitySpecification.id\":3001,\r\n                            \"supportEntityType\":\"{{SupportEntityValue}}\"\r\n                        },\r\n                        \"@baseType\": null,\r\n                        \"@schemaLocation\": null,\r\n                        \"@type\": \"ObjectCharacteristic\"\r\n                    }\r\n                ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{task_href1}}",
+					"host": [
+						"{{task_href1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "description",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"characteristic\": [\r\n                    {\r\n                        \"name\": \"CancelEntityOperation\",\r\n                        \"valueType\": \"Object\",\r\n                        \"value\":{\r\n                            \"isCancelled\":\"true\"                           \r\n                        },\r\n                        \"@baseType\": null,\r\n                        \"@schemaLocation\": null,\r\n                        \"@type\": \"ObjectCharacteristic\"\r\n                    }\r\n                ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cancel_href}}",
+					"host": [
+						"{{cancel_href}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defOperation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id\", jsonData.id); \r",
+							"console.log(pm.environment.get(\"id\"));\r",
+							"\r",
+							"pm.environment.set(\"task_href1\", jsonData._links.nextTaskstoBePerformed[0].href);\r",
+							"\r",
+							"pm.environment.set(\"cancel_href\", jsonData._links.nextTaskstoBePerformed[1].href);\r",
+							"pm.environment.set(\"desc_href\", jsonData._links.existingTaskEditable[0].href);\r",
+							"pm.environment.set(\"Operation_href\", jsonData._links.existingTaskEditable[1].href);\r",
+							"pm.test(\"to verify request is successful with Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"var resp = [] \r",
+							"resp[0] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.PickCharacteristicSpecification.required[0];\r",
+							"resp[1] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.PickCharacteristicSpecification.required[1];\r",
+							"pm.test(\"to verify Next task 'required' field \", function () {\r",
+							"    pm.expect(resp[0],resp[1]).to.eql(\"serviceSpecification.serviceSpecCharacteristic.id\",\"name\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"to verify Next task is : ProductSpecCreation.defCharacteristics\", function () {\r",
+							"   var jsonData = pm.response.json();\r",
+							"   pm.expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql(\"ProductSpecCreation.defCharacteristics\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"to verify ProductSpecCreation.cancel task is present\", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql(\"ProductSpecCreation.cancel\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"to verify existingTaskEditable task is present in the response \", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[0].title).to.eql(\"ProductSpecCreation.description\");\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[1].title).to.eql(\"ProductSpecCreation.defOperation\");\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"var moment = require('moment');\r",
+							"pm.environment.set('timestamp', moment().format((\"YYYY-MM-DD-HH.mm.SS.SSSSSS\")));\r",
+							"pm.environment.set('date', moment().format((\"YYYY-MM-DD\")));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"characteristic\": [\r\n        {\r\n            \"name\": \"PickOperationSpecification\",\r\n            \"valueType\": \"List\",\r\n            \"value\": [\r\n                {\r\n                    \"serviceSpecification.operationSpecification.id\": \"{{OpspecValID}}\",\r\n                    \"name\": \"{{OpspecValName}}\",\r\n                    \"validFor\": {\r\n                        \"endDateTime\": null,\r\n                        \"startDateTime\": \"2017-04-12T23:20:50.52Z\"\r\n                    },\r\n                    \"description\": \"Provision a new mobile access v04 on Orange Network for B2C only\"\r\n                }\r\n              \r\n            ],\r\n            \"@baseType\": null,\r\n            \"@schemaLocation\": null,\r\n            \"@type\": \"ObjectCharacteristic\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{task_href1}}",
+					"host": [
+						"{{task_href1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defCharacteristics",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id\", jsonData.id); \r",
+							"console.log(pm.environment.get(\"id\"));\r",
+							"\r",
+							"pm.environment.set(\"task_href1\", jsonData._links.nextTaskstoBePerformed[0].href);\r",
+							"\r",
+							"pm.environment.set(\"cancel_href\", jsonData._links.nextTaskstoBePerformed[1].href);\r",
+							"pm.test(\"to verify request is successful with Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"to verify Next task to be performed is: ProductSpecCreation.defRelationship \", function () {\r",
+							"    //var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql(\"ProductSpecCreation.defRelationship\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"to verify  ProductSpecCreation.cancel task is present\", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql(\"ProductSpecCreation.cancel\");\r",
+							"});\r",
+							"var resp = [] \r",
+							"resp[0] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.DefineRelationship.required[0];\r",
+							"resp[1] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.DefineRelationship.required[1];\r",
+							"pm.test(\"to verify  Next task 'required' field \", function () {\r",
+							"    pm.expect(resp[0],resp[1]).to.eql(\"id\", \"relationshipType\");\r",
+							"});\r",
+							"pm.test(\"to verify existingTaskEditable task is present in the response \", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[0].title).to.eql(\"ProductSpecCreation.description\");\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[1].title).to.eql(\"ProductSpecCreation.defOperation\");\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"characteristic\": [\r\n        {\r\n            \"name\": \"PickCharacteristicSpecification\",\r\n            \"valueType\": \"List\",\r\n            \"value\": [\r\n                {\r\n                    \"serviceSpecification.serviceSpecCharacteristic.id\": \"{{ServCharValID}}\",\r\n                    \"name\": \"{{ServCharValName}}\",\r\n                    \"minCardinality\": 0,\r\n                    \"maxCardinality\": 1,\r\n                    \"description\": \"Type of SIM use-able for this mobile access\",\r\n                    \"valueType\": \"string\",\r\n                    \"validFor\": {\r\n                        \"startDateTime\": \"{{CharStartDate}}\"\r\n                    },\r\n                    \"characteristicValueSpecification\": [\r\n                        {\r\n                            \"isDefault\": true,\r\n                            \"rangeInterval\": null,\r\n                            \"regex\": null,\r\n                            \"unitOfMeasure\": null,\r\n                            \"valueFrom\": null,\r\n                            \"valueTo\": null,\r\n                            \"valueType\": null,\r\n                            \"validFor\": {\r\n                                \"endDateTime\": null,\r\n                                \"startDateTime\": \"2017-04-12T23:20:50.52Z\"\r\n                            },\r\n                            \"value\": \"SIM\"\r\n                        }\r\n                    ]\r\n                   \r\n                   \r\n                }\r\n            ],\r\n            \"@baseType\": null,\r\n            \"@schemaLocation\": null,\r\n            \"@type\": \"ObjectCharacteristic\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{task_href1}}",
+					"host": [
+						"{{task_href1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defRelationship",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id\", jsonData.id); \r",
+							"console.log(pm.environment.get(\"id\"));\r",
+							"pm.environment.set(\"task_href1\", jsonData._links.nextTaskstoBePerformed[0].href);\r",
+							"pm.environment.set(\"cancel_href\", jsonData._links.nextTaskstoBePerformed[1].href);\r",
+							"pm.test(\"to verify request is successful with Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"to verify  Next task to be performed is : ProductSpecCreation.defParty\", function () {\r",
+							"   pm.expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql(\"ProductSpecCreation.defParty\");\r",
+							"});\r",
+							"pm.test(\"to verify ProductSpecCreation.cancel task is present\", function () {\r",
+							"   pm.expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql(\"ProductSpecCreation.cancel\");\r",
+							"});\r",
+							"var resp = [] \r",
+							"resp[0] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.SelectRelatedParty.required[0];\r",
+							"resp[1] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.SelectRelatedParty.required[1];\r",
+							"pm.test(\"to verify  Next task 'required' field \", function () {\r",
+							"    pm.expect(resp[0],resp[1]).to.eql(\"@referredType\", \"role\");\r",
+							"});\r",
+							"pm.test(\"to verify existingTaskEditable task is present in the response \", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[0].title).to.eql(\"ProductSpecCreation.description\");\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[1].title).to.eql(\"ProductSpecCreation.defOperation\");\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[2].title).to.eql(\"ProductSpecCreation.defCharacteristics\");\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"characteristic\": [\r\n        {\r\n            \"name\": \"DefineRelationship\",\r\n            \"valueType\": \"List\",\r\n            \"value\": [\r\n                {\"id\": \"c49df7e5-82e6-49ca-b3ad-06cec2cba026 \",\r\n                    \"relationshipType\": \"reliesOn\",\r\n                    \"validFor\": {\r\n                        \"startDateTime\": \"2017-04-12T23:20:50.520Z\"}\r\n                }\r\n            ],\r\n            \"@baseType\": null,\r\n            \"@schemaLocation\": null,\r\n            \"@type\": \"ObjectCharacteristic\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{task_href1}}",
+					"host": [
+						"{{task_href1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defParty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id\", jsonData.id); \r",
+							"console.log(pm.environment.get(\"id\"));\r",
+							"pm.environment.set(\"task_href1\", jsonData._links.nextTaskstoBePerformed[0].href);\r",
+							"\r",
+							"pm.environment.set(\"cancel_href\", jsonData._links.nextTaskstoBePerformed[1].href);\r",
+							"pm.test(\"to verify request is successful with Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"to verify  Next Task to be performed is : ProductSpecCreation.defRelatedResource\", function () {\r",
+							"   pm.expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql(\"ProductSpecCreation.defRelatedResource\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"to verify ProductSpecCreation.cancel task is present\", function () {\r",
+							"   pm.expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql(\"ProductSpecCreation.cancel\");\r",
+							"});\r",
+							"\r",
+							"var resp = [] \r",
+							"resp[0] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.SelectRelatedResource.required[0];\r",
+							"\r",
+							"pm.test(\"to verify Next task 'required' field \", function () {\r",
+							"    pm.expect(resp[0]).to.eql(\"role\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"to verify existingTaskEditable task is present in the response \", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[0].title).to.eql(\"ProductSpecCreation.description\");\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[1].title).to.eql(\"ProductSpecCreation.defOperation\");\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[2].title).to.eql(\"ProductSpecCreation.defCharacteristics\");\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[3].title).to.eql(\"ProductSpecCreation.defRelationship\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"characteristic\": [\r\n        {\r\n            \"name\": \"SelectRelatedParty\",\r\n            \"valueType\": \"List\",\r\n            \"value\": [\r\n                {\r\n                    \"@referredType\": \"individual\",\r\n                    \"role\": \"1\",\r\n                    \"id\": \"10001\"\r\n                }\r\n            ],\r\n            \"@baseType\": null,\r\n            \"@schemaLocation\": null,\r\n            \"@type\": \"ObjectCharacteristic\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{task_href1}}",
+					"host": [
+						"{{task_href1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defRelatedResource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"task_href1\", jsonData._links.nextTaskstoBePerformed[0].href);\r",
+							"\r",
+							"pm.environment.set(\"cancel_href\", jsonData._links.nextTaskstoBePerformed[1].href);\r",
+							"\r",
+							"pm.test(\"to verify request is successful with Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"to verify Next task to be perfomed is : ProductSpecCreation.defValidity \", function () {\r",
+							"    //var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql(\"ProductSpecCreation.defValidity\");\r",
+							"});\r",
+							"pm.test(\"to verify ProductSpecCreation.cancel task is present\", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql(\"ProductSpecCreation.cancel\");\r",
+							"});\r",
+							"var resp = [] \r",
+							"resp[0] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.DefineEntityValidityPeriod.properties.validFor.required[0];\r",
+							"pm.test(\"to verify  Next task 'required' field \", function () {\r",
+							"    pm.expect(resp[0]).to.eql(\"startDateTime\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"to verify existingTaskEditable task is present in the response \", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[0].title).to.eql(\"ProductSpecCreation.description\");\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[1].title).to.eql(\"ProductSpecCreation.defOperation\");\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"characteristic\": [\r\n        {\r\n            \"name\": \"SelectRelatedResource\",\r\n            \"valueType\": \"List\",\r\n            \"value\": [\r\n                {\r\n                    \"@referredType\": \"individual\",\r\n                    \"role\": \"abc\",\r\n                    \"name\": \"related resource\",\r\n                    \"id\": \"1\"\r\n                }\r\n            ],\r\n            \"@baseType\": null,\r\n            \"@schemaLocation\": null,\r\n            \"@type\": \"ObjectCharacteristic\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{task_href1}}",
+					"host": [
+						"{{task_href1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "defValidity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.test(\"to verify Next task is: ProductSpecCreation.validate \", function () {\r",
+							"   //var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql(\"ProductSpecCreation.validate\");\r",
+							"});\r",
+							"pm.test(\"to verify request if successful with Status code  200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.environment.set(\"task_href1\", jsonData._links.nextTaskstoBePerformed[0].href);\r",
+							"\r",
+							"pm.test(\"to verify Next task to be performed is : ProductSpecCreation.validate \", function () {\r",
+							"    //var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql(\"ProductSpecCreation.validate\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"to verify  ProductSpecCreation.cancel task is present\", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql(\"ProductSpecCreation.cancel\");\r",
+							"});\r",
+							"var resp = [] \r",
+							"resp[0] = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.ValidateEntityOperation.required[0];\r",
+							"pm.test(\"to verify  Next task 'required' field \", function () {\r",
+							"    pm.expect(resp[0]).to.eql(\"isValidated\");\r",
+							"});\r",
+							"pm.test(\"to verify existingTaskEditable task is present in the response \", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[0].title).to.eql(\"ProductSpecCreation.description\");\r",
+							"    pm.expect(jsonData._links.existingTaskEditable[1].title).to.eql(\"ProductSpecCreation.defOperation\");\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"characteristic\": [\r\n\r\n        {\r\n\r\n            \"name\": \"DefineEntityValidityPeriod\",\r\n\r\n            \"valueType\": \"Object\",\r\n\r\n            \"value\": {\r\n\r\n                \"validFor\": {\r\n\r\n                    \"endDateTime\": null,\r\n\r\n                    \"startDateTime\": \"2017-04-12T23:21:00.52Z\"\r\n\r\n                }\r\n\r\n            },\r\n\r\n            \"@baseType\": null,\r\n\r\n            \"@schemaLocation\": null,\r\n\r\n            \"@type\": \"ObjectCharacteristic\"\r\n\r\n        }\r\n\r\n    ]\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{task_href1}}",
+					"host": [
+						"{{task_href1}}"
+					],
+					"query": [
+						{
+							"key": "ServiceSpecification.name",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "ServiceSpecification.version",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "StockItemType.id",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "StockItemType.name",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "id",
+							"value": "ff838114-a10a-4596-87c9-51d79babd89f",
+							"disabled": true
+						},
+						{
+							"key": "lastUpdate",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "offset",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "relatedParty.id",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "relatedParty.name",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "relatedParty.role",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "sort",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "supportEntity",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "validFor.gt",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "validFor.lt",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "ProductSpecificationRelationship.id",
+							"value": "499d1e12-9f93-4a6e-b036-5d14c4bf246a",
+							"disabled": true
+						},
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "ServiceSpecification.id",
+							"value": "access01b01",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Csps3!",
+							"disabled": true
+						},
+						{
+							"key": "brand",
+							"value": "Csps3+",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"id\", jsonData.id); \r",
+							"console.log(pm.environment.get(\"id\"));\r",
+							"\r",
+							"pm.test(\"to verify Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var resp = jsonData._links.nextTaskstoBePerformed;\r",
+							"pm.test(\"to verify Next task is empty\", function () {\r",
+							"    pm.expect(jsonData._links.nextTaskstoBePerformed).not.eql(null);\r",
+							"});\r",
+							"pm.test(\"to verify existingTaskEditable task is empty \", function () {\r",
+							"   // var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData._links.existingTaskEditable).not.eql(null);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"characteristic\": [\r\n                    {\r\n                        \"name\": \"ValidateEntityOperation\",\r\n                        \"valueType\": \"Object\",\r\n                        \"value\": {\r\n                            \"isValidated\": true\r\n                        },\r\n                        \"@baseType\": null,\r\n                        \"@schemaLocation\": null,\r\n                        \"@type\": \"ObjectCharacteristic\"\r\n                    }\r\n                ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{task_href1}}",
+					"host": [
+						"{{task_href1}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

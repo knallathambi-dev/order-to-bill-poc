@@ -1,0 +1,86 @@
+meta {
+  name: defRelationship
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  
+  
+  
+  {
+    "characteristic": [
+      {
+        "name": "EntityRelationships",
+        "valueType": "Object",
+        "value": {
+          "defineRelationship": [
+            {
+              "id": "{{active_id}}",
+              "relationshipType": "reliesOn",
+              "validFor": {
+                "endDateTime":null,
+                "startDateTime":  "2026-09-11T05:45:00.000Z"
+              }
+            }
+          ],
+          "associatePolicyRuleRef": []
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  
+  test("to verify Next task to be performed is defRelationship", function(){
+      expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql("ProductSpecCreation.validate");
+  
+  });
+  
+  
+  
+  
+  test("to verify existingTaskEditable is having correct tasks", function(){
+      expect(jsonData._links.existingTaskEditable[0].title).to.eql("ProductSpecCreation.defineIdentityData");
+    
+    expect(jsonData._links.existingTaskEditable[1].title).to.eql("ProductSpecCreation.defCharacteristics");
+    
+  });
+  
+  
+  
+}
+
+docs {
+  Request to select the relationship b/w Product specification
+}

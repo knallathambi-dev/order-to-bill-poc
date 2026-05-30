@@ -1,0 +1,37 @@
+meta {
+  name: Bulk add with empty productOrderItem
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+     {
+        "op":"add",
+        "path":"/productInventoryManagement/v1/product/6620eb0a66ff9c3903ca5f2a/productOrderItem/-",
+        "value":{
+           "productOrderId":"1234",
+           "productOrderHref":"https...",
+           "orderItemId":"",
+           "orderItemAction":"change",
+           "@referredType":"ProductOrder",
+           "role":"change management order"
+        }
+     }
+  ]
+}

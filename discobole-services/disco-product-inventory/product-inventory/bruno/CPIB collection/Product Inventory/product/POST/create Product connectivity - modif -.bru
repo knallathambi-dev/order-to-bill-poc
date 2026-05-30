@@ -1,0 +1,91 @@
+meta {
+  name: create Product connectivity - modif -
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  User-Agent: insomnia/2023.5.8
+}
+
+body:json {
+  {
+      "status": "Created",
+      "operationalStatus": "Confirmed",
+      "relatedParty": [
+           {
+      "role": "Seller",
+      "partyOrPartyRole": {
+        "id": "456-dd-df45",
+        "href": "https://host:port/partyManagement/v5/individual/456-dd-df45",
+        "name": "Joe Doe",
+        "@type": "PartyRef",
+        "@referredType": "Individual"
+      },
+      "@type": "RelatedPartyRefOrPartyRoleRef"
+    }
+      ],
+      "productOffering": {
+          "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+          "name": "Connectivity",
+          "@type": "AtomicProductOffering"
+      },
+      "productOrderItem": [
+          {
+              "productOrderId": "{{productOrderID}}",
+              "orderItemId": "04",
+              "orderItemAction": "add"
+          }
+      ],
+      "productRelationship": [
+          {
+              "relationshipType": "sells",
+              "product": {
+                  "status": "Created",
+                  "operationalStatus": "Confirmed",
+                  "isBundle": false,
+                  "@type": "Product",
+                  "productSpecification": {
+                      "id": "e90a1274-7dc0-4259-a344-362b55edfc58",
+                      "name": "Connectivity",
+                      "@type": "ProductSpecificationRef"
+                  },
+                  "productOrderItem": [
+                      {
+                          "productOrderId": "{{productOrderID}}",
+                          "orderItemId": "08",
+                          "orderItemAction": "add"
+                      }
+                  ],
+                  "relatedParty": [
+                      {
+                          "id": "45hj-8888",
+                          "name": "Jean",
+                          "role": "Customer",
+                          "@referredType": "Individual"
+                      }
+                  ]
+              }
+          },
+          {
+              "relationshipType": "hasParent",
+              "product": {
+                  "id": "659feaa782023b7f07b05c1c",
+                  "@type": "ProductRef"
+              }
+          }
+      ],
+      "@type": "Product"
+  }
+}
+
+script:pre-request {
+  bru.setEnvVar("productOrderID", Math.floor((Math.random()*10000 +1)));
+}

@@ -1,0 +1,141 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+$id: "https://orange.com/orchestrationPlanNodeStateChangeEvent.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "OrchestrationPlanNodeStateChangeEvent"
+type: "object"
+allOf:
+  - $ref: "../Base_event.yaml"
+extends:
+  $ref: "../Base_event.yaml"
+properties:
+  event:
+    $ref: "#/OrchestrationPlanNodeStateChangePayloadEvent"
+required:
+  - "event"
+OrchestrationPlanNodeStateChangePayloadEvent:
+  type: "object"
+  properties:
+    orchestrationPlanNode:
+      $ref: "#/OrchestrationPlanNode"
+  required:
+    - "orchestrationPlanNode"
+  title: "OrchestrationPlanNodeStateChangePayloadEvent"
+OrchestrationPlanNode:
+  type: "object"
+  existingJavaType: "com.orange.discobole.orderorchestration.orchestrationdelivery.model.OrchestrationPlanNode"
+  properties:
+    id:
+      type: "string"
+    state:
+      $ref: "#/OrchestrationNodeState"
+    relatedProductOrder:
+      $ref: "#/ObjectId"
+    relatedProductOrderItem:
+      $ref: "#/RelatedProductOrderItem"
+    relatedServiceOrder:
+      $ref: "#/RelatedServiceOrder"
+  title: "OrchestrationPlanNode"
+  required:
+    - "id"
+    - "state"
+    - "relatedServiceOrder"
+    - "relatedProductOrderItem"
+    - "relatedProduct"
+    - "relatedOrchestrationPlanNode"
+OrchestrationNodeState:
+  type: "string"
+  enum:
+    - "InProgress"
+    - "Held"
+    - "Initialized"
+    - "Acknowledged"
+    - "InDelivery"
+    - "Aborted"
+    - "Rejected"
+    - "Failed"
+    - "Completed"
+  title: "OrchestrationNodeState"
+ObjectId:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+  title: "ObjectId"
+  required:
+    - "id"
+RelatedServiceOrder:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    orderItemId:
+      type: "string"
+    SOMRef:
+      type: "string"
+  title: "RelatedServiceOrder"
+  required:
+    - "id"
+RelatedProductOrderItem:
+  title: "RelatedProductOrderItem"
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    serviceSpecification:
+      type: "array"
+      items:
+        - title: "ServiceSpecification"
+          type: "object"
+          properties:
+            '@baseType':
+              type: "string"
+            '@referredType':
+              type: "string"
+            '@schemaLocation':
+              type: "string"
+            '@type':
+              type: "string"
+            href:
+              type: "string"
+            id:
+              type: "string"
+            name:
+              type: "string"
+            version:
+              type: "string"
+          required:
+            - "@baseType"
+            - "@referredType"
+            - "@schemaLocation"
+            - "@type"
+            - "href"
+            - "id"
+            - "name"
+            - "version"
+    stockItemType:
+      title: "StockItemType"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        name:
+          type: "string"
+        EAN:
+          type: "string"
+      required:
+        - "id"
+        - "name"
+        - "EAN"
+  required:
+    - "id"
+    - "serviceSpecification"
+    - "stockItemType"

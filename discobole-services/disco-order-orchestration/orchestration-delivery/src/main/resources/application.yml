@@ -1,0 +1,181 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: ${PORT:8086}
+  tomcat:
+    accesslog:
+      enabled: true
+    mbeanregistry:
+      enabled: true
+  forward-headers-strategy: framework
+spring:
+  web:
+    application:
+      name: orchestration delivery
+      version: @project.version@
+  main:
+    allow-bean-definition-overriding: true
+  banner:
+    location: classpath:banner.txt
+  profiles:
+    default: dev
+    active: plaintextconsole,dev
+  data:
+    mongodb:
+      auto-index-creation: 'true'
+      uri: 'mongodb://localhost:27017/COOD?replicaSet=rs0'
+  devtools:
+    restart:
+      exclude: target/classes/**, build/**, bin/**
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_URI}/realms/SpringBootKeycloak
+          jwk-set-uri: ${KEYCLOAK_URI}/realms/SpringBootKeycloak/protocol/openid-connect/certs
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_URI}/realms/SpringBootKeycloak
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ${KEYCLOAK_CLIENT_ID}
+            authorization-grant-type: client_credentials
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.orange.discobole.orderorchestration.orchestrationdelivery.config.CustomSerializer
+      retries: 0
+      properties:
+        spring.kafka.topic.auto-create: true
+        spring.json.add.type.headers: false
+        max.request.size: 5242880
+    consumer:
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: com.orange.discobole.orderorchestration.orchestrationdelivery.config.CustomDeserializer
+      auto-offset-reset: latest
+      max-poll-records: 100
+      enable-auto-commit: true
+      properties:
+        spring.json.trusted.packages: '*'
+        max.poll.interval.ms: 600000
+        session.timeout.ms: 45000
+        heartbeat.interval.ms: 3000
+        spring.json.remove.type.headers: true
+        spring.json.use.type.headers: false
+        spring.json.value.type.method: com.orange.discobole.orderorchestration.orchestrationdelivery.config.KafkaTyper.typer
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+  json:
+    trusted:
+      packages: '*'  # Allow deserialization for all packages (be cautious with '*')
+    use:
+      type:
+        headers: false
+retry:
+  maxAttempts: '5'
+  maxDelay: '5000'
+config:
+  productSpecByIdCatalogUrl: http://localhost:8082/productCatalogManagement/v1/productSpecification
+  productManagementUrl: http://localhost:8082/productInventoryManagement/v1/product
+  serviceCatalogManagementUrl: http://localhost:8082/serviceCatalogManagement/v1/serviceSpecification
+  serviceOrderingUrl: http://localhost:8082/serviceOrdering/v1/serviceOrder
+  productOrderByIdUrl: http://localhost:8082/api/productOrderingManagement/v1/productOrder
+  falloutUrl: http://localhost:8090/processManagement/v1/processFlow
+  orchestrationPlanPurgeCronExpression: "*/30 * * * * *"
+  eventPurgeCronExpression: "0 0 12 * * *"
+  deleteEventsThresholdDuration: P90D
+  storePlanStatisticsDuration: PT10S
+  storeNodeStatisticsDuration: PT10S
+  aggregateSpecIdAverageLeadTimeSchedulerDuration: PT1H
+  aggregateSpecIdAverageLeadTimeWindow: P2D
+  deletePlanThresholdDuration: P0DT0H10M # P?DT?H?M = 0? -> count of days, 1? -> count of hours, 2? -> count of minutes
+  archivePlanThresholdDuration: P0DT0H10M
+  deleteArchivedPlanThresholdDuration: P0DT0H10M
+  enableUpdateCpibProduct: true
+  heldNodeProcessFlowCountThreshold: 3
+  enablePrerequisiteValidation: true
+  enableOperationalStatusValidationForDelivery: false
+  plannedToAcknowledgedTransition:
+    recommendedBatchSize: 100
+    jobExecutionDelay: PT1H
+    windowStartTimeUtc: "01:00"
+    windowEndTimeUtc: "06:00"
+  adaptiveOrchestrationPlanScheduling: false
+  rootNodeStartTimeCronExpression: "0 0 * * * *"
+mocks:
+  serviceOrderStateChangeScheduler:
+    cronExpression: "0 */2 * * * *"
+    enable: false
+app:
+  kafka:
+    default-group-id: input-group-1
+    batch-process-group-id: batch-process-group-1
+    fallout-node-group-id: fallout-node-input-group-1
+    plan-group-id: input-group-2
+    update-product-group-id: update-product-group-1
+    retry:
+      attempts: 7
+      delay: 1000
+    consumer:
+      autoStartup: true
+  security:
+    ssl:
+      enabled: true
+    userRoleRetrievalUrl: http://localhost:8089/userRolePermission/v1/userRole
+    keycloakEntitlements: x200
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: cood
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+    enabled: true
+    web:
+      server:
+        auto-time-requests: true
+  server:
+    port: 9000
+
+springdoc:
+  packagesToScan:
+    - com.orange.discobole.orderorchestration.orchestrationdelivery.controller
+  swagger-ui:
+    configUrl: '/api-docs/swagger-config.json'
+    disable-swagger-default-url: true
+
+slowTransactionThreshold: 50
+
+processFlowSpecification: Fallout
+processFlowChannelItem: Internal
+processFlowReferredType: OrchestrationPlanNode
+
+logging:
+  level:
+    org.apache.kafka.clients: INFO
+    org.springframework.kafka: INFO
+    org.mongodb.driver: DEBUG
+    org.springframework.data.mongodb: DEBUG
+    root: DEBUG
+
+mongock:
+  migration-scan-package:
+    - com.orange.discobole.orderorchestration.orchestrationdelivery.db.migration

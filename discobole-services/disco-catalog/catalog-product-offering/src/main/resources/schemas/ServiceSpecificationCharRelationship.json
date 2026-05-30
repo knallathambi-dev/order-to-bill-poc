@@ -1,0 +1,29 @@
+{
+  "ServiceSpecificationCharRelationship" : {
+    "required" : [ "serviceSpecification.serviceSpecCharacteristic.id", "relationshipType" ],
+    "type" : "object",
+    "properties" : {
+      "serviceSpecification.serviceSpecCharacteristic.id" : {
+        "type" : "string",
+        "readOnly" : true
+      },
+      "relationshipType" : {
+        "type" : "string"
+      },
+      "validFor" : {
+        "required" : [ "startDateTime" ],
+        "type" : "object",
+        "properties" : {
+          "endDateTime" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "startDateTime" : {
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      }
+    }
+  }
+}

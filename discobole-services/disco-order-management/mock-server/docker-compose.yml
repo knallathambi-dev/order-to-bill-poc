@@ -1,0 +1,14 @@
+services:
+  mock-server:
+    image: mock-server
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 2g
+        reservations:
+          cpus: "0.2"
+          memory: 500m
+    ports:
+      - "8080:8080"
+      - "8082:8082"

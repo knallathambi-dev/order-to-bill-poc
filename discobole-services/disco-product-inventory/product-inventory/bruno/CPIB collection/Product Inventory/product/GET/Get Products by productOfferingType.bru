@@ -1,0 +1,17 @@
+meta {
+  name: Get Products by productOfferingType
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/product?productOffering.@type=Contract&limit=100&offset=0
+  body: none
+  auth: none
+}
+
+query {
+  productOffering.@type: Contract
+  limit: 100
+  offset: 0
+}

@@ -1,0 +1,15 @@
+meta {
+  name: List product specification
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{catalog_base_url}}/productCatalogManagement/v1/productSpecification?id=772056cd-485b-4877-8453-1648a07c43f7
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{catalog_token}}
+}

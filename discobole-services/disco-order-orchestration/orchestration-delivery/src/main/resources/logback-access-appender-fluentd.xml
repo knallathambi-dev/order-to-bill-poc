@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<configuration>
+    <property name="FLUENTD_TAG" value="${FLUENTD_TAG:-disco-orchestration-delivery}" />
+    <property name="FLUENTD_CONTAINER_NAME" value="${FLUENTD_CONTAINER_NAME:-disco-orchestration-delivery}" />
+    <property name="FLUENTD_HOST" value="${FLUENTD_HOST:-${DOCKER_HOST:-localhost}}" />
+    <property name="FLUENTD_PORT" value="${FLUENTD_PORT:-24224}" />
+    <property name="STE_EXCLUSIONS" value="\$\$FastClassByCGLIB\$\$,\$\$EnhancerBySpringCGLIB\$\$,^sun\.reflect\..*\.invoke,^com\.sun\.,^sun\.net\.,^net\.sf\.cglib\.proxy\.MethodProxy\.invoke,^org\.springframework\.cglib\.,^org\.springframework\.transaction\.,^org\.springframework\.validation\.,^org\.springframework\.app\.,^org\.springframework\.aop\.,^java\.lang\.reflect\.Method\.invoke,^org\.springframework\.ws\..*\.invoke,^org\.springframework\.ws\.transport\.,^org\.springframework\.ws\.soap\.saaj\.SaajSoapMessage\.,^org\.springframework\.ws\.client\.core\.WebServiceTemplate\.,^org\.springframework\.web\.filter\.,^org\.springframework\.boot\.web\.filter\.,^org\.springframework\.util\.ReflectionUtils\.invokeMethod$,^org\.apache\.tomcat\.,^org\.apache\.catalina\.,^org\.apache\.coyote\.,^java\.util\.concurrent\.ThreadPoolExecutor\.runWorker,^java\.lang\.Thread\.run$,^rx\." />
+    <!-- Fluency -->
+    <appender name="FLUENCY" class="ch.qos.logback.more.appenders.FluencyLogbackAppender">
+        <tag>${FLUENTD_TAG}</tag>
+        <remoteHost>${FLUENTD_HOST}</remoteHost>
+        <port>${FLUENTD_PORT}</port>
+        <additionalField>
+            <key>app</key>
+            <value>disco</value>
+        </additionalField>
+        <additionalField>
+            <key>container.name</key>
+            <value>${FLUENTD_CONTAINER_NAME}</value>
+        </additionalField>
+        <ignoredField>throwable</ignoredField>
+        <ignoredField>thread</ignoredField>
+        <ackResponseMode>true</ackResponseMode>
+        <bufferChunkInitialSize>2097152</bufferChunkInitialSize>
+        <bufferChunkRetentionSize>16777216</bufferChunkRetentionSize>
+        <maxBufferSize>268435456</maxBufferSize>
+        <bufferChunkRetentionTimeMillis>1000</bufferChunkRetentionTimeMillis>
+        <connectionTimeoutMilli>5000</connectionTimeoutMilli>
+        <readTimeoutMilli>5000</readTimeoutMilli>
+        <waitUntilBufferFlushed>30</waitUntilBufferFlushed>
+        <waitUntilFlusherTerminated>40</waitUntilFlusherTerminated>
+        <flushAttemptIntervalMillis>200</flushAttemptIntervalMillis>
+        <senderMaxRetryCount>12</senderMaxRetryCount>
+        <useEventTime>true</useEventTime>
+        <sslEnabled>false</sslEnabled>
+        <jvmHeapBufferMode>false</jvmHeapBufferMode>
+        <flattenMapMarker>false</flattenMapMarker>
+        <markerPrefix></markerPrefix>
+        <encoder class="net.logstash.logback.encoder.AccessEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                        "@timestamp": "%date{yyyy-MM-dd'T'HH:mm:ss.SSSZ,UTC}",
+                        "@project": "order-orchestration-delivery",
+                        "service.name": "order-orchestration-delivery",
+                        "@type": "access",
+                        "client.ip": "%remoteIP",
+                        "client.user.name": "%user",
+                        "http.request.method": "%requestMethod",
+                        "http.version": "%protocol",
+                        "http.request.uri": "%requestURI",
+                        "http.response.status_code": "%statusCode",
+                        "http.response.elapsed_time": "%elapsedTime",
+                        "http.request.url": "%requestURL",
+                        "http.request.referrer": "%header{Referer}",
+                        "user_agent.name": "%header{User-agent}",
+                        "host.name": "%header{Host}",
+                        "http.request.accept": "%header{Accept}",
+                        "http.request.accept_encoding": "%header{Accept-Encoding}",
+                        "http.request.connection": "%header{Connection}",
+                        "http.response.content_type": "%responseHeader{Content-Type}",
+                        "http.response.content_length": "%bytesSent",
+                        "http.response.server": "%server",
+                        "http.response.connection": "%responseHeader{Connection}",
+                        "http.request.session": "%sessionID",
+                        "http.request.query_string":"%queryString"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+        <messageFieldKeyName>json_message</messageFieldKeyName>
+    </appender>
+    <appender-ref ref="FLUENCY" />
+
+</configuration>

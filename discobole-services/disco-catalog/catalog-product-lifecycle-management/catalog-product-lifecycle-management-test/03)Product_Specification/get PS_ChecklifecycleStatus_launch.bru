@@ -1,0 +1,29 @@
+meta {
+  name: get PS_ChecklifecycleStatus_launch
+  type: http
+  seq: 15
+}
+
+get {
+  url: {{query}}/productCatalogManagement/v1/productSpecification/{{PS_id}}
+  body: none
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+  res.body.lifecycleStatus: eq launched
+}
+
+docs {
+  Request to check lifecycle status is changed to desired state
+}

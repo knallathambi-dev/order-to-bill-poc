@@ -1,0 +1,14 @@
+{
+  "DefineProductOfferingMarketSegment" : {
+    "required" : [ "segmentId" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "segmentId" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "order_inventory.fullname" . }}
+  labels:
+    {{- include "order_inventory.labels" . | nindent 4 }}
+    name: {{ include "order_inventory.fullname" . }}
+    protocol: tcp
+  {{- with .Values.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+    - port: 9000
+      targetPort: actuator
+      protocol: TCP
+      name: actuator
+  selector:
+    {{- include "order_inventory.selectorLabels" . | nindent 4 }}

@@ -1,0 +1,253 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  cloud:
+    function:
+      definition: producerNotification
+    discovery:
+      enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+    stream:
+      kafka.binder:
+        brokers: localhost
+        defaultBrokerPort: 9092
+        auto-add-partitions: true
+        auto-create-topics: true
+      default:
+        contentType: application/json
+      bindings:
+        producerNotification-out-0:
+          destination: external-notification
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 4
+            replication-factor: 1
+      default-binder: kafka
+
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+management:
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: discobole-eventservice
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  server:
+    port: 9000
+
+app:
+  version: @project.version@
+  name: @project.name@
+  description: @project.description@
+  ownerName: Herve Bouvier
+  ownerMail: herve.bouvier@orange.com
+
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  keycloak: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x107
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+server:
+  port: 9088
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    accesslog:
+      enabled: true
+
+logging:
+  level:
+    root: info
+    com.orange.discobole.eventservice: DEBUG
+    org.springframework.web.servlet: WARN
+    org.apache.catalina: OFF
+    java.util.logging: OFF
+
+---
+spring:
+  config:
+    activate:
+      on-profile: integration
+  keycloak: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x107
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+server:
+  port: 9088
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    accesslog:
+      enabled: true
+
+logging:
+  level:
+    root: info
+    com.orange.discobole.eventservice: DEBUG
+    org.springframework.web.servlet: WARN
+    org.apache.catalina: OFF
+    java.util.logging: OFF
+
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  keycloak: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x107
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+server:
+  port: 9088
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    accesslog:
+      enabled: true
+
+logging:
+  level:
+    root: info
+    com.orange.discobole.eventservice: DEBUG
+    org.springframework.web.servlet: WARN
+    org.apache.catalina: OFF
+    java.util.logging: OFF
+
+
+    
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: cloud, orange-cf
+#  cloud:
+#    bus:
+#      enabled: true
+#      destination: ${vcap.services.kafka.credentials.topicNamePrefix:}springCloudBus
+#  kafka:
+#    bootstrap-servers: ${vcap.services.kafka.credentials.uri}
+#server:
+#  port: ${PORT:8080}
+#
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: ibm-cf
+#  kafka:
+#    bootstrap-servers: ${vcap.services.kafka.credentials.kafka_brokers_sasl}
+#    properties:
+#      security:
+#        protocol: SASL_SSL
+#      sasl:
+#        mechanism: PLAIN
+#        jaas:
+#          config: org.apache.kafka.common.security.plain.PlainLoginModule required username="${vcap.services.kafka.credentials.user}" password="${vcap.services.kafka.credentials.password}";
+#    replication-factor: 3
+#
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: kubernetes
+#  kafka:
+#    bootstrap-servers: kafka:9092
+#
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: openshift
+#  kafka:
+#    bootstrap-servers: kafka:9092
+#
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-review
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka-review:9092
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-integration
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka-integration:9092
+
+# ---
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-staging
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka-staging:9092
+
+# ---
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: openshift-production
+#   cloud:
+#     stream:
+#       kafka.binder:
+#         brokers: kafka:9092
+
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile: openshift-integration
+#  kafka:
+#    bootstrap-servers: kafka-integration:9092
+#
+---
+#spring:
+#  config:
+#    activate:
+#      on-profile: openshift-staging
+#  kafka:
+#    bootstrap-servers: kafka-staging:9092
+#
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: openshiftp-production
+#  kafka:
+#    bootstrap-servers: kafka:9092
+#

@@ -1,0 +1,4 @@
+# Don't want to expose in Helm Chart stable repository
+# the values files used by GitLab CI Helm template
+values-*.yaml
+tool/

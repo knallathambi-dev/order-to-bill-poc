@@ -1,0 +1,1016 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+openapi: "3.0.0"
+info:
+  description: "This API implements orchestration management functionality needed\
+    \ by admin ui frontend; it's a new API as existing TMF doesn't support this functionality."
+  version: "0.10.0_release"
+  title: "Order Orchestration Management"
+tags:
+  - name: "OrchestrationPlan"
+  - name: "ServiceStatus"
+    description: "This resource is used for health check."
+paths:
+  /orchestrationPlan:
+    get:
+      tags:
+        - "OrchestrationPlan"
+      operationId: "getOrchestrationPlans"
+      summary: "get orchestration plans"
+      description: "get orchestration plans"
+      parameters:
+        - name: "id"
+          required: false
+          in: "query"
+          description: "orchestration plan's id"
+          schema:
+            type: "string"
+        - name: "state"
+          required: false
+          in: "query"
+          description: "orchestration plan's state"
+          schema:
+            $ref: "#/components/schemas/OrchestrationPlanStateEnum"
+        - name: "receivedDate"
+          required: false
+          in: "query"
+          description: "orchestration plan's received date"
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "relatedParty.id"
+          required: false
+          in: "query"
+          description: "related party's id"
+          schema:
+            type: "string"
+        - name: "relatedParty.role"
+          required: false
+          in: "query"
+          description: "related party's role"
+          schema:
+            type: "string"
+        - name: "relatedParty.href"
+          required: false
+          in: "query"
+          description: "related party's href"
+          schema:
+            type: "string"
+        - name: "relatedParty.name"
+          required: false
+          in: "query"
+          description: "related party's name"
+          schema:
+            type: "string"
+        - name: "relatedProductOrder.id"
+          required: false
+          in: "query"
+          description: "related Product Order's id"
+          schema:
+            type: "string"
+        - name: "orchestrationPlanNodes.state"
+          required: false
+          in: "query"
+          description: "orchestration Plan Node's state"
+          schema:
+            $ref: "#/components/schemas/OrchestrationPlanNodeStateEnum"
+        - name: "orchestrationPlanNodes.relatedServiceOrder.id"
+          required: false
+          in: "query"
+          description: "orchestrationPlanNodes.relatedServiceOrder.id"
+          schema:
+            type: "string"
+        - name: "orchestrationPlanNodes.relatedProductOrderItem.id"
+          required: false
+          in: "query"
+          description: "orchestrationPlanNodes.relatedProductOrderItem.id"
+          schema:
+            type: "string"
+        - name: "orchestrationPlanNodes.relatedProduct.id"
+          required: false
+          in: "query"
+          description: "orchestrationPlanNodes.relatedProduct.id"
+          schema:
+            type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+            default: 0
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+            default: 100
+        - name: "requestedDeliveryDate"
+          required: false
+          in: "query"
+          description: "fetch orchestration plan that start with this request delivery\
+          \ date"
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "sort"
+          required: false
+          in: "query"
+          style: "form"
+          explode: false
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        - name: "archived"
+          required: false
+          in: "query"
+          description: "boolean value indicating if this plan is archived pending deletion"
+          schema:
+            type: "boolean"
+        - name: "receivedDate.gte"
+          required: false
+          in: "query"
+          description: "received date >= param value"
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "receivedDate.lte"
+          required: false
+          in: "query"
+          description: "received date <= param value"
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "requestedDeliveryDate.gte"
+          required: false
+          in: "query"
+          description: "requested delivery date >= param value"
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "requestedDeliveryDate.lte"
+          required: false
+          in: "query"
+          description: "requested delivery date <= param value"
+          schema:
+            type: "string"
+            format: "date-time"
+      responses:
+        "200":
+          description: "Ok"
+          headers:
+            X-Result-Count:
+              description: "Result count"
+              schema:
+                type: "integer"
+                format: "int32"
+            X-Total-Count:
+              description: "total count"
+              schema:
+                type: "integer"
+                format: "int32"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/OrchestrationPlan"
+        "400":
+          description: "Bad Request\n\nbad request"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: "Unauthorized\n\nunauthorized"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\nNOT FOUND"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\nISE"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /orchestrationPlan/{id}:
+    get:
+      tags:
+        - "OrchestrationPlan"
+      operationId: "getOrchestrationPlanById"
+      summary: "get orchestration plan by id"
+      description: "get orchestration plan by id"
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          description: "orchestration plan's id to fetch its details"
+          schema:
+            type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "this field is Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/OrchestrationPlan"
+        "400":
+          description: "Bad Request\n\nbad request"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: "Unauthorized\n\nunauthorized"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\nNOT FOUND"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\nISE"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /status:
+    get:
+      tags:
+        - "ServiceStatus"
+      operationId: "serviceStatusFind"
+      summary: "find serviceStatus"
+      description: "This API is used to perform Health Check."
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ServiceStatus"
+        "400":
+          description: "Bad Request\n\nbad request"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: "Unauthorized\n\nunauthorized"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\nNOT FOUND"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\nISE"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Error:
+      description: "Used when an API throws an Error, typically with a HTTP error\
+        \ response-code (3xx, 4xx, 5xx)"
+      required:
+        - "code"
+        - "reason"
+      type: "object"
+      properties:
+        code:
+          description: "Application relevant detail, defined in the API or a common\
+            \ list."
+          type: "string"
+        reason:
+          description: "Explanation of the reason for the error which can be shown\
+            \ to a client user."
+          type: "string"
+        message:
+          description: "More details and corrective actions related to the error which\
+            \ can be shown to a client user."
+          type: "string"
+        status:
+          description: "HTTP Error code extension"
+          type: "string"
+        referenceError:
+          description: "URI of documentation describing the error."
+          type: "string"
+          format: "uri"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+    OrchestrationPlan:
+      description: "Orchestration Plan schema"
+      required:
+        - "relatedProductOrder"
+      type: "object"
+      properties:
+        id:
+          description: "orchestration plan's id"
+          type: "string"
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        relatedProductOrder:
+          $ref: "#/components/schemas/ProductOrderRef"
+        relatedParty:
+          description: "orchestration plan's related party"
+          type: "array"
+          items:
+            $ref: "#/components/schemas/PartyRef"
+        state:
+          description: "the status of the orchestration plan"
+          $ref: "#/components/schemas/OrchestrationPlanStateEnum"
+        receivedDate:
+          description: "orchestration plan's received date"
+          type: "string"
+          format: "date-time"
+        requestedDeliveryDate:
+          description: "orchestration plan's requested delivery date"
+          type: "string"
+          format: "date-time"
+        orchestrationPlanNodes:
+          description: "orchestration plan's nodes"
+          type: "array"
+          items:
+            $ref: "#/components/schemas/OrchestrationPlanNode"
+        orchestrationPlanSchedule:
+          description: "orchestration plan schedule"
+          type: "object"
+          $ref: "#/components/schemas/OrchestrationPlanSchedule"
+        relatedContractName:
+          description: "The name of the contract level offer that is delivered by\
+            \ this plan"
+          type: "string"
+        errorMessage:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/OrchestrationPlanErrorMessage"
+        archived:
+          description: "A flag that marks files that would be ready for deletion"
+          type: "boolean"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+
+    OrchestrationPlanErrorMessage:
+      description: "Error Message occurred during the orchestration plan execution"
+      type: "object"
+      properties:
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        code:
+          description: "error code"
+          type: "string"
+        message:
+          description: "error message"
+          type: "string"
+        reason:
+          description: "error reason"
+          type: "string"
+        timeStamp:
+          description: "time of error's occurrence"
+          type: "string"
+          format: "date-time"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+    OrchestrationPlanNode:
+      description: "Orchestration Plan Node"
+      required:
+        - "relatedProductOrderItem"
+      type: "object"
+      properties:
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        id:
+          description: "Orchestration Plan Node's id"
+          type: "string"
+        state:
+          $ref: "#/components/schemas/OrchestrationPlanNodeStateEnum"
+        relatedServiceOrder:
+          $ref: "#/components/schemas/ServiceOrderRef"
+        relatedProductOrderItem:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ProductOrderItemRef"
+        relatedSupplyChainOrderItem:
+          $ref: "#/components/schemas/ShippingOrderRef"
+        relatedProduct:
+          description: "Orchestration Plan Node's related product"
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ProductRef"
+        relatedOrchestrationPlanNode:
+          description: "Orchestration Plan Node's related orchestration plan nodes"
+          type: "array"
+          items:
+            $ref: "#/components/schemas/RelatedOrchestrationPlanNode"
+        errorMessage:
+          description: "Orchestration Plan Node's error message if exists"
+          type: "array"
+          items:
+            $ref: "#/components/schemas/OrchestrationPlanErrorMessage"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        orchestrationNodeSchedule:
+          description: "orchestration node schedule"
+          type: "object"
+          $ref: "#/components/schemas/OrchestrationNodeSchedule"
+    OrchestrationPlanSchedule:
+      description: "Orchestration Plan Schedule"
+      type: "object"
+      properties:
+        orderStartDate:
+          type: "string"
+          format: "date-time"
+        estimatedOrderDeliveryLeadTime:
+          type: "integer"
+          format: "int64"
+        expectedOrderCompletionDate:
+          type: "string"
+          format: "date-time"
+        actualOrderStartDate:
+          type: "string"
+          format: "date-time"
+        actualOrderCompletionDate:
+          type: "string"
+          format: "date-time"
+        actualOrderDeliveryLeadTime:
+          type: "integer"
+          format: "int64"
+    OrchestrationNodeSchedule:
+      description: "Orchestration Plan Schedule"
+      type: "object"
+      properties:
+        orderItemStartDate:
+          type: "string"
+          format: "date-time"
+        estimatedOrderItemDeliveryLeadTime:
+          type: "integer"
+          format: "int64"
+        expectedOrderItemCompletionDate:
+          type: "string"
+          format: "date-time"
+        actualOrderItemStartDate:
+          type: "string"
+          format: "date-time"
+        actualOrderItemCompletionDate:
+          type: "string"
+          format: "date-time"
+        actualOrderItemDeliveryLeadTime:
+          type: "integer"
+          format: "int64"
+    OrchestrationPlanNodeStateEnum:
+      description: "Orchestration Plan Node States"
+      type: "string"
+      enum:
+        - "Initialized"
+        - "Acknowledged"
+        - "InProgress"
+        - "InDelivery"
+        - "Held"
+        - "Aborted"
+        - "Rejected"
+        - "Failed"
+        - "Completed"
+    OrchestrationPlanStateEnum:
+      description: "Orchestration Plan States"
+      type: "string"
+      enum:
+        - "Initialized"
+        - "Acknowledged"
+        - "Planned"
+        - "InProgress"
+        - "Executed"
+        - "Held"
+        - "Rejected"
+        - "Aborted"
+    PartyRef:
+      description: "Party that ordered the order"
+      type: "object"
+      properties:
+        id:
+          description: "related party's id"
+          type: "string"
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        role:
+          description: "related party's role"
+          type: "string"
+        name:
+          description: "related party's name"
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    Characteristic:
+      description: "Describes a given characteristic of the product through a name/value\
+        \ pair"
+      type: "object"
+      discriminator:
+        propertyName: '@type'
+      properties:
+        id:
+          description: "the id of the product characteristics"
+          type: "string"
+        name:
+          description: "the name of the product characteristics"
+          type: "string"
+        valueType:
+          description: "the type of the value of the product characteristics"
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+    StringCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: string
+    AddressCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            addressId:
+              type: string
+            city:
+              type: string
+            country:
+              type: string
+            subUnitNumber:
+              type: string
+            streetName:
+              type: string
+            postcode:
+              type: string
+    BooleanArrayCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: boolean
+    BooleanCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: boolean
+    FloatArrayCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: number
+                format: float
+    FloatCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: number
+              format: float
+    IntegerArrayCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: integer
+    IntegerCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: integer
+    ObjectArrayCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: object
+    ObjectCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: object
+    StringArrayCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: string
+    ValidityCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              $ref: '#/components/schemas/ValidityValue'
+    ValidityValue:
+      type: object
+      properties:
+        value:
+          type: integer
+        unitOfMeasure:
+          type: string
+        validFrom:
+          type: string
+          format: "date-time"
+        validTo:
+          type: string
+          format: "date-time"
+    DateCharacteristic:
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: object
+          properties:
+            value:
+              type: string
+              format: "date-time"
+
+    ProductOrderItemRef:
+      description: "The Related Product Order Item that is being delivered by an orchestration\
+        \ node"
+      required:
+        - "id"
+        - "quantity"
+      type: "object"
+      properties:
+        id:
+          description: "Related Product Order Item's id"
+          type: "string"
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        action:
+          description: "Related Product Order Item's action"
+          type: "string"
+        quantity:
+          description: "the quantity requested for this order item"
+          type: "integer"
+          format: "int32"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    ProductOrderRef:
+      description: "The related product order executed by an orchestration plan"
+      required:
+        - "id"
+      type: "object"
+      properties:
+        id:
+          description: "Related Product Order's id"
+          type: "string"
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    ProductRef:
+      description: "Related Product"
+      type: "object"
+      properties:
+        id:
+          description: "Related Product's id"
+          type: "string"
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        realizingService:
+          description: "Related Product's realising service"
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ServiceRef"
+        relationshipType:
+          $ref: "#/components/schemas/RelatedProductRelationTypeEnum"
+        productSpecification:
+          $ref: "#/components/schemas/ProductSpecificationRef"
+        isInstallable:
+          description: "a flag, marking products that are maintained in Product Inventory."
+          type: "boolean"
+        productCharacteristic:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Characteristic"
+        productOrderItemId:
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          $ref: "#/components/schemas/RelatedProductTypeEnum"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    ProductSpecificationRef:
+      description: "Product Specification"
+      type: "object"
+      properties:
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        id:
+          description: "Product Specification's id"
+          type: "string"
+        name:
+          description: "Product Specification's name"
+          type: "string"
+        serviceSpecification:
+          description: "Product Specification's service specification"
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ServiceSpecificationRef"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+    RelatedOrchestrationPlanNode:
+      description: "Related Orchestration Plan Node for specific node"
+      type: "object"
+      properties:
+        relatedNodeId:
+          description: "Related Orchestration Plan Node's id"
+          type: "string"
+        relationshipType:
+          $ref: "#/components/schemas/RelatedOrchestrationPlanNodeRelationTypeEnum"
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+    RelatedOrchestrationPlanNodeRelationTypeEnum:
+      description: "Related Orchestration Plan Node RelationType"
+      type: "string"
+      enum:
+        - "DeliverWith"
+        - "DeliverAfter"
+    RelatedProductRelationTypeEnum:
+      description: "Related Product Relation Type Enum"
+      type: "string"
+      enum:
+        - "delivers"
+        - "reliesOn"
+        - "reliesFrom"
+        - "migratedFrom"
+        - "deliverWith"
+    RelatedProductTypeEnum:
+      description: "Define the related product type, indicating whether it is a real\
+        \ installed product, a service, or a physical product"
+      type: "string"
+      enum:
+        - "CFS"
+        - "physicalProduct"
+        - "shipmentProduct"
+    ServiceOrderRef:
+      description: "the Related service order Item fulfilling the delivery of orchestration\
+        \ node for a non tangible item related to a CFS"
+      type: "object"
+      properties:
+        id:
+          description: "Related Service Order's id"
+          type: "string"
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        orderItemId:
+          description: "Related Service Order's order item id"
+          type: "string"
+        serviceOrderManagementRef:
+          description: "Related Service Order's SOM ref"
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+    ServiceRef:
+      description: "Realizing Service"
+      type: "object"
+      properties:
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        id:
+          description: "Realising Service's id"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    ServiceSpecificationRef:
+      description: "Service Specification needed to realize the delivery of the product\
+        \ specification"
+      type: "object"
+      properties:
+        id:
+          description: "Service Specification's id"
+          type: "string"
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        name:
+          description: "Service Specification's name"
+          type: "string"
+        version:
+          description: "Service Specification's version"
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class."
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    ServiceStatus:
+      description: "An object representing the response status of the service"
+      type: "object"
+      properties:
+        serviceName:
+          description: "the Service Name"
+          type: "string"
+        version:
+          description: "the Service version"
+          type: "string"
+        message:
+          description: "the status response message"
+          type: "string"
+    ShippingOrderRef:
+      description: "The Related shipping order details fulfilling the delivery of\
+        \ orchestration node  for a tangible item."
+      type: "object"
+      properties:
+        id:
+          description: "Related Supply Chain Order Item's id"
+          type: "string"
+        href:
+          description: "Hyperlink to access the object."
+          type: "string"
+        orderItemId:
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"

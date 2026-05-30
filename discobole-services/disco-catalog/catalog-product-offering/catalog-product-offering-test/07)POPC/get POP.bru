@@ -1,0 +1,47 @@
+meta {
+  name: get POP
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/productOfferingPrice/{{POPC_id}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~ServiceSpecification.name: 
+  ~ServiceSpecification.version: 
+  ~StockItemType.id: 
+  ~StockItemType.name: 
+  ~id: ff838114-a10a-4596-87c9-51d79babd89f
+  ~lastUpdate: 
+  ~limit: 
+  ~offset: 
+  ~relatedParty.id: 
+  ~relatedParty.name: 
+  ~relatedParty.role: 
+  ~sort: 
+  ~supportEntity: 
+  ~validFor.gt: 
+  ~validFor.lt: 
+  ~ProductSpecificationRelationship.id: 499d1e12-9f93-4a6e-b036-5d14c4bf246a
+  ~ServiceSpecification.id: access01b01
+  ~name: Csps3!
+  ~brand: Csps3+
+  ~cook: null
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+}

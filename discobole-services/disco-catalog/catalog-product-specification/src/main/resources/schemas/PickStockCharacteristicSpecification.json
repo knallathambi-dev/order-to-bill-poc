@@ -1,0 +1,98 @@
+{
+  "PickStockCharacteristicSpecification" : {
+    "required" : [ "stockItemType.stockItemCharacteristic.id", "name" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "stockItemType.stockItemCharacteristic.id" : {
+          "type" : "string",
+          "readOnly" : true
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "validFor" : {
+          "required" : [ "startDateTime" ],
+          "type" : "object",
+          "properties" : {
+            "endDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            },
+            "startDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            }
+          }
+        },
+        "configurable" : {
+          "type" : "boolean"
+        },
+        "extensible" : {
+          "type" : "boolean"
+        },
+        "isUnique" : {
+          "type" : "boolean"
+        },
+        "valueType" : {
+          "type" : "string",
+          "readOnly" : true,
+          "default" : "string"
+        },
+        "characteristicValueSpecification" : {
+          "type" : "array",
+          "items" : {
+            "required" : [ "value", "stockItem.stockItemCharacteristicValue.value" ],
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "unitOfMeasure" : {
+                  "type" : "string",
+                  "readOnly" : true
+                },
+                "validFor" : {
+                  "required" : [ "startDateTime" ],
+                  "type" : "object",
+                  "properties" : {
+                    "endDateTime" : {
+                      "type" : "string",
+                      "format" : "date-time"
+                    },
+                    "startDateTime" : {
+                      "type" : "string",
+                      "format" : "date-time"
+                    }
+                  }
+                },
+                "value" : {
+                  "type" : "string",
+                  "readOnly" : true
+                },
+                "valueFrom" : {
+                  "type" : "string"
+                },
+                "valueTo" : {
+                  "type" : "string"
+                },
+                "valueType" : {
+                  "type" : "string"
+                },
+                "isSelectable" : {
+                  "type" : "boolean"
+                },
+                "stockItem.stockItemCharacteristicValue.value" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

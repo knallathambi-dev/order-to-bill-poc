@@ -1,0 +1,20 @@
+{
+  "PaymentRef" : {
+    "type" : "object",
+    "properties" : {
+      "paymentRefId" : {
+        "type" : "array",
+        "readOnly" : true,
+        "items" : {
+          "required" : [ "id" ],
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

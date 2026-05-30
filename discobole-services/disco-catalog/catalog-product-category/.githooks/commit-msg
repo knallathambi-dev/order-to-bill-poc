@@ -1,0 +1,12 @@
+#!/bin/sh
+
+CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+COMMIT_REGEX='BOS-[0-9]{1,4} (add|update|modify|remove|delete|fix|merge):'
+ERR_MSG="Aborting commit! Your commit message has wrong format('BOS-000 add|update|modify|remove|delete|fix|merge: functionality')"
+
+[[ "${CURRENT_BRANCH}" == "develop" || "${CURRENT_BRANCH}" == "master" ]] && exit 0
+
+if ! grep -iqE "$COMMIT_REGEX" "$1"; then
+    echo "$ERR_MSG" >&2
+    exit 1
+fi

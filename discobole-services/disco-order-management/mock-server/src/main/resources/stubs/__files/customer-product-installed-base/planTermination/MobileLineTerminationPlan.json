@@ -1,0 +1,105 @@
+[
+  {
+    "@type": "Product",
+    "id": "65f04daf0ff022567bd87894",
+    "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd87894",
+    "agreement": [],
+    "place": [],
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "001",
+        "name": "MSISDN",
+        "valueType": "string",
+        "value": "4152797439"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "c154cae0-611e-44d8-8867-9952971d3036",
+        "productOrderId": "65f04d8b0819bf75294dea0f"
+      },
+      {
+        "orderItemAction": "delete",
+        "orderItemId": "b6cb7090-1092-42d3-8324-ef5bb501c02b",
+        "productOrderId": "65f04df20819bf75294dea10"
+      }
+    ],
+    "productPrice": [],
+    "productRelationship": [
+      {
+        "relationshipType": "ParentContract",
+        "product": {
+          "@type": "ProductRef",
+          "id": "65f04daf0ff022567bd878a1",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd878a1"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "65f04daf0ff022567bd8789a",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789a"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "65f04daf0ff022567bd87898",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd87898"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "65f04daf0ff022567bd8789c",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789c"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "65f04daf0ff022567bd8789e",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789e"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+      "name": "Mobile Line",
+      "@type": "ProductSpecificationRef"
+    },
+    "productTerm": [],
+    "realizingResource": [
+      {
+        "id": "12x",
+        "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+        "@type": "LogicalResource"
+      }
+    ],
+    "realizingService": [],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-03-12T12:42:22.784Z",
+    "statusChange": [],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2024-03-12T12:42:41.876Z",
+        "status": "Confirmed"
+      }
+    ]
+  }
+]

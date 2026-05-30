@@ -1,0 +1,52 @@
+{
+  "@type": "BillingAccount",
+  "paymentStatus": "In Arrears",
+  "creditLimit": {
+    "unit": "USD",
+    "value": 10000
+  },
+  "description": "This billing account ...",
+  "href": "https://host:port/tmf-api/accountManagement/v5/bilingAccount/5430",
+  "id": "5430",
+  "lastModified": "2018-06-14T00:00:00.000Z",
+  "name": "Home Account",
+  "state": "Inactive",
+  "accountType": "Residential",
+  "billStructure": {
+    "presentationMedia": [
+      {
+        "@type": "BillPresentationMedia",
+        "href": "https://host:port/tmfapi/accountManagement/v5/billPresentationMedia/9968",
+        "id": "9968",
+        "name": "Post Mail"
+      }
+    ],
+    "format": {
+      "@type": "BillFormat",
+      "href": "https://host:port/tmfapi/accountManagement/v5/billFormat/3555",
+      "id": "3555",
+      "name": "Detailed invoice"
+    },
+    "cycleSpecification": {
+      "@type": "BillingCycleSpecification",
+      "dateShift": "{{randomInt lower=1 upper=31}}",
+      "frequency": "monthly",
+      "href": "https://host:port/tmfapi/accountManagement/v5/billingCycleSpecification/3828",
+      "id": "3828",
+      "name": "Monthly billing"
+    }
+  },
+  "relatedParty": [
+    {
+      "role": "owner",
+      "@type": "RelatedPartyRefOrRelatedPartyRoleRef",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "@referredType": "Organization",
+        "href": "https://host:port/tmf-api/partyManagement/v5/organization/{{request.query.[relatedParty.id]}}",
+        "id": "{{request.query.[relatedParty.id]}}",
+        "name": "Richard Cole"
+      }
+    }
+  ]
+}

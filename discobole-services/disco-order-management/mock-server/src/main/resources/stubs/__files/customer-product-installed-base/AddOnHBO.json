@@ -1,0 +1,126 @@
+{
+  "@type": "Product",
+  "id": "67c08a6d3e0a2f1fdb75e7e5",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e5",
+  "isBundle": false,
+  "name": "Add-on HBO",
+  "billingAccount": {
+    "id": "13605d-dcd4-6d28-9b92-40ee5b0370b8",
+    "@referredType": "BillingAccount"
+  },
+  "productCharacteristic": [
+    {
+      "@type": "StringCharacteristic",
+      "id": "c3281380-ac4a-4690-9ea9-b07be40c0cba.1",
+      "name": "Level",
+      "value": "HBO"
+    }
+  ],
+  "productOffering": {
+    "id": "1df431f8-cc84-411e-9061-2ddf85c28f58",
+    "name": "Add-on HBO",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "b7f06871-9cc7-4300-ae7b-060ebbce40e6",
+      "productOrderId": "67c08a62311d586dbf8fe175"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "HBO charge for standard HBO",
+      "name": "HBO charge for standard HBO",
+      "priceType": "recurringCharge",
+      "recurringChargePeriod": {
+        "amount": 1,
+        "units": "month"
+      },
+      "productOfferingPrice": {
+        "id": "ff2830d0-a97e-4f56-8b01-be16f4541cdf",
+        "name": "HBO charge for standard HBO",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 3
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 3
+        }
+      },
+      "productPriceAlteration": [
+        {
+          "description": "Alteration that enables 50% discount on HBO subscription",
+          "name": "Discount -50% on HBO",
+          "priceType": "recurringDiscount",
+          "priority": 1,
+          "price": {
+            "percentage": 50,
+            "taxRate": 0
+          }
+        }
+      ]
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e2",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "829778f5-88da-4aea-9c78-f2e2ff4af444",
+    "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=829778f5-88da-4aea-9c78-f2e2ff4af444",
+    "name": "Add-on HBO PS",
+    "version": "0.2",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "qwy2rhnix",
+        "name": "ii",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Locked",
+  "creationDate": "2025-02-27T15:53:17Z",
+  "lastUpdateDate": "2025-02-27T15:53:34Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-27T15:53:32Z",
+      "status": "PendingActive"
+    },
+    {
+      "changeDate": "2025-02-27T15:53:34Z",
+      "status": "Locked"
+    }
+  ]
+}

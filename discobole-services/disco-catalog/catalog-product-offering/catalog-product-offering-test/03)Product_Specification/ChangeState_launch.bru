@@ -1,0 +1,62 @@
+meta {
+  name: ChangeState_launch
+  type: http
+  seq: 14
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "DefineLifecycleState",
+        "valueType": "Object",
+        "value": {
+          "state": "launched"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  await bru.sleep(3000);
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  
+  
+  test("To verify nextTaskstoBePerformed/existingTaskEditable is empty", function () {
+    expect(jsonData._links.nextTaskstoBePerformed.length).to.equals(0);
+    expect(jsonData._links.existingTaskEditable.length).to.eql(0);  
+  });
+  
+}
+
+docs {
+  Request to change the lifecycle status to desired state(active,rejected etc..)
+}

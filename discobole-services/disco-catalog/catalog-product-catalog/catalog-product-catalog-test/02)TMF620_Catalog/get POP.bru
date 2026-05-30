@@ -1,0 +1,11 @@
+meta {
+  name: get POP
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/productOfferingPrice
+  body: json
+  auth: none
+}

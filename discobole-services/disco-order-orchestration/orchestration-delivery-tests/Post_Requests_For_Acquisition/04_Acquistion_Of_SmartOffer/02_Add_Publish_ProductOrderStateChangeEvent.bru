@@ -1,0 +1,890 @@
+meta {
+  name: 02_Add_Publish_ProductOrderStateChangeEvent
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/api/cood/test/productOrderStatChange/sendMessage
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: {{token}}
+}
+
+body:json {
+  {
+    "id": "1109{{Random_number}}",
+    "channel": [
+      {
+        "@type": "RelatedChannel",
+        "channel": {
+          "@type": "ChannelRef",
+          "id": "001",
+          "name": "Selfcare"
+        }
+      }
+    ],
+    "orderTotalPrice": [
+      {
+        "priceType": "nonRecurringCharge",
+        "price": {
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 649
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 649
+          },
+          "@type": "Price"
+        },
+        "@type": "OrderPrice"
+      },
+      {
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "month"
+        },
+        "price": {
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 18
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 18
+          },
+          "@type": "Price"
+        },
+        "@type": "OrderPrice"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "id": "0d2ddf89-47fc-48bc-9e24-3360005b2e73",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "2ed15ff8-3b3b-4e0b-8e78-897193bce52c.1",
+              "name": "Shipping mode",
+              "value": "Instore"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "629189a5-2648-467a-bc16-fdf8e7bd9ec1.2",
+              "name": "Shipping Address",
+              "value": "Orange Canebière Shop"
+            },
+            {
+              "@type": "DateCharacteristic",
+              "id": "6d4f1382-b46d-45c5-85cd-9db124812f4f.3",
+              "name": "Requested delivery date",
+              "value": "2025-02-12T13:29:22Z"
+            }
+          ],
+          "productSpecification": {
+            "id": "22f26f29-724e-4eff-83a1-d27e1627f2ba",
+            "name": "Shipment PS",
+            "version": "0.2",
+            "@baseType": "ShippingProductSpecification",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "acb8bbc1-ca11-415e-ae32-58b2ed065912",
+          "name": "Shipment for tangible products",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "12",
+            "relationshipType": "requires",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "20",
+            "relationshipType": "requires",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "13",
+            "relationshipType": "requires",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": false
+      },
+      {
+        "id": "12",
+        "quantity": 1,
+        "action": "add",
+        "itemPrice": [
+          {
+            "description": "Samsung A55 512 GB Charge",
+            "name": "Samsung A55 512 GB Charge",
+            "priceType": "nonRecurringCharge",
+            "price": {
+              "taxRate": 0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 600
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 600
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "0cf6337c-00a5-47aa-a708-e2c6a508cf1a",
+              "name": "Samsung A55 512 GB Charge",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "payment": [
+          {
+            "id": "126b92-526f-ea74-1f40-75047f46cb0b",
+            "@type": "Payment"
+          }
+        ],
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b98596",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b98596",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "1",
+              "name": "Memory",
+              "value": "512 GB"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "2",
+              "name": "Colour",
+              "value": "Lilac"
+            }
+          ],
+          "productSpecification": {
+            "id": "8d5e0b3c-8c41-4690-8618-80e286e5b211",
+            "name": "Samsung A55 PS",
+            "version": "2.0",
+            "@type": "ProductSpecificationRef"
+          },
+          "realizingResource": [
+            {
+              "id": "68x",
+              "href": "http://server:port/resourceInventoryManagement/physicalResource/68x",
+              "@type": "PhysicalResource"
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "bea0f233-f619-41cb-9797-0649a89e56bb",
+          "name": "Samsung Galaxy A55",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "172d0d50-402e-4e56-b813-6f3b59b90588",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "19",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b9858c",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b9858c",
+          "productSpecification": {
+            "id": "f18a3fe0-1e61-419a-b7d8-dd68215b3705",
+            "name": "Mobile Line PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "87e81e5a-ce79-4b85-8183-d0f8733985da",
+          "name": "Mobile Line",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "6cd5b0af-3a95-4a70-aff5-fcbeb9d9b4f4",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "20",
+            "relationshipType": "reliesOn",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "20",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b9858e",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b9858e",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "1",
+              "name": "IMSI",
+              "value": "IMSI#1234"
+            }
+          ],
+          "productSpecification": {
+            "id": "73be51ab-af7c-4369-9298-3be3933a5d74",
+            "name": "SIM Card PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          },
+          "realizingResource": [
+            {
+              "id": "65x",
+              "href": "http://server:port/resourceInventoryManagement/physicalResource/65x",
+              "@type": "PhysicalResource"
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "af2b35d6-7556-4925-9788-bdf073d2fa39",
+          "name": "SIM Card",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "2.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "6cd5b0af-3a95-4a70-aff5-fcbeb9d9b4f4",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "13",
+        "quantity": 1,
+        "action": "add",
+        "itemPrice": [
+          {
+            "description": "SmartView Wallet Samsung A55 Charge",
+            "name": "SmartView Wallet A55 Charge",
+            "priceType": "nonRecurringCharge",
+            "price": {
+              "taxRate": 0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 49
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 49
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "83fef372-2334-477e-9633-4ed052e035d9",
+              "name": "SmartView Wallet A55 Charge",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "payment": [
+          {
+            "id": "12169e-c158-4778-ee65-eaddafd2d7dd",
+            "@type": "Payment"
+          }
+        ],
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b98597",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b98597",
+          "productSpecification": {
+            "id": "d18467d7-8441-4781-8849-4e0ac91e58a2",
+            "name": "SmartView Wallet Galaxy A55 case PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          },
+          "realizingResource": [
+            {
+              "id": "69x",
+              "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+              "@type": "PhysicalResource"
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "6ee2efbe-8731-415c-9883-22273194c135",
+          "name": "SmartView Wallet Galaxy A55 case",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "172d0d50-402e-4e56-b813-6f3b59b90588",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "14",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b9858f",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b9858f",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "e8e460df-5bc9-4a8d-890a-892bb96a222f.10",
+              "name": "Blocked",
+              "value": "No"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "18ae2aaa-fe02-4857-bf82-14093a2c22c7.6",
+              "name": "Rollover",
+              "value": "No"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "7975c12e-7109-460e-8516-3582aaf06411.3",
+              "name": "Frequency",
+              "value": "Month"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "48005ebb-1010-43ac-a97c-8317d2e6543d.2",
+              "name": "Recurring",
+              "value": "Yes"
+            },
+            {
+              "@type": "ObjectCharacteristic",
+              "id": "48718254-ca77-4119-a47b-739b0f4e166a.1",
+              "name": "Quantity",
+              "value": {
+                "unitOfMeasure": "GB",
+                "value": "99999"
+              }
+            }
+          ],
+          "productSpecification": {
+            "id": "923da03d-cd48-449e-9cec-43a73ebd9e6b",
+            "name": "Data Bundle EU Roaming PS",
+            "version": "0.4",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "b1999ad2-4ed7-464e-a608-328353a23f9c",
+          "name": "Data Bundle EU Roaming",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "6cd5b0af-3a95-4a70-aff5-fcbeb9d9b4f4",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "19",
+            "relationshipType": "reliesOn",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "15",
+        "quantity": 1,
+        "action": "add",
+        "billingAccount": {
+          "id": "13754f-8909-ef04-9e43-6bc963da2999",
+          "@type": "BillingAccount"
+        },
+        "itemPrice": [
+          {
+            "description": "Device Insurance Level Basic Charge",
+            "name": "Device Insurance Level Basic Charge",
+            "priceType": "recurringCharge",
+            "recurringChargePeriod": {
+              "amount": 1,
+              "units": "month"
+            },
+            "price": {
+              "taxRate": 0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 7
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 7
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "516229b6-d024-4396-9c90-5c0ac5b14ff2",
+              "name": "Device Insurance Level Basic Charge",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b98598",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b98598",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "d7d4a451-27c6-4a3b-8dbd-4d04e82cf256.1",
+              "name": "Level",
+              "value": "Basic"
+            }
+          ],
+          "productSpecification": {
+            "id": "582f8dac-e268-401e-ac83-a5df73f8a83f",
+            "name": "Device Insurance PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "611999ea-9b3e-4be6-a6af-b1e1c7af58bd",
+          "name": "Device Insurance",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "172d0d50-402e-4e56-b813-6f3b59b90588",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "16",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b98590",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b98590",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "fa2a1067-8bc7-4b9b-b497-00b5f8509b89.10",
+              "name": "Blocked",
+              "value": "No"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "2b35055a-1b07-4175-8864-76bd2856e04f.3",
+              "name": "Frequency",
+              "value": "Month"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "cbb5692f-3491-49db-a223-230734d39603.6",
+              "name": "Rollover",
+              "value": "No"
+            }
+          ],
+          "productSpecification": {
+            "id": "4034ea31-a688-406f-9576-4913cfbba18d",
+            "name": "Messaging Bundle National and Roaming EU PS",
+            "version": "0.3",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "bc4fdb83-81a4-478d-a07b-d09da4ac170c",
+          "name": "Unlimited Messaging Bundle National and Roaming EU",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "6cd5b0af-3a95-4a70-aff5-fcbeb9d9b4f4",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "19",
+            "relationshipType": "reliesOn",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "21",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b98591",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b98591",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "fb6b22fa-ddda-41a6-98eb-199895bffc47.1",
+              "name": "ICCID",
+              "value": "ICCID"
+            }
+          ],
+          "productSpecification": {
+            "id": "12a34481-debc-4316-98d1-acc046f99416",
+            "name": "Connectivity PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "bf822979-e3c2-463d-aee8-bf53c0056d3e",
+          "name": "Connectivity",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "6cd5b0af-3a95-4a70-aff5-fcbeb9d9b4f4",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "20",
+            "relationshipType": "reliesOn",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "22",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b98592",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b98592",
+          "productCharacteristic": [
+            {
+              "@type": "ObjectCharacteristic",
+              "id": "14fd725b-f5cf-4520-919d-fefb2a0d005c.1",
+              "name": "Quantity",
+              "value": {
+                "unitOfMeasure": "Hour",
+                "value": "999999"
+              }
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "58e32698-7987-4763-8b58-f34f762ebcf1.2",
+              "name": "Recurring",
+              "value": "Yes"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "b0b6af93-8392-4646-aefe-1abc67264685.3",
+              "name": "Frequency",
+              "value": "Month"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "d55ef20b-2978-4d17-ba0b-a4c5112865a1.6",
+              "name": "Rollover",
+              "value": "No"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "eec3a6c1-1b6f-4caf-9668-b92c3cda9ffb.10",
+              "name": "Blocked",
+              "value": "No"
+            }
+          ],
+          "productSpecification": {
+            "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8",
+            "name": "Time Bundle National Unlimited PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "f78aaddd-7fc4-4ced-8c11-9e885456bd9e",
+          "name": "Time Bundle National Unlimited",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "6cd5b0af-3a95-4a70-aff5-fcbeb9d9b4f4",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "19",
+            "relationshipType": "reliesOn",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "17",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b98593",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b98593",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "2aaa9981-e707-49ea-8148-c4cbd488b687.6",
+              "name": "Rollover",
+              "value": "No"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "055cc220-8487-4c8c-9f07-918412383618.3",
+              "name": "Frequency",
+              "value": "Month"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "5699d94b-d3d9-4086-bcab-653a20219ad8.2",
+              "name": "Recurring",
+              "value": "Yes"
+            },
+            {
+              "@type": "ObjectCharacteristic",
+              "id": "f358b5db-7684-49e6-8aee-f2e87837e92d.1",
+              "name": "Quantity",
+              "value": {
+                "unitOfMeasure": "GB",
+                "value": "999999"
+              }
+            }
+          ],
+          "productSpecification": {
+            "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba",
+            "name": "Data Bundle National PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "90f78fed-8af2-4012-bf2d-cedac38833ae",
+          "name": "Data Bundle National",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "6cd5b0af-3a95-4a70-aff5-fcbeb9d9b4f4",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "19",
+            "relationshipType": "reliesOn",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "18",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67ab50b537fe5a1967b98594",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67ab50b537fe5a1967b98594",
+          "productCharacteristic": [
+            {
+              "@type": "ObjectCharacteristic",
+              "id": "5d14abbe-3464-40d2-89f9-90814ec5a960.1",
+              "name": "Quantity",
+              "value": {
+                "unitOfMeasure": "min",
+                "value": "300"
+              }
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "dd378873-ca4e-4e25-8d62-67d1e97b4d01.2",
+              "name": "Recurring",
+              "value": "Yes"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "6f514a41-f105-4b3a-b623-22334335d11e.3",
+              "name": "Frequency",
+              "value": "Month"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "d8b02553-88ab-4f3e-85b1-6bce9fefeb8e.6",
+              "name": "Rollover",
+              "value": "No"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "f39f690c-39bb-4450-9082-2a32b1d477e1.10",
+              "name": "Blocked",
+              "value": "No"
+            }
+          ],
+          "productSpecification": {
+            "id": "94780e6a-9e82-421a-8bc0-d83db169d132",
+            "name": "Time Bundle Roaming PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "4bbaa24a-5f2a-4e00-b1c6-8be2531a8003",
+          "name": "Time Bundle Roaming",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "6cd5b0af-3a95-4a70-aff5-fcbeb9d9b4f4",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "19",
+            "relationshipType": "reliesOn",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "state": "accepted",
+    "@type": "ProductOrder",
+    "creationDate": "2025-02-11T13:29:23.603Z"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  bru.setVar("Random_number", Math.random()*Math.random()*100000);
+   
+}
+
+script:post-response {
+  var jsonData = req.body ;
+  
+  //Get Order ID
+  bru.setVar("order_id", jsonData.id);
+   
+  console.log("order_id:"+bru.getVar("order_id"));
+}
+
+tests {
+  test("should plan created sucessfuly", function() {
+    const data = res.getBody();
+    expect(res.getStatus()).to.equal(200);
+  });
+}
+
+docs {
+  - this request for puplish plan has 4 products SIMCard, Conectivity , Mobile line and TimeBundel .
+  - Mobile Line and Conectivity have relationship "reliesOn" SIM Card.
+  - Time Bundel has relationship "reliesOn" Mobile Line
+  
+  
+  
+  
+}

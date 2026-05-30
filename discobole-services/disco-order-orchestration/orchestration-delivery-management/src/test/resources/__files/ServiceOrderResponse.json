@@ -1,0 +1,40 @@
+{
+  "id": "c0d0fb07-88d9-48ed-b544-ea20982e7580",
+  "description": "",
+  "state": "acknowledged",
+  "category": "",
+  "requestedCompletionDate": "2024-04-17T10:30:28Z",
+  "@type": "",
+  "relatedParty": [
+    {
+      "id": "",
+      "name": "",
+      "role": "",
+      "referredType": ""
+    }
+  ],
+  "serviceOrderItem": [
+    {
+      "id": "85",
+      "action": "add",
+      "service": {
+        "id": "40",
+        "state": "active",
+        "serviceType": "CFS",
+        "serviceCharacteristic": [],
+        "serviceSpecification": {
+          "id": "Time Bundle3"
+        }
+      },
+      "serviceRelationship": [
+        {
+          "service": {
+            "id": "",
+            "href": ""
+          },
+          "serviceRelationshipType": "reliesOn"
+        }
+      ]
+    }
+  ]
+}

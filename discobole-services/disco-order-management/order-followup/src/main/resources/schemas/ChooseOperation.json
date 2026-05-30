@@ -1,0 +1,15 @@
+{
+  "ChooseOperation" : {
+    "required" : [ "contractProductId", "operation" ],
+    "type" : "object",
+    "properties" : {
+      "contractProductId" : {
+        "type" : "string"
+      },
+      "operation" : {
+        "type" : "string",
+        "enum" : [ "modification", "migration" ]
+      }
+    }
+  }
+}

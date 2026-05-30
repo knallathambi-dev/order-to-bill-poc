@@ -1,0 +1,11 @@
+[
+  {
+    "engagedParty": {
+      "id": "{{request.query.[engagedParty.id]}}"
+    },
+    "name": "{{request.query.name}}",
+    "partyRoleSpecification": {
+      "name": "Employee"
+    }
+  }
+]

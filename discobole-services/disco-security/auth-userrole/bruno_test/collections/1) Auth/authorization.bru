@@ -1,0 +1,41 @@
+meta {
+  name: authorization
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Auth}}
+  body: formUrlEncoded
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:form-urlencoded {
+  username: {{username}}
+  password: {{pswd}}
+  grant_type: password
+  client_id: gateway
+  client_secret: {{secret}}
+  scope: openid
+}
+
+vars:post-response {
+  token: res.body.access_token
+}
+
+assert {
+  res.status: eq 200
+}
+
+docs {
+  All the values provided in the body are stored in the environement file
+}

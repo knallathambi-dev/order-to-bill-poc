@@ -1,0 +1,460 @@
+[
+  {{#each request.query.[productOrderItem.orderItemId] as |id|}}
+  {{#not @first}}
+  {{#if (contains (array '4f3206e3-6c46-419f-b744-d0940de567c0' '8aebb78f-185e-4a53-bff3-a3492f035f15' '03d495d5-a778-43c3-b61e-aceb99d0dd55' '77defcfb-854b-4179-a537-ce4d678e7b3c' 'b6cb7090-1092-42d3-8324-ef5bb501c02b') id)}},{{/if}}
+  {{/not}}
+
+  {{#eq id '4f3206e3-6c46-419f-b744-d0940de567c0'}}
+  {
+    "@type":"Product",
+    "id":"65f04daf0ff022567bd87896",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd87896",
+    "agreement":[
+
+    ],
+    "place":[
+
+    ],
+    "productCharacteristic":[
+      {
+        "@type":"StringCharacteristic",
+        "id":"002",
+        "name":"ICCID",
+        "valueType":"string",
+        "value":"891004234814455936"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"delete",
+        "orderItemId":"4f3206e3-6c46-419f-b744-d0940de567c0",
+        "productOrderId":"65f04df20819bf75294dea10"
+      }
+    ],
+    "productPrice":[
+
+    ],
+    "productRelationship":[
+      {
+        "relationshipType":"ParentContract",
+        "product":{
+          "@type":"ProductRef",
+          "id":"65f04daf0ff022567bd878a1",
+          "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd878a1"
+        }
+      },
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type":"ProductRef",
+          "id":"65f04daf0ff022567bd8789a",
+          "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789a"
+        }
+      }
+    ],
+    "productSpecification":{
+      "id":"5e18402d-c964-4d52-b362-22ef79c27c01",
+      "name":"Connectivity",
+      "@type":"ProductSpecificationRef"
+    },
+    "productTerm":[
+
+    ],
+    "realizingResource":[
+      {
+        "id":"12x",
+        "href":"http://server:port/resourceInventoryManagement/logicalResource/12x",
+        "@type":"LogicalResource"
+      }
+    ],
+    "realizingService":[
+      {
+        "id": "a8529d5e-fea2-4c8a-a6e2-88e3e6cd8342",
+        "href": "http://serverlocation:port/serviceInventory/3153"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf20",
+        "name":"HOMER",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Confirmed",
+    "creationDate":"2024-03-12T12:42:22.879Z",
+    "statusChange":[
+
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2024-03-12T12:42:41.783Z",
+        "status":"Confirmed"
+      }
+    ]
+  }
+  {{/eq}}
+
+
+  {{#eq id '8aebb78f-185e-4a53-bff3-a3492f035f15'}}
+  {
+    "@type":"Product",
+    "id":"65f04daf0ff022567bd87898",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd87898",
+    "agreement":[
+
+    ],
+    "place":[
+
+    ],
+    "productCharacteristic":[
+      {
+        "@type":"StringCharacteristic",
+        "id":"003",
+        "name":"Volume",
+        "valueType":"string",
+        "value":"1h"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"delete",
+        "orderItemId":"8aebb78f-185e-4a53-bff3-a3492f035f15",
+        "productOrderId":"65f04df20819bf75294dea10"
+      }
+    ],
+    "productPrice":[
+
+    ],
+    "productRelationship":[
+      {
+        "relationshipType":"ParentContract",
+        "product":{
+          "@type":"ProductRef",
+          "id":"65f04daf0ff022567bd878a1",
+          "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd878a1"
+        }
+      },
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type":"ProductRef",
+          "id":"65f04daf0ff022567bd87894",
+          "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd87894"
+        }
+      }
+    ],
+    "productSpecification":{
+      "id":"82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+      "name":"Time Bundle",
+      "@type":"ProductSpecificationRef"
+    },
+    "productTerm":[
+
+    ],
+    "realizingResource":[
+      {
+        "id":"12x",
+        "href":"http://server:port/resourceInventoryManagement/logicalResource/12x",
+        "@type":"LogicalResource"
+      }
+    ],
+    "realizingService":[
+
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf20",
+        "name":"HOMER",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Confirmed",
+    "creationDate":"2024-03-12T12:42:22.883Z",
+    "statusChange":[
+
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2024-03-12T12:42:41.779Z",
+        "status":"Confirmed"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '03d495d5-a778-43c3-b61e-aceb99d0dd55'}}
+  {
+    "@type":"Product",
+    "id":"65f04daf0ff022567bd8789c",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789c",
+    "agreement":[
+
+    ],
+    "place":[
+
+    ],
+    "productCharacteristic":[
+      {
+        "@type":"StringCharacteristic",
+        "id":"f3da7f97-53ec-4d95-82fc-7154c41c578b.1",
+        "name":"Volume",
+        "valueType":"string",
+        "value":"1000 SMS"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"delete",
+        "orderItemId":"03d495d5-a778-43c3-b61e-aceb99d0dd55",
+        "productOrderId":"65f04df20819bf75294dea10"
+      }
+    ],
+    "productPrice":[
+
+    ],
+    "productRelationship":[
+      {
+        "relationshipType":"ParentContract",
+        "product":{
+          "@type":"ProductRef",
+          "id":"65f04daf0ff022567bd878a1",
+          "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd878a1"
+        }
+      },
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type":"ProductRef",
+          "id":"65f04daf0ff022567bd87894",
+          "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd87894"
+        }
+      }
+    ],
+    "productSpecification":{
+      "id":"b0ad739d-57f8-4e2d-a891-0b9df12da1a3",
+      "name":"SMS Option",
+      "@type":"ProductSpecificationRef"
+    },
+    "productTerm":[
+
+    ],
+    "realizingResource":[
+
+    ],
+    "realizingService":[
+
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf20",
+        "name":"HOMER",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Confirmed",
+    "creationDate":"2024-03-12T12:42:23.079Z",
+    "statusChange":[
+
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2024-03-12T12:42:42.183Z",
+        "status":"Confirmed"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '77defcfb-854b-4179-a537-ce4d678e7b3c'}}
+  {
+    "@type":"Product",
+    "id":"65f04daf0ff022567bd8789e",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789e",
+    "agreement":[
+
+    ],
+    "place":[
+
+    ],
+    "productCharacteristic":[
+      {
+        "@type":"StringCharacteristic",
+        "name":"Tone",
+        "valueType":"string",
+        "value":"Tone1"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"delete",
+        "orderItemId":"77defcfb-854b-4179-a537-ce4d678e7b3c",
+        "productOrderId":"65f04df20819bf75294dea10"
+      }
+    ],
+    "productPrice":[
+
+    ],
+    "productRelationship":[
+      {
+        "relationshipType":"ParentContract",
+        "product":{
+          "@type":"ProductRef",
+          "id":"65f04daf0ff022567bd878a1",
+          "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd878a1"
+        }
+      },
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type":"ProductRef",
+          "id":"65f04daf0ff022567bd87894",
+          "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd87894"
+        }
+      }
+    ],
+    "productSpecification":{
+      "id":"f6fe64ec-108a-4275-9f0e-12636acb6524",
+      "name":"Ring Back Tone",
+      "@type":"ProductSpecificationRef"
+    },
+    "productTerm":[
+
+    ],
+    "realizingResource":[
+
+    ],
+    "realizingService":[
+
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf20",
+        "name":"HOMER",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Confirmed",
+    "creationDate":"2024-03-12T12:42:23.082Z",
+    "statusChange":[
+
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2024-03-12T12:42:42.177Z",
+        "status":"Confirmed"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'b6cb7090-1092-42d3-8324-ef5bb501c02b'}}
+  {
+    "@type": "Product",
+    "id": "65f04daf0ff022567bd87894",
+    "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd87894",
+    "agreement": [],
+    "place": [],
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "001",
+        "name": "MSISDN",
+        "valueType": "string",
+        "value": "4152797439"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "orderItemAction": "delete",
+        "orderItemId": "b6cb7090-1092-42d3-8324-ef5bb501c02b",
+        "productOrderId": "65f04df20819bf75294dea10"
+      }
+    ],
+    "productPrice": [],
+    "productRelationship": [
+      {
+        "relationshipType": "ParentContract",
+        "product": {
+          "@type": "ProductRef",
+          "id": "65f04daf0ff022567bd878a1",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd878a1"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "65f04daf0ff022567bd8789a",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789a"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "65f04daf0ff022567bd87898",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd87898"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "65f04daf0ff022567bd8789c",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789c"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "65f04daf0ff022567bd8789e",
+          "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789e"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+      "name": "Mobile Line",
+      "@type": "ProductSpecificationRef"
+    },
+    "productTerm": [],
+    "realizingResource": [
+      {
+        "id": "12x",
+        "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+        "@type": "LogicalResource"
+      }
+    ],
+    "realizingService": [],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-03-12T12:42:22.784Z",
+    "statusChange": [],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2024-03-12T12:42:41.876Z",
+        "status": "Confirmed"
+      }
+    ]
+  }
+  {{/eq}}
+  {{/each}}
+
+]

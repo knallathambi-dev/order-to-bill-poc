@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+$id: "https://orange.com/deliveryStartEvent.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "FalloutStateChangeEvent"
+type: "object"
+allOf:
+  - $ref: "../Base_event.yaml"
+extends:
+  $ref: "../Base_event.yaml"
+properties:
+  event:
+    $ref: "#/FalloutIncidentStateChangeEvent"
+required:
+  - "event"
+
+FalloutIncidentStateChangeEvent:
+  type: "object"
+  existingJavaType: "com.orange.discobole.orderorchestration.orchestrationdelivery.fallout.model.FalloutIncident"

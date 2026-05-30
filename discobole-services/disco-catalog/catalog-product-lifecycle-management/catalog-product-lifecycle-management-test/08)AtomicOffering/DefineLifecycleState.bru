@@ -1,0 +1,56 @@
+meta {
+  name: DefineLifecycleState
+  type: http
+  seq: 16
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "characteristic": [
+          {
+              "name": "DefineLifecycleState",
+              "valueType": "Object",
+              "value": {
+                  "state": "active"
+              },
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": "ObjectCharacteristic"
+          }
+      ]
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  test("To verify that New state 'ACTIVE' is updated", function () {
+   
+    expect(jsonData.characteristic[0].value.state).to.equals("active");
+  });
+  
+  test("To verify that next task list is empty", function () {
+    expect(jsonData._links.nextTaskstoBePerformed.length).to.equals(0);
+  });
+  
+}

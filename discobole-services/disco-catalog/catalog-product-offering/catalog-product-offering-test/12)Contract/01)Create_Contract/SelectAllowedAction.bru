@@ -1,0 +1,93 @@
+meta {
+  name: SelectAllowedAction
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "SelectAllowedAction",
+        "valueType": "List",
+        "value": [
+          {
+            "action": {
+              "id": "1"
+            },
+            "channelRef": [
+              {
+                "id": "Shop"
+              }
+            ]
+          },
+          {
+            "action": {
+              "id": "2"
+            },
+            "channelRef": [
+              {
+                "id": "Shop"
+              }
+            ]
+          },
+          {
+            "action": {
+              "id": "3"
+            },
+            "channelRef": [
+              {
+                "id": "Shop"
+              }
+            ]
+          },
+          {
+            "action": {
+              "id": "4"
+            },
+            "channelRef": [
+              {
+                "id": "Shop"
+              }
+            ]
+          }
+        ],
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  test("To verify that next task is  AssociatePOPtoOperationSpecification", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[0].title).to.equals("ProductOfferingCreation.associatePOPtoOperationSpecification");
+  });
+}

@@ -1,0 +1,35 @@
+meta {
+  name: createJob-recurring-schedule
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/jobSpecification
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "@type": "ExportJobSpecification",
+    "query": "status=Created",
+    "schedule": {
+      "frequency": {
+        "amount": 1,
+        "timePeriod": "Day"
+      },
+      "scheduledPeriod": {
+        "endDateTime": "2024-11-13",
+        "startDateTime": "2024-08-13"
+      },
+      "executionTime": "10:59:00",
+      "@type": "RecurringJobScheduler"
+    },
+    "contentType": "json"
+  }
+}
+
+tests {
+  bru.setEnvVar("jobId", res.body.id);
+}

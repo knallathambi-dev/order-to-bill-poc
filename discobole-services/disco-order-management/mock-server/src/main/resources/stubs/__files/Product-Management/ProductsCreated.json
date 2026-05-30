@@ -1,0 +1,356 @@
+{
+  "@type": "Product",
+  "id": "6560c2e3d783493e23846bb7",
+  "href": "http://localhost:8085/productManagement/v1/product/6560c2e3d783493e23846bb7",
+  "isBundle": true,
+  "productOffering": {
+    "id": "5fe032f0-fa01-42ec-afeb-920f74c2eae3",
+    "name": "Mobile Package 1",
+    "@type": "Contract"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "1",
+      "productOrderId": "1117"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "Product",
+        "id": "6560c2e3d783493e23846bb6",
+        "href": "http://localhost:8085/productManagement/v1/product/6560c2e3d783493e23846bb6",
+        "productOffering": {
+          "id": "cb07fd83-8f41-4cd2-97f5-5989f3ab2bd8",
+          "name": "Mobile Package 1",
+          "@type": "BundledProductOffering"
+        },
+        "productOrderItem": [
+          {
+            "orderItemAction": "add",
+            "orderItemId": "2",
+            "productOrderId": "1117"
+          }
+        ],
+        "productRelationship": [
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "@type": "Product",
+              "id": "6560c2e3d783493e23846baf",
+              "href": "http://localhost:8085/productManagement/v1/product/6560c2e3d783493e23846baf",
+              "productOffering": {
+                "id": "c8846e4c-ecca-40b2-b7de-9c130f4f3466",
+                "name": "Mobile line",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "orderItemAction": "add",
+                  "orderItemId": "3",
+                  "productOrderId": "1117"
+                }
+              ],
+              "productPrice": [
+                {
+                  "description": "POP_5Euro",
+                  "name": "POP_5Euro",
+                  "priceType": "NRC",
+                  "price": {
+                    "taxRate": 0.0,
+                    "dutyFreeAmount": {
+                      "unit": "EUR",
+                      "value": 5.0
+                    },
+                    "taxIncludedAmount": {
+                      "unit": "EUR",
+                      "value": 5.0
+                    }
+                  }
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "@type": "Product",
+                    "id": "6560c2e2d783493e23846bae",
+                    "href": "http://localhost:8085/productManagement/v1/product/6560c2e2d783493e23846bae",
+                    "isBundle": false,
+                    "productOrderItem": [
+                      {
+                        "orderItemAction": "add",
+                        "orderItemId": "7",
+                        "productOrderId": "1117"
+                      }
+                    ],
+                    "productSpecification": {
+                      "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+                      "name": "Mobile line",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ],
+                    "status": "Created",
+                    "operationalStatus": "Confirmed"
+                  }
+                }
+              ],
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "status": "Created",
+              "operationalStatus": "Confirmed"
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "@type": "Product",
+              "id": "6560c2e3d783493e23846bb1",
+              "href": "http://localhost:8085/productManagement/v1/product/6560c2e3d783493e23846bb1",
+              "productOffering": {
+                "id": "0200ecae-4b1e-41c1-a177-750a2a266f09",
+                "name": "Connectivity",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "orderItemAction": "add",
+                  "orderItemId": "4",
+                  "productOrderId": "1117"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "@type": "Product",
+                    "id": "6560c2e3d783493e23846bb0",
+                    "href": "http://localhost:8085/productManagement/v1/product/6560c2e3d783493e23846bb0",
+                    "isBundle": false,
+                    "productOrderItem": [
+                      {
+                        "orderItemAction": "add",
+                        "orderItemId": "8",
+                        "productOrderId": "1117"
+                      }
+                    ],
+                    "productSpecification": {
+                      "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+                      "name": "Connectivity",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ],
+                    "status": "Created",
+                    "operationalStatus": "Confirmed"
+                  }
+                }
+              ],
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "status": "Created",
+              "operationalStatus": "Confirmed"
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "@type": "Product",
+              "id": "6560c2e3d783493e23846bb3",
+              "href": "http://localhost:8085/productManagement/v1/product/6560c2e3d783493e23846bb3",
+              "productOffering": {
+                "id": "8740a910-38d9-4c6d-8150-8f840c3c37ea",
+                "name": "Time Bundle",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "orderItemAction": "add",
+                  "orderItemId": "5",
+                  "productOrderId": "1117"
+                }
+              ],
+              "productPrice": [
+                {
+                  "description": "POP_5Euro",
+                  "name": "POP_5Euro",
+                  "priceType": "NRC",
+                  "price": {
+                    "taxRate": 0.0,
+                    "dutyFreeAmount": {
+                      "unit": "EUR",
+                      "value": 5.0
+                    },
+                    "taxIncludedAmount": {
+                      "unit": "EUR",
+                      "value": 5.0
+                    }
+                  }
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "@type": "Product",
+                    "id": "6560c2e3d783493e23846bb2",
+                    "href": "http://localhost:8085/productManagement/v1/product/6560c2e3d783493e23846bb2",
+                    "isBundle": false,
+                    "productCharacteristic": [
+                      {
+                        "name": "volume",
+                        "valueType": "string"
+                      }
+                    ],
+                    "productOrderItem": [
+                      {
+                        "orderItemAction": "add",
+                        "orderItemId": "9",
+                        "productOrderId": "1117"
+                      }
+                    ],
+                    "productSpecification": {
+                      "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+                      "name": "Time Bundle",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ],
+                    "status": "Created",
+                    "operationalStatus": "Confirmed"
+                  }
+                }
+              ],
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "status": "Created",
+              "operationalStatus": "Confirmed"
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "@type": "Product",
+              "id": "6560c2e3d783493e23846bb5",
+              "href": "http://localhost:8085/productManagement/v1/product/6560c2e3d783493e23846bb5",
+              "productOffering": {
+                "id": "a52ed0ff-e1a1-45de-822a-9db878b0e4fc",
+                "name": "Sim Card",
+                "@type": "AtomicProductOffering"
+              },
+              "productOrderItem": [
+                {
+                  "orderItemAction": "add",
+                  "orderItemId": "6",
+                  "productOrderId": "1117"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "@type": "Product",
+                    "id": "6560c2e3d783493e23846bb4",
+                    "href": "http://localhost:8085/productManagement/v1/product/6560c2e3d783493e23846bb4",
+                    "isBundle": false,
+                    "productOrderItem": [
+                      {
+                        "orderItemAction": "add",
+                        "orderItemId": "10",
+                        "productOrderId": "1117"
+                      }
+                    ],
+                    "productSpecification": {
+                      "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+                      "name": "SIM CARD",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "relatedParty": [
+                      {
+                        "id": "45hj-8888",
+                        "name": "Jean",
+                        "role": "Customer",
+                        "@referredType": "Individual"
+                      }
+                    ],
+                    "status": "Created",
+                    "operationalStatus": "Confirmed"
+                  }
+                }
+              ],
+              "relatedParty": [
+                {
+                  "id": "45hj-8888",
+                  "name": "Jean",
+                  "role": "Customer",
+                  "@referredType": "Individual"
+                }
+              ],
+              "status": "Created",
+              "operationalStatus": "Confirmed"
+            }
+          }
+        ],
+        "relatedParty": [
+          {
+            "id": "45hj-8888",
+            "name": "Jean",
+            "role": "Customer",
+            "@referredType": "Individual"
+          }
+        ],
+        "status": "Created",
+        "operationalStatus": "Confirmed"
+      }
+    }
+  ],
+  "relatedParty": [
+    {
+      "id": "45hj-8888",
+      "name": "Jean",
+      "role": "Customer",
+      "@referredType": "Individual"
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Confirmed"
+}

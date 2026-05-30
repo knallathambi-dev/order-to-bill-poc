@@ -1,0 +1,24 @@
+meta {
+  name: Upload file
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/product/uploadFile
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Content-Type: multipart/form-data
+}
+
+body:json {
+  {"file": null}
+}
+
+body:multipart-form {
+  ~file: @file(D:\OIT\DISCO\CPIB\UploadFiles exam\empty.json)
+  ~jobId: 
+}

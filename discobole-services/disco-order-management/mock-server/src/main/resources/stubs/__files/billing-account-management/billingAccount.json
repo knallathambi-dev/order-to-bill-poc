@@ -1,0 +1,190 @@
+{
+  "id": "{{request.pathSegments.[3]}}",
+  "href": "{{request.baseUrl}}{{request.path}}",
+  "@type": "BillingAccount",
+  "lastModified": "2018-06-14T00:00:00.000Z",
+  "name": "Home Account",
+  "description": "This {{#if request.query.fields}}{{request.query.fields}} 's billing account ... {{else}}This Lisa's billing account ...{{/if}}",
+  "state": "Active",
+  "accountType": "Business",
+  "paymentStatus": "In Arrears",
+  "creditLimit": {
+    "unit": "Euro",
+    "value": 10000
+  },
+  "billStructure": {
+    "@type": "BillStructure",
+    "presentationMedia": [
+      {
+        "@type": "BillPresentationMedia",
+        "href": "url by id",
+        "id": "id du presentation media",
+        "name": "Post Mail"
+      }
+    ],
+    "format": {
+      "@type": "BillFormat",
+      "href": "url by id",
+      "id": "id du bill structure",
+      "name": "Detailed invoice"
+    },
+    "cycleSpecification": {
+      "@type": "BillingCycleSpecification",
+      "dateShift": 54,
+      "frequency": "monthly",
+      "href": "url by id",
+      "id": "id du BCycleSpecification",
+      "name": "Annual billing"
+    }
+  },
+  "paymentPlan": [
+    {
+      "@type": "PaymentPlan",
+      "numberOfPayments": 4,
+      "paymentFrequency": "monthly",
+      "priority": 1,
+      "status": "Effective",
+      "totalAmount": {
+        "unit": "Euro",
+        "value": 45.0
+      },
+      "planType": "regular",
+      "validFor": {
+        "startDateTime": "2024-06-11T00:00:00.000Z",
+        "endDateTime": "2027-01-10T00:00:00.000Z"
+      },
+      "paymentMethod": {
+        "@type": "PaymentMethodRef",
+        "href": "url by id",
+        "id": "id du paymentMethod",
+        "name": "professional payment"
+      }
+    }
+  ],
+  "financialAccount": {
+    "@referredType": "FinancialAccount",
+    "@type": "FinancialAccountRef",
+    "href": "url by id",
+    "id": "id du financialAccount",
+    "name": "Partnership account"
+  },
+  "defaultPaymentMethod": {
+    "@type": "PaymentMethodRef",
+    "href": "url by id",
+    "id": "id du defaultPaymentMethod",
+    "name": "family payment"
+  },
+  "relatedParty": [
+    {
+      "role": "service provider",
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "@referredType": "Organization",
+        "href": "url by id",
+        "id": "id du partyOrPartyRole",
+        "name": "{{#if request.query.fields}}{{request.query.fields}} {{else}}Lisa Orange{{/if}}"
+      }
+    }
+  ],
+  "taxExemption": [
+    {
+      "@type": "TaxExemptionCertificate",
+      "id": "1",
+      "certificateNumber": "45678909876",
+      "issuingJurisdiction": "Prefecture",
+      "reason": "Social",
+      "taxDefinition": [
+        {
+          "@type": "TaxDefinition",
+          "id": "96",
+          "name": "Value Added Tax",
+          "taxType": "federalVat"
+        }
+      ],
+      "attachment": {
+        "@type": "Attachment",
+        "id": "id du attachment",
+        "href": "url by id",
+        "attachmentType": "taxExemptionCertificate",
+        "name": "TaxExemptionCertificate-xxxx.pdf",
+        "description": "Electronic version of the tax exemption certificate",
+        "mimeType": "application/pdf",
+        "url": "url/TaxExemptionCertificate-xxxx.pdf"
+      },
+      "validFor": {
+        "startDateTime": "2024-06-13T00:00:00.000Z",
+        "endDateTime": "2025-01-10T00:00:00.000Z"
+      }
+    }
+  ],
+  "contact": [
+    {
+      "@type": "Contact",
+      "contactName": "{{#if request.query.fields}}{{request.query.fields}} {{else}}Lisa Orange{{/if}}",
+      "contactType": "secondary",
+      "partyRoleType": "Marketing",
+      "validFor": {
+        "startDateTime": "2018-06-17T00:00:00.000Z",
+        "endDateTime": "2019-01-10T00:00:00.000Z"
+      },
+      "contactMedium": [
+        {
+          "@type": "GeographicAddressContactMedium",
+          "preferred": true,
+          "mediumType": "PostalAddress",
+          "validFor": {
+            "startDateTime": "2018-06-14T00:00:00.000Z",
+            "endDateTime": "2019-01-10T00:00:00.000Z"
+          },
+          "city": "Paris",
+          "country": "France",
+          "postCode": "code postal",
+          "street1": "1 rue principale"
+        }
+      ],
+      "relatedParty": {
+        "role": "owner",
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "@referredType": "Organization",
+          "href": "url by id",
+          "id": "id du partyOrPartyRole",
+          "name": "{{#if request.query.fields}}{{request.query.fields}} {{else}}Lisa Orange{{/if}}"
+        }
+      }
+    }
+  ],
+  "accountBalance": [
+    {
+      "@type": "AccountBalance",
+      "amount": {
+        "unit": "Euro",
+        "value": 58.33
+      },
+      "balanceType": "ReceivableBalance",
+      "validFor": {
+        "startDateTime": "2024-06-10T00:00:00.000Z",
+        "endDateTime": "2025-01-10T00:00:00.000Z"
+      }
+    }
+  ],
+  "accountRelationship": [
+    {
+      "@type": "AccountRelationship",
+      "relationshipType": "contains",
+      "validFor": {
+        "startDateTime": "2018-06-13T00:00:00.000Z",
+        "endDateTime": "2019-01-10T00:00:00.000Z"
+      },
+      "account": {
+        "@referredType": "BillingAccount",
+        "@type": "AccountRef",
+        "href": "url by id",
+        "id": "id de Account",
+        "name": "French Account"
+      }
+    }
+  ]
+}

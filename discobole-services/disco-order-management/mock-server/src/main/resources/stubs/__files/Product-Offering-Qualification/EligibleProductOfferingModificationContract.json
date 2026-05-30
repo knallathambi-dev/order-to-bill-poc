@@ -1,0 +1,28 @@
+{
+  "id": "222222",
+  "description": "check offer eligibility for modification",
+  "state": "done",
+  "qualificationResult": "qualified",
+  "instantSyncQualification": "true",
+  "productOfferingQualificationItem": [
+    {
+      "id": "3",
+      "qualificationItemResult": "Qualified",
+      "action": "add",
+      "state": "done",
+      "productOffering": {
+        "id": "aa218314-2a5c-4e06-85c6-b76a7a30c443"
+      },
+      "product": {
+        "id": "1234"
+      }
+    }
+  ],
+  "relatedParty": [
+    {
+      "id": "231-mf4",
+      "role": "customer",
+      "@referredType": "individual"
+    }
+  ]
+}

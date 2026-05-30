@@ -1,0 +1,28 @@
+meta {
+  name: Bulk change null productOrder
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+      {
+          "op": "add",
+          "path": "/productInventoryManagement/v1/product/6620eb0a66ff9c3903ca5f2a/productOrderItem/-",
+          "value": {
+              "productOrderId": "test",
+              "orderItemId": "test"
+          }
+      }
+  ]
+}

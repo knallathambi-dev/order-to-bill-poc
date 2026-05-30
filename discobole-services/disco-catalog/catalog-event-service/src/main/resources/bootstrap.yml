@@ -1,0 +1,65 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  application:
+    name: event-service
+  cloud:
+    config:
+      enabled: false
+      #uri: http://localhost:8888 #uncomment spring.cloud.config.uri then comment spring.cloud.config.enabled property in case of local config-server
+    discovery:
+      enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+    kubernetes:
+      config:
+        enabled: false
+    
+---
+spring:
+  config:
+    activate:
+      on-profile: cloud
+  cloud:
+    config:
+      enabled: true
+      uri: ${vcap.services.config-server.credentials.uri}
+    discovery:
+      enabled: true
+    service-registry:
+      auto-registration:
+        enabled: true
+eureka:
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    non-secure-port: 80
+  client:
+    service-url:
+      defaultZone: ${vcap.services.discovery.credentials.uri}
+                         
+---
+spring:
+  config:
+    activate:
+      on-profile: kubernetes, openshift
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+      secrets:
+        enabled: true
+      reload:
+        enabled: true
+        period: 15000
+management:
+  endpoint:
+    restart:
+      enabled: true

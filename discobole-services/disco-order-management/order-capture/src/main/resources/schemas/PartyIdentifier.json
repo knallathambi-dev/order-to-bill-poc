@@ -1,0 +1,20 @@
+{
+  "PartyIdentifier" : {
+    "required" : [ "partyId", "referredType" ],
+    "type" : "object",
+    "properties" : {
+      "partyId" : {
+        "type" : "string",
+        "readOnly" : true
+      },
+      "referredType" : {
+        "type" : "string",
+        "readOnly" : true
+      },
+      "partyName" : {
+        "type" : "string",
+        "readOnly" : true
+      }
+    }
+  }
+}

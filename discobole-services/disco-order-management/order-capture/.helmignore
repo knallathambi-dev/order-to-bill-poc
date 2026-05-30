@@ -1,0 +1,42 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# This file has been auto-generated. Do not edit manually.
+# If you would like to contribute new rules, please use
+# cmd/generate/config/main.go and follow the contributing guidelines
+# at https://github.com/zricethezav/gitleaks/blob/master/CONTRIBUTING.md
+
+# Patterns to ignore when building packages.
+# This supports shell glob matching, relative path matching, and
+# negation (prefixed with !). Only one pattern per line.
+.DS_Store
+# Common VCS dirs
+.git/
+.gitignore
+.bzr/
+.bzrignore
+.hg/
+.hgignore
+.svn/
+# Common backup files
+*.swp
+*.bak
+*.tmp
+*.orig
+*~
+# Various IDEs
+.project
+.idea/
+*.tmproj
+.vscode/
+tool/
+# Don't want to expose in Helm Chart stable repository
+# the values files used by GitLab CI Helm template
+values-*.yaml
+helm-pre-deploy.sh

@@ -1,0 +1,17 @@
+[
+  {
+    "status": "Created",
+    "productOrderItem": [
+      {
+        "productOrderId": "11g7",
+        "orderItemId": "01",
+        "orderItemAction": "add"
+      }
+    ],
+    "productSpecification": {
+      "id": "MobileLine",
+      "name": "Mobile line",
+      "@type": "ProductSpecificationRef"
+    }
+  }
+]

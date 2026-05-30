@@ -1,0 +1,80 @@
+{
+  "mappings": [
+    {
+      "name": "Qualified service  Fiber Access with appointment required",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/serviceQualificationManagement/v5/checkServiceQualification",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.serviceQualificationItem[0].service.place[0].id",
+            "operator": "exists"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Service-Qualification-Management/qualified-service-with-appointment-true.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "qualified service  Fiber Access with appointment not required",
+      "priority": 1,
+      "request": {
+        "url": "/api/serviceQualificationManagement/v5/checkServiceQualification",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.serviceQualificationItem[0].service.place[0][?(@.id == '456')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Service-Qualification-Management/qualified-service-with-appointment-false.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Unqualified service  Fiber Access",
+      "priority": 1,
+      "request": {
+        "url": "/api/serviceQualificationManagement/v5/checkServiceQualification",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.serviceQualificationItem[0].service.place[0][?(@.id == '123')]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Service-Qualification-Management/unqualified-service.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad request",
+      "priority": 5,
+      "request": {
+        "url": "/api/serviceQualificationManagement/v5/checkServiceQualification",
+        "method": "POST"
+      },
+      "response": {
+        "status": 400,
+        "bodyFileName": "MissingRequestBody.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

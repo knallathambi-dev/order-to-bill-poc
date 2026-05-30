@@ -1,0 +1,63 @@
+meta {
+  name: Select_ProductOffering
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{next_task_href}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+       "name": "SelectPO",
+       "valueType": "Object",
+       "value": {
+          "productOffering.id": "{{BPO_id}}"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"   
+      }
+    ]
+  }
+}
+
+vars:post-response {
+  status: res.body._links.nextTaskstoBePerformed[1].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.ModifyDefineProductOfferingIdentityData.properties.lifecycleStatus.enum[1]
+}
+
+script:pre-request {
+  // get the previously created_productOffering_id and log it
+  console.log("--> previously created_productOffering_id: ", bru.getVar("created_productOffering_id"));
+}
+
+script:post-response {
+  var jsonData =  res.body;
+  
+  
+  bru.setVar("cancel_href", jsonData._links.nextTaskstoBePerformed[0].href);
+  console.log("cancel_href = " + bru.getVar("cancel_href"));
+  
+  
+  bru.setVar("next_task_href", jsonData._links.nextTaskstoBePerformed[1].href);
+  console.log("next_task_href = " + bru.getVar("next_task_href"));
+  
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+}
+
+docs {
+  Continue (with a PATCH) the process flow to modify a productOffering entity. This step is selecting a ProductOffering to modify.
+}

@@ -1,0 +1,15 @@
+{
+  "SelectEntities" : {
+    "required" : [ "category.id" ],
+    "type" : "object",
+    "properties" : {
+      "category.id" : {
+        "type" : "array",
+        "readOnly" : true,
+        "items" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

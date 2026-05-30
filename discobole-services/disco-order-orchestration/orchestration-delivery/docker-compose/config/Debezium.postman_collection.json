@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "77c5579b-b801-41d7-b603-304a204893b4",
+		"name": "Debezium",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22594398"
+	},
+	"item": [
+		{
+			"name": "create connector",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"outbox-connector\",\r\n    \"config\": {\r\n        \"connector.class\": \"io.debezium.connector.mongodb.MongoDbConnector\",\r\n        \"tasks.max\": \"1\",\r\n        \"topic.prefix\": \"dbserver1\",\r\n        \"mongodb.connection.string\": \"mongodb://host.docker.internal:27017/?replicaSet=rs0\",\r\n        \"database.include.list\": \"COOD\",\r\n        \"collection.include.list\": \"COOD.events\",\r\n        \"database.history.kafka.bootstrap.servers\": \"kafka:9092\",\r\n        \"transforms\": \"outbox\",\r\n        \"transforms.outbox.type\": \"io.debezium.connector.mongodb.transforms.outbox.MongoEventRouter\",\r\n        \"transforms.outbox.route.topic.replacement\": \"${routedByValue}\",\r\n        \"transforms.outbox.collection.expand.json.payload\": \"true\",\r\n        \"transforms.outbox.collection.field.event.timestamp\": \"timestamp\",\r\n        \"transforms.outbox.collection.fields.additional.placement\": \"type:header:eventType\",\r\n        \"transforms.outbox.route.by.field\": \"type\",\r\n        \"key.converter\": \"org.apache.kafka.connect.storage.StringConverter\",\r\n        \"value.converter\": \"org.apache.kafka.connect.storage.StringConverter\",\r\n        \"include.schema.changes\": \"false\",\r\n        \"errors.tolerance\": \"all\",\r\n        \"errors.log.enable\": \"true\",\r\n        \"errors.log.include.messages\": \"true\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/connectors/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all connectors",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8083/connectors/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete connector",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "localhost:8083/connectors/outbox-connector",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors",
+						"outbox-connector"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

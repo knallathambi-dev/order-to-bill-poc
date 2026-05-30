@@ -1,0 +1,73 @@
+meta {
+  name: 04_CheckOrchestrationPlanNodesState
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{BASE_URL}}/orchestrationPlan/{{plan_id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: {{token}}
+}
+
+script:pre-request {
+  const delay=async()=>{
+     return new Promise ((res)=>{
+       setTimeout(res, 90000)
+       
+     })
+  }
+  await delay()
+}
+
+tests {
+    test("Status code is 200", function () {
+        expect(res.getStatus()).to.equal(200);
+    });
+    
+    var jsonData = res.body; 
+    
+    test("Check Orchestration Plan is Executed", function () { 
+      
+        expect(jsonData.state).to.be.oneOf(["Executed"]);
+        console.log(" Orchestration Plan state = " + jsonData.state);
+           
+        
+    });
+    
+    // Check orchestrationPlanNodes state for all the nodes
+        /* 
+        0 should be "Held"
+        4 should be "Completed": SIM Card, : Mobile Line, Connectivity and Time Bundle ;
+        */
+  let counter_of_held=0;
+  let counter_of_completed = 0;
+    
+    test("Check Orchestration Plan Nodes for all the Nodes...", function () { 
+        for (let i = 0; i < jsonData.orchestrationPlanNodes.length; i++) {
+            expect(jsonData.orchestrationPlanNodes[i].state).to.be.oneOf(["Held", "Completed"]);
+            if (jsonData.orchestrationPlanNodes[i].state == "Completed") {
+                counter_of_completed++;
+            }
+            if (jsonData.orchestrationPlanNodes[i].state == "Held"){
+                counter_of_held++;
+            }
+            console.log("  jsonData.orchestrationPlanNodes["+i+"].state = " + jsonData.orchestrationPlanNodes[i].state);
+        }
+    
+    });
+    test("Number of Node state to Held is 0", function (){
+        expect(counter_of_held).to.equal(0);
+    });
+    test("Number of Node state to Completed is 4", function (){
+        expect(counter_of_completed).to.equal(4);
+    });
+}
+
+docs {
+  this request for check orchestration plan node state 
+}

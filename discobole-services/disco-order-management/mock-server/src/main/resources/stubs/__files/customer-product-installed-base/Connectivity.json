@@ -1,0 +1,124 @@
+[{
+  "@type": "Product",
+  "id": "67f3fff127434975dbb90208",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90208",
+  "isBundle": false,
+  "name": "Connectivity",
+  "startDate": "2025-04-07T16:41:01Z",
+  "productCharacteristic": [
+    {
+      "@type": "StringCharacteristic",
+      "id": "5a5d753a-553b-49e7-81a5-83f9892ca7c1.1",
+      "name": "ICCID",
+      "value": "ICCID"
+    }
+  ],
+  "productOffering": {
+    "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+    "name": "Connectivity",
+    "version": "1.2",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "1b273bb6-1304-4f93-a4a3-72d27122c9ef",
+      "productOrderId": "67f3ffef0651d05b5b35d893"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "test_pop2",
+      "name": "test_pop2",
+      "priceType": "nonRecurringCharge",
+      "unitOfMeasure": "units",
+      "productOfferingPrice": {
+        "id": "54502ea5-14a2-40fe-b42f-0b3afdb96f8a",
+        "name": "test_pop2",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 2
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 2
+        }
+      },
+      "productPriceAlteration": []
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90206",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+      }
+    },
+    {
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb9020b",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "e90a1274-7dc0-4259-a344-362b55edfc58",
+    "name": "Connectivity",
+    "version": "1.0.0",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Confirmed",
+  "creationDate": "2025-04-07T16:40:17Z",
+  "lastUpdateDate": "2025-04-07T16:41:01Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:01Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:22Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:32Z",
+      "status": "PendingActive"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:01Z",
+      "status": "Active"
+    }
+  ]
+}]

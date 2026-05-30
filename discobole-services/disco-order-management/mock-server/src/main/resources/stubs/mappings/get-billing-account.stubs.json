@@ -1,0 +1,60 @@
+{
+  "mappings": [
+    {
+      "name": "Get billing account by id - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/accountManagement/v5/billingAccount/13.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "billing-account-management/billingAccount.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Get billing account by related party id - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/accountManagement/v5/billingAccount",
+        "method": "GET",
+        "queryParameters": {
+          "relatedParty.id": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "billing-account-management/billingAccountByRelatedPartyId.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Not found",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/accountManagement/v5/billingAccount/(?!13).*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 404,
+        "bodyFileName": "NotFound.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

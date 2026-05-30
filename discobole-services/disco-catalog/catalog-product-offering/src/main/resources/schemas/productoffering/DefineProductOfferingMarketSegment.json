@@ -1,0 +1,15 @@
+{
+  "DefineProductOfferingMarketSegment" : {
+    "required" : [ "segmentId" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "segmentId" : {
+          "type" : "string",
+          "enum" : [ "B2C", "B2B", "Operator", "Institution" ]
+        }
+      }
+    }
+  }
+}

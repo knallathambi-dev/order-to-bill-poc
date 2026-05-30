@@ -1,0 +1,21 @@
+meta {
+  name: Get Products by id
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/product/6499ec972b4b3225cb5737d8
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json
+  User-Agent: insomnia/2023.5.8
+}

@@ -1,0 +1,15 @@
+{
+  "SelectResolutionStateWithReason" : {
+    "required" : [ "reason", "resolutionState" ],
+    "type" : "object",
+    "properties" : {
+      "reason" : {
+        "type" : "string"
+      },
+      "resolutionState" : {
+        "type" : "string",
+        "enum" : [ "resolved", "unresolved" ]
+      }
+    }
+  }
+}

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.orange.discobole.productinventory</groupId>
+        <artifactId>discobole-productinventory-product-inventory-spec</artifactId>
+        <version>1.5.0</version>
+    </parent>
+
+    <artifactId>discobole-productinventory-product-inventory-asyncapi-spec</artifactId>
+    <name>ODA - CPIB - Product Inventory API Async Specification</name>
+
+    <url>https://gitlab.ow2.org/discobole/disco-oda-components/disco-product-inventory/product-inventory-spec</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.orange.discobole.productinventory</groupId>
+            <artifactId>discobole-productinventory-product-inventory-restapi-spec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.orange.discobole.productinventory</groupId>
+                        <artifactId>discobole-productinventory-product-inventory-lombok-annotator</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/asyncapi-files</sourceDirectory>
+                    <customAnnotator>com.orange.discobole.productinventory.customAnnotator.LombokAnnotator</customAnnotator>
+                    <targetPackage>com.orange.discobole.productinventory.dto.kafka</targetPackage>
+                    <sourceType>yamlschema</sourceType>
+                    <includeAdditionalProperties>false</includeAdditionalProperties>
+                    <addCompileSourceRoot>true</addCompileSourceRoot>
+                    <includeGetters>false</includeGetters>
+                    <includeSetters>false</includeSetters>
+                    <includeHashcodeAndEquals>false</includeHashcodeAndEquals>
+                    <includeToString>false</includeToString>
+                    <removeOldOutput>true</removeOldOutput>
+                    <serializable>true</serializable>
+                    <includeJsr303Annotations>true</includeJsr303Annotations>
+                    <useJakartaValidation>true</useJakartaValidation>
+                    <includeDynamicBuilders>true</includeDynamicBuilders>
+                    <sourceSortOrder>FILES_FIRST</sourceSortOrder>
+                    <dateTimeType>java.time.Instant</dateTimeType>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>async-api</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>generateAsyncApiDocs</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <executions>
+                            <!-- install node and npm -->
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
+                                    <nodeVersion>v22.11.0</nodeVersion>
+                                    <npmVersion>10.9.0</npmVersion>
+                                </configuration>
+                            </execution>
+                            <!-- install async api cli -->
+                            <execution>
+                                <id>install-asyncapi-cli</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
+                                    <arguments>install @asyncapi/cli@3.2.0 @asyncapi/nunjucks-filters@2.1.0
+                                        --prefix ${project.build.directory}
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <!-- generate async api specifications as html -->
+                            <execution>
+                                <id>generate-async-api-html-doc</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>npx</goal>
+                                </goals>
+                                <configuration>
+                                    <workingDirectory>${project.build.directory}</workingDirectory>
+                                    <arguments>
+                                        @asyncapi/cli generate fromTemplate ${project.basedir}/src/main/resources/asyncapi-files/product-inventory-spec.yaml
+                                            @asyncapi/html-template -p singleFile=true
+                                            -o classes/public/async-api
+                                            --use-new-generator --force-write
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- clean installed node and node modules -->
+                    <plugin>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>remove-node-installation</id>
+                                <phase>process-resources</phase>
+                                <goals>
+                                    <goal>clean</goal>
+                                </goals>
+                                <configuration>
+                                    <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                                    <filesets>
+                                        <fileset>
+                                            <directory>${project.build.directory}</directory>
+                                            <includes>
+                                                <include>node/</include>
+                                                <include>node_modules/</include>
+                                                <include>package.json</include>
+                                                <include>package-lock.json</include>
+                                            </includes>
+                                        </fileset>
+                                    </filesets>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

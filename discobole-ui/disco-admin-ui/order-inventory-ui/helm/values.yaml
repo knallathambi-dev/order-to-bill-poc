@@ -1,0 +1,146 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# -- Application replica count
+replicaCount: 1
+
+# -- Enable or disable application daily shutdown
+scheduledshutdown: disabled
+
+# -- Application container image configuration
+image:
+  repository: "${docker_repository}"
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart version.
+  tag: "${docker_tag}"
+
+# -- Specify pulling image secrets if your image repository requires it
+imagePullSecrets: []
+
+# Set create to true if you want this chart to create a secret for you. Default is false.
+registryCredentials:
+  # -- specifies whether a secret should be created for pulling images from a private registry
+  create: false
+  # -- the URL of the private registry.
+  url: ""
+  # -- the access token of the private registry
+  token:
+    userName: ""
+    password: ""
+
+# Specifies whether a service account should be created
+serviceAccount:
+  # -- specifies whether a service account should be created
+  create: false
+  # -- annotations to add to the service account
+  annotations: {}
+  # -- the name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# -- Enable monitoring and supervision of pods
+podAnnotations: {}
+  #prometheus.io/port: '9000'
+  #prometheus.io/scrape: 'true'
+  #metrics: '/actuator/prometheus'
+
+# -- Security context for the containers
+podSecurityContext: {}
+  # fsGroup: 1000
+  # runAsNonRoot: true
+
+# -- Security context
+securityContext: {}
+  # allowPrivilegeEscalation: false
+  # readOnlyRootFilesystem: true
+  # runAsGroup: 1000
+  # runAsNonRoot: true
+  # runAsUser: 1000
+  # capabilities:
+  #   drop:
+  #   - ALL
+
+# Set to true if you want to have CertManager issue a Certificate for your service
+certManager:
+  # -- specify whether a certificate should be created for this service
+  create: false
+
+# Service configuration
+service:
+  type: ClusterIP
+  # -- Specify the port number for the service
+  port: 80
+  # -- Specify the target port for the service
+  targetPort: 8080
+  # -- enable monitoring and supervision of service
+  annotations: {}
+  #  prometheus.io/port: '9000'
+  #  prometheus.io/scrape: 'true'
+
+# Ingress configuration
+ingress:
+  # -- Enable ingress controller
+  enabled: false
+  # -- Ingress annotations
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"   
+  # -- host names for the ingress controller
+  hosts:
+    ## -- host names for the ingress controller
+    - host: ""
+      paths: [/] # align with contextPath
+
+# -- Node selectorfor pod assignment
+nodeSelector: {}
+
+# -- Node tolerations for pod assignment
+tolerations: []
+
+# -- Node affinity for pod assignment
+affinity: {}
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # -- resource requests
+  requests:
+    cpu: 60m
+    memory: 128Mi
+  # -- resource limits     
+  limits:
+    cpu: 120m
+    memory: 500Mi
+    
+# Monitoring values
+monitoring:
+  # -- label to specify application monitoring
+  application: ""
+  # -- label to specify application monitoring
+  app: ""
+  # -- label to specify product name (chart name by default)
+  productName: ""
+  # -- label for environment being deployed
+  environment: ""
+  # -- label to specify domain
+  domain: "appli"
+  # -- label to specify topology
+  topology: ""
+  # -- label to specify role
+  role: ""
+
+# Default hostnames and ports of dependent services
+orderinventoryui:
+  service:
+    # -- gateway URL
+    gatewayUrl: ""
+    # -- enable or disable standalone mode
+    standaloneMode: false

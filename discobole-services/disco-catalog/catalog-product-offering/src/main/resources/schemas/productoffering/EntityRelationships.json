@@ -1,0 +1,48 @@
+{
+  "EntityRelationships" : {
+    "type" : "object",
+    "properties" : {
+      "entityRelationshipMinCardinality" : {
+        "type" : "number",
+        "default" : 0
+      },
+      "entityRelationshipMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "defineRelationship" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "id", "relationshipType" ],
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "relationshipType" : {
+                "type" : "string",
+                "enum" : [ "incompatible", "requires", "migratesTo" ]
+              },
+              "validFor" : {
+                "required" : [ "startDateTime" ],
+                "type" : "object",
+                "properties" : {
+                  "endDateTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  },
+                  "startDateTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

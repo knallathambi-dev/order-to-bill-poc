@@ -1,0 +1,15 @@
+meta {
+  name: Retrieve_Unit
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{Admin_URL}}/unit/{{Unit_id}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

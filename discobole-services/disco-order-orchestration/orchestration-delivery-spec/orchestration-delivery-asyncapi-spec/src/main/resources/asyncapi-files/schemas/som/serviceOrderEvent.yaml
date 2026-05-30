@@ -1,0 +1,478 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+$id: "https://event.com/ServiceOrderEvent.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "ServiceOrderEvent"
+description: "A Service Order is the event that communicate between COOD and order services"
+type: "object"
+allOf:
+  - $ref: "../Base_event.yaml"
+extends:
+  $ref: "../Base_event.yaml"
+
+properties:
+  event:
+    $ref: "#/ServiceOrderPayloadEvent"
+required:
+  - "event"
+
+ServiceOrderPayloadEvent:
+  type: "object"
+  properties:
+    serviceOrder:
+      $ref: "#/ServiceOrder"
+  required:
+    - "serviceOrder"
+  title: "ServiceOrderPayloadEvent"
+
+ServiceOrder:
+  type: "object"
+  properties:
+    id:
+      description: "ID created on repository side"
+      type: "string"
+    href:
+      description: "Hyperlink to access the order"
+      type: "string"
+    cancellationDate:
+      type: "string"
+      format: "date-time"
+      description: "Date when the order is cancelled. This is used when order is cancelled."
+    cancellationReason:
+      description: "Reason why the order is cancelled. This is used when order is cancelled"
+      type: "string"
+    category:
+      description: "Used to categorize the order, useful for the OM system, such as: Broadband, TVOption"
+      type: "string"
+    completionDate:
+      description: "Effective delivery date amended by the provider"
+      type: "string"
+      format: "date-time"
+    description:
+      title: "description"
+      type: "string"
+      description: "A free-text description of the service order."
+    expectedCompletionDate:
+      type: "string"
+      format: "date-time"
+      description: "Expected delivery date amended by the provider."
+    externalId:
+      type: "string"
+      description: "ID given by the consumer to facilitate searches."
+    notificationContact:
+      type: "string"
+      description: "Contact attached to the order to send back information regarding this order."
+    orderDate:
+      type: "string"
+      format: "date-time"
+    priority:
+      type: "string"
+      description: "Can be used by consumers to prioritize orders in a Service Order Management system."
+    requestedCompletionDate:
+      type: "string"
+      format: "date-time"
+      description: "Requested delivery date from the requestors perspective."
+    requestedStartDate:
+      type: "string"
+      format: "date-time"
+      description: "Order start date wished by the requestor."
+    startDate:
+      type: "string"
+      format: "date-time"
+      description: "Date when the order was started for processing."
+    errorMessage:
+      type: "array"
+      description: "the error(s) cause an order status change"
+      items:
+        $ref: "#/ErrorMessage"
+    externalReference:
+      type: "array"
+      items:
+        $ref: "#/ErrorMessage"
+    jeopardyAlert:
+      type: "array"
+      description: "A list of jeopardy alerts related to this order"
+      items:
+        $ref: "#/ErrorMessage"
+    milestone:
+      type: "array"
+      description: "A list of milestones related to this order"
+      items:
+        $ref: "#/ErrorMessage"
+    orderRelationship:
+      type: "array"
+      description: "A list of service orders related to this order (e.g. prerequisite, dependent on)"
+      items:
+        $ref: "#/ErrorMessage"
+    note:
+      type: "array"
+      description: "Extra-information about the order; e.g. useful to add extra delivery information that could be useful for a human process"
+      items:
+        $ref: "#/Note"
+    state:
+      type: "string"
+      enum:
+        - "acknowledged"
+        - "rejected"
+        - "pending"
+        - "held"
+        - "inProgress"
+        - "cancelled"
+        - "completed"
+        - "failed"
+        - "partial"
+        - "assessingCancellation"
+        - "pendingCancellation"
+    relatedParty:
+      type: "array"
+      description: "A list of parties which are involved in this order and the role they are playing"
+      items:
+        $ref: "#/ServiceOrderRelatedParty"
+    serviceOrderItem:
+      type: "array"
+      description: "A list of service order items to be processed by this order"
+      items:
+        $ref: "#/ServiceOrderItem"
+    baseType:
+      type: "string"
+      title: "@baseType"
+      description: "When sub-classing, this defines the super-class"
+    schemaLocation:
+      type: "string"
+      title: "@schemaLocation"
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships"
+    '@type':
+      type: "string"
+      title: "@type"
+      description: "When sub-classing, this defines the sub-class Extensible name"
+
+ErrorMessage:
+  properties:
+    name:
+      type: "string"
+    message:
+      type: "string"
+    reason:
+      type: "string"
+
+Note:
+  properties:
+    id:
+      type: "string"
+    author:
+      type: "string"
+    date:
+      type: "string"
+    text:
+      type: "string"
+
+ServiceOrderRelatedParty:
+  properties:
+    id:
+      description: "Identifier of the individual line item"
+      type: "string"
+    href:
+      type: "string"
+      description: "The reference of the appointment"
+    name:
+      type: "string"
+      description: "Name of the related entity."
+    role:
+      type: "string"
+      description: "Role played by the related party"
+    baseType:
+      type: "string"
+      title: "@baseType"
+      description: "When sub-classing, this defines the super-class"
+    schemaLocation:
+      type: "string"
+      title: "@schemaLocation"
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships"
+    type:
+      type: "string"
+      title: "@type"
+      description: "When sub-classing, this defines the sub-class Extensible name"
+    referredType:
+      type: "string"
+      title: "@referredType"
+      description: "The actual type of the target instance when needed for disambiguation"
+
+
+ServiceOrderItem:
+  type: "object"
+  properties:
+    id:
+      description: "Identifier of the individual line item"
+      type: "string"
+    quantity:
+      type: "integer"
+      description: "Quantity ordered"
+    action:
+      type: "string"
+      enum:
+        - "add"
+        - "modify"
+        - "delete"
+        - "noChange"
+        - "migrate"
+    appointment:
+      $ref: "#/AppointmentRef"
+    errorMessage:
+      type: "array"
+      items:
+        $ref: "#/ServiceOrderItemErrorMessage"
+      description: "the error(s) cause an order item status change"
+    service:
+      $ref: "#/Service"
+    serviceOrderItem:
+      type: "array"
+      items:
+        $ref: "#/ServiceOrderItem"
+      description: "A list of order items embedded to this order item"
+    serviceOrderItemRelationship:
+      type: "array"
+      items:
+        $ref: "#/ServiceOrderItemRelationship"
+      description: "A list of order items related to this order item"
+    state:
+      type: "string"
+      enum:
+        - "Acknowledged"
+        - "Rejected"
+        - "Pending"
+        - "Held"
+        - "InProgress"
+        - "Cancelled"
+        - "Completed"
+        - "Failed"
+        - "Partial"
+        - "AssessingCancellation"
+        - "PendingCancellation"
+    '@baseType':
+      type: "string"
+      description: "When sub-classing, this defines the super-class"
+    '@schemaLocation':
+      type: "string"
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships"
+    '@type':
+      type: "string"
+      description: "When sub-classing, this defines the sub-class Extensible name"
+
+    serviceRelationship:
+      type: "array"
+      items:
+        $ref: "#/ServiceRelationship"
+
+
+Service:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    href:
+      type: "string"
+    description:
+      type: "string"
+    endDate:
+      description: "End of the time period, using IETC-RFC-3339 format"
+      type: "string"
+      format: "date-time"
+    name:
+      type: "string"
+    serviceType:
+      type: "string"
+    startDate:
+      type: "string"
+      format: "date-time"
+    note:
+      type: "array"
+      items:
+        $ref: "#/Note"
+    serviceCharacteristic:
+      type: "array"
+      items:
+        existingJavaType: "com.orange.discobole.orderorchestration.orchestrationdelivery.servicecharacteristic.model.Characteristic"
+    serviceRelationship:
+      type: "array"
+      items:
+        $ref: "#/ServiceRelationship"
+    serviceSpecification:
+      $ref: "#/ServiceSpecification"
+    state:
+      $ref: "#/ServiceStateType"
+
+ServiceStateType:
+  description: "Possible values for the status of the product"
+  type: "string"
+  enum:
+    - "feasibilityChecked"
+    - "designed"
+    - "reserved"
+    - "inactive"
+    - "active"
+    - "terminated"
+
+ServiceRelationship:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    service:
+      $ref: "#/ServiceRef"
+    serviceRelationshipType:
+      type: "string"
+
+ServiceSpecification:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    name:
+      type: "string"
+    '@type':
+      type: "string"
+
+ServiceRef:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    href:
+      type: "string"
+
+ServiceCharacteristic:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    name:
+      type: "string"
+    valueType:
+      type: "string"
+    value:
+      type: "string"
+
+ServiceOrderItemErrorMessage:
+  type: "object"
+  properties:
+    code:
+      description: "error code"
+      type: "string"
+    message:
+      description: "More details and corrective actions related to the error"
+      type: "string"
+    reason:
+      description: "Explanation of the reason for the error"
+      type: "string"
+    status:
+      description: "error code extension like sys-ABC-2001"
+      type: "string"
+    referenceError:
+      description: "URI of documentation describing the error"
+      format: "uri"
+      type: "string"
+    timestamp:
+      type: "string"
+      format: "date"
+      description: "Date when the error happened"
+    baseType:
+      type: "string"
+      title: "@baseType"
+      description: "When sub-classing, this defines the super-class"
+    schemaLocation:
+      type: "string"
+      title: "@schemaLocation"
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships"
+    type:
+      type: "string"
+      title: "@type"
+      description: "When sub-classing, this defines the sub-class Extensible name"
+
+ServiceOrderItemRelationship:
+  type: "object"
+  properties:
+    relationshipType:
+      type: "string"
+      description: "The type of related order item, can be: dependency if the order item needs to be not started until another order item is complete"
+    orderItem:
+      $ref: "#/ServiceOrderItemRef"
+    baseType:
+      type: "string"
+      title: "@baseType"
+      description: "When sub-classing, this defines the super-class"
+    schemaLocation:
+      type: "string"
+      title: "@schemaLocation"
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships"
+    type:
+      type: "string"
+      title: "@type"
+      description: "When sub-classing, this defines the sub-class Extensible name"
+
+ServiceOrderItemRef:
+  type: "object"
+  properties:
+    itemId:
+      type: "string"
+      description: "Identifier of the line item"
+    serviceOrderHref:
+      type: "string"
+      format: "uri"
+      description: "Link to the order to which this item belongs to"
+    serviceOrderId:
+      type: "string"
+      description: "Identifier of the order that this item belongs to"
+    baseType:
+      type: "string"
+      title: "@baseType"
+      description: "When sub-classing, this defines the super-class"
+    schemaLocation:
+      type: "string"
+      title: "@schemaLocation"
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships"
+    type:
+      type: "string"
+      title: "@type"
+      description: "When sub-classing, this defines the sub-class Extensible name"
+    referredType:
+      type: "string"
+      description: "The actual type of the target instance when needed for disambiguation."
+
+AppointmentRef:
+  type: "object"
+  properties:
+    id:
+      description: "Identifier of the individual line item"
+      type: "string"
+    href:
+      type: "string"
+      description: "The reference of the appointment"
+    description:
+      type: "string"
+      description: "An explanatory text regarding the appointment made with a party"
+    baseType:
+      type: "string"
+      title: "@baseType"
+      description: "When sub-classing, this defines the super-class"
+    schemaLocation:
+      type: "string"
+      title: "@schemaLocation"
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships"
+    type:
+      type: "string"
+      title: "@type"
+      description: "When sub-classing, this defines the sub-class Extensible name"
+    referredType:
+      type: "string"
+      title: "@referredType"
+      description: "The actual type of the target instance when needed for disambiguation"
+
+

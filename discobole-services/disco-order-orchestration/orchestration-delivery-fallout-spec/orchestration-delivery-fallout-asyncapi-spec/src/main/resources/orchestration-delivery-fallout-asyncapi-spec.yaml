@@ -1,0 +1,590 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+openapi: "3.0.0"
+info:
+  description: "Fallout management uses TMF 701 process flow library to create fallout,\
+    \ close fallout.\n \nFallout management contains fallout apis such as get fallout\
+    \ and filter it."
+  version: "1.0.1_release"
+  title: "FalloutManagement"
+tags:
+  - name: "FalloutIncident"
+  - name: "ServiceStatus"
+    description: "Health check"
+  - name: "ServiceVersion"
+    description: "get service version"
+paths:
+  /falloutIncident:
+    get:
+      tags:
+        - "FalloutIncident"
+      operationId: "getFallouts"
+      summary: "get fallout processes"
+      description: "get fallout processes"
+      parameters:
+        - name: "id"
+          required: false
+          in: "query"
+          description: "fallout processid id"
+          schema:
+            type: "string"
+        - name: "state"
+          required: false
+          in: "query"
+          description: "orchestration plan's state"
+          schema:
+            type: "string"
+        - name: "relatedParty.id"
+          required: false
+          in: "query"
+          description: "related party's id"
+          schema:
+            type: "string"
+        - name: "relatedParty.role"
+          required: false
+          in: "query"
+          description: "related party's role"
+          schema:
+            type: "string"
+        - name: "relatedParty.name"
+          required: false
+          in: "query"
+          description: "related party's name"
+          schema:
+            type: "string"
+        - name: "relatedEntity.state"
+          required: false
+          in: "query"
+          description: "related entity state"
+          schema:
+            type: "string"
+        - name: "relatedEntity.id"
+          required: false
+          in: "query"
+          description: "related entity id"
+          schema:
+            type: "string"
+        - name: "relatedEntity.Role"
+          required: false
+          in: "query"
+          description: "the role of the related entity in this fallout"
+          schema:
+            type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+            default: 0
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+            default: 100
+        - name: "sort"
+          required: false
+          in: "query"
+          style: "form"
+          explode: false
+          description: "sort parameter, is an array of the needed fields to be sorted\
+          \ and operator - or + to define if ascending or descending"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        - name: "creationDate.gte"
+          required: false
+          in: "query"
+          description: "creation date >= value"
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "creationDate.lte"
+          required: false
+          in: "query"
+          description: "creation date <= value"
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "modificationDate.lte"
+          required: false
+          in: "query"
+          description: "modification date >= value"
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "modificationDate.gte"
+          required: false
+          in: "query"
+          description: "modification date >= value"
+          schema:
+            type: "string"
+            format: "date-time"
+      responses:
+        "200":
+          description: "Ok"
+          headers:
+            X-Result-Count:
+              description: "Result count"
+              schema:
+                type: "integer"
+                format: "int32"
+            X-Total-Count:
+              description: "total count"
+              schema:
+                type: "integer"
+                format: "int32"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/FalloutIncident"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /falloutIncident/{id}:
+    get:
+      tags:
+        - "FalloutIncident"
+      operationId: "getFalloutById"
+      summary: "get Fallout Process By Id"
+      description: "get Fallout Process By Id"
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          description: "the id of the fallout incident"
+          schema:
+            type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "this field is Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/FalloutIncident"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /status:
+    get:
+      tags:
+        - "ServiceStatus"
+      operationId: "getServiceStatus"
+      summary: "health check API"
+      description: "used for a health check of the service"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ServiceStatus"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /version:
+    get:
+      tags:
+        - "ServiceVersion"
+      operationId: "getServiceVersion"
+      summary: "gets the service version"
+      description: "service version"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ServiceVersion"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+servers:
+  - url: "https://orchestration-delivery-fallout-integration.apps.fr01.paas.tech.orange/api/falloutManagement/v1"
+components:
+  schemas:
+    Error:
+      description: "Used when an API throws an Error, typically with a HTTP error\
+        \ response-code (3xx, 4xx, 5xx)"
+      required:
+        - "code"
+        - "reason"
+      type: "object"
+      properties:
+        code:
+          description: "error code"
+          type: "string"
+        reason:
+          description: "error reason"
+          type: "string"
+        message:
+          description: "error message"
+          type: "string"
+        status:
+          description: "the status of the error"
+          type: "string"
+        referenceError:
+          description: "the uri of the referenced error"
+          type: "string"
+          format: "uri"
+        '@baseType':
+          description: "the base type of Error class"
+          type: "string"
+        '@schemaLocation':
+          description: "the schema location of Error class"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "the type of Error class"
+          type: "string"
+    ErrorMessage:
+      description: "Fallout error message"
+      required:
+        - "id"
+        - "href"
+      type: "object"
+      properties:
+        code:
+          description: "Application relevant detail, defined in the API or a common\
+            \ list."
+          type: "string"
+        reason:
+          description: "Explanation of the reason for the error which can be shown\
+            \ to a client user."
+          type: "string"
+        message:
+          description: "More details and corrective actions related to the error which\
+            \ can be shown to a client user."
+          type: "string"
+        timestamp:
+          description: "time of error's occurrence"
+          type: "string"
+        id:
+          description: "the id of the error"
+          type: "string"
+        href:
+          description: "the href of this error"
+          type: "string"
+        '@type':
+          description: "the type of Error class"
+          type: "string"
+        '@schemaLocation':
+          description: "the schema location of Error class"
+          type: "string"
+          format: "uri"
+    FalloutIncident:
+      description: "A description of an incident that occurred during the processing\
+        \ of a Product Order including Order Catprue, Follow up and Delivery Orchestration"
+      required:
+        - "id"
+        - "href"
+      type: "object"
+      properties:
+        id:
+          description: "id of the fallout incident"
+          type: "string"
+        state:
+          description: "the state of the fallout"
+          type: "string"
+        creationDate:
+          description: "Date-time of the fallout incident creation"
+          type: "string"
+          format: "date-time"
+        modificationDate:
+          description: "last modification date of the fallout incident"
+          type: "string"
+          format: "date-time"
+        relatedEntity:
+          description: "entities related to this fallout incident"
+          type: "array"
+          items:
+            $ref: "#/components/schemas/RelatedEntity"
+        relatedParty:
+          description: "Parties that are involved with this fallout"
+          $ref: "#/components/schemas/RelatedParty"
+        reason:
+          description: "the reason of the error"
+          type: "string"
+        errorMessage:
+          description: "More details and corrective actions related to the error can\
+            \ be shown to a client user."
+          $ref: "#/components/schemas/ErrorMessage"
+        href:
+          description: "link to the fallout incident"
+          type: "string"
+        resolution:
+          description: "the resolution details"
+          $ref: "#/components/schemas/Resolution"
+        '@baseType':
+          description: "the base type of the error class"
+          type: "string"
+        '@type':
+          description: "the type of the error class"
+          type: "string"
+        '@schemaLocation':
+          description: "the schema location of the error class"
+          type: "string"
+          format: "uri"
+    RelatedEntity:
+      required:
+        - "id"
+        - "@referredType"
+        - "role"
+        - "href"
+        - "@type"
+      type: "object"
+      properties:
+        id:
+          description: "the id of the related entity"
+          type: "string"
+        '@referredType':
+          description: "the actual type of the related entity"
+          type: "string"
+        role:
+          description: "the role this entity has in the fallout [Orchestration Plan,\
+            \ Product Order, Owner]"
+          type: "string"
+        href:
+          description: "the link to the related entity"
+          type: "string"
+        '@type':
+          description: "the type of the related entity"
+          type: "string"
+    RelatedParty:
+      description: "Party that ordered the order"
+      required:
+        - "@referredType"
+        - "@type"
+      type: "object"
+      properties:
+        id:
+          description: "related party's id"
+          type: "string"
+        role:
+          description: "related party's role"
+          type: "string"
+        name:
+          description: "related party's name"
+          type: "string"
+        href:
+          description: "the href of the related party"
+          type: "string"
+        '@referredType':
+          description: "the referred type of the related party"
+          type: "string"
+        '@type':
+          description: "the type of the related party"
+          type: "string"
+    Resolution:
+      required:
+        - "status"
+        - "comment"
+        - "id"
+        - "href"
+        - "@type"
+      type: "object"
+      properties:
+        status:
+          description: "the resolution status"
+          $ref: "#/components/schemas/ResolutionState"
+        comment:
+          description: "comment on the resolution state"
+          type: "string"
+        id:
+          description: "reoslution id"
+          type: "string"
+        href:
+          description: "href of the resolution"
+          type: "string"
+        '@type':
+          type: "string"
+    ResolutionState:
+      description: "the state of the resolution"
+      type: "string"
+      enum:
+        - "resolved"
+        - "unresolved"
+        - "skipped"
+    ServiceStatus:
+      description: "used for healt check"
+      required:
+        - "name"
+        - "status"
+        - "version"
+      type: "object"
+      properties:
+        name:
+          description: "the name of the servie"
+          type: "string"
+        status:
+          description: "the status of the servie"
+          $ref: "#/components/schemas/ServiceStatusEnum"
+        version:
+          description: "the version of the service"
+          type: "string"
+    ServiceStatusEnum:
+      description: "enum represnting service status"
+      type: "string"
+      enum:
+        - "ok"
+        - "ko"
+    ServiceVersion:
+      description: "An object representing the response status of the service"
+      required:
+        - "version"
+        - "deprecated"
+      type: "object"
+      properties:
+        version:
+          description: "the version of the service"
+          $ref: "#/components/schemas/Version"
+        deprecated:
+          description: "service deprecation state"
+          type: "boolean"
+    Version:
+      description: "describes the current version"
+      required:
+        - "major"
+        - "minor"
+      type: "object"
+      properties:
+        major:
+          description: "major id"
+          type: "string"
+        minor:
+          description: "minor id"
+          type: "string"

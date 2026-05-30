@@ -1,0 +1,57 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+.plan-card {
+    cursor: pointer;
+}
+
+.plan-card:hover {
+    border-color: #000;
+}
+
+.card-with-label {
+    position: relative;
+    border-color: #527edb;
+}
+
+.plan-benefits-wrapper .benefit-item {
+    position: relative;
+    padding-left: 32px;
+}
+
+.plan-benefits-wrapper .benefit-icon {
+    font-size: 24px;
+    position: absolute;
+    left: 0;
+    top: 10px;
+}
+
+.benefit-icon.icon-done_modifier:before {
+    color: #32c832;
+}
+
+.plan-benefits-wrapper .benefit-icon.icon-Modifier_delete:before {
+    color: #cd3d14;
+}
+
+.selected-plan-icon {
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.selected-plan-border {
+    border: 4px solid #007bff;
+    border-radius: 6px;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    transition: all 0.3s ease;
+}

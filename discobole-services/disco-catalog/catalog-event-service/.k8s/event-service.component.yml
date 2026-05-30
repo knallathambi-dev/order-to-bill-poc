@@ -1,0 +1,52 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+apiVersion: oda.tmforum.org/v1alpha1
+kind: component
+metadata:
+  name: orange-event-service
+  labels:
+    oda.tmforum.org/componentName: orange-event-service
+spec:
+  type: orange-event-service
+  selector:
+    matchLabels:
+     oda.tmforum.org/componentName: orange-event-service
+  componentKinds:
+    - group: core
+      kind: Service
+    - group: apps
+      kind: Deployment
+  version: "1.1.0"
+  description: "Orange Event Service receives event/notification via REST and publish on event bus(Kafka)." 
+  maintainers:
+    - name: Saurabh Shakya
+      email: saurabh.shakya@orange.com
+  owners:
+    - name: Herve Bouvier
+      email: herve.bouvier@orange.com
+  coreFunction:
+    exposedAPIs:
+      - name: orange-event-service
+        specification: https://raw.githubusercontent.com/tmforum-apis/TMF688-Event/master/TMF688-Event-v4.0.0.swagger.json
+        implementation: event-service
+        port: 80
+        path: /orange-event-service/
+    dependantAPIs: []
+  eventNotification:
+    publishedEvents: []
+    subscribedEvents: []
+  management: []
+  security:
+    securitySchemes:
+      bearerAuth:
+        type: http
+        scheme: bearer
+        bearerFormat: JWT

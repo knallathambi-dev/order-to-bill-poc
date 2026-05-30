@@ -1,0 +1,36 @@
+meta {
+  name: patchProductToPendingTerminated
+  type: http
+  seq: 11
+}
+
+patch {
+  url: {{dev_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json-patch+json
+  User-Agent: insomnia/2023.5.8
+}
+
+body:json {
+  [
+    {
+      "op": "replace",
+      "path": "/productInventoryManagement/v1/product/655b6d2e5df5280f367de750/operationalStatus",
+      "value": "PendingTerminate"
+    },
+      {
+      "op": "replace",
+      "path": "/productInventoryManagement/v1/product/655b6d2e5df5280f367de750/operationalStatus",
+      "value": "Terminated"
+    },
+    {
+      "op": "replace",
+      "path": "/productInventoryManagement/v1/product/655b6d2e5df5280f367de750/status",
+      "value": "Terminated"
+    }
+  ]
+}

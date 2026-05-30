@@ -1,0 +1,53 @@
+meta {
+  name: validate
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "ValidateEntityOperation",
+        "valueType": "Object",
+        "value": {
+          "isValidated": true
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  
+  test("to verify Next task is empty", function(){
+      expect(jsonData._links.nextTaskstoBePerformed).to.eql([]);
+  
+  });
+  
+}

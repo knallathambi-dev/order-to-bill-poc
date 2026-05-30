@@ -1,0 +1,37 @@
+meta {
+  name: get category
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/category
+  body: none
+  auth: none
+}
+
+params:query {
+  ~%40type: a
+  ~BundledProductOffering.id: a
+  ~BundledProductOffering.lifecycleStatus: a
+  ~BundledProductOffering.name: a
+  ~BundledProductOffering.validFor: a
+  ~CategoryRef.name: a
+  ~ChannelRef.name: a
+  ~MarketSegmentRef.name: a
+  ~ProductOfferingPrice.%40type: a
+  ~ProductOfferingPrice.id: a
+  ~ProductOfferingPrice.name: a
+  ~ProductSpecification.name: a
+  ~ProductSpecification.version: a
+  ~RelatedParty.id: a
+  ~RelatedParty.name: a
+  ~brand: a
+  ~name: CsPO5
+  ~state: active
+  ~version: a
+  ~sort: -lastUpdate
+  ~ProductSpecification.id: 7dd40eaa-cb76-4ffc-8270-221cad51c629
+  ~limit: 2
+  ~type: ProductOfferingCategory
+}

@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+apiVersion: v2
+name: catalog-product-catalog
+description: A Helm chart for product catalog  service
+home: https://gitlab.ow2.org/discobole
+sources:
+  - https://gitlab.ow2.org/discobole/disco-oda-components/disco-catalog/catalog-product-catalog
+icon: https://gitlab.ow2.org/uploads/-/system/group/avatar/5972/discobole_50_black.png?width=48
+ 
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+type: application
+
+keywords:
+  - orange
+  - discobole
+  - catalog-product-catalog
+  - product-catalog
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 2.0.1
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+appVersion: "10.0.0"
+
+dependencies:
+  - name: mongodb
+    version: 0.16.1
+    repository: oci://ghcr.io/cloudpirates-io/helm-charts
+    condition: mongo.enabled
+    alias: mongo

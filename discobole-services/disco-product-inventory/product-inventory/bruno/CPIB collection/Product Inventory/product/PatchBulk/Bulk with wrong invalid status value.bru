@@ -1,0 +1,36 @@
+meta {
+  name: Bulk with wrong invalid status value
+  type: http
+  seq: 1
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  
+  [
+     {
+        "op":"replace",
+        "path":"/productInventoryManagement/v1/product/6620eb6466ff9c3903ca5f31/status",
+        "value":"Active"
+     },
+     {
+        "op":"replace",
+        "path":"/productInventoryManagement/v1/product/6620eb6466ff9c3903ca5f31/operationalStatus",
+        "value":"Active"
+     }
+  ]
+}

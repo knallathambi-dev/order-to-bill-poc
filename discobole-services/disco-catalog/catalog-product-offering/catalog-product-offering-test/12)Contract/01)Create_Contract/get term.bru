@@ -1,0 +1,32 @@
+meta {
+  name: get term
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{host}}/productCatalogAdministration/v5/frequencyTypes
+  body: none
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+vars:post-response {
+  term: res.body[0].frequencyCode
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  await bru.sleep(3000);
+}

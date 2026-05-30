@@ -1,0 +1,12 @@
+{
+  "SelectCategory" : {
+    "required" : [ "category.id" ],
+    "type" : "object",
+    "properties" : {
+      "category.id" : {
+        "type" : "string",
+        "readOnly" : true
+      }
+    }
+  }
+}

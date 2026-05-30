@@ -1,0 +1,49 @@
+{
+  "DefineProductOfferingPriceInstallmentChargeIdentityData" : {
+    "required" : [ "name", "partner", "price" ],
+    "type" : "object",
+    "properties" : {
+      "name" : {
+        "type" : "string"
+      },
+      "description" : {
+        "type" : "string"
+      },
+      "partner" : {
+        "type" : "string"
+      },
+      "externalId" : {
+        "type" : "string"
+      },
+      "downPayment" : {
+        "type" : "number"
+      },
+      "interestRate" : {
+        "type" : "number"
+      },
+      "applicationDuration" : {
+        "required" : [ "amount", "units" ],
+        "type" : "object",
+        "properties" : {
+          "amount" : {
+            "type" : "number"
+          },
+          "units" : {
+            "type" : "string"
+          }
+        }
+      },
+      "price" : {
+        "type" : "object",
+        "properties" : {
+          "unit" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "number"
+          }
+        }
+      }
+    }
+  }
+}

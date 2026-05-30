@@ -1,0 +1,485 @@
+[
+  {
+    "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+    "brand": "Orange",
+    "description": "Time Bundle",
+    "isBundle": false,
+    "lastUpdate": "2023-10-04T10:52:56.799Z",
+    "lifecycleStatus": "unavailable",
+    "name": "Time Bundle",
+    "productNumber": "Time",
+    "version": "0.1.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "6a815c71-c6aa-434a-b81a-53bcab82e0be.1",
+        "configurable": true,
+        "description": "Volume",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Volume",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2020-10-11T23:20:50.520Z"
+            },
+            "value": "1hr",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "e1a48e12-c9a8-4e45-ba06-e418e3ee7182.2",
+        "configurable": true,
+        "description": "recurring",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Recurring",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2020-10-11T23:20:50.520Z"
+            },
+            "value": "N",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "81c5777f-4b54-4b7d-ac43-57a227f6aea3.3",
+        "configurable": true,
+        "description": "blocked",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Blocked",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2020-10-11T23:20:50.520Z"
+            },
+            "value": "Y",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "10001",
+        "href": null,
+        "name": null,
+        "role": "marketingContact",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "serviceSpecification": [
+      {
+        "id": "Time bundle",
+        "href": null,
+        "name": "Time bundle",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2017-10-11T23:20:50.520Z"
+    },
+    "relatedResource": [
+      {
+        "id": "1",
+        "href": null,
+        "name": "related resource",
+        "role": "abc",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "operationSpecification": [
+      {
+        "id": "8a1b5b78-f4c9-4a38-9e41-a5dec6ecd6b5.1",
+        "name": "Add a new time bundle",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "Provision a new time bundle",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "1d982af3-abb0-4d56-83dc-3f94b9f23155.2",
+        "name": "delete a  time bundle",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "delete  a  time bundle",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ]
+  },
+  {
+    "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+    "brand": "Orange",
+    "description": "Mobile Line",
+    "isBundle": false,
+    "lastUpdate": "2023-10-04T09:46:16.804Z",
+    "lifecycleStatus": "active",
+    "name": "Mobile Line",
+    "productNumber": "ML",
+    "version": "1.1.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "97f9e351-95b4-4f98-b845-fe8889688ce1.2",
+        "configurable": true,
+        "description": "MSISDN (Mobile Station ISDN Number) - number uniquely identifying a subscription in a Mobile Telecommunications network",
+        "extensible": false,
+        "isUnique": true,
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "MSISDN",
+        "regex": "10[0,9]",
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "10001",
+        "href": null,
+        "name": null,
+        "role": "marketingContact",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "serviceSpecification": [
+      {
+        "id": "MobileLine",
+        "href": null,
+        "name": "MobileLine",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2017-10-11T23:20:50.520Z"
+    },
+    "relatedResource": [
+      {
+        "id": "1",
+        "href": null,
+        "name": "related resource",
+        "role": "abc",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "operationSpecification": [
+      {
+        "id": "747f9607-fb77-403d-a34e-3e94607b5f1f.1",
+        "name": "Add a new mobile line on the network",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "Provision a new mobile line",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ]
+  },
+  {
+    "productConfiguration": [
+      {
+        "id": "09527610-f2a9-457f-a558-b66bc5825f18",
+        "isSelleable": true,
+        "stockItemRef": null,
+        "productSpecification": {
+          "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+          "href": null,
+          "name": null,
+          "version": null,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null,
+          "@referredType": null
+        },
+        "definedBy": [
+          {
+            "valueType": null,
+            "validFor": null,
+            "value": null,
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "enumerated": {
+              "id": "1",
+              "description": null,
+              "name": null,
+              "valueType": null,
+              "validFor": null,
+              "productSpecification": null,
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": null
+            }
+          }
+        ]
+      }
+    ],
+    "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+    "brand": "Orange",
+    "description": "SIM CARD",
+    "isBundle": false,
+    "lastUpdate": "2023-05-19T09:02:41.808Z",
+    "lifecycleStatus": "launched",
+    "name": "SIM CARD",
+    "productNumber": "001",
+    "version": "0.1.0",
+    "supportEntity": "StockItemType",
+    "productSpecCharacteristic": [
+      {
+        "id": "1",
+        "configurable": null,
+        "description": null,
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": null,
+        "minCardinality": null,
+        "name": "IMSI",
+        "regex": null,
+        "valueType": null,
+        "productSpecCharRelationship": null,
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": null,
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": "IMSI#123"
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [],
+    "serviceSpecification": [],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2021-04-08T12:21:35.304Z"
+    },
+    "relatedResource": [
+      {
+        "id": "1",
+        "href": null,
+        "name": "related resource",
+        "role": "abc",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "operationSpecification": [
+      {
+        "id": "1",
+        "name": "Add",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "description": "add a product",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "2",
+        "name": "Return",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "description": "Return a product",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "3",
+        "name": "Replace",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "description": "Replace a product",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "stockItemType": {
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2021-04-08T12:21:35.303Z"
+      },
+      "state": null,
+      "id": "Sim",
+      "name": "Sim for Mobile phone",
+      "stockItemCharacteristic": [
+        {
+          "validFor": {
+            "endDateTime": null,
+            "startDateTime": "2021-04-08T12:21:35.303Z"
+          },
+          "description": "IMSI of the sim tobe updated during Order",
+          "valueType": "string",
+          "id": "1",
+          "name": "IMSI"
+        }
+      ]
+    }
+  }
+]

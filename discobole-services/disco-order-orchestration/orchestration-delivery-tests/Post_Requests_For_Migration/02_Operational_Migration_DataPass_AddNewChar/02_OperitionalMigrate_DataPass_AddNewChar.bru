@@ -1,0 +1,216 @@
+meta {
+  name: 02_OperitionalMigrate_DataPass_AddNewChar
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/api/cood/test/productOrderStatChange/sendMessage
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: {{token}}
+}
+
+body:json {
+  {
+    "id": "1109{{Random_number}}",
+    "orderDate": "2024-02-12T15:52:39.105Z",
+    "productOrderItem": [
+      {
+        "id": "1497c727-6fcd-4dcb-b851c4-Data-Pass-operational",
+        "quantity": 1,
+        "action": "migrate",
+        "itemPrice": [
+          {
+            "description": "100 euro NRC",
+            "name": "NRC 100 Euro",
+            "priceType": "nonRecurringCharge",
+            "unitOfMeasure": "units",
+            "price": {
+              "taxRate": 0.0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 100.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 100.0
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "026b31eb-51ab-4715-8b16-f57c8588575a",
+              "name": "NRC 100 Euro",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "payment": [
+          {
+            "id": "12bab5-39cc-fea5-80a8-a2b6b6380ce6",
+            "@referredType": "Payment",
+            "@type": "PaymentRef"
+          }
+        ],
+        "product": {
+          "@type": "Product",
+          "id": "6773d99d865b36353cc9577a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/6773d99d865b36353cc9577a",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "6d8a4224-a0ca-4fd6-9655-05db9528683c.1",
+              "name": "Volume",
+              "value": "One hour"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "369f4a91-86c5-4948-881e-db2d12f938b2.2",
+              "name": "Recurring",
+              "value": "N"
+            }
+          ],
+          "productSpecification": {
+            "id": "5e18402d-c964-4d52-old-Data-Pass",
+            "name": "Data Pass",
+            "version": "1.0.0",
+            "@type": "ProductSpecificationRef"
+          },
+          "realizingResource": [
+            {
+              "id": "12x",
+              "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+              "@type": "LogicalResource"
+            },
+            {
+              "id": "12x",
+              "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+              "@type": "LogicalResource"
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "95023bc2-151d-4bf2-bb87-1b7d6cd2e847",
+          "name": "Data Pass",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "1497c727-6fcd-4dcb-b851c5-Data-Pass-operational",
+            "relationshipType": "migrateTo",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "1497c727-6fcd-4dcb-b851c5-Data-Pass-operational",
+        "quantity": 1,
+        "action": "migrate",
+        "product": {
+          "@type": "Product",
+          "id": "6773d99d865b36353cc9577a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/6773d99d865b36353cc9577a",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "6d8a4224-a0ca-4fd6-9655-05db9528683c.1",
+              "name": "Volume",
+              "value": "One hour"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "369f4a91-86c5-4948-881e-db2d12f938b2.2",
+              "name": "Recurring",
+              "value": "N"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "e602eba5-f58f-4da1-b15e-c7c39802bdcb.3",
+              "name": "Blocked",
+              "value": "Y"
+            }
+          ],
+          "productSpecification": {
+            "id": "5e18402d-c964-4d52-new-Data-Pass",
+            "name": "Data Pass",
+            "version": "1.0.0",
+            "@type": "ProductSpecificationRef"
+          },
+          "realizingResource": [
+            {
+              "id": "12x",
+              "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+              "@type": "LogicalResource"
+            },
+            {
+              "id": "12x",
+              "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+              "@type": "LogicalResource"
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "95023bc2-151d-4bf2-bb87-1b7d6cd2e847",
+          "name": "Data Pass",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      }
+    ],
+    "relatedParty": [
+      {
+        "partyOrPartyRole": {
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@type": "PartyRef"
+        },
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer"
+      }
+    ],
+    "state": "accepted",
+    "@type": "ProductOrder"
+  }
+}
+
+script:pre-request {
+  bru.setVar("Random_number", Math.random()*Math.random()*100000);
+}
+
+script:post-response {
+  var jsonData = req.body ;
+  
+  //Get Order ID
+  bru.setVar("order_id", jsonData.id);
+   
+  console.log("order_id:"+bru.getVar("order_id"));
+}
+
+docs {
+  - this request for create plan with CFS product” DataPass “
+  - OM body has two product order items and the  new product order item has relationship type” migratedTo “ with  the old product order item
+  - the new product Characteristics has additional Characteristic as below 
+  - the product Characteristics for old product order item 
+                   { "name": "Volume", "value": "One hour"  },
+                    { "name": "recurring", "value": "N" }
+  - The product Characteristics for new product order item 
+                
+                    { "name": "Volume", "value": " One hour"  },
+                     { "name": "recurring", "value": "N" }
+                     { "name": "blocked", "value": "Y" }
+  
+}

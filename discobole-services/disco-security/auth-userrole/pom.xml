@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.2</version>
+		<relativePath/> 
+	</parent>
+	<groupId>com.orange.discobole.permission</groupId>
+	<artifactId>discobole-permission-user-role-management</artifactId>
+	<version>1.4.0</version>
+	<name>User Role Management</name>
+	<description>Service to manage user role</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+    <distributionManagement>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+        </repository>
+         <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.orange.discobole.permission</groupId>
+				<artifactId>discobole-permission-user-role-management-spec</artifactId>
+				<version>${project.version}</version>
+			</dependency>		
+		</dependencies>	
+	</dependencyManagement>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<packaging>pom</packaging>
+	<modules>
+		<module>userrole-management-service</module>
+		<module>userrole-management-spec</module>
+	</modules>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+<profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.projectName>${project.name}</sonar.projectName>
+                <sonar.projectVersion>${project.version}</sonar.projectVersion>
+                <sonar.projectKey>${env.SONAR_PROJECT_KEY}</sonar.projectKey>
+                <sonar.qualitygate.wait>true</sonar.qualitygate.wait>
+                <sonar.sources>src/main/java</sonar.sources>
+                <sonar.java.source>1.8</sonar.java.source>
+                <sonar.junit.reportPaths>userrole-management-service/target/surefire-reports</sonar.junit.reportPaths>
+                <sonar.coverage.exclusions></sonar.coverage.exclusions>
+                <sonar.coverage.jacoco.xmlReportPaths>userrole-management-service/target/site/coverage/jacoco.xml
+                </sonar.coverage.jacoco.xmlReportPaths>
+            </properties>
+        </profile>
+    </profiles>
+</project>

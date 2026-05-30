@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: ${TEST_MONGO_USERNAME}
+      password: ${TEST_MONGO_PASSWORD}
+      database: ${TEST_MONGODB_DATABASE}
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/SpringBootKeycloak
+            user-name-attribute: preferred_username
+      resourceServer:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/SpringBootKeycloak
+
+app:
+  security:
+    userRoleRetrievalUrl: http://localhost:8089/userRolePermission/v1/userRole
+    resourceAccessRolesClient: gateway
+    discoAdminRole: disco-admin

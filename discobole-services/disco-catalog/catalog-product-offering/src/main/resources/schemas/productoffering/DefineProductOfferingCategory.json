@@ -1,0 +1,14 @@
+{
+  "DefineProductOfferingCategory" : {
+    "required" : [ "productCategoryId" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "productCategoryId" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

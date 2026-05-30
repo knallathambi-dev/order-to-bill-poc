@@ -1,0 +1,10 @@
+[
+{
+"@type": "PhysicalProduct",
+"id": "65f04daf0ff022567bd8789a",
+"href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789a",
+"productSpecification": {
+"id": "df32402e-ceb9-4467-aafd-fec0bbff3124"
+}
+}
+]

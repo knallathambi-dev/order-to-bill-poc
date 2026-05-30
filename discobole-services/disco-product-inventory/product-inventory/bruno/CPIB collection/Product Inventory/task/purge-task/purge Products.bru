@@ -1,0 +1,27 @@
+meta {
+  name: purge Products
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/jobSpecification
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "@type": "PurgeJobSpecification",
+      "query": "creationDate.gte=2024-04-04T11:52:22Z&creationDate.lte=2024-04-04T11:52:22Z&status=Aborted",
+    "schedule": {
+      "plannedDate": "2024-08-13T11:00:00+0100",
+      "@type": "OneTimeJobScheduler"
+    },
+    "purgeType": "PurgeProduct"
+  }
+}
+
+tests {
+  bru.setEnvVar("jobId", res.body.id);
+}

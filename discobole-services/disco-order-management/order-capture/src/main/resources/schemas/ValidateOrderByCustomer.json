@@ -1,0 +1,16 @@
+{
+  "ValidateOrderByCustomer" : {
+    "required" : [ "productOrderId", "orderValidationStatus" ],
+    "type" : "object",
+    "properties" : {
+      "productOrderId" : {
+        "type" : "string",
+        "readOnly" : true
+      },
+      "orderValidationStatus" : {
+        "type" : "string",
+        "enum" : [ "orderValidatedByCustomer" ]
+      }
+    }
+  }
+}

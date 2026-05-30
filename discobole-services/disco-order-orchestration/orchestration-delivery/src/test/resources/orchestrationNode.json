@@ -1,0 +1,30 @@
+{
+  "id": "efd15496-9f89-4f13-87fd-0d3d86cedc51",
+  "state": "InDelivery",
+  "relatedServiceOrder": {
+    "id": "210201b6-2ba8-4c6a-887e-ad5e70399ad4",
+    "SOMRef": null,
+    "orderItemId": "1"
+  },
+  "relatedProductOrderItem": [{
+    "id": "10",
+    "action": "add"
+  }],
+  "relatedProduct": [
+    {
+      "id": "id",
+      "productSpecification": {
+        "id": "id",
+        "name":"name",
+        "href": "href",
+        "serviceSpecification": [],
+        "stockItemType": null
+      },
+      "realizingService": [],
+      "relationshipType": "delivers"
+    }
+  ],
+  "relatedOrchestrationPlanNode": [],
+  "relatedSupplyChainOrderItem": null
+}
+

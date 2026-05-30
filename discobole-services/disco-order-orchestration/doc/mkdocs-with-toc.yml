@@ -1,0 +1,152 @@
+# SPDX-FileCopyrightText: 2025, 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+## --- MkDocs configuration (https://www.mkdocs.org/user-guide/configuration/)
+
+site_name: DISCOBOLE - Customer Order Orchestration and Delivery
+site_url: !ENV [SITE_URL, CI_PAGES_URL, 'https://discobole.ow2.io/disco-oda-components/disco-order-orchestration/doc/']
+site_author: DISCOBOLE Team
+repo_url: !ENV [REPO_URL, CI_PROJECT_URL, 'https://gitlab.ow2.org/discobole/disco-oda-components/disco-order-orchestration/doc']
+site_dir: public
+# edit_uri: discobole.ow2.io/edit/main/docs/
+
+use_directory_urls: true
+
+extra:
+  generator: false
+
+plugins:
+  - git-revision-date
+  - search
+  - plantuml: # visit https://medium.com/@michkravets/add-inline-plantuml-to-your-mkdocs-documentation-9a2acb7599a6
+      puml_url: https://www.plantuml.com/plantuml/
+      num_workers: 8
+  - swagger-ui-tag # visit https://github.com/blueswen/mkdocs-swagger-ui-tag
+
+markdown_extensions:
+  - toc:
+      toc_depth: 3
+      permalink: True
+  - mdx_truly_sane_lists
+  - md_in_html
+  - meta
+  - codehilite
+  - admonition
+  - attr_list
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.superfences
+
+  # enable extended formatting (https://squidfunk.github.io/mkdocs-material/reference/formatting/)
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+
+## --- Material theme for MkDocs configuration (https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
+
+theme:
+  name: material
+  favicon: ./img/logo.svg
+  logo: ./img/logo.svg
+  font: false
+  icon:
+    repo: fontawesome/brands/gitlab
+  palette:
+    primary: "black"
+    accent: "deep orange"
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.instant
+    - navigation.indexes
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.action.edit
+  language: "en"
+
+## --- Orange specific and DISCOBOLE configuration
+
+extra_javascript:
+  - https://unpkg.com/zooming/build/zooming.min.js
+  - js/tracking.js
+  - js/discobole-custom.js
+  - js/zoom.js
+
+extra_css:
+  - css/orange.css
+  - css/custom-admonition.css
+
+nav:
+  - Get Started:
+    - Overview: get-started/overview.md
+    - Use Cases: get-started/use-cases.md
+    - Roadmap: get-started/roadmap.md
+  - API Reference Guides:
+    - API Specifications:
+      - About API Specifications: api-references/specification-apis.md
+      - API > orchestration-delivery-fallout-spec: api-references/specifications/orchestration-delivery-fallout-asyncapi-spec.md
+      - API > orchestration-delivery-fallout-spec: api-references/specifications/orchestration-delivery-fallout-spec.md
+      - API > orchestration-delivery-spec: api-references/specifications/lead-time-statistics.md
+      - API > orchestration-delivery-spec: api-references/specifications/orchestration-delivery-spec.md
+    - API User Guides:
+      - About API User Guide: api-references/overall-apis.md
+      - API > orchestration-delivery: api-references/user-guides/orchestration-delivery.md
+      - API > orchestration-delivery-fallout: api-references/user-guides/orchestration-delivery-fallout.md
+
+      - API > lead-time-statistics: api-references/user-guides/lead-time-statistics.md
+      - Event > orchestration-delivery: api-references/user-guides/orchestration-delivery-asyncapi.md
+    - API Compliance:
+      - About Compliance: api-references/compliance-apis.md
+      - API > orchestration-delivery: api-references/compliance/orchestration-delivery.pdf
+      - API > orchestration-delivery-fallout: api-references/compliance/orchestration-delivery-fallout.pdf
+
+    - API Conformance:
+      - About Conformance: api-references/conformance-apis.md
+  - Architecture:
+    - Overall Architecture: architecture/overall-architecture.md
+    - Business Flows: architecture/business-flows.md
+    - Performance Benchmark: architecture/performance.md
+    - Security: architecture/security.md
+    - Observability: architecture/observability.md
+    - Architecture Decisions:
+      - About Architecture Decisions Records: architecture/about-adr.md
+      - ADR-0024 software architecture choices: architecture/decisions/0024-software-architecture-choices.md
+      - ADR-0043 software architecture changes: architecture/decisions/0043-software-architecture-changes.md
+      - ADR-0045 separate pllan collections: architecture/decisions/0045-separate-pllan-collections.md
+      - ADR-0046 kafka stream or kafka consumer: architecture/decisions/0046-kafka-stream-or-kafka-consumer.md
+      - ADR-0047 spring cloud stream kafka binder or spring kafka: architecture/decisions/0047-spring-cloud-stream-kafka-binder-or-spring-kafka.md
+      - ADR-0048 delivery management service: architecture/decisions/0048-delivery-management-service.md
+      - ADR-0053 use transactional outbox for reliable messaging: architecture/decisions/0053-use-transactional-outbox-for-reliable-messaging.md
+      - ADR-0055 fallout management: architecture/decisions/0055-fallout-management.md
+      - ADR-0059 api calls tool: architecture/decisions/0059-api-calls-tool.md
+      - ADR-0060 create separate collections for orchestration plans in planned state: architecture/decisions/0060-create-separate-collections-for-orchestration-plans-in-planned-state.md
+      - ADR-0062 lead time history collection approach: architecture/decisions/0062-lead-time-history-collection-approach.md
+      - ADR-0063 lead time history data model: architecture/decisions/0063-lead-time-history-data-model.md
+      - ADR-0064 caching outbound requests to optimize resources: architecture/decisions/0064-caching-outbound-requests-to-optimize-resources.md
+      - ADR-0066 batching outbound requests to optimize network calls: architecture/decisions/0066-batching-outbound-requests-to-optimize-network-calls.md
+
+    - Detailed architecture:
+      - API > orchestration-delivery: architecture/detailed-architecture/orchestration-delivery.md
+      - API > orchestration-delivery-fallout: architecture/detailed-architecture/orchestration-delivery-fallout.md
+      - API > orchestration-delivery-fallout-spec: architecture/detailed-architecture/orchestration-delivery-fallout-spec.md
+      - API > orchestration-delivery-management: architecture/detailed-architecture/orchestration-delivery-management.md
+      - API > orchestration-delivery-spec: architecture/detailed-architecture/orchestration-delivery-spec.md
+
+  - Frontend:
+    - Administration Portal UI: frontend/admin-ui.md
+    - Administration Portal UI Errors: frontend/admin-ui-error-messages.md
+  - Deployment and Operations:
+    - Live Environments: deployments/live-environments.md
+    - Development Ecosystem: deployments/development-ecosystem.md
+    - Deployment Pipelines: deployments/deployment-pipelines.md
+    - Deploy your Order Orchestration: deployments/deployment-component.md

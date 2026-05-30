@@ -1,0 +1,36 @@
+{
+  "@type": "Product",
+  "id": "1215511438290b3d9c1356c3",
+  "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356c3",
+  "productOffering": {
+    "id": "5fe032f0-fa01-42ec-afeb-920f74c2eae3",
+    "name": "Mobile Package 1",
+    "@type": "Contract"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "1",
+      "productOrderId": "651550f3fb909b220a647a7d"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "Product",
+        "id": "6515511438290b3d9c1356c2"
+      }
+    }
+  ],
+  "relatedParty": [
+    {
+      "id": "231-mf20",
+      "name": "HOMER",
+      "role": "customer",
+      "@referredType": "individual"
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Created"
+}

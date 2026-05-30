@@ -1,0 +1,36 @@
+meta {
+  name: domain_retreive
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{host}}/policyRule/v1/domain
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+   var resp = res.getBody();
+  
+  
+  for (var i = 0;i<resp.length;i++) 
+  {
+   
+       if (resp[i].name == "Pricing")
+  
+       {
+  
+           console.log("domain ID found for : " +resp[i].name);
+  
+           bru.setVar("domain_id", resp[i].id);
+          bru.setEnvVar("flag", true);
+              break;
+       }
+  }
+  
+}

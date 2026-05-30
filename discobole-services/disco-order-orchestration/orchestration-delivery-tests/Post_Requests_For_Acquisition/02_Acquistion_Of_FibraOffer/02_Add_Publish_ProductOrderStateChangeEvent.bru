@@ -1,0 +1,903 @@
+meta {
+  name: 02_Add_Publish_ProductOrderStateChangeEvent
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/api/cood/test/productOrderStatChange/sendMessage
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: {{token}}
+}
+
+body:json {
+  {
+    "id": "1109{{Random_number}}",
+    "channel": [
+      {
+        "@type": "RelatedChannel",
+        "channel": {
+          "@type": "ChannelRef",
+          "id": "001",
+          "name": "Selfcare"
+        }
+      }
+    ],
+    "orderTotalPrice": [
+      {
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1.0,
+          "units": "month"
+        },
+        "price": {
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 23.0
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 23.0
+          },
+          "@type": "Price"
+        },
+        "priceAlteration": [
+          {
+            "priceType": "recurringDiscount",
+            "price": {
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 3.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 3.0
+              },
+              "@type": "Price"
+            },
+            "@type": "PriceAlteration"
+          }
+        ],
+        "@type": "OrderPrice"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "id": "f9ae9b95-1492-4bd2-b9be-e08383daf706",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        },
+        "productOffering": {
+          "id": "972f3031-c97b-4dd3-a3ed-2f44edad4f60",
+          "name": "Fibra 1000 contract",
+          "@type": "Contract",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "e7f88a71-bc01-48ca-9089-a6a4881f4032",
+            "relationshipType": "bundles",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "bd250b94-2e6b-42d1-a7fe-52dd7e6f655b",
+            "relationshipType": "bundles",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "e7f88a71-bc01-48ca-9089-a6a4881f4032",
+        "quantity": 1,
+        "action": "add",
+        "itemPrice": [
+          {
+            "description": "TV Premium Charge",
+            "name": "TV Premium Charge",
+            "priceType": "recurringCharge",
+            "recurringChargePeriod": {
+              "amount": 1.0,
+              "units": "month"
+            },
+            "price": {
+              "taxRate": 0.0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 6.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 6.0
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "98518328-0161-46cc-8e80-db6d9e8a68c1",
+              "name": "TV Premium Charge",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e3",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e3"
+        },
+        "productOffering": {
+          "id": "5fabc4e1-0df5-47d4-8dff-951319ae2d54",
+          "name": "TV Premium",
+          "@type": "BundleProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "b7f06871-9cc7-4300-ae7b-060ebbce40e6",
+            "relationshipType": "bundles",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "5ecae042-b365-42e7-a29f-41c54078d05b",
+            "relationshipType": "bundles",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "faefcf0f-d804-41b3-842d-c6a6dfee9ee6",
+            "relationshipType": "bundles",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "30a616d0-1846-4b10-bc1e-ec69a4d2ba2c",
+            "relationshipType": "bundles",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "f9ae9b95-1492-4bd2-b9be-e08383daf706",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "bd250b94-2e6b-42d1-a7fe-52dd7e6f655b",
+        "quantity": 1,
+        "action": "add",
+        "itemPrice": [
+          {
+            "description": "Internet Fiber Charge",
+            "name": "Internet Fiber Charge",
+            "priceType": "recurringCharge",
+            "recurringChargePeriod": {
+              "amount": 1.0,
+              "units": "month"
+            },
+            "price": {
+              "taxRate": 0.0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 5.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 5.0
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "c68cbca4-2e56-48cc-9247-75a7eb1f1de9",
+              "name": "Internet Fiber Charge",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e8",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e8"
+        },
+        "productOffering": {
+          "id": "0358ee16-bf0f-44d5-aa7b-dfc67e0bd324",
+          "name": "Internet Fiber",
+          "@type": "BundleProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "ced95179-df32-46f1-96de-116f157057c2",
+            "relationshipType": "bundles",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "4b003092-90cd-4fe2-9deb-c5156585dcf5",
+            "relationshipType": "bundles",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "2b868bf8-c34b-4d54-a0ad-f6192cfe0817",
+            "relationshipType": "bundles",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "cb7e0c33-fabc-49ea-a3a7-f1d9a3d61a2d",
+            "relationshipType": "bundles",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "f9ae9b95-1492-4bd2-b9be-e08383daf706",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "ec2572e7-fc3c-4d91-b122-41db1f564dfd",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "2ed15ff8-3b3b-4e0b-8e78-897193bce52c.1",
+              "name": "Shipping mode",
+              "value": "Instore"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "629189a5-2648-467a-bc16-fdf8e7bd9ec1.2",
+              "name": "Shipping Address",
+              "value": "Orange Canebière Shop"
+            },
+            {
+              "@type": "DateCharacteristic",
+              "id": "6d4f1382-b46d-45c5-85cd-9db124812f4f.3",
+              "name": "Requested delivery date",
+              "value": "2025-02-28T15:53:04Z"
+            }
+          ],
+          "productSpecification": {
+            "id": "22f26f29-724e-4eff-83a1-d27e1627f2ba",
+            "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=22f26f29-724e-4eff-83a1-d27e1627f2ba",
+            "name": "Shipment PS",
+            "version": "0.2",
+            "@baseType": "ShippingProductSpecification",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "acb8bbc1-ca11-415e-ae32-58b2ed065912",
+          "name": "Shipment for tangible products",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "4b003092-90cd-4fe2-9deb-c5156585dcf5",
+            "relationshipType": "requires",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "faefcf0f-d804-41b3-842d-c6a6dfee9ee6",
+            "relationshipType": "requires",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "ced95179-df32-46f1-96de-116f157057c2",
+            "relationshipType": "requires",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": false
+      },
+      {
+        "id": "4b003092-90cd-4fe2-9deb-c5156585dcf5",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67c08a6d3e0a2f1fdb75e7e9",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e9",
+          "productSpecification": {
+            "id": "86922e02-22f3-4518-b6b6-8773b2f69c86",
+            "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=86922e02-22f3-4518-b6b6-8773b2f69c86",
+            "name": "Internet Box PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          },
+          "realizingResource": [
+            {
+              "id": "69x",
+              "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+              "@type": "PhysicalResource"
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "592a6f26-7d34-41b0-83c0-75d323449024",
+          "name": "Internet Box",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "bd250b94-2e6b-42d1-a7fe-52dd7e6f655b",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "2b868bf8-c34b-4d54-a0ad-f6192cfe0817",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67c08a6d3e0a2f1fdb75e7ea",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ea",
+          "productCharacteristic": [
+            {
+              "@type": "ObjectCharacteristic",
+              "id": "acfc59e7-7816-46b4-9255-5c0ef52140a7.1",
+              "name": "Upstream Max Throughput",
+              "value": {
+                "unitOfMeasure": "Mbps",
+                "value": "480"
+              }
+            },
+            {
+              "@type": "ObjectCharacteristic",
+              "id": "06c65d8a-bb44-49d1-9ae6-66669247e567.2",
+              "name": "Downstream Max Throughput",
+              "value": {
+                "unitOfMeasure": "Mbps",
+                "value": "940"
+              }
+            }
+          ],
+          "productSpecification": {
+            "id": "307db8b2-bdec-4062-a27a-f0e881b5d84b",
+            "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=307db8b2-bdec-4062-a27a-f0e881b5d84b",
+            "name": "Fibra 1000 PS",
+            "version": "0.3",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "0a6e1498-2cbe-4aa1-b06d-2a1f5c38a224",
+          "name": "Fibra 1000",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "bd250b94-2e6b-42d1-a7fe-52dd7e6f655b",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "5ecae042-b365-42e7-a29f-41c54078d05b",
+        "quantity": 1,
+        "action": "add",
+        "itemPrice": [
+          {
+            "description": "Netflix Basic Level Charge",
+            "name": "Netflix Basic Level Charge",
+            "priceType": "recurringCharge",
+            "recurringChargePeriod": {
+              "amount": 1.0,
+              "units": "month"
+            },
+            "price": {
+              "taxRate": 0.0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 5.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 5.0
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "aa6ad047-a0b1-428c-b583-18eaf7f43ff1",
+              "name": "Netflix Basic Level Charge",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "product": {
+          "@type": "Product",
+          "id": "67c08a6d3e0a2f1fdb75e7e4",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e4",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "68e5f15c-e34d-469e-bdbe-523f66fe9826.1",
+              "name": "Level",
+              "value": "Basic"
+            }
+          ],
+          "productSpecification": {
+            "id": "80adcad3-dbac-4e5e-8a5e-d9ec60a180db",
+            "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=80adcad3-dbac-4e5e-8a5e-d9ec60a180db",
+            "name": "Add-on Netflix PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "c2c07f99-a99b-4e0d-9eff-eb76ad4600af",
+          "name": "Add-on Netflix",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "e7f88a71-bc01-48ca-9089-a6a4881f4032",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "b7f06871-9cc7-4300-ae7b-060ebbce40e6",
+        "quantity": 1,
+        "action": "add",
+        "itemPrice": [
+          {
+            "description": "HBO charge for standard HBO",
+            "name": "HBO charge for standard HBO",
+            "priceType": "recurringCharge",
+            "recurringChargePeriod": {
+              "amount": 1.0,
+              "units": "month"
+            },
+            "price": {
+              "taxRate": 0.0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 3.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 3.0
+              },
+              "@type": "Price"
+            },
+            "priceAlteration": [
+              {
+                "description": "Alteration that enables 50% discount on HBO subscription",
+                "name": "Discount -50% on HBO",
+                "priceType": "recurringDiscount",
+                "priority": 1,
+                "price": {
+                  "percentage": 50.0,
+                  "taxRate": 0.0,
+                  "@type": "Price"
+                },
+                "@type": "PriceAlteration"
+              }
+            ],
+            "productOfferingPrice": {
+              "id": "ff2830d0-a97e-4f56-8b01-be16f4541cdf",
+              "name": "HBO charge for standard HBO",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "product": {
+          "@type": "Product",
+          "id": "67c08a6d3e0a2f1fdb75e7e5",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e5",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "c3281380-ac4a-4690-9ea9-b07be40c0cba.1",
+              "name": "Level",
+              "value": "HBO"
+            }
+          ],
+          "productSpecification": {
+            "id": "829778f5-88da-4aea-9c78-f2e2ff4af444",
+            "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=829778f5-88da-4aea-9c78-f2e2ff4af444",
+            "name": "Add-on HBO PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "1df431f8-cc84-411e-9061-2ddf85c28f58",
+          "name": "Add-on HBO",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "e7f88a71-bc01-48ca-9089-a6a4881f4032",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "30a616d0-1846-4b10-bc1e-ec69a4d2ba2c",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67c08a6d3e0a2f1fdb75e7e6",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e6",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "da87beb0-ddca-45e0-922d-33f64f50741e.1",
+              "name": "Included Channels",
+              "value": "Basic channels"
+            }
+          ],
+          "productSpecification": {
+            "id": "e7a8bcc3-9bfe-4bfe-8bb5-ba4c245aec9b",
+            "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=e7a8bcc3-9bfe-4bfe-8bb5-ba4c245aec9b",
+            "name": "TV Channels PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "7d86a944-937e-4cca-8a46-e26773016f78",
+          "name": "TV Channels",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "e7f88a71-bc01-48ca-9089-a6a4881f4032",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "2b868bf8-c34b-4d54-a0ad-f6192cfe0817",
+            "relationshipType": "reliesOn",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "cb7e0c33-fabc-49ea-a3a7-f1d9a3d61a2d",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "@type": "Product",
+          "id": "67c08a6d3e0a2f1fdb75e7eb",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7eb",
+          "productCharacteristic": [
+            {
+              "@type": "StringCharacteristic",
+              "id": "f3c6144f-5276-4d9b-994e-7b098aa0feb9.1",
+              "name": "Number of mailbox",
+              "value": "10"
+            },
+            {
+              "@type": "ObjectCharacteristic",
+              "id": "bb36dd9a-816b-413d-8e80-37c714cd0803.2",
+              "name": "Size of mailbox in GB",
+              "value": {
+                "unitOfMeasure": "GB",
+                "value": "10"
+              }
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "cd93cfe6-5838-44f1-b783-d1ecac24ae43.3",
+              "name": "Antispam service",
+              "value": "Yes"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "ed0fffc1-310c-4a51-893f-f005b18fda42.5",
+              "name": "VoIP CLIP supplementary service",
+              "value": "Yes"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "55a22de6-ca16-4bd1-b3bf-c40fe10f53a9.6",
+              "name": "VoIP CLIR supplementary service",
+              "value": "No"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "0a1c7224-6891-44e4-b5d1-5abe31f906b5.10",
+              "name": "VoIP Calling Signal supplementary service",
+              "value": "Yes"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "f2abc606-817e-4c97-a94b-4289a761733d.7",
+              "name": "VoIP Call Forwarding Service",
+              "value": "No"
+            },
+            {
+              "@type": "StringCharacteristic",
+              "id": "ccdb7f2c-133a-4d9a-9b9d-87a670443fa3.8",
+              "name": "VoIP Event Call Forwarding Service",
+              "value": "Not reachable (CFNRC)"
+            }
+          ],
+          "productSpecification": {
+            "id": "f17da494-f936-4c32-9fc7-afb815290165",
+            "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=f17da494-f936-4c32-9fc7-afb815290165",
+            "name": "Fix Communication PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "productOffering": {
+          "id": "e677b9ef-29af-4aea-9895-13446243f030",
+          "name": "Fix communication",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "bd250b94-2e6b-42d1-a7fe-52dd7e6f655b",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          },
+          {
+            "id": "2b868bf8-c34b-4d54-a0ad-f6192cfe0817",
+            "relationshipType": "reliesOn",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "faefcf0f-d804-41b3-842d-c6a6dfee9ee6",
+        "quantity": 1,
+        "action": "add",
+        "itemPrice": [
+          {
+            "name": "TV Box Charge",
+            "priceType": "recurringCharge",
+            "recurringChargePeriod": {
+              "amount": 1.0,
+              "units": "month"
+            },
+            "price": {
+              "taxRate": 0.0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 2.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 2.0
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "566b85e4-29db-4edd-9642-25aa9f3367e8",
+              "name": "TV Box Charge",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "product": {
+          "@type": "Product",
+          "id": "67c08a6d3e0a2f1fdb75e7e7",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e7",
+          "productSpecification": {
+            "id": "e200d3a6-7039-48a3-b613-db21f81dd66e",
+            "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=e200d3a6-7039-48a3-b613-db21f81dd66e",
+            "name": "TV Box PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          },
+          "realizingResource": [
+            {
+              "id": "69x",
+              "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+              "@type": "PhysicalResource"
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "26ae3fe7-ac98-47b6-8509-c14a82efd8f9",
+          "name": "TV Box",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "e7f88a71-bc01-48ca-9089-a6a4881f4032",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "ced95179-df32-46f1-96de-116f157057c2",
+        "quantity": 1,
+        "action": "add",
+        "itemPrice": [
+          {
+            "description": "Internet Router Charge",
+            "name": "Internet Router Charge",
+            "priceType": "recurringCharge",
+            "recurringChargePeriod": {
+              "amount": 1.0,
+              "units": "month"
+            },
+            "price": {
+              "taxRate": 0.0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 2.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 2.0
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "c8b2aca7-90a9-4fb9-acd7-00807d1c649a",
+              "name": "Internet Router Charge",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "product": {
+          "@type": "Product",
+          "id": "67c08a6d3e0a2f1fdb75e7ec",
+          "href": "http://product-inventory-integration:8080/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ec",
+          "productSpecification": {
+            "id": "483d25e5-1ea0-4380-ab40-6cea8ac0dfeb",
+            "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=483d25e5-1ea0-4380-ab40-6cea8ac0dfeb",
+            "name": "Router PS",
+            "version": "0.2",
+            "@type": "ProductSpecificationRef"
+          },
+          "realizingResource": [
+            {
+              "id": "69x",
+              "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+              "@type": "PhysicalResource"
+            }
+          ]
+        },
+        "productOffering": {
+          "id": "ca4d5345-71d5-4206-b137-aaf332d5dfde",
+          "name": "Router",
+          "@type": "AtomicProductOffering",
+          "@referredType": "ProductOfferingRef",
+          "version": "1.0"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "bd250b94-2e6b-42d1-a7fe-52dd7e6f655b",
+            "relationshipType": "isChild",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "ProductOrderItem",
+        "isInstallable": true
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "state": "accepted",
+    "@type": "ProductOrder",
+    "creationDate": "2025-02-27T15:53:06.470Z"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  bru.setVar("Random_number", Math.random()*Math.random()*100000);
+   
+}
+
+script:post-response {
+  var jsonData = req.body ;
+  
+  //Get Order ID
+  bru.setVar("order_id", jsonData.id);
+   
+  console.log("order_id:"+bru.getVar("order_id"));
+}
+
+tests {
+  test("should plan created sucessfuly", function() {
+    const data = res.getBody();
+    expect(res.getStatus()).to.equal(200);
+  });
+}
+
+docs {
+  - this request for puplish plan has 4 products SIMCard, Conectivity , Mobile line and TimeBundel .
+  - Mobile Line and Conectivity have relationship "reliesOn" SIM Card.
+  - Time Bundel has relationship "reliesOn" Mobile Line
+  
+  
+  
+  
+}

@@ -1,0 +1,62 @@
+meta {
+  name: SelectPOPType
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "characteristic": [
+          {
+              "name": "SelectPOPType",
+              "valueType": "Object",
+              "value": {
+                  "pOPType":"ProductOfferingPriceCharge"
+              },
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": "ObjectCharacteristic"
+          }
+      ]
+  }
+}
+
+vars:post-response {
+  POPC_id: res.body.characteristic[0].value
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  
+  test("to verify next task is productOfferingPriceCharge IdentityData", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[0].title).to.equals("ProductOfferingPriceCreation.defineProductOfferingPriceChargeIdentityData");
+  });
+  
+  
+  test("To verify that cancel task is present", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[1].title).to.equals("ProductOfferingPriceCreation.productOfferingPriceCancel");
+  });
+  
+}

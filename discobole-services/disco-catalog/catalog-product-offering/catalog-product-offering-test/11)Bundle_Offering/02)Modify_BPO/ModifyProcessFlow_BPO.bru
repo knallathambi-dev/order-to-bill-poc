@@ -1,0 +1,43 @@
+meta {
+  name: ModifyProcessFlow_BPO
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{host}}/po/processManagement/v1/processFlow
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "processFlowSpecification": "ProductOfferingModification"
+  }
+}
+
+script:post-response {
+  var jsonData =  res.body;
+  
+  // Get Href for the next task
+  bru.setVar("next_task_href", jsonData._links.nextTaskstoBePerformed[1].href);
+  console.log("next_task_href = " + bru.getVar("next_task_href"));
+  
+  // Get Href to cancel
+  bru.setVar("cancel_href", jsonData._links.nextTaskstoBePerformed[0].href);
+  console.log("cancel_href = " + bru.getVar("cancel_href"));
+  
+}
+
+tests {
+  var jsonData =  res.body;
+  
+  test("Status code is 201", function () {
+      expect(res.getStatus()).to.equal(201);
+  });
+  
+}
+
+docs {
+  Create the process flow to begin a productOffering entity modification.
+}

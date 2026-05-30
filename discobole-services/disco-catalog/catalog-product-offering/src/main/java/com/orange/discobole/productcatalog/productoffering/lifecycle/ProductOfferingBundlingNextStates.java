@@ -1,0 +1,76 @@
+// SPDX-FileCopyrightText: 2025 Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT License,
+// the text of which is available at https://opensource.org/license/mit
+// or see the "LICENSE.txt" file for more details.
+//
+// Authors: See CONTRIBUTORS.txt
+
+package com.orange.discobole.productcatalog.productoffering.lifecycle;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.orange.discobole.productcatalog.productoffering.dto.generated.common.ProductOffering;
+import com.orange.discobole.productcatalog.productoffering.dto.generated.productoffering.ProductOfferingLifecycle;
+
+public class ProductOfferingBundlingNextStates {
+	private static final String RETIRED = "retired";
+	private static final String UNAVAILABLE = "unavailable";
+
+	public Set<String> getNextPossibleStates(String currentState, List<ProductOffering> bundleProductOfferings) {
+
+		Set<String> possibleStates = new HashSet<>();
+		boolean flag = true;
+		switch (currentState) {
+		case "inTest":
+			possibleStates.add("rejected");
+			possibleStates.add("active");
+			break;
+		case "active":
+			possibleStates.add("launched");
+			flag = validateStatus(bundleProductOfferings);
+			if (flag) {
+				possibleStates.add(RETIRED);
+			}
+
+			break;
+		case "launched":
+
+				possibleStates.add(RETIRED);
+				possibleStates.add(UNAVAILABLE);
+
+
+			break;
+		case UNAVAILABLE:
+			flag = validateStatus(bundleProductOfferings);
+			if (flag) {
+				possibleStates.add(RETIRED);
+			}
+			break;
+		case RETIRED:
+			possibleStates.add("obsolete");
+			break;
+		case "rejected":
+			break;
+		default:
+			break;
+		}
+		return possibleStates;
+	}
+
+	private boolean validateStatus(List<ProductOffering> bundleProductOfferings) {
+		if (bundleProductOfferings != null) {
+			for (ProductOffering bundleProductOffering : bundleProductOfferings) {
+				if (null != bundleProductOffering
+						&& !bundleProductOffering.getLifecycleStatus().equals(ProductOfferingLifecycle.RETIRED)
+						&& !bundleProductOffering.getLifecycleStatus().equals(ProductOfferingLifecycle.OBSOLETE)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+}

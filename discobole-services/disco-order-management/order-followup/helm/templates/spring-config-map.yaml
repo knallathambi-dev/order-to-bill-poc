@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "order_follow_up.fullname" . }}
+  labels:
+    {{- include "order_follow_up.labels" . | nindent 4 }}
+data:
+  {{- (.Files.Glob "config/order-follow-up.yml").AsConfig | nindent 2 }}

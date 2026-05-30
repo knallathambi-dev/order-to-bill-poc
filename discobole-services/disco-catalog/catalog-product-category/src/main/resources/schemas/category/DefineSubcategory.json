@@ -1,0 +1,18 @@
+{
+  "DefineSubcategory" : {
+    "required" : [ "categoryId", "categoryType" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "categoryId" : {
+          "type" : "string"
+        },
+        "categoryType" : {
+          "type" : "string",
+          "enum" : [ "ProductSpecificationCategory", "ProductOfferingCategory", "ProductOfferingPriceCategory" ]
+        }
+      }
+    }
+  }
+}

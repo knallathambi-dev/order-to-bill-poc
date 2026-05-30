@@ -1,0 +1,42 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+apiVersion: v2
+name: mock-server
+description: A Helm chart for [order management]/[order capture mock server] service
+
+home: https://discobole.ow2.io/doc
+
+sources:
+  - https://gitlab.ow2.org/discobole/disco-order-management/mock-server
+
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+type: application
+
+keywords:
+  - orange
+  - discobolebole
+  - discobolebole-order-management
+  - mock-server
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 1.15.0
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+appVersion: "10.0.0"
+
+
+maintainers:
+  - name: Orange, Inc. (FAMS Team)
+    email: aelhoseiny.ext@orange.com

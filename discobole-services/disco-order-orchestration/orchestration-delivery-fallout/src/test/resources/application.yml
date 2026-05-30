@@ -1,0 +1,168 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: ${PORT:8090}
+spring:
+  keycloakAuthUrl: https://dummy-host
+  data:
+    mongodb:
+      auto-index-creation: 'true'
+      host: docker1
+      username: adminUser
+      password: ${MONGO_DB_PASSWORD:adminUser}
+      database: falloutManagement
+  profiles:
+    active: test, plaintextconsole
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:${app.wireMockPort}/realms/SpringBootKeycloak
+          jwk-set-uri: http://localhost:${app.wireMockPort}/realms/SpringBootKeycloak/protocol/openid-connect/certs
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:${app.wireMockPort}/realms/SpringBootKeycloak
+            user-name-attribute: preferred_username
+
+  devtools:
+    restart:
+      exclude: target/classes/**, build/**, bin/**
+
+  cloud:
+    stream:
+      kafka.binder:
+        enableObservation: true
+        brokers: localhost
+        defaultBrokerPort: 9092
+        auto-create-topics: false
+        auto-add-partitions: false
+      default:
+        contentType: application/json
+      bindings:
+        productOrderCommand:
+          destination: disco.order-management.productOrderChange-command
+          producer:
+            partition-key-expression: headers['partitionKey']
+      default-binder: kafka
+app:
+  security:
+    ssl:
+      enabled: false
+    userRoleRetrievalUrl: http://localhost:${app.wireMockPort}/userRolePermission/v1/userRole
+    keycloakReadEntitlements: x600
+    keycloakReadAndWriteEntitlements: x601
+  wireMockPort: 59997
+  keycloakMockPort: 58089
+
+package-element:
+  state-machines:
+    - name: Fallout
+      states:
+        - name: InitialAutomatedTask
+          entryActions:
+          exitActions:
+            - InitialTaskAction
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: MainRegion
+          pseudoStateKind: INITIAL
+        - name: Created
+          entryActions:
+          exitActions:
+            - CreatedAction
+          stateActions:
+          initialAction:
+          regionId: MainRegion
+          pseudoStateKind:
+        - name: Analysing
+          entryActions:
+          exitActions:
+            - AnalysingAction
+          stateActions:
+          initialAction:
+          regionId: MainRegion
+          pseudoStateKind:
+        - name: Held
+          entryActions:
+          exitActions:
+            - HeldAction
+          stateActions:
+          initialAction:
+          regionId: MainRegion
+          pseudoStateKind:
+        - name: SelectResolveOrUnresolvedUserAction
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          regionId: MainRegion
+          pseudoStateKind:
+        - name: Completed
+          entryActions:
+          exitActions:
+            - PersistFalloutEntityStateAction
+          stateActions:
+          initialAction:
+          regionId: MainRegion
+          pseudoStateKind: END
+      transitions:
+        - event: InitialAutomatedEvent
+          source: InitialAutomatedTask
+          target: Created
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: AUTOMATE-event
+          source: Created
+          target: Analysing
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: AUTOMATE
+          source: Analysing
+          target: Held
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: resolutionRequiredEvent
+          source: Held
+          target: SelectResolveOrUnresolvedUserAction
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: CompletedEvent
+          source: Held
+          target: Completed
+          actions:
+            - PersistFalloutEntityStateAction
+          guard:
+          kind: EXTERNAL
+        - event: orderPaymentEvent
+          source: SelectResolveOrUnresolvedUserAction
+          target: Completed
+          actions:
+            - PersistFalloutEntityStateAction
+          guard:
+          kind: EXTERNAL
+config:
+  startPurgeCronExpression: "*/20 * * * * *"
+  deleteFalloutThresholdDuration: P0DT0H0M1S # P?DT?H?M = 0? -> count of days, 1? -> count of hours, 2? -> count of minutes
+  eventPurgeCronExpression: "0 0 0 * * *"
+  deleteEventsThresholdDuration: P90D
+
+management:
+  metrics:
+    enabled: false
+
+springdoc:
+  swagger-ui:
+    enabled: false

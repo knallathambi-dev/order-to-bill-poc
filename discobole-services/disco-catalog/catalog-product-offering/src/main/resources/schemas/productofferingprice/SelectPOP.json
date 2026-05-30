@@ -1,0 +1,12 @@
+{
+  "SelectPOP" : {
+    "required" : [ "productOfferingPrice.id" ],
+    "type" : "object",
+    "properties" : {
+      "productOfferingPrice.id" : {
+        "type" : "string",
+        "readOnly" : true
+      }
+    }
+  }
+}

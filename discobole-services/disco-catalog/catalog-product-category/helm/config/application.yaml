@@ -1,0 +1,41 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  config:
+    activate:
+      on-profile: openshift
+  keycloak: http://${KEYCLOAK_SERVICE}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/certs
+  keycloakAuthUrl: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/auth
+  keycloakRolesEntitlements: x2, x3, x6, x7, x10, x11, category_w
+  userRoleRetrievalUrl: http://${USERROLE-RETRIEVE-SERVICE-NAME}/userRolePermission/v1/userRole
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: ${KAFKA}
+    config:
+      import-check:
+        enabled: false
+  data:
+    mongodb:
+      delete: true
+      host: ${DB_SERVICE}
+      port: 27017
+      database: ${DB_NAME}
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}   
+eventstore:
+  host: eventstore
+config:
+  categoryUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/category
+  categoryEntityUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/categoryEntity
+  productOfferingUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/productOffering
+  catProdCatUrl: ${CAT-PROD-CAT-URL}/productCatalogManagement/v1/category
+cqrs:
+  queryBaseUrl: http://${GATEWAY-SERVICE-NAME}

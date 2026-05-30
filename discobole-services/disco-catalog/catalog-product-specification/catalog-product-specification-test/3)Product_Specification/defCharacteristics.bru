@@ -1,0 +1,110 @@
+meta {
+  name: defCharacteristics
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "PickCharacteristicSpecification",
+        "valueType": "Object",
+        "value": {
+          "characteristicSpecification": [
+            {
+              "serviceSpecification.serviceSpecCharacteristic.id": "{{Char_id0}}",
+              "name": "{{Char_name0}}",
+              "description": "{{Char_name0}}",
+              "valueType": "random1",
+              "configurable": true,
+              "validFor": {
+                "startDateTime": "{{startDate}}T23:20:50.520Z"
+              },
+              "minCardinality": 0,
+              "maxCardinality": 2,
+              "isUnique": 1,
+              "characteristicValueSpecification": [
+                {
+                  "isDefault": false,
+                  "rangeInterval": null,
+                  "regex": null,
+                  "unitOfMeasure": "{{Uom0}}",
+                  "valueFrom": null,
+                  "valueTo": null,
+                  "valueType": null,
+                  "timeRange": {
+                    "validTo": null,
+                    "validFrom": null
+                  },
+                  "validFor": {
+                    "endDateTime": null,
+                    "startDateTime": "{{startDate}}T23:20:50.520Z"
+                  },
+                  "value": "{{Char_value0}}",
+                  "serviceSpecification.characteristic.value": "{{Char_value0}}"
+                }
+              ]
+            }],
+          "usageSpecification": []
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  
+  test("to verify Next task to be performed is defRelationship", function(){
+      expect(jsonData._links.nextTaskstoBePerformed[0].title).to.eql("ProductSpecCreation.defRelationship");
+  
+  });
+  
+  
+  
+  
+  test("to verify existingTaskEditable is having correct tasks", function(){
+      expect(jsonData._links.existingTaskEditable[0].title).to.eql("ProductSpecCreation.defineIdentityData");
+    
+    expect(jsonData._links.existingTaskEditable[1].title).to.eql("ProductSpecCreation.defCharacteristics");
+    
+  });
+  
+  
+  
+  
+}
+
+docs {
+  This step is defines the characteristics of PS.
+  All the variable present in the request body are catered from 'get CFS' request 
+}

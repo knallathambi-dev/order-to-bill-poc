@@ -1,0 +1,20 @@
+[
+  {
+    "engagedParty": {
+      "id": "227-mf30"
+    },
+    "name": "Lisa",
+    "partyRoleSpecification": {
+      "name": "prospect"
+    }
+  },
+  {
+    "engagedParty": {
+      "id": "227-mf30"
+    },
+    "name": "Lisa",
+    "partyRoleSpecification": {
+      "name": "employee"
+    }
+  }
+]

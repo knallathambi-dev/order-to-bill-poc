@@ -1,0 +1,16 @@
+{
+  "SelectLifecycleEntity" : {
+    "required" : [ "entity.id", "entityType" ],
+    "type" : "object",
+    "properties" : {
+      "entity.id" : {
+        "type" : "string",
+        "readOnly" : true
+      },
+      "entityType" : {
+        "type" : "string",
+        "enum" : [ "Contract", "ProductSpecification", "BundleProductOffering", "ProductOfferingPrice", "AtomicOffer", "ShippingProductSpecification" ]
+      }
+    }
+  }
+}

@@ -1,0 +1,967 @@
+# Software Name: process-flow
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+# Software description: The TMF701 ProcessFlow API allows management of business process definition and execution. \\r\\n\\r\\nThis API is used as a Java library in the Order Capture Management and Orchestration Delivery Fallout Management APIs.\\r\\n\\r\\n\\r\\n
+
+swagger: "2.0"
+info:
+  version: "1.0.0_inProgress"
+  title: "API ProcessFlow"
+  x-logo:
+    url: "/redoc/logo.png"
+    backgroundColor: "#FFFFFF"
+produces:
+- "application/json;charset=utf-8"
+tags:
+- name: "ProcessFlow"
+- name: "TaskFlow"
+paths:
+  /processFlow:
+    get:
+      tags:
+      - "ProcessFlow"
+      produces:
+      - "application/json;charset=utf-8"
+      operationId: "listProcessFlow"
+      summary: "List or find ProcessFlow objects"
+      deprecated: false
+      parameters:
+      - name: "fields"
+        required: false
+        in: "query"
+        description: "Comma-separated properties to be provided in response"
+        type: "string"
+      - name: "offset"
+        required: false
+        in: "query"
+        description: "Requested index for start of resources to be provided in response"
+        type: "integer"
+        format: "int32"
+      - name: "limit"
+        required: false
+        in: "query"
+        description: "Requested number of resources to be provided in response"
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProcessFlow"
+    post:
+      tags:
+      - "ProcessFlow"
+      consumes:
+      - "application/json;charset=utf-8"
+      produces:
+      - "application/json;charset=utf-8"
+      operationId: "createProcessFlow"
+      summary: "Creates a ProcessFlow"
+      deprecated: false
+      parameters:
+      - name: "processFlow"
+        required: true
+        in: "body"
+        description: "The ProcessFlow to be created"
+        schema:
+          $ref: "#/definitions/ProcessFlow_Create"
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/ProcessFlow"
+  /processFlow/{id}:
+    get:
+      tags:
+      - "ProcessFlow"
+      produces:
+      - "application/json;charset=utf-8"
+      operationId: "retrieveProcessFlow"
+      summary: "Retrieves a ProcessFlow by ID"
+      deprecated: false
+      parameters:
+      - name: "id"
+        required: true
+        in: "path"
+        type: "string"
+      - name: "fields"
+        required: false
+        in: "query"
+        description: "Comma-separated properties to provide in response"
+        type: "string"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ProcessFlow"
+    delete:
+      tags:
+      - "ProcessFlow"
+      operationId: "deleteProcessFlow"
+      summary: "Deletes a ProcessFlow"
+      deprecated: false
+      parameters:
+      - name: "id"
+        required: true
+        in: "path"
+        type: "string"
+      responses:
+        204:
+          description: "No Content"
+  /processFlow/{id}/taskFlow:
+    get:
+      tags:
+      - "TaskFlow"
+      produces:
+      - "application/json;charset=utf-8"
+      operationId: "listTaskFlow"
+      summary: "List or find TaskFlow objects"
+      deprecated: false
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "id"
+        required: true
+        in: "path"
+        type: "string"
+      - name: "fields"
+        required: false
+        in: "query"
+        description: "Comma-separated properties to be provided in response"
+        type: "string"
+      - name: "offset"
+        required: false
+        in: "query"
+        description: "Requested index for start of resources to be provided in response"
+        type: "integer"
+        format: "int32"
+      - name: "limit"
+        required: false
+        in: "query"
+        description: "Requested number of resources to be provided in response"
+        type: "integer"
+        format: "int32"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/TaskFlow"
+  /processFlow/{id}/taskFlow/{id}:
+    get:
+      tags:
+      - "TaskFlow"
+      produces:
+      - "application/json;charset=utf-8"
+      operationId: "retrieveTaskFlow"
+      summary: "Retrieves a TaskFlow by ID"
+      deprecated: false
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "processFlowId"
+        required: true
+        in: "path"
+        type: "string"
+      - name: "id"
+        required: true
+        in: "path"
+        type: "string"
+      - name: "fields"
+        required: false
+        in: "query"
+        description: "Comma-separated properties to provide in response"
+        type: "string"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/TaskFlow"
+    patch:
+      tags:
+      - "TaskFlow"
+      consumes:
+      - "application/json;charset=utf-8"
+      produces:
+      - "application/json;charset=utf-8"
+      operationId: "patchTaskFlow"
+      summary: "Updates partially a TaskFlow"
+      deprecated: false
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "processFlowId"
+        required: true
+        in: "path"
+        type: "string"
+      - name: "id"
+        required: true
+        in: "path"
+        type: "string"
+      - name: "taskFlow"
+        required: true
+        in: "body"
+        description: "The TaskFlow to be updated"
+        schema:
+          $ref: "#/definitions/TaskFlow_Update"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/TaskFlow"
+definitions:
+  ProcessFlowStateType:
+    description: "Valid values for the lifecycle state of the processFlow"
+    type: "string"
+    enum:
+    - "new"
+    - "active"
+    - "cancelled"
+    - "completed"
+    - "suspended"
+    - "incomplete"
+  TaskFlowStateType:
+    description: "Valid values for the lifecycle state of the taskFlow"
+    type: "string"
+    enum:
+    - "new"
+    - "active"
+    - "hold"
+    - "cancelled"
+    - "completed"
+    - "unassigned"
+    - "assigned"
+    - "delegated"
+    - "deleted"
+  Method:
+    type: "string"
+    enum:
+    - "POST"
+    - "PATCH"
+    - "PUT"
+    - "DELETE"
+  ChannelRef:
+    description: "The channel to which the resource reference to. e.g. channel for\
+      \ selling product offerings, channel for opening a trouble ticket etc.."
+    required:
+    - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the channel."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  Characteristic:
+    description: "Describes a given characteristic of an object or entity through\
+      \ a name/value pair."
+    discriminator: "@type"
+    required:
+    - "name"
+    - "@type"
+    type: "object"
+    properties:
+      name:
+        description: "Name of the characteristic"
+        type: "string"
+      id:
+        type: "string"
+      valueType:
+        description: "Data type of the value of the characteristic"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  EntityRef:
+    description: "Entity reference schema to be use for all entityRef class."
+    required:
+    - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  ProcessFlow:
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the Process flow"
+        type: "string"
+      href:
+        description: "Reference of the ProcessFlow"
+        type: "string"
+      correlationId:
+        type: "string"
+      processFlowDate:
+        description: "Is the date when the processFlow was created in basse (timestamp)"
+        type: "string"
+        format: "date-time"
+      processFlowSpecification:
+        description: "Specification of the processFlow."
+        type: "string"
+      channel:
+        type: "array"
+        items:
+          $ref: "#/definitions/ChannelRef"
+      characteristic:
+        type: "array"
+        items:
+          $ref: "#/definitions/Characteristic"
+      relatedEntity:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedEntity"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      state:
+        $ref: "#/definitions/ProcessFlowStateType"
+      taskFlow:
+        type: "array"
+        items:
+          $ref: "#/definitions/TaskFlowRef"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      _links:
+        $ref: "#/definitions/Links"
+  ProcessFlow_Create:
+    required:
+    - "processFlowSpecification"
+    type: "object"
+    properties:
+      processFlowSpecification:
+        description: "Specification of the processFlow."
+        type: "string"
+      correlationId:
+        type: "string"
+      channel:
+        type: "array"
+        items:
+          $ref: "#/definitions/ChannelRef"
+      characteristic:
+        type: "array"
+        items:
+          $ref: "#/definitions/Characteristic"
+      relatedEntity:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedEntity"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProcessFlowAttributeValueChangeEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      processFlow:
+        $ref: "#/definitions/ProcessFlow"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProcessFlowCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      processFlow:
+        $ref: "#/definitions/ProcessFlow"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProcessFlowDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      processFlow:
+        $ref: "#/definitions/ProcessFlow"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProcessFlowStateChangeEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      processFlow:
+        $ref: "#/definitions/ProcessFlow"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  RelatedEntity:
+    description: "A reference to an entity, where the type of the entity is not known\
+      \ in advance."
+    required:
+    - "id"
+    - "role"
+    - "@referredType"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      role:
+        description: "The role of an entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  RelatedParty:
+    description: "Related Entity reference. A related party defines party or party\
+      \ role linked to a specific entity."
+    required:
+    - "id"
+    - "@referredType"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      role:
+        description: "Role played by the related party"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  TaskFlow:
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the taskFlow"
+        type: "string"
+      href:
+        description: "Reference of the taskFlow"
+        type: "string"
+      correlationId:
+        type: "string"
+      completionMethod:
+        description: "TaskFlow completion method."
+        type: "string"
+      isMandatory:
+        description: "Indicate mandatory TaskFlow."
+        type: "boolean"
+      priority:
+        description: "TaskFlow priority."
+        type: "integer"
+        format: "int32"
+      taskFlowSpecification:
+        description: "Specification of the taskFlow."
+        type: "string"
+      channel:
+        type: "array"
+        items:
+          $ref: "#/definitions/ChannelRef"
+      characteristic:
+        type: "array"
+        items:
+          $ref: "#/definitions/Characteristic"
+      relatedEntity:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedEntity"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      state:
+        $ref: "#/definitions/TaskFlowStateType"
+      taskFlowRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/TaskFlowRelationship"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      _links:
+        $ref: "#/definitions/Links"
+  TaskFlow_Update:
+    description: "Skipped properties: id,href,taskFlowSpecification"
+    type: "object"
+    properties:
+      completionMethod:
+        description: "TaskFlow completion method."
+        type: "string"
+      correlationId:
+        type: "string"
+      isMandatory:
+        description: "Indicate mandatory TaskFlow."
+        type: "boolean"
+      priority:
+        description: "TaskFlow priority."
+        type: "integer"
+        format: "int32"
+      channel:
+        type: "array"
+        items:
+          $ref: "#/definitions/ChannelRef"
+      characteristic:
+        type: "array"
+        items:
+          $ref: "#/definitions/Characteristic"
+      relatedEntity:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedEntity"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  TaskFlowAttributeValueChangeEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      taskFlow:
+        $ref: "#/definitions/TaskFlow"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  TaskFlowCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      taskFlow:
+        $ref: "#/definitions/TaskFlow"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  TaskFlowDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      taskFlow:
+        $ref: "#/definitions/TaskFlow"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  TaskFlowInformationRequiredEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      taskFlow:
+        $ref: "#/definitions/TaskFlow"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  TaskFlowRef:
+    required:
+    - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  TaskFlowRelationship:
+    description: "Describes relationship between taskFlow"
+    required:
+    - "relationshipType"
+    - "taskFlow"
+    type: "object"
+    properties:
+      relationshipType:
+        description: "The type of taskFlow relationship (requires, triggers, etc.)"
+        type: "string"
+      taskFlow:
+        $ref: "#/definitions/TaskFlowRef"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  TaskFlowStateChangeEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      taskFlow:
+        $ref: "#/definitions/TaskFlow"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Error:
+    required:
+    - "id"
+    type: "object"
+    properties:
+      id:
+        type: "string"
+  Links:
+    required:
+    - "self"
+    type: "object"
+    properties:
+      self:
+        $ref: "#/definitions/Link"
+      taskFlowList:
+        $ref: "#/definitions/Link"
+      nextTaskstoBePerformed:
+        type: "array"
+        items:
+          $ref: "#/definitions/TaskLink"
+      existingTaskEditable:
+        type: "array"
+        items:
+          $ref: "#/definitions/TaskLink"
+  Link:
+    type: "object"
+    properties:
+      href:
+        type: "string"
+  StringCharacteristic:
+    allOf:
+    - $ref: "#/definitions/Characteristic"
+    - type: "object"
+      properties:
+        value:
+          type: "string"
+  IntegerCharacteritic:
+    allOf:
+    - $ref: "#/definitions/Characteristic"
+    - type: "object"
+      properties:
+        value:
+          type: "integer"
+          format: "int32"
+  BooleanCharacteristic:
+    allOf:
+    - $ref: "#/definitions/Characteristic"
+    - type: "object"
+      properties:
+        value:
+          type: "boolean"
+  ObjectCharacteristic:
+    allOf:
+    - $ref: "#/definitions/Characteristic"
+    - type: "object"
+      properties:
+        value:
+          type: "object"
+  TaskLink:
+    required:
+    - "title"
+    - "href"
+    type: "object"
+    properties:
+      title:
+        type: "string"
+      href:
+        type: "string"
+      state:
+        $ref: "#/definitions/TaskFlowStateType"
+      taskFlowSpecificationId:
+        type: "string"
+      taskFlowSpecificationCharacteristic:
+        type: "array"
+        items:
+          $ref: "#/definitions/CharacteristicSpecification"
+      method:
+        $ref: "#/definitions/Method"
+      accepts:
+        type: "string"
+  CharacteristicSpecification:
+    description: "A specification of a characterisitc"
+    required:
+    - "name"
+    type: "object"
+    properties:
+      name:
+        description: "Name of the characteristic"
+        type: "string"
+      id:
+        type: "string"
+      valueType:
+        description: "Data type of the value of the characteristic"
+        type: "string"
+      minCardinality:
+        type: "integer"
+        format: "int32"
+      maxCardinality:
+        type: "integer"
+        format: "int32"
+      characteristicValueSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/CharacteristicValueSpecification"
+  CharacteristicValueSpecification:
+    discriminator: "@type"
+    required:
+    - "@type"
+    type: "object"
+    properties:
+      '@type':
+        type: "string"
+      isDefault:
+        type: "boolean"
+  StringCharacteristicValueSpecification:
+    allOf:
+    - $ref: "#/definitions/CharacteristicValueSpecification"
+    - type: "object"
+      properties:
+        value:
+          type: "string"
+        valueFrom:
+          type: "string"
+        valueTo:
+          type: "string"
+        rangeInterval:
+          type: "string"
+        unitofMeasure:
+          type: "string"
+  IntegerCharacteristicValueSpecification:
+    allOf:
+    - $ref: "#/definitions/CharacteristicValueSpecification"
+    - type: "object"
+      properties:
+        value:
+          type: "integer"
+          format: "int32"
+        valueFrom:
+          type: "integer"
+          format: "int32"
+        valueTo:
+          type: "integer"
+          format: "int32"
+        rangeInterval:
+          type: "integer"
+          format: "int32"
+        unitofMeasure:
+          type: "string"
+  FloatCharacteristicValueSpecification:
+    allOf:
+    - $ref: "#/definitions/CharacteristicValueSpecification"
+    - type: "object"
+      properties:
+        value:
+          type: "number"
+          format: "float"
+        valueFrom:
+          type: "number"
+          format: "float"
+        valueTo:
+          type: "number"
+          format: "float"
+        rangeInterval:
+          type: "number"
+          format: "float"
+        unitofMeasure:
+          type: "string"
+  BooleanCharacteristicValueSpecification:
+    allOf:
+    - $ref: "#/definitions/CharacteristicValueSpecification"
+    - type: "object"
+      properties:
+        value:
+          type: "boolean"
+  ObjectCharacteristicValueSpecification:
+    allOf:
+    - $ref: "#/definitions/CharacteristicValueSpecification"
+    - type: "object"
+      properties:
+        value:
+          type: "object"

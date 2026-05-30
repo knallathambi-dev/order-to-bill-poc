@@ -1,0 +1,53 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+.card.details-card.device-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-img.device-card-img {
+    width: 100%;
+    background-color: #fff;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-origin: content-box;
+    padding: 20px;
+}
+
+.card-body.device-card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title.device-card-title {
+    margin-bottom: 0.5rem;
+    min-height: 3rem; /* Adjust this value based on your needs */
+}
+
+.card-text.device-card-text {
+    flex-grow: 1;
+    margin-bottom: 1rem;
+    min-height: 8rem; /* Adjust this value based on your needs */
+}
+
+.card-footer.device-card-footer {
+    margin-top: auto;
+}
+
+.device-card-footer .btn {
+    width: 100%;
+}

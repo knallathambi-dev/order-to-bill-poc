@@ -1,0 +1,24 @@
+meta {
+  name: Upload file - planned date should be In future
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/product/uploadFile
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Content-Type: multipart/form-data
+}
+
+body:json {
+  {"file": null}
+}
+
+body:multipart-form {
+  file: @file(D:\OIT\DISCO\CPIB\UploadFiles exam\empty.json)
+  jobId: 67a0abd8bc357c2e69196b57
+}

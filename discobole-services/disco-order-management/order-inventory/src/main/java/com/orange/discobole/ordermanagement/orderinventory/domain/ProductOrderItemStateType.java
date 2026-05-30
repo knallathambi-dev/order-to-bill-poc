@@ -1,0 +1,56 @@
+// SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT License,
+// the text of which is available at https://opensource.org/license/mit
+// or see the "LICENSE.txt" file for more details.
+//
+// Authors: See CONTRIBUTORS.txt
+
+package com.orange.discobole.ordermanagement.orderinventory.domain;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+public enum ProductOrderItemStateType {
+    ACKNOWLEDGED("acknowledged"),
+    ASSESSINGCANCELLATION("assessingCancellation"),
+    CANCELLED("cancelled"),
+    COMPLETED("completed"),
+    FAILED("failed"),
+    HELD("held"),
+    INPROGRESS("inProgress"),
+    PENDING("pending"),
+    PENDINGCANCELLATION("pendingCancellation"),
+    REJECTED("rejected"),
+    PARTIAL("partial"),
+    ACCEPTED("accepted"),
+    DRAFT("draft");
+
+    private final String value;
+
+    ProductOrderItemStateType(String value) {
+        this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+        return this.value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.value);
+    }
+
+    @JsonCreator
+    public static ProductOrderItemStateType fromValue(String value) {
+        for (ProductOrderItemStateType b : values()) {
+            if (b.value.equals(value)) {
+                return b;
+            }
+        }
+
+        throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+}

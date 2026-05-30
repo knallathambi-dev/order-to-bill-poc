@@ -1,0 +1,31 @@
+# Software Name: orchestration-delivery-tests
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+### Bruno report ###
+report.html
+
+### Apple Desktop Services Store (Mac) ###
+.DS_Store
+
+### VS Code ###
+.vscode
+.log
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.qodo
+
+### others ###
+*.log
+.reuse
+.env

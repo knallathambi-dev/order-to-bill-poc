@@ -1,0 +1,267 @@
+meta {
+  name: CFS
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Event_service}}/topic/123/event
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "eventId": "CFS{{random}}",
+    "eventTime": "2023-11-30T11:12:59.947Z",
+    "eventType": "ServiceSpecificationStateChange",
+    "correlationId": "3",
+    "title": "Service Specification state change",
+    "description": "Event describing a Service specification state change",
+    "priority": "2",
+    "timeOcurred": "2020-10-11T14:23:21.947Z",
+    "event": {
+      "id": "test_CFS{{random}}",
+      "description": "CFS{{random}}",
+      "href": "test",
+      "isBundle": false,
+      "lastUpdate": "2023-11-30T11:12:59.947Z",
+      "lifecycleStatus": "active",
+      "name": "CFS{{random}}",
+      "version": "2",
+      "serviceSpecCharacteristic": [
+        {
+          "id": "1",
+          "name": "Volume",
+          "description": "Volume",
+          "valueType": "string",
+          "configurable": true,
+          "validFor": {
+            "endDateTime": null,
+            "startDateTime": "2020-10-11T23:20:50.520Z"
+          },
+          "minCardinality": null,
+          "maxCardinality": null,
+          "isUnique": null,
+          "regex": null,
+          "extensible": null,
+          "@type": "ObjectCharacteristic",
+          "@schemaLocation": null,
+          "@valueSchemaLocation": null,
+          "charSpecRelationship": null,
+          "characteristicValueSpecification": [
+            {
+              "isDefault": true,
+              "rangeInterval": null,
+              "regex": null,
+              "unitOfMeasure": "hr",
+              "validFor": {
+                "endDateTime": null,
+                "startDateTime": "2020-10-11T23:20:50.520Z"
+              },
+              "timeRange": {
+                "validTo": null,
+                "validFrom": null
+              },
+              "value": 1,
+              "valueFrom": null,
+              "valueTo": null,
+              "valueType": null,
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": null
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Validity",
+          "description": "Validity",
+          "valueType": "string",
+          "configurable": false,
+          "validFor": {
+            "endDateTime": null,
+            "startDateTime": "2020-10-11T23:20:50.520Z"
+          },
+          "minCardinality": null,
+          "maxCardinality": null,
+          "isUnique": null,
+          "regex": null,
+          "extensible": null,
+          "@type": "ValidityCharacteristic",
+          "@schemaLocation": null,
+          "@valueSchemaLocation": null,
+          "charSpecRelationship": null,
+          "characteristicValueSpecification": [
+            {
+              "isDefault": true,
+              "rangeInterval": null,
+              "regex": null,
+              "unitOfMeasure": null,
+              "validFor": {
+                "endDateTime": null,
+                "startDateTime": "2020-10-11T23:20:50.520Z"
+              },
+              "timeRange": {
+                "validTo": "2100-10-11T23:20:50.520Z",
+                "validFrom": null
+              },
+              "value": null,
+              "valueFrom": null,
+              "valueTo": null,
+              "valueType": null,
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": null
+            },
+            {
+              "isDefault": true,
+              "rangeInterval": null,
+              "regex": null,
+              "unitOfMeasure": "days",
+              "validFor": {
+                "endDateTime": null,
+                "startDateTime": "2020-10-11T23:20:50.520Z"
+              },
+              "timeRange": {
+                "validTo": null,
+                "validFrom": null
+              },
+              "value": null,
+              "valueFrom": 0,
+              "valueTo": 100,
+              "valueType": null,
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": null
+            },
+            {
+              "isDefault": true,
+              "rangeInterval": null,
+              "regex": null,
+              "unitOfMeasure": "days",
+              "validFor": {
+                "endDateTime": null,
+                "startDateTime": "2020-10-11T23:20:50.520Z"
+              },
+              "timeRange": {
+                "validTo": null,
+                "validFrom": null
+              },
+              "value": 50,
+              "valueFrom": null,
+              "valueTo": null,
+              "valueType": null,
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": null
+            },
+            {
+              "isDefault": true,
+              "rangeInterval": null,
+              "regex": null,
+              "unitOfMeasure": null,
+              "validFor": {
+                "endDateTime": null,
+                "startDateTime": "2020-10-11T23:20:50.520Z"
+              },
+              "timeRange": {
+                "validTo": "9999-01-01T23:20:50.520Z",
+                "validFrom": null
+              },
+              "value": null,
+              "valueFrom": null,
+              "valueTo": null,
+              "valueType": null,
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": null
+            }
+          ]
+        
+        }
+      ],
+      "serviceSpecRelationship": [
+        {
+          "id": "MobileLine",
+          "href": null,
+          "type": "reliesOn",
+          "name": null,
+          "role": null,
+          "validFor": {
+            "endDateTime": null,
+            "startDateTime": "2017-04-12T23:20:50.520Z"
+          }
+        }
+      ],
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2025-04-12T23:20:50.520Z"
+      },
+      "@type": "CFSSpec",
+      "operationSpecification": [
+        {
+          "id": "1",
+          "name": "Create",
+          "validFor": {
+            "endDateTime": null,
+            "startDateTime": "2017-04-12T23:20:50.520Z"
+          },
+          "description": "provide 1feature",
+          "isQualificationRequested": false,
+          "@type": null,
+          "@baseType": null,
+          "@schemaLocation": null
+        },
+        {
+          "id": "2",
+          "name": "Delete",
+          "validFor": {
+            "endDateTime": null,
+            "startDateTime": "2017-04-12T23:20:50.520Z"
+          },
+          "description": "Remove ",
+          "isQualificationRequested": false,
+          "@type": null,
+          "@baseType": null,
+          "@schemaLocation": null
+        }
+      ],
+      "relatedResource": [
+        {
+          "id": "MobileSOM",
+          "href": "test",
+          "name": "SOM Application in charge of the Service Delivery",
+          "role": "serviceDelivery",
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null,
+          "@referredType": null
+        }
+      ]
+    }
+  }
+}
+
+vars:post-response {
+  CFS_id: res.body.event.id
+}
+
+assert {
+  res.status: eq 202
+}
+
+script:pre-request {
+  const { v4: uuidv4 } = require('uuid');
+  const inputName=uuidv4();
+  bru.setEnvVar("random", inputName);
+  
+}
+
+docs {
+  This request will create a CFS in the catalog  system.
+  
+  this CFS consist of 3 characterstics which are then passed in the PS creation process.
+  
+  Note:changes in CFS could lead to change in PS process scripts.
+}

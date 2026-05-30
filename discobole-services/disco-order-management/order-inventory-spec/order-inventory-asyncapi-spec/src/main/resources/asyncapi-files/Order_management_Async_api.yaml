@@ -1,0 +1,146 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+asyncapi: 2.6.0
+info:
+  title: ProductOrder Inventory Kafka API
+  version: 1.0.0
+  description: >
+    The ProductOrder inventory publishes and consumes events on and from different topics. 
+
+    * Publish productOrderStateChanged event.
+
+    * Publish productOrderAttributeValueChange event.
+
+    * Receive real-time event about product delivery.
+
+    * Receive commands message from product order capture microservice in order to update productOrder state and attributes into the POI.
+
+servers:
+  develop:
+    url: http://localhost:9092
+    description: Localhost development server
+    protocol: kafka
+  integration:
+    url: kafka-integration-disco.apps.fr01.paas.tech.orange
+    description: Integration server
+    protocol: kafka
+
+defaultContentType: application/json
+
+channels:
+  disco.order-management.productOrderChange-command:
+    description:
+      The topic on which productOrder change command may be produced by another microservice and consumed by the product order inventory. This topic is internal to the OrderManagement component.
+    publish:
+      x-scs-function-name: productOrderChangeCommandPublishEvent
+      summary: Commands to change the state or the attribute  of a particular productOrder.
+      operationId: publishProductOrderChangeCommand
+      traits:
+        - $ref: "#/components/operationTraits/output-group-1"
+      message:
+        $ref: "#/components/messages/productOrderChangeCommand"
+  disco.order-management.productOrderAttributeValueChange-event:
+    description:
+      The topic on which the product order attribute value change events may be produced or consumed.
+    subscribe:
+      x-scs-function-name: subscribeProductOrderAttributeValueChange
+      summary: Events related to the attribute value change of the product order.
+      operationId: productOrderAttributeValueChange
+      traits:
+        - $ref: "#/components/operationTraits/input-group-1"
+      message:
+        $ref: "#/components/messages/productOrderAttributeValueChange"
+  disco.order-management.productOrderStateChange-event:
+    subscribe:
+      x-scs-function-name: productOrderEventConsumer
+      description: Consuming ProductOrderStateChangeEvent to create the product order follow-up event
+      operationId: productOrderEventConsumer
+      traits:
+        - $ref: "#/components/operationTraits/input-group-1"
+      message:
+        $ref: '#/components/messages/productOrderStateChangeEvent'
+    publish:
+      description: Publishing product order state change event
+      x-scs-function-name: productOrderEventConsumerPublishEvent
+      operationId: productOrderEventProducer
+      traits:
+        - $ref: "#/components/operationTraits/output-group-1"
+      message:
+        $ref: '#/components/messages/productOrderStateChangeEvent'
+  disco.order-orchestration.orchestrationPlanNodeStateChange-event:
+    subscribe:
+      x-scs-function-name: orchestrationPlanNodeProcess-in-0
+      operationId: OrchestrationPlanNodeStatusChangeEventConsumer
+      traits:
+        - $ref: "#/components/operationTraits/input-group-1"
+      message:
+        $ref: "#/components/messages/orchestrationPlanNodeStateChangeEvent"
+
+components:
+  operationTraits:
+    input-group-1:
+      bindings:
+        kafka:
+          groupId: input-group-1
+    input-group-2:
+      bindings:
+        kafka:
+          groupId: input-group-2
+    output-group-1:
+      bindings:
+        kafka:
+          groupId: output-group-1
+
+  messageTraits:
+    productOrderHeaders:
+      headers:
+        type: object
+        properties:
+          correlationId:
+            description: Unique identifier for correlating related messages
+            type: string
+          productOrderId:
+            description: The id of the productOrder
+            type: string
+
+  messages:
+    productOrderAttributeValueChange:
+      name: productOrderAttributeValueChangeEvent
+      title: Change event about the product order attribute value change.
+      summary:
+        This event is about the product order attribute value change. This event is
+        often published following a successful update of the product order attribute value.
+      payload:
+        $ref: "./schemas/om/productOrderAttributeValueChangeEvent.yaml"
+        schemaFormat: 'application/vnd.aai.asyncapi+yaml;version=2.6.0'
+    productOrderChangeCommand:
+      name: productOrderChangeCommand
+      title: Product order change command
+      summary:
+        A command for the microservice "product order inventory" to update the
+        state or any attribute of a specific product order.
+      payload:
+        $ref: "./schemas/om/productOrderCommand.yaml"
+        schemaFormat: 'application/vnd.aai.asyncapi+yaml;version=2.6.0'
+    productOrderStateChangeEvent:
+      name: productOrderStateChangeEvent
+      title: Change event about the product order state.
+      summary: This event is about the productOrder  state change. This event is
+        often published following a successful update of the product order state in the product order inventory.
+      payload:
+        $ref: "./schemas/om/productOrderStateChangeEvent.yaml"
+        schemaFormat: 'application/vnd.aai.asyncapi+yaml;version=2.6.0'
+    orchestrationPlanNodeStateChangeEvent:
+      name: orchestrationPlanNodeStateChangeEvent
+      title: orchestration Plan Node event.
+      summary: Contains orchestration plan node event.
+      payload:
+        $ref: "./schemas/cood/orchestrationPlanNodeStateChangeEvent.yaml"
+        schemaFormat: 'application/vnd.aai.asyncapi+yaml;version=2.6.0'

@@ -1,0 +1,21 @@
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+<configuration>
+    <appender name="ACCESS_FLUENTD" class="ch.qos.logback.more.appenders.DataFluentAppender">
+        <tag>${FLUENTD_TAG:-event-service-access}</tag>
+        <label>access</label>
+        <remoteHost>${FLUENTD_HOST:-localhost}</remoteHost>
+        <port>${FLUENTD_PORT:-24224}</port>
+        <encoder class="net.logstash.logback.encoder.AccessEventCompositeJsonEncoder"/>
+    </appender>
+    
+    <appender-ref ref="ACCESS_FLUENTD"/>
+</configuration>

@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+apiVersion: v2
+name: hostmode-ui
+description: A Helm chart for hostmode ui portal.
+
+sources:
+  - https://gitlab.ow2.org/discobole/disco-oda-components/disco-ui-portals/disco-microfrontend/hostmode-ui
+
+icon: https://gitlab.ow2.org/uploads/-/system/project/avatar/3007/avatar.png?width=48
+
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+type: application
+
+keywords:
+  - orange
+  - discobole
+  - hostmode-ui
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 1.0.1
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+appVersion: "10.0.0"

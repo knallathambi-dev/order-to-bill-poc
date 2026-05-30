@@ -1,0 +1,50 @@
+# SPDX-FileCopyrightText: 2025, 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### Emacs ###
+*.*~
+*.log
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+
+/public/
+/.npm/
+
+## generated files during local tests
+# ignore downloaded files from repositories
+#docs/architecture/adr
+#docs/architecture/detailed-architecture
+#docs/api-references/compliance-reports
+#docs/api-references/user-guides
+# ignore mkdocs configuration with generated toc
+#mkdocs-with-toc.yml
+
+
+*.DS_Store

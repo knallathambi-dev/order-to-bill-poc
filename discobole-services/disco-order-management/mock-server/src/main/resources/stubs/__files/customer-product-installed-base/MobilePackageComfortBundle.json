@@ -1,0 +1,104 @@
+[{
+  "@type": "Product",
+  "id": "67f3fff127434975dbb90207",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90207",
+  "isBundle": false,
+  "name": "Mobile Package Comfort Bundle",
+  "startDate": "2025-04-07T16:41:40Z",
+  "productOffering": {
+    "id": "aafbd483-1fde-4297-aea5-f24b88e1a905",
+    "name": "Mobile Package Comfort Bundle",
+    "version": "2.0",
+    "@type": "BundleProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "09819820-0685-481b-9f38-153b091ca1c1",
+      "productOrderId": "67f3ffef0651d05b5b35d893"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90208",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90208"
+      }
+    },
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90209",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209"
+      }
+    },
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb9020a",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020a"
+      }
+    },
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb9020b",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b"
+      }
+    },
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90206",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+      }
+    }
+  ],
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Confirmed",
+  "creationDate": "2025-04-07T16:40:17Z",
+  "lastUpdateDate": "2025-04-07T16:41:40Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:40Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:22Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:40Z",
+      "status": "Active"
+    }
+  ]
+}]

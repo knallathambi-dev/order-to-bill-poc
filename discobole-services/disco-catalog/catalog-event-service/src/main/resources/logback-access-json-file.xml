@@ -1,0 +1,31 @@
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+<configuration>
+    <appender name="ACCESS_JSON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/tmp/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/tmp/access-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder class="net.logstash.logback.encoder.AccessEventCompositeJsonEncoder">
+            <providers>
+                <timestamp/>
+                <version/>
+                <message/>
+                <pattern>
+                    <pattern>{"application":"event-service"}</pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+    
+    <appender-ref ref="ACCESS_JSON_FILE"/>
+</configuration>

@@ -1,0 +1,15 @@
+meta {
+  name: Delete_Frequency
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{Admin_URL}}/frequencyTypes/{{Frequency_id}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

@@ -1,0 +1,41 @@
+meta {
+  name: get PS_ChecklifecycleStatus_launch
+  type: http
+  seq: 15
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/productSpecification/{{PS_id}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~ProductSpecificationRelationship.id: 499d1e12-9f93-4a6e-b036-5d14c4bf246a
+  ~ServiceSpecification.id: access01b01
+  ~name: Csps3!
+  ~brand: Csps3+
+  ~cook: null
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+  res.body.lifecycleStatus: eq launched
+}
+
+script:pre-request {
+  await bru.sleep(3000);
+}
+
+docs {
+  Request to check lifecycle status is changed to desired state
+}

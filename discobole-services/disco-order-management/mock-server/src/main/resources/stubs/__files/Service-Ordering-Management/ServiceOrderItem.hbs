@@ -1,0 +1,43 @@
+{
+  "id": "{{randomValue type='UUID'}}{{#if (contains request.path 'held')}}-held{{/if}}",
+  "description": "{{jsonPath this '$.description'}}",
+  "state": "acknowledged",
+  "category": "{{jsonPath this '$.category'}}",
+  "requestedCompletionDate": "{{now format='yyyy-MM-dd\'T\'HH:mm:ss'}}Z",
+  "@type": "{{jsonPath this '$.@type'}}",
+  "relatedParty": [
+    {
+      "id": "{{jsonPath this '$.relatedParty[0].id'}}",
+      "name": "{{jsonPath this '$.relatedParty[0].name'}}",
+      "role": "{{jsonPath this '$.relatedParty[0].role'}}",
+      "referredType": "{{jsonPath this '$.relatedParty[0].referredType'}}"
+    }
+  ],
+  "serviceOrderItem": [
+    {
+      "id": "{{randomValue length=2 type='NUMERIC'}}{{#if (contains request.path 'held')}}-held{{/if}}",
+      "action": "{{jsonPath this '$.serviceOrderItem[0].action'}}",
+      "service": {
+        "id": "{{randomValue length=2 type='NUMERIC'}}",
+        "state": "active",
+        "serviceType": "{{jsonPath this '$.serviceOrderItem[0].service.serviceType'}}",
+        "serviceCharacteristic": [
+          {{{jsonPath this '$.serviceOrderItem[0].service.serviceCharacteristic[0]'}}}
+        ],
+        "serviceSpecification": {
+          "id": "{{jsonPath this '$.serviceOrderItem[0].service.serviceSpecification.id'}}"
+        }
+      },
+      "serviceRelationship": [
+        {
+          "service": {
+            "id": "{{jsonPath this '$.serviceOrderItem[0].serviceRelationship[0].service.id'}}",
+            "href": "{{jsonPath this '$.serviceOrderItem[0].serviceRelationship[0].service.href'}}"
+          },
+          "serviceRelationshipType": "{{jsonPath this '$.serviceOrderItem[0].serviceRelationship[0].serviceRelationshipType'}}"
+        }
+      ]
+    }
+  ]
+}
+

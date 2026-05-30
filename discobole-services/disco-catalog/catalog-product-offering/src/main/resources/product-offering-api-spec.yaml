@@ -1,0 +1,629 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+openapi: 3.0.1
+info:
+  title: Product Catalog - Product Offering
+  description: "<h3>Release 1.0.0 June 2023</h3>\r\n<h4>Goal</h4>\r\n<p>Product Catalog API is one of Catalog Management API Family. Product Catalog API goal is to provide a catalog of products.</p>\r\n<h4>Operations</h4>\r\n<p>Product Catalog API performs the following operations on the resources :</p>\r\n<p>Retrieve an entity or a collection of entities depending on filter criteria<br>\r\nFor the implementation of DISCO, product catalog API supports retrieve operations only.</p>\r\n<h3>TMF API Reference</h3>\r\n<p>TMF620 Product Catalog Management Release 19.0.1</p>\r\n<table>\r\n<thead>\r\n<tr><th>Product Catalog API version</th><th>TMF API version</th></tr>\r\n</thead>\r\n<tbody>\r\n<tr><td>1.0.0</td><td>4.0.1</td></tr>\r\n</tbody>\r\n</table>"
+  version: 1.6.0-SNAPSHOT
+servers:
+  - url: https://serverRoot
+    description: Generated server url
+security:
+  - spring_oauth: []
+paths:
+  /productCatalogManagement/v1/error:
+    get:
+      tags:
+        - error
+      operationId: fetchErrorRepresentations
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - error
+      operationId: createErrorRepresentation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Error'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Error'
+  /processManagement/v1/processFlow:
+    post:
+      tags:
+        - processFlow
+      operationId: createProcessFlow
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessFlowCreate'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProcessFlow'
+  /processManagement/v1/processFlow/{processFlowId}/taskFlow/{id}:
+    patch:
+      tags:
+        - processFlow
+      operationId: updateTaskFlow
+      parameters:
+        - name: processFlowId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskFlowUpdate'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TaskFlow'
+  /productCatalogManagement/v1/error/{id}:
+    get:
+      tags:
+        - error
+      operationId: fetchErrorRepresentationById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Error'
+  /processManagement/v1/processFlow/{id}:
+    delete:
+      tags:
+        - processFlow
+      operationId: deleteProcessFlow
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Error:
+      required:
+        - code
+        - id
+        - reason
+      type: object
+      properties:
+        id:
+          type: string
+        code:
+          type: integer
+          format: int32
+        reason:
+          type: string
+        message:
+          type: string
+        status:
+          type: string
+        referenceError:
+          type: string
+        '@baseType':
+          type: string
+        '@type':
+          type: string
+        '@schemaLocation':
+          type: string
+      description: Used when and API throws an Error, typically with a HTTP error response code (3xx, 4xx, 5xx)
+    BooleanCharacteristic:
+      required:
+        - '@type'
+        - name
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: boolean
+    ChannelRef:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          default: Unique identifier of a related entity.
+        href:
+          type: string
+          default: Reference of the related entity.
+        name:
+          type: string
+          default: Name of the channel.
+        '@baseType':
+          type: string
+          default: When sub-classing, this defines the super-class
+        '@schemaLocation':
+          type: string
+          default: A URI to a JSON-Schema file that defines additional attributes and relationships
+        '@type':
+          type: string
+          default: When sub-classing, this defines the sub-class entity name
+        '@referredType':
+          type: string
+          default: The actual type of the target instance when needed for disambiguation.
+      description: The channel to which the resource reference to. e.g. channel for selling product offerings, channel for opening a trouble ticket etc..
+    Characteristic:
+      required:
+        - '@type'
+        - name
+      type: object
+      properties:
+        value:
+          type: object
+        name:
+          type: string
+          default: Name of the characteristic
+        id:
+          type: string
+        valueType:
+          type: string
+          default: Data type of the value of the characteristic
+        '@baseType':
+          type: string
+          default: When sub-classing, this defines the super-class
+        '@schemaLocation':
+          type: string
+          default: A URI to a JSON-Schema file that defines additional attributes and relationships
+        '@type':
+          type: string
+          default: When sub-classing, this defines the sub-class entity name
+        characteristicRelationship:
+          type: array
+          items:
+            $ref: '#/components/schemas/CharacteristicRelationship'
+      description: Describes a given characteristic of an object or entity through a name/value pair.
+      discriminator:
+        propertyName: '@type'
+    CharacteristicRelationship:
+      type: object
+      properties:
+        id:
+          type: string
+        relationshipType:
+          type: string
+          default: relationshipType of the characteristic
+      description: A characteristic relationship
+    IntegerCharacteritic:
+      required:
+        - '@type'
+        - name
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: integer
+              format: int32
+    ObjectCharacteristic:
+      required:
+        - '@type'
+        - name
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+    ProcessFlowCreate:
+      required:
+        - processFlowSpecification
+      type: object
+      properties:
+        processFlowSpecification:
+          type: string
+          default: Specification of the processFlow.
+        correlationId:
+          type: string
+        channel:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelRef'
+        characteristic:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/BooleanCharacteristic'
+              - $ref: '#/components/schemas/IntegerCharacteritic'
+              - $ref: '#/components/schemas/ObjectCharacteristic'
+              - $ref: '#/components/schemas/StringCharacteristic'
+        relatedEntity:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedEntity'
+        relatedParty:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedParty'
+        '@baseType':
+          type: string
+          default: When sub-classing, this defines the super-class
+        '@schemaLocation':
+          type: string
+          default: A URI to a JSON-Schema file that defines additional attributes and relationships
+        '@type':
+          type: string
+          default: When sub-classing, this defines the sub-class entity name
+    RelatedEntity:
+      required:
+        - '@referredType'
+        - id
+        - role
+      type: object
+      properties:
+        id:
+          type: string
+          default: Unique identifier of a related entity.
+        href:
+          type: string
+          default: Reference of the related entity.
+        name:
+          type: string
+          default: Name of the related entity.
+        role:
+          type: string
+          default: The role of an entity.
+        '@baseType':
+          type: string
+          default: When sub-classing, this defines the super-class
+        '@schemaLocation':
+          type: string
+          default: A URI to a JSON-Schema file that defines additional attributes and relationships
+        '@type':
+          type: string
+          default: When sub-classing, this defines the sub-class entity name
+        '@referredType':
+          type: string
+          default: The actual type of the target instance when needed for disambiguation.
+      description: A reference to an entity, where the type of the entity is not known in advance.
+    RelatedParty:
+      required:
+        - '@referredType'
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          default: Unique identifier of a related entity.
+        href:
+          type: string
+          default: Reference of the related entity.
+        name:
+          type: string
+          default: Name of the related entity.
+        role:
+          type: string
+          default: Role played by the related party
+        '@baseType':
+          type: string
+          default: When sub-classing, this defines the super-class
+        '@schemaLocation':
+          type: string
+          default: A URI to a JSON-Schema file that defines additional attributes and relationships
+        '@type':
+          type: string
+          default: When sub-classing, this defines the sub-class entity name
+        '@referredType':
+          type: string
+          default: The actual type of the target instance when needed for disambiguation.
+      description: Related Entity reference. A related party defines party or party role linked to a specific entity.
+    StringCharacteristic:
+      required:
+        - '@type'
+        - name
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: string
+    Link:
+      type: object
+      properties:
+        href:
+          type: string
+        hreflang:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+        templated:
+          type: boolean
+    Links:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Link'
+    ProcessFlow:
+      type: object
+      properties:
+        id:
+          type: string
+          default: Identifier of the Process flow
+        href:
+          type: string
+          default: Reference of the ProcessFlow
+        correlationId:
+          type: string
+        processFlowDate:
+          type: string
+          format: date-time
+        processFlowSpecification:
+          type: string
+          default: Specification of the processFlow.
+        description:
+          type: string
+        channel:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelRef'
+        characteristic:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/BooleanCharacteristic'
+              - $ref: '#/components/schemas/IntegerCharacteritic'
+              - $ref: '#/components/schemas/ObjectCharacteristic'
+              - $ref: '#/components/schemas/StringCharacteristic'
+        relatedEntity:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedEntity'
+        relatedParty:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedParty'
+        state:
+          type: string
+          enum:
+            - new
+            - active
+            - cancelled
+            - completed
+            - suspended
+            - incomplete
+        taskFlow:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFlowRef'
+        '@baseType':
+          type: string
+          default: When sub-classing, this defines the super-class
+        '@schemaLocation':
+          type: string
+          default: A URI to a JSON-Schema file that defines additional attributes and relationships
+        '@type':
+          type: string
+          default: When sub-classing, this defines the sub-class entity name
+        _links:
+          $ref: '#/components/schemas/Links'
+    TaskFlowRef:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          default: Unique identifier of a related entity.
+        href:
+          type: string
+          default: Reference of the related entity.
+        '@baseType':
+          type: string
+          default: When sub-classing, this defines the super-class
+        '@schemaLocation':
+          type: string
+          default: A URI to a JSON-Schema file that defines additional attributes and relationships
+        '@type':
+          type: string
+          default: When sub-classing, this defines the sub-class entity name
+        '@referredType':
+          type: string
+          default: The actual type of the target instance when needed for disambiguation.
+    TaskFlowUpdate:
+      type: object
+      properties:
+        completionMethod:
+          type: string
+          default: TaskFlow completion method.
+        correlationId:
+          type: string
+        isMandatory:
+          type: boolean
+          default: false
+        priority:
+          type: integer
+          format: int32
+        channel:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelRef'
+        characteristic:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/BooleanCharacteristic'
+              - $ref: '#/components/schemas/IntegerCharacteritic'
+              - $ref: '#/components/schemas/ObjectCharacteristic'
+              - $ref: '#/components/schemas/StringCharacteristic'
+        relatedEntity:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedEntity'
+        relatedParty:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedParty'
+        '@baseType':
+          type: string
+          default: When sub-classing, this defines the super-class
+        '@schemaLocation':
+          type: string
+          default: A URI to a JSON-Schema file that defines additional attributes and relationships
+        '@type':
+          type: string
+          default: When sub-classing, this defines the sub-class entity name
+      description: 'Skipped properties: id,href,taskFlowSpecification'
+    TaskFlow:
+      type: object
+      properties:
+        id:
+          type: string
+          default: Identifier of the taskFlow
+        href:
+          type: string
+          default: Reference of the taskFlow
+        correlationId:
+          type: string
+        completionMethod:
+          type: string
+          default: TaskFlow completion method.
+        isMandatory:
+          type: boolean
+          default: false
+        priority:
+          type: integer
+          format: int32
+        taskFlowSpecification:
+          type: string
+          default: Specification of the taskFlow.
+        description:
+          type: string
+        channel:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelRef'
+        characteristic:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/BooleanCharacteristic'
+              - $ref: '#/components/schemas/IntegerCharacteritic'
+              - $ref: '#/components/schemas/ObjectCharacteristic'
+              - $ref: '#/components/schemas/StringCharacteristic'
+        relatedEntity:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedEntity'
+        relatedParty:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedParty'
+        state:
+          type: string
+          enum:
+            - new
+            - active
+            - hold
+            - cancelled
+            - completed
+            - unassigned
+            - assigned
+            - delegated
+            - deleted
+        taskFlowRelationship:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskFlowRelationship'
+        '@baseType':
+          type: string
+          default: When sub-classing, this defines the super-class
+        '@schemaLocation':
+          type: string
+          default: A URI to a JSON-Schema file that defines additional attributes and relationships
+        '@type':
+          type: string
+          default: When sub-classing, this defines the sub-class entity name
+        _links:
+          $ref: '#/components/schemas/Links'
+    TaskFlowRelationship:
+      required:
+        - relationshipType
+        - taskFlow
+      type: object
+      properties:
+        relationshipType:
+          type: string
+          default: The type of taskFlow relationship (requires, triggers, etc.)
+        taskFlow:
+          $ref: '#/components/schemas/TaskFlowRef'
+        '@baseType':
+          type: string
+          default: When sub-classing, this defines the super-class
+        '@schemaLocation':
+          type: string
+          default: A URI to a JSON-Schema file that defines additional attributes and relationships
+        '@type':
+          type: string
+          default: When sub-classing, this defines the sub-class entity name
+      description: Describes relationship between taskFlow
+  securitySchemes:
+    spring_oauth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+          scopes:
+            read_access: read data
+            write_access: modify data

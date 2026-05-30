@@ -1,0 +1,36 @@
+{
+  "id": "91",
+  "href": "http://serverlocation:port/stockManagement/v4/reserveProductStock/91",
+  "relatedEntity": [
+    {
+      "id": "{{jsonPath request.body '$.relatedEntity[0].id'}}",
+      "role": "order triggering the reservation",
+      "@type": "EntityRef",
+      "@referredType": "ProductOrder"
+    }
+  ],
+  "reserveProductStockItem": [
+    {
+      "id": "1",
+      "quantityRequested": {
+        "amount": 1
+      },
+      "stockItem": {
+        "id": "{{jsonPath request.body '$.reserveProductStockItem[0].stockItem.id'}}"
+      },
+      "productStockReserved": {
+        "id": "46",
+        "href": "http://serverlocation:port/stockManagement/v4/productStock/46",
+        "@type": "ProductStockRef"
+      },
+      "@type": "ReserveProductStockItem"
+    }
+  ],
+  "validFor": {
+    "startDateTime": "{{jsonPath request.body '$.validFor.startDateTime'}}",
+    "endDateTime": "{{jsonPath request.body '$.validFor.endDateTime'}}",
+    "@type": "TimePeriod"
+  },
+  "reserveProductStockState": "accepted",
+  "@type": "ReserveProductStock"
+}

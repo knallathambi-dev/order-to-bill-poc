@@ -1,0 +1,50 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+apiVersion: v2
+name: auth-userrole
+description: A Helm chart for user role and permission service.
+home: https://gitlab.ow2.org/discobole
+sources:
+  - https://gitlab.ow2.org/discobole/disco-oda-components/disco-security/auth-userrole/
+
+# A chart can be either an 'application' or a 'library' chart.
+#
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+#
+# Library charts provide useful utilities or functions for the chart developer. They're included as
+# a dependency of application charts to inject those utilities and functions into the rendering
+# pipeline. Library charts do not define any templates and therefore cannot be deployed.
+type: application
+
+keywords:
+  - orange
+  - discobole
+  - auth-userrole
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 1.4.0
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+# It is recommended to use it with quotes.
+
+appVersion: "10.0.0"
+
+dependencies:
+  - name: mongodb
+    version: 0.16.1
+    repository: oci://ghcr.io/cloudpirates-io/helm-charts
+    condition: mongo.enabled
+    alias: mongo
+

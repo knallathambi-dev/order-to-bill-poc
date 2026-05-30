@@ -1,0 +1,64 @@
+meta {
+  name: get PO_active
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/productOffering?@type=ATOMICPRODUCTOFFERING&lifecycleStatus=launched&limit=1
+  body: none
+  auth: none
+}
+
+params:query {
+  @type: ATOMICPRODUCTOFFERING
+  lifecycleStatus: launched
+  limit: 1
+  ~ServiceSpecification.name: 
+  ~ServiceSpecification.version: 
+  ~StockItemType.id: 
+  ~StockItemType.name: 
+  ~id: ff838114-a10a-4596-87c9-51d79babd89f
+  ~lastUpdate: 
+  ~offset: 
+  ~relatedParty.id: 
+  ~relatedParty.name: 
+  ~relatedParty.role: 
+  ~sort: 
+  ~supportEntity: 
+  ~validFor.gt: 
+  ~validFor.lt: 
+  ~ProductSpecificationRelationship.id: 499d1e12-9f93-4a6e-b036-5d14c4bf246a
+  ~ServiceSpecification.id: access01b01
+  ~name: Csps3!
+  ~brand: Csps3+
+  ~cook: null
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  
+  var jsonData = res.getBody();
+  const activeItem = jsonData.find(item => item.lifecycleStatus === "launched");
+  
+    if (activeItem) {
+      bru.setEnvVar("PO_active_id", activeItem.id); // Saves to environment variable
+      console.log("Saved active_id:", activeItem.id);
+    } else 
+      {
+      throw new Error(" No item with lifecycleStatus = 'launched' found.");
+      }
+  
+}

@@ -1,0 +1,140 @@
+{
+  "mappings": [
+    {
+      "name": "Get Available Resources - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/resourceInventoryManagement/v1/resource",
+        "method": "GET",
+        "queryParameters": {
+          "resourceSpecification.id": {
+            "matches": ".*"
+          },
+          "fields": {
+            "equalTo": "id,href,value,@type,category,resourceStatus,name"
+          },
+          "resourceStatus": {
+            "equalTo": "available"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Resource-Inventory/batchAvailabilitySuccess.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad request",
+      "priority": 3,
+      "request": {
+        "url": "/api/resourceInventoryManagement/v1/resource",
+        "method": "GET"
+      },
+      "response": {
+        "status": 400,
+        "bodyFileName": "MissingRequestBody.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Patch reserve Resources Batch - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/resourceInventoryManagement/v1/resource",
+        "method": "PATCH",
+        "headers": {
+          "Content-Type": {
+            "equalTo": "application/json-patch+json"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": {
+              "expression": "$[*].op",
+              "matches": "replace"
+            }
+          },
+          {
+            "matchesJsonPath": {
+              "expression": "$[*].path",
+              "matches": ".*/resourceStatus"
+            }
+          },
+          {
+            "matchesJsonPath": {
+              "expression": "$[*].value",
+              "equalTo": "reserved"
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Resource-Inventory/batchReservationSuccess.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Patch rollback Resources Batch - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/resourceInventoryManagement/v1/resource",
+        "method": "PATCH",
+        "headers": {
+          "Content-Type": {
+            "equalTo": "application/json-patch+json"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": {
+              "expression": "$[*].op",
+              "matches": "replace"
+            }
+          },
+          {
+            "matchesJsonPath": {
+              "expression": "$[*].path",
+              "matches": ".*/resourceStatus"
+            }
+          },
+          {
+            "matchesJsonPath": {
+              "expression": "$[*].value",
+              "equalTo": "available"
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "body": "{}",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad request",
+      "priority": 5,
+      "request": {
+        "url": "/api/resourceInventoryManagement/v1/resource",
+        "method": "PATCH"
+      },
+      "response": {
+        "status": 400,
+        "bodyFileName": "MissingRequestBody.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

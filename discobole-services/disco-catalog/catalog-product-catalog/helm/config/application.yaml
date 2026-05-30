@@ -1,0 +1,67 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  config:
+    activate:
+      on-profile: openshift
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: ${KAFKA}
+    aws:
+      s3:
+        bucket: ${BUCKET_NAME}
+        httpProxy: ${AWS_HTTP_PROXY}
+      credentials:
+        access-key: ${AWS_ACCESS_KEY_ID}
+        secret-key: ${AWS_SECRET_ACCESS_KEY}
+      region:
+        static: us-east-1
+      endpoint: https://s3-region01.cloudavenue.orange-business.com
+      path-style-access: true
+  redis:
+    host: redis-master
+    port: 6379
+    password: ${REDIS_PWD}
+  data:
+    mongodb:
+      delete: true
+      host: ${DB_SERVICE}
+      port: 27017
+      database: ${DB_NAME}
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+        # Connection pool settings
+      pool:
+        max-size: 500
+        min-size: 50
+  keycloakRolesEntitlements: x21, x22, x23, x24, x25, cat_r
+  userRoleRetrievalUrl: http://${USERROLE-RETRIEVE-SERVICE-NAME}/userRolePermission/v1/userRole     
+  keycloak: http://${KEYCLOAK_SERVICE}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/certs
+  keycloakAuthUrl: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/auth
+
+config:
+  cpibProductUrl: https://${CPIB-NAME}/productInventoryManagement/v1/product
+  adminCPIBConfigUrl: http://${CATALOG-PRODUCT-CATALOG-ADMINISTRATION-NAME}/cpibConfiguration
+
+server:
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+    min-response-size: 512
+  tomcat:
+    threads:
+      max: 500
+      min-spare: 50
+
+process-flow:
+  role:
+    admin: disco-admin
+

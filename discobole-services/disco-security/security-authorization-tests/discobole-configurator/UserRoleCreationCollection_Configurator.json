@@ -1,0 +1,226 @@
+{
+  "name": "UserRoleCreationCollection_Configurator",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Step 1 Generate Token",
+      "filename": "Step 1 Generate Token.bru",
+      "seq": 1,
+      "request": {
+        "url": "{{keycloak_url}}/realms/SpringBootKeycloak/protocol/openid-connect/token",
+        "method": "POST",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "enabled": true
+          },
+          {
+            "name": "Authorization",
+            "value": "Basic Ym9zLWNsaWVudDpib3MtY2xpZW50LXNlY3JldA==",
+            "enabled": true
+          },
+          {
+            "name": "X-Device-Id",
+            "value": "{{X-Device-Id}}",
+            "enabled": false
+          }
+        ],
+        "params": [],
+        "body": {
+          "mode": "formUrlEncoded",
+          "formUrlEncoded": [
+            {
+              "name": "username",
+              "value": "{{username}}",
+              "enabled": true
+            },
+            {
+              "name": "password",
+              "value": "{{password}}",
+              "enabled": true
+            },
+            {
+              "name": "grant_type",
+              "value": "password",
+              "enabled": true
+            },
+            {
+              "name": "client_id",
+              "value": "{{client_id}}",
+              "enabled": true
+            },
+            {
+              "name": "client_secret",
+              "value": "{{client_secret}}",
+              "enabled": true
+            },
+            {
+              "name": "scope",
+              "value": "openid",
+              "enabled": true
+            }
+          ],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {
+          "res": [
+            {
+              "name": "token_ORO",
+              "value": "res.body.access_token",
+              "enabled": true,
+              "local": false
+            }
+          ]
+        },
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "folder",
+      "name": "UserRole",
+      "filename": "UserRole",
+      "items": [
+        {
+          "type": "http",
+          "name": "userrole configurator",
+          "filename": "userrole configurator.bru",
+          "seq": 9,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\r\n    \"involvementRole\": \"ConfiguratorAdmin\",\r\n    \"@type\": \"UserRole\",\r\n    \"entitlement\": [\r\n        {\r\n            \"id\": \"102\",\r\n            \"action\": \"readAndWrite\",\r\n            \"function\": \"create\",\r\n            \"@type\": \"Entitlement\"\r\n        }\r\n    ]\r\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole",
+          "filename": "userrole.bru",
+          "seq": 10,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "GET",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "bearer {{token_ORO}}",
+                "enabled": true
+              }
+            ],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "activeEnvironmentUid": "6NrwtRWz9wBGl2BKdByaJ",
+  "environments": [
+    {
+      "variables": [
+        {
+          "name": "base_uri",
+          "value": "http://34.118.100.96:80",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "keycloak_url",
+          "value": "http://34.116.158.27",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "token",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_id",
+          "value": "gateway",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_secret",
+          "value": "ruNK3jNJ0fZ2g6qrY5V5JxIzHTuGhvAd",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "username",
+          "value": "admin-test",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "password",
+          "value": "abcd",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        }
+      ],
+      "name": "ORO"
+    }
+  ],
+  "brunoConfig": {
+    "version": "1",
+    "name": "UserRoleCreationCollection_Configurator",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}

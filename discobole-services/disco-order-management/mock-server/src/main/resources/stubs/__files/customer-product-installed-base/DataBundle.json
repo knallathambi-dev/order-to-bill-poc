@@ -1,0 +1,165 @@
+[{
+  "@type": "Product",
+  "id": "67f3fff127434975dbb9020a",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020a",
+  "isBundle": false,
+  "name": "Data Bundle",
+  "startDate": "2025-04-07T16:41:31Z",
+  "billingAccount": {
+    "id": "130be1-bb15-da04-5040-3e130077a651",
+    "@referredType": "BillingAccount"
+  },
+  "productCharacteristic": [
+    {
+      "@type": "ObjectCharacteristic",
+      "id": "9cb0766f-56cc-41b7-a058-2e07e08a1228.10",
+      "name": "Quantity",
+      "value": {
+        "unitOfMeasure": "GB",
+        "value": "10"
+      }
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "b92591e0-8b1f-4202-b6c8-9cc8ab341514.8",
+      "name": "Frequency",
+      "value": "Month"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "b0cd1541-c6b3-46b3-ad47-c2fb98c733f4.9",
+      "name": "Recurring",
+      "value": "Yes"
+    }
+  ],
+  "productOffering": {
+    "id": "abe1bdfd-21de-4454-b703-398771d5ea85",
+    "name": "Data Bundle",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "203e7fa1-a98e-453d-b6ca-f6e41444efc1",
+      "productOrderId": "67f3ffef0651d05b5b35d893"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "Charge 10 eur",
+      "name": "Charge 10 eur",
+      "priceType": "recurringCharge",
+      "recurringChargePeriod": {
+        "amount": 1,
+        "units": "month"
+      },
+      "productOfferingPrice": {
+        "id": "b12913ca-8e74-4e83-8502-5d53ccf1572d",
+        "name": "Charge 10 eur",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 7
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 7
+        }
+      },
+      "productPriceAlteration": [
+        {
+          "description": "Discount 3 Eur RC",
+          "name": "Discount 3 Eur RC",
+          "priceType": "recurringDiscount",
+          "priority": 1,
+          "recurringChargePeriod": {
+            "amount": 3,
+            "units": "Month(s)"
+          },
+          "price": {
+            "taxRate": 0,
+            "taxIncludedAmount": {
+              "unit": "EUR",
+              "value": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90206",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+      }
+    },
+    {
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90209",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "b9267954-7027-4588-a36e-b4a0c0448693",
+    "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=b9267954-7027-4588-a36e-b4a0c0448693",
+    "name": "Data Bundle",
+    "version": "0.1",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Confirmed",
+  "creationDate": "2025-04-07T16:40:17Z",
+  "lastUpdateDate": "2025-04-07T16:41:31Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:31Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:22Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:02Z",
+      "status": "PendingActive"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:31Z",
+      "status": "Active"
+    }
+  ]
+}]

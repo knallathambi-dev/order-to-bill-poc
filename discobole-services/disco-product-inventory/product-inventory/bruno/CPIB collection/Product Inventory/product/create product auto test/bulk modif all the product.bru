@@ -1,0 +1,176 @@
+meta {
+  name: bulk modif all the product
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{MP1ContractId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{MP1ContractId}}/operationalStatus",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{MP1BundledPOId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{MP1BundledPOId}}/operationalStatus",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{timeBundleAtomicPOId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{timeBundleAtomicPOId}}/operationalStatus",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{mobileLineAtomicPOId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{mobileLineAtomicPOId}}/operationalStatus",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{connectivityAtomicPOId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{connectivityAtomicPOId}}/operationalStatus",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{simCardAtomicPOId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{simCardAtomicPOId}}/operationalStatus",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{timeBundlePSId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{timeBundlePSId}}/operationalStatus",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{mobileLinePSId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{mobileLinePSId}}/operationalStatus",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{connectivityPSId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{connectivityPSId}}/operationalStatus",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{simCardPSId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{simCardPSId}}/operationalStatus",
+          "value": "Active"
+      }
+  ]
+}
+
+script:pre-request {
+  function getProductIDBy(productsInfo, productName, type) {
+      productName = productName.toLowerCase(); 
+      for (var i = 0; i < productsInfo.length; i++) {
+          var currentProductName = productsInfo[i].name.toLowerCase();
+          if (currentProductName === productName && productsInfo[i].type === type) {
+              return productsInfo[i].id;
+          }
+      }
+      return null;
+  }
+  
+  var productsInfo = bru.getEnvVar("productsInfo");
+  if (!productsInfo) {
+      productsInfo = pm.globals.get("productsInfo");
+  }
+  productsInfo = JSON.parse(productsInfo);
+  
+  var simCardPSId= getProductIDBy(productsInfo, "SIM CARD", "productSpecification");
+  var connectivityPSId= getProductIDBy(productsInfo, "Connectivity", "productSpecification");
+  var mobileLinePSId= getProductIDBy(productsInfo, "MobileLine", "productSpecification");
+  var timeBundlePSId= getProductIDBy(productsInfo, "Time Bundle", "productSpecification");
+  
+  var simCardAtomicPOId= getProductIDBy(productsInfo, "SIM CARD", "AtomicProductOffering");
+  var connectivityAtomicPOId= getProductIDBy(productsInfo, "Connectivity", "AtomicProductOffering");
+  var mobileLineAtomicPOId= getProductIDBy(productsInfo, "MobileLine", "AtomicProductOffering");
+  var timeBundleAtomicPOId= getProductIDBy(productsInfo, "Time Bundle", "AtomicProductOffering");
+  
+  var MP1BundledPOId= getProductIDBy(productsInfo, "Mobile Package Basic", "BundleProductOffering");
+  
+  var MP1ContractId= getProductIDBy(productsInfo, "Mobile Package Basic", "Contract");
+  
+  console.log(MP1ContractId , MP1BundledPOId , timeBundleAtomicPOId, mobileLineAtomicPOId, connectivityAtomicPOId, simCardAtomicPOId, timeBundlePSId, mobileLinePSId, connectivityPSId, simCardPSId)
+  
+  bru.setEnvVar("simCardPSId", simCardPSId);
+  bru.setEnvVar("connectivityPSId", connectivityPSId);
+  bru.setEnvVar("mobileLinePSId", mobileLinePSId);
+  bru.setEnvVar("timeBundlePSId", timeBundlePSId);
+  
+  
+  bru.setEnvVar("simCardAtomicPOId", simCardAtomicPOId);
+  bru.setEnvVar("connectivityAtomicPOId", connectivityAtomicPOId);
+  bru.setEnvVar("mobileLineAtomicPOId", mobileLineAtomicPOId);
+  bru.setEnvVar("timeBundleAtomicPOId", timeBundleAtomicPOId);
+  
+  bru.setEnvVar("MP1BundledPOId", MP1BundledPOId);
+  
+  bru.setEnvVar("MP1ContractId", MP1ContractId);
+  
+}

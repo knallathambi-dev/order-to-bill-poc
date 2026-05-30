@@ -1,0 +1,12 @@
+{
+  "SelectPOPType" : {
+    "required" : [ "pOPType" ],
+    "type" : "object",
+    "properties" : {
+      "pOPType" : {
+        "type" : "string",
+        "enum" : [ "ProductOfferingPriceCharge", "ProductOfferingPriceAlteration", "TaxProductOfferingPriceAlteration", "InstallmentCharge" ]
+      }
+    }
+  }
+}

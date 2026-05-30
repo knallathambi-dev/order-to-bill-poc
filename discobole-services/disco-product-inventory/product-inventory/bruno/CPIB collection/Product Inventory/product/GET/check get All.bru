@@ -1,0 +1,15 @@
+meta {
+  name: check get All
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/product?fields=status,operationalStatus,productOrderItem,productRelationship,productOffering.@type,productSpecification.@type
+  body: none
+  auth: none
+}
+
+query {
+  fields: status,operationalStatus,productOrderItem,productRelationship,productOffering.@type,productSpecification.@type
+}

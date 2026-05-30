@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+plugins:
+  - '@semantic-release/commit-analyzer'
+  - '@semantic-release/release-notes-generator'
+  - '@semantic-release/changelog'
+  - '@semantic-release/gitlab'
+  # git commit/push modified files (CHANGELOG.md)
+  - - '@semantic-release/git'
+    - assets:
+        - '*.md'
+      # the commit MUST trigger a pipeline on tag (to perform publish jobs)
+      # can be skipped on prod branch
+      message: 'chore(semantic-release): release ${nextRelease.version} - [ci skip on prod]'
+branches:
+  - "main"
+  - "master"
+tagFormat: "${version}"
+
+
+]
+branches:
+  - "main"
+tagFormat: "${version}"

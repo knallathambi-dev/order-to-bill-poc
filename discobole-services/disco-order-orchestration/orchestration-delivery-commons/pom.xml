@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <!--  we override some internal dependencies in org.springframework:spring-boot-starter-parent dependency version 3.4.5 which cause vulnerabilities -->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.orange.discobole.orderorchestration</groupId>
+    <artifactId>discobole-orderorchestration-orchestration-delivery-commons</artifactId>
+    <version>3.5.0-SNAPSHOT</version>
+    <name>ODA - COOD - Orchestration Delivery Commons</name>
+    <description>Implement common library to avoid duplication code</description>
+
+    <url>
+        https://gitlab.ow2.org/discobole/disco-oda-components/disco-order-orchestration/orchestration-delivery-commons
+    </url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/license/mit</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>common-exception</module>
+        <module>common-pojo</module>
+        <module>common-kafka-config</module>
+        <module>common-web-client-config</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.orange.discobole.orderorchestration</groupId>
+                <artifactId>discobole-orderorchestration-orchestration-delivery-commons-exception</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--  we override org.springframework:spring-context dependency version to 6.2.7 as spring boot version 3.4.5 uses spring framework version 6.1.18 which causes a vulnerability -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.2.7</version>
+        </dependency>
+        <!--  we override org.springframework.security:spring-security-core dependency version to 6.4.6 as spring boot version 3.4.5 uses spring security version 6.0.12 which causes a vulnerability -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>6.4.6</version>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+        </repository>
+        <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <configuration>
+                    <outputDirectory>./</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>aggregate-add-third-party</id>
+                        <goals>
+                            <goal>aggregate-add-third-party</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.2.7</version>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,46 @@
+[
+  {{#each request.query.id as |id|}}
+
+  {{#not @first}}
+  {{#if (contains (array '65f04daf0ff022567bd8789a' '65f04daf0ff022567bd87898' '65f04daf0ff022567bd8789c' '65f04daf0ff022567bd8789e') id)}},{{/if}}
+  {{/not}}
+
+  {{#eq id '65f04daf0ff022567bd8789a'}}
+  {
+    "@type": "Product",
+    "id": "65f04daf0ff022567bd8789a",
+    "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789a",
+    "status": "Active"
+  }
+  {{/eq}}
+
+  {{#eq id '65f04daf0ff022567bd87898'}}
+  {
+    "@type": "Product",
+    "id": "65f04daf0ff022567bd87898",
+    "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd87898",
+    "status": "Terminated"
+  }
+  {{/eq}}
+
+  {{#eq id '65f04daf0ff022567bd8789c'}}
+  {
+    "@type": "Product",
+    "id": "65f04daf0ff022567bd8789c",
+    "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789c",
+    "status": "Terminated"
+  }
+  {{/eq}}
+
+  {{#eq id '65f04daf0ff022567bd8789e'}}
+  {
+    "@type": "Product",
+    "id": "65f04daf0ff022567bd8789e",
+    "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/65f04daf0ff022567bd8789e",
+    "status": "Terminated"
+  }
+  {{/eq}}
+
+  {{/each}}
+
+]

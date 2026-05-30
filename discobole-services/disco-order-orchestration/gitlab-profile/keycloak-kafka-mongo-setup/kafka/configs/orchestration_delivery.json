@@ -1,0 +1,26 @@
+{
+    "name": "cood-outbox-connector",
+    "config": {
+      "connector.class": "io.debezium.connector.mongodb.MongoDbConnector",
+      "tasks.max": "1",
+      "topic.prefix": "dbserver1",
+      "mongodb.connection.string": "mongodb://host.docker.internal:27017/?replicaSet=rs0",
+      "database.include.list": "orchestration_delivery",
+      "collection.include.list": "orchestration_delivery.events",
+      "database.history.kafka.bootstrap.servers": "kafka:9092",
+      "transforms": "outbox",
+      "transforms.outbox.type": "io.debezium.connector.mongodb.transforms.outbox.MongoEventRouter",
+      "transforms.outbox.route.topic.replacement": "${routedByValue}",
+      "transforms.outbox.collection.expand.json.payload": "true",
+      "transforms.outbox.collection.field.event.timestamp": "timestamp",
+      "transforms.outbox.collection.fields.additional.placement": "type:header:eventType,headers:header:headers,traceparent:header:traceparent",
+      "transforms.outbox.route.by.field": "type",
+      "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+      "include.schema.changes": "false",
+      "errors.tolerance": "all",
+      "errors.log.enable": "true",
+      "errors.log.include.messages": "true"
+    }
+  }
+  

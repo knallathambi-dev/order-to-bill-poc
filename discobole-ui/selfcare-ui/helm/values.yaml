@@ -1,0 +1,215 @@
+# SPDX-FileCopyrightText: 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# =============================================================================
+# APPLICATION CONFIGURATION
+# =============================================================================
+
+# -- Application replica count
+replicaCount: 1
+
+# -- Environment type (e.g., development, staging, production)
+environmentType: ""
+
+# -- Enable or disable application daily shutdown
+scheduledshutdown: disabled
+
+# =============================================================================
+# CONTAINER IMAGE
+# =============================================================================
+
+image:
+  # -- Container image repository
+  repository: "${docker_repository}"
+  # -- Image pull policy
+  pullPolicy: Always
+  # -- Overrides the image tag whose default is the chart version
+  tag: "${docker_tag}"
+
+# -- Specify pulling image secrets if your image repository requires it
+imagePullSecrets: []
+
+# -- Registry credentials for private image repositories
+registryCredentials:
+  # -- Specifies whether a secret should be created for pulling images
+  create: false
+  # -- The URL of the private registry
+  url: ""
+  # -- Access credentials for the private registry
+  token:
+    userName: ""
+    password: ""
+
+# =============================================================================
+# NAMING OVERRIDES
+# =============================================================================
+
+# -- Override default fully qualified app name and chart name
+nameOverride: ""
+
+# -- Override fully qualified app name
+fullnameOverride: ""
+
+# =============================================================================
+# SERVICE ACCOUNT
+# =============================================================================
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: false
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# =============================================================================
+# POD CONFIGURATION
+# =============================================================================
+
+# -- Annotations to add to pods
+podAnnotations: {}
+  # prometheus.io/port: '9000'
+  # prometheus.io/scrape: 'true'
+# metrics: '/actuator/prometheus'
+
+# -- Security context for pods
+podSecurityContext: {}
+  # fsGroup: 1000
+# runAsNonRoot: true
+
+# -- Security context for containers
+securityContext: {}
+  # allowPrivilegeEscalation: false
+  # readOnlyRootFilesystem: true
+  # runAsGroup: 1000
+  # runAsNonRoot: true
+  # runAsUser: 1000
+  # capabilities:
+  #   drop:
+#   - ALL
+
+# =============================================================================
+# SERVICE CONFIGURATION
+# =============================================================================
+
+service:
+  # -- Service type
+  type: ClusterIP
+  # -- Service port number
+  port: 8080
+  # -- Target port for the service
+  targetPort: 8080
+  # -- Service annotations
+  annotations: {}
+    # prometheus.io/port: '9000'
+  # prometheus.io/scrape: 'true'
+
+# =============================================================================
+# INGRESS CONFIGURATION
+# =============================================================================
+
+ingress:
+  # -- Enable ingress controller
+  enabled: false
+  # -- Ingress annotations
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/tls-acme: "true"
+  # -- Ingress host configuration
+  hosts:
+    - host: ""
+      paths: [/]
+
+# =============================================================================
+# SCHEDULING
+# =============================================================================
+
+# -- Node selector for pod assignment
+nodeSelector: {}
+
+# -- Node tolerations for pod assignment
+tolerations: []
+
+# -- Node affinity for pod assignment
+affinity: {}
+
+# =============================================================================
+# RESOURCES
+# =============================================================================
+
+resources:
+  # -- Resource requests
+  requests:
+    cpu: 60m
+    memory: 128Mi
+  # -- Resource limits
+  limits:
+    cpu: 120m
+    memory: 500Mi
+
+# =============================================================================
+# MONITORING
+# =============================================================================
+
+monitoring:
+  # -- Application monitoring label
+  application: ""
+  # -- App label
+  app: ""
+  # -- Product name (chart name by default)
+  productName: ""
+  # -- Environment being deployed
+  environment: ""
+  # -- Domain label
+  domain: ""
+  # -- Topology label
+  topology: ""
+  # -- Role label
+  role: ""
+
+# =============================================================================
+# APPLICATION SERVICES
+# =============================================================================
+
+selfcareui:
+  service:
+    # -- Keycloak URI
+    keycloak: ""
+    # -- Gateway URI
+    gateway: ""
+
+# =============================================================================
+# AUTHENTICATION - KEYCLOAK
+# =============================================================================
+
+keycloak:
+  # -- Keycloak user name
+  username: ""
+  # -- Keycloak user password
+  password: ""
+  # -- Client secret
+  clientSecret: ""
+  # -- Administrator user name
+  adminUsername: ""
+  # -- Administrator user password
+  adminPassword: ""
+  # -- Service client ID
+  serviceClientId: ""
+
+# =============================================================================
+# APPLICATION SECRETS
+# =============================================================================
+
+secrets:
+  # -- Session secret for signing cookies (generate with: openssl rand -hex 32)
+  # Required for production to persist sessions across pod restarts
+  sessionSecret: ""
+  # -- Internal secret for service-to-service communication
+  internalSecret: ""

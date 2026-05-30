@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "hostmodeui.fullname" . }}-config
+data:
+  GATEWAY_URL: {{ .Values.hostmodeui.service.gatewayUrl | quote }}
+  FEATURE_ORDER_MANAGEMENT: {{ .Values.hostmodeui.service.featureOrderManagement | quote }}
+  FEATURE_PRODUCT_INVENTORY: {{ .Values.hostmodeui.service.featureProductInventory | quote }}
+  FEATURE_ORDER_ORCHESTRATION: {{ .Values.hostmodeui.service.featureOrderOrchestration | quote }}
+  ORDER_INVENTORY_UI_URL: {{ .Values.hostmodeui.service.orderInventoryUiUrl | quote }}
+  PRODUCT_INVENTORY_UI_URL: {{ .Values.hostmodeui.service.productInventoryUiUrl | quote }}
+  ORDER_ORCHESTRATION_UI_URL: {{ .Values.hostmodeui.service.orderOrchestrationUiUrl | quote }}

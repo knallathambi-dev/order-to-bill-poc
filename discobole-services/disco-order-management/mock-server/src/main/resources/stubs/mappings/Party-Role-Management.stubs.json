@@ -1,0 +1,91 @@
+{
+  "mappings": [
+    {
+      "name": "Create party role Prospect- Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/partyRoleManagement/v5/partyRole",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.engagedParty.id",
+            "operator": "exists"
+          }
+        ]
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Party-Role-Management/CreatedPartyRole.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get party role prospect- Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/partyRoleManagement/v5/partyRole",
+        "method": "GET",
+        "queryParameters": {
+          "engagedParty.id": {
+            "equalTo": "227-mf30"
+          },
+          "fields": {
+            "equalTo": "id,partyRoleSpecification.name"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Party-Role-Management/ListPartyRolesProspect.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get party role customer - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/partyRoleManagement/v5/partyRole",
+        "method": "GET",
+        "queryParameters": {
+          "engagedParty.id": {
+            "equalTo": "231-mf20"
+          },
+          "fields": {
+            "equalTo": "id,partyRoleSpecification.name"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Party-Role-Management/ListPartyRolesCustomer.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get party role not customer and not prospect - Success",
+      "priority": 2,
+      "request": {
+        "urlPath": "/api/partyRoleManagement/v5/partyRole",
+        "method": "GET",
+        "queryParameters": {
+          "fields": {
+            "equalTo": "id,partyRoleSpecification.name"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Party-Role-Management/ListPartyRolesNotCustomer&NotProspect.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

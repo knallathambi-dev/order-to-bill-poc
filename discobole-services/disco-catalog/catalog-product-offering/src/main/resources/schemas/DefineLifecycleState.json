@@ -1,0 +1,12 @@
+{
+  "DefineLifecycleState" : {
+    "required" : [ "state" ],
+    "type" : "object",
+    "properties" : {
+      "state" : {
+        "type" : "string",
+        "enum" : [ "inStudy", "inDesign", "rejected", "inTest", "active", "launched", "unavailable", "retired", "obsolete" ]
+      }
+    }
+  }
+}

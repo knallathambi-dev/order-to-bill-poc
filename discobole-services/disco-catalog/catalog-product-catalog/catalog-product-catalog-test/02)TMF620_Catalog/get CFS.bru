@@ -1,0 +1,19 @@
+meta {
+  name: get CFS
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{host}}/serviceCatalogManagement/v1/serviceSpecification
+  body: none
+  auth: none
+}
+
+params:query {
+  ~lifecycleStatus: 
+  ~name: 
+  ~validFor.gt: 
+  ~validFor.lt: 
+  ~version: 
+}

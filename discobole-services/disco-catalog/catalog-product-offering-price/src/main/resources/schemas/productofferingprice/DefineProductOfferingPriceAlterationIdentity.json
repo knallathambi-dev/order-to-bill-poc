@@ -1,0 +1,107 @@
+{
+  "DefineProductOfferingPriceAlterationIdentity" : {
+    "type" : "object",
+    "properties" : {
+      "definePOPAlterationIdentityData" : {
+        "required" : [ "name", "priceType", "priority", "priceAlterationType" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "priceType" : {
+            "type" : "string",
+            "enum" : [ "RC", "NRC" ]
+          },
+          "prorationType" : {
+            "type" : "string",
+            "enum" : [ "subscription", "subscriptionAndTermination", "noProration", "termination" ]
+          },
+          "applicationDuration" : {
+            "required" : [ "amount", "units" ],
+            "type" : "object",
+            "properties" : {
+              "amount" : {
+                "type" : "number"
+              },
+              "units" : {
+                "type" : "string"
+              }
+            }
+          },
+          "priority" : {
+            "type" : "number"
+          },
+          "percentage" : {
+            "type" : "number"
+          },
+          "price" : {
+            "type" : "object",
+            "properties" : {
+              "unit" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "number"
+              }
+            }
+          },
+          "unitOfMeasure" : {
+            "type" : "object",
+            "properties" : {
+              "amount" : {
+                "type" : "number",
+                "default" : 1.0
+              },
+              "units" : {
+                "type" : "string"
+              }
+            }
+          },
+          "priceAlterationType" : {
+            "type" : "string",
+            "enum" : [ "Price", "Percentage" ]
+          },
+          "applicationOffset" : {
+            "type" : "number"
+          }
+        }
+      },
+      "validityMinCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validityMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validity" : {
+        "required" : [ "validFor" ],
+        "type" : "object",
+        "properties" : {
+          "lifecycleStatus" : {
+            "type" : "string",
+            "enum" : [ "launched", "unavailable", "retired", "obsolete" ]
+          },
+          "validFor" : {
+            "required" : [ "startDateTime" ],
+            "type" : "object",
+            "properties" : {
+              "endDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "startDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

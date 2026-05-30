@@ -1,0 +1,63 @@
+meta {
+  name: create valid Product Spec to an existing product with status terminated - modif -
+  type: http
+  seq: 17
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  User-Agent: insomnia/2023.5.8
+}
+
+body:json {
+  {
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "isBundle": false,
+    "@type": "Product",
+    "productCharacteristic": [
+      {
+        "id": "",
+        "name": "volume",
+        "valueType": "string",
+        "value": "1h"
+      }
+    ],
+    "productSpecification": {
+      "id": "95023bc2-151d-4bf2-bb87-1b7d6cd2e847",
+      "name": "mobile line 2",
+      "@type": "ProductSpecificationRef"
+    },
+    "productOrderItem": [
+      {
+        "productOrderId": "44424SS2",
+        "orderItemId": "09",
+        "orderItemAction": "add"
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "45hj-8888",
+        "name": "Jean",
+        "role": "Customer",
+        "@referredType": "Individual"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "hasParent",
+        "product": {
+          "id": "655b6d2e5df5280f367de750",
+          "href": "/productInventoryManagement/v1/product/655b6d2e5df5280f367de750",
+          "@type": "ProductRef"
+        }
+      }
+    ]
+  }
+}

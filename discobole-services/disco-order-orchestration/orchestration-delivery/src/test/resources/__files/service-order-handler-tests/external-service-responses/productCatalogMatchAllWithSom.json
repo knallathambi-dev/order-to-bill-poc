@@ -1,0 +1,185 @@
+{
+  "id": "5e18402d-c964-4d52-b362-22ef79c27c03",
+  "brand": "Orange",
+  "description": "Connectivity",
+  "isBundle": false,
+  "lastUpdate": "2023-05-19T09:04:24.607Z",
+  "lifecycleStatus": "launched",
+  "name": "Connectivity",
+  "productNumber": "))1",
+  "version": "1.1.0",
+  "supportEntity": "CFSSpec",
+  "productSpecCharacteristic": [
+    {
+      "id": "273f800e-cdbf-4fdf-bee4-21883d9fa5a8.1",
+      "configurable": true,
+      "description": "ICCID",
+      "extensible": false,
+      "isUnique": true,
+      "maxCardinality": 1,
+      "minCardinality": 0,
+      "name": "ICCID",
+      "regex": "10[0,9]",
+      "valueType": "string",
+      "productSpecCharRelationship": [
+        {
+          "id": "5",
+          "href": null,
+          "charSpecSeq": null,
+          "name": null,
+          "relationshipType": "call forwarding number",
+          "validFor": {
+            "endDateTime": null,
+            "startDateTime": "2017-04-12T23:20:50.520Z"
+          },
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        }],
+      "productSpecCharacteristicValue": [],
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2020-10-11T23:20:50.520Z"
+      },
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "type"
+    },
+    {
+      "id": "273f800e-cdbf-4fdf-bee4-21883d9fa5a8.1",
+      "configurable": true,
+      "description": "ICCIP",
+      "extensible": false,
+      "isUnique": true,
+      "maxCardinality": 1,
+      "minCardinality": 0,
+      "name": "ICCIP",
+      "regex": "10[0,9]",
+      "valueType": "string",
+      "productSpecCharRelationship": [
+        {
+          "id": "5",
+          "href": null,
+          "charSpecSeq": null,
+          "name": null,
+          "relationshipType": "call forwarding number",
+          "validFor": {
+            "endDateTime": null,
+            "startDateTime": "2017-04-12T23:20:50.520Z"
+          },
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        }],
+      "productSpecCharacteristicValue": [],
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2020-10-11T23:20:50.520Z"
+      },
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "type"
+    },
+    {
+      "id": "273f800e-cdbf-4fdf-bee4-21883d9fa5a8.1",
+      "configurable": true,
+      "description": "ICCIK",
+      "extensible": false,
+      "isUnique": true,
+      "maxCardinality": 1,
+      "minCardinality": 0,
+      "name": "ICCIK",
+      "regex": "10[0,9]",
+      "valueType": "string",
+      "productSpecCharRelationship": [
+        {
+          "id": "5",
+          "href": null,
+          "charSpecSeq": null,
+          "name": null,
+          "relationshipType": "call forwarding number",
+          "validFor": {
+            "endDateTime": null,
+            "startDateTime": "2017-04-12T23:20:50.520Z"
+          },
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        }],
+      "productSpecCharacteristicValue": [],
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2020-10-11T23:20:50.520Z"
+      },
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "type"
+    }
+  ],
+  "productSpecificationRelationship": [
+    {
+      "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+      "href": null,
+      "relationshipType": "reliesOn",
+      "validFor": null,
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null
+    }
+  ],
+  "relatedParty": [
+    {
+      "id": "10001",
+      "href": null,
+      "name": null,
+      "role": "marketingContact",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": "individual"
+    }
+  ],
+  "serviceSpecification": [
+    {
+      "id": "Connectivity",
+      "href": null,
+      "name": "Connectivity",
+      "version": null,
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": null
+    }
+  ],
+  "validFor": {
+    "endDateTime": null,
+    "startDateTime": "2017-10-11T23:20:50.520Z"
+  },
+  "relatedResource": [
+    {
+      "id": "1",
+      "href": null,
+      "name": "related resource",
+      "role": "abc",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": "individual"
+    }
+  ],
+  "operationSpecification": [
+    {
+      "id": "3e70a9c7-ef35-4579-bad2-20f795fa8203.1",
+      "name": "Add connectivity",
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2017-04-12T23:20:50.520Z"
+      },
+      "description": "add ",
+      "isQualificationRequested": false,
+      "@type": null,
+      "@baseType": null,
+      "@schemaLocation": null
+    }
+  ]
+}

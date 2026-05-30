@@ -1,0 +1,23 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+.order-items-table tr {
+    border-bottom-width: 2px;
+}
+
+.order-items-table tr:last-child {
+    border: 0;
+}
+
+.order-items-table th,
+.order-items-table td {
+    padding: 10px 20px;
+}

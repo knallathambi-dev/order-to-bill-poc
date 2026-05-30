@@ -1,0 +1,230 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+eventId: '{{uuid()}}'
+eventTime: "{{now(yyyy-MM-dd'T'HH:mm:SS'Z')}}"
+eventType: "ProductOrderStateChangeEvent"
+event:
+  productOrder:
+    href: "http://poi-integration:8080/api/productOrderingManagement/v1/productOrder/652424e55a0eb175fcb811de"
+    id: "652424e55a0eb175fcb811de"
+    orderDate: "2023-10-09T16:05:55.258Z"
+    state: "accepted"
+    relatedParty:
+      - id: "231-mf20"
+        name: "HOMER"
+        role: "customer"
+        '@referredType': "individual"
+    productOrderItem:
+      - id: "5"
+        quantity: 1
+        action: "add"
+        state: "accepted"
+        productOffering:
+          id: "0200ecae-4b1e-41c1-a177-750a2a266f09"
+          name: "Connectivity"
+          '@type': "AtomicProductOffering"
+        productOrderItemRelationship:
+          - id: "6"
+            relationshipType: "sells"
+          - id: "2"
+            relationshipType: "isChild"
+        '@type': "ProductOrderItem"
+      - id: "4"
+        quantity: 1
+        action: "add"
+        state: "accepted"
+        product:
+          isBundle: false
+          productSpecification:
+            id: "c458d968-3718-4754-9408-7bd81526e7b2"
+            name: "Mobile line"
+            '@type': "ProductSpecificationRef"
+          productCharacteristic:
+            - name: "MSISDN"
+              valueType: "string"
+              value: "4152797439"
+          realizingResource:
+            - id: "12x"
+              '@type': "Resource"
+        productOrderItemRelationship:
+          - id: "3"
+            relationshipType: "isSold"
+        '@type': "ProductOrderItem"
+      - id: "2"
+        quantity: 1
+        action: "add"
+        state: "accepted"
+        productOffering:
+          id: "cb07fd83-8f41-4cd2-97f5-5989f3ab2bd8"
+          name: "Mobile Package 1"
+          '@type': "BundledProductOffering"
+        productOrderItemRelationship:
+          - id: "7"
+            relationshipType: "bundles"
+          - id: "1"
+            relationshipType: "isChild"
+          - id: "3"
+            relationshipType: "bundles"
+          - id: "9"
+            relationshipType: "bundles"
+          - id: "5"
+            relationshipType: "bundles"
+        '@type': "ProductOrderItem"
+      - id: "6"
+        quantity: 1
+        action: "add"
+        state: "accepted"
+        product:
+          isBundle: false
+          productSpecification:
+            id: "5e18402d-c964-4d52-b362-22ef79c27c01"
+            name: "Connectivity"
+            '@type': "ProductSpecificationRef"
+          productCharacteristic:
+            - name: "ICCID"
+              valueType: "string"
+              value: "891004234814455936"
+          realizingResource:
+            - id: "12x"
+              '@type': "Resource"
+        productOrderItemRelationship:
+          - id: "5"
+            relationshipType: "isSold"
+        '@type': "ProductOrderItem"
+      - id: "3"
+        quantity: 1
+        action: "add"
+        state: "accepted"
+        productOffering:
+          id: "c8846e4c-ecca-40b2-b7de-9c130f4f3466"
+          name: "Mobile line"
+          '@type': "AtomicProductOffering"
+        itemTotalPrice:
+          - description: "POP_5Euro"
+            name: "POP_5Euro"
+            priceType: "NRC"
+            price:
+              taxRate: 0
+              dutyFreeAmount:
+                unit: "EUR"
+                value: 5
+              taxIncludedAmount:
+                unit: "EUR"
+                value: 5
+        productOrderItemRelationship:
+          - id: "2"
+            relationshipType: "isChild"
+          - id: "4"
+            relationshipType: "sells"
+        payment:
+          - id: "Paid200"
+            '@referredType': "Payment"
+        '@type': "ProductOrderItem"
+      - id: "1"
+        quantity: 1
+        action: "add"
+        state: "accepted"
+        productOffering:
+          id: "5fe032f0-fa01-42ec-afeb-920f74c2eae3"
+          name: "Mobile Package 1"
+          '@type': "Contract"
+        productOrderItemRelationship:
+          - id: "2"
+            relationshipType: "bundles"
+        '@type': "ProductOrderItem"
+      - id: "9"
+        quantity: 1
+        action: "add"
+        state: "accepted"
+        productOffering:
+          id: "a52ed0ff-e1a1-45de-822a-9db878b0e4fc"
+          name: "Sim Card"
+          '@type': "AtomicProductOffering"
+        productOrderItemRelationship:
+          - id: "2"
+            relationshipType: "isChild"
+          - id: "10"
+            relationshipType: "sells"
+        '@type': "ProductOrderItem"
+      - id: "10"
+        quantity: 1
+        action: "add"
+        state: "accepted"
+        product:
+          isBundle: false
+          productSpecification:
+            id: "df32402e-ceb9-4467-aafd-fec0bbff3124"
+            name: "SIM CARD"
+            '@type': "ProductSpecificationRef"
+          productCharacteristic:
+            - name: "IMSI"
+              valueType: "string"
+              value: "310478356879098"
+          realizingResource:
+            - id: "12x"
+              '@type': "Resource"
+        productOrderItemRelationship:
+          - id: "9"
+            relationshipType: "isSold"
+        '@type': "ProductOrderItem"
+      - id: "7"
+        quantity: 1
+        action: "add"
+        state: "accepted"
+        productOffering:
+          id: "8740a910-38d9-4c6d-8150-8f840c3c37ea"
+          name: "Time Bundle"
+          '@type': "AtomicProductOffering"
+        itemTotalPrice:
+          - description: "POP_5Euro"
+            name: "POP_5Euro"
+            priceType: "NRC"
+            price:
+              taxRate: 0
+              dutyFreeAmount:
+                unit: "EUR"
+                value: 5
+              taxIncludedAmount:
+                unit: "EUR"
+                value: 5
+        productOrderItemRelationship:
+          - id: "2"
+            relationshipType: "isChild"
+          - id: "8"
+            relationshipType: "sells"
+        payment:
+          - id: "paid_9846013376"
+            '@referredType': "Payment"
+          - id: "paid_6898764529"
+            '@referredType': "Payment"
+        '@type': "ProductOrderItem"
+      - id: "8"
+        quantity: 1
+        action: "add"
+        state: "accepted"
+        product:
+          isBundle: false
+          productSpecification:
+            id: "82f3bab6-63a1-4008-96a3-8d411d0c5b38"
+            name: "Time Bundle"
+            '@type': "ProductSpecificationRef"
+          productCharacteristic:
+            - name: "volume"
+              valueType: "string"
+              value: "1h"
+          realizingResource:
+            - id: "12x"
+              '@type': "Resource"
+        productOrderItemRelationship:
+          - id: "7"
+            relationshipType: "isSold"
+        '@type': "ProductOrderItem"
+    '@type': "ProductOrder"

@@ -1,0 +1,24 @@
+meta {
+  name: Get Products by product relationship root product
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/product?limit=100&offset=0&productRelationship.relationshipType=rootProduct
+  body: json
+  auth: none
+}
+
+query {
+  limit: 100
+  offset: 0
+  productRelationship.relationshipType: rootProduct
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json
+  User-Agent: insomnia/2023.5.8
+}

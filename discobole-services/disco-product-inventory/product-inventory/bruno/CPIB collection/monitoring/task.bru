@@ -1,0 +1,16 @@
+meta {
+  name: job
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/job?offset=10&limit=4
+  body: none
+  auth: inherit
+}
+
+query {
+  offset: 10
+  limit: 4
+}

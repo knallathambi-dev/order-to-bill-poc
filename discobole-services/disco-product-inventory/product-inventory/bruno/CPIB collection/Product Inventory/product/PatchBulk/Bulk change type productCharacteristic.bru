@@ -1,0 +1,30 @@
+meta {
+  name: Bulk change type productCharacteristic
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/6620fd0566ff9c3903ca5f52/productCharacteristic/0/valueType",
+          "value": "boolean"
+      }
+  ]
+}

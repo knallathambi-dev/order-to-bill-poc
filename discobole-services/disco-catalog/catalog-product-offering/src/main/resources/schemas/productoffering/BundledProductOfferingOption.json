@@ -1,0 +1,19 @@
+{
+  "BundledProductOfferingOption" : {
+    "type" : "object",
+    "properties" : {
+      "numberRelOfferLowerLimit" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "numberRelOfferDefault" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "numberRelOfferUpperLimit" : {
+        "type" : "number",
+        "default" : 1
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "36ef2685-de88-408a-85bb-1a88911abfa8",
+  "relatedProductOrder": {
+    "id": "1112iiiwwewww",
+    "contractName": "Mobile Package 1"
+  },
+  "relatedParty": [
+    {
+      "_id": "231-mf4",
+      "role": "customer",
+      "name": "A1"
+    }
+  ],
+  "state": "Held",
+  "receivedDate": "2024-07-30T08:35:49.986Z"
+  ,
+  "lastModifiedDate": "2024-07-30T08:35:50.105Z"
+  ,
+  "errorMessage": [
+    {
+      "code": "Failed to consume ProductOrderStateChangeEvent",
+      "message": "Failed to consume ProductOrderStateChangeEvent",
+      "reason": "Failed to consume ProductOrderStateChangeEvent",
+      "timeStamp": "2024-07-30T08:35:51.963Z"
+    }
+  ],
+  "previousState": "Initialized"
+}

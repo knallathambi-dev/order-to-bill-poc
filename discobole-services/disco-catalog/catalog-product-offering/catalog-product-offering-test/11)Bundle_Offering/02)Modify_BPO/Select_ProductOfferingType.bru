@@ -1,0 +1,45 @@
+meta {
+  name: Select_ProductOfferingType
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{next_task_href}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+       "name": "SelectProductOfferingType",
+       "valueType": "Object",
+       "value": {
+          "productOfferingType": "BundleProductOffering"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"   
+      }
+    ]
+  }
+}
+
+script:post-response {
+  var jsonData =  res.body;
+  
+  // Get Href to cancel
+  bru.setVar("cancel_href", jsonData._links.nextTaskstoBePerformed[0].href);
+  console.log("cancel_href = " + bru.getVar("cancel_href"));
+  
+  // Get Href for the next task 
+  bru.setVar("next_task_href", jsonData._links.nextTaskstoBePerformed[1].href);
+  console.log("next_task_href = " + bru.getVar("next_task_href"));
+  
+}
+
+docs {
+  Continue (with a PATCH) the process flow to modify a productOffering entity. This step is selecting a ProductOfferingType.
+}

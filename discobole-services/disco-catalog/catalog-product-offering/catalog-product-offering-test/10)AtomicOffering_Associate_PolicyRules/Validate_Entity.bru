@@ -1,0 +1,54 @@
+meta {
+  name: Validate_Entity
+  type: http
+  seq: 6
+}
+
+patch {
+  url: {{next_task_href}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "ValidateEntityOperation",
+        "valueType": "Object",
+        "value": {
+          "isValidated": true
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+script:pre-request {
+  
+  
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  test("Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+  test("Check there is no more nextTaskstoBePerformed for the ProductSpecification modification", function () {
+    expect(jsonData._links.nextTaskstoBePerformed.length).to.equals(0);
+  });
+  
+  test("Check there is no more existingTaskEditable for the ProductSpectification modification", function(){
+      expect(jsonData._links.existingTaskEditable.length).to.eql(0);  
+  });
+}
+
+docs {
+  Validate (with a PATCH) the process flow for the modification of the productSpecification entity. 
+  
+}

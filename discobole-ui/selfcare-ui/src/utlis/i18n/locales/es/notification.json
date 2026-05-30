@@ -1,0 +1,59 @@
+{
+  "auth": {
+    "loginFailed": "Email o contraseña incorrectos. Por favor, inténtelo de nuevo.",
+    "registrationFailed": "No se pudo crear la cuenta. Verifique su información e inténtelo de nuevo.",
+    "sessionExpired": "Su sesión ha expirado. Por favor, inicie sesión de nuevo."
+  },
+  "common": {
+    "fetchConfigurationFailed": "Lo sentimos, no pudimos cargar su configuración. Vuelva a intentarlo.",
+    "fetchOrderFailed": "Lo sentimos, no pudimos cargar su pedido. Vuelva a intentarlo.",
+    "processFlowCreateFailed": "Lo sentimos, no pudimos iniciar su pedido. Vuelva a intentarlo."
+  },
+  "completeOrder": {
+    "completeFailed": "Lo sentimos, no pudimos completar su pedido. Vuelva a intentarlo."
+  },
+  "eligiblePlans": {
+    "fetchEligiblePlansFailed": "Lo sentimos, no pudimos cargar los planes disponibles. Vuelva a intentarlo.",
+    "loadPlanDetailsFailed": "Lo sentimos, no pudimos cargar los detalles del plan. Vuelva a intentarlo.",
+    "proceedChangeFailed": "Lo sentimos, no pudimos continuar con el cambio de plan. Vuelva a intentarlo."
+  },
+  "eligibility": {
+    "updateAddressFailed": "Lo sentimos, no pudimos actualizar su dirección. Vuelva a intentarlo."
+  },
+  "home": {
+    "devices": {
+      "configureFailed": "Lo sentimos, no pudimos configurar este dispositivo. Vuelva a intentarlo.",
+      "loadFailed": "Lo sentimos, no pudimos cargar sus dispositivos. Vuelva a intentarlo."
+    },
+    "offers": {
+      "configureFailed": "Lo sentimos, no pudimos configurar esta oferta. Vuelva a intentarlo.",
+      "loadFailed": "Lo sentimos, no pudimos cargar sus ofertas. Vuelva a intentarlo."
+    }
+  },
+  "myOrders": {
+    "fetchOrderDetailsPartialFailed": "Algunos detalles del pedido no se cargaron. Vuelva a intentarlo.",
+    "fetchOrdersFailed": "Lo sentimos, no pudimos cargar sus pedidos. Vuelva a intentarlo."
+  },
+  "myPlans": {
+    "fetchPlanDetailsFailed": "Algunos detalles del plan no se cargaron. Vuelva a intentarlo.",
+    "fetchPlansFailed": "Lo sentimos, no pudimos cargar sus planes. Vuelva a intentarlo.",
+    "modifyContractFailed": "Lo sentimos, no pudimos preparar su cambio de plan. Vuelva a intentarlo."
+  },
+  "orderSummary": {
+    "cancelOrderFailed": "Lo sentimos, no pudimos cancelar su pedido. Vuelva a intentarlo.",
+    "validateOrderFailed": "Lo sentimos, no pudimos confirmar su pedido. Vuelva a intentarlo."
+  },
+  "plan": {
+    "processFailed": "Lo sentimos, no pudimos procesar su plan. Vuelva a intentarlo.",
+    "terminateFailed": "Lo sentimos, no pudimos finalizar su plan. Vuelva a intentarlo.",
+    "updateCharacteristicFailed": "Lo sentimos, no pudimos actualizar su selección. Vuelva a intentarlo.",
+    "updateCommitmentFailed": "Lo sentimos, no pudimos actualizar el plazo de compromiso. Vuelva a intentarlo."
+  },
+  "shipping": {
+    "createFailed": "Lo sentimos, no pudimos guardar sus datos de envío. Vuelva a intentarlo.",
+    "updateShippingMethodFailed": "Lo sentimos, no pudimos aplicar su opción de entrega. Vuelva a intentarlo."
+  },
+  "trackOrder": {
+    "fetchFailed": "Lo sentimos, no pudimos cargar el estado de su pedido. Vuelva a intentarlo."
+  }
+}

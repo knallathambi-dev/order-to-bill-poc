@@ -1,0 +1,15 @@
+meta {
+  name: get job by name
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/job?sort=-endDate
+  body: none
+  auth: inherit
+}
+
+query {
+  sort: -endDate
+}

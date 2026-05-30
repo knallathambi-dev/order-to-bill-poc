@@ -1,0 +1,109 @@
+{
+  "mappings": [
+    {
+      "name": "Get all products offering - Success",
+      "priority": 1,
+      "request": {
+        "url": "/productCatalogManagement/v1/productOffering",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/AllProducts.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product catalog 1 - Success",
+      "priority": 2,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productOffering/5fe032f0-fa01-42ec-afeb-920f74c2eae3",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/ContractProductCatalog.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get atomic handset - Success",
+      "priority": 2,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productOffering/24b34407-3c7d-4228-ba45-feff73ec4f05",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/AtomicAccessory.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get bundle handset - Success",
+      "priority": 2,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productOffering/7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/BundleAccessory.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get unqualified contract product offering from catalog 2 - Success",
+      "priority": 2,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productOffering/1244",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/UnqualifiedContractProductOfferingCatalog.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad request",
+      "priority": 3,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productOffering/(?!12).*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/AtomicProductOfferingProductCatalog.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad url - Not Found",
+      "priority": 4,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productOfferingS.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 404,
+        "bodyFileName": "NotFound.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

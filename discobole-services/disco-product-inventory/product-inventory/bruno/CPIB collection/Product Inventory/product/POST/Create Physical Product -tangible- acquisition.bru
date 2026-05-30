@@ -1,0 +1,176 @@
+meta {
+  name: Create Physical Product -tangible- acquisition
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: inherit
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "isBundle": "true",
+      "status": "Created",
+      "operationalStatus": "Confirmed",
+      "relatedParty": [
+           {
+      "role": "Seller",
+      "partyOrPartyRole": {
+        "id": "456-dd-df45",
+        "href": "https://host:port/partyManagement/v5/individual/456-dd-df45",
+        "name": "Joe Doe",
+        "@type": "PartyRef",
+        "@referredType": "Individual"
+      },
+      "@type": "RelatedPartyRefOrPartyRoleRef"
+    }
+      ],
+      "productOffering": {
+          "id": "dbbc92f9-faf2-4886-8749-0f07abfc1971",
+          "name": "Mobile Package Max Plus",
+          "@type": "Contract"
+      },
+      "productOrderItem": [
+          {
+              "productOrderId": "{{productOrderID}}",
+              "orderItemId": "01",
+              "orderItemAction": "add"
+          }
+      ],
+      "productRelationship": [
+          {
+              "relationshipType": "bundles",
+              "product": {
+                  "status": "Created",
+                  "operationalStatus": "Confirmed",
+                  "relatedParty": [
+                      {
+                          "id": "45hj-8888",
+                          "name": "Jean",
+                          "role": "Customer",
+                          "@referredType": "Individual"
+                      }
+                  ],
+                  "productOffering": {
+                      "id": "7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+                      "name": "Mobile Package Max Plus",
+                      "@type": "BundleProductOffering"
+                  },
+                  "productOrderItem": [
+                      {
+                          "productOrderId": "{{productOrderID}}",
+                          "orderItemId": "02",
+                          "orderItemAction": "add"
+                      }
+                  ],
+                  "productRelationship": [
+                      {
+                          "relationshipType": "bundles",
+                          "product": {
+                              "status": "Created",
+                              "operationalStatus": "Confirmed",
+                              "relatedParty": [
+                                  {
+                                      "id": "45hj-8888",
+                                      "name": "Jean",
+                                      "role": "Customer",
+                                      "@referredType": "Individual"
+                                  }
+                              ],
+                              "productPrice": [
+                                  {
+                                      "description": "NRC 100 Euro",
+                                      "name": "NRC 100 Euro",
+                                      "priceType": "NRC",
+                                      "price": {
+                                          "taxRate": 0,
+                                          "dutyFreeAmount": {
+                                              "unit": "EUR",
+                                              "value": 100
+                                          },
+                                          "taxIncludedAmount": {
+                                              "unit": "EUR",
+                                              "value": 100
+                                          }
+                                      }
+                                  }
+                              ],
+                              "productOffering": {
+                                  "id": "24b34407-3c7d-4228-ba45-feff73ec4f05",
+                                  "name": "Samsung galaxy S10 reconditioned",
+                                  "@type": "AtomicProductOffering"
+                              },
+                              "productOrderItem": [
+                                  {
+                                      "productOrderId": "{{productOrderID}}",
+                                      "orderItemId": "03",
+                                      "orderItemAction": "add"
+                                  }
+                              ],
+                              "productRelationship": [
+                                  {
+                                      "relationshipType": "sells",
+                                      "product": {
+                                          "status": "Created",
+                                          "operationalStatus": "Confirmed",
+                                          "relatedParty": [
+                                              {
+                                                  "id": "45hj-8888",
+                                                  "name": "Jean",
+                                                  "role": "Customer",
+                                                  "@referredType": "Individual"
+                                              }
+                                          ],
+                                          "isBundle": false,
+                                          "@type": "PhysicalProduct",
+                                          "productSpecification": {
+                                              "id": "cf81ad88-b800-4e88-a332-1841ec677f10",
+                                              "name": "Samsung galaxy S10 reconditioned",
+                                              "@type": "ProductSpecificationRef"
+                                          },
+                                          "productSerialNumber": "1234",
+                                          "realizingResource": [
+                                              {
+                                                  "id": "66x",
+                                                  "name": "nYWcbumCEy",
+                                                  "@type": "FwsGkIFIvK",
+                                                  "@referredType": "hcUIThziXt"
+                                              }
+                                          ],
+                                          "productOrderItem": [
+                                              {
+                                                  "productOrderId": "{{productOrderID}}",
+                                                  "orderItemId": "07",
+                                                  "orderItemAction": "add"
+                                              }
+                                          ]
+                                      }
+                                  }
+                              ],
+                              "@type": "PhysicalProduct"
+                          }
+                      }
+                  ],
+                  "@type": "Product"
+              }
+          }
+      ],
+      "@type": "Product"
+  }
+}
+
+script:pre-request {
+  bru.setEnvVar("productOrderID", Math.floor((Math.random()*10000 +1)));
+}

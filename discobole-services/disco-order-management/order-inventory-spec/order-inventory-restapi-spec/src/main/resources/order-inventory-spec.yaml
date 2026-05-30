@@ -1,0 +1,3455 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+openapi: 3.0.0
+info:
+  title: ProductOrderingManagement
+  version: 2.9.4_release
+  description: The Product Ordering API TMF622 is a standarized interface that standardizes
+    the retrieval of information from order inventory. It enables consistent interaction
+    between consumers fetching the order inventory or details and  the  inventory
+    storing order information such as order date, order price, order item, ordered
+    offer ...
+tags:
+  - name: ProductOrder
+  - name: Status
+  - name: Version
+  - name: Doc
+servers:
+  - url: https://serverRoot
+components:
+  schemas:
+    AddressCharacteristic:
+      description: An object that stores the address details provided by the customer
+        for a service. It helps keep track of the address information related to each
+        product or service.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            addressId:
+              type: string
+              description: A unique identifier for the specific address. This helps
+                in referencing and managing addresses within the system.
+            city:
+              type: string
+              description: The name of the city where the address is located.
+            country:
+              type: string
+              description: The name of the country for the address.
+            subUnitNumber:
+              type: string
+              description: The specific unit or suite number within a larger building
+                or complex, such as an apartment, office or retail unit.
+            streetName:
+              type: string
+              description: The name of the street where the address is located.
+            postcode:
+              type: string
+              description: The postal code or ZIP code used to identify a specific geographic
+                area for mail delivery.
+    AppointmentRef:
+      description: Refers an appointment, such as a customer presentation or internal
+        meeting or site visit.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the referred appointment.
+        href:
+          type: string
+          description: The reference of the appointment.
+        description:
+          type: string
+          description: An explanatory text regarding the appointment made with a party.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+      required:
+        - id
+        - '@type'
+    BillingAccountRef:
+      description: BillingAccount reference. A BillingAccount is a detailed description
+        of a bill structure.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the referred entity.
+        href:
+          type: string
+          description: The URI of the referred entity.
+        name:
+          type: string
+          description: Name of the referred entity.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+        ratingType:
+          type: string
+          description: Indicates whether the account follows a specific payment option
+            such as prepaid or postpaid.
+      required:
+        - id
+        - '@type'
+    BooleanArrayCharacteristic:
+      description: Represents a characteristic containing multiple true/false values
+        in an ordered collection, used to describe sets of binary conditions or feature
+        toggles.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: boolean
+              description: Value of the characteristic.
+    BooleanCharacteristic:
+      description: Represents a characteristic with a true/false value, used to describe
+        binary states or conditions of an object or entity.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: boolean
+              description: Value of the characteristic.
+    ChannelRef:
+      description: The channel to which the resource reference to. e.g. channel for
+        selling product offerings, channel for opening a trouble ticket etc..
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        href:
+          type: string
+          description: The URI of the referred entity.
+        id:
+          type: string
+          description: The identifier of the referred entity.
+        name:
+          type: string
+          description: Name of the referred entity.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+      required:
+        - '@type'
+        - id
+    Characteristic:
+      description: Describes a given characteristic of an object or entity through
+        a name/value pair.
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        id:
+          type: string
+          description: Unique identifier of the characteristic.
+        name:
+          type: string
+          description: Name of the characteristic.
+        valueType:
+          type: string
+          description: Data type of the value of the characteristic.
+      required:
+        - '@type'
+      discriminator:
+        propertyName: '@type'
+        mapping:
+          BooleanCharacteristic: '#/components/schemas/BooleanCharacteristic'
+          IntegerCharacteristic: '#/components/schemas/IntegerCharacteristic'
+          StringCharacteristic: '#/components/schemas/StringCharacteristic'
+          FloatCharacteristic: '#/components/schemas/FloatCharacteristic'
+          ObjectCharacteristic: '#/components/schemas/ObjectCharacteristic'
+          IntegerArrayCharacteristic: '#/components/schemas/IntegerArrayCharacteristic'
+          StringArrayCharacteristic: '#/components/schemas/StringArrayCharacteristic'
+          FloatArrayCharacteristic: '#/components/schemas/FloatArrayCharacteristic'
+          ObjectArrayCharacteristic: '#/components/schemas/ObjectArrayCharacteristic'
+          BooleanArrayCharacteristic: '#/components/schemas/BooleanArrayCharacteristic'
+          ValidityCharacteristic: '#/components/schemas/ValidityCharacteristic'
+          AddressCharacteristic: '#/components/schemas/AddressCharacteristic'
+          DateCharacteristic: '#/components/schemas/DateCharacteristic'
+    Component:
+      description: Represents the status and metadata of a service dependency, including
+        its name, version, and operational state (e.g., "ok" or "ko").
+      type: object
+      properties:
+        name:
+          type: string
+          description: Your service internal name.
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        version:
+          type: string
+          description: Your component version (major dot minor dot patch numbers).
+      required:
+        - name
+        - status
+        - version
+    Duration:
+      description: A time interval in a given unit of time.
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int32
+          description: Time interval (number of seconds, minutes, hours, etc...)
+        units:
+          type: string
+          description: Unit of time (seconds, minutes, hours, etc...)
+    Error:
+      description: Represents an Error.
+      type: object
+      properties:
+        code:
+          type: string
+          description: Application relevant detail, defined in the API or a common
+            list.
+        message:
+          type: string
+          description: More details and corrective actions related to the error which
+            can be shown to a client user.
+        reason:
+          type: string
+          description: Explanation of the reason for the error which can be shown
+            to a client user.
+        referenceError:
+          type: string
+          format: uri
+          description: URI of documentation describing the error.
+        status:
+          type: string
+          description: HTTP Error code extension.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+      required:
+        - code
+        - reason
+    FloatArrayCharacteristic:
+      description: Represents a characteristic containing multiple decimal numeric
+        values in an ordered collection, used to describe series of measurements,
+        coordinates, or sets of fractional data.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: number
+                format: float
+              description: Value of the characteristic.
+    FloatCharacteristic:
+      description: Represents a characteristic with a decimal numeric value, used
+        to describe measurements, rates, or quantities requiring fractional precision.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: number
+              format: float
+              description: Value of the characteristic.
+    IntegerArrayCharacteristic:
+      description: Represents a characteristic containing multiple whole number values
+        in an ordered collection, used to describe sets of countable quantities or
+        sequences of discrete values.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: integer
+                format: int32
+              description: Value of the characteristic.
+    IntegerCharacteristic:
+      description: Represents a characteristic with a whole number value, used to
+        describe countable quantities, discrete measurements, or numeric identifiers.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: integer
+              format: int32
+              description: Value of the characteristic.
+    Money:
+      description: A base / value business entity used to represent money.
+      type: object
+      properties:
+        unit:
+          type: string
+          description: Currency (ISO4217 norm uses 3 letters to define the currency)
+        value:
+          type: number
+          format: float
+          description: A signed floating point number, the meaning of the sign is
+            according to the context of the API that uses this Data type.
+    ObjectArrayCharacteristic:
+      description: Represents a characteristic containing multiple complex structured
+        values in an ordered collection, used to describe repeating composite attributes
+        with consistent internal structure.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: object
+              description: Value of the characteristic.
+    ObjectCharacteristic:
+      description: Represents a characteristic with a complex structured value containing
+        nested properties, used to describe composite attributes that require multiple
+        interrelated fields.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: object
+              description: Value of the characteristic.
+    OrderItemRelationship:
+      description: Used to describe relationship between Order item. These relationship
+        could have an impact on pricing and conditions.
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the related Order item (must be in the same Order).
+        relationshipType:
+          $ref: '#/components/schemas/RelationshipType'
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+      required:
+        - '@type'
+    OrderPrice:
+      description: An amount, usually of money, that represents the actual price paid
+        by the customer for this item or this order.
+      type: object
+      properties:
+        description:
+          type: string
+          description: A narrative that explains in detail the semantics of this order
+            item price.
+        name:
+          type: string
+          description: A short descriptive name such as "Subscription price".
+        priceType:
+          type: string
+          description: Indicate if the price is for recurrent or no-recurrent charge.
+        recurringChargePeriod:
+          $ref: '#/components/schemas/Quantity'
+        unitOfMeasure:
+          type: string
+          description: Could be minutes, GB...
+        billingAccount:
+          $ref: '#/components/schemas/BillingAccountRef'
+        price:
+          $ref: '#/components/schemas/Price'
+        productOfferingPrice:
+          $ref: '#/components/schemas/ProductOfferingPriceRefOrValue'
+        priceAlteration:
+          type: array
+          items:
+            $ref: '#/components/schemas/PriceAlteration'
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        applicationDuration:
+          $ref: '#/components/schemas/Quantity'
+      required:
+        - '@type'
+    OrderTerm:
+      description: Description of a productTerm linked to this orderItem. This represent
+        a commitment with a duration.
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the productOrderTerm.
+        name:
+          type: string
+          description: Name of the productOrderTerm.
+        duration:
+          $ref: '#/components/schemas/Duration'
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+      required:
+        - '@type'
+    PartyRef:
+      description: A Party reference.
+      allOf:
+        - $ref: '#/components/schemas/PartyRefOrPartyRoleRef'
+        - type: object
+          properties:
+            '@baseType':
+              type: string
+              description: When sub-classing, this defines the super-class.
+            '@schemaLocation':
+              type: string
+              format: uri
+              description: A URI to a JSON-Schema file that defines additional attributes
+                and relationships.
+            href:
+              type: string
+              description: The URI of the referred entity.
+            id:
+              type: string
+              description: The identifier of the referred entity.
+            name:
+              type: string
+              description: Name of the referred entity.
+            '@referredType':
+              type: string
+              description: The actual type of the target instance when needed for disambiguation.
+          required:
+            - id
+    PartyRefOrPartyRoleRef:
+      description: A reference to either a Party or a PartyRole.
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+      required:
+        - '@type'
+      discriminator:
+        propertyName: '@type'
+        mapping:
+          PartyRef: '#/components/schemas/PartyRef'
+          PartyRoleRef: '#/components/schemas/PartyRoleRef'
+    PartyRoleRef:
+      description: Party role reference. A party role represents the part played by
+        a party in a given context.
+      allOf:
+        - $ref: '#/components/schemas/PartyRefOrPartyRoleRef'
+        - type: object
+          properties:
+            partyId:
+              type: string
+              description: The identifier of the engaged party that is linked to the
+                PartyRole object.
+            partyName:
+              type: string
+              description: The name of the engaged party that is linked to the PartyRole
+                object.
+            '@baseType':
+              type: string
+              description: When sub-classing, this defines the super-class.
+            '@schemaLocation':
+              type: string
+              format: uri
+              description: A URI to a JSON-Schema file that defines additional attributes
+                and relationships.
+            href:
+              type: string
+              description: The URI of the referred entity.
+            id:
+              type: string
+              description: The identifier of the referred entity.
+            name:
+              type: string
+              description: Name of the referred entity.
+            '@referredType':
+              type: string
+              description: The actual type of the target instance when needed for disambiguation.
+          required:
+            - id
+    PaymentRef:
+      description: If an immediate payment has been done at the product order submission,
+        the payment information are captured and stored (as a reference) in the order.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the referred entity.
+        href:
+          type: string
+          description: The URI of the referred entity.
+        name:
+          type: string
+          description: Name of the referred entity.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+      required:
+        - id
+        - '@type'
+    Price:
+      description: Provides all amounts (tax included, duty free, tax rate), used
+        currency and percentage to apply for Price and Price Alteration.
+      type: object
+      properties:
+        percentage:
+          type: number
+          format: float
+          description: Percentage to apply for ProdOfferPriceAlteration.
+        taxRate:
+          type: number
+          format: float
+          description: Tax rate.
+        dutyFreeAmount:
+          $ref: '#/components/schemas/Money'
+        taxIncludedAmount:
+          $ref: '#/components/schemas/Money'
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+      required:
+        - '@type'
+    PriceAlteration:
+      description: A structure used to describe a price alteration.
+      type: object
+      properties:
+        description:
+          type: string
+          description: A narrative that explains in detail the semantics of this order
+            item price alteration.
+        name:
+          type: string
+          description: Name of the order item price alteration.
+        priceType:
+          type: string
+          description: A category that describes the price such as recurring, one
+            time and usage.
+        priority:
+          type: integer
+          format: int32
+          description: Priority level for applying this alteration among all the defined
+            alterations on the order item price.
+        applicationDuration:
+          $ref: '#/components/schemas/Quantity'
+        applicationOffset:
+          type: integer
+        recurringChargePeriod:
+          $ref: '#/components/schemas/Quantity'
+        unitOfMeasure:
+          type: string
+          description: Could be minutes, GB...
+        price:
+          $ref: '#/components/schemas/Price'
+        productOfferingPrice:
+          $ref: '#/components/schemas/ProductOfferingPriceRefOrValue'
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+      required:
+        - '@type'
+    Product:
+      description: A product offering procured by a customer or other interested party
+        playing a party role. A product is realized as one or more service(s) and
+        / or resource(s).
+      allOf:
+        - $ref: '#/components/schemas/ProductRefOrValue'
+        - type: object
+          properties:
+            id:
+              type: string
+              description: unique identifier.
+            '@baseType':
+              type: string
+              description: When sub-classing, this defines the super-class.
+            href:
+              type: string
+              description: Hyperlink reference.
+            description:
+              type: string
+              description: Is the description of the product. It could be copied from
+                the description of the Product Offering.
+            isBundle:
+              type: boolean
+              description: If true, the product is a ProductBundle which is an instantiation
+                of a BundledProductOffering. If false, the product is a ProductComponent
+                which is an instantiation of a SimpleProductOffering.
+            isCustomerVisible:
+              type: boolean
+              description: If true, the product is visible by the customer.
+            name:
+              type: string
+              description: Name of the product. It could be the same as the name of
+                the product offering.
+            orderDate:
+              type: string
+              format: date-time
+              description: Is the date when the product was ordered.
+            productSerialNumber:
+              type: string
+              description: Is the serial number for the product. This is typically applicable
+                to tangible products e.g. Broadband Router.
+            startDate:
+              type: string
+              format: date-time
+              description: Is the date from which the product starts.
+            terminationDate:
+              type: string
+              format: date-time
+              description: Is the date when the product was terminated.
+            product:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductRefOrValue'
+            productCharacteristic:
+              type: array
+              items:
+                $ref: '#/components/schemas/Characteristic'
+            productOffering:
+              $ref: '#/components/schemas/ProductOfferingRef'
+            productRelationship:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductRelationship'
+            productSpecification:
+              $ref: '#/components/schemas/ProductSpecificationRef'
+            productTerm:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductTerm'
+            realizingResource:
+              type: array
+              items:
+                $ref: '#/components/schemas/ResourceRef'
+            realizingService:
+              type: array
+              items:
+                $ref: '#/components/schemas/ServiceRef'
+            status:
+              $ref: '#/components/schemas/ProductStatusType'
+            '@schemaLocation':
+              type: string
+              format: uri
+              description: A URI to a JSON-Schema file that defines additional attributes
+                and relationships.
+            billingAccount:
+              $ref: '#/components/schemas/BillingAccountRef'
+            creationDate:
+              type: string
+              format: date-time
+              description: Date and time when the product was created.
+    ProductOfferingPriceRefOrValue:
+      description: ProductPriceOffering reference. An amount, usually of money, that
+        is asked for or allowed when a ProductOffering is bought, rented or leased.
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+      required:
+        - '@type'
+      discriminator:
+        propertyName: '@type'
+        mapping:
+          InstallmentCharge: '#/components/schemas/InstallmentCharge'
+          ProductOfferingPriceCharge: '#/components/schemas/ProductOfferingPriceCharge'
+          ProductOfferingPriceRef: '#/components/schemas/ProductOfferingPriceRef'
+    ProductOfferingPriceRef:
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: string
+            href:
+              type: string
+            name:
+              type: string
+            '@baseType':
+              type: string
+            '@schemaLocation':
+              type: string
+              format: uri
+              description: A URI to a JSON-Schema file that defines additional attributes
+                and relationships.
+            '@referredType':
+              type: string
+          required:
+            - id
+        - $ref: '#/components/schemas/ProductOfferingPriceRefOrValue'
+    InstallmentCharge:
+      description: A reference to a Product Offering Price entity.
+      allOf:
+        - $ref: '#/components/schemas/ProductOfferingPriceRefOrValue'
+        - type: object
+          properties:
+            interestRate:
+              type: number
+              format: float
+            downPayment:
+              type: number
+              format: float
+            partner:
+              type: string
+            externalId:
+              type: string
+            id:
+              type: string
+              description: The identifier of the referred entity.
+            href:
+              type: string
+              description: The URI of the referred entity.
+            name:
+              type: string
+              description: Name of the referred entity.
+            '@baseType':
+              type: string
+              description: When sub-classing, this defines the super-class.
+            '@schemaLocation':
+              type: string
+              format: uri
+              description: A URI to a JSON-Schema file that defines additional attributes
+                and relationships.
+            '@referredType':
+              type: string
+              description: The actual type of the target instance when needed for disambiguation.
+            immediatePayment:
+              type: boolean
+              description: Used to specify whether a payment should be processed instantly
+                ("true") or if it allows for a delay ("false")
+            version:
+              type: string
+              description: ProductOfferingPrice version.
+            price:
+              $ref: '#/components/schemas/Money'
+            recurringChargePeriodLength:
+              type: integer
+              format: int32
+              description: "The period of the recurring charge: 1, 2, \u2026 .It sets\
+                \ to zero if it is not applicable."
+            recurringChargePeriodType:
+              type: string
+              description: "The period to repeat the application of the price. Could be\
+                \ month, week\u2026"
+            applicationDuration:
+              $ref: '#/components/schemas/Quantity'
+            isBundle:
+              type: boolean
+              description: A flag indicating if this ProductOfferingPrice is composite
+                (bundle) or not.
+            lastUpdate:
+              type: string
+              format: date-time
+              description: The last update time of this ProductOfferingPrice.
+            '@type':
+              type: string
+              description: When sub-classing, this defines the sub-class Extensible name.
+            lifecycleStatus:
+              $ref: '#/components/schemas/ProductOfferingPriceLifecycle'
+            percentage:
+              type: number
+              format: float
+              description: Percentage to apply if this Product Offering Price is an Alteration
+                (such as a Discount).
+            duration:
+              type: integer
+              format: int32
+              description: A time interval in a given unit of time.
+            priority:
+              type: integer
+              format: int32
+              description: Priority level for applying this alteration among all the defined
+                alterations on the order item price.
+            priceType:
+              $ref: '#/components/schemas/PriceType'
+            unitOfMeasure:
+              $ref: '#/components/schemas/Quantity'
+            validFor:
+              $ref: '#/components/schemas/TimePeriod'
+            description:
+              type: string
+              description: Description of the productOfferingPrice.
+            popRelationship:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductOfferingPriceRelationship'
+            tax:
+              type: array
+              items:
+                $ref: '#/components/schemas/TaxItem'
+          required:
+            - 'id'
+    ProductOfferingPriceCharge:
+      description: A reference to a Product Offering Price entity.
+      allOf:
+        - $ref: '#/components/schemas/ProductOfferingPriceRefOrValue'
+        - type: object
+          properties:
+            id:
+              type: string
+              description: The identifier of the referred entity.
+            href:
+              type: string
+              description: The URI of the referred entity.
+            name:
+              type: string
+              description: Name of the referred entity.
+            '@baseType':
+              type: string
+              description: When sub-classing, this defines the super-class.
+            '@schemaLocation':
+              type: string
+              format: uri
+              description: A URI to a JSON-Schema file that defines additional attributes
+                and relationships.
+            '@referredType':
+              type: string
+              description: The actual type of the target instance when needed for disambiguation.
+            immediatePayment:
+              type: boolean
+              description: Used to specify whether a payment should be processed instantly
+                ("true") or if it allows for a delay ("false")
+            version:
+              type: string
+              description: ProductOfferingPrice version.
+            price:
+              $ref: '#/components/schemas/Money'
+            recurringChargePeriodLength:
+              type: integer
+              format: int32
+              description: "The period of the recurring charge: 1, 2, \u2026 .It sets\
+                \ to zero if it is not applicable."
+            recurringChargePeriodType:
+              type: string
+              description: "The period to repeat the application of the price. Could be\
+                \ month, week\u2026"
+            applicationDuration:
+              $ref: '#/components/schemas/Quantity'
+            isBundle:
+              type: boolean
+              description: A flag indicating if this ProductOfferingPrice is composite
+                (bundle) or not.
+            lastUpdate:
+              type: string
+              format: date-time
+              description: The last update time of this ProductOfferingPrice.
+            '@type':
+              type: string
+              description: When sub-classing, this defines the sub-class Extensible name.
+            lifecycleStatus:
+              $ref: '#/components/schemas/ProductOfferingPriceLifecycle'
+            percentage:
+              type: number
+              format: float
+              description: Percentage to apply if this Product Offering Price is an Alteration
+                (such as a Discount).
+            duration:
+              type: integer
+              format: int32
+              description: A time interval in a given unit of time.
+            priority:
+              type: integer
+              format: int32
+              description: Priority level for applying this alteration among all the defined
+                alterations on the order item price.
+            priceType:
+              $ref: '#/components/schemas/PriceType'
+            unitOfMeasure:
+              $ref: '#/components/schemas/Quantity'
+            validFor:
+              $ref: '#/components/schemas/TimePeriod'
+            description:
+              type: string
+              description: Description of the productOfferingPrice.
+            popRelationship:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductOfferingPriceRelationship'
+            tax:
+              type: array
+              items:
+                $ref: '#/components/schemas/TaxItem'
+          required:
+            - 'id'
+    ProductOfferingPriceRelationship:
+      description: Product Offering Prices related to this Product Offering Price,
+        for example a price alteration such as allowance or discount.
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier.
+        href:
+          type: string
+          description: Hyperlink reference.
+        name:
+          type: string
+          description: Name of the referred entity.
+        version:
+          type: string
+          description: Version of the referred product offering price.
+        relationshipType:
+          $ref: '#/components/schemas/POPRelationshipType'
+        validFor:
+          $ref: '#/components/schemas/TimePeriod'
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+      required:
+        - id
+        - '@type'
+    ProductOfferingRef:
+      description: ProductOffering reference. A product offering represents entities
+        that are orderable from the provider of the catalog, this resource includes
+        pricing information.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the referred entity.
+        href:
+          type: string
+          description: The URI of the referred entity.
+        name:
+          type: string
+          description: Name of the referred entity.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+        version:
+          type: string
+          description: Version of the product offering.
+      required:
+        - id
+        - '@type'
+    ProductOrder:
+      description: A Product Order is a type of order which can be used to place an
+        order between a customer and a service provider or between a service provider
+        and a partner and vice versa.
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier.
+        href:
+          type: string
+          description: Hyperlink reference.
+        cancellationDate:
+          type: string
+          format: date-time
+          description: Date when the order is cancelled. This is used when order is
+            cancelled.
+        cancellationReason:
+          type: string
+          description: Reason why the order is cancelled. This is used when order
+            is cancelled.
+        category:
+          type: string
+          description: Used to categorize the order from a business perspective that
+            can be useful for the OM system (e.g. "enterprise", "residential", ...)
+        completionDate:
+          type: string
+          format: date-time
+          description: Date when the ProductOrder was completed.
+        description:
+          type: string
+          description: Description of the product order.
+        expectedCompletionDate:
+          type: string
+          format: date-time
+          description: Expected delivery date amended by the provider.
+        notificationContact:
+          type: string
+          description: Contact attached to the order to send back information regarding
+            this order.
+        priority:
+          type: string
+          description: 'A way that can be used by consumers to prioritize orders in
+            OM system (from 0 to 4 : 0 is the highest priority, and 4 the lowest)'
+        requestedCompletionDate:
+          type: string
+          format: date-time
+          description: Requested delivery date from the requestor perspective
+        requestedStartDate:
+          type: string
+          format: date-time
+          description: 'Order fulfillment start date wished by the requestor. This
+            is used when, for any reason, requestor cannot allow seller to begin to
+            operationally begin the fulfillment before a date. '
+        billingAccount:
+          $ref: '#/components/schemas/BillingAccountRef'
+        channel:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedChannel'
+        orderTotalPrice:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderPrice'
+        payment:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRef'
+        productOrderItem:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductOrderItem'
+          minItems: 1
+        relatedParty:
+          type: array
+          items:
+            $ref: '#/components/schemas/RelatedPartyRefOrPartyRoleRef'
+        state:
+          $ref: '#/components/schemas/ProductOrderStateType'
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        creationDate:
+          type: string
+          format: date-time
+          description: Date and time when the ProductOrder was created.
+      required:
+        - '@type'
+    ProductOrderItem:
+      description: An identified part of the order. A product order is decomposed
+        into one or more order items.
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifier of the ProductOrder item (generally it is a sequence
+            number 01, 02, 03, ...)
+        quantity:
+          type: integer
+          format: int32
+          description: Quantity ordered.
+        action:
+          $ref: '#/components/schemas/ItemActionType'
+        billingAccount:
+          $ref: '#/components/schemas/BillingAccountRef'
+        itemPrice:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderPrice'
+        itemTerm:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderTerm'
+        payment:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRef'
+        product:
+          $ref: '#/components/schemas/ProductRefOrValue'
+        productOffering:
+          $ref: '#/components/schemas/ProductOfferingRef'
+        productOrderItemRelationship:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItemRelationship'
+        state:
+          $ref: '#/components/schemas/ProductOrderItemStateType'
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        appointment:
+          $ref: '#/components/schemas/AppointmentRef'
+        isInstallable:
+          type: boolean
+          description: Indicates if the product will be installed when created.
+      required:
+        - '@type'
+    ProductRef:
+      description: A reference to a Product entity.
+      allOf:
+        - $ref: '#/components/schemas/ProductRefOrValue'
+        - type: object
+          properties:
+            id:
+              type: string
+              description: The identifier of the referred entity.
+            href:
+              type: string
+              description: The URI of the referred entity.
+            name:
+              type: string
+              description: Name of the referred entity.
+            '@baseType':
+              type: string
+              description: When sub-classing, this defines the super-class.
+            '@schemaLocation':
+              type: string
+              format: uri
+              description: A URI to a JSON-Schema file that defines additional attributes
+                and relationships.
+            '@referredType':
+              type: string
+              description: The actual type of the target instance when needed for disambiguation.
+          required:
+            - id
+    ProductRefOrValue:
+      description: A product to be created defined by value or existing defined by
+        reference.
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class entity name.
+      discriminator:
+        propertyName: '@type'
+        mapping:
+          ProductRef: '#/components/schemas/ProductRef'
+          Product: '#/components/schemas/Product'
+    ProductRelationship:
+      description: Used to describe relationship between product.
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the related product.
+        product:
+          $ref: '#/components/schemas/ProductRefOrValue'
+        relationshipType:
+          type: string
+          description: Relationship type as relies on, bundles, etc...
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        href:
+          type: string
+          description: The URI of the referred entity.
+        name:
+          type: string
+          description: Name of the referred entity.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+      required:
+        - '@type'
+    ProductSpecificationRef:
+      description: ProductSpecification reference. A product specification represents
+        entities that are orderable from the provider of the catalog.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the referred entity.
+        href:
+          type: string
+          description: The URI of the referred entity.
+        name:
+          type: string
+          description: Name of the referred entity.
+        version:
+          type: string
+          description: Version of the product specification.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+      required:
+        - id
+        - '@type'
+    ProductTerm:
+      description: Description of a productTerm linked to this product. This represent
+        a commitment with a duration.
+      type: object
+      properties:
+        description:
+          type: string
+          description: Description of the productTerm.
+        name:
+          type: string
+          description: Name of the productTerm.
+        duration:
+          $ref: '#/components/schemas/Duration'
+        validFor:
+          $ref: '#/components/schemas/TimePeriod'
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+      required:
+        - '@type'
+    Quantity:
+      description: An amount in a given unit.
+      type: object
+      properties:
+        amount:
+          type: number
+          format: float
+          default: 1
+          description: Numeric value in a given unit.
+        units:
+          type: string
+          description: Unit.
+    RelatedChannel:
+      description: Related channel to another entity. May be online web, mobile app,
+        social ,etc..
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        role:
+          type: string
+          description: Role playing by the channel.
+        channel:
+          $ref: '#/components/schemas/ChannelRef'
+      required:
+        - '@type'
+    RelatedPartyRefOrPartyRoleRef:
+      description: RelatedParty reference. A related party defines party or party
+        role or its reference, linked to a specific entity.
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        role:
+          type: string
+          description: Role played by the related party or party role in the context
+            of the specific entity it is linked to. Such as 'initiator', 'customer',
+            'salesAgent', 'user'.
+        partyOrPartyRole:
+          $ref: '#/components/schemas/PartyRefOrPartyRoleRef'
+      required:
+        - '@type'
+    ResourceRef:
+      description: Resource reference, for when Resource is used by other entities.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the referred entity.
+        href:
+          type: string
+          description: The URI of the referred entity.
+        name:
+          type: string
+          description: Name of the referred entity.
+        value:
+          type: string
+          description: 'The resource value that can be used to identify a resource
+            with a public key (e.g.: a tel nr, an msisdn)'
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+      required:
+        - id
+        - '@type'
+    ServiceRef:
+      description: Service reference, for when Service is used by other entities.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The identifier of the referred entity.
+        href:
+          type: string
+          description: The URI of the referred entity.
+        name:
+          type: string
+          description: Name of the referred entity.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+      required:
+        - id
+        - '@type'
+    Status:
+      description: Indicates the service's current state.
+      type: object
+      properties:
+        name:
+          type: string
+          description: Your service internal name.
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        version:
+          type: string
+          description: Your API version (major dot minor dot patch numbers). For API
+            factory, please use designVersion , tmfVersion and productionVersion below.
+        designVersion:
+          type: string
+          description: Your API design version (major dot minor dot patch numbers.
+            ( as defined in API-Designer)
+        tmfVersion:
+          type: string
+          description: version of TMF API used to produces this API ( like "TMF632R14.5"
+            )
+        productionVersion:
+          type: string
+          description: API version delivered by the dev team or the country.
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/Component'
+      required:
+        - name
+        - status
+    StringArrayCharacteristic:
+      description: Represents a characteristic containing multiple text values in
+        an ordered collection, used to describe lists of textual attributes, tags,
+        or categorical values.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: array
+              items:
+                type: string
+              description: Value of the characteristic.
+    StringCharacteristic:
+      description: Represents a characteristic with a text value, used to describe
+        textual attributes, labels, identifiers, or alphanumeric information.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              type: string
+              description: Value of the characteristic.
+    TaxItem:
+      description: An amount of money levied on the price of a Product by a legislative
+        body.
+      type: object
+      properties:
+        taxAmount:
+          $ref: '#/components/schemas/Money'
+        taxCategory:
+          type: string
+          description: Tax category.
+        taxRate:
+          type: number
+          format: float
+          description: Applied rate of the tax.
+        '@baseType':
+          type: string
+          description: When sub-classing, this defines the super-class.
+        '@schemaLocation':
+          type: string
+          format: uri
+          description: A URI to a JSON-Schema file that defines additional attributes
+            and relationships.
+        '@type':
+          type: string
+          description: When sub-classing, this defines the sub-class Extensible name.
+      required:
+        - '@type'
+    TimePeriod:
+      description: A period of time, either as a deadline (endDateTime only) a startDateTime
+        only or both.
+      type: object
+      properties:
+        endDateTime:
+          type: string
+          format: date-time
+          description: End of the time period, using IETC-RFC-3339 format.
+        startDateTime:
+          type: string
+          format: date-time
+          description: Start of the time period, using IETC-RFC-3339 format.
+    ValidityCharacteristic:
+      description: Defines a characteristic with conditions and a time frame for its
+        applicability.
+      allOf:
+        - $ref: '#/components/schemas/Characteristic'
+        - type: object
+          properties:
+            value:
+              $ref: '#/components/schemas/ValidityValue'
+    ValidityValue:
+      description: Represents the rules and time frame during which a characteristic
+        is applicable.
+      type: object
+      properties:
+        value:
+          type: integer
+          format: int32
+          description: Represents the actual value of the characteristic, typically
+            a numeric or measurable quantity.
+        unitOfMeasure:
+          type: string
+          description: Specifies the unit associated with the value (e.g., hours,
+            days, gb) to provide context and standardization.
+        validTo:
+          type: string
+          format: date-time
+          description: Indicates the date and time until which the characteristic
+            is valid or applicable.
+        validFrom:
+          type: string
+          format: date-time
+          description: Represents the date and time from which the characteristic
+            becomes valid or applicable.
+    Version:
+      description: A structure for reporting API version details with metadata, enabling
+        standardized tracking.
+      type: object
+      properties:
+        version:
+          $ref: '#/components/schemas/versionInfo'
+        deprecated:
+          type: boolean
+          description: true if the API version (vM) is deprecated.
+        retirementDate:
+          type: string
+          format: date
+          description: Retirement date (ISO 8601 format). Required if deprecated is
+            set to true.
+      required:
+        - version
+        - deprecated
+    versionInfo:
+      description: Full API version (vM.m.p)
+      type: object
+      properties:
+        major:
+          type: string
+          description: Major API version (must be consistent with the API version
+            (vM) in URI path.
+        minor:
+          type: string
+          description: Minor API version.
+        patch:
+          type: string
+          description: Tracks backward-compatible bug fixes or small updates.
+      required:
+        - major
+        - minor
+    DateCharacteristic:
+      description: An object that stores date-related details provided by the customer
+        or generated by the system for a service. It helps keep track of important
+        temporal information associated with a product, order, or any service.
+      allOf:
+        - type: object
+          properties:
+            value:
+              type: string
+              format: date-time
+              description: Value of the characteristic.
+        - $ref: '#/components/schemas/Characteristic'
+    ItemActionType:
+      type: string
+      enum:
+        - add
+        - delete
+        - modify
+        - noChange
+        - migrate
+      description: Action to be performed on the entity managed by the item.
+    POPRelationshipType:
+      type: string
+      enum:
+        - alteredBy
+        - replacedBy
+        - taxedBy
+      description: Type of the relationship, for example override, discount, etc.
+    PriceType:
+      type: string
+      enum:
+        - RC
+        - NRC
+        - Usage
+      description: A category that describes the price, such as recurring, discount,
+        allowance, penalty and so forth.
+    ProductOfferingPriceLifecycle:
+      type: string
+      enum:
+        - launched
+        - unavailable
+        - retired
+        - obsolete
+      description: The lifecycle status of this ProductOfferingPrice.
+    ProductOrderItemStateType:
+      type: string
+      enum:
+        - acknowledged
+        - assessingCancellation
+        - cancelled
+        - completed
+        - failed
+        - held
+        - inProgress
+        - pending
+        - pendingCancellation
+        - rejected
+        - partial
+        - accepted
+        - draft
+      description: Possible values for the state of the product order item.
+    ProductOrderStateType:
+      type: string
+      enum:
+        - acknowledged
+        - assessingCancellation
+        - cancelled
+        - completed
+        - failed
+        - held
+        - inProgress
+        - partial
+        - pending
+        - pendingCancellation
+        - rejected
+        - accepted
+        - draft
+      description: Possible values for the state of the order.
+    ProductStatusType:
+      type: string
+      enum:
+        - aborted
+        - active
+        - cancelled
+        - created
+        - terminated
+        - pendingActive
+        - pendingTerminate
+        - suspended
+      description: Possible values for the status of the product.
+    RelationshipType:
+      type: string
+      enum:
+        - bundles
+        - isChild
+        - sells
+        - isSold
+        - reliesOn
+        - reliesFrom
+        - migrateTo
+        - migrateFrom
+        - requires
+      description: Relationship type as relies on, bundles, etc...
+    SortEnum:
+      type: string
+      enum:
+        - creationDate
+        - -creationDate
+        - state
+        - -state
+      description: Possible values for the sort of the order.
+    StatusEnum:
+      type: string
+      enum:
+        - ok
+        - ko
+      description: '"ok" if your service is functional (not taking into account the
+        components health), "ko" if something is wrong (missing configuration data,
+        database is down...)'
+  examples:
+    retrieveProductOrderByList:
+      value:
+        - note:
+            - date: '2019-04-30T08:13:59.509Z'
+              author: Jean Pontus
+              '@type': Note
+              id: '1'
+              text: This is a TMF product order illustration
+          '@type': ProductOrder
+          channel:
+            - role: Used channel for order capture
+              '@type': RelatedChannel
+              channel:
+                '@type': ChannelRef
+                name: Online channel
+                id: '1'
+          description: Product Order illustration sample
+          externalId:
+            - owner: TMF
+              externalIdentifierType: POnumber
+              '@type': ExternalIdentifier
+              id: '456'
+          creationDate: '2019-04-30T08:13:59.506Z'
+          priority: '1'
+          productOrderItem:
+            - quantity: 1
+              productOffering:
+                '@type': ProductOfferingRef
+                name: TMF25
+                id: '14277'
+                href: https://host:port/productCatalogManagement/v5/productOffering/14277
+              '@type': ProductOrderItem
+              action: add
+              id: '100'
+              state: acknowledged
+              productOrderItemRelationship:
+                - relationshipType: bundles
+                  '@type': OrderItemRelationship
+                  id: '110'
+                - relationshipType: bundles
+                  '@type': OrderItemRelationship
+                  id: '120'
+                - relationshipType: bundles
+                  '@type': OrderItemRelationship
+                  id: '130'
+            - product:
+                isBundle: false
+                productSpecification:
+                  '@type': ProductSpecificationRef
+                  name: Mobile Telephony
+                  id: '14307'
+                  href: https://host:port/productCatalogManagement/v5/productSpecification/14307
+                  version: '1'
+                '@type': Product
+                productCharacteristic:
+                  - '@type': StringCharacteristic
+                    valueType: string
+                    name: TEL_MSISDN
+                    id: Char6
+                    value: 415 279 7439
+              quantity: 1
+              productOffering:
+                '@type': ProductOfferingRef
+                name: TMF Mobile Telephony
+                id: '14305'
+                href: https://host:port/productCatalogManagement/v5/productOffering/14305
+              '@type': ProductOrderItem
+              action: add
+              itemPrice:
+                - '@type': OrderPrice
+                  price:
+                    taxRate: 0
+                    '@type': Price
+                    taxIncludedAmount:
+                      unit: EUR
+                      value: 0.99
+                    dutyFreeAmount:
+                      unit: EUR
+                      value: 0.99
+                  name: Access Fee
+                  priceType: nonRecurring
+                  description: Access Fee
+              payment:
+                - '@referredType': CashPayment
+                  '@type': PaymentRef
+                  name: Cash payment for access fee
+                  id: '2365'
+                  href: https://host:port/paymentManagement/v5/cashPayment/2365
+              id: '110'
+              state: acknowledged
+            - itemTerm:
+                - duration:
+                    amount: 12
+                    '@type': Duration
+                    units: month
+                  '@type': OrderTerm
+                  name: 12Months
+                  description: Tariff plan 12 Months commitment
+              product:
+                isBundle: false
+                productSpecification:
+                  '@type': ProductSpecificationRef
+                  name: TMF Tariff plan
+                  id: '14395'
+                  href: https://host:port/productCatalogManagement/v5/productSpecification/14395
+                  version: '1'
+                '@type': Product
+              quantity: 1
+              productOffering:
+                '@type': ProductOfferingRef
+                name: TMF Tariff Plan
+                id: '14344'
+                href: https://host:port/productCatalogManagement/v5/productOffering/14344
+              '@type': ProductOrderItem
+              action: add
+              itemPrice:
+                - '@type': OrderPrice
+                  price:
+                    taxRate: 0
+                    '@type': Price
+                    taxIncludedAmount:
+                      unit: EUR
+                      value: 20
+                    dutyFreeAmount:
+                      unit: EUR
+                      value: 20
+                  name: MonthlyFee
+                  priceType: recurring
+                  description: Tariff plan monthly fee
+                  recurringChargePeriod: month
+                  priceAlteration:
+                    - applicationDuration: 3
+                      '@type': PriceAlteration
+                      price:
+                        taxRate: 0
+                        '@type': Price
+                        percentage: 20
+                      name: WelcomeDiscount
+                      priceType: recurring
+                      description: 20% for first 3 months
+                      priority: 1
+                      recurringChargePeriod: month
+              id: '120'
+              state: acknowledged
+              billingAccount:
+                '@type': BillingAccountRef
+                id: '1513'
+                href: https://host:port/billingAccountManagement/v5/billingAccount/1513
+              productOrderItemRelationship:
+                - relationshipType: reliesOn
+                  '@type': OrderItemRelationship
+                  id: '110'
+            - product:
+                isBundle: false
+                productSpecification:
+                  '@type': ProductSpecificationRef
+                  name: Coverage
+                  id: '14353'
+                  href: https://host:port/productCatalogManagement/v5/productSpecification/14353
+                  version: '1'
+                '@type': Product
+                productCharacteristic:
+                  - '@type': StringCharacteristic
+                    valueType: string
+                    name: CoverageOptions
+                    id: Char7
+                    value: National
+              quantity: 1
+              productOffering:
+                '@type': ProductOfferingRef
+                name: Coverage Options
+                id: '14354'
+                href: https://host:port/productCatalogManagement/v5/productOffering/14354
+              '@type': ProductOrderItem
+              action: add
+              id: '130'
+              state: acknowledged
+              productOrderItemRelationship:
+                - relationshipType: reliesOn
+                  '@type': OrderItemRelationship
+                  id: '110'
+          relatedParty:
+            - partyOrPartyRole:
+                '@referredType': Individual
+                '@type': PartyRef
+                name: Joe Doe
+                id: 456-dd-df45
+                href: https://host:port/partyManagement/v5/individual/456-dd-df45
+              role: Seller
+              '@type': RelatedPartyRefOrPartyRoleRef
+            - partyOrPartyRole:
+                '@referredType': Customer
+                '@type': PartyRoleRef
+                name: Jean Pontus
+                id: ff55-hjy4
+                href: https://host:port/partyRoleManagement/v5/customer/ff55-hjy4
+              role: Customer
+              '@type': RelatedPartyRefOrPartyRoleRef
+          requestedStartDate: '2019-05-03T08:13:59.506Z'
+          expectedCompletionDate: '2019-05-02T08:13:59.506Z'
+          id: '30001'
+          href: https://host:port/productOrderingManagement/v5/productOrder/30001
+          state: acknowledged
+          category: B2C product order
+          requestedCompletionDate: '2019-05-02T08:13:59.506Z'
+        - '@type': ProductOrder
+          description: Product Order illustration sample
+          externalId:
+            - owner: TMF
+              externalIdentifierType: POnumber
+              '@type': ExternalIdentifier
+              id: '785'
+          creationDate: '2019-04-30T08:13:59.506Z'
+          priority: '1'
+          productOrderItem:
+            - product:
+                isBundle: false
+                productSpecification:
+                  '@type': ProductSpecificationRef
+                  name: UNI specification
+                  id: dfg-56d
+                  href: https://api.com/productSpec/dfg-56d
+                  version: v2
+                '@type': UNI
+                productCharacteristic:
+                  - '@type': ObjectCharacteristic
+                    valueType: Slice5G JSON descriptor
+                    name: UNI order configuration
+                    id: UNI_Characteristic
+                    value:
+                      numberOfLinks: 1
+                      maxServiceFrameSize: 1256
+                      physicalLayer: 10BASE-T
+                      '@valueSchemaLocation': https://github.com/productSpec/UNISpec.json
+                      '@type': UNI_json_Specification
+                      synchronousModeEnabled: true
+                      uniResiliency: NONE
+                      tokenShareEnabled: true
+              quantity: 1
+              '@type': ProductOrderItem
+              action: add
+              id: '110'
+              state: acknowledged
+          relatedParty:
+            - partyOrPartyRole:
+                '@referredType': Individual
+                '@type': PartyRef
+                name: Joe Doe
+                id: 456-dd-df45
+                href: https://host:port/partyManagement/v5/individual/456-dd-df45
+              role: Seller
+              '@type': RelatedPartyRefOrPartyRoleRef
+            - partyOrPartyRole:
+                '@referredType': Customer
+                '@type': PartyRoleRef
+                name: Jean Pontus
+                id: ff55-hjy4
+                href: https://host:port/partyRoleManagement/v5/customer/ff55-hjy4
+              role: Customer
+              '@type': RelatedPartyRefOrPartyRoleRef
+          requestedStartDate: '2019-05-03T08:13:59.506Z'
+          expectedCompletionDate: '2019-05-02T08:13:59.506Z'
+          id: '30002'
+          href: https://host:port/productOrderingManagement/v5/productOrder/30002
+          state: acknowledged
+          category: B2B product order
+          requestedCompletionDate: '2019-05-02T08:13:59.506Z'
+    retrieveProductOrderByListwith_FieldsSelection:
+      value:
+        - '@type': ProductOrder
+          expectedCompletionDate: '2019-04-11T14:52:21.823Z'
+          id: '6987'
+          href: '.../productOrderingManagement/v5/productOrder/6987'
+          state: acknowledged
+        - '@type': ProductOrder
+          expectedCompletionDate: '2019-04-18T14:21:31.325Z'
+          id: '7412'
+          href: '.../productOrderingManagement/v5/productOrder/7412'
+          state: acknowledged
+        - '@type': ProductOrder
+          expectedCompletionDate: '2019-04-21T18:08:31.325Z'
+          id: '3214'
+          href: '.../productOrderingManagement/v5/productOrder/3214'
+          state: acknowledged
+        - '@type': ProductOrder
+          expectedCompletionDate: '2019-04-29T10:48:28.325Z'
+          id: '6547'
+          href: '.../productOrderingManagement/v5/productOrder/6547'
+          state: acknowledged
+    CreateProductOrder1:
+      value:
+        note:
+          - date: '2019-04-30T08:13:59.509Z'
+            author: Jean Pontus
+            '@type': Note
+            id: '1'
+            text: This is a TMF product order illustration
+        '@type': ProductOrder
+        channel:
+          - role: Used channel for order capture
+            '@type': RelatedChannel
+            channel:
+              '@type': ChannelRef
+              name: Online channel
+              id: '1'
+        description: Product Order illustration sample
+        externalId:
+          - owner: TMF
+            externalIdentifierType: POnumber
+            '@type': ExternalIdentifier
+            id: '456'
+        category: B2C product order
+        priority: '1'
+        productOrderItem:
+          - quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: TMF25
+              id: '14277'
+            '@type': ProductOrderItem
+            action: add
+            id: '100'
+            productOrderItemRelationship:
+              - relationshipType: bundles
+                '@type': OrderItemRelationship
+                id: '110'
+              - relationshipType: bundles
+                '@type': OrderItemRelationship
+                id: '120'
+              - relationshipType: bundles
+                '@type': OrderItemRelationship
+                id: '130'
+          - product:
+              isBundle: false
+              productSpecification:
+                '@type': ProductSpecificationRef
+                name: Mobile Telephony
+                id: '14307'
+                version: '1'
+              '@type': Product
+              productCharacteristic:
+                - '@type': StringCharacteristic
+                  valueType: string
+                  name: TEL_MSISDN
+                  id: Char6
+                  value: 415 279 7439
+            quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: TMF Mobile Telephony
+              id: '14305'
+            '@type': ProductOrderItem
+            action: add
+            itemPrice:
+              - '@type': OrderPrice
+                price:
+                  taxRate: 0
+                  '@type': Price
+                  taxIncludedAmount:
+                    unit: EUR
+                    value: 0.99
+                  dutyFreeAmount:
+                    unit: EUR
+                    value: 0.99
+                name: Access Fee
+                priceType: nonRecurring
+                description: Access Fee
+            payment:
+              - '@referredType': CashPayment
+                '@type': PaymentRef
+                name: Cash payment for access fee
+                id: '2365'
+                href: https://host:port/paymentManagement/v5/cashPayment/2365
+            id: '110'
+          - itemTerm:
+              - duration:
+                  amount: 12
+                  '@type': Duration
+                  units: month
+                '@type': OrderTerm
+                name: 12Months
+                description: Tariff plan 12 Months commitment
+            product:
+              isBundle: false
+              productSpecification:
+                '@type': ProductSpecificationRef
+                name: TMF Tariff plan
+                id: '14395'
+                href: https://host:port/productCatalogManagement/v5/productSpecification/14395
+                version: '1'
+              '@type': Product
+            quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: TMF Tariff Plan
+              id: '14344'
+              href: https://host:port/productCatalogManagement/v5/productOffering/14344
+            '@type': ProductOrderItem
+            action: add
+            itemPrice:
+              - '@type': OrderPrice
+                price:
+                  taxRate: 0
+                  '@type': Price
+                  taxIncludedAmount:
+                    unit: EUR
+                    value: 20
+                  dutyFreeAmount:
+                    unit: EUR
+                    value: 20
+                name: MonthlyFee
+                priceType: recurring
+                description: Tariff plan monthly fee
+                recurringChargePeriod: month
+                priceAlteration:
+                  - applicationDuration: 3
+                    '@type': PriceAlteration
+                    price:
+                      taxRate: 0
+                      '@type': Price
+                      percentage: 20
+                    name: WelcomeDiscount
+                    priceType: recurring
+                    description: 20% for first 3 months
+                    priority: 1
+                    recurringChargePeriod: month
+            id: '120'
+            billingAccount:
+              '@type': BillingAccountRef
+              id: '1513'
+            productOrderItemRelationship:
+              - relationshipType: reliesOn
+                '@type': OrderItemRelationship
+                id: '110'
+          - product:
+              isBundle: false
+              productSpecification:
+                '@type': ProductSpecificationRef
+                name: Coverage
+                id: '14353'
+                href: https://host:port/productCatalogManagement/v5/productSpecification/14353
+                version: '1'
+              '@type': Product
+              productCharacteristic:
+                - '@type': StringCharacteristic
+                  valueType: string
+                  name: CoverageOptions
+                  id: Char7
+                  value: National
+            quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: Coverage Options
+              id: '14354'
+              href: https://host:port/productCatalogManagement/v5/productOffering/14354
+            '@type': ProductOrderItem
+            action: add
+            id: '130'
+            productOrderItemRelationship:
+              - relationshipType: reliesOn
+                '@type': ProductOrderItemRelationship
+                id: '110'
+        relatedParty:
+          - partyOrPartyRole:
+              '@referredType': Individual
+              '@type': PartyRef
+              name: Joe Doe
+              id: 456-dd-df45
+              href: https://host:port/partyManagement/v5/individual/456-dd-df45
+            role: Seller
+            '@type': RelatedPartyRefOrPartyRoleRef
+          - partyOrPartyRole:
+              '@referredType': Customer
+              '@type': PartyRoleRef
+              name: Jean Pontus
+              id: ff55-hjy4
+              href: https://host:port/partyRoleManagement/v5/customer/ff55-hjy4
+            role: Customer
+            '@type': RelatedPartyRefOrPartyRoleRef
+        requestedStartDate: '2019-05-03T08:13:59.506Z'
+        requestedCompletionDate: '2019-05-02T08:13:59.506Z'
+    CreateProductOrder2:
+      value:
+        '@type': ProductOrder
+        description: Product Order illustration sample
+        externalId:
+          - owner: TMF
+            externalIdentifierType: POnumber
+            '@type': ExternalIdentifier
+            id: '785'
+        category: B2B product order
+        priority: '1'
+        productOrderItem:
+          - product:
+              isBundle: false
+              productSpecification:
+                '@type': ProductSpecificationRef
+                name: UNI specification
+                id: dfg-56d
+                href: https://api.com/productSpec/dfg-56d
+                version: v2
+              '@type': UNI
+              productCharacteristic:
+                - '@type': ObjectCharacteristic
+                  valueType: Slice5G JSON descriptor
+                  name: UNI order configuration
+                  id: UNI_Characteristic
+                  value:
+                    numberOfLinks: 1
+                    maxServiceFrameSize: 1256
+                    physicalLayer: 10BASE-T
+                    '@valueSchemaLocation': https://github.com/productSpec/UNISpec.json
+                    '@type': UNI_json_Specification
+                    synchronousModeEnabled: true
+                    uniResiliency: NONE
+                    tokenShareEnabled: true
+            quantity: 1
+            '@type': ProductOrderItem
+            action: add
+            id: '110'
+        relatedParty:
+          - partyOrPartyRole:
+              '@referredType': Individual
+              '@type': PartyRef
+              name: Joe Doe
+              id: 456-dd-df45
+              href: https://host:port/partyManagement/v5/individual/456-dd-df45
+            role: Seller
+            '@type': RelatedPartyRefOrPartyRoleRef
+          - partyOrPartyRole:
+              '@referredType': Customer
+              '@type': PartyRoleRef
+              name: Jean Pontus
+              id: ff55-hjy4
+              href: https://host:port/partyRoleManagement/v5/customer/ff55-hjy4
+            role: Customer
+            '@type': RelatedPartyRefOrPartyRoleRef
+        requestedStartDate: '2019-05-03T08:13:59.506Z'
+        requestedCompletionDate: '2019-05-02T08:13:59.506Z'
+    CreateProductOrder_with_intent_specification:
+      value:
+        note:
+          - date: '2019-04-30T08:13:59.509Z'
+            author: Jean Pontus
+            '@type': Note
+            id: '1'
+            text: This is a TMF product order illustration
+        intentSpecification:
+          '@referredType': IntentSpecification
+          '@type': IntentSpecificationRef
+          name: EventLiveBroadcastIntentSpec
+          id: EventLiveBroadcast_IntentSpec
+          '@href': /intent/v5/IntentSpecification/EventLiveBroadcast_IntentSpec
+        '@type': ProductOrder
+        channel:
+          - role: Used channel for order capture
+            '@type': RelatedChannel
+            channel:
+              '@type': ChannelRef
+              name: Online channel
+              id: '1'
+        description: Product Order illustration sample
+        externalId:
+          - owner: TMF
+            externalIdentifierType: POnumber
+            '@type': ExternalIdentifier
+            id: '456'
+        category: B2C product order
+        priority: '1'
+        productOrderItem:
+          - quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: TMF25
+              id: '14277'
+            '@type': ProductOrderItem
+            action: add
+            id: '100'
+            productOrderItemRelationship:
+              - relationshipType: bundles
+                '@type': OrderItemRelationship
+                id: '110'
+              - relationshipType: bundles
+                '@type': OrderItemRelationship
+                id: '120'
+              - relationshipType: bundles
+                '@type': OrderItemRelationship
+                id: '130'
+          - product:
+              isBundle: false
+              productSpecification:
+                '@type': ProductSpecificationRef
+                name: Mobile Telephony
+                id: '14307'
+                version: '1'
+              '@type': Product
+              productCharacteristic:
+                - '@type': StringCharacteristic
+                  valueType: string
+                  name: TEL_MSISDN
+                  id: Char6
+                  value: 415 279 7439
+            quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: TMF Mobile Telephony
+              id: '14305'
+            '@type': ProductOrderItem
+            action: add
+            itemPrice:
+              - '@type': OrderPrice
+                price:
+                  taxRate: 0
+                  '@type': Price
+                  taxIncludedAmount:
+                    unit: EUR
+                    value: 0.99
+                  dutyFreeAmount:
+                    unit: EUR
+                    value: 0.99
+                name: Access Fee
+                priceType: nonRecurring
+                description: Access Fee
+            payment:
+              - '@referredType': CashPayment
+                '@type': PaymentRef
+                name: Cash payment for access fee
+                id: '2365'
+                href: https://host:port/paymentManagement/v5/cashPayment/2365
+            id: '110'
+          - itemTerm:
+              - duration:
+                  amount: 12
+                  '@type': Duration
+                  units: month
+                '@type': OrderTerm
+                name: 12Months
+                description: Tariff plan 12 Months commitment
+            product:
+              isBundle: false
+              productSpecification:
+                '@type': ProductSpecificationRef
+                name: TMF Tariff plan
+                id: '14395'
+                href: https://host:port/productCatalogManagement/v5/productSpecification/14395
+                version: '1'
+              '@type': Product
+              intent:
+                isBundle: true
+                intentSpecification:
+                  '@referredType': IntentSpecification
+                  '@type': IntentSpecificationRef
+                  name: EventLiveBroadcastIntentSpec
+                  id: EventLiveBroadcast_IntentSpec
+                  '@href': /intent/v5/IntentSpecification/EventLiveBroadcast_IntentSpec
+                expression:
+                  expressionValue:
+                    '@context':
+                      app: http://www.operator.com/Catalog/StreamingApplication#
+                      geo: https://tmforum.org/2020/07/geographicPoint#
+                      icm: http://www.models.tmforum.org/tio/v1.0.0/IntentCommonModel#
+                      t: http://www.w3.org/2006/time#
+                      cat: http://www.operator.com/Catalog#
+                      xsd: http://www.w3.org/2001/XMLSchema#
+                      idan: http://www.idan-tmforum-catalyst.org/IntentDrivenAutonomousNetworks#
+                      elb: http://www.operator.com/Catalog/EventWirelessAccess#
+                    idan:EventLiveBroadcast000001:
+                      icm:intentOwner: idan:Salesforce
+                      '@type': icm:Intent
+                      icm:hasExpectation:
+                        idan:Delivery_app:
+                          '@type': icm:DeliveryExpectation
+                          icm:target: _:application
+                          icm:params:
+                            icm:targetDescription: cat:StreamingApplication
+                        idan:Delivery_service:
+                          '@type': icm:DeliveryExpectation
+                          icm:target: _:service
+                          icm:params:
+                            icm:targetDescription: cat:EventWirelessAccess
+                        idan:Property_app:
+                          '@type': icm:PropertyExpectation
+                          icm:target: _:application
+                          icm:params:
+                            app:appType:
+                              - icm:value: AWS MediaLive
+                              - icm:value: Facebook Live
+                              - icm:value: YouTube
+                        idan:Property_service:
+                          '@type': icm:PropertyExpectation
+                          icm:target: _:service
+                          icm:params:
+                            elb:numberOfParticipants:
+                              - icm:atMost: '200'
+                            elb:areaOfService:
+                              - geo:geographicPoints:
+                                  - geo:altitude: 84
+                                    geo:longitude: 90
+                                    geo:latitude: 44
+                                  - geo:altitude: 24
+                                    geo:longitude: 84
+                                    geo:latitude: -12
+                                  - geo:altitude: 29
+                                    geo:longitude: 131
+                                    geo:latitude: -36
+                                  - geo:altitude: -42
+                                    geo:longitude: 7
+                                    geo:latitude: 81
+                            elb:serviceQuality:
+                              - icm:value: 4KUHD
+                        idan:Reporting:
+                          '@type': icm:ReportingExpectation
+                          icm:target: idan:EventLiveBroadcast
+                          icm:params:
+                            icm:reportingInterval:
+                              - t:Duration:
+                                  - t:numbericDuration: 10
+                                    t:temporalUnit: unitMinute
+                            icm:reportingEvent:
+                              - icm:StateComplies
+                              - icm:StateDegrades
+                  '@type': JsonLdExpression
+                validFor:
+                  startDateTime: '2022-10-23T00:30:00.00Z'
+                  endDateTime: '2022-10-19T23:30:00.00Z'
+                '@type': Intent
+                lastUpdate: '2023-03-09T08:42:33.044Z'
+                name: EventLiveBroadcast
+                description: Intent for ordering live broadcast service for an event
+                id: '42'
+                version: 1.0.0
+            quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: TMF Tariff Plan
+              id: '14344'
+              href: https://host:port/productCatalogManagement/v5/productOffering/14344
+            '@type': ProductOrderItem
+            action: add
+            itemPrice:
+              - '@type': OrderPrice
+                price:
+                  taxRate: 0
+                  '@type': Price
+                  taxIncludedAmount:
+                    unit: EUR
+                    value: 20
+                  dutyFreeAmount:
+                    unit: EUR
+                    value: 20
+                name: MonthlyFee
+                priceType: recurring
+                description: Tariff plan monthly fee
+                recurringChargePeriod: month
+                priceAlteration:
+                  - applicationDuration: 3
+                    '@type': PriceAlteration
+                    price:
+                      taxRate: 0
+                      '@type': Price
+                      percentage: 20
+                    name: WelcomeDiscount
+                    priceType: recurring
+                    description: 20% for first 3 months
+                    priority: 1
+                    recurringChargePeriod: month
+            id: '120'
+            billingAccount:
+              '@type': BillingAccountRef
+              id: '1513'
+            productOrderItemRelationship:
+              - relationshipType: reliesOn
+                '@type': OrderItemRelationship
+                id: '110'
+          - product:
+              isBundle: false
+              productSpecification:
+                '@type': ProductSpecificationRef
+                name: Coverage
+                id: '14353'
+                href: https://host:port/productCatalogManagement/v5/productSpecification/14353
+                version: '1'
+              '@type': Product
+              productCharacteristic:
+                - '@type': StringCharacteristic
+                  valueType: string
+                  name: CoverageOptions
+                  id: Char7
+                  value: National
+            quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: Coverage Options
+              id: '14354'
+              href: https://host:port/productCatalogManagement/v5/productOffering/14354
+            '@type': ProductOrderItem
+            action: add
+            id: '130'
+            productOrderItemRelationship:
+              - relationshipType: reliesOn
+                '@type': OrderItemRelationship
+                id: '110'
+        relatedParty:
+          - partyOrPartyRole:
+              '@referredType': Individual
+              '@type': PartyRef
+              name: Joe Doe
+              id: 456-dd-df45
+              href: https://host:port/partyManagement/v5/individual/456-dd-df45
+            role: Seller
+            '@type': RelatedPartyRefOrPartyRoleRef
+          - partyOrPartyRole:
+              '@referredType': Customer
+              '@type': PartyRoleRef
+              name: Jean Pontus
+              id: ff55-hjy4
+              href: https://host:port/partyRoleManagement/v5/customer/ff55-hjy4
+            role: Customer
+            '@type': RelatedPartyRefOrPartyRoleRef
+        requestedStartDate: '2019-05-03T08:13:59.506Z'
+        requestedCompletionDate: '2019-05-02T08:13:59.506Z'
+    retrieveProductOrderById1:
+      value:
+        note:
+          - date: '2019-04-30T08:13:59.509Z'
+            author: Jean Pontus
+            '@type': Note
+            id: '1'
+            text: This is a TMF product order illustration
+        '@type': ProductOrder
+        channel:
+          - role: Used channel for order capture
+            '@type': RelatedChannel
+            channel:
+              '@type': ChannelRef
+              name: Online channel
+              id: '1'
+        description: Product Order illustration sample
+        externalId:
+          - owner: TMF
+            externalIdentifierType: POnumber
+            '@type': ExternalIdentifier
+            id: '456'
+        creationDate: '2019-04-30T08:13:59.506Z'
+        priority: '1'
+        productOrderItem:
+          - quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: TMF25
+              id: '14277'
+              href: https://host:port/productCatalogManagement/v5/productOffering/14277
+            '@type': ProductOrderItem
+            action: add
+            id: '100'
+            state: completed
+            productOrderItemRelationship:
+              - relationshipType: bundles
+                '@type': OrderItemRelationship
+                id: '110'
+              - relationshipType: bundles
+                '@type': OrderItemRelationship
+                id: '120'
+              - relationshipType: bundles
+                '@type': OrderItemRelationship
+                id: '130'
+          - product:
+              isBundle: false
+              productSpecification:
+                '@type': ProductSpecificationRef
+                name: Mobile Telephony
+                id: '14307'
+                href: https://host:port/productCatalogManagement/v5/productSpecification/14307
+                version: '1'
+              '@type': Product
+              productCharacteristic:
+                - '@type': StringCharacteristic
+                  valueType: string
+                  name: TEL_MSISDN
+                  id: Char6
+                  value: 415 279 7439
+            quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: TMF Mobile Telephony
+              id: '14305'
+              href: https://host:port/productCatalogManagement/v5/productOffering/14305
+            '@type': ProductOrderItem
+            action: add
+            itemPrice:
+              - '@type': OrderPrice
+                price:
+                  taxRate: 0
+                  '@type': Price
+                  taxIncludedAmount:
+                    unit: EUR
+                    value: 0.99
+                  dutyFreeAmount:
+                    unit: EUR
+                    value: 0.99
+                name: Access Fee
+                priceType: nonRecurring
+                description: Access Fee
+            payment:
+              - '@referredType': CashPayment
+                '@type': PaymentRef
+                name: Cash payment for access fee
+                id: '2365'
+                href: https://host:port/paymentManagement/v5/cashPayment/2365
+            id: '110'
+            state: completed
+          - itemTerm:
+              - duration:
+                  amount: 12
+                  '@type': Duration
+                  units: month
+                '@type': OrderTerm
+                name: 12Months
+                description: Tariff plan 12 Months commitment
+            product:
+              isBundle: false
+              productSpecification:
+                '@type': ProductSpecificationRef
+                name: TMF Tariff plan
+                id: '14395'
+                href: https://host:port/productCatalogManagement/v5/productSpecification/14395
+                version: '1'
+              '@type': Product
+            quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: TMF Tariff Plan
+              id: '14344'
+              href: https://host:port/productCatalogManagement/v5/productOffering/14344
+            '@type': ProductOrderItem
+            action: add
+            itemPrice:
+              - '@type': OrderPrice
+                price:
+                  taxRate: 0
+                  '@type': Price
+                  taxIncludedAmount:
+                    unit: EUR
+                    value: 20
+                  dutyFreeAmount:
+                    unit: EUR
+                    value: 20
+                name: MonthlyFee
+                priceType: recurring
+                description: Tariff plan monthly fee
+                recurringChargePeriod: month
+                priceAlteration:
+                  - applicationDuration: 3
+                    '@type': PriceAlteration
+                    price:
+                      taxRate: 0
+                      '@type': Price
+                      percentage: 20
+                    name: WelcomeDiscount
+                    priceType: recurring
+                    description: 20% for first 3 months
+                    priority: 1
+                    recurringChargePeriod: month
+            id: '120'
+            state: completed
+            billingAccount:
+              '@type': BillingAccountRef
+              id: '1513'
+              href: https://host:port/billingAccountManagement/v5/billingAccount/1513
+            productOrderItemRelationship:
+              - relationshipType: reliesOn
+                '@type': OrderItemRelationship
+                id: '110'
+          - product:
+              isBundle: false
+              productSpecification:
+                '@type': ProductSpecificationRef
+                name: Coverage
+                id: '14353'
+                href: https://host:port/productCatalogManagement/v5/productSpecification/14353
+                version: '1'
+              '@type': Product
+              productCharacteristic:
+                - '@type': StringCharacteristic
+                  valueType: string
+                  name: CoverageOptions
+                  id: Char7
+                  value: National
+            quantity: 1
+            productOffering:
+              '@type': ProductOfferingRef
+              name: Coverage Options
+              id: '14354'
+              href: https://host:port/productCatalogManagement/v5/productOffering/14354
+            '@type': ProductOrderItem
+            action: add
+            id: '130'
+            state: completed
+            productOrderItemRelationship:
+              - relationshipType: reliesOn
+                '@type': OrderItemRelationship
+                id: '110'
+        relatedParty:
+          - partyOrPartyRole:
+              '@referredType': Individual
+              '@type': PartyRef
+              name: Joe Doe
+              id: 456-dd-df45
+              href: https://host:port/partyManagement/v5/individual/456-dd-df45
+            role: Seller
+            '@type': RelatedPartyRefOrPartyRoleRef
+          - partyOrPartyRole:
+              '@referredType': Customer
+              '@type': PartyRoleRef
+              name: Jean Pontus
+              id: ff55-hjy4
+              href: https://host:port/partyRoleManagement/v5/customer/ff55-hjy4
+            role: Customer
+            '@type': RelatedPartyRefOrPartyRoleRef
+        requestedStartDate: '2019-05-03T08:13:59.506Z'
+        completionDate: '2019-05-02T08:13:59.506Z'
+        expectedCompletionDate: '2019-05-02T08:13:59.506Z'
+        id: '30001'
+        href: https://host:port/productOrderingManagement/v5/productOrder/30001
+        state: completed
+        category: B2C product order
+        requestedCompletionDate: '2019-05-02T08:13:59.506Z'
+    retrieveProductOrderById2:
+      value:
+        note:
+          - date: '2019-05-22T08:13:59.509Z'
+            author: Jean Pontus
+            '@type': Note
+            id: '1'
+            text: This is a TMF product order illustration to change existing product
+        '@type': ProductOrder
+        channel:
+          - role: Used channel for order capture
+            '@type': RelatedChannel
+            channel:
+              '@type': ChannelRef
+              name: Online channel
+              id: '1'
+        description: Product Order change illustration sample
+        externalId:
+          - owner: TMF
+            externalIdentifierType: POnumber
+            '@type': ExternalIdentifier
+            id: '457'
+        creationDate: '2019-04-30T08:13:59.506Z'
+        priority: '1'
+        productOrderItem:
+          - product:
+              '@type': ProductRef
+              id: '6000'
+              href: https://host:port/productInventoryManagement/v5/product/6000
+            quantity: 1
+            '@type': ProductOrderItem
+            action: noChange
+            id: '100'
+            state: inProgress
+            productOrderItemRelationship:
+              - relationshipType: bundles
+                '@type': OrderItemRelationship
+                id: '110'
+          - product:
+              '@type': Product
+              productCharacteristic:
+                - '@type': StringCharacteristic
+                  valueType: string
+                  name: CoverageOptions
+                  id: Char7
+                  value: International
+              productRelationship:
+                - product:
+                    '@type': ProductRef
+                    id: '6001'
+                    href: https://host:port/productInventoryManagement/v5/product/6001
+                  relationshipType: reliesOn
+                  '@type': ProductRelationship
+              id: '6003'
+              href: https://host:port/productInventoryManagement/v5/product/6003
+            quantity: 1
+            '@type': ProductOrderItem
+            action: add
+            id: '110'
+            state: inProgress
+        relatedParty:
+          - partyOrPartyRole:
+              '@referredType': Individual
+              '@type': PartyRef
+              name: Joe Doe
+              id: 456-dd-df45
+              href: https://host:port/partyManagement/v5/individual/456-dd-df45
+            role: Seller
+            '@type': RelatedPartyRefOrPartyRoleRef
+          - partyOrPartyRole:
+              '@referredType': Customer
+              '@type': PartyRoleRef
+              name: Jean Pontus
+              id: ff55-hjy4
+              href: https://host:port/partyRoleManagement/v5/customer/ff55-hjy4
+            role: Customer
+            '@type': RelatedPartyRefOrPartyRoleRef
+        requestedStartDate: '2019-05-22T08:13:59.506Z'
+        expectedCompletionDate: '2019-05-22T08:13:59.506Z'
+        id: '3774'
+        href: https://host:port/productOrderingManagement/v5/productOrder/3774
+        state: inProgress
+        category: B2C product order
+        requestedCompletionDate: '2019-05-22T08:13:59.506Z'
+paths:
+  /version:
+    get:
+      tags:
+        - Version
+      summary: Service version retrieval
+      operationId: getServiceVersion
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Version'
+        '400':
+          description: "Bad Request\n\n\n\n  code: 400\n  message: Bad Request\n \
+            \ description: "
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: 'Unauthorized
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: 'Forbidden
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: 'Not Found
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '405':
+          description: 'Method Not Allowed
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: 'Internal Server Error
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: 'Service Unavailable
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: Returns the current version of the service.
+  /status:
+    get:
+      tags:
+        - Status
+      summary: Service health status
+      operationId: getServiceHealth
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Status'
+        '400':
+          description: 'Bad Request
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: 'Unauthorized
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: 'Forbidden
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: 'Not Found
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '405':
+          description: 'Method Not Allowed
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: 'Internal Server Error
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: 'Service Unavailable
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: Indicates if the service is operational. Returns "ok" even if some
+        components have issues.
+  /productOrderingManagement/v1/productOrder:
+    post:
+      tags:
+        - ProductOrder
+      summary: Creates a ProductOrder
+      operationId: createProductOrder
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ProductOrder'
+        '400':
+          description: 'Bad Request
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: 'Unauthorized
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: 'Forbidden
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: 'Not Found
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '405':
+          description: 'Method Not Allowed
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: 'Internal Server Error
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: 'Service Unavailable
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: This operation creates a ProductOrder entity.
+      requestBody:
+        required: true
+        description: A Product Order is a type of order which  can  be used to place
+          an order between a customer and a service provider or between a service
+          provider and a partner and vice versa.
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/ProductOrder'
+    get:
+      tags:
+        - ProductOrder
+      summary: List or find ProductOrder objects
+      operationId: listProductOrder
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductOrder'
+          headers:
+            X-Total-Count:
+              schema:
+                type: integer
+              description: Total number of items matching criteria
+            X-Result-Count:
+              schema:
+                type: integer
+              description: Actual number of items returned in the response body
+            Location:
+              schema:
+                type: string
+              description: Indicates the URL to redirect a page to
+        '400':
+          description: 'Bad Request
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: 'Unauthorized
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: 'Forbidden
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: 'Not Found
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '405':
+          description: 'Method Not Allowed
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: 'Internal Server Error
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: 'Service Unavailable
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: This operation list or find ProductOrder entities.
+      parameters:
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          description: Requested index for start of resources to be provided in response.
+        - name: limit
+          in: query
+          schema:
+            type: integer
+          description: Requested number of resources to be provided in response.
+        - name: creationDate
+          in: query
+          schema:
+            type: string
+          description: Date and time when the ProductOrder was created.
+        - name: notificationContact
+          in: query
+          schema:
+            type: string
+          description: Contact attached to the order to send back information regarding
+            this order.
+        - name: category
+          in: query
+          schema:
+            type: string
+          description: Used to categorize the order from a business perspective that
+            can be useful for the OM system (e.g. "enterprise", "residential"...)
+        - name: relatedParty.id
+          in: query
+          schema:
+            type: string
+          description: Related party id.
+        - name: relatedParty.name
+          in: query
+          schema:
+            type: string
+          description: Related party name.
+        - name: relatedParty.role
+          in: query
+          schema:
+            type: string
+          description: Related party role.
+        - name: channel.name
+          in: query
+          schema:
+            type: string
+          description: Name of the relevant channel.
+        - name: state
+          in: query
+          schema:
+            type: string
+          description: Tracks the lifecycle status of the product order, such as Acknowledged,
+            Rejected, InProgress, Pending and so on.
+        - name: cancellationDate
+          in: query
+          schema:
+            type: string
+          description: Date when the order is cancelled. This is used when order is
+            cancelled.
+        - name: sort
+          in: query
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/SortEnum'
+          description: Comma-separated list of fields to sort on.
+        - name: creationDate.gt
+          in: query
+          schema:
+            type: string
+          description: creationDate greater than value provided which could be date
+            or date time.
+        - name: creationDate.gte
+          in: query
+          schema:
+            type: string
+          description: creationDate greater than or equal value provided which could
+            be date or date time.
+        - name: creationDate.lt
+          in: query
+          schema:
+            type: string
+          description: creationDate less than value provided which could be date or
+            date time.
+        - name: creationDate.lte
+          in: query
+          schema:
+            type: string
+          description: creationDate less than or equal value provided which could be
+            date or date time.
+        - name: id
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+          description: Array of product order identifiers.
+        - name: fields
+          in: query
+          schema:
+            type: string
+          description: Comma-separated properties to provide in response.
+  /productOrderingManagement/v1/productOrder/{id}:
+    get:
+      tags:
+        - ProductOrder
+      summary: Retrieves a ProductOrder by ID
+      operationId: retrieveProductOrder
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/ProductOrder'
+        '400':
+          description: 'Bad Request
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: 'Unauthorized
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: 'Forbidden
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: 'Not Found
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '405':
+          description: 'Method Not Allowed
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: 'Internal Server Error
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: 'Service Unavailable
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: This operation retrieves a ProductOrder entity. Attribute selection
+        is enabled for all first level attributes.
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          description: The unique identifier of the product order to retrieve.
+          required: true
+        - name: fields
+          in: query
+          schema:
+            type: string
+          description: Comma-separated properties to provide in response.
+  /doc:
+    get:
+      tags:
+        - Doc
+      summary: Retrieve API documentation
+      operationId: getApiDocumentation
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: object
+        '400':
+          description: 'Bad Request
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: 'Unauthorized
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: 'Forbidden
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: 'Not Found
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '405':
+          description: 'Method Not Allowed
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: 'Internal Server Error
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '503':
+          description: 'Service Unavailable
+
+
+            '
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: Returns the API's OpenAPI documentation in JSON format, detailing
+        endpoints, parameters and responses.
+

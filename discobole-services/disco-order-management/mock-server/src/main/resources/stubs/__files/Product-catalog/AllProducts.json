@@ -1,0 +1,11 @@
+[
+  {
+    "id": "1234",
+    "@type": "Contract",
+    "lifecycleStatus": "launched"
+  },
+  {
+    "id": "3456",
+    "@type": "AtomicProductOffering"
+   }
+]

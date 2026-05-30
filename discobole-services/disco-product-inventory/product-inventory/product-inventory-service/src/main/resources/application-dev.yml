@@ -1,0 +1,37 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  mvc:
+    throw-exception-if-no-handler-found: 'true'
+  config:
+    activate:
+      on-profile: dev
+  data:
+    mongodb:
+      database: CPIB
+      uri: 'mongodb://localhost:27017/CPIB?replicaSet=rs0'
+
+config:
+  path:
+    productCatalogUrl: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange
+    resourceInventoryManagementUrl: https://mock-server-integration-disco.apps.fr01.paas.tech.orange/api/resourceInventoryManagement/v1/resource
+  enable:
+    productCatalog: true
+    resourceInventoryManagement: true
+app:
+  security:
+    ssl:
+      enabled: false
+management:
+  endpoint:
+    health:
+      show-details: always
+server:
+  port: 8085

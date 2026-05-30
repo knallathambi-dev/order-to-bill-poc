@@ -1,0 +1,40 @@
+// SPDX-FileCopyrightText: 2025 Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT License,
+// the text of which is available at https://opensource.org/license/mit
+// or see the "LICENSE.txt" file for more details.
+//
+// Authors: See CONTRIBUTORS.txt
+
+package com.orange.discobole.productcatalog.category.event.category.delete;
+
+import com.orange.discobole.productcatalog.category.event.category.CategoryEvent;
+
+public class CategoryAssociationDeletedEvent implements CategoryEvent {
+private String categoryId;
+
+public CategoryAssociationDeletedEvent(String categoryId) {
+	super();
+	this.categoryId = categoryId;
+}
+
+public CategoryAssociationDeletedEvent() {
+	super();
+	this.categoryId = null;
+}
+
+public String getCategoryId() {
+	return categoryId;
+}
+
+public void setCategoryId(String categoryId) {
+	this.categoryId = categoryId;
+}
+
+@Override
+public String toString() {
+	return "CategoryAssociationDeletedEvent [categoryId=" + categoryId + "]";
+}
+
+}

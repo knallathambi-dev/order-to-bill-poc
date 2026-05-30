@@ -1,0 +1,107 @@
+meta {
+  name: BulkUpdateStatusSold
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{AtomicPhyscialProductId}}/status",
+          "value": "Sold"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{AtomicPhyscialProductId}}/operationalStatus",
+          "value": "Sold"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{SpecPhyscialProductId}}/status",
+          "value": "Sold"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{SpecPhyscialProductId}}/operationalStatus",
+          "value": "Sold"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{BundlePhyscialProductId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{BundlePhyscialProductId}}/operationalStatus",
+          "value": "Active"
+      },
+  
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{ParentContractPhyscialProductId}}/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/{{ParentContractPhyscialProductId}}/operationalStatus",
+          "value": "Active"
+      }
+  ]
+}
+
+script:pre-request {
+  var productsInfo = bru.getEnvVar("productsInfo");
+  if (!productsInfo) {
+      productsInfo = globals.get("productsInfo"); 
+  }
+  productsInfo = JSON.parse(productsInfo || '[]'); 
+  
+  function getByType(products,type) {
+      let res=null;
+      products.forEach(function(product) {
+          if (product.type==type) {
+              res= product.id;
+          }
+      
+      });
+      return res;
+  }
+  
+  bru.setEnvVar("AtomicPhyscialProductId", getByType(productsInfo,'AtomicProductOffering'));
+  bru.setEnvVar("SpecPhyscialProductId", getByType(productsInfo,'productSpecification'));
+  bru.setEnvVar("BundlePhyscialProductId", getByType(productsInfo,'BundleProductOffering'));
+  bru.setEnvVar("ParentContractPhyscialProductId", getByType(productsInfo,'Contract'));
+  
+  
+  
+  
+  
+}
+
+tests {
+  var responseBody = res.body;
+  responseBody.forEach(function(product) { 
+      if(product.startDate!=null){
+          const datePart = product.startDate.split('T')[0];
+  
+          bru.setEnvVar("startDate", datePart);
+  
+      }
+   });
+}

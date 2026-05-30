@@ -1,0 +1,269 @@
+{
+  "@type": "QueryProductConfiguration",
+  "href": "https://host:port/tmfapi/productConfiguration/v5/QueryProductConfiguration/789",
+  "id": "800",
+  "state": "done",
+  "channel": {
+    "id": "4407",
+    "name": "Web",
+    "@type": "ChannelRef"
+  },
+  "relatedParty": [
+    {
+      "role": "customer",
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "236-mf",
+        "href": null,
+        "name": "Hector",
+        "@referredType": "Individual"
+      }
+    }
+  ],
+  "contextCharacteristic": [
+    {
+      "name": "salesModel",
+      "valueType": "string",
+      "value": "B2C",
+      "@type": "StringCharacteristic"
+    }
+  ],
+  "requestProductConfigurationItem": [
+    {
+      "@type": "QueryProductConfigurationItem",
+      "id": "01",
+      "productConfiguration": {
+        "@type": "ProductConfiguration",
+        "product": {
+          "isBundle": false,
+          "id": "{{request.query.id.0}}",
+          "@type": "Product"
+        },
+        "configurationAction": [
+          {
+            "@type": "ConfigurationAction",
+            "action": "modify",
+            "isSelected": true
+          }
+        ]
+      }
+    }
+  ],
+  "computedProductConfigurationItem": [
+    {
+      "id": "e6a18cbd-681c-44b3-a482-831f1434b4fa",
+      "productConfiguration": {
+        "id": "214524bb-ea89-4f55-825b-2d17e6e79ffe",
+        "isSelectable": true,
+        "isSelected": true,
+        "isInstallable": true,
+        "version": "1.0",
+        "productOffering": {
+          "id": "{{request.query.id.2}}",
+          "name": "Data Pass",
+          "@type": "ProductOfferingRef",
+          "@referredType": "AtomicProductOffering",
+          "version": "1.1"
+        },
+        "productSpecification": {
+          "id": "{{request.query.id.3}}",
+          "name": "Data Pass",
+          "version": "0.1",
+          "@type": "ProductSpecification"
+        },
+        "product": {
+          "productRelationship": [
+            {
+              "relationshipType": "hasParent",
+              "product": {
+                "id": "{{request.query.id.1}}",
+                "@type": "ProductRef"
+              }
+            },
+            {
+              "relationshipType": "reliesOn",
+              "product": {
+                "id": "{{request.query.id.4}}",
+                "@type": "ProductRef"
+              }
+            }
+          ]
+        },
+        "configurationCharacteristic": [
+          {
+            "configurable": true,
+            "description": "Volume",
+            "id": "915ce374-b360-41ed-83dc-a09b0099be12.1",
+            "isConfigurable": true,
+            "maxCardinality": 4,
+            "minCardinality": 0,
+            "name": "Volume",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": true,
+              {{#eq request.query.id.5 '1GB'}}
+              "isSelected": true,
+              {{else}}
+              "isSelected": false,
+              {{/eq}}
+              "characteristic": {
+                "id": "d95067fc-8edc-4f58-a6fd-1230c90fa8e6.1",
+                "name": "Volume",
+                "unitOfMeasure": "GB",
+                "value": "1",
+                "@type": "stringCharacteristic"
+              }
+              },
+              {
+                "isSelectable": true,
+              {{#eq request.query.id.5 '2GB'}}
+              "isSelected": true,
+              {{else}}
+              "isSelected": false,
+              {{/eq}}
+              "characteristic": {
+                "id": "d95067fc-8edc-4f58-a6fd-1230c90fa8e6.1",
+                "name": "Volume",
+                "unitOfMeasure": "GB",
+                "value": "2",
+                "@type": "stringCharacteristic"
+              }
+              }
+            ]
+          },
+          {
+            "description": "Recurring",
+            "id": "f4f66abd-ea2d-4671-97de-29899342aba2.2",
+            "isConfigurable": false,
+            "maxCardinality": 1,
+            "minCardinality": 1,
+            "name": "Recurring",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": true,
+                "isSelected": true,
+                "characteristic": {
+                  "id": "f4f66abd-ea2d-4671-97de-29899342aba2.2",
+                  "name": "Recurring",
+                  "value": "N",
+                  "@type": "stringCharacteristic"
+                }
+              }
+            ],
+            "@type": "stringCharacteristic"
+          },
+          {
+            "description": "Blocks the service after quota consumption",
+            "id": "67f9e0f2-7b37-4f29-bbba-8c056f241ea0.3",
+            "isConfigurable": false,
+            "maxCardinality": 1,
+            "minCardinality": 1,
+            "name": "Blocked",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": true,
+                "isSelected": true,
+                "characteristic": {
+                  "id": "67f9e0f2-7b37-4f29-bbba-8c056f241ea0.3",
+                  "name": "Blocked",
+                  "value": "Y",
+                  "@type": "stringCharacteristic"
+                }
+              }
+            ],
+            "@type": "stringCharacteristic"
+          },
+          {
+            "description": "Validity of the data",
+            "id": "e8e5dc6e-732d-455d-a3bc-bb4ff054d74f.4",
+            "isConfigurable": false,
+            "maxCardinality": 1,
+            "minCardinality": 1,
+            "name": "Validity",
+            "valueType": "string",
+            "configurationCharacteristicValues": [
+              {
+                "isSelectable": true,
+                "isSelected": true,
+                "characteristic": {
+                  "id": "e8e5dc6e-732d-455d-a3bc-bb4ff054d74f.4",
+                  "name": "Validity",
+                  "value": "Bill cycle end",
+                  "@type": "validityCharacteristic"
+                }
+              }
+            ],
+            "@type": "validityCharacteristic"
+          }
+        ],
+    {{#eq request.query.id.5 '1GB'}}
+    "configurationPrice": [
+      {
+        "description": "Data Pass one time charge for 1 GB data",
+        "name": "Data Pass one time charge for 1 GB data",
+        "priceType": "nonRecurringCharge",
+        "price": {
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 2,
+            "@type": "Money"
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 2,
+            "@type": "Money"
+          }
+        },
+        "productOfferingPrice": {
+          "id": "4a343123-0ff3-4b8f-996b-23497f865119",
+          "name": "Data Pass one time charge for 1 GB data",
+          "@type": "productOfferingPrice",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "@type": "ConfigurationPrice"
+      }
+    ]
+    {{else}}
+    "configurationPrice": [
+      {
+        "@type": "ConfigurationPrice",
+        "description": "Data Pass one shot charge for 2 GB of data",
+        "name": "Data Pass one shot charge for 2 GB of data",
+        "priceType": "nonRecurringCharge",
+        "price": {
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 3,
+            "@type": "Money"
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 3,
+            "@type": "Money"
+          }
+        },
+        "productOfferingPrice": {
+          "id": "c0fe4b96-c393-41bc-9131-3fffb4488cfa",
+          "name": "Data Pass one shot charge for 2 GB of data",
+          "@type": "productOfferingPrice",
+          "@referredType": "ProductOfferingPriceCharge"
+        }
+      }
+    ]
+    {{/eq}},
+    "configurationAction": [
+      {
+        "action": "add",
+        "isSelected": true,
+        "isSelectable": true
+      }
+    ]
+    },
+    "state": "approved"
+    }
+  ]
+}

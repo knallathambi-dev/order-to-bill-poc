@@ -1,0 +1,115 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  redis:
+    host: redis-master
+    port: 6379
+    password: ${REDIS_PWD}
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: catalog-policy-rule
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  server:
+    port: 9000
+retry:
+  maxAttempts: '3'
+  maxDelay: '1000'
+
+app:
+  version: 1.5.0-SNAPSHOT
+  name: PolicyRule
+  description: Policy Rule
+  ownerName: Herve Bouvier
+  ownerMail: herve.bouvier@orange.com
+
+#logging:
+#  level:
+#    root: info
+#    java:
+#      util:
+#        logging: OFF
+#    org:
+#      apache:
+#        catalina: OFF
+#        juli:
+#          logging:
+#            DirectJDKLog: OFF
+#      springframework:
+#        web:
+#          servlet:
+#            DispatcherServlet: WARN
+#            FrameworkServlet: WARN
+#            mvc:
+#              method:
+#                annotation:
+#                  RequestResponseBodyMethodProcessor: WARN
+#    com:
+#      orange:
+#        disco:
+#          catalog:
+#            policyruleservice: WARN
+
+
+# server:
+#   port: 8080
+#   tomcat:
+#     mbeanregistry:
+#       enabled: true
+#     accesslog:
+#       enabled: true
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift
+  cloud:
+    config:
+      import-check:
+        enabled: false
+    stream:
+      kafka.binder:
+        brokers: ${KAFKA}
+  data:
+    mongodb:
+      host: ${DB_SERVICE}
+      port: 27017
+      database: ${DB_NAME}
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+  keycloak: http://${KEYCLOAK_SERVICE}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/certs
+  keycloakAuthUrl: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/auth
+  keycloakRolesEntitlements: x107, pol_r, act_w, evt_w, cond_w, dom_w, rule_w
+  userRoleRetrievalUrl: http://${USERROLE-RETRIEVE-SERVICE-NAME}/userRolePermission/v1/userRole
+config:
+  productOfferingUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/productOffering
+  productSpecificationUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/productSpecification
+  productOfferingPriceUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/productOfferingPrice
+  policyRuleUrl: http://${CATALOG_POLICY_RULE}/policy/rule
+  catProdCatUrl: ${CAT-PROD-CAT-URL}/policy/rule
+  policyRuleRefUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/policyRule
+
+server:
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+    min-response-size: 512

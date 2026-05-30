@@ -1,0 +1,96 @@
+meta {
+  name: DefineProductOfferingIdentityData
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "DefineProductOfferingIdentityData",
+        "valueType": "Object",
+        "value": {
+          "defineData": {
+            "name": "Test_Po_{{Entity_name}}test",
+            "brand": "Orange",
+            "description": "Po_{{Entity_desc}}",
+            "isInstallable": true
+          },
+          "channels": [
+            {
+              "channelId": "Web"
+            },
+            {
+              "channelId": "Shop"
+            },
+            {
+              "channelId": "Selfcare"
+            }
+          ],
+          "marketSegments": [
+            {
+              "segmentId": "B2B"
+            }
+          ],
+          "relatedParties": [],
+          "poTerms": [{
+              "name": "term1",
+              "description": "term1",
+              "duration": {
+                "amount": "12",
+                "units": "Month"
+              },
+              "validFor": {
+                "startDateTime": "2026-04-02T06:11:00.000Z",
+                "endDateTime": null
+              }
+            }],
+          "validityPeriod": {
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "{{startDate}}T23:20:50.520Z"
+            }
+          }
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+  
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+  Apo_name: res.body.name
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  test("To verify next task is define the Category", function () {
+      expect(jsonData._links.nextTaskstoBePerformed[0].title).to.equals("ProductOfferingCreation.defCategory");
+    });
+}

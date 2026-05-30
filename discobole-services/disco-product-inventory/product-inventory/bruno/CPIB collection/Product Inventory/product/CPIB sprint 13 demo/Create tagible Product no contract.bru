@@ -1,0 +1,149 @@
+meta {
+  name: Create tagible Product no contract
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  User-Agent: insomnia/2023.5.8
+}
+
+body:json {
+  {
+      "status": "Created",
+      "operationalStatus": "Confirmed",
+      "relatedParty": [
+           {
+      "role": "Seller",
+      "partyOrPartyRole": {
+        "id": "456-dd-df45",
+        "href": "https://host:port/partyManagement/v5/individual/456-dd-df45",
+        "name": "Joe Doe",
+        "@type": "PartyRef",
+        "@referredType": "Individual"
+      },
+      "@type": "RelatedPartyRefOrPartyRoleRef"
+    }
+      ],
+      "productPrice": [
+          {
+              "description": "POP_5Euro",
+              "name": "POP_5Euro",
+              "priceType": "NRC",
+              "price": {
+                  "taxRate": 0,
+                  "dutyFreeAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                  },
+                  "taxIncludedAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                  }
+              }
+          }
+      ],
+      "productOffering": {
+          "id": "7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+          "name": "Mobile Handset",
+          "@type": "AtomicProductOffering"
+      },
+      "productOrderItem": [
+          {
+              "productOrderId": "{{productOrderID}}",
+              "orderItemId": "1",
+              "orderItemAction": "add"
+          }
+      ],
+      "productRelationship": [
+          {
+              "relationshipType": "sells",
+              "product": {
+               
+                  "productSerialNumber": "5678",
+                  
+                  "productOrderItem": [
+                      {
+                          "orderItemAction": "add",
+                          "orderItemId": "2",
+                          "productOrderId": "{{productOrderID}}"
+                      }
+                  ],
+                  "productSpecification": {
+                      "id": "a310de0e-276a-4992-8ac2-36459e68ea3f",
+                      "name": "Connectivity",
+                      "@type": "ProductSpecificationRef"
+                  },
+                  "realizingResource": [
+                      {
+                          "id": "65x",
+                          "href": "string",
+                          "name": "string",
+                          "@type": "LogicalResource"
+                      },
+                      {
+                          "id": "65x",
+                          "href": "string",
+                          "name": "string",
+                          "@type": "PhysicalResource"
+                      }
+                  ],
+                  "relatedParty": [
+                      {
+                          "id": "231-mf4",
+                          "name": "Abir",
+                          "role": "customer",
+                          "@referredType": "individual"
+                      }
+                  ],
+                  "status": "Created",
+                  "operationalStatus": "Created",
+                  "@type": "PhysicalProduct"
+              }
+          }
+      ],
+      "@type": "PhysicalProduct"
+  }
+}
+
+script:pre-request {
+  bru.setEnvVar("productOrderID", Math.floor((Math.random()*100000 +1)));
+}
+
+script:post-response {
+  var responseBody = res.body;
+  
+  var productsInfo = [];
+  
+  function extractProductInfo(products) {
+      products.forEach(function(product) {
+          if (product.productOffering || product.productSpecification) {
+              var productInfo = {
+                  id: product.id,
+                  type: product.productOffering ? product.productOffering['@type'] : 'productSpecification',
+                  name: product.productOffering ? product.productOffering.name : (product.productSpecification ? product.productSpecification.name : null)
+              };
+              productsInfo.push(productInfo);
+          }
+          if (product.productRelationship) {
+              product.productRelationship.forEach(function(relationship) {
+                  if (relationship.relationshipType !== "ParentContract") {
+                      extractProductInfo([relationship.product]);
+                  }
+              });
+          }
+      });
+  }
+  
+  extractProductInfo([responseBody]);
+  
+  bru.setEnvVar("productsInfo", JSON.stringify(productsInfo));
+  
+}

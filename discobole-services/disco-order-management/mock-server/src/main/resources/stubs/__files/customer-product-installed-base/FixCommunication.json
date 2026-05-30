@@ -1,0 +1,127 @@
+{
+  "@type": "Product",
+  "id": "67c08a6d3e0a2f1fdb75e7eb",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7eb",
+  "isBundle": false,
+  "name": "Fix communication",
+  "productCharacteristic": [
+    {
+      "@type": "StringCharacteristic",
+      "id": "f3c6144f-5276-4d9b-994e-7b098aa0feb9.1",
+      "name": "Number of mailbox",
+      "value": "10"
+    },
+    {
+      "@type": "ObjectCharacteristic",
+      "id": "bb36dd9a-816b-413d-8e80-37c714cd0803.2",
+      "name": "Size of mailbox in GB",
+      "value": {
+        "unitOfMeasure": "GB",
+        "value": "10"
+      }
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "cd93cfe6-5838-44f1-b783-d1ecac24ae43.3",
+      "name": "Antispam service",
+      "value": "Yes"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "ed0fffc1-310c-4a51-893f-f005b18fda42.5",
+      "name": "VoIP CLIP supplementary service",
+      "value": "Yes"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "55a22de6-ca16-4bd1-b3bf-c40fe10f53a9.6",
+      "name": "VoIP CLIR supplementary service",
+      "value": "No"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "0a1c7224-6891-44e4-b5d1-5abe31f906b5.10",
+      "name": "VoIP Calling Signal supplementary service",
+      "value": "Yes"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "f2abc606-817e-4c97-a94b-4289a761733d.7",
+      "name": "VoIP Call Forwarding Service",
+      "value": "No"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "ccdb7f2c-133a-4d9a-9b9d-87a670443fa3.8",
+      "name": "VoIP Event Call Forwarding Service",
+      "value": "Not reachable (CFNRC)"
+    }
+  ],
+  "productOffering": {
+    "id": "e677b9ef-29af-4aea-9895-13446243f030",
+    "name": "Fix communication",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "cb7e0c33-fabc-49ea-a3a7-f1d9a3d61a2d",
+      "productOrderId": "67c08a62311d586dbf8fe175"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e2",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+      }
+    },
+    {
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7ea",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ea"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "f17da494-f936-4c32-9fc7-afb815290165",
+    "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=f17da494-f936-4c32-9fc7-afb815290165",
+    "name": "Fix Communication PS",
+    "version": "0.2",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "qwy2rhnix",
+        "name": "ii",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Confirmed",
+  "creationDate": "2025-02-27T15:53:17Z",
+  "lastUpdateDate": "2025-02-27T15:53:30Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    }
+  ]
+}

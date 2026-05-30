@@ -1,0 +1,146 @@
+
+   {
+    "id": "abe401bc-76b8-4811-8fef-98d5d10d979c",
+    "description": "Ring Back Tone",
+    "isBundle": false,
+    "lastUpdate": "2023-11-07T16:50:22.756Z",
+    "lifecycleStatus": "active",
+    "name": "Ring Back Tone",
+    "version": "1.0.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "09aadef0-9aba-4c44-91b5-f190916ad476.1",
+        "configurable": true,
+        "description": "Tone",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 4,
+        "minCardinality": 0,
+        "name": "Tone",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "tone1",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          },
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "tone2",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          },
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "tone3",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+        "href": null,
+        "relationshipType": "requires",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [],
+    "serviceSpecification": [
+      {
+        "id": "Ring Back Tone_02",
+        "href": null,
+        "name": "Ring Back Tone",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "relatedResource": [],
+    "operationSpecification": [
+      {
+        "id": "72d48be1-5f04-4a9a-a567-cdecc10d4bb2.1",
+        "name": "Add a new Ring Back Tone",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "ADD",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "5d408afc-08ec-4af6-bcd4-0b8badb8ce2a.2",
+        "name": "Delete",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "Remove existing Ring Back Tone",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ]
+  }

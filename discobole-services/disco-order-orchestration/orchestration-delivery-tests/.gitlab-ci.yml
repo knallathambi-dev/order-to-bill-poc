@@ -1,0 +1,68 @@
+# Software Name: orchestration-delivery-tests
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+include:
+  # 1: include the template
+- remote: 'https://gitlab.com/to-be-continuous/semantic-release/-/raw/3.14.2/templates/gitlab-ci-semrel.yml'
+
+
+variables:
+########## semantic release variables end ##########
+  PROD_REF: /^(master|main)$/
+  SEMREL_BRANCHES_REF: /^(master|main)$/
+  SEMREL_INFO_ON: branches-ref
+  SEMREL_AUTO_RELEASE_ENABLED: true
+########## semantic release variables end ##########
+  BRUNO_FOLDER: bruno.json
+  #SECRET: $CLIENT_SECRET
+  ENVIRONMENT_STRING: review
+
+bruno_tests:
+  stage: test
+  timeout: 2h
+  variables:
+     RUNNER_SCRIPT_TIMEOUT: 2h
+  image:
+    name: node:22-alpine
+    entrypoint: [""]
+
+  script:
+    - npm install -g @usebruno/cli@1.35.0
+    - npm install punycode
+    - pwd
+    - echo Start Executing
+    - >
+      bru run -r "$BRUNO_FOLDER"
+      --env "$ENVIRONMENT_STRING" 
+      --reporter-html report.html 
+      --insecure
+    - pwd
+    - echo DONE
+  artifacts:
+    when: always
+    paths:
+      - report.html
+
+semantic-release:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: '$SEMREL_RELEASE_DISABLED == "true"'
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    # exclude if branch doesn't match $SEMREL_BRANCHES_REF
+    - if: '$CI_COMMIT_REF_NAME !~ $SEMREL_BRANCHES_REF'
+      when: never
+    # if $SEMREL_AUTO_RELEASE_ENABLED: auto
+    - if: '$SEMREL_AUTO_RELEASE_ENABLED == "true"'
+    # else manual
+    - when: manual
+      allow_failure: true

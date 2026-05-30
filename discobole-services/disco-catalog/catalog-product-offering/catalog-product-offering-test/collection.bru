@@ -1,0 +1,31 @@
+headers {
+  Authorization: bearer {{token}}
+}
+
+script:pre-request {
+    function addDaysToCurrentDate(days, format = "default") {
+        var currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + days);
+  
+        return format === "ISO" ? currentDate.toISOString() : 
+              `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
+    } 
+  
+    var startDate = addDaysToCurrentDate(1); 
+    bru.setEnvVar("startDate", startDate);
+  var slp=bru.getEnvVar("SLEEP_TIME");
+  await bru.sleep(slp);
+}
+
+docs {
+  //Do not change the structure of the folder
+  
+  This collection contains 8 folders each belong to different services.
+  
+  Any modification in CFS will lead to changes in subsequent folders aswell.
+  
+  
+  
+  
+  
+}

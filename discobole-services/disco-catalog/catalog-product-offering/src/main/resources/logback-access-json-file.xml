@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<configuration>
+    <appender name="JSONFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="net.logstash.logback.encoder.AccessEventCompositeJsonEncoder">
+            <providers>
+                <pattern>
+                    <pattern>
+                        {
+                        "@timestamp": "%date{yyyy-MM-dd'T'HH:mm:ss.SSSZ,UTC}",
+                        "@project": "discobole-product-offering",
+                        "service.name": "discobole-product-offering",
+                        "@type": "access",
+                        "client.ip": "%remoteIP",
+                        "client.user.name": "%user",
+                        "http.request.method": "%requestMethod",
+                        "http.version": "%protocol",
+                        "http.request.uri": "%requestURI",
+                        "http.response.status_code": "%statusCode",
+                        "http.response.elapsed_time": "%elapsedTime",
+                        "http.request.url": "%requestURL",
+                        "http.request.referrer": "%header{Referer}",
+                        "user_agent.name": "%header{User-agent}",
+                        "host.name": "%header{Host}",
+                        "http.request.accept": "%header{Accept}",
+                        "http.request.accept_encoding": "%header{Accept-Encoding}",
+                        "http.request.connection": "%header{Connection}",
+                        "http.response.content_type": "%responseHeader{Content-Type}",
+                        "http.response.content_length": "%bytesSent",
+                        "http.response.server": "%server",
+                        "http.response.connection": "%responseHeader{Connection}",
+                        "http.request.session": "%sessionID",
+                        "http.request.query_string":"%queryString"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+        <file>${LOG_FILE:-logs/catalog-access.log}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOGBACK_ROLLINGPOLICY_FILE_NAME_PATTERN:-${LOG_FILE:-logs/catalog-access.log}.%d{yyyy-MM-dd}.%i.gz}</fileNamePattern>
+            <cleanHistoryOnStart>${LOGBACK_ROLLINGPOLICY_CLEAN_HISTORY_ON_START:-false}</cleanHistoryOnStart>
+            <maxFileSize>${LOGBACK_ROLLINGPOLICY_MAX_FILE_SIZE:-10MB}</maxFileSize>
+            <totalSizeCap>${LOGBACK_ROLLINGPOLICY_TOTAL_SIZE_CAP:-0}</totalSizeCap>
+            <maxHistory>${LOGBACK_ROLLINGPOLICY_MAX_HISTORY:-7}</maxHistory>
+        </rollingPolicy>
+
+    </appender>
+
+    <appender-ref ref="JSONFILE" />
+</configuration>

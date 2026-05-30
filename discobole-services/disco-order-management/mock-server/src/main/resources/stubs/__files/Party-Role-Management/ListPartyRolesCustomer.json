@@ -1,0 +1,20 @@
+[
+  {
+    "engagedParty": {
+      "id": "231-mf20"
+    },
+    "name": "Homer",
+    "partyRoleSpecification": {
+      "name": "customer"
+    }
+  },
+  {
+    "engagedParty": {
+      "id": "231-mf20"
+    },
+    "name": "Homer",
+    "partyRoleSpecification": {
+      "name": "employee"
+    }
+  }
+]

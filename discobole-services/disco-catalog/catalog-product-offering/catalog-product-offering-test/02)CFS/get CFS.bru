@@ -1,0 +1,89 @@
+meta {
+  name: get CFS
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{host}}/serviceCatalogManagement/v1/serviceSpecification/{{CFS_id}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~ServiceSpecification.name: 
+  ~ServiceSpecification.version: 
+  ~StockItemType.id: 
+  ~StockItemType.name: 
+  ~id: ff838114-a10a-4596-87c9-51d79babd89f
+  ~lastUpdate: 
+  ~limit: 
+  ~offset: 
+  ~relatedParty.id: 
+  ~relatedParty.name: 
+  ~relatedParty.role: 
+  ~sort: 
+  ~supportEntity: 
+  ~validFor.gt: 
+  ~validFor.lt: 
+  ~ProductSpecificationRelationship.id: 499d1e12-9f93-4a6e-b036-5d14c4bf246a
+  ~ServiceSpecification.id: access01b01
+  ~name: Csps3!
+  ~brand: Csps3+
+  ~cook: null
+}
+
+headers {
+  ~Cookie: SESSION=6a9b8e50-6a04-4c1b-977c-8c9a6e380b42
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+     function sleep (ms) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve();
+          }, ms ? ms : 2000);
+        });
+      }
+       bru.setEnvVar("sleep",sleep);
+   // await bru.getEnvVar("sleep")(2000);
+}
+
+script:post-response {
+  var jsonData = res.getBody();
+  
+  if (Array.isArray(jsonData.serviceSpecCharacteristic)) {
+    var len = jsonData.serviceSpecCharacteristic.length;
+    console.log("Length of 'name' array:", len);
+  } else {
+    console.error("is not an array");
+  }
+  
+  
+  
+  console.log(len);
+  
+  for (let i=0 ;i<len;i++)
+  {
+    bru.setEnvVar("Char_id"+i, jsonData.serviceSpecCharacteristic[i].id);
+     bru.setEnvVar("Char_name"+i, jsonData.serviceSpecCharacteristic[i].name);
+    
+     bru.setEnvVar("Char_value"+i, jsonData.serviceSpecCharacteristic[i].characteristicValueSpecification[0].value);
+    bru.setEnvVar("Uom"+i, jsonData.serviceSpecCharacteristic[i].characteristicValueSpecification[0].unitOfMeasure); 
+    
+  }
+  
+}

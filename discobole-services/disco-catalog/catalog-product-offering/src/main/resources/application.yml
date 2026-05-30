@@ -1,0 +1,1324 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  cloud:
+    function:
+      definition: handle;productOfferingCategory;policyNotification
+    discovery:
+      enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+    stream:
+      kafka.binder:
+        brokers: localhost
+        defaultBrokerPort: 9092
+        auto-add-partitions: true
+        auto-create-topics: true
+      default:
+        contentType: application/json
+      bindings:
+        category-out-0:
+          contentType: application/json
+          destination: catalog.category
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 4
+            replication-factor: 1
+        productOffering-out-0:
+          contentType: application/json
+          destination: catalog.product-offering
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 4
+            replication-factor: 1
+        categoryProductOffering-out-0:
+          contentType: application/json
+          destination: category.categoryProductOffering
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 4
+            replication-factor: 1
+        productOfferingCategory-in-0:
+          contentType: application/json
+          group: productOfferingCategory
+          destination: product-offering.productOfferingCategory
+        policyNotification-in-0:
+          contentType: application/json
+          group: catalog
+          destination: policy-notification
+        handle-out-0:
+          contentType: application/json
+          group: envelope
+          destination: envelope
+      default-binder: kafka
+  zipkin:
+    discoveryClientEnabled: false
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 0.0
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  main:
+    allow-bean-definition-overriding: true
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: catalog
+      username: root
+      password: root
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: discobole-productcatalog-product-offering
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  server:
+    port: 9000
+resilience4j.retry:
+  instances:
+    configuratorRetry:
+      max-attempts: 3
+      wait-duration: 500ms
+      retry-exceptions:
+        # This is the one thrown by your custom error handler for 5xx errors.
+        - com.orange.discobole.productcatalog.productoffering.exception.DiscoClientException
+        # This is for network-level errors (e.g., connection refused, host not found).
+        - org.springframework.web.client.ResourceAccessException
+retry:
+  maxAttempts: '3'
+  maxDelay: '1000'
+
+
+app:
+  version: @project.version@
+  name: @project.name@
+  description: @project.description@
+  ownerName: Herve Bouvier
+  ownerMail: herve.bouvier@orange.com
+
+process-flow:
+  role:
+    admin: disco-admin
+
+cqrs:
+  command-enabled: true
+  query-enabled: false
+  queryBaseUrl: http://localhost:8087
+
+config:
+  cfsQuery: http://localhost:8087/serviceCatalogManagement/v1/serviceSpecification
+  productSpecQuery: http://localhost:8087/productCatalogManagement/v1/productSpecification
+  marketUrl: https://catalog-product-catalog-administration-integration-disco.apps.prd1.c1.paas.tech.orange/productCatalogAdministration/v5/marketSegment
+  channelUrl: https://catalog-product-catalog-administration-integration-disco.apps.prd1.c1.paas.tech.orange/productCatalogAdministration/v5/channel
+  productOfferingUrl: http://localhost:8087/productCatalogManagement/v1/productOffering
+  productOfferingPriceUrl: http://localhost:8087/productCatalogManagement/v1/productOfferingPrice
+  stockItemTypeUrl: http://localhost:8087/serviceCatalogManagement/v1/stockItemType
+  stockItemUrl: http://localhost:8087/serviceCatalogManagement/v1/stockItem
+  categoryUrl: http://localhost:8087/productCatalogManagement/v1/category
+  categoryEntityUrl: http://localhost:8087/productCatalogManagement/v1/categoryEntity
+  cpibProductUrl: http://localhost:8080/productInventoryManagement/v1/product
+  adminCPIBConfigUrl: http://localhost:8080/cpibConfiguration
+  productCatalogAdministrationUrl: https://catalog-product-catalog-administration-integration-disco.apps.prd1.c1.paas.tech.orange
+CPIB:
+  limit: 100
+  offset: 0
+  #expression: 0 50 21 * * ?
+  event-type:
+    - ServiceSpecificationStateChange
+    - ServiceSpecificationAttributeValueChange
+    - StockItemStateChange
+    - StockItemAttributeValueChange
+cron:
+  productSpecExpression: 0 21 17 * * ?
+  productOfferingExpression: 0 4 14 * * ?
+  productOfferingPriceExpression: 0 17 13 * * ?
+  jobInterval: 12
+  intervalUnit: HOURS
+  job-enabled: true
+eventstore:
+  host: localhost
+  port: 1113
+  username: admin
+  password: changeit
+
+package-element:
+  state-machines:
+    - name: ProductOfferingCreation
+      states:
+        - name: FORK
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region1
+          pseudoStateKind: FORK
+        - name: REGION
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region1
+          pseudoStateKind: INITIAL
+        - name: cancel
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion2
+          pseudoStateKind: INITIAL
+        - name: terminateFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion2
+          pseudoStateKind: END
+        - name: offeringType
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind: INITIAL
+          editable: false
+        - name: decisionTask1
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind: CHOICE
+        - name: creation
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: description
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: decisionTask4
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind: CHOICE
+        - name: contractDescription
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: defCategory
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: decisionTask2
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind: CHOICE
+        - name: bundleddefOperation
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: defOperation
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: associatePOPtoOperationSpecification
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: policyRuleAssociation
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: decisionTask3
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind: CHOICE
+        - name: defBundledPO
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+          # added selectAllowedAction
+        - name: selectAllowedAction
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: defCharacteristics
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: defRelationship
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: true
+        - name: validate
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind:
+          editable: false
+        - name: done
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: REGION
+          regionId: SubRegion1
+          pseudoStateKind: END
+        - name: JOIN
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region1
+          pseudoStateKind: JOIN
+        - name: endFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region1
+          pseudoStateKind:
+          end: true
+      transitions:
+        - event:
+          source: FORK
+          target: REGION
+          actions:
+          guard:
+          kind:
+        - event:
+          source: REGION
+          target: cancel
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: endCancelFlow
+          source: cancel
+          target: terminateFLow
+          actions:
+            - endRegionFlow
+          guard:
+          kind: EXTERNAL
+        - event: type
+          source: REGION
+          target: offeringType
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: offeringType
+          target: decisionTask1
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: decisionTask1
+          target: creation
+          actions:
+          guard: checkPoType
+          kind: EXTERNAL
+        - event:
+          source: decisionTask1
+          target: decisionTask4
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: decisionTask4
+          target: contractDescription
+          actions:
+          guard: checkContractPo
+          kind: EXTERNAL
+        - event:
+          source: decisionTask4
+          target: description
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: creation
+          target: description
+          action:
+          guard:
+          kind: EXTERNAL
+        - event: described
+          source: description
+          target: defCategory
+          action:
+          guard:
+          kind: EXTERNAL
+        - event: contdescribed
+          source: contractDescription
+          target: defCategory
+          action:
+          guard:
+          kind: EXTERNAL
+        - event: categoryDefined
+          source: defCategory
+          target: decisionTask2
+          action:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: decisionTask2
+          target: defOperation
+          actions:
+          guard: checkPoType    # Atomic
+          kind: EXTERNAL
+        - event:
+          source: decisionTask2
+          target: bundleddefOperation
+          actions:   #  EXPLICIT ELSE
+          guard:
+          kind: EXTERNAL
+        - event: operationDefined
+          source: defOperation
+          target: decisionTask3
+          action:
+          guard:
+          kind: EXTERNAL
+        - event: bundledoperationDefined
+          source: bundleddefOperation
+          target: decisionTask3
+          action:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: decisionTask3
+          target: defCharacteristics
+          actions:
+          guard: checkPoType
+          kind: EXTERNAL
+        - event:
+          source: decisionTask3
+          target: defBundledPO
+          actions:
+          guard: checkNotAtomicPo  # Bundled
+          kind: EXTERNAL
+          # --- Start of updated transitions for defBundledPO ---
+        - event: bundledDefined
+          source: defBundledPO
+          target: selectAllowedAction
+          action:
+          guard: checkContractPo
+          kind: EXTERNAL
+        - event: bundledDefined
+          source: defBundledPO
+          target: associatePOPtoOperationSpecification
+          action:
+          guard: checkNotContractPo
+          kind: EXTERNAL
+        - event: allowedActionSelected
+          source: selectAllowedAction
+          target: associatePOPtoOperationSpecification
+          action:
+          guard:
+          kind: EXTERNAL
+          # --- End of updated transitions ---
+        - event: characteristicDefined
+          source: defCharacteristics
+          target: associatePOPtoOperationSpecification
+          action:
+          guard:
+          kind: EXTERNAL
+        - event: associatePOPtoOperSpec
+          source: associatePOPtoOperationSpecification
+          target: policyRuleAssociation
+          action:
+          guard:
+          kind: EXTERNAL
+        - event: associatePolicyRule
+          source: policyRuleAssociation
+          target: defRelationship
+          action:
+          guard:
+          kind: EXTERNAL
+        - event: relationshipDefined
+          source: defRelationship
+          target: validate
+          action:
+          guard:
+          kind: EXTERNAL
+        - event: validated
+          source: validate
+          target: done
+          actions:
+            - endRegionFlow
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: REGION
+          target: JOIN
+          actions:
+          guard:
+          kind:
+        - event:
+          source: JOIN
+          target: endFlow
+          actions:
+          guard:
+          kind: EXTERNAL
+    - name: ProductOfferingModification
+      states:
+        - name: OUTERFORK
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region
+          pseudoStateKind: FORK
+        - name: OUTERREGION
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region
+          pseudoStateKind: INITIAL
+        - name: productOfferingModificationCancel
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region2
+          pseudoStateKind: INITIAL
+        - name: terminateFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region2
+          pseudoStateKind: END
+        - name: selectPOTypeForModification
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region1
+          pseudoStateKind: INITIAL
+        - name: selectPO
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region1
+          pseudoStateKind: INITIAL
+        - name: FORK
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region1
+          pseudoStateKind: FORK
+        - name: INNERREGION
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region1
+          pseudoStateKind: INITIAL
+        - name: modifyPODescriptionData
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion2
+          pseudoStateKind: INITIAL
+        - name: PODescriptionDataModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion2
+          pseudoStateKind: END
+        - name: modifyContractDescriptionData
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion2
+          pseudoStateKind: INITIAL
+        - name: ContractDescriptionDataModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion2
+          pseudoStateKind: END
+        - name: modifyPOCategoryData
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion3
+          pseudoStateKind: INITIAL
+        - name: POCategoryDataModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion3
+          pseudoStateKind: END
+        - name: modifyPOOperationData
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion4
+          pseudoStateKind: INITIAL
+        - name: POOperationDataModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion4
+          pseudoStateKind: END
+        - name: modifybundleddefOperation
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion4
+          pseudoStateKind: INITIAL
+        - name: BundleddefOperationModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion4
+          pseudoStateKind: END
+        - name: modifyPOAssociatePOPtoOperationSpecData
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion5
+          pseudoStateKind: INITIAL
+        - name: POAssociatePOPtoOperationSpecDataModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion5
+          pseudoStateKind: END
+        - name: modifyPOCharacteristicsData
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion6
+          pseudoStateKind: INITIAL
+        - name: POCharacteristicsDataModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion6
+          pseudoStateKind: END
+        - name: modifyBundledPO
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion6
+          pseudoStateKind: INITIAL
+        - name: BundledPOModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion6
+          pseudoStateKind: END
+        - name: modifyPolicyRuleData
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion8
+          pseudoStateKind: INITIAL
+        - name: PolicyRuleDataModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion8
+          pseudoStateKind: END
+        - name: modifyPORelationshipData
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion7
+          pseudoStateKind: INITIAL
+        - name: PORelationshipDataModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion7
+          pseudoStateKind: END
+        - name: validate
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion10
+          pseudoStateKind: INITIAL
+        - name: validated
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion10
+          pseudoStateKind: END
+        - name: modifySelectAllowedAction
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion11
+          pseudoStateKind: INITIAL
+        - name: SelectAllowedActionModified
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: INNERREGION
+          regionId: SubRegion11
+          pseudoStateKind: END
+        - name: JOIN
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState: OUTERREGION
+          regionId: Region1
+          pseudoStateKind: JOIN
+        - name: endFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region1
+          pseudoStateKind:
+          end: true
+        - name: OUTERJOIN
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region
+          pseudoStateKind: JOIN
+        - name: outerEndFLow
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: Region
+          pseudoStateKind:
+          end: true
+      transitions:
+        - event:
+          source: OUTERFORK
+          target: OUTERREGION
+          actions:
+          guard:
+          kind:
+        - event:
+          source: OUTERREGION
+          target: productOfferingModificationCancel
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: endPOCancelFlow
+          source: productOfferingModificationCancel
+          target: terminateFLow
+          actions:
+            - endRegionFlow
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: OUTERREGION
+          target: selectPOTypeForModification
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: selectPOTypeForModification
+          target: selectPO
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: productOffSelected
+          source: selectPO
+          target: FORK
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: FORK
+          target: INNERREGION
+          actions:
+          guard:
+          kind:
+        - event:
+          source: INNERREGION
+          target: modifyContractDescriptionData
+          actions:
+          guard: checkContractPo
+          kind: EXTERNAL
+        - event: ContractDescriptionDataModified
+          source: modifyContractDescriptionData
+          target: ContractDescriptionDataModified
+          actions:
+          guard: checkContractPo
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifyPODescriptionData
+          actions:
+          guard: checkNotContractPo
+          kind: EXTERNAL
+        - event: PODescriptionDataModified
+          source: modifyPODescriptionData
+          target: PODescriptionDataModified
+          actions:
+          guard: checkNotContractPo
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifyPOCategoryData
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: POCategoryDataModified
+          source: modifyPOCategoryData
+          target: POCategoryDataModified
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          #          target: decisionTask3
+          #          actions:
+          #          guard:
+          #          kind: EXTERNAL
+          #        - event:
+          #          source: decisionTask3
+          target: modifyPOOperationData
+          actions:
+          guard: checkPoType
+          kind: EXTERNAL
+        - event: POOperationDataModified
+          source: modifyPOOperationData
+          target: POOperationDataModified
+          actions:
+          guard: checkPoType
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifybundleddefOperation
+          actions:
+          guard: checkNotAtomicPo
+          kind: EXTERNAL
+        - event: BundleddefOperationModified
+          source: modifybundleddefOperation
+          target: BundleddefOperationModified
+          actions:
+          guard: checkNotAtomicPo
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifyPOAssociatePOPtoOperationSpecData
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: POAssociatePOPtoOperationSpecDataModified
+          source: modifyPOAssociatePOPtoOperationSpecData
+          target: POAssociatePOPtoOperationSpecDataModified
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifyPOCharacteristicsData
+          actions:
+          guard: checkPoType
+          kind: EXTERNAL
+        - event: POCharacteristicsDataModified
+          source: modifyPOCharacteristicsData
+          target: POCharacteristicsDataModified
+          actions:
+          guard: checkPoType
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifyBundledPO
+          actions:
+          guard:  checkNotAtomicPo
+          kind: EXTERNAL
+        - event: BundledPOModified
+          source: modifybundleddefOperation
+          target: BundledPOModified
+          actions:
+          guard: checkNotAtomicPo
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifyPolicyRuleData
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: PolicyRuleDataModified
+          source: modifyPolicyRuleData
+          target: PolicyRuleDataModified
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifyPORelationshipData
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: PORelationshipDataModified
+          source: modifyPORelationshipData
+          target: PORelationshipDataModified
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: modifySelectAllowedAction
+          actions:
+          guard: checkContractPo  # Only if applicable (contract PO)
+          kind: EXTERNAL
+        - event: SelectAllowedActionModified
+          source: modifySelectAllowedAction
+          target: SelectAllowedActionModified
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: validate
+          guard:
+          kind: EXTERNAL
+        - event: validated
+          source: validate
+          target: validated
+          actions:
+            - endRegionFlow
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: INNERREGION
+          target: JOIN
+          actions:
+          guard:
+          kind:
+        - event:
+          source: JOIN
+          target: endFlow
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event:
+          source: OUTERREGION
+          target: OUTERJOIN
+          actions:
+          guard:
+          kind:
+        - event:
+          source: OUTERJOIN
+          target: outerEndFlow
+          actions:
+          guard:
+          kind: EXTERNAL
+
+Dotel:
+  instrumentation:
+    kafka:
+      enabled: true
+    spring-kafka:
+      enabled: true
+    messaging:
+      experimental:
+        receive-telemetry:
+          enabled: false
+
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  keycloak: https://keycloak-integration-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x2, x3, x6, x7, x10, x11, po_w
+  userRoleRetrievalUrl: https://auth-userrole-integration-disco.apps.prd1.c1.paas.tech.orange/userRolePermission/v1/userRole
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+server:
+  port: 8888
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    accesslog:
+      enabled: true
+
+logging:
+  level:
+
+    root: info
+    java:
+      util:
+        logging: OFF
+    org:
+      apache:
+        catalina: OFF
+        juli:
+          logging:
+            DirectJDKLog: OFF
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: WARN
+            FrameworkServlet: WARN
+            mvc:
+              method:
+                annotation:
+                  RequestResponseBodyMethodProcessor: WARN
+    com:
+      orange:
+        discobole:
+          productcatalog:
+            productoffering: DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-review
+  keycloak: https://keycloak-review-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x2, x3, x6, x7, x10, x11
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-review-disco.apps.prd1.c1.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-review-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: kafka-review:9092
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-review
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+eventstore:
+  host: eventstore
+config:
+  cfsQuery: https://catalog-product-catalog-review-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification
+  productSpecQuery: https://catalog-product-catalog-review-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productSpecification
+  categoryUrl: https://catalog-product-catalog-review-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/category
+  categoryEntityUrl: https://catalog-product-catalog-review-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/categoryEntity
+  marketUrl: https://catalog-product-catalog-administration-review-disco.apps.prd1.c1.paas.tech.orange/productCatalogAdministration/v5/marketSegment
+  channelUrl: https://catalog-product-catalog-administration-review-disco.apps.prd1.c1.paas.tech.orange/productCatalogAdministration/v5/channel
+  productOfferingUrl: https://catalog-product-catalog-review-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productOffering
+  productOfferingPriceUrl: https://catalog-product-catalog-review-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+  stockItemTypeUrl: https://catalog-product-catalog-review-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/stockItemType
+  stockItemUrl: https://catalog-product-catalog-review-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/stockItem
+  cpibProductUrl: https://catalog-product-catalog-review-disco.apps.prd1.c1.paas.tech.orange/productInventoryManagement/v1/product
+  adminCPIBConfigUrl: https://catalog-product-catalog-review-disco.apps.prd1.c1.paas.tech.orange/cpibConfiguration
+  productCatalogAdministrationUrl: https://catalog-product-catalog-administration-review-disco.apps.prd1.c1.paas.tech.orange
+
+  #expression: 0 55 17 * * ?
+cqrs:
+  queryBaseUrl: https://disco-gateway-review-disco.apps.prd1.c1.paas.tech.orange
+
+cron:
+  productSpecExpression: 0 27 14 * * ?
+  productOfferingExpression: 0 37 14 * * ?
+  productOfferingPriceExpression: 0 47 14 * * ?
+  jobInterval: 24
+  intervalUnit: HOURS
+  job-enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-integration
+  keycloak: https://keycloak-integration-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x2, x3, x6, x7, x10, x11
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-integration-disco.apps.prd1.c1.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: kafka:9092
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-integration
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+eventstore:
+  host: eventstore
+config:
+  cfsQuery: https://catalog-product-catalog-integration-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification
+  productSpecQuery: https://catalog-product-catalog-integration-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productSpecification
+  categoryUrl: https://catalog-product-catalog-integration-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/category
+  categoryEntityUrl: https://catalog-product-catalog-integration-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/categoryEntity
+  marketUrl: https://catalog-product-catalog-administration-integration-disco.apps.prd1.c1.paas.tech.orange/productCatalogAdministration/v5/marketSegment
+  channelUrl: https://catalog-product-catalog-administration-integration-disco.apps.prd1.c1.paas.tech.orange/productCatalogAdministration/v5/channel
+  productOfferingUrl: https://catalog-product-catalog-integration-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productOffering
+  productOfferingPriceUrl: https://catalog-product-catalog-integration-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+  stockItemTypeUrl: https://catalog-product-catalog-integration-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/stockItemType
+  stockItemUrl: https://catalog-product-catalog-integration-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/stockItem
+  cpibProductUrl: https://catalog-product-catalog-integration-disco.apps.prd1.c1.paas.tech.orange/productInventoryManagement/v1/product
+  adminCPIBConfigUrl: https://catalog-product-catalog-integration-disco.apps.prd1.c1.paas.tech.orange/cpibConfiguration
+
+  #expression: 0 55 17 * * ?
+cqrs:
+  queryBaseUrl: https://disco-gateway-integration-disco.apps.prd1.c1.paas.tech.orange
+
+cron:
+  productSpecExpression: 0 27 14 * * ?
+  productOfferingExpression: 0 37 14 * * ?
+  productOfferingPriceExpression: 0 47 14 * * ?
+  jobInterval: 24
+  intervalUnit: HOURS
+  job-enabled: true
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-staging
+  keycloak: https://keycloak-staging-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x2, x3, x6, x7, x10, x11
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-staging-disco.apps.prd1.c1.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-staging-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: kafka-staging:9092
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-staging
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+eventstore:
+  host: eventstore
+config:
+  cfsQuery: https://catalog-product-catalog-staging-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification
+  productSpecQuery: https://catalog-product-catalog-staging-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productSpecification
+  categoryUrl: https://catalog-product-catalog-staging-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/category
+  categoryEntityUrl: https://catalog-product-catalog-staging-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/categoryEntity
+  marketUrl: https://catalog-product-catalog-administration-staging-disco.apps.prd1.c1.paas.tech.orange/productCatalogAdministration/v5/marketSegment
+  channelUrl: https://catalog-product-catalog-administration-staging-disco.apps.prd1.c1.paas.tech.orange/productCatalogAdministration/v5/channel
+  productOfferingUrl: https://catalog-product-catalog-staging-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productOffering
+  productOfferingPriceUrl: https://catalog-product-catalog-staging-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+  stockItemTypeUrl: https://catalog-product-catalog-staging-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/stockItemType
+  stockItemUrl: https://catalog-product-catalog-staging-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/stockItem
+  cpibProductUrl: https://catalog-product-catalog-staging-disco.apps.prd1.c1.paas.tech.orange/productInventoryManagement/v1/product
+  adminCPIBConfigUrl: https://catalog-product-catalog-staging-disco.apps.prd1.c1.paas.tech.orange/cpibConfiguration
+
+  #expression: 0 55 17 * * ?
+cqrs:
+  queryBaseUrl: https://disco-gateway-staging-disco.apps.prd1.c1.paas.tech.orange
+
+cron:
+  productSpecExpression: 0 27 14 * * ?
+  productOfferingExpression: 0 37 14 * * ?
+  productOfferingPriceExpression: 0 47 14 * * ?
+  jobInterval: 24
+  intervalUnit: HOURS
+  job-enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-production
+  keycloak: https://keycloak-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x2, x3, x6, x7, x10, x11
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-disco.apps.prd1.c1.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: kafka:9092
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-production
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+eventstore:
+  host: eventstore
+config:
+  cfsQuery: https://catalog-product-catalog-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification
+  productSpecQuery: https://catalog-product-catalog-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productSpecification
+  categoryUrl: https://catalog-product-catalog-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/category
+  categoryEntityUrl: https://catalog-product-catalog-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/categoryEntity
+  marketUrl: https://catalog-product-catalog-administration-disco.apps.prd1.c1.paas.tech.orange/productCatalogAdministration/v5/marketSegment
+  channelUrl: https://catalog-product-catalog-administration-disco.apps.prd1.c1.paas.tech.orange/productCatalogAdministration/v5/channel
+  productOfferingUrl: https://catalog-product-catalog-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productOffering
+  productOfferingPriceUrl: https://catalog-product-catalog-disco.apps.prd1.c1.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+  stockItemTypeUrl: https://catalog-product-catalog-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/stockItemType
+  stockItemUrl: https://catalog-product-catalog-disco.apps.prd1.c1.paas.tech.orange/serviceCatalogManagement/v1/stockItem
+  cpibProductUrl: https://catalog-product-catalog-disco.apps.prd1.c1.paas.tech.orange/productInventoryManagement/v1/product
+  adminCPIBConfigUrl: https://catalog-product-catalog-disco.apps.prd1.c1.paas.tech.orange/cpibConfiguration
+
+  #expression: 0 55 17 * * ?
+cqrs:
+  queryBaseUrl: https://disco-gateway-disco.apps.prd1.c1.paas.tech.orange
+
+cron:
+  productSpecExpression: 0 27 14 * * ?
+  productOfferingExpression: 0 37 14 * * ?
+  productOfferingPriceExpression: 0 47 14 * * ?
+  jobInterval: 24
+  intervalUnit: HOURS
+  job-enabled: true

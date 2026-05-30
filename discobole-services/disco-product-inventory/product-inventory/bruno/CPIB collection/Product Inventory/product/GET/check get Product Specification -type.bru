@@ -1,0 +1,16 @@
+meta {
+  name: check get Product Specification -type
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/product?fields=status,operationalStatus,productOrderItem,productRelationship,productOffering.@type,productSpecification.@type&productSpecification.@type=ProductSpecificationRef
+  body: none
+  auth: none
+}
+
+query {
+  fields: status,operationalStatus,productOrderItem,productRelationship,productOffering.@type,productSpecification.@type
+  productSpecification.@type: ProductSpecificationRef
+}

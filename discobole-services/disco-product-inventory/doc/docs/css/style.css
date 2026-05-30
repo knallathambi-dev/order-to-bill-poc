@@ -1,0 +1,333 @@
+/*
+ * SPDX-FileCopyrightText: 2025, 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+html,
+body {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
+  font-size: 20px;
+}
+
+/**********/
+/* SOLARIS ICONS */
+
+svg.solaris-icon {
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  vertical-align: -.2em;
+}
+
+svg.solaris-icon.si-xl {
+  width: 2.3em;
+  height: 2.3em;
+}
+
+/**********/
+/* HEADER */
+
+#menu img {
+  width: 2rem;
+}
+
+.navbar-expand-lg {
+  max-height: 108px;
+}
+
+.navbar-expand-lg .navbar-nav .nav-item {
+  font-size: 0.9rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+.mt-md-auto {
+  margin-top: 0 !important;
+}
+
+/**********/
+/* BANNER */
+
+#banner {
+  background: url("../img/bg-banner-dark.jpg") no-repeat;
+  background-size: cover;
+  text-align: center;
+  padding: 9rem 2rem 3rem 2rem;
+  color: #eee;
+}
+
+#banner h1 {
+  font-size: 4rem;
+}
+
+
+/*********/
+/* ABOUT */
+
+.gridlayout-container-about {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 5rem 5rem;
+  gap: 2rem;
+}
+
+.about-box {
+  margin: 0 0 30px;
+  display: flex;
+}
+
+.about-box .about-icon {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  border: 2px solid #eee;
+  color: var(--primary);
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+
+.about-box .about-text h3 {
+  margin: 0 0 10px 0;
+  padding: 0 0 0 0;
+  font-size: 1.5rem;
+  color: #333333;
+  font-weight: bold;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+
+
+/*************/
+/* ARGUMENTS */
+
+.gridlayout-container-arguments {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.gridrow {
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 5rem 10rem;
+  gap: 5rem;
+}
+
+.bgcolor_grey {
+  background-color: #eee;
+}
+
+.gridrow > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 3rem;
+  width: 100%;
+}
+
+.thumb {
+  width: 19rem;
+  border: 0.3rem solid var(--gray);
+  cursor: pointer;
+  position: relative;
+}
+
+.thumb > svg.solaris-icon {
+  width: 7em;
+  height: 7em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  color: white;
+  filter: drop-shadow(5px 5px 10px rgb(0 0 0 / 8));
+}
+
+.thumb > svg.solaris-icon.open-modal-icon {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.thumb:hover > svg.solaris-icon {
+  opacity: 0.8;
+}
+
+.modal img {
+  width: 100%;
+}
+
+.modal-content {
+  width: 1000px;
+  left: -150px;
+}
+
+.argument-text {
+  padding: 1rem 0 0 0;
+  flex-direction: column;
+}
+.argument-text ul {
+  margin-left: -1rem;
+  line-height: 1.7rem;;
+}
+
+/* argument icon */
+.argument-text h3 > svg.solaris-icon,
+.modal-content h2 > svg.solaris-icon {
+  color: var(--primary);
+}
+
+.argument-text h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: all 0.5s ease 0s;
+}
+
+
+/* CONTRIBUTORS */
+
+#contributors {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #999;
+  color: #eee;
+  padding: 3rem 0 2rem 0;
+  height: 6rem;
+}
+
+#contributors p {
+  font-size: 1.5rem;
+}
+
+.embed-responsive-19by12 {
+  padding-bottom: 62.25%;
+}
+
+/* FOOTER */
+
+.o-footer {
+  margin-top: 0;
+  font-size: 0.8rem;
+}
+
+footer ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+footer a {
+  color: white;
+}
+
+.footer-main {
+  padding: 1rem 5rem;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.footer-main-item {
+  padding-top: 1rem;
+  min-width: 12.5rem;
+}
+
+.footer-title {
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.footer-copyright {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+
+/* MEDIA */
+
+@media screen and (max-width: 1550px) {
+
+  .gridlayout-container-about {
+    grid-template-columns: 1fr 1fr;
+    padding: 5rem 5rem;
+    gap: 2rem;
+  }
+
+  .gridrow {
+    padding: 3rem 4rem;
+  }
+
+  .gridrow > div {
+    padding-left: 2rem;
+  }
+
+}
+
+@media screen and (max-width: 1100px) {
+
+  #banner h1 {
+    font-size: 3rem;
+  }
+
+  .gridlayout-container-about {
+    padding: 5rem 1rem;
+    gap: 1rem;
+  }
+
+  .gridrow {
+    gap: 1rem;
+  }
+
+  .gridrow > div {
+    padding-left: 1rem;
+  }
+
+  /* expanded navbar menu with hamburger */
+  .ml-auto {
+    background-color: black;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .gridlayout-container-about {
+    grid-template-columns: auto;
+  }
+
+  .flex-column {
+    flex-direction: row !important;
+  }
+
+  .about-text {
+    padding-left: 1rem;
+  }
+
+  .gridrow {
+    grid-template-columns: auto;
+    padding: 4rem;
+    gap: 1rem;
+  }
+
+  #arguments img {
+    padding-top: 1rem;
+    max-width: 90%;
+  }
+
+}
+

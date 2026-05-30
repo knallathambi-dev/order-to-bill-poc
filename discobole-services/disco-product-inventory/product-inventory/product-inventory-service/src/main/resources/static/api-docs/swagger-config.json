@@ -1,0 +1,6 @@
+{
+"configUrl": "/api-docs/swagger-config.yaml",
+"oauth2RedirectUrl": "/swagger-ui/oauth2-redirect.html",
+"url": "/api-docs/@spec.file@",
+"validatorUrl": ""
+}

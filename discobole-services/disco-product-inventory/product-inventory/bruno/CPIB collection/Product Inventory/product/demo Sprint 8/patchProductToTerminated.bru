@@ -1,0 +1,32 @@
+meta {
+  name: patchProductToTerminated
+  type: http
+  seq: 14
+}
+
+patch {
+  url: localhost:8085/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json-patch+json
+  User-Agent: insomnia/2023.5.8
+}
+
+body:json {
+  [
+  	{
+  		"op": "replace",
+  		"path": "/productInventoryManagement/v1/product/655b6d2e5df5280f367de74e/operationalStatus",
+  		"value": "Active"
+  	},
+  	{
+  		"op": "replace",
+  		"path": "/productInventoryManagement/v1/product/655b6d2e5df5280f367de74e/status",
+  		"value": "Active"
+  	}
+  	
+  ]
+}

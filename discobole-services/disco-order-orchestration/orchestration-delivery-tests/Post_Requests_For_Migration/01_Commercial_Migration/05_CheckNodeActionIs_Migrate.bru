@@ -1,0 +1,37 @@
+meta {
+  name: 05_CheckNodeActionIs_Migrate
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{BASE_URL}}/orchestrationPlan/{{plan_id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: {{token}}
+}
+
+script:pre-request {
+   
+}
+
+tests {
+    test("Status code is 200", function () {
+        expect(res.getStatus()).to.equal(200);
+    });
+    
+    var jsonData = res.body; 
+    
+    test("Check node action is migrate", function () { 
+        expect(jsonData.orchestrationPlanNodes[0].relatedProductOrderItem[0].action).to.be.oneOf(["migrate"]);
+        console.log("Orchestration Node action = " + jsonData.orchestrationPlanNodes[0].relatedProductOrderItem[0].action);
+    });
+   
+}
+
+docs {
+  this request for check node action is "migrate"
+}

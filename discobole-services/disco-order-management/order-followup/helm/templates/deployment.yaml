@@ -1,0 +1,159 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "order_follow_up.fullname" . }}
+  labels:
+    {{- include "order_follow_up.labels" . | nindent 4 }}
+    {{- include "order_follow_up.shutdownLabels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "order_follow_up.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "order_follow_up.selectorLabels" . | nindent 8 }}
+        {{- include "order_follow_up.monitoringLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "order_follow_up.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: order-follow-up
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env: #modified
+            - name: JDK_JAVA_OPTIONS
+              value: {{ .Values.jdkJavaOptions }}
+            - name: SPRING_CLOUD_KUBERNETES_ENABLED
+              value: "true"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLED
+              value: "true"
+            - name: SPRING_APPLICATION_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "order_follow_up.fullname" . }}-spring
+                  key: spring-db
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_0_NAME
+              value: "{{ template "order_follow_up.fullname" . }}"
+            - name: SPRING_PROFILES_ACTIVE
+              value: jsonconsole{{- if .Values.fluentd.enabled }},fluentd{{- end }}
+            - name: SERVER_SERVLET_CONTEXT_PATH
+              value: "{{ .Values.contextPath }}"
+            - name: KAFKA_SERVICE
+              value: {{ .Values.services.kafka }}
+            - name: ENV_TYPE
+              value: {{ .Values.environmentType }}
+            - name: PRODUCT_INVENTORY_SERVICE
+              value: {{ .Values.services.productInventory }}
+            {{- if .Values.keycloak.enabled }}
+            - name: ORDER_KEYCLOAK_CLIENT_ID
+              value: {{ .Values.keycloak.clientId }}
+            - name: ORDER_KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: ofup-keycloak-client-secret-{{ .Values.environmentType}}
+                  key: ORDER_KEYCLOAK_CLIENT_SECRET
+            - name: KEYCLOAK_URL
+              value: {{ .Values.keycloak.url }}
+            {{- end }}
+            {{- if .Values.fluentd.enabled }}
+            - name: FLUENTD_TAG
+              value: "{{ default "order_follow_up" .Values.fluentd.tag }}"
+            - name: FLUENTD_CONTAINER_NAME
+              value: "order_follow_up"
+            - name: FLUENTD_HOST
+              value: "{{ default "localhost" .Values.fluentd.host }}"
+            - name: FLUENTD_PORT
+              value: "{{ default "24224" .Values.fluentd.port }}"
+            {{- end }}
+            {{- if .Values.otel.enabled }}
+            - name: JAVA_TOOL_OPTIONS
+              value: "-javaagent:/app/opentelemetry-javaagent.jar -Dotel.instrumentation.kafka.enabled=true -Dotel.instrumentation.spring-kafka.enabled=true -Dotel.instrumentation.messaging.experimental.receive-telemetry.enabled=false -Xlog:gc=debug:file=/tmp/gc.orderfollowup.log:time,uptime,level,tags:filecount=5,filesize=100m -XX:MaxMetaspaceSize=256m -XX:+UseG1GC -XX:+CrashOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump-orderfollowup.log{{- if .Values.of.service.mxHeap }} -XX:MaxHeapSize={{ .Values.of.service.mxHeap }}{{- end }}"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://{{ .Values.otel.sidecar.otlp.host }}:{{ .Values.otel.sidecar.otlp.port }}"
+            - name: OTEL_METRICS_EXPORTER
+              value: "none"
+            - name: OTEL_TRACES_EXPORTER
+              value: "otlp"
+            - name: OTEL_SERVICE_NAME
+              value: "{{ template "order_follow_up.fullname" . }}"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name={{ include "order_follow_up.fullname" . }},app=disco,deployment.environment={{ default "undefined" .Values.monitoring.environment }},cloud.platform={{ default "undefined" .Values.otel.attributes.platform }},cloud.region={{ default "undefined" .Values.otel.attributes.region }},host.name={{ default "undefined" .Values.otel.attributes.hostname }},k8s.cluster.name={{ default "undefined" .Values.otel.attributes.cluster }},k8s.namespace.name={{ default "undefined" .Values.otel.attributes.namespace }},container_name=order_follow_up"
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080 #modified
+              protocol: TCP
+            - name: actuator
+              containerPort: 9000 #modified
+              protocol: TCP
+          volumeMounts:
+            - name: {{ template "order_follow_up.fullname" . }}-applog
+              mountPath: /tmp
+            - name: volume-keystore
+              mountPath: /mnt/keystore
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health/readiness
+              port: actuator
+            initialDelaySeconds: 65
+            failureThreshold: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health/liveness
+              port: actuator
+            initialDelaySeconds: 200
+            failureThreshold: 1
+            periodSeconds: 20
+          startupProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health
+              port: actuator
+            initialDelaySeconds: 300
+            failureThreshold: 45
+            periodSeconds: 2
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "sh", "-c", "sleep 10" ]
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: {{ template "order_follow_up.fullname" . }}-applog
+          emptyDir: { }
+        - name: volume-keystore
+          secret:
+            secretName: {{ include "order_follow_up.fullname" . }}-keystore-p12
+            items:
+              - key: keystore-p12
+                path: keystore-p12
+            defaultMode: 420
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

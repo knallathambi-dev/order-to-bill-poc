@@ -1,0 +1,52 @@
+// SPDX-FileCopyrightText: 2025 Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT License,
+// the text of which is available at https://opensource.org/license/mit
+// or see the "LICENSE.txt" file for more details.
+//
+// Authors: See CONTRIBUTORS.txt
+
+
+package com.orange.discobole.productcatalog.policyrule.enums;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+/**
+ * Gets or Sets PriceType
+ */
+public enum PriceType {
+
+    RC("RC"),
+
+    NRC("NRC"),
+
+    USAGE("Usage");
+
+    private final String value;
+
+    PriceType(String value) {
+        this.value = value;
+    }
+
+    @JsonCreator
+    public static PriceType fromValue(String text) {
+        for (PriceType b : PriceType.values()) {
+            if (String.valueOf(b.value).equals(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
+    @JsonValue
+    public String getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
+}

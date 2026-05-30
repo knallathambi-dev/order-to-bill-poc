@@ -1,0 +1,4773 @@
+[
+  {{#each request.query.[productOrderItem.orderItemId] as |id|}}
+  {{#not @first}}
+  {{#if (contains (array '08' '07' '11' '10' '09' '101' '103' 'f9ae9b95-1492-4bd2-b9be-e08383daf706' 'e7f88a71-bc01-48ca-9089-a6a4881f4032' 'bd250b94-2e6b-42d1-a7fe-52dd7e6f655b' '4b003092-90cd-4fe2-9deb-c5156585dcf5' '2b868bf8-c34b-4d54-a0ad-f6192cfe0817' '5ecae042-b365-42e7-a29f-41c54078d05b' '30a616d0-1846-4b10-bc1e-ec69a4d2ba2c' 'cb7e0c33-fabc-49ea-a3a7-f1d9a3d61a2d' 'faefcf0f-d804-41b3-842d-c6a6dfee9ee6' 'ced95179-df32-46f1-96de-116f157057c2' 'b7f06871-9cc7-4300-ae7b-060ebbce40e6' '12' '13' '14' '15' '16' '17' '18' '19' '20' '21' '22' '3f7b0a8a-522f-47fa-b148-3dbadcacc243' '1b273bb6-1304-4f93-a4a3-72d27122c9ef' 'ID2_Connectivity' 'ee753fd0-3586-4d23-919c-20a85abffdfe' 'ID2_MobileLine' '203e7fa1-a98e-453d-b6ca-f6e41444efc1' 'ID2_DataBundle' '09819820-0685-481b-9f38-153b091ca1c1' 'ID2_MobilePackageComfortBundle' 'd615a3f1-e45f-4b6a-8952-6f40d01da9d6' 'ID2_SimCard') id)}},{{/if}}
+  {{/not}}
+
+  {{#eq id '22'}}
+  {
+    "@type": "Product",
+    "id": "67ab50b537fe5a1967b98592",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98592",
+    "isBundle": false,
+    "name": "Time Bundle National Unlimited",
+    "productCharacteristic": [
+      {
+        "@type": "ObjectCharacteristic",
+        "id": "14fd725b-f5cf-4520-919d-fefb2a0d005c.1",
+        "name": "Quantity",
+        "value": {
+          "unitOfMeasure": "Hour",
+          "value": "999999"
+        }
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "58e32698-7987-4763-8b58-f34f762ebcf1.2",
+        "name": "Recurring",
+        "value": "Yes"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "b0b6af93-8392-4646-aefe-1abc67264685.3",
+        "name": "Frequency",
+        "value": "Month"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "d55ef20b-2978-4d17-ba0b-a4c5112865a1.6",
+        "name": "Rollover",
+        "value": "No"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "eec3a6c1-1b6f-4caf-9668-b92c3cda9ffb.10",
+        "name": "Blocked",
+        "value": "No"
+      }
+    ],
+    "productOffering": {
+      "id": "f78aaddd-7fc4-4ced-8c11-9e885456bd9e",
+      "name": "Time Bundle National Unlimited",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "22",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858c",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8",
+      "name": "Time Bundle National Unlimited PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:31:32Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:32Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:04Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:32Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '21'}}
+  {
+    "@type": "Product",
+    "id": "67ab50b537fe5a1967b98591",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98591",
+    "isBundle": false,
+    "name": "Connectivity",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "fb6b22fa-ddda-41a6-98eb-199895bffc47.1",
+        "name": "ICCID",
+        "value": "ICCID"
+      }
+    ],
+    "productOffering": {
+      "id": "bf822979-e3c2-463d-aee8-bf53c0056d3e",
+      "name": "Connectivity",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "21",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858e",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858e"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "12a34481-debc-4316-98d1-acc046f99416",
+      "name": "Connectivity PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:31:01Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:01Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:33Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:01Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '20'}}
+  {
+    "@type": "PhysicalProduct",
+    "id": "67ab50b537fe5a1967b9858e",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858e",
+    "isBundle": false,
+    "name": "SIM Card",
+    "productSerialNumber": "1234",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "1",
+        "name": "IMSI",
+        "value": "IMSI#1234"
+      }
+    ],
+    "productOffering": {
+      "id": "af2b35d6-7556-4925-9788-bdf073d2fa39",
+      "name": "SIM Card",
+      "version": "2.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "20",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858c",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b98591",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98591"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "73be51ab-af7c-4369-9298-3be3933a5d74",
+      "name": "SIM Card PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "65x",
+        "href": "http://server:port/resourceInventoryManagement/physicalResource/65x",
+        "@type": "PhysicalResource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:30:32Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:02Z",
+        "status": "Sold"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:46Z",
+        "status": "PendingDelivery"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:02Z",
+        "status": "Sold"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '19'}}
+  {
+    "@type": "Product",
+    "id": "67ab50b537fe5a1967b9858c",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c",
+    "isBundle": false,
+    "name": "Mobile Line",
+    "productOffering": {
+      "id": "87e81e5a-ce79-4b85-8183-d0f8733985da",
+      "name": "Mobile Line",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "19",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858e",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858e"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858d",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858d"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858f",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858f"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b98590",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98590"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b98592",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98592"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b98593",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98593"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b98594",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98594"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "f18a3fe0-1e61-419a-b7d8-dd68215b3705",
+      "name": "Mobile Line PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:31:02Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:02Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:33Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:02Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '18'}}
+  {
+    "@type": "Product",
+    "id": "67ab50b537fe5a1967b98594",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98594",
+    "isBundle": false,
+    "name": "Time Bundle Roaming",
+    "productCharacteristic": [
+      {
+        "@type": "ObjectCharacteristic",
+        "id": "5d14abbe-3464-40d2-89f9-90814ec5a960.1",
+        "name": "Quantity",
+        "value": {
+          "unitOfMeasure": "min",
+          "value": "300"
+        }
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "dd378873-ca4e-4e25-8d62-67d1e97b4d01.2",
+        "name": "Recurring",
+        "value": "Yes"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "6f514a41-f105-4b3a-b623-22334335d11e.3",
+        "name": "Frequency",
+        "value": "Month"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "d8b02553-88ab-4f3e-85b1-6bce9fefeb8e.6",
+        "name": "Rollover",
+        "value": "No"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "f39f690c-39bb-4450-9082-2a32b1d477e1.10",
+        "name": "Blocked",
+        "value": "No"
+      }
+    ],
+    "productOffering": {
+      "id": "4bbaa24a-5f2a-4e00-b1c6-8be2531a8003",
+      "name": "Time Bundle Roaming",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "18",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858c",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "94780e6a-9e82-421a-8bc0-d83db169d132",
+      "name": "Time Bundle Roaming PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:31:32Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:32Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:04Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:32Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '17'}}
+  {
+    "@type": "Product",
+    "id": "67ab50b537fe5a1967b98593",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98593",
+    "isBundle": false,
+    "name": "Data Bundle National",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "2aaa9981-e707-49ea-8148-c4cbd488b687.6",
+        "name": "Rollover",
+        "value": "No"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "055cc220-8487-4c8c-9f07-918412383618.3",
+        "name": "Frequency",
+        "value": "Month"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "5699d94b-d3d9-4086-bcab-653a20219ad8.2",
+        "name": "Recurring",
+        "value": "Yes"
+      },
+      {
+        "@type": "ObjectCharacteristic",
+        "id": "f358b5db-7684-49e6-8aee-f2e87837e92d.1",
+        "name": "Quantity",
+        "value": {
+          "unitOfMeasure": "GB",
+          "value": "999999"
+        }
+      }
+    ],
+    "productOffering": {
+      "id": "90f78fed-8af2-4012-bf2d-cedac38833ae",
+      "name": "Data Bundle National",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "17",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858c",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba",
+      "name": "Data Bundle National PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:31:32Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:32Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:04Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:32Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '16'}}
+  {
+    "@type": "Product",
+    "id": "67ab50b537fe5a1967b98590",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98590",
+    "isBundle": false,
+    "name": "Unlimited Messaging Bundle National and Roaming EU",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "fa2a1067-8bc7-4b9b-b497-00b5f8509b89.10",
+        "name": "Blocked",
+        "value": "No"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "2b35055a-1b07-4175-8864-76bd2856e04f.3",
+        "name": "Frequency",
+        "value": "Month"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "cbb5692f-3491-49db-a223-230734d39603.6",
+        "name": "Rollover",
+        "value": "No"
+      }
+    ],
+    "productOffering": {
+      "id": "bc4fdb83-81a4-478d-a07b-d09da4ac170c",
+      "name": "Unlimited Messaging Bundle National and Roaming EU",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "16",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858c",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "4034ea31-a688-406f-9576-4913cfbba18d",
+      "name": "Messaging Bundle National and Roaming EU PS",
+      "version": "0.3",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:31:32Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:32Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:04Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:32Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '08'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737eb",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737eb",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"08",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T14:52:51.543Z",
+        "status":"Created"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T14:52:51.543Z",
+        "Status":"Created"
+      }
+    ],
+    "productSpecification":{
+      "id":"5e18402d-c964-4d52-b362-22ef79c27c01",
+      "name":"Connectivity",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ed"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '14'}}
+  {
+    "@type": "Product",
+    "id": "67ab50b537fe5a1967b9858f",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858f",
+    "isBundle": false,
+    "name": "Data Bundle EU Roaming",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "e8e460df-5bc9-4a8d-890a-892bb96a222f.10",
+        "name": "Blocked",
+        "value": "No"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "18ae2aaa-fe02-4857-bf82-14093a2c22c7.6",
+        "name": "Rollover",
+        "value": "No"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "7975c12e-7109-460e-8516-3582aaf06411.3",
+        "name": "Frequency",
+        "value": "Month"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "48005ebb-1010-43ac-a97c-8317d2e6543d.2",
+        "name": "Recurring",
+        "value": "Yes"
+      },
+      {
+        "@type": "ObjectCharacteristic",
+        "id": "48718254-ca77-4119-a47b-739b0f4e166a.1",
+        "name": "Quantity",
+        "value": {
+          "unitOfMeasure": "GB",
+          "value": "99999"
+        }
+      }
+    ],
+    "productOffering": {
+      "id": "b1999ad2-4ed7-464e-a608-328353a23f9c",
+      "name": "Data Bundle EU Roaming",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "14",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858c",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "923da03d-cd48-449e-9cec-43a73ebd9e6b",
+      "name": "Data Bundle EU Roaming PS",
+      "version": "0.4",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:31:31Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:31Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:04Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:31Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '15'}}
+  {
+    "@type": "Product",
+    "id": "67ab50b537fe5a1967b98598",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98598",
+    "isBundle": false,
+    "name": "Device Insurance",
+    "billingAccount": {
+      "id": "13754f-8909-ef04-9e43-6bc963da2999",
+      "@referredType": "BillingAccount"
+    },
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "d7d4a451-27c6-4a3b-8dbd-4d04e82cf256.1",
+        "name": "Level",
+        "value": "Basic"
+      }
+    ],
+    "productOffering": {
+      "id": "611999ea-9b3e-4be6-a6af-b1e1c7af58bd",
+      "name": "Device Insurance",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "15",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "Device Insurance Level Basic Charge",
+        "name": "Device Insurance Level Basic Charge",
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "month"
+        },
+        "productOfferingPrice": {
+          "id": "516229b6-d024-4396-9c90-5c0ac5b14ff2",
+          "name": "Device Insurance Level Basic Charge",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 7
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 7
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "582f8dac-e268-401e-ac83-a5df73f8a83f",
+      "name": "Device Insurance PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:30:03Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:03Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:46Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:03Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '07'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ea",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ea",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"07",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productSpecification":{
+      "id":"c458d968-3718-4754-9408-7bd81526e7b2",
+      "name":"Mobile line",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+      {
+        "id":"1108_10"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ed"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '11'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ef",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ed",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"11",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"f0dad0dd-d276-4aa2-9ec5-e6b955e505e4",
+      "name":"Mobile Handset",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+      {
+        "id":"1108_10"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created"
+  }
+  {{/eq}}
+
+  {{#eq id '10'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ed",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ed",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"10",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"df32402e-ceb9-4467-aafd-fec0bbff3124",
+      "name":"SIM CARD",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+      {
+        "id":"1108_10"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created"
+  }
+  {{/eq}}
+
+  {{#eq id '12'}}
+  {
+    "@type": "PhysicalProduct",
+    "id": "67ab50b537fe5a1967b98596",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98596",
+    "isBundle": false,
+    "name": "Samsung Galaxy A55",
+    "productSerialNumber": "8765",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "1",
+        "name": "Memory",
+        "value": "512 GB"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "2",
+        "name": "Colour",
+        "value": "Lilac"
+      }
+    ],
+    "productOffering": {
+      "id": "bea0f233-f619-41cb-9797-0649a89e56bb",
+      "name": "Samsung Galaxy A55",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "12",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "Samsung A55 512 GB Charge",
+        "name": "Samsung A55 512 GB Charge",
+        "priceType": "nonRecurringCharge",
+        "productOfferingPrice": {
+          "id": "0cf6337c-00a5-47aa-a708-e2c6a508cf1a",
+          "name": "Samsung A55 512 GB Charge",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 600
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 600
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "8d5e0b3c-8c41-4690-8618-80e286e5b211",
+      "name": "Samsung A55 PS",
+      "version": "2.0",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "68x",
+        "href": "http://server:port/resourceInventoryManagement/physicalResource/68x",
+        "@type": "PhysicalResource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:30:03Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:03Z",
+        "status": "Sold"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:46Z",
+        "status": "PendingDelivery"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:03Z",
+        "status": "Sold"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '13'}}
+  {
+    "@type": "Product",
+    "id":"67ab50b537fe5a1967b98597",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ed",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"13",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"d18467d7-8441-4781-8849-4e0ac91e58a2",
+      "name":"SmartView Wallet Galaxy A55 case PS",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+      {
+        "id":"1108_10"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created"
+  }
+  {{/eq}}
+
+  {{#eq id '09'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ec",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ec",
+    "isBundle":false,
+    "productCharacteristic":[
+      {
+        "@type" : "StringCharacteristic",
+        "name":"volume",
+        "valueType":"string"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"09",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productSpecification":{
+      "id":"82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+      "name":"Time Bundle",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '101'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5sdsdsd-addSMSModifyRing",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5sdsdsd-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"101",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"c1b8052d-5de9-4719-b0e2-de327455884d",
+      "name":"SMS Option",
+      "@type":"ProductSpecificationRef"
+    },
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '103'}}
+  {
+    "@type": "Product",
+    "id":"649adsdsdsds-addSMSModifyRing",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649adsdsdsds-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"103",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification": {
+      "id": "abe401bc-76b8-4811-8fef-98d5d10d979c",
+      "name": "Ring Back Tone",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Active",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea-addSMSModifyRing"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '106'}}
+  {
+    "@type": "Product",
+    "id":"649adsdsdsds-deleteRing",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649adsdsdsds-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"delete",
+        "orderItemId":"106",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"3f53cbde-73be-405a-8684-60c4993fe2ad",
+      "name":"649adsdsdsds-addSMSModifyRing",
+      "@type":"ProductSpecificationRef"
+    },
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Active",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea-addSMSModifyRing"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '1497c727-6fcd-4dcb-b851-0d99b89742c4'}}
+  {
+    "@type": "Product",
+    "id":"649adsdsdsds-OldRingBackTone",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649adsdsdsds-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"migrate",
+        "orderItemId":"1497c727-6fcd-4dcb-b851-0d99b89742c4",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Active",
+    "productRelationship":[
+      {
+        "relationshipType":"migratedTo",
+        "product":{
+          "@type": "ProductRef",
+          "id":"1497c727-6fcd-4dcb-b851-0d99b89742c5"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '1497c727-6fcd-4dcb-b851-0d99b89742c5'}}
+  {
+    "@type": "Product",
+    "id":"6496780w2-newRingBackTone",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649adsdsdsds-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"migrate",
+        "orderItemId":"1497c727-6fcd-4dcb-b851-0d99b89742c5",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Active"
+  }
+  {{/eq}}
+
+  {{#eq id '1497c727-6fcd-4dcb-b851-0d99b89742c4-operational'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ecoperational",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productInventoryManagement/v1/product/649aaf9f2b4b3225cb5737ec",
+    "isBundle":false,
+    "productCharacteristic":[
+      {
+        "@type" : "StringCharacteristic",
+        "name":"volume",
+        "valueType":"string"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"migrate",
+        "orderItemId":"1497c727-6fcd-4dcb-b851-0d99b89742c4-operational",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productSpecification":{
+      "id":"82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+      "name":"Time Bundle",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"migratedTo",
+        "product":{
+          "@type": "ProductRef",
+          "id":"1497c727-6fcd-4dcb-b851-0d99b89742c5-operational"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '1497c727-6fcd-4dcb-b851-0d99b89742c5-operational'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ecNewOperational",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productInventoryManagement/v1/product/649aaf9f2b4b3225cb5737ec",
+    "isBundle":false,
+    "productCharacteristic":[
+      {
+        "@type" : "StringCharacteristic",
+        "name":"volume",
+        "valueType":"string"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"migrate",
+        "orderItemId":"1497c727-6fcd-4dcb-b851-0d99b89742c5-operational",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productSpecification":{
+      "id":"82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+      "name":"Time Bundle",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '1497c727-6fcd-4dcb-b851c4-Data-Pass-operational'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ecoperational",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productInventoryManagement/v1/product/649aaf9f2b4b3225cb5737ec",
+    "isBundle":false,
+    "productCharacteristic":[
+      {
+        "@type" : "StringCharacteristic",
+        "name":"volume",
+        "valueType":"string"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"migrate",
+        "orderItemId":"1497c727-6fcd-4dcb-b851c4-Data-Pass-operational",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productSpecification":{
+      "id":"5e18402d-c964-4d52-old-Data-Pass",
+      "name":"Data Pass",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"migratedTo",
+        "product":{
+          "@type": "ProductRef",
+          "id":"1497c727-6fcd-4dcb-b851c5-Data-Pass-operational"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '1497c727-6fcd-4dcb-b851c5-Data-Pass-operational'}}
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737ecNewOperational",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productInventoryManagement/v1/product/649aaf9f2b4b3225cb5737ec",
+    "isBundle":false,
+    "productCharacteristic":[
+      {
+        "@type" : "StringCharacteristic",
+        "name":"volume",
+        "valueType":"string"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"migrate",
+        "orderItemId":"1497c727-6fcd-4dcb-b851c5-Data-Pass-operational",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productSpecification":{
+      "id":"5e18402d-c964-4d52-new-Data-Pass",
+      "name":"Data Pass",
+      "@type":"ProductSpecificationRef"
+    },
+    "realizingService":[
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'f9ae9b95-1492-4bd2-b9be-e08383daf706'}}
+  {
+    "@type": "Product",
+    "id": "67c08a6d3e0a2f1fdb75e7e2",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2",
+    "isBundle": false,
+    "name": "Fibra 1000 contract",
+    "productOffering": {
+      "id": "972f3031-c97b-4dd3-a3ed-2f44edad4f60",
+      "name": "Fibra 1000 contract",
+      "version": "1.0",
+      "@type": "Contract",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "f9ae9b95-1492-4bd2-b9be-e08383daf706",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e3",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e3"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e8",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e8"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:54:40Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'e7f88a71-bc01-48ca-9089-a6a4881f4032'}}
+  {
+    "@type": "Product",
+    "id": "67c08a6d3e0a2f1fdb75e7e3",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e3",
+    "isBundle": false,
+    "name": "TV Premium",
+    "productOffering": {
+      "id": "5fabc4e1-0df5-47d4-8dff-951319ae2d54",
+      "name": "TV Premium",
+      "version": "1.0",
+      "@type": "BundleProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "e7f88a71-bc01-48ca-9089-a6a4881f4032",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "TV Premium Charge",
+        "name": "TV Premium Charge",
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "month"
+        },
+        "productOfferingPrice": {
+          "id": "98518328-0161-46cc-8e80-db6d9e8a68c1",
+          "name": "TV Premium Charge",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 6
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 6
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e4",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e4"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e5",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e5"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e6",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e6"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e7",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e7"
+        }
+      },
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:54:40Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'bd250b94-2e6b-42d1-a7fe-52dd7e6f655b'}}
+  {
+    "@type": "Product",
+    "id": "67c08a6d3e0a2f1fdb75e7e8",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e8",
+    "isBundle": false,
+    "name": "Internet Fiber",
+    "productOffering": {
+      "id": "0358ee16-bf0f-44d5-aa7b-dfc67e0bd324",
+      "name": "Internet Fiber",
+      "version": "1.0",
+      "@type": "BundleProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "bd250b94-2e6b-42d1-a7fe-52dd7e6f655b",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "Internet Fiber Charge",
+        "name": "Internet Fiber Charge",
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "month"
+        },
+        "productOfferingPrice": {
+          "id": "c68cbca4-2e56-48cc-9247-75a7eb1f1de9",
+          "name": "Internet Fiber Charge",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 5
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 5
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e9",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e9"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7ea",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ea"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7eb",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7eb"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7ec",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ec"
+        }
+      },
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:54:30Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '4b003092-90cd-4fe2-9deb-c5156585dcf5'}}
+  {
+    "@type": "PhysicalProduct",
+    "id": "67c08a6d3e0a2f1fdb75e7e9",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e9",
+    "isBundle": false,
+    "name": "Internet Box",
+    "productSerialNumber": "67890543219876511223",
+    "startDate": "2025-02-27T15:54:02Z",
+    "productOffering": {
+      "id": "592a6f26-7d34-41b0-83c0-75d323449024",
+      "name": "Internet Box",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "4b003092-90cd-4fe2-9deb-c5156585dcf5",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "86922e02-22f3-4518-b6b6-8773b2f69c86",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=86922e02-22f3-4518-b6b6-8773b2f69c86",
+      "name": "Internet Box PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "69x",
+        "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+        "@type": "PhysicalResource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:54:02Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-27T15:54:02Z",
+        "status": "Sold"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-27T15:53:33Z",
+        "status": "PendingDelivery"
+      },
+      {
+        "changeDate": "2025-02-27T15:54:02Z",
+        "status": "Sold"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '2b868bf8-c34b-4d54-a0ad-f6192cfe0817'}}
+  {
+    "@type": "Product",
+    "id": "67c08a6d3e0a2f1fdb75e7ea",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ea",
+    "isBundle": false,
+    "name": "Fibra 1000",
+    "productCharacteristic": [
+      {
+        "@type": "ObjectCharacteristic",
+        "id": "acfc59e7-7816-46b4-9255-5c0ef52140a7.1",
+        "name": "Upstream Max Throughput",
+        "value": {
+          "unitOfMeasure": "Mbps",
+          "value": "480"
+        }
+      },
+      {
+        "@type": "ObjectCharacteristic",
+        "id": "06c65d8a-bb44-49d1-9ae6-66669247e567.2",
+        "name": "Downstream Max Throughput",
+        "value": {
+          "unitOfMeasure": "Mbps",
+          "value": "940"
+        }
+      }
+    ],
+    "productOffering": {
+      "id": "0a6e1498-2cbe-4aa1-b06d-2a1f5c38a224",
+      "name": "Fibra 1000",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "2b868bf8-c34b-4d54-a0ad-f6192cfe0817",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e6",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e6"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7eb",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7eb"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "307db8b2-bdec-4062-a27a-f0e881b5d84b",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=307db8b2-bdec-4062-a27a-f0e881b5d84b",
+      "name": "Fibra 1000 PS",
+      "version": "0.3",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:53:35Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-27T15:53:33Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-27T15:53:35Z",
+        "status": "Locked"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '5ecae042-b365-42e7-a29f-41c54078d05b'}}
+  {
+    "@type": "Product",
+    "id": "67c08a6d3e0a2f1fdb75e7e4",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e4",
+    "isBundle": false,
+    "name": "Add-on Netflix",
+    "startDate": "2025-02-27T15:54:02Z",
+    "billingAccount": {
+      "id": "13c281-1626-f765-3610-eb36424e5241",
+      "@referredType": "BillingAccount"
+    },
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "68e5f15c-e34d-469e-bdbe-523f66fe9826.1",
+        "name": "Level",
+        "value": "Basic"
+      }
+    ],
+    "productOffering": {
+      "id": "c2c07f99-a99b-4e0d-9eff-eb76ad4600af",
+      "name": "Add-on Netflix",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "5ecae042-b365-42e7-a29f-41c54078d05b",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "Netflix Basic Level Charge",
+        "name": "Netflix Basic Level Charge",
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "month"
+        },
+        "productOfferingPrice": {
+          "id": "aa6ad047-a0b1-428c-b583-18eaf7f43ff1",
+          "name": "Netflix Basic Level Charge",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 5
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 5
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "80adcad3-dbac-4e5e-8a5e-d9ec60a180db",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=80adcad3-dbac-4e5e-8a5e-d9ec60a180db",
+      "name": "Add-on Netflix PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:54:02Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-27T15:54:02Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-27T15:53:33Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-27T15:54:02Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '30a616d0-1846-4b10-bc1e-ec69a4d2ba2c'}}
+  {
+    "@type": "Product",
+    "id": "67c08a6d3e0a2f1fdb75e7e6",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e6",
+    "isBundle": false,
+    "name": "TV Channels",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "da87beb0-ddca-45e0-922d-33f64f50741e.1",
+        "name": "Included Channels",
+        "value": "Basic channels"
+      }
+    ],
+    "productOffering": {
+      "id": "7d86a944-937e-4cca-8a46-e26773016f78",
+      "name": "TV Channels",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "30a616d0-1846-4b10-bc1e-ec69a4d2ba2c",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7ea",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ea"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "e7a8bcc3-9bfe-4bfe-8bb5-ba4c245aec9b",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=e7a8bcc3-9bfe-4bfe-8bb5-ba4c245aec9b",
+      "name": "TV Channels PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:53:30Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'cb7e0c33-fabc-49ea-a3a7-f1d9a3d61a2d'}}
+  {
+    "@type": "Product",
+    "id": "67c08a6d3e0a2f1fdb75e7eb",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7eb",
+    "isBundle": false,
+    "name": "Fix communication",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "f3c6144f-5276-4d9b-994e-7b098aa0feb9.1",
+        "name": "Number of mailbox",
+        "value": "10"
+      },
+      {
+        "@type": "ObjectCharacteristic",
+        "id": "bb36dd9a-816b-413d-8e80-37c714cd0803.2",
+        "name": "Size of mailbox in GB",
+        "value": {
+          "unitOfMeasure": "GB",
+          "value": "10"
+        }
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "cd93cfe6-5838-44f1-b783-d1ecac24ae43.3",
+        "name": "Antispam service",
+        "value": "Yes"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "ed0fffc1-310c-4a51-893f-f005b18fda42.5",
+        "name": "VoIP CLIP supplementary service",
+        "value": "Yes"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "55a22de6-ca16-4bd1-b3bf-c40fe10f53a9.6",
+        "name": "VoIP CLIR supplementary service",
+        "value": "No"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "0a1c7224-6891-44e4-b5d1-5abe31f906b5.10",
+        "name": "VoIP Calling Signal supplementary service",
+        "value": "Yes"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "f2abc606-817e-4c97-a94b-4289a761733d.7",
+        "name": "VoIP Call Forwarding Service",
+        "value": "No"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "ccdb7f2c-133a-4d9a-9b9d-87a670443fa3.8",
+        "name": "VoIP Event Call Forwarding Service",
+        "value": "Not reachable (CFNRC)"
+      }
+    ],
+    "productOffering": {
+      "id": "e677b9ef-29af-4aea-9895-13446243f030",
+      "name": "Fix communication",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "cb7e0c33-fabc-49ea-a3a7-f1d9a3d61a2d",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7ea",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ea"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "f17da494-f936-4c32-9fc7-afb815290165",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=f17da494-f936-4c32-9fc7-afb815290165",
+      "name": "Fix Communication PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:53:30Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'faefcf0f-d804-41b3-842d-c6a6dfee9ee6'}}
+  {
+    "@type": "PhysicalProduct",
+    "id": "67c08a6d3e0a2f1fdb75e7e7",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e7",
+    "isBundle": false,
+    "name": "TV Box",
+    "productSerialNumber": "67890543219876511223",
+    "startDate": "2025-02-27T15:54:02Z",
+    "billingAccount": {
+      "id": "138d0b-655c-7389-561a-8175cc6a2584",
+      "@referredType": "BillingAccount"
+    },
+    "productOffering": {
+      "id": "26ae3fe7-ac98-47b6-8509-c14a82efd8f9",
+      "name": "TV Box",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "faefcf0f-d804-41b3-842d-c6a6dfee9ee6",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "name": "TV Box Charge",
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "month"
+        },
+        "productOfferingPrice": {
+          "id": "566b85e4-29db-4edd-9642-25aa9f3367e8",
+          "name": "TV Box Charge",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 2
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 2
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "e200d3a6-7039-48a3-b613-db21f81dd66e",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=e200d3a6-7039-48a3-b613-db21f81dd66e",
+      "name": "TV Box PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "69x",
+        "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+        "@type": "PhysicalResource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:54:02Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-27T15:54:02Z",
+        "status": "Sold"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-27T15:53:33Z",
+        "status": "PendingDelivery"
+      },
+      {
+        "changeDate": "2025-02-27T15:54:02Z",
+        "status": "Sold"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'ced95179-df32-46f1-96de-116f157057c2'}}
+  {
+    "@type": "PhysicalProduct",
+    "id": "67c08a6d3e0a2f1fdb75e7ec",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ec",
+    "isBundle": false,
+    "name": "Router",
+    "productSerialNumber": "67890543219876511223",
+    "startDate": "2025-02-27T15:54:01Z",
+    "billingAccount": {
+      "id": "130565-0896-1414-46e4-391dcbb62381",
+      "@referredType": "BillingAccount"
+    },
+    "productOffering": {
+      "id": "ca4d5345-71d5-4206-b137-aaf332d5dfde",
+      "name": "Router",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "ced95179-df32-46f1-96de-116f157057c2",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "Internet Router Charge",
+        "name": "Internet Router Charge",
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "month"
+        },
+        "productOfferingPrice": {
+          "id": "c8b2aca7-90a9-4fb9-acd7-00807d1c649a",
+          "name": "Internet Router Charge",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 2
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 2
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "483d25e5-1ea0-4380-ab40-6cea8ac0dfeb",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=483d25e5-1ea0-4380-ab40-6cea8ac0dfeb",
+      "name": "Router PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "69x",
+        "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+        "@type": "PhysicalResource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:54:01Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-27T15:54:01Z",
+        "status": "Sold"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-27T15:53:33Z",
+        "status": "PendingDelivery"
+      },
+      {
+        "changeDate": "2025-02-27T15:54:01Z",
+        "status": "Sold"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'b7f06871-9cc7-4300-ae7b-060ebbce40e6'}}
+  {
+    "@type": "Product",
+    "id": "67c08a6d3e0a2f1fdb75e7e5",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e5",
+    "isBundle": false,
+    "name": "Add-on HBO",
+    "billingAccount": {
+      "id": "13605d-dcd4-6d28-9b92-40ee5b0370b8",
+      "@referredType": "BillingAccount"
+    },
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "c3281380-ac4a-4690-9ea9-b07be40c0cba.1",
+        "name": "Level",
+        "value": "HBO"
+      }
+    ],
+    "productOffering": {
+      "id": "1df431f8-cc84-411e-9061-2ddf85c28f58",
+      "name": "Add-on HBO",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "b7f06871-9cc7-4300-ae7b-060ebbce40e6",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "HBO charge for standard HBO",
+        "name": "HBO charge for standard HBO",
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "month"
+        },
+        "productOfferingPrice": {
+          "id": "ff2830d0-a97e-4f56-8b01-be16f4541cdf",
+          "name": "HBO charge for standard HBO",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 3
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 3
+          }
+        },
+        "productPriceAlteration": [
+          {
+            "description": "Alteration that enables 50% discount on HBO subscription",
+            "name": "Discount -50% on HBO",
+            "priceType": "recurringDiscount",
+            "priority": 1,
+            "price": {
+              "percentage": 50,
+              "taxRate": 0
+            }
+          }
+        ]
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67c08a6d3e0a2f1fdb75e7e2",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "829778f5-88da-4aea-9c78-f2e2ff4af444",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=829778f5-88da-4aea-9c78-f2e2ff4af444",
+      "name": "Add-on HBO PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "qwy2rhnix",
+          "name": "ii",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-02-27T15:53:17Z",
+    "lastUpdateDate": "2025-02-27T15:53:34Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-27T15:53:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-27T15:53:32Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-27T15:53:34Z",
+        "status": "Locked"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '1497c727-6fcd-4dcb-b851-0d99b89742c410'}}
+  {
+    "@type": "Product",
+    "id":"649adsdsdsds-OldHandset",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649adsdsdsds-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"migrate",
+        "orderItemId":"1497c727-6fcd-4dcb-b851-0d99b89742c410",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Active",
+    "productRelationship":[
+      {
+        "relationshipType":"migratedTo",
+        "product":{
+          "@type": "ProductRef",
+          "id":"1497c727-6fcd-4dcb-b851-0d99b89742c510"
+        }
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '1497c727-6fcd-4dcb-b851-0d99b89742c510'}}
+  {
+    "@type": "Product",
+    "id":"6496780w2-newHandset",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649adsdsdsds-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"migrate",
+        "orderItemId":"1497c727-6fcd-4dcb-b851-0d99b89742c510",
+        "productOrderId":"{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Active"
+  }
+  {{/eq}}
+
+  {{#eq id '3f7b0a8a-522f-47fa-b148-3dbadcacc243'}}
+  {
+    "@type": "Product",
+    "id": "67f3fff127434975dbb90206",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206",
+    "isBundle": false,
+    "name": "Active Mobile Package Comfort",
+    "startDate": "2025-04-07T16:41:40Z",
+    "productOffering": {
+      "id": "ada4e4de-d94c-44e6-bb36-6e02487b7ebd",
+      "name": "Active Mobile Package Comfort",
+      "version": "0.2",
+      "@type": "Contract",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "3f7b0a8a-522f-47fa-b148-3dbadcacc243",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "test_pop2",
+        "name": "test_pop2",
+        "priceType": "nonRecurringCharge",
+        "unitOfMeasure": "units",
+        "productOfferingPrice": {
+          "id": "54502ea5-14a2-40fe-b42f-0b3afdb96f8a",
+          "name": "test_pop2",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 2
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 2
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90207",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90207"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:41:40Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:40Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:40Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '1b273bb6-1304-4f93-a4a3-72d27122c9ef'}}
+  {
+    "@type": "Product",
+    "id": "67f3fff127434975dbb90208",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90208",
+    "isBundle": false,
+    "name": "Connectivity",
+    "startDate": "2025-04-07T16:41:01Z",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "5a5d753a-553b-49e7-81a5-83f9892ca7c1.1",
+        "name": "ICCID",
+        "value": "ICCID"
+      }
+    ],
+    "productOffering": {
+      "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+      "name": "Connectivity",
+      "version": "1.2",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "1b273bb6-1304-4f93-a4a3-72d27122c9ef",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "test_pop2",
+        "name": "test_pop2",
+        "priceType": "nonRecurringCharge",
+        "unitOfMeasure": "units",
+        "productOfferingPrice": {
+          "id": "54502ea5-14a2-40fe-b42f-0b3afdb96f8a",
+          "name": "test_pop2",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 2
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 2
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90206",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb9020b",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "e90a1274-7dc0-4259-a344-362b55edfc58",
+      "name": "Connectivity",
+      "version": "1.0.0",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:41:01Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:01Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:32Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:01Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'ID2_Connectivity'}}
+  {
+    "@type": "Product",
+    "id": "67f3fff127434975dbb90208",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90208",
+    "isBundle": false,
+    "name": "Connectivity",
+    "startDate": "2025-04-07T16:41:01Z",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "5a5d753a-553b-49e7-81a5-83f9892ca7c1.1",
+        "name": "ICCID",
+        "value": "ICCID"
+      }
+    ],
+    "productOffering": {
+      "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+      "name": "Connectivity",
+      "version": "1.2",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "ID2_Connectivity",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "test_pop2",
+        "name": "test_pop2",
+        "priceType": "nonRecurringCharge",
+        "unitOfMeasure": "units",
+        "productOfferingPrice": {
+          "id": "54502ea5-14a2-40fe-b42f-0b3afdb96f8a",
+          "name": "test_pop2",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 2
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 2
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90206",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb9020b",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "e90a1274-7dc0-4259-a344-362b55edfc58",
+      "name": "Connectivity",
+      "version": "1.0.0",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:41:01Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:01Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:32Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:01Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'ee753fd0-3586-4d23-919c-20a85abffdfe'}}
+  {
+    "@type": "Product",
+    "id": "67f3fff127434975dbb90209",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209",
+    "isBundle": false,
+    "name": "Mobile Line",
+    "startDate": "2025-04-07T16:41:01Z",
+    "productCharacteristic": [
+      {
+        "@type": "ValidityCharacteristic",
+        "id": "519e569a-08a8-4e11-ad47-9997c3766a5e.4",
+        "name": "Validity",
+        "value": {
+          "value": 30,
+          "unitOfMeasure": "Days"
+        }
+      }
+    ],
+    "productOffering": {
+      "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+      "name": "Mobile Line",
+      "version": "2.7",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "ee753fd0-3586-4d23-919c-20a85abffdfe",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "MobileLine",
+        "name": "NRC 5 Euro",
+        "priceType": "nonRecurringCharge",
+        "unitOfMeasure": "units",
+        "productOfferingPrice": {
+          "id": "b1a14825-ffa7-4a27-841f-16f798650de3",
+          "name": "NRC 5 Euro",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 0
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 0
+          }
+        },
+        "productPriceAlteration": [
+          {
+            "description": "100% dicount",
+            "name": "100% dicount",
+            "priceType": "nonRecurringDiscount",
+            "priority": 1,
+            "price": {
+              "percentage": 100,
+              "taxRate": 0
+            }
+          }
+        ]
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90206",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb9020b",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb9020a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020a"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+      "name": "Mobile Line",
+      "version": "1.0.0",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:41:01Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:01Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:32Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:01Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'ID2_MobileLine'}}
+  {
+    "@type": "Product",
+    "id": "67f3fff127434975dbb90209",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209",
+    "isBundle": false,
+    "name": "Mobile Line",
+    "startDate": "2025-04-07T16:41:01Z",
+    "productCharacteristic": [
+      {
+        "@type": "ValidityCharacteristic",
+        "id": "519e569a-08a8-4e11-ad47-9997c3766a5e.4",
+        "name": "Validity",
+        "value": {
+          "value": 30,
+          "unitOfMeasure": "Days"
+        }
+      }
+    ],
+    "productOffering": {
+      "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+      "name": "Mobile Line",
+      "version": "2.7",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "ID2_MobileLine",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "MobileLine",
+        "name": "NRC 5 Euro",
+        "priceType": "nonRecurringCharge",
+        "unitOfMeasure": "units",
+        "productOfferingPrice": {
+          "id": "b1a14825-ffa7-4a27-841f-16f798650de3",
+          "name": "NRC 5 Euro",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 0
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 0
+          }
+        },
+        "productPriceAlteration": [
+          {
+            "description": "100% dicount",
+            "name": "100% dicount",
+            "priceType": "nonRecurringDiscount",
+            "priority": 1,
+            "price": {
+              "percentage": 100,
+              "taxRate": 0
+            }
+          }
+        ]
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90206",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb9020b",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb9020a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020a"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+      "name": "Mobile Line",
+      "version": "1.0.0",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:41:01Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:01Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:32Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:01Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '203e7fa1-a98e-453d-b6ca-f6e41444efc1'}}
+  {
+    "@type": "Product",
+    "id": "67f3fff127434975dbb9020a",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020a",
+    "isBundle": false,
+    "name": "Data Bundle",
+    "startDate": "2025-04-07T16:41:31Z",
+    "billingAccount": {
+      "id": "130be1-bb15-da04-5040-3e130077a651",
+      "@referredType": "BillingAccount"
+    },
+    "productCharacteristic": [
+      {
+        "@type": "ObjectCharacteristic",
+        "id": "9cb0766f-56cc-41b7-a058-2e07e08a1228.10",
+        "name": "Quantity",
+        "value": {
+          "unitOfMeasure": "GB",
+          "value": "10"
+        }
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "b92591e0-8b1f-4202-b6c8-9cc8ab341514.8",
+        "name": "Frequency",
+        "value": "Month"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "b0cd1541-c6b3-46b3-ad47-c2fb98c733f4.9",
+        "name": "Recurring",
+        "value": "Yes"
+      }
+    ],
+    "productOffering": {
+      "id": "abe1bdfd-21de-4454-b703-398771d5ea85",
+      "name": "Data Bundle",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "203e7fa1-a98e-453d-b6ca-f6e41444efc1",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "Charge 10 eur",
+        "name": "Charge 10 eur",
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "month"
+        },
+        "productOfferingPrice": {
+          "id": "b12913ca-8e74-4e83-8502-5d53ccf1572d",
+          "name": "Charge 10 eur",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 7
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 7
+          }
+        },
+        "productPriceAlteration": [
+          {
+            "description": "Discount 3 Eur RC",
+            "name": "Discount 3 Eur RC",
+            "priceType": "recurringDiscount",
+            "priority": 1,
+            "recurringChargePeriod": {
+              "amount": 3,
+              "units": "Month(s)"
+            },
+            "price": {
+              "taxRate": 0,
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 3
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90206",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90209",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "b9267954-7027-4588-a36e-b4a0c0448693",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=b9267954-7027-4588-a36e-b4a0c0448693",
+      "name": "Data Bundle",
+      "version": "0.1",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:41:31Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:31Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:02Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:31Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'ID2_DataBundle'}}
+  {
+    "@type": "Product",
+    "id": "67f3fff127434975dbb9020a",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020a",
+    "isBundle": false,
+    "name": "Data Bundle",
+    "startDate": "2025-04-07T16:41:31Z",
+    "billingAccount": {
+      "id": "130be1-bb15-da04-5040-3e130077a651",
+      "@referredType": "BillingAccount"
+    },
+    "productCharacteristic": [
+      {
+        "@type": "ObjectCharacteristic",
+        "id": "9cb0766f-56cc-41b7-a058-2e07e08a1228.10",
+        "name": "Quantity",
+        "value": {
+          "unitOfMeasure": "GB",
+          "value": "10"
+        }
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "b92591e0-8b1f-4202-b6c8-9cc8ab341514.8",
+        "name": "Frequency",
+        "value": "Month"
+      },
+      {
+        "@type": "StringCharacteristic",
+        "id": "b0cd1541-c6b3-46b3-ad47-c2fb98c733f4.9",
+        "name": "Recurring",
+        "value": "Yes"
+      }
+    ],
+    "productOffering": {
+      "id": "abe1bdfd-21de-4454-b703-398771d5ea85",
+      "name": "Data Bundle",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "ID2_DataBundle",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "Charge 10 eur",
+        "name": "Charge 10 eur",
+        "priceType": "recurringCharge",
+        "recurringChargePeriod": {
+          "amount": 1,
+          "units": "month"
+        },
+        "productOfferingPrice": {
+          "id": "b12913ca-8e74-4e83-8502-5d53ccf1572d",
+          "name": "Charge 10 eur",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 7
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 7
+          }
+        },
+        "productPriceAlteration": [
+          {
+            "description": "Discount 3 Eur RC",
+            "name": "Discount 3 Eur RC",
+            "priceType": "recurringDiscount",
+            "priority": 1,
+            "recurringChargePeriod": {
+              "amount": 3,
+              "units": "Month(s)"
+            },
+            "price": {
+              "taxRate": 0,
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 3
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90206",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90209",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "b9267954-7027-4588-a36e-b4a0c0448693",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=b9267954-7027-4588-a36e-b4a0c0448693",
+      "name": "Data Bundle",
+      "version": "0.1",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:41:31Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:31Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:02Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:31Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id '09819820-0685-481b-9f38-153b091ca1c1'}}
+  {
+    "@type": "Product",
+    "id": "67f3fff127434975dbb90207",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90207",
+    "isBundle": false,
+    "name": "Mobile Package Comfort Bundle",
+    "startDate": "2025-04-07T16:41:40Z",
+    "productOffering": {
+      "id": "aafbd483-1fde-4297-aea5-f24b88e1a905",
+      "name": "Mobile Package Comfort Bundle",
+      "version": "2.0",
+      "@type": "BundleProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "09819820-0685-481b-9f38-153b091ca1c1",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90208",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90208"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90209",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb9020a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020a"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb9020b",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b"
+        }
+      },
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90206",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:41:40Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:40Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:40Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'ID2_MobilePackageComfortBundle'}}
+  {
+    "@type": "Product",
+    "id": "67f3fff127434975dbb90207",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90207",
+    "isBundle": false,
+    "name": "Mobile Package Comfort Bundle",
+    "startDate": "2025-04-07T16:41:40Z",
+    "productOffering": {
+      "id": "aafbd483-1fde-4297-aea5-f24b88e1a905",
+      "name": "Mobile Package Comfort Bundle",
+      "version": "2.0",
+      "@type": "BundleProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "ID2_MobilePackageComfortBundle",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90208",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90208"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90209",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb9020a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020a"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb9020b",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b"
+        }
+      },
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90206",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:41:40Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:40Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:41:40Z",
+        "status": "Active"
+      }
+    ]
+  }
+  {{/eq}}
+
+
+  {{#eq id 'd615a3f1-e45f-4b6a-8952-6f40d01da9d6'}}
+  {
+    "@type": "PhysicalProduct",
+    "id": "67f3fff127434975dbb9020b",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b",
+    "isBundle": false,
+    "name": "SIM Card",
+    "productSerialNumber": "67890543219876511223",
+    "startDate": "2025-04-07T16:40:31Z",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "1",
+        "name": "IMSI",
+        "value": "IMSI#123"
+      }
+    ],
+    "productOffering": {
+      "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+      "name": "SIM Card",
+      "version": "2.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "d615a3f1-e45f-4b6a-8952-6f40d01da9d6",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "SIM",
+        "name": "NRC 0 Euro",
+        "priceType": "nonRecurringCharge",
+        "unitOfMeasure": "units",
+        "productOfferingPrice": {
+          "id": "2ec30651-981d-423b-87c6-90f9d5d65ca0",
+          "name": "NRC 0 Euro",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 0
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 0
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90206",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90208",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90208"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90209",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "191424cb-6002-46aa-a5a9-0602cfba83c7",
+      "name": "SIM card",
+      "version": "1.0.0",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "69x",
+        "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+        "@type": "PhysicalResource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:40:31Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:31Z",
+        "status": "Sold"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:24Z",
+        "status": "PendingDelivery"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:31Z",
+        "status": "Sold"
+      }
+    ]
+  }
+  {{/eq}}
+
+  {{#eq id 'ID2_SimCard'}}
+  {
+    "@type": "PhysicalProduct",
+    "id": "67f3fff127434975dbb9020b",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b",
+    "isBundle": false,
+    "name": "SIM Card",
+    "productSerialNumber": "67890543219876511223",
+    "startDate": "2025-04-07T16:40:31Z",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "1",
+        "name": "IMSI",
+        "value": "IMSI#123"
+      }
+    ],
+    "productOffering": {
+      "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+      "name": "SIM Card",
+      "version": "2.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "ID2_SimCard",
+        "productOrderId": "{{request.query.[productOrderItem.productOrderId]}}"
+      }
+    ],
+    "productPrice": [
+      {
+        "@type": "ProductPrice",
+        "description": "SIM",
+        "name": "NRC 0 Euro",
+        "priceType": "nonRecurringCharge",
+        "unitOfMeasure": "units",
+        "productOfferingPrice": {
+          "id": "2ec30651-981d-423b-87c6-90f9d5d65ca0",
+          "name": "NRC 0 Euro",
+          "@type": "ProductOfferingPriceRef",
+          "@referredType": "ProductOfferingPriceCharge"
+        },
+        "price": {
+          "taxRate": 0,
+          "dutyFreeAmount": {
+            "unit": "EUR",
+            "value": 0
+          },
+          "taxIncludedAmount": {
+            "unit": "EUR",
+            "value": 0
+          }
+        },
+        "productPriceAlteration": []
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90206",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90208",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90208"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67f3fff127434975dbb90209",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "191424cb-6002-46aa-a5a9-0602cfba83c7",
+      "name": "SIM card",
+      "version": "1.0.0",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "69x",
+        "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+        "@type": "PhysicalResource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created",
+    "creationDate": "2025-04-07T16:40:17Z",
+    "lastUpdateDate": "2025-04-07T16:40:31Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:31Z",
+        "status": "Sold"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-04-07T16:40:17Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:22Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:24Z",
+        "status": "PendingDelivery"
+      },
+      {
+        "changeDate": "2025-04-07T16:40:31Z",
+        "status": "Sold"
+      }
+    ]
+  }
+  {{/eq}}
+
+
+  {{/each}}
+]

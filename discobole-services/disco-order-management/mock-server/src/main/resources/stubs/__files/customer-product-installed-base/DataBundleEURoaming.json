@@ -1,0 +1,124 @@
+{
+  "@type": "Product",
+  "id": "67ab50b537fe5a1967b9858f",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858f",
+  "isBundle": false,
+  "name": "Data Bundle EU Roaming",
+  "productCharacteristic": [
+    {
+      "@type": "StringCharacteristic",
+      "id": "e8e460df-5bc9-4a8d-890a-892bb96a222f.10",
+      "name": "Blocked",
+      "value": "No"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "18ae2aaa-fe02-4857-bf82-14093a2c22c7.6",
+      "name": "Rollover",
+      "value": "No"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "7975c12e-7109-460e-8516-3582aaf06411.3",
+      "name": "Frequency",
+      "value": "Month"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "48005ebb-1010-43ac-a97c-8317d2e6543d.2",
+      "name": "Recurring",
+      "value": "Yes"
+    },
+    {
+      "@type": "ObjectCharacteristic",
+      "id": "48718254-ca77-4119-a47b-739b0f4e166a.1",
+      "name": "Quantity",
+      "value": {
+        "unitOfMeasure": "GB",
+        "value": "99999"
+      }
+    }
+  ],
+  "productOffering": {
+    "id": "b1999ad2-4ed7-464e-a608-328353a23f9c",
+    "name": "Data Bundle EU Roaming",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "cc0cd0f9-3fce-4ade-8678-cb0d6ac11e36",
+      "productOrderId": "67ab50b3d636a24b72afc094"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67ab50b537fe5a1967b9858a",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+      }
+    },
+    {
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67ab50b537fe5a1967b9858c",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "923da03d-cd48-449e-9cec-43a73ebd9e6b",
+    "name": "Data Bundle EU Roaming PS",
+    "version": "0.4",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "Lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Active",
+  "operationalStatus": "Active",
+  "creationDate": "2025-02-11T13:29:25Z",
+  "lastUpdateDate": "2025-02-11T13:31:31Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:31Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:29:42Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:04Z",
+      "status": "PendingActive"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:31Z",
+      "status": "Active"
+    }
+  ]
+}

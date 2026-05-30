@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.orange.discobole.productinventory</groupId>
+    <artifactId>discobole-productinventory-product-inventory-spec</artifactId>
+    <version>1.5.0</version>
+    <name>ODA - CPIB - Product Inventory API Specifications</name>
+
+    <packaging>pom</packaging>
+    
+    <url>https://gitlab.ow2.org/discobole/disco-oda-components/disco-product-inventory/product-inventory-spec</url>
+
+    <modules>
+        <module>product-inventory-lombok-annotator</module>
+        <module>product-inventory-restapi-spec</module>
+        <module>product-inventory-asyncapi-spec</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
+    </properties>
+
+    <licenses>
+      <license>
+        <name>MIT License</name>
+        <url>https://opensource.org/license/mit</url>
+        <distribution>repo</distribution>
+      </license>
+    </licenses>
+  
+    <distributionManagement>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+        </repository>
+        <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/groups/${GROUP_ID}/-/packages/maven</url>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.orange.discobole.productinventory</groupId>
+                <artifactId>discobole-productinventory-product-inventory-asyncapi-spec</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.orange.discobole.productinventory</groupId>
+                <artifactId>discobole-productinventory-product-inventory-restapi-spec</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.1.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>            
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations-jakarta</artifactId>
+                <version>2.2.15</version>
+            </dependency>  
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>jackson-databind-nullable</artifactId>
+                <version>0.2.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.28</version>
+            </dependency>   
+            <dependency>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-core</artifactId>
+                <version>1.2.1</version>
+            </dependency>                                  
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <configuration>
+                    <outputDirectory>./</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>aggregate-add-third-party</id>
+                        <goals>
+                            <goal>aggregate-add-third-party</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar-maven-plugin.version}</version>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <!-- REST API module-->
+                <plugin>
+                    <groupId>org.openapitools</groupId>
+                    <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <version>7.0.1</version>
+                </plugin>
+                <!-- AsyncAPI module -->                    
+                <plugin>
+                    <groupId>org.jsonschema2pojo</groupId>
+                    <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                    <version>1.2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.eirslett</groupId>
+                    <artifactId>frontend-maven-plugin</artifactId>
+                    <version>1.12.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>                             
+            </plugins>
+        </pluginManagement>        
+    </build>
+</project>

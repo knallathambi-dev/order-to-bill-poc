@@ -1,0 +1,151 @@
+{
+  "processFlowSpecification": "Fallout",
+  "correlationId": null,
+  "channel": [
+    {
+      "id": null,
+      "href": null,
+      "name": "Internal",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": null
+    }
+  ],
+  "characteristic": [
+    {
+      "name": "eventError",
+      "id": null,
+      "valueType": "Object",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "ObjectCharacteristic",
+      "characteristicRelationship": null,
+      "value": {
+        "code": "HTTP_SERVICE_UNAVAILABLE",
+        "message": "http://localhost:8082/productCatalogManagement/v1/productSpecification?id=df32402e-ceb9-4467-aafd-fec0bbff3124&id=c458d968-3718-4754-9408-7bd81526e7b2&id=5e18402d-c964-4d52-b362-22ef79c27c01&id=82f3bab6-63a1-4008-96a3-8d411d0c5b38 responded with a 503 Service Unavailable and message Error retrieving product specification with ProductOrderId [df32402e-ceb9-4467-aafd-fec0bbff3124, c458d968-3718-4754-9408-7bd81526e7b2, 5e18402d-c964-4d52-b362-22ef79c27c01, 82f3bab6-63a1-4008-96a3-8d411d0c5b38] and status 503 SERVICE_UNAVAILABLE",
+        "reason": "Service unavailable"
+      }
+    },
+    {
+      "name": "eventTraceParent",
+      "id": null,
+      "valueType": "String",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "StringCharacteristic",
+      "characteristicRelationship": null,
+      "value": "No traceparent provided"
+    },
+    {
+      "name": "eventTopic",
+      "id": null,
+      "valueType": "String",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "StringCharacteristic",
+      "characteristicRelationship": null,
+      "value": "disco.order-management.productOrderStateChange-event-dlt"
+    },
+    {
+      "name": "eventHandlerClass",
+      "id": null,
+      "valueType": "String",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "StringCharacteristic",
+      "characteristicRelationship": null,
+      "value": "ProductOrderStateChangeEventHandler"
+    },
+    {
+      "name": "orchestrationPlan",
+      "id": "4bfda2fe-3146-40a4-8884-949b2e581161",
+      "valueType": "Fallout",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "ObjectCharacteristic",
+      "characteristicRelationship": null,
+      "value": {
+        "id": "4bfda2fe-3146-40a4-8884-949b2e581161",
+        "relatedEntity": [
+          {
+            "id": "4bfda2fe-3146-40a4-8884-949b2e581161",
+            "state": "Held",
+            "@referredtype": "OrchestrationPlan",
+            "role": "initiator"
+          },
+          {
+            "id": "4bfda2fe-3146-40a4-8884-949b2e581161",
+            "state": "Held",
+            "@referredtype": "OrchestrationPlan",
+            "role": "relatedOrchestrationPlan"
+          },
+          {
+            "id": "120999934",
+            "@referredtype": "RelatedProductOrder",
+            "role": "relatedProductOrder"
+          }
+        ],
+        "relatedParty": {
+          "id": "231-mf4",
+          "role": "customer",
+          "name": "A1"
+        }
+      }
+    },
+    {
+      "name": "eventPayload",
+      "id": null,
+      "valueType": "Object",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "ObjectCharacteristic",
+      "characteristicRelationship": null,
+      "value": {
+        "id": "4bfda2fe-3146-40a4-8884-949b2e581161",
+        "relatedProductOrder": {
+          "id": "120999934",
+          "contractName": "Mobile Package 1"
+        },
+        "relatedParty": [
+          {
+            "id": "231-mf4",
+            "role": "customer",
+            "name": "A1"
+          }
+        ],
+        "state": "Initialized",
+        "receivedDate": "2024-08-04T12:30:11.676Z",
+        "archived": false,
+        "lastModifiedDate": "2024-08-04T12:30:11.693Z"
+      }
+    }
+  ],
+  "relatedEntity": [
+    {
+      "id": "4bfda2fe-3146-40a4-8884-949b2e581161",
+      "href": null,
+      "name": null,
+      "role": null,
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": "OrchestrationPlan"
+    }
+  ],
+  "relatedParty": [
+    {
+      "id": "231-mf4",
+      "href": null,
+      "name": "A1",
+      "role": "customer",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": null
+    }
+  ],
+  "@baseType": null,
+  "@schemaLocation": null,
+  "@type": null
+}

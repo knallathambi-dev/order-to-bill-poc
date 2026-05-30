@@ -1,0 +1,27 @@
+meta {
+  name: createJob-scheduled-Immediatly
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/jobSpecification
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "@type": "ExportJobSpecification",
+    "query": "creationDate.gte=2024-04-04T11:52:22Z",
+    "schedule": {
+      "@type": "ImmediateJobScheduler"
+    },
+    "columns": [],
+    "contentType": "csv"
+  }
+}
+
+tests {
+  bru.setEnvVar("jobId", res.body.id);
+}

@@ -1,0 +1,195 @@
+{
+  "id": "6581718dfef0906831254437",
+  "relatedProductOrder": {
+    "id": "1109"
+  },
+  "relatedParty": [
+    {
+      "id": "231-mf4",
+      "role": "customer",
+      "name": "A1"
+    }
+  ],
+  "state": "Acknowledged",
+  "receivedDate": "2023-12-19T10:33:49.390Z",
+  "orchestrationPlanNodes": [
+    {
+      "id": "5e11ffaf-b945-4d73-9cf7-01336b438c62",
+      "state": "Acknowledged",
+      "relatedProductOrder": {
+        "id": "1109"
+      },
+      "relatedProductOrderItem": [{
+        "id": "08",
+        "action": "add"
+      }],
+      "relatedProduct": [
+        {
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "df32402e-ceb9-4467-aafd-fec0bbff3124"
+          }
+        },
+        {
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+            "name": "Connectivity",
+            "serviceSpecification": [
+              {
+                "id": "Connectivity",
+                "name": "Connectivity"
+              }
+            ]
+          }
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "23b29121-8ab4-4450-919f-ab85d855c388",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    },
+    {
+      "id": "23b29121-8ab4-4450-919f-ab85d855c388",
+      "state": "Acknowledged",
+      "relatedProductOrder": {
+        "id": "1109"
+      },
+      "relatedProductOrderItem": [{
+        "id": "10",
+        "action": "add"
+      }],
+      "relatedProduct": [
+        {
+          "id": "649aaf9f2b4b3225cb5737ed",
+          "realisingService": [
+            {
+              "id": "1108_10"
+            }
+          ],
+          "productCharacteristic" : [
+            {
+              "id": "5243",
+              "name": "ICCID",
+              "valueType": "string",
+              "value": "hello",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+            "name": "SIM CARD"
+          },
+          "isInstallable": true,
+          "productOrderItemId": "10",
+          "@type": "physicalProduct"
+        },
+        {
+          "id": null,
+          "realisingService": [
+            {
+              "id": "1108_10"
+            }
+          ],
+          "productCharacteristic" : [
+            {
+              "id": "5243",
+              "name": "ICCID",
+              "valueType": "string",
+              "value": "hello",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "df32402e-ceb9-4467-aafd",
+            "name": "SIM CARD"
+          },
+          "isInstallable": false,
+          "productOrderItemId": "11",
+          "@type": "shipmentProduct"
+        }
+      ],
+      "relatedOrchestrationPlanNode": []
+    },
+    {
+      "id": "f214c79d-edbb-40c3-9bff-20ad7252acb5",
+      "state": "Acknowledged",
+      "relatedProductOrder": {
+        "id": "1109"
+      },
+      "relatedProductOrderItem": [{
+        "id": "07",
+        "action": "add"
+      }],
+      "relatedProduct": [
+        {
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "df32402e-ceb9-4467-aafd-fec0bbff3124"
+          }
+        },
+        {
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+            "name": "Mobile Line",
+            "serviceSpecification": [
+              {
+                "id": "MobileLine",
+                "name": "MobileLine"
+              }
+            ]
+          }
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "23b29121-8ab4-4450-919f-ab85d855c388",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    },
+    {
+      "id": "2c3c4732-5f4e-4297-991d-ad73244b39fa",
+      "state": "Acknowledged",
+      "relatedProductOrder": {
+        "id": "1109"
+      },
+      "relatedProductOrderItem": [{
+        "id": "09",
+        "action": "add"
+      }],
+      "relatedProduct": [
+        {
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "c458d968-3718-4754-9408-7bd81526e7b2"
+          }
+        },
+        {
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+            "name": "Time Bundle",
+            "serviceSpecification": [
+              {
+                "id": "Time bundle",
+                "name": "Time bundle"
+              }
+            ]
+          }
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "f214c79d-edbb-40c3-9bff-20ad7252acb5",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    }
+  ]
+}

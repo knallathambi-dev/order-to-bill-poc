@@ -1,0 +1,92 @@
+meta {
+  name: DefineOperationSpecification
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "characteristic": [
+          {
+              "name": "DefineBundledOperationSpecification",
+              "valueType": "List",
+              "value": [
+                  {
+                      "productOffering.commercialOperationSpecification.id": "1",
+                      "name": "Add",
+                      "description": "Add a new mobile access b01 on Orange Networks",
+                      "validFor":{ 
+                          "endDateTime": null,
+                          "startDateTime": "2021-09-15T07:11:06.675Z"
+                                  }
+                  },
+                 
+                  {
+                      "productOffering.commercialOperationSpecification.id": "2",
+                      "name": "Modify",
+                      "description": "Modify a new mobile access b01 on Orange Networks",
+                      "validFor":{ 
+                          "endDateTime": null,
+                          "startDateTime": "2021-09-15T07:11:06.675Z"
+                                  }
+                  },
+                  {
+                      "productOffering.commercialOperationSpecification.id": "3",
+                      "name": "Terminate",
+                      "description": "Terminate a new mobile access b01 on Orange Networks",
+                      "validFor":{ 
+                          "endDateTime": null,
+                          "startDateTime": "2021-09-15T07:11:06.675Z"
+                                  }
+                  }, {
+                      "productOffering.commercialOperationSpecification.id": "4",
+                      "name": "Migrate",
+                      "description": "Migrate a new mobile access b01 on Orange Networks",
+                      "validFor":{ 
+                          "endDateTime": null,
+                          "startDateTime": "2021-09-15T07:11:06.675Z"
+                                  }
+                  }
+              ],
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": "ObjectCharacteristic"
+          }
+      ]
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  test("To verify that next task is defBundledPO", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[0].title).to.equals("ProductOfferingCreation.defBundledPO");
+  });
+  
+  
+  
+}

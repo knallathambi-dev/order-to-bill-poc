@@ -1,0 +1,1581 @@
+{
+	"info": {
+		"_postman_id": "fc2b4164-737f-4f73-acc5-1857952ad196",
+		"name": "Mock Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25128560",
+		"_collection_link": "https://lunar-star-10971.postman.co/workspace/MVP-12-Juillet~6a6d0595-448a-49f6-8be2-40c485ca5b03/collection/25128560-fc2b4164-737f-4f73-acc5-1857952ad196?action=share&source=collection_link&creator=25128560"
+	},
+	"item": [
+		{
+			"name": "Product catalog",
+			"item": [
+				{
+					"name": "All products offering",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productCatalogManagement/v1/productOffering",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productCatalogManagement",
+								"v1",
+								"productOffering"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Contract product offering",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productCatalogManagement/v1/productOffering/12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productCatalogManagement",
+								"v1",
+								"productOffering",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Not Contract product offering",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productCatalogManagement/v1/productOffering/21",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productCatalogManagement",
+								"v1",
+								"productOffering",
+								"21"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bad url",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productCatalogManagement/v1/productO",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productCatalogManagement",
+								"v1",
+								"productO"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Offering Qualification",
+			"item": [
+				{
+					"name": "Qualified product offer-Acquisition",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Request received productOffering eligibility\",\r\n    \"instantSyncQualification\": \"true\",\r\n    \"relatedParty\": [\r\n        {\r\n            \"id\": \"231-mf4\",\r\n            \"name\": \"Joe\",\r\n            \"@referredType\": \"individual\"\r\n        }\r\n    ],\r\n    \"productOfferingQualificationItem\": [\r\n        {\r\n            \"id\": \"1\",\r\n            \"expectedActivationDate\": \"2023-04-30T02:15:12.356Z\",\r\n            \"productOffering\": {\r\n                \"id\": \"1234\",\r\n                \"name\": \"Mobile line\"\r\n            }\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productOfferingQualification/v1/productOfferingQualification",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productOfferingQualification",
+								"v1",
+								"productOfferingQualification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Not qualified product offer-Acquisition",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Request received productOffering eligibility\",\r\n    \"instantSyncQualification\": \"true\",\r\n    \"relatedParty\": [\r\n        {\r\n            \"id\": \"231-mf4\",\r\n            \"name\": \"Joe\",\r\n            \"@referredType\": \"individual\"\r\n        }\r\n    ],\r\n    \"productOfferingQualificationItem\": [\r\n        {\r\n            \"id\": \"1\",\r\n            \"expectedActivationDate\": \"2023-04-30T02:15:12.356Z\",\r\n            \"productOffering\": {\r\n                \"id\": \"1244\",\r\n                \"name\": \"Mobile line\"\r\n            }\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productOfferingQualification/v1/productOfferingQualification",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productOfferingQualification",
+								"v1",
+								"productOfferingQualification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Qualified product offer-Contract Modification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Request received productOffering eligibility\",\r\n    \"instantSyncQualification\": \"true\",\r\n    \"relatedParty\": [\r\n        {\r\n            \"id\": \"231-mf4\",\r\n            \"name\": \"Joe\",\r\n            \"@referredType\": \"individual\"\r\n        }\r\n    ],\r\n    \"productOfferingQualificationItem\": [\r\n        {\r\n            \"id\": \"1\",\r\n            \"expectedActivationDate\": \"2023-04-30T02:15:12.356Z\",\r\n            \"productOffering\": {\r\n                \"id\": \"3456\",\r\n                \"name\": \"Mobile line\"\r\n            }\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productOfferingQualification/v1/productOfferingQualification",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productOfferingQualification",
+								"v1",
+								"productOfferingQualification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Not qualified product offer-Contract modification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Request received productOffering eligibility\",\r\n    \"instantSyncQualification\": \"true\",\r\n    \"relatedParty\": [\r\n        {\r\n            \"id\": \"231-mf4\",\r\n            \"name\": \"Joe\",\r\n            \"@referredType\": \"individual\"\r\n        }\r\n    ],\r\n    \"productOfferingQualificationItem\": [\r\n        {\r\n            \"id\": \"1\",\r\n            \"expectedActivationDate\": \"2023-04-30T02:15:12.356Z\",\r\n            \"productOffering\": {\r\n                \"id\": \"3444\",\r\n                \"name\": \"Mobile line\"\r\n            }\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productOfferingQualification/v1/productOfferingQualification",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productOfferingQualification",
+								"v1",
+								"productOfferingQualification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productOfferingQualification/v1/productOfferingQualification",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productOfferingQualification",
+								"v1",
+								"productOfferingQualification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bad url",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productOfferingQualification/v1/productOfferingQ",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productOfferingQualification",
+								"v1",
+								"productOfferingQ"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Configuration",
+			"item": [
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Configuration created",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productOfferingId\": \"aa218314-2a5c-4e06-85c6-b76a7a30c443\",\r\n    \"name\": \"Mobile line\",\r\n    \"process\": \"acquisition\",\r\n    \"quantity\": 0,\r\n    \"channel\": {\r\n        \"id\": \"32895\",\r\n        \"name\": \"Shop\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/productConfiguration",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration not created",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"productOfferingId\": \"12\",\r\n    \"name\": \"Mobile line\",\r\n    \"process\": \"acquisition\",\r\n    \"quantity\": 0,\r\n    \"channel\": {\r\n        \"id\": \"123456\",\r\n        \"name\": \"SHOP\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/productConfiguration",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/productConfiguration",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bad url",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/productC",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productC"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "All configurations",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(acquisition)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/ACK",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"ACK"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(acquisition PRO MAX) Not In shop delivery",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/ACKMaxPlus?id=delivery address&id=20 olympic city&id=2024-03-09",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"ACKMaxPlus"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "delivery address"
+										},
+										{
+											"key": "id",
+											"value": "20 olympic city"
+										},
+										{
+											"key": "id",
+											"value": "2024-03-09"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(acquisition PRO MAX) In shop",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/ACKMaxPlus?id=In Shop&id=20 olympic city&id=2024-03-09",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"ACKMaxPlus"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "In Shop"
+										},
+										{
+											"key": "id",
+											"value": "20 olympic city"
+										},
+										{
+											"key": "id",
+											"value": "2024-03-09"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(acquisition PRO MAX with Handset 128)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/ACKMaxPlusHandset?id=In Shop&id=20 olympic city&id=2024-03-09&id=128",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"ACKMaxPlusHandset"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "In Shop"
+										},
+										{
+											"key": "id",
+											"value": "20 olympic city"
+										},
+										{
+											"key": "id",
+											"value": "2024-03-09"
+										},
+										{
+											"key": "id",
+											"value": "128"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(acquisition PRO MAX with Handset 256)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/ACKMaxPlusHandset?id=In Shop&id=20 olympic city&id=2024-03-09&id=256",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"ACKMaxPlusHandset"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "In Shop"
+										},
+										{
+											"key": "id",
+											"value": "20 olympic city"
+										},
+										{
+											"key": "id",
+											"value": "2024-03-09"
+										},
+										{
+											"key": "id",
+											"value": "256"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(Modification add Handset 128)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/MODAddHandset?id=11111&id=In Shop&id=20 olympic city&id=2024-03-09&id=128",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"MODAddHandset"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11111"
+										},
+										{
+											"key": "id",
+											"value": "In Shop"
+										},
+										{
+											"key": "id",
+											"value": "20 olympic city"
+										},
+										{
+											"key": "id",
+											"value": "2024-03-09"
+										},
+										{
+											"key": "id",
+											"value": "128"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(Modification add Handset 256)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/MODAddHandset?id=11111&id=In Shop&id=20 olympic city&id=2024-03-09&id=256",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"MODAddHandset"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11111"
+										},
+										{
+											"key": "id",
+											"value": "In Shop"
+										},
+										{
+											"key": "id",
+											"value": "20 olympic city"
+										},
+										{
+											"key": "id",
+											"value": "2024-03-09"
+										},
+										{
+											"key": "id",
+											"value": "256"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(Modification add SMS)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/MODAddSMS?id=11&id=22",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"MODAddSMS"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11"
+										},
+										{
+											"key": "id",
+											"value": "22"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(Modification add SMS,add Ring)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/MODAddSMSAddRING?id=11&id=22&id=33&id=44",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"MODAddSMSAddRING"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11"
+										},
+										{
+											"key": "id",
+											"value": "22"
+										},
+										{
+											"key": "id",
+											"value": "33"
+										},
+										{
+											"key": "id",
+											"value": "44"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(Modification add SMS,modify Ring)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/MODAddSMSModifyRING?id=11&id=22&id=33&id=44",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"MODAddSMSModifyRING"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11"
+										},
+										{
+											"key": "id",
+											"value": "22"
+										},
+										{
+											"key": "id",
+											"value": "33"
+										},
+										{
+											"key": "id",
+											"value": "44"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(Modification add SMS,delete Ring)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/MODAddSMSDeleteRING?id=11&id=22&id=33&id=44",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"MODAddSMSDeleteRING"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11"
+										},
+										{
+											"key": "id",
+											"value": "22"
+										},
+										{
+											"key": "id",
+											"value": "33"
+										},
+										{
+											"key": "id",
+											"value": "44"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(Modification add Ring)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/MODAddRING?id=11&id=22",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"MODAddRING"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11"
+										},
+										{
+											"key": "id",
+											"value": "22"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(Modification modify Ring)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/MODModifyRING?id=11&id=22",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"MODModifyRING"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11"
+										},
+										{
+											"key": "id",
+											"value": "22"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Configuration by Id(Modification delete Ring)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/MODDeleteRING?id=11&id=22",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"MODDeleteRING"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "11"
+										},
+										{
+											"key": "id",
+											"value": "22"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Empty configuration",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/21",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productConfiguration/31",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productConfiguration",
+										"31"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bad url",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/productC",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"productC"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product Specification",
+			"item": [
+				{
+					"name": "Valid product specification 1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productCatalogManagement/v1/productSpecification/11",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productCatalogManagement",
+								"v1",
+								"productSpecification",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bad url",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/serviceCatalogManagement/v3/productS",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"serviceCatalogManagement",
+								"v3",
+								"productS"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ressource Inventory",
+			"item": [
+				{
+					"name": "Check Product availabilty - Success",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/resourceInventoryManagement/v1/resource?fields=id,href,value,@type,category,resourceStatus&resourceStatus=available&resourceSpecification.id=123",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resourceInventoryManagement",
+								"v1",
+								"resource"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "id,href,value,@type,category,resourceStatus"
+								},
+								{
+									"key": "resourceStatus",
+									"value": "available"
+								},
+								{
+									"key": "resourceSpecification.id",
+									"value": "123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Product availabilty - Failed",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/resourceInventoryManagement/v1/resource?fields=id,href,value,@type,category,resourceStatus&resourceStatus=available&resourceSpecification.id=323",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resourceInventoryManagement",
+								"v1",
+								"resource"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "id,href,value,@type,category,resourceStatus"
+								},
+								{
+									"key": "resourceStatus",
+									"value": "available"
+								},
+								{
+									"key": "resourceSpecification.id",
+									"value": "323"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Product availabilty - Bad Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/resourceInventoryManagement/v1/resource",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resourceInventoryManagement",
+								"v1",
+								"resource"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reserve resources Success",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resourceStatus\": \"reserved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/resourceInventoryManagement/v1/resource/12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resourceInventoryManagement",
+								"v1",
+								"resource",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reserve resources Failed",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resourceStatus\": \"reserved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/resourceInventoryManagement/v1/resource/2366",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resourceInventoryManagement",
+								"v1",
+								"resource",
+								"2366"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid request",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resourceStatus\": \"areserved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/resourceInventoryManagement/v1/resource",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resourceInventoryManagement",
+								"v1",
+								"resource"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Stock",
+			"item": [
+				{
+					"name": "Get reserved produc stock- Success",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/stock/v4/productStock/42",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"v4",
+								"productStock",
+								"42"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reserve Product stock (SIM card)- success",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"relatedEntity\": [\r\n        {\r\n            \"id\": \"$OrderId\",\r\n            \"role\": \"order triggering the reservation\",\r\n            \"@type\": \"EntityRef\",\r\n            \"@referredType\": \"ProductOrder\"\r\n        }\r\n    ],\r\n    \"reserveProductStockItem\": [\r\n        {\r\n            \"id\": \"1\",\r\n            \"quantityRequested\": {\r\n                \"amount\": 1\r\n            },\r\n            \"stockItem\": {\r\n                \"id\": \"SIMCard1234\"\r\n            },\r\n            \"@type\": \"ReserveProductStockItem\"\r\n        }\r\n    ],\r\n    \"validFor\": {\r\n        \"startDateTime\": \"2024-02-09\",\r\n        \"endDateTime\": \"2024-02-12\",\r\n        \"@type\": \"TimePeriod\"\r\n    },\r\n    \"@type\": \"ReserveProductStock\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/stock/v4/productStock",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"v4",
+								"productStock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reserve Product stock (Handset)- success",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"relatedEntity\": [\r\n        {\r\n            \"id\": \"$OrderId\",\r\n            \"role\": \"order triggering the reservation\",\r\n            \"@type\": \"EntityRef\",\r\n            \"@referredType\": \"ProductOrder\"\r\n        }\r\n    ],\r\n    \"reserveProductStockItem\": [\r\n        {\r\n            \"id\": \"1\",\r\n            \"quantityRequested\": {\r\n                \"amount\": 1\r\n            },\r\n            \"stockItem\": {\r\n                \"id\": \"Handset4321\"\r\n            },\r\n            \"@type\": \"ReserveProductStockItem\"\r\n        }\r\n    ],\r\n    \"validFor\": {\r\n        \"startDateTime\": \"2024-02-09\",\r\n        \"endDateTime\": \"2024-02-12\",\r\n        \"@type\": \"TimePeriod\"\r\n    },\r\n    \"@type\": \"ReserveProductStock\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/stock/v4/productStock",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"v4",
+								"productStock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get reserved produc stock- Bad Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/stock/v4/productStock",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"stock",
+								"v4",
+								"productStock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reserve resources Success",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resourceStatus\": \"reserved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/resourceInventoryManagement/v1/resource/12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resourceInventoryManagement",
+								"v1",
+								"resource",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reserve resources Failed",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resourceStatus\": \"reserved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/resourceInventoryManagement/v1/resource/2366",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resourceInventoryManagement",
+								"v1",
+								"resource",
+								"2366"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid request",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"resourceStatus\": \"areserved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/resourceInventoryManagement/v1/resource",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"resourceInventoryManagement",
+								"v1",
+								"resource"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Management",
+			"item": [
+				{
+					"name": "Get product List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productManagement/v1/product?productOrderItem.productOrderId=651550f3fb909b220a647a7d",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productManagement",
+								"v1",
+								"product"
+							],
+							"query": [
+								{
+									"key": "productOrderItem.productOrderId",
+									"value": "651550f3fb909b220a647a7d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get product List by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productManagement/v1/product?id=651550f3fb909b220a647a7d",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productManagement",
+								"v1",
+								"product"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "651550f3fb909b220a647a7d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get contract product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productManagement/v1/product/12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productManagement",
+								"v1",
+								"product",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get not contract product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productManagement/v1/product/23",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productManagement",
+								"v1",
+								"product",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create products",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/productManagement/v1/product",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productManagement",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c1/status\",\r\n        \"value\": \"Active\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c1/operationalStatus\",\r\n        \"value\": \"Active\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c3/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c2/status\",\r\n        \"value\": \"Created\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productManagement/v1/product",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productManagement",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Product(s) : Created to Confirmed",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511338290b3d9c1356ba/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511338290b3d9c1356ba/operationalStatus\",\r\n        \"value\": \"Confirmed\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bb/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bb/operationalStatus\",\r\n        \"value\": \"Confirmed\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bc/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bc/operationalStatus\",\r\n        \"value\": \"Confirmed\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bd/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bd/operationalStatus\",\r\n        \"value\": \"Confirmed\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356be/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356be/operationalStatus\",\r\n        \"value\": \"Confirmed\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bf/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bf/operationalStatus\",\r\n        \"value\": \"Confirmed\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c0/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c0/operationalStatus\",\r\n        \"value\": \"Confirmed\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c1/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c1/operationalStatus\",\r\n        \"value\": \"Confirmed\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c2/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c2/operationalStatus\",\r\n        \"value\": \"Confirmed\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c3/status\",\r\n        \"value\": \"Created\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c3/operationalStatus\",\r\n        \"value\": \"Confirmed\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productManagement/v1/product",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productManagement",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH Product(s) : Created to Cancelled",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511338290b3d9c1356ba/status\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511338290b3d9c1356ba/operationalStatus\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bb/status\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bb/operationalStatus\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bc/status\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bc/operationalStatus\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bd/status\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bd/operationalStatus\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356be/status\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356be/operationalStatus\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bf/status\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356bf/operationalStatus\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c0/status\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c0/operationalStatus\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c1/status\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c1/operationalStatus\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c2/status\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c2/operationalStatus\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c3/status\",\r\n        \"value\": \"Cancelled\"\r\n    },\r\n    {\r\n        \"op\": \"replace\",\r\n        \"path\": \"/product/6515511438290b3d9c1356c3/operationalStatus\",\r\n        \"value\": \"Cancelled\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/productManagement/v1/product",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"productManagement",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:8082"
+		}
+	]
+}

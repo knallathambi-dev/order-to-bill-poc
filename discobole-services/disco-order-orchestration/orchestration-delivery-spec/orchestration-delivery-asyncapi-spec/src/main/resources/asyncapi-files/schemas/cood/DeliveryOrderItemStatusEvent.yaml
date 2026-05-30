@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+$id: "https://orange.com/deliveryStatusEvent.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "DeliveryOrderItemStatusEvent"
+type: "object"
+allOf:
+  - $ref: "../Base_event.yaml"
+extends:
+  $ref: "../Base_event.yaml"
+properties:
+  event:
+    $ref: "#/DeliveryOrderItemStatusPayloadEvent"
+required:
+  - "event"
+DeliveryOrderItemStatusPayloadEvent:
+  type: "object"
+  properties:
+    factoryOrderId:
+      type: string
+    OrderItemRef:
+      $ref: "./OrderItemRef.yaml"
+    sourcePayload:
+      type: object
+      existingJavaType: "java.lang.Object"

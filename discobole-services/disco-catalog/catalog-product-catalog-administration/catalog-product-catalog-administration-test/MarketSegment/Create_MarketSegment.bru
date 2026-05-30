@@ -1,0 +1,35 @@
+meta {
+  name: Create_MarketSegment
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Admin_URL}}/marketSegment
+  body: json
+  auth: none
+}
+
+body:json {
+  {  "name": "MK{{random}}",
+    
+    "@type": "MarketSegment"
+    
+  }
+}
+
+vars:post-response {
+  MS_id: res.body.id
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  var min = 1;
+  var max = 100;
+  var random = Math.floor(Math.random() * (max - min + 1)) + min;
+  bru.setEnvVar("random", random); 
+  
+}

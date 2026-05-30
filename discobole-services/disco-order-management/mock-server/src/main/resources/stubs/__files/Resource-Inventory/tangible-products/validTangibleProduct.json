@@ -1,0 +1,56 @@
+{
+  "id": "69x",
+  "href": "http://server:port/resourceInventoryManagement/resource/69x",
+  "publicIdentifier": "07455559833",
+  "name": "RouterXX",
+  "administrativeState": "unlocked",
+  "operationalState": "enable",
+  "usageState": "idle",
+  "resourceStatus": "reserved",
+  "serialNumber": "67890543219876511223",
+  "versionNumber": "1.22",
+  "manufactureDate": "05-04-2017T00:00.000Z",
+  "resourceSpecification": {
+    "id": "4",
+    "href": " http://server:port/resourceCatalogManagement/resourceSpecification/4",
+    "@referredType": "Tangible"
+  },
+  "resourceRelationship": [
+    {
+      "relationshipType": "contains",
+      "resource": {
+        "id": "46",
+        "href": " http://server:port/resourceInventoryManagement/resource/46"
+      }
+    }
+  ],
+  "relatedParty": [
+    {
+      "href": "https://server:port/tmf-api/partyManagement/v4/individual/456",
+      "id": "456",
+      "name": "John Doe",
+      "role": "user",
+      "@referredType": "Individual"
+    }
+  ],
+  "resourceAttachment": [
+    {
+      "id": "123",
+      "href": "http://server:port/documentManagement/document/123"
+    }
+  ],
+  "note": [
+    {
+      "text": "something about this resource"
+    }
+  ],
+  "place": {
+    "id": "9912",
+    "href": "https://host:port/geographicAddressManagement/v4/geographicAddress/9912",
+    "@type": "PlaceRef",
+    "@referredType": "GeographicAddress"
+  },
+  "@type": "Equipment ",
+  "@schemaLocation": "http: //server:port/partyManagement/schema/Equipment.schema.json",
+  "@baseType": "Resource"
+}

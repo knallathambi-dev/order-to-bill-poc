@@ -1,0 +1,53 @@
+meta {
+  name: action
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{host}}/policyRule/v1/action
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "fields": "Configurations Price",
+    "actionSequence": 0,
+    "actionStrategy": "Strategy1",
+    "description": "test_policy{{random}}",
+    "name": "test_policy{{random}}",
+    "actionCondition": [],
+    "note": [],
+    "@type": "PolicyActionOperation",
+    "actionValue": {
+      "value": {
+        "objectType": "ProductOfferingPrice",
+        "objectId": "{{POPC_id}}",
+        "objectName": "test_policy{{random}}"
+      }
+    },
+    "policyAction": [
+      {
+        "actionSequence": 1,
+        "actionStrategy": "Strategy1",
+        "validFor": {
+          "endDateTime": "2025-12-01T07:44:37.158Z",
+          "startDateTime": "2024-04-01T07:44:37.158Z"
+        }
+      }
+    ],
+    "validFor": {
+      "endDateTime": "2025-12-01T07:44:37.158Z",
+      "startDateTime": "2024-04-01T07:44:37.158Z"
+    }
+  }
+}
+
+vars:post-response {
+  action_id: res.body.id
+}
+
+assert {
+  res.status: eq 201
+}

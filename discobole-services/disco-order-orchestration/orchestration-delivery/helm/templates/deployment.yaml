@@ -1,0 +1,185 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "orchestration_delivery.fullname" . }}
+  labels:
+    {{- include "orchestration_delivery.labels" . | nindent 4 }}
+    {{- include "orchestration_delivery.shutdownLabels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "orchestration_delivery.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "orchestration_delivery.selectorLabels" . | nindent 8 }}
+        {{- include "orchestration_delivery.monitoringLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "orchestration_delivery.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: orchestration-delivery
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env: #modified
+            - name: JDK_JAVA_OPTIONS
+              value: {{ .Values.jdkJavaOptions }}
+            - name: SPRING_CLOUD_KUBERNETES_ENABLED
+              value: "true"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLED
+              value: "true"
+            - name: SPRING_APPLICATION_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "orchestration_delivery.fullname" . }}-spring
+                  key: spring-db
+            - name: SOM_MOCK_JOB_CRON_EXPRESSION
+              value: {{ .Values.som_mock_job_cron_expression }}
+            {{- if .Values.keycloak.enabled }}
+            - name: KEYCLOAK_URI
+              value: {{ .Values.keycloak.uri }}
+            - name: KEYCLOAK_CLIENT_ID
+              value: {{ .Values.keycloak.clientId }}
+            - name: KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: cood-keycloak-client-secret-{{ .Values.environmentType }}
+                  key: KEYCLOAK_CLIENT_SECRET
+            {{- end }}
+            - name: KAFKA_SERVICE_NAME
+              value: {{ .Values.services.kafka }}
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_0_NAME
+              value: "{{ template "orchestration_delivery.fullname" . }}"
+            - name: ENV_TYPE
+              value: {{ .Values.environmentType }}
+            - name: SPRING_PROFILES_ACTIVE
+              value: kubernetes{{- if .Values.fluentd.enabled }},fluentd{{- end }},jsonconsole
+            - name: SERVER_SERVLET_CONTEXT_PATH
+              value: "{{ .Values.contextPath }}"
+            - name: PRODUCT_CATALOG_SERVICE
+              value: {{ .Values.services.productCatalog }}
+            - name: CPIB_SERVICE
+              value: {{ .Values.services.cpib }}
+            - name: POI_SERVICE
+              value: {{ .Values.services.poi }}
+            - name: MOCK_SERVICE
+              value: {{ .Values.services.mock }}
+            - name: USER_ROLE_RETRIEVAL
+              value: {{ .Values.services.userRoleRetrieval }}
+            - name: COOD_FALLOUT_SERVICE
+              value: {{ .Values.services.fallout }}
+            - name: DELETE_EVENTS_THRESHOLD_DURATION
+              value: {{ .Values.event.deleteEventsThresholdDuration }}
+            - name: STORE_NODE_HISTORY_STATISTIC_DURATION
+              value: {{ .Values.node.storeNodeStatisticsDuration }}
+            - name: AGGREGATE_SPEC_ID_AVERAGE_LEAD_TIME_SCHEDULER_DURATION
+              value: {{ .Values.node.aggregateSpecIdAverageLeadTimeSchedulerDuration }}
+            - name: AGGREGATE_SPEC_ID_AVERAGE_LEAD_TIME_WINDOW
+              value: {{ .Values.node.aggregateSpecIdAverageLeadTimeWindow }}
+            - name: STORE_PLAN_HISTORY_STATISTIC_DURATION
+              value: {{ .Values.plan.storePlanStatisticsDuration }}
+            - name: DELETE_PLAN_THRESHOLD_DURATION
+              value: {{ .Values.plan.deletePlanThresholdDuration }}
+            - name: ROOT_NODE_START_TIME_CRON_EXPRESSION
+              value: {{ .Values.node.rootNodeStartTimeCronExpression }}
+            {{- if .Values.fluentd.enabled }}
+            - name: FLUENTD_TAG
+              value: "{{ default "disco-orchestration_delivery" .Values.fluentd.tag }}"
+            - name: FLUENTD_CONTAINER_NAME
+              value: "disco-orchestration_delivery"
+            - name: FLUENTD_HOST
+              value: "{{ default "localhost" .Values.fluentd.host }}"
+            - name: FLUENTD_PORT
+              value: "{{ default "24224" .Values.fluentd.port }}"
+            {{- end }}
+            {{- if .Values.otel.enabled }}
+            - name: JAVA_TOOL_OPTIONS
+              value: "-javaagent:/app/opentelemetry-javaagent.jar -Dotel.instrumentation.kafka.enabled=true -Dotel.instrumentation.spring-kafka.enabled=true -Dotel.instrumentation.messaging.experimental.receive-telemetry.enabled=false -Xlog:gc=debug:file=/tmp/gc.orchestrationdelivery.log:time,uptime,level,tags:filecount=5,filesize=100m -XX:MaxMetaspaceSize=256m -XX:+UseG1GC -XX:+CrashOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump-orchestrationdelivery.log{{- if .Values.od.service.mxHeap }} -XX:MaxHeapSize={{ .Values.od.service.mxHeap }}{{- end }}"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://disco-tracing-otel:4317"
+            - name: OTEL_METRICS_EXPORTER
+              value: "none"
+            - name: OTEL_TRACES_EXPORTER
+              value: "otlp"
+            - name: OTEL_SERVICE_NAME
+              value: "{{ template "orchestration_delivery.fullname" . }}"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name={{ include "orchestration_delivery.fullname" . }},app=order-orchestration-delivery,env={{ default "default" .Values.monitoring.environment }},container_name=disco-orchestration_delivery"
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080 #modified
+              protocol: TCP
+            - name: actuator
+              containerPort: 9000 #modified
+              protocol: TCP
+          volumeMounts:
+            - name: {{ template "orchestration_delivery.fullname" . }}-applog
+              mountPath: /tmp
+            - name: volume-keystore
+              mountPath: /mnt/keystore
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health/readiness
+              port: actuator
+            initialDelaySeconds: 65
+            failureThreshold: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health/liveness
+              port: actuator
+            initialDelaySeconds: 200
+            failureThreshold: 1
+            periodSeconds: 20
+          startupProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health
+              port: actuator
+            initialDelaySeconds: 200
+            failureThreshold: 45
+            periodSeconds: 2
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sh", "-c", "sleep 10"]
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+      - name: {{ template "orchestration_delivery.fullname" . }}-applog
+        emptyDir: {}
+      - name: volume-keystore
+        secret:
+          secretName: {{ include "orchestration_delivery.fullname" . }}-keystore-p12
+          items:
+            - key: keystore-p12
+              path: keystore-p12
+          defaultMode: 420
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

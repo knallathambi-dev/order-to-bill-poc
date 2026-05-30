@@ -1,0 +1,48 @@
+{
+  "SelectAllowedActionData" : {
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "action" : {
+          "required" : [ "id" ],
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            }
+          }
+        },
+        "channelRef" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "id" : {
+                "type" : "string"
+              },
+              "href" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "@baseType" : {
+                "type" : "string"
+              },
+              "@schemaLocation" : {
+                "type" : "string"
+              },
+              "@type" : {
+                "type" : "string"
+              },
+              "@referredType" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

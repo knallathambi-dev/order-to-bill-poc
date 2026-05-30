@@ -1,0 +1,127 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: 8081
+  tomcat:
+    accesslog:
+      enabled: true
+    mbeanregistry:
+      enabled: true
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: order-inventory
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: ${MONGODB_USERNAME}
+      password: ${MONGODB_PASSWORD}
+      database: ${MONGODB_DATABASE}
+      auto-index-creation: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_ISSUER_URI}
+            user-name-attribute: preferred_username
+      resourceServer:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI}
+  cloud:
+    function:
+      definition: productOrderCommand;orchestrationPlanNodeEvent
+    stream:
+      kafka:
+        binder:
+          enableObservation: true
+          brokers: localhost:9092
+          auto-create-topics: false
+          auto-add-partitions: false
+      bindings:
+        productOrderEvent:
+          destination: disco.order-management.productOrderStateChange-event
+          producer:
+            partition-key-expression: headers['partitionKey']
+          content-type: application/json
+        productOrderAttributeValueChangeEvent:
+          destination: disco.order-management.productOrderAttributeValueChange-event
+          producer:
+            partition-key-expression: headers['partitionKey']
+          content-type: application/json
+        productOrderCommand-in-0:
+          destination: disco.order-management.productOrderChange-command
+          group: product-order-inventory
+          content-type: application/json
+        orchestrationPlanNodeEvent-in-0:
+          destination: disco.order-orchestration.orchestrationPlanNodeStateChange-event
+          group: product-order-inventory
+          content-type: application/json
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  main:
+    allow-bean-definition-overriding: true
+
+app:
+  security:
+    userRoleRetrievalUrl: ${AUTH_USER_ROLE_SERVICE}/userRolePermission/v1/userRole
+    resourceAccessRolesClient: gateway
+    discoAdminRole: disco-admin
+    defaultRoles:
+      ReadProductOrderEntitlement: x300
+      CreateProductOrderEntitlement: x301
+    ssl:
+      enabled: true
+  webClient:
+    connectTimeout: 30s
+    responseTimeout: 30s
+  name: ${spring.application.name}
+  version: @project.version@
+  isDeprecated: false
+  designVersion: 2.9.4
+  tmfVersion: TMF622
+  cache:
+    caffeine:
+      spec:
+        maximumSize: 1000
+        expireAfterWrite: 15m
+  defaultPageSize: 10
+
+springdoc:
+  packagesToScan:
+    - com.orange.discobole.ordermanagement.orderinventory.controller
+  show-actuator: false
+  swagger-ui:
+    oauth:
+      client-id: swagger-ui
+
+# Metrics config
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  server:
+    port: 9000
+
+logging:
+  level:
+    ROOT: INFO
+    com.orange.discobole.ordermanagement.orderinventory: INFO

@@ -1,0 +1,80 @@
+{
+  "DefineCategoryIdentityData" : {
+    "type" : "object",
+    "properties" : {
+      "categoryIdentityData" : {
+        "required" : [ "name", "description" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "isRoot" : {
+            "type" : "boolean",
+            "default" : true
+          },
+          "parentId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "defineSubcategory" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "categoryId", "categoryType" ],
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "categoryId" : {
+                "type" : "string"
+              },
+              "categoryType" : {
+                "type" : "string",
+                "enum" : [ "ProductSpecificationCategory", "ProductOfferingCategory", "ProductOfferingPriceCategory" ]
+              }
+            }
+          }
+        }
+      },
+      "defineEntity" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "entityId", "entityType" ],
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "entityId" : {
+                "type" : "string"
+              },
+              "entityType" : {
+                "type" : "string",
+                "enum" : [ "ProductSpecification", "ProductOffering", "ProductOfferingPrice" ]
+              }
+            }
+          }
+        }
+      },
+      "CategoryIdentityDataMinCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "CatgoryIdentityDataMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "DefineSubcategoryMinCardinality" : {
+        "type" : "number",
+        "default" : 0
+      },
+      "DefineSubcategoryMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      }
+    }
+  }
+}

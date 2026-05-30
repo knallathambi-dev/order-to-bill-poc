@@ -1,0 +1,233 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  cloud:
+    function:
+      definition: policyNotification
+    discovery:
+      enabled: false
+    service-registry:
+      auto-registration:
+        enabled: false
+    stream:
+      kafka.binder:
+        brokers: localhost
+        defaultBrokerPort: 9092
+        auto-add-partitions: true
+        auto-create-topics: true
+      default:
+        contentType: application/json
+      bindings:
+        policyNotification-out-0:
+          destination: policy-notification
+          producer:
+            partition-key-expression: headers['partitionKey']
+            partition-count: 4
+            replication-factor: 1
+      default-binder: kafka
+
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: catalog-policy-rule
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  health:
+    redis:
+      enabled: false
+ #server:
+#    port: 9000
+resilience4j.retry:
+  instances:
+    configuratorRetry:
+      max-attempts: 3
+      wait-duration: 500ms
+      retry-exceptions:
+        # This is the one thrown by your custom error handler for 5xx errors.
+        - com.orange.discobole.productcatalog.policyrule.handler.DiscoClientException
+        # This is for network-level errors (e.g., connection refused, host not found).
+        - org.springframework.web.client.ResourceAccessException
+
+retry:
+  maxAttempts: '3'
+  maxDelay: '1000'
+
+app:
+  version: @project.version@
+  name: @project.name@
+  description: @project.description@
+  ownerName: Herve Bouvier
+  ownerMail: herve.bouvier@orange.com
+
+logging:
+  level:
+    root: info
+    java:
+      util:
+        logging: OFF
+    org:
+      apache:
+        catalina: OFF
+        juli:
+          logging:
+            DirectJDKLog: OFF
+      springframework:
+        web:
+          servlet:
+            DispatcherServlet: WARN
+            FrameworkServlet: WARN
+            mvc:
+              method:
+                annotation:
+                  RequestResponseBodyMethodProcessor: WARN
+    com:
+      orange:
+        discobole:
+          productcatalog:
+            policyrule: WARN
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  cloud:
+    config:
+      import-check:
+        enabled: false
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: catalog
+      username: root
+      password: root
+  keycloak: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x107, pol_r, act_w, evt_w, cond_w, dom_w, rule_w
+  userRoleRetrievalUrl: https://auth-userrole-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRole
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+config:
+  productOfferingUrl: http://localhost:8087/productCatalogManagement/v1/productOffering
+  productSpecificationUrl: http://localhost:8087/productCatalogManagement/v1/productSpecification
+  productOfferingPriceUrl: http://localhost:8087/productCatalogManagement/v1/productOfferingPrice
+  policyRuleUrl: http://localhost:8080/policy/rule
+  policyRuleRefUrl: http://localhost:8087/productCatalogManagement/v1/policyRule
+
+server:
+  port: 8080
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    accesslog:
+      enabled: true
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-review
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-review
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+  keycloak: https://keycloak-review-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x107
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-review-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-review-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+config:
+  productOfferingUrl: http://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOffering
+  productSpecificationUrl: http://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification
+  productOfferingPriceUrl: http://catalog-product-catalog-review-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+  policyRuleUrl: https://catalog-policy-rule-review-disco.apps.fr01.paas.tech.orange/policy/rule
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-integration
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-integration
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+  keycloak: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x107
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+config:
+  productOfferingUrl: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOffering
+  productSpecificationUrl: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification
+  productOfferingPriceUrl: https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+  policyRuleUrl: https://catalog-policy-rule-integration-disco.apps.fr01.paas.tech.orange/policy/rule
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-staging
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-staging
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+  keycloak: https://keycloak-staging-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x107
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-staging-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-staging-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+config:
+  productOfferingUrl: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOffering
+  productSpecificationUrl: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification
+  productOfferingPriceUrl: https://catalog-product-catalog-staging-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+  policyRuleUrl: https://catalog-policy-rule-staging-disco.apps.fr01.paas.tech.orange/policy/rule
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-production
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-production
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+  keycloak: https://keycloak-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x107
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+config:
+  productOfferingUrl: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOffering
+  productSpecificationUrl: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification
+  productOfferingPriceUrl: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOfferingPrice
+  policyRuleUrl: https://catalog-policy-rule-disco.apps.fr01.paas.tech.orange/policy/rule
+  policyRuleRefUrl: https://catalog-product-catalog-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/policyRule

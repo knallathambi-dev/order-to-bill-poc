@@ -1,0 +1,44 @@
+{
+  "id": "{{randomValue type='UUID'}}",
+  "description": "Service order Mobile Line",
+  "state": "acknowledged",
+  "category": "string",
+  "requestedCompletionDate": "2018-01-15T09:37:40.508Z",
+  "@type": "ServiceOrder",
+  "relatedParty": [
+{
+    "@type": "RelatedPartyRef",
+    "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "231-mf4",
+        "name": "Abir",
+        "role": "customer",
+        "@referredType": "individual"
+    },
+    "role": "customer"
+}
+  ],
+  "serviceOrderItem": [
+    {
+      "id": "1",
+      "action": "add",
+      "service": {
+        "id": "10",
+        "state": "active",
+        "serviceType": "CFS",
+        "serviceCharacteristic": [
+          {
+            "id": "5843",
+            "name": "ICCID",
+            "valueType": "string",
+            "value": "hello"
+          }
+        ],
+        "serviceSpecification": {
+          "id": "MobileLine"
+        }
+      }
+    }
+
+  ]
+}

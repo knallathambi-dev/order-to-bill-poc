@@ -1,0 +1,47 @@
+meta {
+  name: get PS_ChecklifecycleStatus_unv
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{query}}/productCatalogManagement/v1/productSpecification/{{PS_id}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~lastUpdate: 
+  ~limit: 
+  ~offset: 
+  ~relatedParty.id: 
+  ~relatedParty.name: 
+  ~relatedParty.role: 
+  ~sort: 
+  ~supportEntity: 
+  ~validFor.gt: 
+  ~validFor.lt: 
+  ~ProductSpecificationRelationship.id: 499d1e12-9f93-4a6e-b036-5d14c4bf246a
+  ~ServiceSpecification.id: access01b01
+  ~name: Csps3!
+  ~brand: Csps3+
+  ~cook: null
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+  res.body.lifecycleStatus: eq unavailable
+}
+
+docs {
+  Request to check lifecycle status is changed to desired state
+}

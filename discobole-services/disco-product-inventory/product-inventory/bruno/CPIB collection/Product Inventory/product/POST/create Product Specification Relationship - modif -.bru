@@ -1,0 +1,60 @@
+meta {
+  name: create Product Specification Relationship - modif -
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+  User-Agent: insomnia/2023.5.8
+}
+
+body:json {
+  {
+    "status": "Created",
+    "operationalStatus": "Created",
+    "isBundle": false,
+    "@type": "Product",
+    "productSpecification": {
+      "id": "63d24f7e-c529-404c-911b-7c7926fd12ff",
+      "name": "Time Bundle",
+      "@type": "ProductSpecificationRef"
+    },
+    "productOrderItem": [
+      {
+        "productOrderId": "{{productOrderID}}",
+        "orderItemId": "09",
+        "orderItemAction": "add"
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "45hj-8888",
+        "name": "Jean",
+        "role": "Customer",
+        "@referredType": "Individual"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "hasParent",
+        "product": {
+          "id": "6620fd0566ff9c3903ca5f53",
+          "href": "/productInventoryManagement/v1/product/6620fd0566ff9c3903ca5f53",
+          "@type": "ProductRef"
+        },
+        "@type": "ProductRelationShip"
+      }
+    ]
+  }
+}
+
+script:pre-request {
+  bru.setEnvVar("productOrderID", Math.floor((Math.random()*10000 +1)));
+}

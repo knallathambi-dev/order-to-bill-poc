@@ -1,0 +1,24 @@
+meta {
+  name: Upload file - JobStatus shoud be NotStarted
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/product/uploadFile
+  body: multipartForm
+  auth: none
+}
+
+headers {
+  Content-Type: multipart/form-data
+}
+
+body:json {
+  {"file": null}
+}
+
+body:multipart-form {
+  file: @file(D:\OIT\DISCO\CPIB\UploadFiles exam\empty.json)
+  jobId: 678e1ea3aa13c519eb106b38
+}

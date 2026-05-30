@@ -1,0 +1,227 @@
+# SPDX-FileCopyrightText: 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# ============================================================================
+# Node.js & Dependencies
+# ============================================================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Package manager lock files (choose one strategy per project)
+# Uncomment if you want to ignore lock files:
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Yarn
+.yarn/
+.yarn-integrity
+.pnp.*
+
+# ============================================================================
+# Build outputs
+# ============================================================================
+dist/
+dist-ssr/
+build/
+*.local
+
+# Vite
+.vite/
+
+# Module Federation
+remoteEntry.js
+remoteEntry.js.map
+federation-stats.json
+module-federation-stats.json
+
+# ============================================================================
+# Environment & Configuration
+# ============================================================================
+# Local development environment (git-ignored)
+env.local.js
+
+# Keep environment templates (git-tracked)
+!env/env.*.js
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ============================================================================
+# Testing & Coverage
+# ============================================================================
+coverage/
+*.lcov
+.nyc_output/
+jest-results.json
+.vitest/
+
+# ============================================================================
+# Logs
+# ============================================================================
+logs/
+*.log
+
+# ============================================================================
+# Operating System
+# ============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================================================
+# IDEs & Editors
+# ============================================================================
+# VSCode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.code-workspace
+
+# IntelliJ IDEA / WebStorm
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+.metadata/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+Sessionx.vim
+.netrwhist
+tags
+[._]*.un~
+
+# Emacs
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ============================================================================
+# Cache & Temporary files
+# ============================================================================
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.cache
+
+# ESLint
+.eslintcache
+
+# Prettier
+.prettiercache
+
+# Stylelint
+.stylelintcache
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# npm
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# ============================================================================
+# Build artifacts
+# ============================================================================
+# Output of 'npm pack'
+*.tgz
+
+# Parcel
+.cache
+.parcel-cache
+
+# ============================================================================
+# Documentation & Misc
+# ============================================================================
+# Storybook
+storybook-static/
+
+# Generated documentation
+docs/generated/
+
+# Backup files
+*.backup
+*.old
+
+# Debug files
+debug.log
+
+# Serverless
+.serverless/
+
+# FuseBox
+.fusebox/
+
+# DynamoDB Local
+.dynamodb/
+
+# TernJS
+.tern-port
+
+# VSCode testing
+.vscode-test
+
+# ============================================================================
+# Project specific
+# ============================================================================
+# Local development overrides
+*.local.js
+*.local.json

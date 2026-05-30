@@ -1,0 +1,18 @@
+{
+  "DefineEntity" : {
+    "required" : [ "entityId", "entityType" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "entityId" : {
+          "type" : "string"
+        },
+        "entityType" : {
+          "type" : "string",
+          "enum" : [ "ProductSpecification", "ProductOffering", "ProductOfferingPrice" ]
+        }
+      }
+    }
+  }
+}

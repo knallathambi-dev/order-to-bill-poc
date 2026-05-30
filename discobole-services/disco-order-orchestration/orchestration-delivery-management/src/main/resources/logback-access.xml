@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Software Name: orchestration-delivery-management
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<configuration>
+    <appender name="PLAINTEXTCONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%h %l %u %user %date "%r" %s %b</pattern>
+        </encoder>
+    </appender>
+    <appender-ref ref="PLAINTEXTCONSOLE" />
+</configuration>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-FileCopyrightText: 2025 Orange SA -->
+<!-- SPDX-License-Identifier: MIT -->
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    
+    <springProfile name="!jsonconsole &amp; !fluentd">
+        <include resource="logback-appender-console.xml"/>
+    </springProfile>
+    
+    <springProfile name="jsonconsole">
+        <include resource="logback-appender-jsonfile.xml"/>
+    </springProfile>
+    
+    <springProfile name="fluentd">
+        <include resource="logback-appender-fluentd.xml"/>
+    </springProfile>
+    
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

@@ -1,0 +1,23 @@
+meta {
+  name: activateProducts
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  {{patchAtivationRequest}}
+}
+
+script:post-response {
+  bru.setEnvVar("patchAtivationRequest", "[]");
+}

@@ -1,0 +1,65 @@
+// SPDX-FileCopyrightText: 2025 Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT License,
+// the text of which is available at https://opensource.org/license/mit
+// or see the "LICENSE.txt" file for more details.
+//
+// Authors: See CONTRIBUTORS.txt
+
+package com.orange.discobole.productcatalog.productoffering.pojo.productoffering;
+
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.orange.discobole.processflow.annotation.Array;
+import com.orange.discobole.processflow.annotation.ReadOnly;
+import com.orange.discobole.productcatalog.productoffering.dto.generated.productoffering.CommercialOperationSpecificationIds;
+import com.orange.discobole.productcatalog.productoffering.dto.generated.productoffering.CommercialOperationSpecificationName;
+import com.orange.discobole.productcatalog.productoffering.pojo.TimePeriod;
+
+import jakarta.validation.constraints.NotNull;
+
+@Array
+public class DefineBundledOperationSpecification {
+
+	@JsonProperty("productOffering.commercialOperationSpecification.id")
+	@ReadOnly(true)
+	private CommercialOperationSpecificationIds id;
+	@NotNull
+	private CommercialOperationSpecificationName name;
+	private String description;
+	private TimePeriod validFor;
+
+	public CommercialOperationSpecificationIds getId() {
+		return id;
+	}
+
+	public void setId(CommercialOperationSpecificationIds id) {
+		this.id = id;
+	}
+
+	public CommercialOperationSpecificationName getName() {
+		return name;
+	}
+
+	public void setName(CommercialOperationSpecificationName name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public TimePeriod getValidFor() {
+		return validFor;
+	}
+
+	public void setValidFor(TimePeriod validFor) {
+		this.validFor = validFor;
+	}
+
+}

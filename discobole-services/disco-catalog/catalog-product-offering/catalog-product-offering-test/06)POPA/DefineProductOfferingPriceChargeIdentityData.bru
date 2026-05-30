@@ -1,0 +1,66 @@
+meta {
+  name: DefineProductOfferingPriceChargeIdentityData
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "DefineProductOfferingPriceAlterationIdentity",
+        "valueType": "Object",
+        "value": {
+          "definePOPAlterationIdentityData": {
+            "prorationType": "noProration",
+            "name": "Test_POPA_test",
+            "description": "POPA_test",
+            "priceType": "NRC",
+           
+            "priceAlterationType": "Percentage",
+            "priority": "1",
+            "percentage": "10",
+            "price": null
+          },
+          "validity": {
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "{{startDate}}T05:44:53.717Z"
+            },
+            "lifecycleStatus": "launched"
+          }
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  test("to verify Status code is 200", function () {
+      expect(res.getStatus()).to.equal(200);
+  });
+  
+}

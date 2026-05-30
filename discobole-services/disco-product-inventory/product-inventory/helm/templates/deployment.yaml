@@ -1,0 +1,190 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "productInventory.fullname" . }}
+  labels:
+    {{- include "productInventory.labels" . | nindent 4 }}
+    {{- include "productInventory.shutdownLabels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "productInventory.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "productInventory.selectorLabels" . | nindent 8 }}
+        {{- include "productInventory.monitoringLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "productInventory.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: product-inventory
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env: #modified
+            - name: JDK_JAVA_OPTIONS
+              value: {{ .Values.jdkJavaOptions }}
+            - name: SPRING_CLOUD_KUBERNETES_ENABLED
+              value: "true"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLED
+              value: "true"
+            - name: SPRING_APPLICATION_JSON
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "productInventory.fullname" . }}-spring
+                  key: spring-db
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_0_NAME
+              value: "{{ template "productInventory.fullname" . }}"
+            - name: SPRING_PROFILES_ACTIVE
+              value: kubernetes{{- if .Values.fluentd.enabled }},fluentd{{- end }},jsonconsole{{- if .Values.keycloak.enabled }},keycloak{{- end }}
+            - name: SERVER_SERVLET_CONTEXT_PATH
+              value: "{{ .Values.contextPath }}"
+            - name: ENV_TYPE
+              value: {{ .Values.environmentType }}
+            - name: PRODUCT_CATALOG_SERVICE
+              value: {{ .Values.services.productCatalog }}
+            - name: PRODUCT_CATALOG_SERVICE_ENABLE
+              value: "{{ .Values.services.productCatalogEnable }}"
+            - name: RESOURCE_INVENTORY_MANAGEMENT_SERVICE_ENABLE
+              value: "{{ .Values.services.resourceInventoryManagementEnable }}"
+            - name: INVENTORY_RESOURCE_SERVICE
+              value: {{ .Values.services.inventoryResource }}
+            - name: USER_ROLE_RETRIEVAL
+              value: {{ .Values.services.userRoleRetrieval }}
+            - name: USER_ROLE_VALIDATION_ENABLE
+              value: "{{ .Values.services.userRoleValidationEnable }}"
+            {{- if .Values.fluentd.enabled }}
+            - name: FLUENTD_TAG
+              value: "{{ default "disco-product-inventory" .Values.fluentd.tag }}"
+            - name: FLUENTD_CONTAINER_NAME
+              value: "disco-product-inventory"
+            - name: FLUENTD_HOST
+              value: "{{ default "localhost" .Values.fluentd.host }}"
+            - name: FLUENTD_PORT
+              value: "{{ default "24224" .Values.fluentd.port }}"
+            {{- end }}
+            {{- if .Values.otel.enabled }}
+            - name: JAVA_TOOL_OPTIONS
+              value: "-javaagent:/app/opentelemetry-javaagent.jar -Dotel.instrumentation.kafka.enabled=true -Dotel.instrumentation.spring-kafka.enabled=true -Dotel.instrumentation.messaging.experimental.receive-telemetry.enabled=false -XX:+CrashOnOutOfMemoryError -XX:+UseG1GC -Xlog:gc*:file=/tmp/gc-product-inventory-%t.log::filecount=5,filesize=1000k -XX:HeapDumpPath=/tmp/heapdump-product-inventory-%t.log{{- if .Values.productInventory.service.mxHeap }} -Xmx{{ .Values.productInventory.service.mxHeap }}{{- end }}"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://disco-tracing-otel:4317"
+            - name: OTEL_METRICS_EXPORTER
+              value: "none"
+            - name: OTEL_TRACES_EXPORTER
+              value: "otlp"
+            - name: OTEL_SERVICE_NAME
+              value: "{{ template "productInventory.fullname" . }}"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name={{ include "productInventory.fullname" . }},app=disco,deployment.environment={{ default "undefined" .Values.monitoring.environment }},cloud.platform={{ default "undefined" .Values.otel.attributes.platform }},cloud.region={{ default "undefined" .Values.otel.attributes.region }},host.name={{ default "undefined" .Values.otel.attributes.hostname }},k8s.cluster.name={{ default "undefined" .Values.otel.attributes.cluster }},k8s.namespace.name={{ default "undefined" .Values.otel.attributes.namespace }},container_name=disco-product-inventory"
+            {{- end }}
+            {{- if .Values.keycloak.enabled }}
+            - name: KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: product-inventory-keycloak-client-secret-{{ .Values.environmentType}}
+                  key: KEYCLOAK_CLIENT_SECRET
+            - name: SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: disco-common-s3-s3-secret
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: disco-common-s3-s3-secret
+                  key: AWS_ACCESS_KEY_ID
+            - name: BUCKET_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: disco-common-s3-configmap
+                  key: BUCKET_HOST
+            - name: BUCKET_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: disco-common-s3-configmap
+                  key: BUCKET_NAME
+            - name: KEYCLOAK_ISSUER_URI
+              value: {{ .Values.keycloak.issuerURI }}
+            - name: KAFKA_SERVICE_NAME
+              value: {{ .Values.services.kafka }}
+            - name: PAGINATION_LIMIT
+              value: {{ .Values.productInventory.service.pagination.limit | quote}}
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080 #modified
+              protocol: TCP
+            - name: actuator
+              containerPort: 9000 #modified
+              protocol: TCP
+          volumeMounts:
+            - name: {{ template "productInventory.fullname" . }}-applog
+              mountPath: /tmp
+            - name: volume-keystore
+              mountPath: /mnt/keystore
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health/readiness
+              port: actuator
+            initialDelaySeconds: 65
+            failureThreshold: 3
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health/liveness
+              port: actuator
+            initialDelaySeconds: 200
+            failureThreshold: 1
+            periodSeconds: 20
+          startupProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health
+              port: actuator
+            failureThreshold: 45
+            periodSeconds: 2
+            initialDelaySeconds: 240
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sh", "-c", "sleep 10"]
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+      - name: {{ template "productInventory.fullname" . }}-applog
+        emptyDir: {}
+      - name: volume-keystore
+        secret:
+          secretName: {{ include "productInventory.fullname" . }}-keystore-p12
+          items:
+            - key: keystore-p12
+              path: keystore-p12
+          defaultMode: 420
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

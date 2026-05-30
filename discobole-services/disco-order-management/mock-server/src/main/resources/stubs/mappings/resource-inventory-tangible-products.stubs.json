@@ -1,0 +1,49 @@
+{
+  "mappings": [
+    {
+      "name": "Get valid Tangible Product - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/resourceInventoryManagement/v1/resource/69x",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Resource-Inventory/tangible-products/validTangibleProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Invalid Type Tangible Product- Fail",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/resourceInventoryManagement/v1/resource/64x",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Resource-Inventory/tangible-products/InvalidTypeTangibleProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Invalid ResourceStatus Tangible Product- Fail",
+      "priority": 1,
+      "request": {
+        "urlPath": "/api/resourceInventoryManagement/v1/resource/80x",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Resource-Inventory/tangible-products/InvalidResourceStatusTangibleProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

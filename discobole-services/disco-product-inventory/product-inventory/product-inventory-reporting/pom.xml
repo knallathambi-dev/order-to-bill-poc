@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.orange.discobole.productinventory</groupId>
+        <artifactId>discobole-productinventory-product-inventory</artifactId>
+        <version>1.18.0</version>
+    </parent>
+
+    <artifactId>discobole-productinventory-product-inventory-reporting</artifactId>
+    <name>ODA - CPIB - Product Inventory Reporting Service</name>
+    <description>Reporting module for Product Inventory</description>
+
+    <url>https://gitlab.ow2.org/discobole/disco-oda-components/disco-product-inventory/product-inventory</url>
+
+    <properties>
+        <mongo.version>3.1.2</mongo.version>
+        <kafka.version>3.1.2</kafka.version>
+        <opentelemetry.kafka.clients.version>1.32.0-alpha</opentelemetry.kafka.clients.version>
+        <cucumber.version>7.12.1</cucumber.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
+        <mapstruct-processor.version>1.5.5.Final</mapstruct-processor.version>
+        <spotbugs.skip>false</spotbugs.skip>
+        <spotbugs.version>4.5.0</spotbugs.version>
+        <spotbugs.exclude>${project.basedir}/src/main/resources/config/spotbugs-exclude.xml
+        </spotbugs.exclude>
+        <pmd.skip>false</pmd.skip>
+        <pmd.rules>file:///${project.basedir}/src/main/resources/config/quality/pmd_orange.xml
+        </pmd.rules>
+        <pmd.allowedViolations>0</pmd.allowedViolations>
+        <pmd.failurePriority>3</pmd.failurePriority>
+        <checkstyle.skip>false</checkstyle.skip>
+        <checkstyle.version>9.2.1</checkstyle.version>
+        <checkstyle.rules>
+            ${project.basedir}/src/main/resources/config/quality/checkstyle_orange.xml
+        </checkstyle.rules>
+        <checkstyle.allowedViolations>0</checkstyle.allowedViolations>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+    </properties>
+
+    <dependencies>
+        <!-- discobole-productinventory-product-inventory-spec dependency-->
+        <dependency>
+            <groupId>com.orange.discobole.productinventory</groupId>
+            <artifactId>discobole-productinventory-product-inventory-restapi-spec</artifactId>
+        </dependency>  
+        <dependency>
+            <groupId>com.orange.discobole.productinventory</groupId>
+            <artifactId>discobole-productinventory-product-inventory-asyncapi-spec</artifactId>
+        </dependency>  
+        <!-- Spring Boot Starter for Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- Spring Boot Starter for MongoDB -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <!-- Spring Kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>${kafka.version}</version>
+        </dependency>
+        <!-- Logging with Logback -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-access</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <!-- lombok dependency-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- spotbugs dependency-->
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+            <version>4.5.0</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- shedlock -->
+        <dependency>
+            <groupId>net.javacrumbs.shedlock</groupId>
+            <artifactId>shedlock-spring</artifactId>
+            <version>5.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.javacrumbs.shedlock</groupId>
+            <artifactId>shedlock-provider-mongo</artifactId>
+            <version>5.11.0</version>
+        </dependency>
+        <!-- Mapstruct dependency -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <!-- spring boot hateoas dependency -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>1.18.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>mongodb</artifactId>
+            <version>1.18.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>kafka</artifactId>
+            <version>1.19.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.opentelemetry</groupId>
+            <artifactId>opentelemetry-api</artifactId>
+            <version>1.32.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka-test</artifactId>
+            <version>3.0.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.11.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>3.0.4</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- spotbugs -->
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <configuration>
+                    <skip>${spotbugs.skip}</skip>
+                    <xmlOutput>true</xmlOutput>
+                    <excludeFilterFile>${spotbugs.exclude}</excludeFilterFile>
+                    <plugins>
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>1.11.0</version>
+                        </plugin>
+                    </plugins>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>spotbugs-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- PMD -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.ow2.asm</groupId>
+                        <artifactId>asm</artifactId>
+                        <version>9.2</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>pmd-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${pmd.skip}</skip>
+                            <failOnViolation>true</failOnViolation>
+                            <failurePriority>${pmd.failurePriority}</failurePriority>
+                            <maxAllowedViolations>${pmd.allowedViolations}</maxAllowedViolations>
+                            <printFailingErrors>true</printFailingErrors>
+                            <verbose>true</verbose>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>pmd</id>
+                        <configuration>
+                            <skip>${pmd.skip}</skip>
+                            <includeTests>true</includeTests>
+                            <rulesets>
+                                <ruleset>${pmd.rules}</ruleset>
+                            </rulesets>
+                            <excludeRoots>
+                                <excludeRoot>target/generated-sources</excludeRoot>
+                            </excludeRoots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- CheckStyle -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${checkstyle.version}</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>com.sun</groupId>
+                                <artifactId>tools</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>checkstyle-checkstyle</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>checkstyle</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>checkstyle-check</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>${checkstyle.skip}</skip>
+                    <configLocation>${checkstyle.rules}</configLocation>
+                    <violationSeverity>warning</violationSeverity>
+                    <maxAllowedViolations>${checkstyle.allowedViolations}</maxAllowedViolations>
+                    <failOnViolation>true</failOnViolation>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <sourceDirectories>
+                        <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                        <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
+                    </sourceDirectories>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>

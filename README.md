@@ -18,8 +18,9 @@ Current implementation scope:
 
 - Phase 0: complete
 - Phase 1: repository structure and fresh-start setup files
+- Phase 2: copied Discobole service/UI source and runtime strategy
 
-Later phases will copy in selected Discobole service and UI source code, then add infrastructure Compose files, security seed data, catalog data, UI adaptations, gateway implementation, simulator services, event integration, fallout/retry flows, and tests.
+Later phases will add infrastructure Compose files, security seed data, catalog data, UI adaptations, gateway implementation, simulator services, event integration, fallout/retry flows, and tests.
 
 ## Repository Layout
 
@@ -65,6 +66,8 @@ apache/kafka:4.3.0
 
 Kafka Compose and topic bootstrap scripts belong to Phase 3. Any future Kafka configuration in this repo must stay KRaft-only unless the specs are deliberately changed.
 
+Kafka Connect and Debezium are required for the copied Discobole order-orchestration outbox path. See `docs/phase-3-debezium-decision.md`.
+
 Reference:
 
 - [Apache Kafka downloads](https://kafka.apache.org/community/downloads/)
@@ -91,6 +94,8 @@ cp .env.example .env
 ```sh
 make help
 make verify-phase1
+make verify-phase2
+make list-discobole-images
 ```
 
 Most runtime commands are placeholders until the owning implementation phases add Compose files, service projects, and tests.

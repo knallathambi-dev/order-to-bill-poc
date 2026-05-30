@@ -1,0 +1,26 @@
+{
+  "mappings": [
+    {
+      "name": "Get products",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "productOrderItem.productOrderId": {
+            "matches": "1209.*"
+          },
+          "productOrderItem.orderItemId": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 503,
+        "bodyFileName": "customer-product-installed-base/AddSms&ModifyRingBackTone/AllProducts.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+    ]}

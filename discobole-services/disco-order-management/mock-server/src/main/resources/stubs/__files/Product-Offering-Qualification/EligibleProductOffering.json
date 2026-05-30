@@ -1,0 +1,26 @@
+{
+  "id": "4313",
+  "description": "check offer eligibility for acquisition",
+  "state": "done",
+  "qualificationResult": "qualified",
+  "instantSyncQualification": "true",
+  "productOfferingQualificationItem": [
+    {
+      "id": "3",
+      "qualificationItemResult": "Qualified",
+      "action": "add",
+      "state": "done",
+      "productOffering": {
+        "id": "5fe032f0-fa01-42ec-afeb-920f74c2eae3"
+      }
+    }
+  ],
+  "relatedParty": [
+    {
+      "id": "231-mf4",
+
+      "role": "customer",
+      "@referredType": "individual"
+    }
+  ]
+}

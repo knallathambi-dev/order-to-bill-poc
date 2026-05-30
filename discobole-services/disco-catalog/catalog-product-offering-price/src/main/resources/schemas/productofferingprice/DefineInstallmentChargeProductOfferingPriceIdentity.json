@@ -1,0 +1,117 @@
+{
+  "DefineInstallmentChargeProductOfferingPriceIdentity" : {
+    "type" : "object",
+    "properties" : {
+      "defineInstallmentChargeIdentityData" : {
+        "required" : [ "name", "price" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "partner" : {
+            "type" : "string",
+            "default" : "Orange"
+          },
+          "externalId" : {
+            "type" : "string"
+          },
+          "downPayment" : {
+            "type" : "number"
+          },
+          "interestRate" : {
+            "type" : "number"
+          },
+          "applicationDuration" : {
+            "required" : [ "amount", "units" ],
+            "type" : "object",
+            "properties" : {
+              "amount" : {
+                "type" : "number"
+              },
+              "units" : {
+                "type" : "string"
+              }
+            }
+          },
+          "price" : {
+            "type" : "object",
+            "properties" : {
+              "unit" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "number"
+              }
+            }
+          }
+        }
+      },
+      "validityMinCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validityMaxCardinality" : {
+        "type" : "number",
+        "default" : 1
+      },
+      "validity" : {
+        "required" : [ "validFor" ],
+        "type" : "object",
+        "properties" : {
+          "lifecycleStatus" : {
+            "type" : "string",
+            "enum" : [ "launched", "unavailable", "retired", "obsolete" ]
+          },
+          "validFor" : {
+            "required" : [ "startDateTime" ],
+            "type" : "object",
+            "properties" : {
+              "endDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "startDateTime" : {
+                "type" : "string",
+                "format" : "date-time"
+              }
+            }
+          }
+        }
+      },
+      "relationships" : {
+        "type" : "array",
+        "items" : {
+          "required" : [ "id", "relationshipType" ],
+          "type" : "object",
+          "properties" : {
+            "id" : {
+              "type" : "string"
+            },
+            "relationshipType" : {
+              "type" : "string",
+              "enum" : [ "alteredBy", "replacedBy" ]
+            },
+            "validFor" : {
+              "required" : [ "startDateTime" ],
+              "type" : "object",
+              "properties" : {
+                "endDateTime" : {
+                  "type" : "string",
+                  "format" : "date-time"
+                },
+                "startDateTime" : {
+                  "type" : "string",
+                  "format" : "date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

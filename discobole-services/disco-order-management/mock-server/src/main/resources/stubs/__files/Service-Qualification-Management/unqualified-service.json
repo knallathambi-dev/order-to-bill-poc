@@ -1,0 +1,46 @@
+{
+  "description":"check service qualification illustration",
+  "provideAlternative":true,
+  "isAppointmentRequired":true,
+  "instantSyncQualification":false,
+  "qualificationResult":"unqualified",
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "Lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "serviceQualificationItem":[
+    {
+      "id":"1",
+      "qualificationResult":"qualified",
+      "state":"done",
+      "service":{
+        "place":[
+          {
+            "id":"Address_Id",
+            "href":"<<>>",
+            "name":"Lisa home",
+            "@referredType":"GeographicSite",
+            "@type":"GeographicSite"
+          }
+        ],
+        "serviceSpecification":{
+          "id":"??",
+          "href":" ",
+          "name":"Fiber Access",
+          "@type":"ServiceSpecification"
+        },
+        "@type":"Service"
+      },
+      "@type":"ServiceQualificationItem"
+    }
+  ],
+  "@type":"CheckServiceQualification"
+}

@@ -1,0 +1,71 @@
+meta {
+  name: selectSupportEntity
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+    "characteristic": [
+      {
+        "name": "SelectProductSpecification",
+        "valueType": "Object",
+        "value": {
+          "productSpecification.id": "{{PS_id}}"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ObjectCharacteristic"
+      }
+    ]
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[1].href
+  status: res.body._links.nextTaskstoBePerformed[1].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.ModifyIdentityData.properties.lifecycleStatus.enum[1]
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  test("to verify Next task to be performed is defineIdentityData", function(){
+      expect(jsonData._links.nextTaskstoBePerformed[1].title).to.eql("ProductSpecModification.modifyDefineIdentityData");
+  
+  });
+  
+  
+  test("to verify existingTaskEditable is blank", function(){
+      expect(jsonData._links.existingTaskEditable.length).to.eql(0);
+  });
+  
+  
+  
+  
+}
+
+docs {
+  This step defines the SupportEntity of PS.
+  the CFS_id is catered from the getCFS request 
+  
+}

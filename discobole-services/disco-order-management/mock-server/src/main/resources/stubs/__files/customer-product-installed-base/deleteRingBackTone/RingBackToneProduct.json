@@ -1,0 +1,51 @@
+[
+  {
+    "@type": "Product",
+    "id":"649adsdsdsds-deleteRing",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649adsdsdsds-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"delete",
+        "orderItemId":"106",
+        "productOrderId":"1114"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"3f53cbde-73be-405a-8684-60c4993fe2ad",
+      "name":"649adsdsdsds-addSMSModifyRing",
+      "@type":"ProductSpecificationRef"
+    },
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Active",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea-addSMSModifyRing"
+        }
+      }
+    ]
+  }
+]

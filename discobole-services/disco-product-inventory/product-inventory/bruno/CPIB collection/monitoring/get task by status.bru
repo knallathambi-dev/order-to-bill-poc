@@ -1,0 +1,15 @@
+meta {
+  name: get job by status
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/job?status=Done
+  body: none
+  auth: inherit
+}
+
+query {
+  status: Done
+}

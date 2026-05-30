@@ -1,0 +1,38 @@
+meta {
+  name: Patch Product -Operational status fail-
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product/649aaf9f2b4b3225cb5737f3
+  body: text
+  auth: none
+}
+
+body:text {
+  {
+      "productRelationship": [
+          {
+              "relationshipType": "bundles",
+              "product": {
+                  "id": "649aaf9f2b4b3225cb5737f2",
+                  "productRelationship": [
+                      {
+                          "relationshipType": "bundles",
+                          "product": {
+                              "id": "649aaf9f2b4b3225cb5737ee",
+                              "status": "Cancelled",
+                              "operationalStatus": "Aborted"
+                          }
+                      }
+                  ],
+                  "status": "Created",
+                  "operationalStatus": "Confirmed"
+              }
+          }
+      ],
+      "status": "Created",
+      "operationalStatus": "Confirmed"
+  }
+}

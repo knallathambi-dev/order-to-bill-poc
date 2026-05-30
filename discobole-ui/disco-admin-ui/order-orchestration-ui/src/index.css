@@ -1,0 +1,178 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+/* ── Node type icons (mask) ──────────────────────────────────────────────── */
+
+.icon-service {
+    mask-image: url(assets/images/service/service-icon.svg);
+    -webkit-mask-image: url(assets/images/service/service-icon.svg);
+}
+
+.icon-vnf,
+.icon-group,
+.icon-pm,
+.icon-plan {
+    mask-image: url(assets/images/vnf/orchestration-icon.svg);
+    -webkit-mask-image: url(assets/images/vnf/orchestration-icon.svg);
+}
+
+.icon-device {
+    mask-image: url(assets/images/device/product-icon.svg);
+    -webkit-mask-image: url(assets/images/device/product-icon.svg);
+}
+
+/* ── State background icons: plan ────────────────────────────────────────── */
+
+.icon-plan-Initialized   { background: url(assets/images/initialized/orchestration-initialized.svg); }
+.icon-plan-Acknowledged   { background: url(assets/images/acknowledged/orchestration-acknowledged.svg); }
+.icon-plan-Executed,
+.icon-plan-Completed      { background: url(assets/images/completed/orchestration-executed.svg); }
+.icon-plan-InProgress     { background: url(assets/images/inprogress/orchestration-inprogress.svg); }
+.icon-plan-Planned        { background: url(assets/images/planned/orchestration-planned.svg); }
+.icon-plan-Rejected,
+.icon-plan-Aborted,
+.icon-plan-Failed         { background: url(assets/images/failed/orchestration-rejected.svg); }
+.icon-plan-InDelivery     { background: url(assets/images/indelivery/orchestration-indelivery.svg); }
+.icon-plan-Held           { background: url(assets/images/held/orchestration-held.svg); }
+
+/* ── State background icons: device ──────────────────────────────────────── */
+
+.icon-device-Initialized  { background: url(assets/images/initialized/product-initialized.svg); }
+.icon-device-Acknowledged  { background: url(assets/images/acknowledged/product-acknowledged.svg); }
+.icon-device-Executed,
+.icon-device-Completed    { background: url(assets/images/completed/product-executed.svg); }
+.icon-device-InProgress   { background: url(assets/images/inprogress/product-inprogress.svg); }
+.icon-device-Planned      { background: url(assets/images/planned/product-planned.svg); }
+.icon-device-Rejected,
+.icon-device-Aborted,
+.icon-device-Failed       { background: url(assets/images/failed/product-rejected.svg); }
+.icon-device-InDelivery   { background: url(assets/images/indelivery/product-indelivery.svg); }
+.icon-device-Held         { background: url(assets/images/held/product-held.svg); }
+
+/* ── State background icons: service ─────────────────────────────────────── */
+
+.icon-service-Initialized  { background: url(assets/images/initialized/service-initialized.svg); }
+.icon-service-Acknowledged  { background: url(assets/images/acknowledged/service-acknowledged.svg); }
+.icon-service-Executed,
+.icon-service-Completed    { background: url(assets/images/completed/service-executed.svg); }
+.icon-service-InProgress   { background: url(assets/images/inprogress/service-inprogress.svg); }
+.icon-service-Planned      { background: url(assets/images/planned/service-planned.svg); }
+.icon-service-Rejected,
+.icon-service-Aborted,
+.icon-service-Failed       { background: url(assets/images/failed/service-rejected.svg); }
+.icon-service-InDelivery   { background: url(assets/images/indelivery/service-indelivery.svg); }
+.icon-service-Held         { background: url(assets/images/held/service-held.svg); }
+
+/* ── Severity badge icons ────────────────────────────────────────────────── */
+
+.icon-Aborted       { background: url(assets/images/aborted/ic_Aborted.svg); }
+.icon-Acknowledged   { background: url(assets/images/acknowledged/ic_Acknowledged.svg); }
+.icon-Completed      { background: url(assets/images/completed/ic_Completed.svg); }
+.icon-Executed       { background: url(assets/images/executed/ic_Executed.svg); }
+.icon-Failed         { background: url(assets/images/failed/ic_Failed.svg); }
+.icon-Held           { background: url(assets/images/held/ic_Held.svg); }
+.icon-Initialized    { background: url(assets/images/initialized/ic_Initialized.svg); }
+.icon-InProgress     { background: url(assets/images/inprogress/ic_InProgress.svg); }
+.icon-InDelivery     { background: url(assets/images/indelivery/ic_InDelivery.svg); }
+.icon-Rejected       { background: url(assets/images/rejected/ic_Rejected.svg); }
+.icon-Planned        { background: url(assets/images/planned/ic_Planned.svg); }
+
+/* ── Orchestration state colors ──────────────────────────────────────────── */
+
+.Completed,
+.Executed       { background: #67cb67; }
+.Completed .icon,
+.Executed .icon { background: #048375; }
+
+.Failed,
+.Rejected,
+.Aborted        { background: #fd6161; }
+.Failed .icon    { background: rgba(0, 0, 0, 0.7); }
+.Rejected .icon,
+.Aborted .icon   { background: #8e0022; }
+
+.InProgress        { background: #9cbfd8; }
+.InProgress .icon  { background: #527edb; }
+
+.Held              { background: #f28327; }
+.Held .icon        { background: #8d6900; }
+
+.InDelivery        { background: #d9b5ed; }
+.InDelivery .icon  { background: #7e62d9; }
+
+.Acknowledged        { background: #62bff9; }
+.Acknowledged .icon  { background: #176799; }
+
+.Initialized        { background: #707c83; }
+.Initialized .icon  { background: #fff; }
+
+/* ── Header icon buttons ─────────────────────────────────────────────────── */
+
+.icon-order {
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-color: #000;
+    mask: url('assets/images/order-management.svg') no-repeat center;
+    -webkit-mask: url('assets/images/order-management.svg') no-repeat center;
+    mask-size: contain;
+    -webkit-mask-size: contain;
+    transition: background-color 0.2s ease;
+}
+
+.icon-order:hover {
+    background-color: #f28327;
+}
+
+.icon-order.icon-disabled {
+    background-color: #ccc;
+}
+
+.icon-order.icon-disabled:hover {
+    background-color: #ccc;
+}
+
+.icon-contract-black::before {
+    content: "\e901";
+    color: #000;
+    font-size: 24px;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.icon-contract-black:hover::before {
+    color: #f28327;
+}
+
+.icon-contract-black.icon-disabled::before {
+    color: #ccc;
+}
+
+.icon-contract-black.icon-disabled:hover::before {
+    color: #ccc;
+}
+
+/* ── Reload button ───────────────────────────────────────────────────────── */
+
+.icon-reload-lg {
+    font-size: 24px;
+}
+
+.btn-link.on-black:hover .icon-reload-lg {
+    color: #f28327;
+}
+
+/* ── Form validation ─────────────────────────────────────────────────────── */
+
+.position-relative.w-100.mb-0 .invalid-feedback {
+    position: absolute;
+    bottom: -20px;
+}

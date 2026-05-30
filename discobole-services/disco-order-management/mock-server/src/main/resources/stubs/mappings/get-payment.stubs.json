@@ -1,0 +1,37 @@
+{
+  "mappings": [
+    {
+      "name": "Get payment by id- Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/paymentManagement/v4/payment/12.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "payment-management/payment.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformers": [
+          "response-template"
+        ]
+      }
+    },
+    {
+      "name": "Not found",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/paymentManagement/v4/payment/(?!12).*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 404,
+        "bodyFileName": "NotFound.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

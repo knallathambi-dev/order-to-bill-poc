@@ -52,7 +52,7 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 
 ## Phase 2: Discobole Runtime Strategy
 
-- [ ] Inventory Discobole services required from the reference monorepo
+- [x] Inventory Discobole services required from the reference monorepo
   - Order Capture
   - Order Inventory
   - Product Catalog/Product Specification services
@@ -61,15 +61,18 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
   - Delivery Management
   - Fallout/ProcessFlow
   - selected UI portals
-- [ ] Define how each Discobole service will be run locally
+- [x] Define how each Discobole service will be run locally
   - copied code under this repo
   - Docker image built from this repo
   - external source monorepo retained only as upstream reference
-- [ ] Document build order and dependency requirements for Discobole modules
-- [ ] Create build scripts for selected Discobole images if images are built locally
-- [ ] Copy required Discobole service source into `discobole-services/`
-- [ ] Copy required Discobole UI portal source into `discobole-ui/`
-- [ ] Track POC changes to copied Discobole source directly in this repo, keeping changes scoped and documented
+- [x] Document build order and dependency requirements for Discobole modules
+  - Documented in `docs/phase-2-discobole-runtime.md`.
+- [x] Create build scripts for selected Discobole images if images are built locally
+  - Added `scripts/build-discobole-images.sh`.
+- [x] Copy required Discobole service source into `discobole-services/`
+- [x] Copy required Discobole UI portal source into `discobole-ui/`
+- [x] Track POC changes to copied Discobole source directly in this repo, keeping changes scoped and documented
+  - Phase 2 copied source without behavior changes; later POC changes should be committed directly against copied source with notes in `docs/`.
 
 ## Phase 3: Infrastructure From Scratch
 
@@ -78,7 +81,9 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 - [ ] Add MongoDB configured as replica set if required by Discobole outbox/Debezium
 - [ ] Add Kafka
 - [ ] Add Kafka UI
-- [ ] Add Kafka Connect/Debezium if selected Discobole flow requires outbox routing
+- [ ] Add Kafka Connect/Debezium for copied Discobole order-orchestration outbox routing
+  - Decision recorded in `docs/phase-3-debezium-decision.md`.
+  - Keep Kafka KRaft-only; do not reuse upstream ZooKeeper-based Debezium sample Compose.
 - [ ] Add Keycloak
 - [ ] Add Keycloak import directory
 - [ ] Add health checks for platform services

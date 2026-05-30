@@ -1,0 +1,155 @@
+{
+  "mappings": [
+    {
+      "name": "Qualified product offering - Success",
+      "priority": 1,
+      "request": {
+        "url": "/productOfferingQualification/v1/productOfferingQualification",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.productOfferingQualificationItem[0].productOffering.[?(@.id =~ /3456.*/i)]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Offering-Qualification/EligibleProductOfferingModificationContract.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Qualified product offering - Success",
+      "priority": 2,
+      "request": {
+        "url": "/productOfferingQualification/v1/productOfferingQualification",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+             "matchesJsonPath": "$.productOfferingQualificationItem[0].productOffering.[?(@.id =~ /3444.*/i)]"
+
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Offering-Qualification/NotEligibleProductOfferingModificationContract.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Qualified product offering - Success",
+      "priority": 3,
+      "request": {
+        "url": "/productOfferingQualificationQualification/v1/productOfferingQualification",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.productOfferingQualificationItem[0].productOffering.[?(@.id =~ /5fe032f0-fa01-42ec-afeb-920f74c2eae3.*/i)]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Offering-Qualification/EligibleProductOffering.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Qualified atomic handset product offering - Success",
+      "priority": 3,
+      "request": {
+        "url": "/productOfferingQualificationQualification/v1/productOfferingQualification",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.productOfferingQualificationItem[0].productOffering.[?(@.id =~ /24b34407-3c7d-4228-ba45-feff73ec4f05.*/i)]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Offering-Qualification/EligibleAtomicAccessory.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Qualified bundle handset product offering - Success",
+      "priority": 3,
+      "request": {
+        "url": "/productOfferingQualificationQualification/v1/productOfferingQualification",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.productOfferingQualificationItem[0].productOffering.[?(@.id =~ /7d66ed18-b9d2-44a5-81f5-6d89336544bc.*/i)]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Offering-Qualification/EligibleBundleAccessory.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Unqualified product offering - Success",
+      "priority": 4,
+      "request": {
+        "url": "/productOfferingQualification/v1/productOfferingQualification",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.productOfferingQualificationItem[0].productOffering.[?(@.id =~ /1244.*/i)]"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Offering-Qualification/NotEligibleProductOffering.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad request",
+      "priority": 5,
+      "request": {
+        "url": "/productOfferingQualification/v1/productOfferingQualification",
+        "method": "POST"
+      },
+      "response": {
+        "status": 400,
+        "bodyFileName": "MissingRequestBody.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad url - Not found",
+      "priority": 6,
+      "request": {
+        "urlPattern": "/productOfferingQualification/v1/productOfferingQ.*",
+        "method": "POST"
+      },
+      "response": {
+        "status": 404,
+        "bodyFileName": "NotFound.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,702 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+/* ── Graph container ─────────────────────────────────────────────────────── */
+/*
+ * useCytoscapeGraph hook uses document.getElementById("cy") internally,
+ * so #cy must exist in the DOM. The .graph-canvas class (from common-ui)
+ * provides the base sizing; this rule ensures the hook's target also
+ * fills its parent properly.
+ */
+
+#cy {
+    width: 100%;
+    height: 100%;
+}
+
+/* ── Table overrides (MFE-specific) ──────────────────────────────────────── */
+
+.table > thead {
+    padding-right: 40px;
+    vertical-align: middle;
+}
+
+th.manage-columns {
+    padding: 0 !important;
+    position: absolute;
+    margin-top: 10px;
+}
+
+table.data-table tbody.fw-semibold tr:last-child {
+    border-bottom: 1px solid #ccc;
+}
+
+.td-width {
+    width: 25%;
+}
+
+.table1 th:nth-child(2),
+.table1 td:nth-child(2) {
+    width: 40%;
+}
+
+.table2 th:nth-child(2),
+.table2 td:nth-child(2) {
+    width: 35%;
+}
+
+/* ── Hierarchy state colors ──────────────────────────────────────────────── */
+
+.Active {
+    background: #67cb67;
+}
+
+.Active .icon {
+    background: #048375;
+}
+
+.Created {
+    background: #707c83;
+}
+
+.Created .icon {
+    background: #c6cad0;
+}
+
+.Sold {
+    background: #527edb;
+}
+
+.Sold .icon {
+    background: #1f53c1;
+}
+
+.Terminated,
+.Aborted,
+.Cancelled {
+    background: #fd6161;
+}
+
+.Terminated .icon,
+.Aborted .icon,
+.Cancelled .icon {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* ── Hierarchy severity badge icons ──────────────────────────────────────── */
+
+.icon-Active {
+    background: url(assets/images/hierarchy/active/active-sm.svg);
+}
+
+.icon-Terminated {
+    background: url(assets/images/hierarchy/terminated/terminated-sm.svg);
+}
+
+.icon-Aborted {
+    background: url(assets/images/hierarchy/aborted/aborted-sm.svg);
+}
+
+.icon-Cancelled {
+    background: url(assets/images/hierarchy/cancelled/cancelled-sm.svg);
+}
+
+.icon-Created {
+    background: url(assets/images/hierarchy/created/created-sm.svg);
+}
+
+.icon-Sold {
+    background: url(assets/images/hierarchy/sold/sold-sm.svg);
+}
+
+/* ── Node type icons (mask) ──────────────────────────────────────────────── */
+
+.icon-AtomicNodes {
+    mask-image: url(assets/images/hierarchy/atomicnodes/atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/atomicnodes/atomic.svg);
+}
+
+.icon-bundleNodes {
+    mask-image: url(assets/images/hierarchy/bundlenodes/bundle.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/bundlenodes/bundle.svg);
+}
+
+.icon-SpecificationNodes {
+    mask-image: url(assets/images/hierarchy/specificationnodes/specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/specificationnodes/specification.svg);
+}
+
+.icon-product {
+    mask-image: url(assets/images/hierarchy/product/contract.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/product/contract.svg);
+}
+
+.icon-physicalAtomicNodes {
+    mask-image: url(assets/images/hierarchy/physicalatomicnodes/physical-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/physicalatomicnodes/physical-atomic.svg);
+}
+
+.icon-physicalSpecificationNodes {
+    mask-image: url(assets/images/hierarchy/physicalspecificationnodes/physical-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/physicalspecificationnodes/physical-specification.svg);
+}
+
+.icon-shipmentAtomicNodes {
+    mask-image: url(assets/images/hierarchy/shipmentatomicnodes/shipment-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/shipmentatomicnodes/shipment-atomic.svg);
+}
+
+.icon-shipmentSpecificationNodes {
+    mask-image: url(assets/images/hierarchy/shipmentspecificationnodes/shipment-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/shipmentspecificationnodes/shipment-specification.svg);
+}
+
+/* ── Type+State icon combos: product (contract) ─────────────────────────── */
+
+.icon-product-Active {
+    background: url(assets/images/hierarchy/active/green-contract.svg);
+    mask-image: url(assets/images/hierarchy/active/green-contract.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/active/green-contract.svg);
+}
+
+.icon-product-Cancelled, .icon-product-Aborted,
+.icon-product-Terminated {
+    background: url(assets/images/hierarchy/terminated/red-contract.svg);
+    mask-image: url(assets/images/hierarchy/terminated/red-contract.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/terminated/red-contract.svg);
+}
+
+.icon-product-Created {
+    background: url(assets/images/hierarchy/created/grey-contract.svg);
+    mask-image: url(assets/images/hierarchy/created/grey-contract.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/created/grey-contract.svg);
+}
+
+.icon-product-Sold {
+    background: url(assets/images/hierarchy/sold/orange-contract.svg);
+    mask-image: url(assets/images/hierarchy/sold/orange-contract.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/sold/orange-contract.svg);
+}
+
+/* ── Type+State icon combos: bundle ──────────────────────────────────────── */
+
+.icon-bundleNodes-Active {
+    background: url(assets/images/hierarchy/active/green-bundle.svg);
+    mask-image: url(assets/images/hierarchy/active/green-bundle.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/active/green-bundle.svg);
+}
+
+.icon-bundleNodes-Cancelled, .icon-bundleNodes-Aborted,
+.icon-bundleNodes-Terminated {
+    background: url(assets/images/hierarchy/terminated/red-bundle.svg);
+    mask-image: url(assets/images/hierarchy/terminated/red-bundle.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/terminated/red-bundle.svg);
+}
+
+.icon-bundleNodes-Created {
+    background: url(assets/images/hierarchy/created/grey-bundle.svg);
+    mask-image: url(assets/images/hierarchy/created/grey-bundle.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/created/grey-bundle.svg);
+}
+
+.icon-bundleNodes-Sold {
+    background: url(assets/images/hierarchy/sold/orange-bundle.svg);
+    mask-image: url(assets/images/hierarchy/sold/orange-bundle.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/sold/orange-bundle.svg);
+}
+
+/* ── Type+State icon combos: atomic ──────────────────────────────────────── */
+
+.icon-AtomicNodes-Active {
+    background: url(assets/images/hierarchy/active/green-atomic.svg);
+    mask-image: url(assets/images/hierarchy/active/green-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/active/green-atomic.svg);
+}
+
+.icon-AtomicNodes-Cancelled, .icon-AtomicNodes-Aborted,
+.icon-AtomicNodes-Terminated {
+    background: url(assets/images/hierarchy/terminated/red-atomic.svg);
+    mask-image: url(assets/images/hierarchy/terminated/red-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/terminated/red-atomic.svg);
+}
+
+.icon-AtomicNodes-Created {
+    background: url(assets/images/hierarchy/created/grey-atomic.svg);
+    mask-image: url(assets/images/hierarchy/created/grey-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/created/grey-atomic.svg);
+}
+
+.icon-AtomicNodes-Sold {
+    background: url(assets/images/hierarchy/sold/orange-atomic.svg);
+    mask-image: url(assets/images/hierarchy/sold/orange-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/sold/orange-atomic.svg);
+}
+
+/* ── Type+State icon combos: specification ───────────────────────────────── */
+
+.icon-SpecificationNodes-Active {
+    background: url(assets/images/hierarchy/active/green-specification.svg);
+    mask-image: url(assets/images/hierarchy/active/green-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/active/green-specification.svg);
+}
+
+.icon-SpecificationNodes-Cancelled, .icon-SpecificationNodes-Aborted,
+.icon-SpecificationNodes-Terminated {
+    background: url(assets/images/hierarchy/terminated/red-specification.svg);
+    mask-image: url(assets/images/hierarchy/terminated/red-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/terminated/red-specification.svg);
+}
+
+.icon-SpecificationNodes-Created {
+    background: url(assets/images/hierarchy/created/grey-specification.svg);
+    mask-image: url(assets/images/hierarchy/created/grey-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/created/grey-specification.svg);
+}
+
+.icon-SpecificationNodes-Sold {
+    background: url(assets/images/hierarchy/sold/orange-specification.svg);
+    mask-image: url(assets/images/hierarchy/sold/orange-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/sold/orange-specification.svg);
+}
+
+/* ── Type+State icon combos: shipment atomic ─────────────────────────────── */
+
+.icon-shipmentAtomicNodes-Active {
+    background: url(assets/images/hierarchy/active/green-shipment-atomic.svg);
+    mask-image: url(assets/images/hierarchy/active/green-shipment-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/active/green-shipment-atomic.svg);
+}
+
+.icon-shipmentAtomicNodes-Cancelled, .icon-shipmentAtomicNodes-Aborted,
+.icon-shipmentAtomicNodes-Terminated {
+    background: url(assets/images/hierarchy/terminated/red-shipment-atomic.svg);
+    mask-image: url(assets/images/hierarchy/terminated/red-shipment-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/terminated/red-shipment-atomic.svg);
+}
+
+.icon-shipmentAtomicNodes-Created {
+    background: url(assets/images/hierarchy/created/grey-shipment-atomic.svg);
+    mask-image: url(assets/images/hierarchy/created/grey-shipment-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/created/grey-shipment-atomic.svg);
+}
+
+.icon-shipmentAtomicNodes-Sold {
+    background: url(assets/images/hierarchy/sold/blue-shipment-atomic.svg);
+    mask-image: url(assets/images/hierarchy/sold/blue-shipment-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/sold/blue-shipment-atomic.svg);
+}
+
+/* ── Type+State icon combos: shipment specification ──────────────────────── */
+
+.icon-shipmentSpecificationNodes-Active {
+    background: url(assets/images/hierarchy/active/green-shipment-specification.svg);
+    mask-image: url(assets/images/hierarchy/active/green-shipment-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/active/green-shipment-specification.svg);
+}
+
+.icon-shipmentSpecificationNodes-Cancelled, .icon-shipmentSpecificationNodes-Aborted,
+.icon-shipmentSpecificationNodes-Terminated {
+    background: url(assets/images/hierarchy/terminated/red-shipment-specification.svg);
+    mask-image: url(assets/images/hierarchy/terminated/red-shipment-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/terminated/red-shipment-specification.svg);
+}
+
+.icon-shipmentSpecificationNodes-Created {
+    background: url(assets/images/hierarchy/created/grey-shipment-specification.svg);
+    mask-image: url(assets/images/hierarchy/created/grey-shipment-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/created/grey-shipment-specification.svg);
+}
+
+.icon-shipmentSpecificationNodes-Sold {
+    background: url(assets/images/hierarchy/sold/blue-shipment-specification.svg);
+    mask-image: url(assets/images/hierarchy/sold/blue-shipment-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/sold/blue-shipment-specification.svg);
+}
+
+/* ── Type+State icon combos: physical atomic ─────────────────────────────── */
+
+.icon-physicalAtomicNodes-Active {
+    background: url(assets/images/hierarchy/active/green-physical-atomic.svg);
+    mask-image: url(assets/images/hierarchy/active/green-physical-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/active/green-physical-atomic.svg);
+}
+
+.icon-physicalAtomicNodes-Cancelled, .icon-physicalAtomicNodes-Aborted,
+.icon-physicalAtomicNodes-Terminated {
+    background: url(assets/images/hierarchy/terminated/red-physical-atomic.svg);
+    mask-image: url(assets/images/hierarchy/terminated/red-physical-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/terminated/red-physical-atomic.svg);
+}
+
+.icon-physicalAtomicNodes-Created {
+    background: url(assets/images/hierarchy/created/grey-physical-atomic.svg);
+    mask-image: url(assets/images/hierarchy/created/grey-physical-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/created/grey-physical-atomic.svg);
+}
+
+.icon-physicalAtomicNodes-Sold {
+    background: url(assets/images/hierarchy/sold/blue-physical-atomic.svg);
+    mask-image: url(assets/images/hierarchy/sold/blue-physical-atomic.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/sold/blue-physical-atomic.svg);
+}
+
+/* ── Type+State icon combos: physical specification ──────────────────────── */
+
+.icon-physicalSpecificationNodes-Active {
+    background: url(assets/images/hierarchy/active/green-physical-specification.svg);
+    mask-image: url(assets/images/hierarchy/active/green-physical-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/active/green-physical-specification.svg);
+}
+
+.icon-physicalSpecificationNodes-Cancelled, .icon-physicalSpecificationNodes-Aborted,
+.icon-physicalSpecificationNodes-Terminated {
+    background: url(assets/images/hierarchy/terminated/red-physical-specification.svg);
+    mask-image: url(assets/images/hierarchy/terminated/red-physical-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/terminated/red-physical-specification.svg);
+}
+
+.icon-physicalSpecificationNodes-Created {
+    background: url(assets/images/hierarchy/created/grey-physical-specification.svg);
+    mask-image: url(assets/images/hierarchy/created/grey-physical-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/created/grey-physical-specification.svg);
+}
+
+.icon-physicalSpecificationNodes-Sold {
+    background: url(assets/images/hierarchy/sold/blue-physical-specification.svg);
+    mask-image: url(assets/images/hierarchy/sold/blue-physical-specification.svg);
+    -webkit-mask-image: url(assets/images/hierarchy/sold/blue-physical-specification.svg);
+}
+
+/* ── Product-specific graph badge ────────────────────────────────────────── */
+
+.element-severity_badge-right {
+    position: absolute;
+    min-width: fit-content;
+    padding: 2px 6px;
+    height: auto;
+    border-radius: 4px;
+    margin-left: 36px;
+    margin-top: 20px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12),
+    0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    background: #c2691f;
+    color: #fff;
+    font-size: 8px;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 999;
+}
+
+/* ── Reports ─────────────────────────────────────────────────────────────── */
+
+.reports-screen .css-1hb7zxy-IndicatorsContainer {
+    align-self: flex-start !important;
+}
+
+/* ── Price table ─────────────────────────────────────────────────────────── */
+
+.price-table th,
+.price-table td {
+    text-wrap: nowrap;
+}
+
+.table-light,
+.table-light tr,
+.table-light th,
+.table-light td {
+    background-color: #f2f2f2;
+}
+
+.price-table .accordion-button.btn-sm:after {
+    display: block;
+    margin: 0;
+    margin-left: 16px;
+}
+
+.accordion-button.btn-sm {
+    font-size: 16px;
+    color: #000;
+}
+
+.accordion-button.btn-sm.disabled {
+    color: #ccc;
+}
+
+.price-table.table thead th {
+    color: #666;
+}
+
+.price-table.table td {
+    vertical-align: inherit;
+}
+
+.price-alteration-button.highlight-orange {
+    color: #ff7900;
+    font-weight: bold;
+}
+
+/* ── Custom buttons / icons ──────────────────────────────────────────────── */
+
+.custom-button {
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.custom-icon {
+    font-size: 32px;
+    visibility: visible;
+    pointer-events: none;
+}
+
+.btn.btn-icon:hover {
+    border-color: transparent;
+    color: #fff;
+}
+
+/* ── Jobs: status badges (PascalCase) ────────────────────────────────────── */
+
+.status-value.Succeeded {
+    background-color: #52a352;
+}
+
+.status-value.NotStarted {
+    background-color: #707c83;
+}
+
+.status-value.Running {
+    background-color: #527edb;
+}
+
+.status-value.Failed {
+    background-color: #fd6161;
+}
+
+/* ── Jobs: UI ────────────────────────────────────────────────────────────── */
+
+.reload-btn:hover .reload-icon {
+    color: white !important;
+}
+
+.custom-fieldset {
+    position: relative;
+    padding: 20px;
+    border-radius: 0;
+    margin: 15px 0;
+}
+
+.check-circle {
+    position: relative;
+    background-color: #2d9308;
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.check-circle .icon-checkbox_tick {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.warning-circle {
+    position: relative;
+    background-color: #e60b27;
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-error_severe {
+    color: white !important;
+}
+
+.warning-circle .selection-clear-button {
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.failure-icon {
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ── Job specification: status badges (PascalCase) ───────────────────────── */
+
+.status-value.Active {
+    background-color: #52a352;
+}
+
+.status-value.Created {
+    background-color: #707c83;
+}
+
+.status-value.Suspend {
+    background-color: #fc0;
+}
+
+.status-value.Terminated {
+    background-color: #fd6161;
+}
+
+/* ── Form section titles ─────────────────────────────────────────────────── */
+
+.title_lines {
+    color: #000;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 700;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+
+.title_lines::before,
+.title_lines::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+    height: 1px;
+    background-color: #ccc;
+    position: relative;
+}
+
+.title_lines::before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+
+.title_lines::after {
+    left: 0.5em;
+    margin-right: -50%;
+}
+
+/* ── ClearFieldButton positioning overrides ───────────────────────────────── */
+
+.date-picker-wrapper,
+.text-field-wrapper {
+    position: relative;
+}
+
+.date-picker-wrapper > button.btn.btn-icon.btn-link.dismiss-btn {
+    top: 38px;
+    right: 10px;
+}
+
+.text-field-wrapper > button.btn.btn-icon.btn-link.dismiss-btn {
+    top: 38px;
+}
+
+/* ── Job specification: UI ───────────────────────────────────────────────── */
+
+.td-width-2 {
+    width: 120px;
+}
+
+.table-container {
+    border: 2px solid #ccc;
+    padding: 8px 16px;
+}
+
+.btn-create-task {
+    background-color: #ff7900;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-create-task:hover {
+    background-color: #e66900;
+}
+
+.status-container {
+    position: relative;
+}
+
+.status-container .status-value {
+    position: absolute;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+/* ── Reporting ───────────────────────────────────────────────────────────── */
+
+.chart-container {
+    height: 75vh;
+}
+
+.legend-col-color {
+    width: 10%;
+}
+
+.legend-col-label {
+    width: 70%;
+}
+
+.legend-col-value {
+    width: 20%;
+}
+
+.legend-color-swatch {
+    width: 20px;
+    height: 20px;
+}
+
+.legend-row-swatch {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.dropdown-svg {
+    color: #000;
+}
+
+.term-description-cell {
+    max-width: 250px;
+    word-wrap: break-word;
+}
+
+.term-see-more-btn {
+    min-height: auto;
+    line-height: 1;
+}

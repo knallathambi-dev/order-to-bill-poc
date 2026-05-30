@@ -1,0 +1,120 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+$id: "https://orange.com/deliveryOrderEvent.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "DeliveryOrder"
+type: "object"
+properties:
+  id:
+    type: string
+  href:
+    type: string
+    format: uri
+  requestedDeliveryDate:
+    $ref: "#/definitions/Date"
+  startDate:
+    $ref: "#/definitions/Date"
+  deliveryOrderCreationDate:
+    $ref: "#/definitions/Date"
+  actualStartDate:
+    $ref: "#/definitions/Date"
+  actualCompletionDate:
+    $ref: "#/definitions/Date"
+  priority:
+    type: integer
+  productOrderId:
+      type: string
+  factoryOrderId:
+    type: string
+  RelatedParty:
+    type: array
+    items:
+      $ref: '#/definitions/RelatedParty'
+  orchestrationPlanId:
+    type: string
+  OrderItemRef:
+    type: array
+    items:
+      $ref: './OrderItemRef.yaml'
+  DeliveryFactoryRef:
+    $ref: '#/definitions/DeliveryFactoryRef'
+  Issues:
+    type: array
+    items:
+      $ref: '#/definitions/DeliveryErrorMessage'
+  '@baseType':
+    type: string
+  '@schemaLocation':
+    type: string
+    format: uri
+  '@type':
+    type: string
+  '@referredType':
+    type: string
+required:
+  - id
+  - href
+  - startDate
+  - deliveryOrderCreationDate
+  - productOrderId
+  - orchestrationPlanId
+  - factoryOrderId
+  - RelatedParty
+  - OrderItemRef
+  - DeliveryFactoryRef
+  - Issues
+
+definitions:
+  Date:
+    type: "object"
+    existingJavaType: "java.time.Instant"
+
+  RelatedParty:
+    type: "object"
+    existingJavaType: "com.orange.discobole.orderorchestration.orchestrationdelivery.model.RelatedParty"
+
+  DeliveryFactoryRef:
+    type: object
+    properties:
+      catalogHref:
+        type: string
+        format: uri
+      href:
+        type: string
+      DeliveryFactoryType:
+        $ref: '#/definitions/DeliveryFactoryEnum'
+    required:
+      - catalogHref
+      - href
+      - type
+      - DeliveryFactoryType
+
+  DeliveryErrorMessage:
+    type: object
+    properties:
+      code:
+        type: string
+      reason:
+        type: string
+      message:
+        type: string
+    required:
+      - code
+      - reason
+      - message
+
+  DeliveryFactoryEnum:
+    type: string
+    enum:
+      - ServiceOrderManagement
+      - ShippingOrderManagement
+      - PartnerOrderManagement
+      - ManualOrderManagement

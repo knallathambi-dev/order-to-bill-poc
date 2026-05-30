@@ -1,0 +1,16 @@
+meta {
+  name: Get Job by ID
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{dev_url}}/productInventoryManagement/v1/job/678e1ea3aa13c519eb106b38
+  body: none
+  auth: none
+}
+
+query {
+  ~@type: ImportJob
+  ~status: Failed
+}

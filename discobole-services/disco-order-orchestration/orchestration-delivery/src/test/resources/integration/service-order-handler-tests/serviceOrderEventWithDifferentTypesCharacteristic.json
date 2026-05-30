@@ -1,0 +1,64 @@
+{
+  "serviceCharacteristic": [
+    {
+      "id": "232-342",
+      "name": "ICCIA",
+      "valueType": "string",
+      "value": "string"
+    },
+    {
+      "id": "232-343",
+      "name": "ICCIB",
+      "valueType": "numeric",
+      "value": 70.0
+    },
+    {
+      "id": "232-344",
+      "name": "ICCIC",
+      "valueType": "integer",
+      "value": 70
+    },
+    {
+      "id": "232-344",
+      "name": "ICCID",
+      "valueType": "boolean",
+      "value": true
+    },
+    {
+      "id": "232-344",
+      "name": "ICCIE",
+      "valueType": "object",
+      "value": "{\"name\": \"name\"}"
+    },
+    {
+      "id": "232-342",
+      "name": "ICCIF",
+      "valueType": "string array",
+      "value": "[\"string\",\"string2\"]"
+    },
+    {
+      "id": "232-343",
+      "name": "ICCIP",
+      "valueType": "numeric array",
+      "value": "[70.0, 80.0]"
+    },
+    {
+      "id": "232-344",
+      "name": "ICCIK",
+      "valueType": "integer array",
+      "value": "[70, 80]"
+    },
+    {
+      "id": "232-344",
+      "name": "ICCIS",
+      "valueType": "boolean array",
+      "value": "[true, false]"
+    },
+    {
+      "id": "232-344",
+      "name": "ICCIR",
+      "valueType": "object array",
+      "value": "[{\"name\": \"name\"},{\"name\": \"name\"}]"
+    }
+  ]
+}

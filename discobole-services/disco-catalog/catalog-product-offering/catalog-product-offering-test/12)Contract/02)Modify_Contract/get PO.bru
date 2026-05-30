@@ -1,0 +1,44 @@
+meta {
+  name: get PO
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/productOffering/{{Contract_id}}
+  body: none
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  await bru.sleep(3000);
+}
+
+script:post-response {
+  
+  
+}
+
+tests {
+  
+  var jsonData = res.getBody();
+  
+  var Entity_name=bru.getEnvVar("Entity_name");
+  
+  test("To verify that name is updated", function () {
+    expect(jsonData.name).to.equals("Test_Contract"+Entity_name+"_Mod");
+  });
+}

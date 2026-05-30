@@ -1,0 +1,281 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# Default values for lifecycle-management.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Application replica count
+replicaCount: 1
+
+# -- Keystore in P12 format, base64 encoded
+keyStoreP12: ""
+
+# -- Enable or disable application daily shutdown
+dailyshutdown: enabled
+
+# Docker image parameters
+image:
+  #  -- docker image repository
+  repository: "${docker_repository}"
+  # -- image pull policy
+  pullPolicy: Always
+  # - overrides the image tag whose default is the chart appVersion.
+  tag: "${docker_tag}"
+
+# -- Specify pulling image secrets if your image repository requires it
+imagePullSecrets: []
+
+# -- Override default fully qualified app name and chart name
+nameOverride: ""
+
+# -- Override fully qualified app name
+fullnameOverride: ""
+
+#  MongoDB configuration
+database:
+  enabled: true
+  rootPassword: ""
+  rootUser: mongo_user
+
+#  External services configuration
+services:
+  # -- hostname and port of mongo
+  mongodb: catalog-mongo
+  # -- Mongo database name
+  dbname: catalog
+  # dbport: "27017"
+  # -- hostname and port of kafka
+  kafka: kafka:9092
+  # -- hostname and port of keycloak
+  keycloak: keycloak:80
+  # -- Keycloak realm
+  keycloakrealm: SpringBootKeycloak
+  # -- catalog-ui service
+  catalogui: catalog-ui:80
+  # -- dependent microservice
+  productcatalog: catalog-product-catalog:8080
+  # -- dependent microservice  
+  specification: catalog-product-specification:8080
+  # -- dependent microservice  
+  offering: catalog-product-offering:8080
+  # -- dependent microservice  
+  offeringprice: catalog-product-offering-price:8080
+  # -- dependent microservice  
+  category: catalog-product-category:8080
+  # -- dependent microservice  
+  lifecycle: catalog-product-lifecycle-management:8080
+  # -- dependent microservice  
+  userroleretrieve: auth-userrole:8080
+  # -- dependent microservice  
+  mockservice: mock-server:80
+  # -- dependent microservice  
+  gateway: disco-gateway:8080
+  # -- dependent microservice  
+  keycloakroute: keycloak
+  
+
+keycloak:
+  enabled: false
+  clientSecret: ""
+  issuerURI: ""
+
+serviceAccount:
+  # -- specifies whether a service account should be created
+  create: false
+  # -- annotations to add to the service account
+  annotations: {}
+  # If not set and create is true, a name is generated using the fullname template
+  # -- name of the service account
+  name: ""
+
+# enable monitoring and supervision of pods
+podAnnotations: {}
+  #prometheus.io/port: '9000'
+  #prometheus.io/scrape: 'true'
+  #metrics: '/actuator/prometheus'
+
+podSecurityContext: {}
+  # fsGroup: 1000
+  # runAsNonRoot: true
+
+securityContext: {}
+  # allowPrivilegeEscalation: false
+  # readOnlyRootFilesystem: true
+  # runAsGroup: 1000
+  # runAsNonRoot: true
+  # runAsUser: 1000
+  # capabilities:
+  #   drop:
+#   - ALL
+
+service:
+  type: ClusterIP
+  port: 8080
+  # enable monitoring and supervision of service
+  annotations: {}
+  #  prometheus.io/port: '9000'
+  #  prometheus.io/scrape: 'true'
+
+# Configuration of ingress controller
+ingress:
+  # -- enable ingress controller
+  enabled: false
+  # -- ingress  annotations
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  # -- hosts configuration    
+  hosts:
+    - host: ""
+      paths: [/] # align with contextPath
+
+# Resource requests and limits
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # -- default resource requests
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  # -- default resource limits
+  limits:
+    cpu: 200m
+    memory: 1024Mi
+
+# Horizontal Pod Autoscaler configuration
+autoscaling:
+  # -- enable autoscaling
+  enabled: false
+  # -- minimum number of replicas
+  minReplicas: 1
+  # -- maximum number of replicas
+  maxReplicas: 5
+  # -- target CPU utilization percentages for pod scaling
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+# -- Node affinity, tolerations and nodeSelector
+nodeSelector: {}
+
+# -- Pod tolerations
+tolerations: []
+
+# -- Pod affinity
+affinity: {}
+
+# MongoDB Helm chart configuration
+mongo:
+  # -- enable mongodb chart
+  enabled: true
+  fullnameOverride: catalog-mongo
+  # -- Custom user creation to interact with catalog database
+  customUsers:
+    - name: mongo_user
+      database: catalog
+      roles: 
+        - "readWrite"
+        - "dbAdmin"
+      password: "" # to define
+  # -- To define resource for database
+  resources:
+    limits:
+      cpu: 500m
+      memory: 2Gi
+    requests:
+      cpu: 200m
+      memory: 1Gi
+  auth:
+    # -- enable or disable mongodb root user
+    enabled: false
+    # -- mongodb root user password
+    rootPassword: "" # to define
+    # -- mongodb root user name
+    rootUsername: mongo_user
+  persistence:
+    # -- enable persistence for mongodb
+    enabled: true
+    # -- size of mongodb persistence volume
+    size: 4Gi
+  service:
+    type: ClusterIP
+    # -- mongodb service port
+    ports: 27017
+
+
+otel:
+  # activate Open Telemetry instrumentation
+  enabled: false
+  sidecar:
+    # -- use collector agent sidecar
+    enabled: false
+    # -- main collector address
+    jaeger:
+      host: ""
+      port: 14250
+      # main receiver address
+    # -- main receiver address
+    otlp:
+      host: ""
+      port: 4317
+  attributes:
+    # -- resource attribute to be set on telemetry data
+    platform: ""
+    # -- resource attribute to be set on telemetry data
+    region: ""
+    # -- resource attribute to be set on telemetry data
+    cluster: ""
+    # -- resource attribute to be set on telemetry data
+    namespace: ""
+    # -- resource attribute to be set on telemetry data
+    hostname: ""
+
+# s3 configurations
+s3:
+  # -- enable fluentd sidecar container
+  enabled: true
+  # -- aws secret access id
+  aws_access_key_id: ""
+  # -- aws secret access key
+  aws_secret_access_key: ""
+  # -- aws username
+  aws_username: ""
+  # -- aws secret and config
+  aws_s3_config: ""
+  # -- aws s3 http proxy
+  aws_http_proxy: ""
+
+# fluentd sidecar for logs forwarding
+fluentd:
+  # -- enable fluentd sidecar container
+  enabled: false
+  # -- tag value being set on log events and used by fluentd to route logs
+  tag: "" 
+  # -- hostname of the fluentd instance this application should send logs to. Defaults to localhost
+  host: ""
+
+# Monitoring values
+monitoring:
+  # -- label for application monitoring
+  application: ""
+  # -- label for exporter autodetection
+  domain: ""
+  # -- label to specify product name (chart name by default)
+  productName: ""
+  # -- label to specify topology
+  topology: ""
+  # -- label to specify role
+  role: ""
+  # -- label for environment being deployed
+  environment: ""
+
+# -- Context path for the application
+contextPath: ""

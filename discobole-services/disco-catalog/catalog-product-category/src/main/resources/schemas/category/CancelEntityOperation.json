@@ -1,0 +1,12 @@
+{
+  "CancelEntityOperation" : {
+    "required" : [ "isCancelled" ],
+    "type" : "object",
+    "properties" : {
+      "isCancelled" : {
+        "type" : "boolean",
+        "default" : true
+      }
+    }
+  }
+}

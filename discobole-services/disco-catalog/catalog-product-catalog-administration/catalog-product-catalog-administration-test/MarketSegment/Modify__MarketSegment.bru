@@ -1,0 +1,31 @@
+meta {
+  name: Modify__MarketSegment
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{Admin_URL}}/marketSegment/{{MS_id}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {  "name": "MK_mod{{random}}",
+  
+    "@type": "MarketSegment"
+    
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  var min = 1;
+  var max = 100;
+  var random = Math.floor(Math.random() * (max - min + 1)) + min;
+  bru.setEnvVar("random", random); 
+  
+}

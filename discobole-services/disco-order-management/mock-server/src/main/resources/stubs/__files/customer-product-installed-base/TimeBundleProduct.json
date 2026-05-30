@@ -1,0 +1,49 @@
+[
+  {
+    "@type": "Product",
+    "id": "649aaf9f2b4b3225cb5737ec",
+    "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ec",
+    "isBundle": false,
+    "productCharacteristic": [
+      {
+        "name": "volume",
+        "valueType": "string"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "09",
+        "productOrderId": "1108"
+      }
+    ],
+    "productSpecification": {
+      "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+      "name": "Time Bundle",
+      "@type": "ProductSpecificationRef"
+    },
+    "productRelationship": [{
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "ProductRef",
+        "id": "649aaf9f2b4b3225cb5737ea"
+      }
+    }],
+    "relatedParty": [
+      {
+        "id": "231-mf4",
+        "name": "Abir",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "realizingService": [
+      {
+        "id": "a8529d5e-fea2-4c8a-a6e2-88e3e6cd8342",
+        "href": "http://serverlocation:port/serviceInventory/3153"
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "Confirmed"
+  }
+]

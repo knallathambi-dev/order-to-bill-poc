@@ -1,0 +1,448 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+openapi: "3.0.0"
+info:
+  title: "Lead Time Statistics API"
+  version: "1.0.0"
+  description: "API for retrieving node-level and contract-level lead time history statistics."
+
+tags:
+  - name: "LeadTimeStatistics"
+    description: "Endpoints for lead time history sampled statistics"
+
+
+servers:
+  - url: "https://orchestration-delivery-integration.apps.fr01.paas.tech.orange/api/leadTimeHistoryStatistics"
+
+paths:
+  /leadTimeHistoryStatistics/node:
+    get:
+      tags:
+        - "LeadTimeStatistics"
+      operationId: "getNodeLeadTimeHistoryStatistics"
+      summary: "Get node-level lead time history statistics"
+      description: >
+        Returns sampled lead time statistics at node level. Node lead time represents the
+        time for individual product/service delivery.
+
+        Required selector one of:
+        - productSpecId
+        - deliveryFactoryName
+
+        Additionally, one or more of min/max/average must be requested (set to true). Exactly one of:
+        - timePeriodStart + timePeriodEnd
+        - approximateCount
+      parameters:
+        # query parameters to group by
+        - name: "productSpecId"
+          in: "query"
+          required: false
+          description: "Product Specification identifier (node level)."
+          schema:
+            type: "string"
+        - name: "deliveryFactoryName"
+          in: "query"
+          required: false
+          description: "Delivery factory/category (e.g., Mobile, Fixed, Fiber, Shipment). Used with productSpecId for a composite selector."
+          schema:
+            type: "string"
+        # query parameters for statistics fields to include
+        - name: "min"
+          in: "query"
+          required: false
+          description: "If true, include minActualLeadTime in response."
+          schema:
+            type: "boolean"
+            default: false
+        - name: "max"
+          in: "query"
+          required: false
+          description: "If true, include maxActualLeadTime in response."
+          schema:
+            type: "boolean"
+            default: false
+        - name: "average"
+          in: "query"
+          required: false
+          description: "If true, include averageActualLeadTime in response."
+          schema:
+            type: "boolean"
+            default: false
+        # search criteria
+        - name: "timePeriodStart"
+          in: "query"
+          required: false
+          description: "Start of the time window (inclusive). When provided, timePeriodEnd must also be provided, and approximateCount must be absent."
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "timePeriodEnd"
+          in: "query"
+          required: false
+          description: "End of the time window (exclusive). When provided, timePeriodStart must also be provided, and approximateCount must be absent."
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "approximateCount"
+          in: "query"
+          required: false
+          description: "Approximate number of most recent hourly samples to return. Must not be provided with timePeriodStart/timePeriodEnd."
+          schema:
+            type: "integer"
+            format: "int32"
+            minimum: 1
+        # fields to include in response
+        - name: "fields"
+          in: "query"
+          required: false
+          description: "Comma-separated properties to be provided in response."
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        # pagination
+        - name: "offset"
+          in: "query"
+          required: false
+          description: "Requested index for start of resources to be provided in response (applied to the statistics array)."
+          schema:
+            type: "integer"
+            format: "int32"
+            default: 0
+            minimum: 0
+        - name: "limit"
+          in: "query"
+          required: false
+          description: "Requested number of resources to be provided in response (applied to the statistics array)."
+          schema:
+            type: "integer"
+            format: "int32"
+            default: 100
+            minimum: 1
+        - name: "sort"
+          in: "query"
+          required: false
+          description: "Sort sample window for statistics samples. Supported fields: sampleWindow. Prefix with '-' for descending."
+          style: "form"
+          explode: false
+          schema:
+            type: "string"
+
+      responses:
+        '200':
+          $ref: '#/components/responses/NodeLeadTimeStatistics200'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '500':
+          $ref: '#/components/responses/Error500'
+
+  /leadTimeHistoryStatistics/contract:
+    get:
+      tags:
+        - "LeadTimeStatistics"
+      operationId: "getContractLeadTimeHistoryStatistics"
+      summary: "Get contract-level lead time history statistics"
+      description: >
+        Returns sampled lead time statistics at contract level. Contract lead time represents
+        the total time for entire contract completion (sum of all internal nodes).
+
+        Required selector:
+        - contractName
+
+        Additionally, one or more of min/max/average must be requested (set to true). Exactly one of:
+        - timePeriodStart + timePeriodEnd
+        - approximateCount
+      parameters:
+        # query parameters to group by
+        - name: "contractName"
+          in: "query"
+          required: true
+          description: "Contract (plan) name for contract-level statistics."
+          schema:
+            type: "string"
+        # query parameters for statistics fields to include
+        - name: "min"
+          in: "query"
+          required: false
+          description: "If true, include minActualLeadTime in response."
+          schema:
+            type: "boolean"
+            default: false
+        - name: "max"
+          in: "query"
+          required: false
+          description: "If true, include maxActualLeadTime in response."
+          schema:
+            type: "boolean"
+            default: false
+        - name: "average"
+          in: "query"
+          required: false
+          description: "If true, include averageActualLeadTime in response."
+          schema:
+            type: "boolean"
+            default: false
+        # search criteria
+        - name: "timePeriodStart"
+          in: "query"
+          required: false
+          description: "Start of the time window (inclusive). When provided, timePeriodEnd must also be provided, and approximateCount must be absent."
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "timePeriodEnd"
+          in: "query"
+          required: false
+          description: "End of the time window (exclusive). When provided, timePeriodStart must also be provided, and approximateCount must be absent."
+          schema:
+            type: "string"
+            format: "date-time"
+        - name: "approximateCount"
+          in: "query"
+          required: false
+          description: "Approximate number of most recent hourly samples to return. Must not be provided with timePeriodStart/timePeriodEnd."
+          schema:
+            type: "integer"
+            format: "int32"
+            minimum: 1
+        # fields to include in response
+        - name: "fields"
+          in: "query"
+          required: false
+          description: "Comma-separated properties to be provided in response."
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        # pagination
+        - name: "offset"
+          in: "query"
+          required: false
+          description: "Requested index for start of resources to be provided in response (applied to the statistics array)."
+          schema:
+            type: "integer"
+            format: "int32"
+            default: 0
+            minimum: 0
+        - name: "limit"
+          in: "query"
+          required: false
+          description: "Requested number of resources to be provided in response (applied to the statistics array)."
+          schema:
+            type: "integer"
+            format: "int32"
+            default: 100
+            minimum: 1
+        - name: "sort"
+          in: "query"
+          required: false
+          description: "Sort sample window for statistics samples. Supported fields: sampleWindow. Prefix with '-' for descending."
+          style: "form"
+          explode: false
+          schema:
+            type: "string"
+
+      responses:
+        '200':
+          $ref: '#/components/responses/ContractLeadTimeStatistics200'
+        '400':
+          $ref: '#/components/responses/Error400'
+        '401':
+          $ref: '#/components/responses/Error401'
+        '404':
+          $ref: '#/components/responses/Error404'
+        '500':
+          $ref: '#/components/responses/Error500'
+
+components:
+  schemas:
+    NodeLeadTimeHistoryStatistics:
+      type: "object"
+      description: "Node-level lead time history sampled statistics."
+      properties:
+        productSpecId:
+          type: "string"
+          description: "Product Specification identifier (node level)."
+        deliveryFactoryName:
+          type: "string"
+          description: "Delivery factory/category for this node (Mobile, Fixed, Fiber, Shipment)."
+        statistics:
+          type: "array"
+          description: "Hourly sampled node-level statistics."
+          items:
+            $ref: "#/components/schemas/LeadTimeHistorySample"
+        '@type':
+          type: "string"
+          description: "Concrete class name of this resource."
+          example: "NodeLeadTimeHistoryStatistics"
+        '@baseType':
+          type: "string"
+          description: "When sub-classing, this defines the super-class."
+        '@schemaLocation':
+          type: "string"
+          format: "uri"
+          description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      required:
+        - "productSpecId"
+        - "statistics"
+
+    ContractLeadTimeHistoryStatistics:
+      type: "object"
+      description: "Contract-level lead time history sampled statistics."
+      properties:
+        contractName:
+          type: "string"
+          description: "Contract (plan) name."
+        statistics:
+          type: "array"
+          description: "Hourly sampled contract-level statistics."
+          items:
+            $ref: "#/components/schemas/LeadTimeHistorySample"
+        '@type':
+          type: "string"
+          description: "Concrete class name of this resource."
+          example: "ContractLeadTimeHistoryStatistics"
+        '@baseType':
+          type: "string"
+          description: "When sub-classing, this defines the super-class."
+        '@schemaLocation':
+          type: "string"
+          format: "uri"
+          description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      required:
+        - "contractName"
+        - "statistics"
+
+    LeadTimeHistorySample:
+      type: "object"
+      description: "One hourly sample of lead time statistics."
+      properties:
+        sampleWindow:
+          type: "string"
+          format: "date-time"
+          description: "Hour at which this data was aggregated."
+        minActualLeadTime:
+          type: "integer"
+          format: "int64"
+          description: "Minimum actual lead time in the sample window (hours)."
+        maxActualLeadTime:
+          type: "integer"
+          format: "int64"
+          description: "Maximum actual lead time in the sample window (hours)."
+        averageActualLeadTime:
+          type: "number"
+          format: "float"
+          description: "Average actual lead time in the sample window (hours)."
+        sampleSize:
+          type: "integer"
+          format: "int32"
+          description: "Number of items included in this sample window."
+      required:
+        - "sampleWindow"
+
+    Error:
+      description: "Used when an API throws an Error, typically with a HTTP error response-code (3xx, 4xx, 5xx)"
+      required:
+        - "code"
+        - "reason"
+      type: "object"
+      properties:
+        code:
+          description: "Application relevant detail, defined in the API or a common list."
+          type: "string"
+        reason:
+          description: "Explanation of the reason for the error which can be shown to a client user."
+          type: "string"
+        message:
+          description: "More details and corrective actions related to the error which can be shown to a client user."
+          type: "string"
+        status:
+          description: "HTTP Error code extension"
+          type: "string"
+        referenceError:
+          description: "URI of documentation describing the error."
+          type: "string"
+          format: "uri"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+
+  responses:
+    NodeLeadTimeStatistics200:
+      description: Ok
+      headers:
+        X-Result-Count:
+          $ref: '#/components/headers/X-Result-Count'
+        X-Total-Count:
+          $ref: '#/components/headers/X-Total-Count'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NodeLeadTimeHistoryStatistics'
+
+    ContractLeadTimeStatistics200:
+      description: Ok
+      headers:
+        X-Result-Count:
+          $ref: '#/components/headers/X-Result-Count'
+        X-Total-Count:
+          $ref: '#/components/headers/X-Total-Count'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ContractLeadTimeHistoryStatistics'
+
+    Error400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Error401:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Error404:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Error500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  headers:
+    X-Result-Count:
+      description: Number of statistics samples returned in this page.
+      schema:
+        type: integer
+        format: int32
+    X-Total-Count:
+      description: Total number of statistics samples matching the filter (before pagination).
+      schema:
+        type: integer
+        format: int32

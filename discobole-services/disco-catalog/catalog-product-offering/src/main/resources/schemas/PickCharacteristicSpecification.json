@@ -1,0 +1,195 @@
+{
+  "PickCharacteristicSpecification" : {
+    "required" : [ "serviceSpecification.serviceSpecCharacteristic.id", "name" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "serviceSpecification.serviceSpecCharacteristic.id" : {
+          "type" : "string",
+          "readOnly" : true
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "valueType" : {
+          "type" : "string",
+          "readOnly" : true,
+          "default" : "string"
+        },
+        "configurable" : {
+          "type" : "boolean",
+          "readOnly" : true
+        },
+        "validFor" : {
+          "required" : [ "startDateTime" ],
+          "type" : "object",
+          "properties" : {
+            "endDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            },
+            "startDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            }
+          }
+        },
+        "minCardinality" : {
+          "type" : "number"
+        },
+        "maxCardinality" : {
+          "type" : "number"
+        },
+        "isUnique" : {
+          "type" : "boolean",
+          "readOnly" : true
+        },
+        "externalCharSpecRelationship" : {
+          "type" : "array",
+          "items" : {
+            "required" : [ "productSpecificationCharacteristicId", "relationshipType" ],
+            "type" : "object",
+            "properties" : {
+              "productSpecificationCharacteristicId" : {
+                "type" : "string"
+              },
+              "parentSpecificationId" : {
+                "type" : "string"
+              },
+              "relationshipType" : {
+                "type" : "string"
+              },
+              "validFor" : {
+                "required" : [ "startDateTime" ],
+                "type" : "object",
+                "properties" : {
+                  "endDateTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  },
+                  "startDateTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "internalCharSpecRelationship" : {
+          "type" : "array",
+          "items" : {
+            "required" : [ "serviceSpecification.serviceSpecCharacteristic.id", "relationshipType" ],
+            "type" : "object",
+            "properties" : {
+              "serviceSpecification.serviceSpecCharacteristic.id" : {
+                "type" : "string",
+                "readOnly" : true
+              },
+              "relationshipType" : {
+                "type" : "string"
+              },
+              "validFor" : {
+                "required" : [ "startDateTime" ],
+                "type" : "object",
+                "properties" : {
+                  "endDateTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  },
+                  "startDateTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "characteristicValueSpecification" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "properties" : {
+              "isDefault" : {
+                "type" : "boolean"
+              },
+              "rangeInterval" : {
+                "type" : "string"
+              },
+              "regex" : {
+                "type" : "string"
+              },
+              "unitOfMeasure" : {
+                "type" : "string"
+              },
+              "validFor" : {
+                "required" : [ "startDateTime" ],
+                "type" : "object",
+                "properties" : {
+                  "endDateTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  },
+                  "startDateTime" : {
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              },
+              "value" : {
+                "type" : "string",
+                "readOnly" : true
+              },
+              "valueFrom" : {
+                "type" : "string"
+              },
+              "valueTo" : {
+                "type" : "string"
+              },
+              "valueType" : {
+                "type" : "string"
+              },
+              "timeRange" : {
+                "type" : "object",
+                "properties" : {
+                  "validTo" : {
+                    "type" : "string"
+                  },
+                  "validFrom" : {
+                    "type" : "string"
+                  }
+                }
+              },
+              "supportEntity.characteristic.value" : {
+                "type" : "string"
+              },
+              "addressId" : {
+                "type" : "string"
+              },
+              "subUnitNumber" : {
+                "type" : "string"
+              },
+              "streetName" : {
+                "type" : "string"
+              },
+              "postcode" : {
+                "type" : "string"
+              },
+              "city" : {
+                "type" : "string"
+              },
+              "country" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

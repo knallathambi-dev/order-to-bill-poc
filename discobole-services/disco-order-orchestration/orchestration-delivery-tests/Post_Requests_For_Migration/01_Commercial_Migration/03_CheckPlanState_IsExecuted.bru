@@ -1,0 +1,57 @@
+meta {
+  name: 03_CheckPlanState_IsExecuted
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{BASE_URL}}/orchestrationPlan?relatedProductOrder.id={{order_id}}&fields=id,state
+  body: none
+  auth: none
+}
+
+params:query {
+  relatedProductOrder.id: {{order_id}}
+  fields: id,state
+}
+
+headers {
+  Authorization: {{token}}
+}
+
+script:pre-request {
+  const delay=async()=>{
+     return new Promise ((res)=>{
+       setTimeout(res, 20000)
+       
+     })
+  }
+  await delay()
+}
+
+tests {
+   test("Status code is 200", function () {
+        expect(res.getStatus()).to.equal(200);
+    });
+    
+    var jsonData = res.body; 
+    
+  //Check that Orchestration Plan is created
+    test("Check the Orchestration Plan id for this order", function () { 
+        expect(jsonData[0].id).to.be.not.null;  
+        bru.setVar("plan_id",jsonData[0].id);
+        console.log(" Orchestration Plan Id = " + jsonData[0].id);
+    });
+    
+    //Check that Orchestration Plan state is Executed
+    if(jsonData[0].state==="Executed"){
+            test("Check Plan state is Executed", function () { 
+           expect(jsonData[0].state).is.to.equal("Executed");
+    });
+    }
+}
+
+docs {
+  this request for Check that Orchestration Plan is created and Check that Orchestration Plan state is Executed
+  
+}

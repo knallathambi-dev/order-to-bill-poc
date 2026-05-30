@@ -1,0 +1,40 @@
+meta {
+  name: domain create
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{host}}/policyRule/v1/domain
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "name": "Domain"
+      
+  }
+}
+
+vars:post-response {
+  : 
+}
+
+assert {
+  res.status: eq 201
+}
+
+script:pre-request {
+  var fl=bru.getEnvVar("flag");
+  console.log(fl);
+  if(fl == true)
+    {
+      bru.runner.skipRequest();
+      
+    }
+  
+  const random = Math.floor(Math.random() * 100000);
+  bru.setVar("random", random);
+  
+}

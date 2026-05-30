@@ -1,0 +1,26 @@
+{
+  "serviceOrderItem": [
+    {
+      "action": "add",
+      "service": {
+        "serviceType": "CFS",
+        "serviceCharacteristic": [
+          {
+            "id": "5843",
+            "name": "ICCID",
+            "valueType": "string",
+            "value": "hello"
+          }
+        ],
+        "serviceSpecification": {
+          "id": "Connectivity"
+        }
+      },
+      "serviceRelationship": [
+        {
+          "serviceRelationshipType": "reliesOn"
+        }
+      ]
+    }
+  ]
+}

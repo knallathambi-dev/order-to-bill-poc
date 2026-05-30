@@ -1,0 +1,272 @@
+[
+  {
+    "id": "Connectivity",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/Connectivity",
+    "name": "Connectivity",
+    "description": "Connectivity.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2020-08-23T00:00",
+      "endDateTime": "2023-03-25T00:00"
+    },
+    "lastUpdate": "2022-08-15T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "ICCID",
+        "id": "5843",
+        "description": "This characteristic describes the ICCID of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2017-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2020-09-25T00:00",
+          "endDateTime": "2022-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  },
+  {
+    "id": "Time bundle",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "Time Bundle",
+    "description": "Time Bundle.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "volume",
+        "id": "5243",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "MobileLine",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+        "name": "Mobile Line",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceFacingServiceSpecification",
+        "@type": "ServiceSpecRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  },
+  {
+    "id": "MobileLine",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+    "name": "Mobile Line",
+    "description": "Mobile Line.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "MSISDN",
+        "id": "5243",
+        "description": "This characteristic describes the MSISDN of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "SimCard",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/resourceSpecification/SimCard",
+        "name": "Sim Card",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceSpecification",
+        "@type": "resourceRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ResourceRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ResourceSpecification"
+  },
+  {
+    "id": "SMS Option",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "SMS Option",
+    "description": "SMS Option.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "SMS_Number",
+        "id": "5243",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "MobileLine",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+        "name": "Mobile Line",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceFacingServiceSpecification",
+        "@type": "ServiceSpecRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  },
+  {
+    "id": "Ring Back Tone",
+    "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/154",
+    "name": "Ring Back Tone",
+    "description": "Ring Back Tone.",
+    "version": "2.1",
+    "validFor": {
+      "startDateTime": "2023-08-23T00:00",
+      "endDateTime": "2024-03-25T00:00"
+    },
+    "lastUpdate": "2023-08-25T00:00",
+    "lifecycleStatus": "Active",
+    "isBundle": false,
+    "specCharacteristic": [
+      {
+        "name": "Tone",
+        "id": "5243",
+        "description": "This characteristic describes the volume of the service",
+        "valueType": "string",
+        "configurable": true,
+        "validFor": {
+          "startDateTime": "2020-08-12T00:00",
+          "endDateTime": "2021-03-07T00:00"
+        },
+        "@valueSchemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/StringCharacteristic.schema.json",
+        "minCardinality": 0,
+        "maxCardinality": 1,
+        "isUnique": true,
+        "regex": "",
+        "extensible": false,
+        "@type": "SpecCharacteristic",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Common/SpecCharacteristic.schema.json"
+      }
+    ],
+    "serviceSpecRelationship": [
+      {
+        "relationshipType": "dependency",
+        "role": "dependent",
+        "id": "MobileLine",
+        "href": "https://mycsp.com:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification/MobileLine",
+        "name": "Mobile Line",
+        "validFor": {
+          "startDateTime": "2017-08-25T00:00",
+          "endDateTime": "2021-03-25T00:00"
+        },
+        "@referredType": "ResourceFacingServiceSpecification",
+        "@type": "ServiceSpecRelationship",
+        "@baseType": "",
+        "@schemaLocation": "https://mycsp.com:8080/tmf-api/schema/Service/ServiceSpecRelationship.schema.json"
+      }
+    ],
+    "@baseType": "ServiceSpecification"
+  }
+]

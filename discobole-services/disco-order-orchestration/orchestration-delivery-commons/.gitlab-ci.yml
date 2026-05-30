@@ -1,0 +1,66 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# ==================================================
+# Pipleline templates
+# ==================================================
+
+include:
+  # Include gitleaks
+- remote: 'https://gitlab.com/to-be-continuous/gitleaks/-/raw/2.8.0/templates/gitlab-ci-gitleaks.yml'
+  # Maven template
+- remote: 'https://gitlab.com/to-be-continuous/maven/-/raw/3.11.1/templates/gitlab-ci-maven.yml'
+  # Semantic release template
+- remote: 'https://gitlab.com/to-be-continuous/semantic-release/-/raw/3.12/templates/gitlab-ci-semrel.yml'
+
+# ==================================================
+# Pipeline stages
+# ==================================================
+
+stages:
+  - build
+  - test
+  - publish
+
+# ==================================================
+# Pipeline variables
+# ==================================================
+
+variables:
+  GITLEAKS_IMAGE: "registry.hub.docker.com/zricethezav/gitleaks:latest"
+  MAVEN_IMAGE: "registry.hub.docker.com/library/maven:3.8-eclipse-temurin-17"
+  MAVEN_DEPLOY_ENABLED: "true"
+  MAVEN_BUILD_ARGS: "-Dmaven.test.skip=true clean package"
+  
+# ==================================================
+# Pipeline overriden jobs
+# ==================================================
+
+mvn-release:
+  rules:
+    # No need mvn release, done by semantic release
+    - when: never
+
+semantic-release:
+  # If project is a maven project, use cache of maven template
+  # else erase the override of this job
+  cache:
+    - !reference [.semrel-base, cache]
+    - key: "$CI_COMMIT_REF_SLUG-maven"
+      paths:
+      - "${MAVEN_PROJECT_DIR}/${MAVEN_CFG_DIR}/repository"
+      
+reuse:
+  image:
+    name: fsfe/reuse:latest
+    entrypoint: [""]
+  stage: .pre    
+  script:
+    - reuse lint -l
+

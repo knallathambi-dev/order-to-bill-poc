@@ -1,0 +1,172 @@
+/*
+ * SPDX-FileCopyrightText: 2025, 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+body, input {
+  font-family: Helvetica,Arial,sans-serif;
+}
+
+/* fluid layout on large screens */
+@media (min-width: 1220px) {
+  .md-grid {
+    max-width: 92%;
+  }
+}
+
+/* Orange colors */
+:root, [data-md-color-accent=deep-orange] {
+  --md-accent-fg-color: #ff7900 !important;
+  --md-typeset-a-color: black !important;
+}
+
+/* hyperlink */
+.md-typeset a {
+  text-decoration: underline;
+}
+
+/* code block */
+.highlight {
+  background-color: #f6f6f6;
+  border: 0.2rem solid #eee;
+}
+
+.highlight pre {
+  background-color: transparent;
+  margin: 0;
+}
+
+/* ================== */
+/* top navigation bar */
+/* ================== */
+.md-header-nav__button.md-logo, .md-header__button.md-logo {
+  margin: .2rem;
+  padding: .2rem;
+}
+
+.md-header-nav__button.md-logo img, .md-header__button.md-logo img {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+.md-header-nav__title, .md-header__title {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+/* navbar tabs */
+.md-tabs__item {
+  font-weight: bold;
+}
+
+.md-tabs__link {
+  opacity: 1 !important;
+  margin: 0;
+  line-height: 2.25rem;
+}
+
+.md-tabs__link--active, .md-tabs__link:hover {
+  color: #ff7900;
+  opacity: 1;
+}
+
+.md-tabs__link--active {
+  border-bottom: .2rem solid #ff7900;
+}
+
+/* ================== */
+/* navigation menu(s) */
+/* ================== */
+.md-nav__title {
+  font-size: 130%;
+  color: #666;
+  margin-bottom: .8rem;
+}
+
+/* menu items (links) */
+.md-nav__item .md-nav__link {
+  color: #666;
+}
+
+.md-nav__item .md-nav__link:hover {
+  color: #ff7900;
+}
+
+/* active menu item (link) */
+.md-nav__item .md-nav__link--active {
+  color: black !important;
+  font-weight: bold;
+}
+
+/* primary menu border */
+.md-sidebar--primary .md-sidebar__scrollwrap {
+  border-right: 1px solid #eee;
+}
+
+/* secondary menu border */
+.md-sidebar--secondary .md-sidebar__inner {
+  border-left: 1px solid #eee;
+}
+
+/* sub menu title */
+.md-nav__item label.md-nav__link {
+  font-weight: bold;
+  color: black;
+}
+
+/* active sub menu title */
+.md-nav__item--active > label.md-nav__link {
+  color: #ff7900;
+}
+
+
+:root {
+  --external-link-solaris-icon-url: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000'%3e%3cpath d='M725 756.25A43.879 43.879 0 0 1 681.25 800h-437.5A43.879 43.879 0 0 1 200 756.25v-437.5A43.879 43.879 0 0 1 243.75 275h269.118l75-75H215c-49.5 0-90 40.5-90 90v495c0 49.5 40.5 90 90 90h495c49.5 0 90-40.5 90-90V412.132l-75 75V756.25ZM820.36 125H574.479l82.021 82.021-165.348 165.348a55.157 55.157 0 0 0 0 77.988l58.491 58.491a55.157 55.157 0 0 0 77.988 0L792.979 343.5 875 425.521V179.64A54.64 54.64 0 0 0 820.36 125Z' /%3e%3c/svg%3e");
+}
+
+/* show external links differently */
+.md-typeset a[href]:not(:where(
+  /* exclude hash only links */
+  [href^="#"],
+  /* exclude relative but not double slash only links */
+  [href^="/"]:not([href^="//"]),
+  [href*="/edit/"],
+  /* domains to exclude */
+  /* [href*="//gitlab.tech.orange"], */
+  /* subdomains to exclude */
+  [href*="//
+  disco.pages.gitlab.tech.orange"]
+)):after {
+  content: " ";
+  margin-left: 2px;
+  width: 1.1em;
+  height: 1.1em;
+  display: inline-block;
+  vertical-align: middle;
+  background-color: #000;
+  -webkit-mask-image: var(--external-link-solaris-icon-url);
+  mask-image: var(--external-link-solaris-icon-url);
+  background-size: 1.1em;
+  background-repeat: no-repeat;
+}
+
+/* color external link icon on hover */
+.md-typeset a[href]:not(:where(
+  /* exclude hash only links */
+  [href^="#"],
+  /* exclude relative but not double slash only links */
+  [href^="/"]:not([href^="//"]),
+  [href*="/edit/"],
+  /* domains to exclude */
+  /* [href*="//gitlab.tech.orange"], */
+  /* subdomains to exclude */
+  [href*="//disco.pages.gitlab.tech.orange"]
+)):hover:after {
+  background-color: #FF7900;
+}

@@ -1,0 +1,21 @@
+{
+  "IdentityData" : {
+    "required" : [ "name", "description" ],
+    "type" : "object",
+    "properties" : {
+      "name" : {
+        "type" : "string"
+      },
+      "description" : {
+        "type" : "string"
+      },
+      "brand" : {
+        "type" : "string",
+        "default" : "Orange"
+      },
+      "productNumber" : {
+        "type" : "string"
+      }
+    }
+  }
+}

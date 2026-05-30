@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: cpib
+            authorization-grant-type: client_credentials
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+      resourceServer:
+        jwt:
+          issuer-uri: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak
+config:
+  webclient:
+    useServiceAccount: true

@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+!**/src/bin/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# Ignore specific file
+BDD_Nominal_case_Basic/update-xray.txt
+
+# Ignore specific fingerprint
+74ff52ef9f50f59f9c868efca42c28c66559aee9:BDD_Nominal_case_Basic/update-xray.txt:generic-api-key:6
+
+# Ignore all report file types
+regex:.*\.txt$
+regex:.*\.html$
+regex:.*\.xml$

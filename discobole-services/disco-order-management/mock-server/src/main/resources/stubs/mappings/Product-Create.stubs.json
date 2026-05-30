@@ -1,0 +1,19 @@
+{
+  "mappings": [
+    {
+      "name": "create  products - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productManagement/v1/product",
+        "method": "POST"
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Product-Management/ProductsCreated.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

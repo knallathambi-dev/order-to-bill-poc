@@ -1,0 +1,377 @@
+{
+  "access": {
+    "noPermission": "Sie haben keine Berechtigung, diese Seite anzuzeigen",
+    "restricted": "Zugriff eingeschränkt"
+  },
+  "actions": {
+    "accessRestricted": "Zugriff eingeschränkt",
+    "addToOrder": "Zur Bestellung hinzufügen",
+    "back": "Zurück",
+    "backToHomepage": "Zurück zur Startseite",
+    "backToLogin": "Zurück zur Anmeldung",
+    "cancel": "Abbrechen",
+    "cancelModify": "Änderung abbrechen",
+    "cancelOrder": "Bestellung stornieren",
+    "cancelPayment": "Zahlung abbrechen",
+    "cancelTerminate": "Kündigung abbrechen",
+    "changePlan": "Tarif wechseln",
+    "checkEligibility": "Verfügbarkeit prüfen",
+    "close": "Schließen",
+    "confirmOrder": "Bestellung bestätigen",
+    "continueToPayment": "Weiter zur Zahlung",
+    "edit": "Bearbeiten",
+    "editAddress": "Adresse bearbeiten",
+    "editPlan": "Tarif bearbeiten",
+    "goToOffers": "Zu den Angeboten",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "modify": "Ändern",
+    "myOrders": "Meine Bestellungen",
+    "next": "Weiter",
+    "orderNow": "Jetzt bestellen",
+    "placeOrder": "Bestellung aufgeben",
+    "proceedToChange": "Mit Änderung fortfahren",
+    "proceedToOrder": "Zur Bestellung",
+    "register": "Registrieren",
+    "reload": "Neu laden",
+    "save": "Speichern",
+    "saveChanges": "Änderungen speichern",
+    "terminate": "Kündigen",
+    "terminatePlan": "Tarif kündigen",
+    "trackYourOrder": "Bestellung verfolgen",
+    "unlimited": "Unbegrenzt",
+    "viewDetails": "Details anzeigen"
+  },
+  "appointment": {
+    "description": "Bitte wählen Sie Ihren Termin für die Einrichtung Ihres Glasfaseranschlusses",
+    "title": "Termin mit einem Techniker vereinbaren"
+  },
+  "auth": {
+    "agreeToTerms": "Durch Aktivieren dieses Kontrollkästchens stimmen Sie unseren Allgemeinen Geschäftsbedingungen zu",
+    "greeting": "Hallo!",
+    "logout": {
+      "confirmations": {
+        "confirm": "Ja, abmelden",
+        "message": "Sie sind dabei, sich abzumelden",
+        "question": "Möchten Sie fortfahren?",
+        "title": "Sind Sie sicher?"
+      },
+      "title": "Abmelden"
+    },
+    "pleaseLoginOrRegister": "Bitte melden Sie sich an oder registrieren Sie sich, um Ihre Bestellung zu bestätigen",
+    "registerSuccessPleaseLogin": "Registrierung erfolgreich. Bitte melden Sie sich an, um fortzufahren."
+  },
+  "common": {
+    "addUpTo": "Addieren bis zu",
+    "beforeDiscount": "Vor Rabatt",
+    "commitmentTerm": "Vertragslaufzeit",
+    "confirm": "Bestätigen",
+    "confirmPlacement": "Mit der Aufgabe Ihrer Bestellung stimmen Sie unseren Nutzungsbedingungen und Datenschutzrichtlinien zu",
+    "creationDate": "Erstellungsdatum",
+    "discount": "Rabatt",
+    "installment": {
+      "info": {
+        "paymentNote": "Zahlen Sie jetzt nur die Anzahlung. Monatliche und Gesamtpreise sind Schätzungen Ihrer zukünftigen Kosten."
+      },
+      "labels": {
+        "estimatedInstallments": "Raten (Schätz.)",
+        "estimatedTotalPrice": "Gesamtpreis (Schätz.)",
+        "initialPayment": "Anzahlung",
+        "monthlyAmount": "Monatliche Zahlung",
+        "totalAmount": "Gesamtzahlung",
+        "duration": "für",
+        "installmentPeriod": "Raten über",
+        "afterCompletion": "Nach Abschluss der Raten"
+      },
+      "tabs": {
+        "fullPrice": "Vollpreis",
+        "installment": "Ratenzahlung"
+      },
+      "comparison": {
+        "title": "Ratenzahlungspläne Vergleichen",
+        "description": "Hier ist ein Ratensimulator für verschiedene Ratenzahlungsoptionen",
+        "loadingOptions": "Partneroptionen werden geladen...",
+        "tableHeaders": {
+          "durationMonths": "Anzahl der Monate",
+          "monthlyAmount": "Monatliche Zahlung",
+          "totalAmount": "Gesamtzahlung"
+        },
+        "interestTypes": {
+          "noInterest": "ohne Zinsen",
+          "withInterest": "mit Zinssatz"
+        }
+      }
+    },
+    "loading": "Lädt...",
+    "orderId": "Bestellnummer",
+    "orderPreview": "Bestellvorschau",
+    "planPreview": "Tarifvorschau",
+    "selectAnotherOffer": "Bitte wählen Sie ein anderes Angebot",
+    "selectToOrder": "Zum Bestellen auswählen",
+    "shipping": "Versand",
+    "state": "Status",
+    "subtotal": "Zwischensumme",
+    "taxExcluded": "Steuer ausgeschlossen",
+    "taxIncluded": "Inkl. MwSt.",
+    "terminationDate": "Kündigungsdatum",
+    "total": "Gesamt",
+    "unlimited": "Unbegrenzt",
+    "warning": "Warnung",
+    "payment": "Zahlung"
+  },
+  "device": {
+    "title": "Richten Sie Ihr Gerät Ein"
+  },
+  "eligibility": {
+    "description": "Testen Sie Ihre Adresse, um zu sehen, ob Ihr Gebiet abgedeckt ist und für dieses Angebot berechtigt ist",
+    "failure": {
+      "notEligibleFiber": "Die angegebene Adresse ist nicht für Glasfaser geeignet",
+      "updateAddress": "Bitte aktualisieren Sie die Adresse oder wählen Sie ein anderes Angebot"
+    },
+    "success": {
+      "message": "Sie sind für dieses Angebot berechtigt",
+      "title": "Herzlichen Glückwunsch!"
+    },
+    "title": "Angebotsberechtigung",
+    "types": {
+      "basic": "Basis",
+      "satellite": "Satellit"
+    }
+  },
+  "footer": {
+    "accessibilityStatement": "Barrierefreiheitserklärung",
+    "cookiePolicy": "Cookie-Richtlinie",
+    "privacy": "Datenschutz",
+    "termsAndConditions": "Allgemeine Geschäftsbedingungen"
+  },
+  "forms": {
+    "labels": {
+      "address": "Adresse",
+      "appointmentDate": "Datum des Termins",
+      "city": "Stadt",
+      "contactNumber": "Kontaktnummer",
+      "country": "Land",
+      "creditCardNumber": "Kreditkartennummer",
+      "cvv": "Kartenprüfnummer",
+      "deliveryDate": "Lieferdatum",
+      "email": "E-Mail",
+      "emailMobileNumber": "E-Mail / Mobilnummer",
+      "expiration": "Ablaufdatum",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "nameOnCard": "Name auf der Karte",
+      "password": "Passwort",
+      "pickUpFromStore": "Abholung im Geschäft",
+      "postalCode": "Postleitzahl",
+      "reEnterPassword": "Passwort wiederholen",
+      "requestedDeliveryDate": "Gewünschtes Lieferdatum",
+      "shippingAddress": "Lieferadresse",
+      "title": "Anrede"
+    },
+    "placeholders": {
+      "emailMobileNumber": "Geben Sie Ihre E-Mail oder Mobilnummer ein",
+      "enterYourAddress": "Geben Sie Ihre Adresse ein",
+      "enterYourPostalCode": "Geben Sie Ihre Postleitzahl ein",
+      "fullNameAsDisplayedOnCard": "Vollständiger Name wie auf der Karte angezeigt",
+      "nameOnCard": "Name auf der Karte",
+      "password": "Geben Sie Ihr Passwort ein",
+      "searchDevices": "Geräte suchen...",
+      "searchOffers": "Angebote suchen...",
+      "searchPlans": "Tarife suchen...",
+      "selectACity": "Stadt auswählen",
+      "selectACountry": "Land auswählen"
+    },
+    "titles": {
+      "mr": "Herr",
+      "mrs": "Frau"
+    }
+  },
+  "home": {
+    "active": "Aktiv",
+    "greeting": "Hallo,",
+    "noMatchesFound": "Keine Übereinstimmungen für diese Suche gefunden",
+    "subtitle": "Sie können jetzt aus der verfügbaren Vielfalt an Angeboten und Produkten wählen, die Ihren Bedürfnissen entsprechen"
+  },
+  "myPlans": {
+    "noProductsFound": "Keine Produkte gefunden",
+    "migrationInProgress": "Migration läuft",
+    "migrationInProgressDesc": "Ihre Produkte werden zu diesem Vertrag migriert. Sie werden hier angezeigt, sobald die Migration abgeschlossen ist."
+  },
+  "order": {
+    "confirmations": {
+      "cancel": {
+        "body": "Sind Sie sicher, dass Sie diese Bestellung stornieren möchten?",
+        "confirm": "Ja, stornieren",
+        "decline": "Nein, danke",
+        "title": "Bestellung stornieren"
+      }
+    },
+    "notes": {
+      "terminationPenalty": "Bitte beachten Sie, dass das Paket nicht vor Ablauf der Produktlaufzeit ohne Strafgebühren gekündigt werden kann"
+    },
+    "status": {
+      "cancelled": "storniert",
+      "confirmed": "bestätigt"
+    },
+    "statusUpdate": {
+      "completedBy": "Bestellung wird bis zum {{date}} abgeschlossen",
+      "title": "Ihre Bestellung wurde erfolgreich {{status}}"
+    },
+    "notEligibleInstallment": {
+      "ineligibleMessage": "Sie sind nicht berechtigt, ein Gerät mit Ratenzahlungsoption zu erwerben.",
+      "proceedUpfront": "Bitte wählen Sie die Vorauszahlung."
+    },
+    "summary": {
+      "sections": {
+        "devices": "Geräte",
+        "includedItems": "Enthaltene Artikel",
+        "optionalItems": "Optionale Artikel",
+        "terminatedItems": "Gekündigte Artikel"
+      }
+    }
+  },
+  "pageNotFound": {
+    "message": "Die Seite, nach der Sie suchen, existiert nicht oder wurde möglicherweise verschoben"
+  },
+  "pages": {
+    "bookAppointment": "Termin vereinbaren",
+    "changePlan": "Tarif wechseln",
+    "checkEligibility": "Verfügbarkeit prüfen",
+    "completeOrder": "Bestellung abschließen",
+    "deviceSetUp": "Geräte-Einrichtung",
+    "devicesAndElectronics": "Geräte & Elektronik",
+    "editPlan": "Tarif bearbeiten",
+    "eligiblePlans": "Verfügbare Tarife",
+    "home": "Startseite",
+    "migratePlan": "Tarif migrieren",
+    "myAccount": "Mein Konto",
+    "myOrders": "Meine Bestellungen",
+    "myPlans": "Meine Tarife",
+    "offers": "Angebote",
+    "orderStatusUpdate": "Bestellstatus-Aktualisierung",
+    "orderSummary": "Bestellübersicht",
+    "pageNotFound": "Seite nicht gefunden",
+    "setUpPlan": "Tarif einrichten",
+    "shippingDetails": "Versanddetails",
+    "terminatePlan": "Plan beenden",
+    "trackOrder": "Bestellung verfolgen"
+  },
+  "payment": {
+    "account": "Konto",
+    "billableItems": "Abrechenbare Artikel",
+    "billableItemsNote": "Diese Artikel werden Ihrem Abrechnungskonto in Rechnung gestellt",
+    "billedOn": "Dieses Angebot wird abgerechnet am",
+    "billingDetails": "Rechnungsdetails",
+    "byEndOfMonth": "bis zum Ende des Monats",
+    "methods": {
+      "creditCard": "Kreditkarte",
+      "eWallet": "E-Wallet"
+    },
+    "paymentDetails": "Zahlungsdetails",
+    "purchasedItems": "Gekaufte Artikel",
+    "purchasedItemsNote": "Diese Artikel müssen sofort bezahlt werden",
+    "savePaymentMethod": "Zahlungsmethode speichern",
+    "selectPaymentMethod": "Wählen Sie Ihre Zahlungsmethode"
+  },
+  "plan": {
+    "confirmations": {
+      "general": {
+        "cancel": "Nein, danke",
+        "question": "Möchten Sie fortfahren?",
+        "title": "Sind Sie sicher?"
+      },
+      "incompatibleOffer": "Es tut uns leid, Sie können dieses Angebot nicht abonnieren, da es mit einem Ihrer bestehenden abonnierten Angebote nicht kompatibel ist",
+      "modify": {
+        "confirm": "Ja, ändern",
+        "message": "Nach der Bestätigung wird Ihre Bestellung bearbeitet",
+        "proceed": "Sind Sie sicher, dass Sie mit dieser Bestellung fortfahren möchten?"
+      },
+      "terminate": {
+        "bundle": "Sind Sie sicher, dass Sie dieses Paket kündigen möchten?",
+        "confirm": "Ja, kündigen",
+        "message": "Nach der Kündigung wird dieser Tarif entfernt",
+        "plan": "Sind Sie sicher, dass Sie diesen Tarif kündigen möchten?"
+      }
+    },
+    "contract": "Vertrag",
+    "currentValue": "Aktueller Wert",
+    "editAddress": "Adresse bearbeiten",
+    "migrate": {
+      "changeSelectedPlan": "Ausgewählten Tarif ändern",
+      "currentPlan": "Aktueller Tarif",
+      "planSelection": "Tarifauswahl",
+      "selectDescription": "Bitte wählen Sie aus den oben verfügbaren berechtigten Tarifen",
+      "yourPlanBenefits": "Ihre Tarifvorteile"
+    },
+    "modify": {
+      "includedOptions": "Diese Optionen sind in Ihrem Tarif enthalten und können nicht gekündigt werden, es sei denn, Sie kündigen den gesamten Tarif",
+      "modificationsNotAuthorized": "Änderungen an diesem Vertrag sind nicht autorisiert",
+      "noItemsToTerminate": "Keine Artikel zum Kündigen"
+    },
+    "myPlanDetails": "Meine Tarifdetails",
+    "planPreview": {
+      "applicationOffset": "Anwendung ab {{unit}}#{{offset}}",
+      "included": "Enthalten",
+      "options": "Optionen"
+    },
+    "sections": {
+      "includedOffers": "Enthaltene Angebote",
+      "optionalOffers": "Optionale Angebote"
+    },
+    "selectionPreview": "Auswahlvorschau",
+    "title": "Richten Sie Ihren Tarif ein",
+    "warnings": {
+      "terminationPenalty": "Bitte beachten Sie, dass die Kündigung dieses Vertrags vor Ablauf der Produktlaufzeit zu einer Strafgebühr führt",
+      "terminationPenaltyWithCharges": "Der Tarif beinhaltet eine Produktlaufzeit. Nach der Kündigung wird der Tarif entfernt und es fallen Strafgebühren an. Möchten Sie fortfahren?"
+    }
+  },
+  "shipping": {
+    "edit": "Bearbeiten",
+    "itemCount": "{{count}} Artikel",
+    "itemCount_plural": "{{count}} Artikel",
+    "offerShipping": "{{count}} Ihres Angebots {{verb}} versandt",
+    "pickUpMessage": "Sie können Ihre Artikel ab morgen im ausgewählten Geschäft abholen",
+    "shippingItems": "Versandartikel",
+    "shippingMethod": "Versandmethode",
+    "verbs": {
+      "are": "werden",
+      "is": "wird"
+    }
+  },
+  "validation": {
+    "custom": {
+      "deliveryDateMinimum": "Bitte wählen Sie ein Lieferdatum, das mindestens 3 Tage in der Zukunft liegt"
+    },
+    "invalid": {
+      "creditCardNumber": "Bitte geben Sie eine gültige 16-stellige Kreditkartennummer ein",
+      "cvv": "Bitte geben Sie eine gültige 3-stellige Kartenprüfnummer ein",
+      "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+      "emailMobileNumber": "Bitte geben Sie eine gültige E-Mail oder Mobilnummer an",
+      "expirationDate": "Bitte wählen Sie ein gültiges Ablaufdatum in der Zukunft",
+      "nameOnCard": "Bitte geben Sie einen gültigen Namen ein, wie er auf der Karte erscheint",
+      "password": "Bitte geben Sie ein gültiges Passwort an"
+    },
+    "length": {
+      "passwordMin": "Das Passwort muss mindestens 8 Zeichen lang sein"
+    },
+    "match": {
+      "passwordMismatch": "Passwörter stimmen nicht überein",
+      "reEnterPassword": "Bitte geben Sie Ihr Passwort erneut ein"
+    },
+    "required": {
+      "address": "Adresse ist erforderlich",
+      "city": "Stadt ist erforderlich",
+      "country": "Land ist erforderlich",
+      "creditCardNumber": "Kreditkartennummer ist erforderlich",
+      "cvv": "Sicherheitscode ist erforderlich",
+      "deliveryDate": "Lieferdatum ist erforderlich",
+      "email": "E-Mail ist erforderlich",
+      "emailMobileNumber": "E-Mail oder Mobilnummer ist erforderlich",
+      "expirationDate": "Ablaufdatum ist erforderlich",
+      "firstName": "Vorname ist erforderlich",
+      "nameOnCard": "Name auf der Karte ist erforderlich",
+      "password": "Passwort ist erforderlich",
+      "postalCode": "Postleitzahl ist erforderlich"
+    }
+  }
+}

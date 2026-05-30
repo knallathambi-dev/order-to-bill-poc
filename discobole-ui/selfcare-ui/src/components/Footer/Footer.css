@@ -1,0 +1,67 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+/* App.css or the main CSS file that styles your layout */
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+.header-sidebar-footer-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This will push the footer to the bottom */
+}
+
+.body-container {
+    flex: 1; /* This ensures that the content expands */
+    overflow: hidden; /* Prevents unnecessary scrollbars within the body container */
+}
+
+/* Footer.css */
+.footer {
+    background-color: #000;
+    color: #fff;
+    padding: 1rem;
+    text-align: left;
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+    margin-top: auto; /* This pushes the footer to the bottom */
+}
+
+.footer-menu {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+    margin: 0; /* Resets default margin */
+}
+
+.footer-menu li {
+    margin: 0 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.footer-menu li {
+    color: #ffffff;
+}
+
+/* Ensure that the HTML and body take up the full height */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+    max-height: 100vh; /* Prevent vertical scrollbar caused by excess height */
+    overflow-y: auto; /* Allow vertical scroll if content is larger than the screen */
+}

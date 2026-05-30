@@ -1,0 +1,15 @@
+{
+  "Quantity" : {
+    "required" : [ "amount", "units" ],
+    "type" : "object",
+    "properties" : {
+      "amount" : {
+        "type" : "number",
+        "default" : 1.0
+      },
+      "units" : {
+        "type" : "string"
+      }
+    }
+  }
+}

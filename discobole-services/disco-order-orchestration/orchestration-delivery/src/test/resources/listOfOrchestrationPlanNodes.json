@@ -1,0 +1,88 @@
+[
+  {
+    "id": "a484f66c-1347-4022-9426-e85de294df5d",
+    "state": "InDelivery",
+    "relatedServiceOrderItem": null,
+    "relatedProductOrderItem": [{
+      "id": "4",
+      "action": "add",
+      "quantity": 1
+    }],
+    "relatedProduct": [
+      {
+        "id": "id",
+        "productSpecification": {
+          "id": "id",
+          "name":"name",
+          "href": "href",
+          "serviceSpecification": [
+            {
+              "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+              "name": "connectivity"
+            }
+          ]},
+        "realizingService": [],
+        "relationshipType": "delivers",
+        "@type": "CFS"
+      }
+    ],
+    "relatedOrchestrationPlanNode": null
+  },
+  {
+    "id": "e0ec244e-2a82-47e1-926e-df9751c39b46",
+    "state": "InDelivery",
+    "relatedServiceOrderItem": null,
+    "relatedProductOrderItem": [{
+      "id": "10"
+    }],
+    "relatedProduct": [
+      {
+        "id": "id",
+        "productSpecification": {
+          "id": "id",
+          "name":"name",
+          "href": "href",
+          "serviceSpecification": [
+            {
+              "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+              "name": "time bundle"
+            }
+          ]
+        },
+        "realizingService": [],
+        "relationshipType": "delivers",
+        "@type": "CFS"
+      }
+    ],
+    "relatedOrchestrationPlanNode": null
+  },
+  {
+    "id": "d8159064-3954-419e-8625-ab99152dbb0e",
+    "state": "InDelivery",
+    "relatedServiceOrderItem": null,
+    "relatedProductOrderItem": [{
+      "id": "6",
+      "action": "add"
+    }
+    , {
+        "id": "6",
+        "action": "add"
+    }
+    ],
+    "relatedProduct": [
+      {
+        "id": "id",
+        "productSpecification": {
+          "id": "id",
+          "name":"name",
+          "href": "href",
+          "serviceSpecification": null
+        },
+        "realizingService": [],
+        "relationshipType": "delivers",
+        "@type": "physicalProduct"
+      }
+    ],
+    "relatedOrchestrationPlanNode": null
+  }
+]

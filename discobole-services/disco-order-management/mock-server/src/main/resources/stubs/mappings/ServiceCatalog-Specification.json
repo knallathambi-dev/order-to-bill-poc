@@ -1,0 +1,49 @@
+{
+  "mappings": [
+    {
+      "name": "Get service specifications - Success",
+      "priority": 11,
+      "request": {
+        "urlPattern": "/serviceCatalogManagement/v1/serviceSpecification.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Service-Catalog/Service-Specification-Resources.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get service specifications - Success - not found response",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/serviceCatalogManagement/v1/serviceSpecification/notFound.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 204,
+        "bodyFileName": "Service-Catalog/Service-Specification-Resources-empty.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get service specifications - Success",
+      "priority": 5,
+      "request": {
+        "urlPattern": "/tmf-api/serviceCatalogManagement/v1/serviceSpecification.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Service-Catalog/Service-Specification-Resources.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

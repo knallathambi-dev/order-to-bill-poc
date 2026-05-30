@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "productinventoryui.fullname" . }}
+  labels:
+    {{- include "productinventoryui.labels" . | nindent 4 }}
+    {{- include "productinventoryui.shutdownLabels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "productinventoryui.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "productinventoryui.selectorLabels" . | nindent 8 }}
+        {{- include "productinventoryui.monitoringLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "productinventoryui.serviceAccountName" . }}
+      containers:
+        - name: product-inventory-ui
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "productinventoryui.fullname" . }}-config
+          env:
+            - name: ENV_TYPE
+              value: {{ .Values.environmentType }}
+            - name: GATEWAY
+              value: {{ .Values.productinventoryui.service.gatewayUrl }}
+          ports:
+            - name: http
+              containerPort: 8080 
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

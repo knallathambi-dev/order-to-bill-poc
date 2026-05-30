@@ -1,0 +1,114 @@
+{
+  "@type": "PhysicalProduct",
+  "id": "67ab50b537fe5a1967b98597",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98597",
+  "isBundle": false,
+  "name": "SmartView Wallet Galaxy A55 case",
+  "productSerialNumber": "1598",
+  "productOffering": {
+    "id": "6ee2efbe-8731-415c-9883-22273194c135",
+    "name": "SmartView Wallet Galaxy A55 case",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "8d8c2280-218a-42eb-aac6-6f3a4eefe846",
+      "productOrderId": "67ab50b3d636a24b72afc094"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "SmartView Wallet Samsung A55 Charge",
+      "name": "SmartView Wallet A55 Charge",
+      "priceType": "nonRecurringCharge",
+      "productOfferingPrice": {
+        "id": "83fef372-2334-477e-9633-4ed052e035d9",
+        "name": "SmartView Wallet A55 Charge",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 49
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 49
+        }
+      },
+      "productPriceAlteration": []
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67ab50b537fe5a1967b9858a",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "d18467d7-8441-4781-8849-4e0ac91e58a2",
+    "name": "SmartView Wallet Galaxy A55 case PS",
+    "version": "0.2",
+    "@type": "ProductSpecificationRef"
+  },
+  "realizingResource": [
+    {
+      "id": "69x",
+      "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+      "@type": "PhysicalResource"
+    }
+  ],
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "Lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Sold",
+  "operationalStatus": "Sold",
+  "creationDate": "2025-02-11T13:29:25Z",
+  "lastUpdateDate": "2025-02-11T13:30:02Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:30:02Z",
+      "status": "Sold"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:29:42Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-02-11T13:29:46Z",
+      "status": "PendingDelivery"
+    },
+    {
+      "changeDate": "2025-02-11T13:30:02Z",
+      "status": "Sold"
+    }
+  ]
+}

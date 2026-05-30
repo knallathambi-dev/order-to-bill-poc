@@ -1,0 +1,15 @@
+{
+  "configUrl": "/api-docs/swagger-config.yaml",
+  "oauth2RedirectUrl": "/swagger-ui/oauth2-redirect.html",
+  "urls": [
+    {
+      "url": "/api-docs/orchestration-delivery-fallout-spec.yaml",
+      "name": "Fallout API"
+    },
+    {
+      "url": "/api-docs/ProcessFlowSwagger.yaml",
+      "name": "Process Flow API"
+    }
+  ],
+  "validatorUrl": ""
+}

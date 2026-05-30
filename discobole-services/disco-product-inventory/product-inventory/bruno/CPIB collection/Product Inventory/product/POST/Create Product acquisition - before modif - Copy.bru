@@ -1,0 +1,219 @@
+meta {
+  name: Create Product acquisition - before modif - Copy
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: inherit
+}
+
+params:query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "isBundle": "true",
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "relatedParty": [
+      {
+        "id": "45hj-8888",
+        "name": "Jean",
+        "role": "Customer",
+        "@referredType": "Individual"
+      }
+    ],
+    "productOffering": {
+      "id": "772056cd-485b-4877-8453-1648a07c43f7",
+      "name": "Mobile Package Basic",
+      "@type": "Contract"
+    },
+    "productOrderItem": [
+      {
+        "productOrderId": "{{productOrderID}}",
+        "orderItemId": "01",
+        "orderItemAction": "add"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "status": "Created",
+          "operationalStatus": "Confirmed",
+          "relatedParty": [
+            {
+              "id": "45hj-8888",
+              "name": "Jean",
+              "role": "Customer",
+              "@referredType": "Individual"
+            }
+          ],
+          "productOffering": {
+            "id": "414e3b5e-7fca-4b7e-bf73-51fa1e66b87f",
+            "name": "Mobile Package Basic",
+            "@type": "BundleProductOffering"
+          },
+          "productOrderItem": [
+            {
+              "productOrderId": "{{productOrderID}}",
+              "orderItemId": "02",
+              "orderItemAction": "add"
+            }
+          ],
+          "productRelationship": [
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "status": "Created",
+                "operationalStatus": "Confirmed",
+                "relatedParty": [
+                  {
+                    "id": "45hj-8888",
+                    "name": "Jean",
+                    "role": "Customer",
+                    "@referredType": "Individual"
+                  }
+                ],
+                "productPrice": [
+                  {
+                    "description": "POP_5Euro",
+                    "name": "POP_5Euro",
+                    "priceType": "NRC",
+                    "price": {
+                      "taxRate": 0,
+                      "dutyFreeAmount": {
+                        "unit": "EUR",
+                        "value": 5
+                      },
+                      "taxIncludedAmount": {
+                        "unit": "EUR",
+                        "value": 5
+                      }
+                    },
+                    "productOfferingPrice": {
+                      "id": "d45ba2c5-2863-41c6-8069-052b909aea2e"
+                    },
+                    "productPriceAlteration": [
+                      {
+                        "price": {
+                          "percentage": 1
+                        },
+                        "description": "productPriceAlteration description",
+                        "name": "productPriceAlteration name",
+                        "priceType": "productPriceAlteration priceType",
+                        "recurringChargePeriod": {
+                          "amount": 1,
+                          "units": "EUR"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "description": "POP_10Euro",
+                    "name": "POP_10Euro",
+                    "priceType": "NRC2",
+                    "price": {
+                      "taxRate": 0,
+                      "dutyFreeAmount": {
+                        "unit": "EUR",
+                        "value": 10
+                      },
+                      "taxIncludedAmount": {
+                        "unit": "EUR",
+                        "value": 10
+                      }
+                    },
+                    "productOfferingPrice": {
+                      "id": "d45ba2c5-2863-41c6-8069-052b909aea2e"
+                    },
+                    "productPriceAlteration": [
+                      {
+                        "price": {
+                          "percentage": 1
+                        },
+                        "description": "productPriceAlteration description 2",
+                        "name": "productPriceAlteration name 2",
+                        "priceType": "productPriceAlteration priceType 3",
+                        "recurringChargePeriod": {
+                          "amount": 1,
+                          "units": "EUR"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "productOffering": {
+                  "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+                  "name": "MobileLine",
+                  "@type": "AtomicProductOffering"
+                },
+                "productSpecification": {
+                  "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+                  "name": "MobileLine",
+                  "@type": "ProductSpecificationRef"
+                },
+                "productOrderItem": [
+                  {
+                    "productOrderId": "{{productOrderID}}",
+                    "orderItemId": "03",
+                    "orderItemAction": "add"
+                  }
+                ],
+                "@type": "Product"
+              }
+            },
+            {
+              "relationshipType": "bundles",
+              "product": {
+                "status": "Created",
+                "operationalStatus": "Confirmed",
+                "relatedParty": [
+                  {
+                    "id": "45hj-8888",
+                    "name": "Jean",
+                    "role": "Customer",
+                    "@referredType": "Individual"
+                  }
+                ],
+                "productOffering": {
+                  "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+                  "name": "Sim Card",
+                  "@type": "AtomicProductOffering"
+                },
+                "productSpecification": {
+                  "id": "191424cb-6002-46aa-a5a9-0602cfba83c7",
+                  "name": "SIM CARD",
+                  "@type": "ProductSpecificationRef"
+                },
+                "productOrderItem": [
+                  {
+                    "productOrderId": "{{productOrderID}}",
+                    "orderItemId": "06",
+                    "orderItemAction": "add"
+                  }
+                ],
+                "@type": "Product"
+              }
+            }
+          ],
+          "@type": "Product"
+        }
+      }
+    ],
+    "@type": "Product"
+  }
+}
+
+script:pre-request {
+  bru.setEnvVar("productOrderID", Math.floor((Math.random()*10000 +1)));
+}

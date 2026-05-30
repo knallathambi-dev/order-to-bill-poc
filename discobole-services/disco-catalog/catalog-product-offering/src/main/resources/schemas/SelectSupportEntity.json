@@ -1,0 +1,16 @@
+{
+  "SelectSupportEntity" : {
+    "required" : [ "supportEntitySpecification.id", "supportEntityType" ],
+    "type" : "object",
+    "properties" : {
+      "supportEntitySpecification.id" : {
+        "type" : "string",
+        "readOnly" : true
+      },
+      "supportEntityType" : {
+        "type" : "string",
+        "enum" : [ "CFSSpec", "StockItemType", "SupplierProduct", "ProductSpec" ]
+      }
+    }
+  }
+}

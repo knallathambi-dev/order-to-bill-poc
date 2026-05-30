@@ -1,0 +1,62 @@
+{
+  "id": "1114",
+  "orderDate": "2023-07-10T14:17:08.544Z",
+  "state": "accepted",
+  "relatedParty": [
+{
+    "@type": "RelatedPartyRef",
+    "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "231-mf4",
+        "name": "Abir",
+        "role": "customer",
+        "@referredType": "individual"
+    },
+    "role": "customer"
+}
+  ],
+  "productOrderItem": [
+    {
+      "id": "105",
+      "action": "delete",
+      "productOffering": {
+        "id": "8740a910-38d9-4c6d-8150-8f840c3c3657",
+        "name": "Ring Back Tone",
+        "@type": "AtomicProductOffering"
+      },
+      "product": {
+        "@type": "Product",
+        "id": "1234567889",
+        "isBundle": false
+      },
+      "productOrderItemRelationship": [
+        {
+          "id": "2",
+          "relationshipType": "sells",
+          "@type": "OrderItemRelationship"
+        }
+      ],
+      "state": "accepted",
+      "isInstallable": true,
+      "@type": "productOrderItem"
+    },
+    {
+      "id": "106",
+      "action": "delete",
+      "product": {
+        "id": "1234567889",
+        "isBundle": false,
+        "@type": "Product",
+        "productSpecification": {
+          "id": "abe401bc-76b8-4811-8fef-98d5d10d979c",
+          "name": "Ring Back Tone",
+          "@type": "ProductSpecificationRef"
+        }
+      },
+      "state": "accepted",
+      "isInstallable": true,
+      "@type": "productOrderItem"
+    }
+  ],
+  "@type": "ProductOrder"
+}

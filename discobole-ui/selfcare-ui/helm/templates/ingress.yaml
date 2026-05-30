@@ -1,0 +1,55 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "selfcareui.fullname" . -}}
+{{- $svcPort := .Values.service.port -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "selfcareui.labels" . | nindent 4 }}
+    {{- with .Values.ingress.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.ingress.className }}
+  ingressClassName: {{ .Values.ingress.className }}
+  {{- end }}
+  {{- $tls := .Values.ingress.tls -}}
+  {{- if $tls }}
+  tls:
+  {{- if kindIs "slice" $tls }}
+    {{- range $tls }}
+    - hosts:
+      {{- range .hosts }}
+        - {{ . | quote }}
+      {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- else if and (kindIs "bool" $tls) $tls }}
+    - hosts:
+      {{- range .Values.ingress.hosts }}
+        - {{ .host | quote }}
+      {{- end }}
+      secretName: {{ default (printf "%s-tls" $fullName) .Values.ingress.tlsSecretName }}
+  {{- end }}
+  {{- end }}
+  rules:
+  {{- range .Values.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+        {{- range .paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType }}
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+        {{- end }}
+  {{- end }}
+{{- end }}

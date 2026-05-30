@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 34 34">
+    <g id="Group_7100" data-name="Group 7100" transform="translate(16354 19342)">
+        <circle id="Ellipse_1902" data-name="Ellipse 1902" cx="17" cy="17" r="17"
+                transform="translate(-16354 -19342)" fill="#fd6161"/>
+        <text id="Fail" transform="translate(-16345 -19322)" fill="#fff" font-size="8"
+              font-family="HelveticaNeue-Bold, Helvetica Neue" font-weight="700">
+            <tspan x="0" y="0">FAIL</tspan>
+        </text>
+    </g>
+</svg>

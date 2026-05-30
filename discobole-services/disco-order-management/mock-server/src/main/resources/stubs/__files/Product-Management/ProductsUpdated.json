@@ -1,0 +1,98 @@
+[
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356bc",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356bc",
+    "productCharacteristic": [
+      {
+        "name": "volume",
+        "valueType": "string"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "8",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productSpecification": {
+      "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+      "name": "Time Bundle",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "12x",
+        "@type": "Resource"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356bd"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created"
+  },
+  {
+    "@type": "Product",
+    "id": "6515511438290b3d9c1356bd",
+    "href": "localhost:8082/productManagement/v1/product/6515511438290b3d9c1356bd",
+    "productCharacteristic": [
+      {
+        "name": "IMSI",
+        "valueType": "string"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "10",
+        "productOrderId": "651550f3fb909b220a647a7d"
+      }
+    ],
+    "productSpecification": {
+      "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+      "name": "SIM CARD",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "12x",
+        "@type": "Resource"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "Product",
+          "id": "6515511438290b3d9c1356bc"
+        }
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf20",
+        "name": "HOMER",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Created"
+  }
+]

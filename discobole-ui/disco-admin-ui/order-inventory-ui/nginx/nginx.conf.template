@@ -1,0 +1,40 @@
+server {
+    listen 8080;
+
+    # Security headers
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+    # API proxy
+    location ~ ^/(cood|productInventory|productOrderingManagement|orderCapture|userRolePermission) {
+        proxy_pass ${GATEWAY};
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # Static assets with CORS for microfrontend loading
+    location /assets/ {
+        root /usr/share/nginx/html;
+        add_header Access-Control-Allow-Origin * always;
+        add_header Access-Control-Allow-Methods "GET, OPTIONS" always;
+        add_header Access-Control-Allow-Headers "Origin, Content-Type, Accept" always;
+        try_files $uri =404;
+    }
+
+    # SPA fallback
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        try_files $uri $uri/ /index.html;
+        add_header Access-Control-Allow-Origin * always;
+    }
+
+    error_page 500 502 503 504 /50x.html;
+
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+}

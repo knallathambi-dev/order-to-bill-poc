@@ -1,0 +1,170 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+asyncapi: 2.6.0
+info:
+  title: Customer Order Orchestration Delivery (COOD) Kafka API
+  version: 1.0.0
+  description: >
+    Customer Order Orchestration delivery async api allows you
+    to publish or consume events considered with Orchestration Plan"
+
+servers:
+  develop:
+    url: http://localhost:9092
+    description: Localhost development server
+    protocol: kafka
+  integration:
+    url: kafka-integration-disco.apps.fr01.paas.tech.orange
+    description: Integration server
+    protocol: kafka
+
+defaultContentType: application/json
+
+channels:
+  disco.order-management.productOrderStateChange-event:
+    subscribe:
+      x-scs-function-name: productOrderEventConsumer
+      description: >
+        consuming ProductOrderStateChangeEvent to create the orchestration plan based on the product order 
+        Note: ProductOrderStateChangeEvent should've state of 'ACCEPTED'
+      operationId: productOrderEventConsumer
+      traits:
+        - $ref: "#/components/operationTraits/input-group-1"
+      message:
+        $ref: '#/components/messages/productOrderStateChangeEvent'
+
+  disco.order-orchestration.orchestrationPlanStateChange-event:
+    subscribe:
+      x-scs-function-name: orchestrationPlanProcess
+      description: >
+        consuming orchestration plan changes
+      operationId: orchestrationPlanEventConsumer
+      traits:
+        - $ref: "#/components/operationTraits/input-group-2"
+      message:
+        $ref: '#/components/messages/OrchestrationPlanStateChangeEvent'
+    publish:
+      description: >
+        publishing Orchestration plan changes
+      x-scs-function-name: orchestrationPlanPublishEvent
+      operationId: OrchestrationPlanEventProducer
+      traits:
+        - $ref: "#/components/operationTraits/output-group-1"
+      message:
+        $ref: '#/components/messages/OrchestrationPlanStateChangeEvent'
+
+  disco.service-order-management.serviceOrderStateChange-event:
+    subscribe:
+      x-scs-function-name: serviceValidatedProcess
+      operationId: ServiceOrderEventConsumer
+      traits:
+        - $ref: "#/components/operationTraits/input-group-1"
+      message:
+        $ref: "#/components/messages/serviceOrderEvent"
+
+  disco.shipping-order-management.shippingOrderStateChange-event:
+    subscribe:
+      x-scs-function-name: shippingOrderStateChange
+      operationId: ShippingOrderStateChangeConsumer
+      traits:
+        - $ref: "#/components/operationTraits/input-group-1"
+      message:
+        $ref: "#/components/messages/ShippingOrderStateChangeEvent"
+
+  disco.order-orchestration.orchestrationPlanNodeStateChange-event:
+    subscribe:
+      x-scs-function-name: orchestrationPlanNodeProcess-in-0
+      operationId: OrchestrationPlanNodeStatusChangeEventConsumer
+      traits:
+        - $ref: "#/components/operationTraits/input-group-1"
+      message:
+        $ref: "#/components/messages/orchestrationPlanNodeStateChangeEvent"
+    publish:
+      x-scs-function-name: output-event-service
+      operationId: OrchestrationPlanExecutionEventProducer
+      traits:
+        - $ref: "#/components/operationTraits/output-group-1"
+      message:
+        $ref: "#/components/messages/orchestrationPlanNodeStateChangeEvent"
+
+
+components:
+  operationTraits:
+    input-group-1:
+      bindings:
+        kafka:
+          groupId: input-group-1
+    input-group-2:
+      bindings:
+        kafka:
+          groupId: input-group-2
+    output-group-1:
+      bindings:
+        kafka:
+          groupId: output-group-1
+
+  messageTraits:
+    productOrderHeaders:
+      headers:
+        type: object
+        properties:
+          correlationId:
+            description: Unique identifier for correlating related messages
+            type: string
+          productorderId:
+            description: the id of the productOrder
+            type: string
+
+  messages:
+    productOrderStateChangeEvent:
+      name: productOrderItemStateChangeEvent
+      title: change event about the productOrder item state.
+      summary: This event is about the productOrder item state change. This event is
+        often published following a successful update of the product order items
+        state in the product order inventory.
+      traits:
+        - $ref: "#/components/messageTraits/productOrderHeaders"
+      payload:
+        $ref: "./schemas/poi/productOrderStateChangeEvent.yaml"
+        schemaFormat: 'application/vnd.aai.asyncapi+yaml;version=2.6.0'
+
+    OrchestrationPlanStateChangeEvent:
+      name: OrchestrationPlanStateChangeEvent
+      title: change event about the orchestration plan.
+      summary: This event is about the productOrder item state change. This event is
+        often published following a successful update of the product order items
+        state in the product order inventory.
+      payload:
+        $ref: "./schemas/cood/orchestrationPlanStateChangeEvent.yaml"
+        schemaFormat: 'application/vnd.aai.asyncapi+yaml;version=2.6.0'
+
+    serviceOrderEvent:
+      name: serviceOrderEvent
+      title: service order event.
+      summary: contains service order event.
+      payload:
+        $ref: "./schemas/som/serviceOrderEvent.yaml"
+        schemaFormat: 'application/vnd.aai.asyncapi+yaml;version=2.6.0'
+
+    ShippingOrderStateChangeEvent:
+      name: Shipping Order State Change Event
+      title: Shipping Order State Change Event.
+      summary: A Shipping Order State Change Event communicates updates about the state of a shipping order.
+      payload:
+        $ref: "./schemas/shom/ShippingOrderStateChangeEvent.yaml"
+        schemaFormat: 'application/vnd.aai.asyncapi+yaml;version=2.6.0'
+
+    orchestrationPlanNodeStateChangeEvent:
+      name: orchestrationPlanNodeStateChangeEvent
+      title: orchestration Plan Node event.
+      summary: contains orchestration Plan Node event.
+      payload:
+        $ref: "./schemas/cood/orchestrationPlanNodeStateChangeEvent.yaml"
+        schemaFormat: 'application/vnd.aai.asyncapi+yaml;version=2.6.0'

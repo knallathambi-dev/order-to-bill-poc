@@ -1,0 +1,12 @@
+{
+  "SelectProductSpecification" : {
+    "required" : [ "productSpecification.id" ],
+    "type" : "object",
+    "properties" : {
+      "productSpecification.id" : {
+        "type" : "string",
+        "readOnly" : true
+      }
+    }
+  }
+}

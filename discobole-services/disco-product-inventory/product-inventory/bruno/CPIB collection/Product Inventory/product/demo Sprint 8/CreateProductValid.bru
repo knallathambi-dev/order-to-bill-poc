@@ -1,0 +1,199 @@
+meta {
+  name: CreateProductValid
+  type: http
+  seq: 8
+}
+
+post {
+  url: localhost:8085/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  User-Agent: insomnia/2023.5.8
+}
+
+body:json {
+  {
+  	"isBundle": "true",
+  	"@type": "Product",
+  	"status": "Created",
+  	"operationalStatus": "Created",
+  	"relatedParty": [
+  		{
+  			"id": "45hj-8888",
+  			"name": "Jean",
+  			"role": "Customer",
+  			"@referredType": "Individual"
+  		}
+  	],
+  	"productOffering": {
+  		"id": "cb07fd83-8f41-4cd2-97f5-5989f3ab2bd8",
+  		"name": "Mobile Package 1",
+  		"@type": "Contract"
+  	},
+  	"productOrderItem": [
+  		{
+  			"productOrderId": "422",
+  			"orderItemId": "033",
+  			"orderItemAction": "add"
+  		}
+  	],
+  	"productRelationship": [
+  		{
+  			"relationshipType": "bundles",
+  			"product": {
+  				"status": "Created",
+  				"operationalStatus": "Created",
+  				"@type": "Product",
+  				"relatedParty": [
+  					{
+  						"id": "45hj-8888",
+  						"name": "Jean",
+  						"role": "Customer",
+  						"@referredType": "Individual"
+  					}
+  				],
+  				"productOffering": {
+  					"id": "cb07fd83-8f41-4cd2-97f5-5989f3ab2bd8",
+  					"name": "Mobile Package 1",
+  					"@type": "BundleProductOffering"
+  				},
+  				"productOrderItem": [
+  					{
+  						"productOrderId": "561",
+  						"orderItemId": "515D",
+  						"orderItemAction": "add"
+  					}
+  				],
+  				"productRelationship": [
+  					{
+  						"relationshipType": "bundles",
+  						"product": {
+  							"status": "Created",
+  							"operationalStatus": "Created",
+  							"@type": "Product",
+  							"relatedParty": [
+  								{
+  									"id": "45hj-8888",
+  									"name": "Jean",
+  									"role": "Customer",
+  									"@referredType": "Individual"
+  								}
+  							],
+  							"productPrice": [
+  								{
+  									"description": "POP_5Euro",
+  									"name": "POP_5Euro",
+  									"priceType": "NRC",
+  									"price": {
+  										"taxRate": 0,
+  										"dutyFreeAmount": {
+  											"unit": "EUR",
+  											"value": 5
+  										},
+  										"taxIncludedAmount": {
+  											"unit": "EUR",
+  											"value": 5
+  										}
+  									}
+  								}
+  							],
+  							"productOffering": {
+  								"id": "cb07fd83-8f41-4cd2-97f5-5989f3ab2bd8",
+  								"name": "Mobile line",
+  								"@type": "AtomicProductOffering"
+  							},
+  							"productOrderItem": [
+  								{
+  									"productOrderId": "6552",
+  									"orderItemId": "53",
+  									"orderItemAction": "add"
+  								}
+  							],
+  							"productRelationship": [
+  								{
+  									"relationshipType": "sells",
+  									"product": {
+  										"status": "Created",
+  										"operationalStatus": "Created",
+  										"@type": "Product",
+  										"relatedParty": [
+  											{
+  												"id": "45hj-8888",
+  												"name": "Jean",
+  												"role": "Customer",
+  												"@referredType": "Individual"
+  											}
+  										],
+  										"isBundle": false,
+  										"@type": "Product",
+  										"productSpecification": {
+  											"id": "c458d968-3718-4754-9408-7bd81526e7b2",
+  											"name": "Mobile line",
+  											"@type": "ProductSpecificationRef"
+  										},
+  										"productOrderItem": [
+  											{
+  												"productOrderId": "63S",
+  												"orderItemId": "433",
+  												"orderItemAction": "add"
+  											}
+  										]
+  									}
+  								},
+  								{
+  									"relationshipType": "sells",
+  									"product": {
+  										"status": "Created",
+  										"operationalStatus": "Created",
+  										"@type": "Product",
+  										"relatedParty": [
+  											{
+  												"id": "45hj-8888",
+  												"name": "Jean",
+  												"role": "Customer",
+  												"@referredType": "Individual"
+  											}
+  										],
+  										"isBundle": false,
+  										"@type": "Product",
+  										"productSpecification": {
+  											"id": "c458d968-3718-4754-9408-7bd81526e7b2",
+  											"name": "Mobile line",
+  											"@type": "ProductSpecificationRef"
+  										},
+  										"productOrderItem": [
+  											{
+  												"productOrderId": "353",
+  												"orderItemId": "4442",
+  												"orderItemAction": "add"
+  											}
+  										]
+  									}
+  								}
+  							]
+  						}
+  					}
+  				]
+  			}
+  		}
+  	],
+  	"StringCharacteristic": [
+  		{
+  			"id": "string",
+  			"name": "string",
+  			"valueType": "string",
+  			"productCharacteristicRelationships": [
+  				{
+  					"id": "string",
+  					"relationshipType": "string"
+  				}
+  			],
+  			"@type": "string"
+  		}
+  	]
+  }
+}

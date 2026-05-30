@@ -1,0 +1,54 @@
+{
+  "@type": "Product",
+  "id": "649aaf9f2b4b3225cb5737eb",
+  "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737eb",
+  "isBundle": false,
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "08",
+      "productOrderId": "1109"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "Product",
+        "id": "649aaf9f2b4b3225cb5737eb",
+        "productOrderItem": []
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+    "name": "Connectivity",
+    "@type": "ProductSpecificationRef"
+  },
+  "realizingService": [
+    {
+      "id": "d2e28645-1938-41e4-a5c1-2e5501e74fd1"
+    }
+  ],
+  "relatedParty": [
+    {
+      "id": "231-mf4",
+      "name": "Abir",
+      "role": "customer",
+      "@referredType": "individual"
+    }
+  ],
+  "status": "Active",
+  "operationalStatus": "Active",
+  "statusChange": [
+    {
+      "changeDate":"2023-07-03T14:52:51.543Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate":"2023-07-03T14:52:51.543Z"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 34 34">
+    <g id="Group_7089" data-name="Group 7089" transform="translate(16354 20017)">
+        <circle id="Ellipse_1894" data-name="Ellipse 1894" cx="17" cy="17" r="17"
+                transform="translate(-16354 -20017)" fill="#62bff9"/>
+        <text id="Ack" transform="translate(-16345 -19997)" fill="#fff" font-size="8"
+              font-family="HelveticaNeue-Bold, Helvetica Neue" font-weight="700">
+            <tspan x="0" y="0">ACK</tspan>
+        </text>
+    </g>
+</svg>

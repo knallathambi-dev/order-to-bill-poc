@@ -1,0 +1,109 @@
+{
+  "@type": "Product",
+  "id": "67ab50b537fe5a1967b98590",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98590",
+  "isBundle": false,
+  "name": "Unlimited Messaging Bundle National and Roaming EU",
+  "productCharacteristic": [
+    {
+      "@type": "StringCharacteristic",
+      "id": "fa2a1067-8bc7-4b9b-b497-00b5f8509b89.10",
+      "name": "Blocked",
+      "value": "No"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "2b35055a-1b07-4175-8864-76bd2856e04f.3",
+      "name": "Frequency",
+      "value": "Month"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "cbb5692f-3491-49db-a223-230734d39603.6",
+      "name": "Rollover",
+      "value": "No"
+    }
+  ],
+  "productOffering": {
+    "id": "bc4fdb83-81a4-478d-a07b-d09da4ac170c",
+    "name": "Unlimited Messaging Bundle National and Roaming EU",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "c7109788-3804-413f-885c-319faddd0eac",
+      "productOrderId": "67ab50b3d636a24b72afc094"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67ab50b537fe5a1967b9858a",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+      }
+    },
+    {
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67ab50b537fe5a1967b9858c",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "4034ea31-a688-406f-9576-4913cfbba18d",
+    "name": "Messaging Bundle National and Roaming EU PS",
+    "version": "0.3",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "Lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Active",
+  "operationalStatus": "Active",
+  "creationDate": "2025-02-11T13:29:25Z",
+  "lastUpdateDate": "2025-02-11T13:31:32Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:32Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:29:42Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:04Z",
+      "status": "PendingActive"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:32Z",
+      "status": "Active"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+applications:
+  - name: event-service
+    path: target/event-service.jar
+    memory: 1024M
+    instances: 1
+    routes:
+      - route: bos-event.cf.nd-paas.itn.ftgroup
+    buildpacks:
+      - https://github.com/cloudfoundry/java-buildpack/releases/download/v4.16.1/java-buildpack-v4.16.1.zip
+    env:
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 11.0.+ } }'
+      SPRING_PROFILES_ACTIVE: orange-cf
+      SPRING_CLOUD_CONFIG_USERNAME: admin
+      SPRING_CLOUD_CONFIG_PASSWORD: Passw0rd
+    services:
+      - kafka
+      - discovery

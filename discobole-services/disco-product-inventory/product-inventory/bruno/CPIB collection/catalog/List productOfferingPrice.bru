@@ -1,0 +1,20 @@
+meta {
+  name: List productOfferingPrice
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{catalog_base_url}}/productCatalogManagement/v1/productOfferingPrice?id=d45ba2c5-2863-41c6-8069-052b909aea2e
+  body: none
+  auth: bearer
+}
+
+params:query {
+  id: d45ba2c5-2863-41c6-8069-052b909aea2e
+  ~description: POP_5Euro
+}
+
+auth:bearer {
+  token: {{catalog_token}}
+}

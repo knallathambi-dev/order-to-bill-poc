@@ -1,0 +1,75 @@
+meta {
+  name: DefineOperationSpecification
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "characteristic": [
+          {
+              "name": "DefineOperationSpecification",
+              "valueType": "List",
+              "value": [
+                  
+                   {
+                      "productSpecification.operationSpecification.id": "{{Op_id0}}",
+                       "name": "{{Op_name0}}",
+                       "description": "{{Op_name0}}",
+                       "validFor": {
+                           "startDateTime": "2026-04-08T12:21:35.303Z",
+                           "endDateTime": null
+                       }
+                   }, 
+                   {
+                      "productSpecification.operationSpecification.id": "{{Op_id1}}",
+                       "name": "{{Op_name1}}",
+                       "description": "{{Op_name1}}",
+                       "validFor": {
+                           "startDateTime": "2026-04-08T12:21:35.303Z",
+                           "endDateTime": null
+                       }
+                   }
+              ],
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": "ObjectCharacteristic"
+          }
+      ]
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  test("To verify that next task is associatePOPtoOperationSpecification", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[0].title).to.equals("ProductOfferingCreation.defCharacteristics");
+  });
+  
+  
+  
+}

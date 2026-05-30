@@ -1,0 +1,989 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+@import '../node_modules/boosted/dist/css/boosted.min.css';
+@import "./assests/icomoon/icomoon.css";
+
+* {
+    border-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+}
+
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+.icon-buy,
+.icon-avatar {
+    font-size: 24px;
+}
+
+.header-image {
+    background-image: url(./assests/images/header-image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+}
+
+hr {
+    border-color: #ccc;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.clickable-card-wrapper {
+    text-decoration: none;
+}
+
+.clickable-card-wrapper:hover {
+    color: inherit;
+}
+
+.details-card:hover {
+    border-color: #000;
+}
+
+.benefit-items-wrapper {
+    margin-bottom: 1rem;
+}
+
+.benefit-item {
+    padding: 12px 0;
+    padding-left: 10px;
+    border: 0;
+    position: relative;
+}
+
+.tag.tag-sm.action-type {
+    font-size: 14px;
+    font-weight: bold;
+    border-width: 1px;
+    padding: 2px 10px;
+}
+
+
+.tag.tag-sm.action-type.default {
+    padding: 4px 12px;
+    border-width: 2px;
+}
+
+.action-type.green {
+    border-color: #67CB67;
+    color: #67CB67;
+    background-color: #E9F9F0;
+}
+
+.action-type.blue {
+    border-color: #527EDB;
+    color: #527EDB;
+    background-color: #E3F0FC;
+}
+
+.action-type.red {
+    border-color: #FD6161;
+    color: #FD6161;
+    background-color: #FFE9E9;
+}
+
+.action-type.yellow {
+    border-color: #FFB400;
+    color: #FFB400;
+    background-color: #fffbe8;
+}
+
+.action-type.grey {
+    background-color: #eee;
+}
+
+
+.btn-check + .btn.color {
+    padding: 20px;
+    border-radius: 100%;
+    background-color: red;
+    margin-right: 20px;
+    border: 0;
+}
+
+.btn-check + .btn.color.black {
+    background-color: #000;
+}
+
+.btn-check + .btn.color.silver {
+    background-color: #ccc;
+}
+
+.btn-check + .btn.color.rose-gold {
+    background-color: palevioletred;
+}
+
+.btn-check:checked + .btn.color {
+    border: 0;
+    outline: 2px solid #000;
+    outline-offset: 5px;
+}
+
+.btn-check + .btn.size {
+    border: 1px solid #ccc;
+    margin-right: 10px;
+}
+
+.btn-check + .btn.size.size-sm {
+    margin: 6px 2px 0 0;
+}
+
+.type-badge {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.product-img {
+    width: 100%;
+    background-color: #fff;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-origin: content-box;
+    padding: 20px;
+}
+
+.btn-link.delete-item {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn-link.delete-item:hover {
+    color: #cd3c14;
+}
+
+.btn-check + .btn.payment {
+    border: 2px solid #ccc;
+    margin-right: 10px;
+    padding: 20px 10px;
+}
+
+.btn-check + .btn.payment img,
+.btn-check + .btn.payment span {
+    display: block;
+}
+
+.btn-check + .btn.payment:last-child {
+    margin-right: 0;
+}
+
+.btn-check:checked + .btn.payment {
+    background-color: #fff;
+    border: 2px solid #000;
+    color: #000;
+}
+
+.btn-check + .btn.payment:hover,
+.btn-check:hover + .btn.payment {
+    background-color: #fff;
+    border: 2px solid #000;
+    color: #000;
+}
+
+.card.card-selection {
+    cursor: pointer;
+    text-align: center;
+}
+
+.card.card-selection:hover {
+    border: 2px solid #000;
+}
+
+.card.selected,
+.card.card-selection.selected:hover {
+    /* border: 3px solid #32c832; */
+    border: 3px solid #000;
+    background-color: #000;
+    color: #fff;
+}
+
+.card.selecte,
+.card.selected.dismissable {
+    /* border: 3px solid #32c832; */
+    position: relative;
+}
+
+.card.card-selection.selected .card-body p.text-muted {
+    color: #999 !important;
+}
+
+
+.success-circle {
+    background-color: #32c832;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+}
+
+.success-circle .icon-checkbox_tick {
+    font-size: 40px;
+    color: #fff;
+}
+
+.accordion-item-button {
+    position: relative;
+    padding: 20px;
+    border: 2px solid #ccc;
+    margin-bottom: .625rem
+}
+
+.op-status-value {
+    padding: 6px 12px;
+    color: #686262;
+    border: 0;
+    background-color: #dddada;
+}
+
+.status-value {
+    padding: 6px 12px;
+    color: #fff;
+    border: 0;
+    background-color: #ccc;
+}
+
+.status-value.terminated,
+.status-value.cancelled {
+    background-color: #FD6161;
+}
+
+.status-value.active,
+.status-value.sold {
+    background-color: #67CB67;
+}
+
+.status-value.confirmed {
+    background-color: #62BFF9;
+}
+
+.status-value.created {
+    background-color: #707C83;
+}
+
+.status-value.draft {
+    background-color: #A0A7A8;
+}
+
+.status-value.inprogress {
+    background-color: #527EDB;
+}
+
+.status-value.rejected,
+.status-value.failed {
+    background-color: #FD6161;
+}
+
+.status-value.accepted {
+    background-color: #67CB67;
+}
+
+
+.status-value.acknowledged {
+    background-color: #62BFF9;
+}
+
+.status-value.held {
+    background-color: #F28327;
+}
+
+.status-value.partial {
+    background-color: #7E62D9;
+}
+
+.status-value.completed {
+    background-color: #52A352;
+}
+
+.status-value.pendingCancellation,
+.status-value.assessingCancellation {
+    background-color: #CB4E4E;
+}
+
+.status-value.inProgress {
+    background-color: #fcca25;
+}
+
+.status-value.pending {
+    background-color: #ddff04;
+}
+
+.positioned-label {
+    position: absolute;
+    right: 20px;
+    top: 18px;
+}
+
+.accordion-button::after {
+    display: none;
+}
+
+.accordion-button.item-btn {
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.accordion-button.item-btn::after {
+    display: block;
+}
+
+.steps.steps-vertical {
+    flex-direction: column;
+}
+
+.steps.steps-vertical .step {
+    display: flex;
+}
+
+.step {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    text-decoration: none;
+}
+
+.steps.steps-vertical .step-progress {
+    flex-shrink: 0;
+    width: 2rem;
+    height: auto;
+}
+
+.step-progress {
+    position: relative;
+    width: 100%;
+    height: 0.25rem;
+}
+
+.steps.steps-vertical .step-progress {
+    flex-shrink: 0;
+    width: 2rem;
+    height: auto;
+}
+
+.step .step-progress .step-progress-start,
+.step .step-progress .step-progress-end {
+    /* height: 0.25rem;
+    width: 0.25rem; */
+    background-image: linear-gradient(to bottom, #ccc 50%, rgba(255, 255, 255, 0) 0%);
+    background-position: left;
+    background-size: 1.5px 8px;
+    background-repeat: repeat-y;
+    /* background-color: #ccc; */
+}
+
+.step.active .step-progress .step-progress-start,
+.step.active .step-progress .step-progress-end {
+    height: 0.25rem;
+    background-color: #ff7900;
+    background-image: none;
+}
+
+.steps.steps-vertical .step.active .step-progress .step-progress-end {
+    width: 0.25rem;
+    height: 100%;
+}
+
+.step-progress-start::before,
+.step-progress-end::before {
+    display: block;
+    width: 62rem;
+    height: 100%;
+    content: "";
+}
+
+
+.steps.steps-vertical .step-progress-end {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0.125rem;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.steps.steps-vertical .step-number {
+    position: relative;
+    top: initial;
+    left: 8px;
+    margin-top: -0.125rem;
+    margin-left: initial;
+}
+
+.step.active .step-number {
+    background-color: #ff7900;
+    color: #fff;
+    width: 2rem;
+    height: 2rem;
+    left: initial;
+}
+
+.step-number {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #ccc;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 2rem;
+}
+
+.steps.steps-vertical .step-label {
+    position: relative;
+    top: -4px;
+    margin-bottom: 2.5rem;
+    margin-left: 2.5rem;
+    padding-top: initial;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.select-category {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.form-check .form-check-input.check-category {
+    width: 1.25em;
+    height: 1.25em;
+    cursor: pointer;
+}
+
+.form-check-input[type=radio] {
+    cursor: pointer;
+}
+
+.selection-options {
+    display: none;
+}
+
+.card.selected::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #272727;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-origin: content-box;
+    padding: 6px;
+
+}
+
+
+.orange-alert {
+    background-color: #ff7900;
+    margin-bottom: 0;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.orange-alert p {
+    margin-bottom: 0;
+}
+
+.profile-card {
+    min-height: calc(100vh - 4.8rem);
+    border-width: 1px;
+}
+
+.profile-card .card-body {
+    padding: 15px;
+}
+
+.nav-tabs.profile-nav {
+    border: 0;
+}
+
+.nav-tabs.profile-nav .nav-item {
+    margin: 0;
+}
+
+.nav-tabs.profile-nav .nav-link {
+    border: 0;
+    margin: 0;
+}
+
+.nav-tabs.profile-nav .nav-item.show .nav-link,
+.nav-tabs.profile-nav .nav-link.active {
+    border: 0;
+    margin: 0;
+}
+
+.nav-tabs.profile-nav .nav-link.active {
+    background-color: #ff7900;
+}
+
+.tab-content.profile-content {
+    border: 0;
+    padding: 0;
+}
+
+.btn-link.btn-inverse {
+    color: #fff;
+}
+
+.btn-link.btn-inverse:hover {
+    color: #ff7900;
+}
+
+.nav-link.radio-btn {
+    padding: 0;
+}
+
+.nav-link.radio-btn:hover {
+    color: inherit;
+}
+
+.nav-pills .nav-link.radio-btn.active,
+.nav-pills .show > .nav-link.radio-btn {
+    background-color: transparent;
+}
+
+.select-method .tab-content {
+    padding: 0;
+    border: 0;
+}
+
+li.list-group-item.shipped-item {
+    border-width: 1px;
+    padding: 7px 10px;
+}
+
+li.list-group-item.shipped-item:last-child {
+    border-top-width: 0;
+}
+
+.card-footer {
+    padding: 0 15px 20px 15px;
+}
+
+.accordion-button.order-item-wrapper {
+    font-size: 14px;
+    color: #000;
+    padding: 14px 20px;
+}
+
+.accordion-button.order-item-wrapper .form-floating .form-control-plaintext {
+    padding: 0;
+}
+
+.accordion-item.order-item-card {
+    border: 2px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+.accordion-body .list-group .list-group-item {
+    border-bottom-width: 1px;
+}
+
+/* .accordion-body .list-group .list-group-item:last-child {
+    border: 0;
+} */
+.set-up-plan > .accordion-item {
+    border: 0;
+}
+
+.btn-link.text-primary:hover {
+    color: #e76f00 !important;
+}
+
+/* Carousel */
+.react-multi-carousel-item {
+    padding: 0 10px 2px;
+}
+
+.accordion-button.accordion-button-payment::after {
+    display: block;
+}
+
+button.accordion-button.accordion-button-payment {
+    font-size: 20px;
+    padding: 0 0 20px;
+}
+
+button.accordion-button.accordion-button-payment:hover {
+    color: #ff7900;
+    background-color: #fff;
+}
+
+.benefit-items-wrapper .list-group-item {
+    font-weight: normal;
+}
+
+.list-group-item.seperator {
+    border: 0;
+    background-color: #eee;
+}
+
+.check-circle {
+    position: relative;
+    background-color: #ff7900;
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+}
+
+.check-circle .icon-checkbox_tick {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* slider */
+datalist#values {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    writing-mode: vertical-lr;
+    width: 100%;
+}
+
+datalist#values option {
+    padding: 0;
+    text-align: center;
+    transform: rotate(-90deg);
+    text-wrap: wrap;
+    height: 50px;
+    font-weight: 700;
+}
+
+datalist#values option[value="0"] {
+    margin-left: -8px;
+}
+
+datalist#values option[value="25"] {
+    margin-left: -2px;
+}
+
+datalist#values option[value="75"] {
+    margin-right: -2px;
+}
+
+datalist#values option[value="100"] {
+    margin-right: -8px;
+}
+
+datalist#values option.less-height {
+    height: 40px;
+}
+
+.range-value {
+    margin-left: 40px;
+    font-size: 18px;
+}
+
+.category-section {
+    padding: 14px 20px;
+    background-color: #eee;
+    font-weight: 700;
+}
+
+.btn-check:checked + .btn .text-muted {
+    color: #ccc !important;
+}
+
+.btn-check + .btn.color-label {
+    position: relative;
+    border: 1px solid #ccc;
+    padding: 10px 16px 10px 40px;
+    margin-right: 10px;
+}
+
+.btn-check:checked + .btn.color-label,
+.btn-check + .btn.color-label:active {
+    background-color: #fff;
+    border-color: #000;
+    color: #000;
+}
+
+.color-label:before {
+    content: '';
+    position: absolute;
+    background-color: #000;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    left: 10px;
+    top: 9px;
+}
+
+.color-label.purple:before {
+    background-color: purple;
+}
+
+.color-label.lilac:before {
+    background-color: #C8A2C8;
+}
+
+.color-label.pink:before {
+    background-color: pink;
+}
+
+.color-label.silver:before {
+    background-color: #ccc;
+}
+
+.small-select {
+    padding: 4px 10px 6px 10px;
+    font-size: 14px;
+}
+
+.card.included-card {
+    border: 0;
+}
+
+.card.included-card .card-body {
+    padding: 10px 20px;
+}
+
+.form-check.custom-checked-disabled .form-check-input:disabled:checked,
+.form-check.custom-checked-disabled .form-check-input:disabled:indeterminate {
+    background-color: #ff7900;
+    border-color: #ff7900;
+    filter: invert(0);
+}
+
+.form-check.custom-checked-disabled .form-check-label {
+    color: #000
+}
+
+.btn-info {
+    color: #527edb;
+    background-color: transparent;
+    border: none;
+}
+
+.tooltip-inner {
+    max-width: 400px;
+}
+
+.included-accordion .accordion-header,
+.included-accordion .accordion-item {
+    border: 0
+}
+
+.accordion-button.included-accordion-button:hover,
+.accordion-button.optional-accordion-button:hover {
+    background-color: transparent;
+}
+
+.included-accordion .accordion-button.included-accordion-button::after {
+    display: block;
+}
+
+.check-option {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.list-group-flush {
+    border-top: none;
+}
+
+.accordion-button:hover {
+    background-color: transparent;
+}
+
+.included-accordion-button:not(.collapsed) {
+    color: #ff7900 !important;
+}
+
+.included-accordion-button.collapsed:hover {
+    color: #ff7900 !important;
+}
+
+.optional-accordion-button:not(.collapsed) {
+    color: #ff7900 !important;
+}
+
+.optional-accordion-button.collapsed:hover {
+    color: #ff7900 !important;
+}
+
+.sub-bundle .accordion-button {
+    padding: 10px 20px;
+    position: relative;
+}
+
+.sub-bundle .accordion-button.no-select {
+    padding: 10px 0;
+}
+
+.sub-bundle .accordion-button:not(.collapsed),
+.sub-bundle .accordion-button:hover {
+    color: #000;
+}
+
+.sub-bundle .accordion-button.collapsed em.icon-arrow_up {
+    display: inline-block;
+    transform: rotate(180deg);
+}
+
+.sub-bundle-header {
+    --bs-card-border-color: gray !important; /* Explicitly set gray border */
+    border: var(--bs-card-border-width, 1px) solid var(--bs-card-border-color, gray);
+    background-color: white;
+    color: #6c757d; /* Bootstrap's text-secondary */
+}
+
+.multi-purchase-accordion {
+    display: grid;
+    gap: 16px;
+}
+
+.multi-purchase-accordion .accordion-button:hover {
+    background-color: transparent;
+}
+
+.multi-purchase-accordion .accordion-button.multi-purchase-accordion-button:after {
+    margin-right: 0;
+}
+
+.accordion-button:hover .bundles-count,
+.accordion-button:focus .bundles-count,
+.accordion-button:not(.collapsed) .bundles-count {
+    color: #000;
+}
+
+.multi-purchase-accordion .bundle-offer-price {
+    position: absolute;
+    top: 8px;
+    right: 28px;
+}
+
+.add-multiple-button .icon-Add {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.add-multiple-button .icon-Add:hover,
+.accordion-button:not(.collapsed) .add-multiple-button .icon-Add:hover {
+    color: #ff7900;
+}
+
+.accordion-button:not(.collapsed) .add-multiple-button .icon-Add {
+    color: #000;
+}
+
+.accordion-button.optional-accordion-button .check-circle {
+    font-size: 16px;
+    margin-right: 16px;
+}
+
+.check-circle {
+    color: #000;
+}
+
+.add-multiple-button.disabled .icon-Add {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.bundles-count {
+    font-weight: 700;
+}
+
+.plan-items-table tr {
+    border: 0;
+}
+
+.plan-items-table th,
+.plan-items-table td {
+    padding: 4px 0;
+}
+
+.action-btn.terminate,
+.action-btn.modify {
+    padding: 5px 34px;
+}
+
+.modify-plan .accordion-button::after {
+    display: block;
+}
+
+.modify-plan .accordion-button.no-arrow::after {
+    display: none;
+}
+
+.modify-plan .accordion-button {
+    padding: 14px 20px;
+}
+
+.modify-plan .accordion-button:not(.collapsed) {
+    color: #000;
+}
+
+.sub-item .accordion-button::after {
+    display: none;
+}
+
+.before-discount-label {
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.tax-excluded-label, .tax-included-label {
+    font-size: 12px;
+    color: #6c757d;
+}

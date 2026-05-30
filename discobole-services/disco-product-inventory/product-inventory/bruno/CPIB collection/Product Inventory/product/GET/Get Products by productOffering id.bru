@@ -1,0 +1,17 @@
+meta {
+  name: Get Products by productOffering id
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/product?productOffering.id=7d66ed18-b9d2-44a5-81f5-6d89336544bc&limit=100&offset=0
+  body: none
+  auth: none
+}
+
+query {
+  productOffering.id: 7d66ed18-b9d2-44a5-81f5-6d89336544bc
+  limit: 100
+  offset: 0
+}

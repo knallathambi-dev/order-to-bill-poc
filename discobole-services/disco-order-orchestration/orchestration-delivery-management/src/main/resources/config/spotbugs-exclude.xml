@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Software Name: orchestration-delivery-management
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<FindBugsFilter>
+
+    <Match>
+        <!-- Exclude JPA Entity Meta Model -->
+        <Class name="~.*_"/>
+    </Match>
+
+    <Match>
+        <!-- Exclude generated files by OpenAPI generator -->
+        <Package name="~.*dto.*"/>
+    </Match>
+
+    <Match>
+        <!-- Exclude generated files by OpenAPI generator -->
+        <Package name="~.*api.*"/>
+    </Match>
+
+    <Match>
+        <!-- Exclude generated files by AsyncAPI generator -->
+        <Package name="~.*generated.*"/>
+    </Match>
+
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP"/>
+        <Or>
+            <Package name="~.*model.*"/>
+            <Package name="~.*dto.*"/>
+            <Package name="~.*exception.*"/>
+            <Package name="~.*event.*"/>
+
+        </Or>
+    </Match>
+
+    <Match>
+        <!-- We have a lot of false pos[itives for this pattern. -->
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+    <Match>
+        <!-- We have a lot of false positives for this pattern. -->
+        <Bug pattern="NP_NULL_ON_SOME_PATH_FROM_RETURN_VALUE"/>
+    </Match>
+    <Match>
+        <!-- We have a lot of false positives for this pattern. -->
+        <Bug pattern="NP_NONNULL_PARAM_VIOLATION"/>
+    </Match>
+    <Match>
+        <!-- We have a lot of false positives for this pattern. -->
+        <Bug pattern="PATH_TRAVERSAL_IN"/>
+    </Match>
+    <Match>
+        <!-- We have a lot of false positives for this pattern. -->
+        <Bug pattern="CRLF_INJECTION_LOGS"/>
+    </Match>
+</FindBugsFilter>

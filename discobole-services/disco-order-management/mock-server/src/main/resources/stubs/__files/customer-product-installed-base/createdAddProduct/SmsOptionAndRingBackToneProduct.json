@@ -1,0 +1,100 @@
+[
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5sdsdsd-addSMSModifyRing",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5sdsdsd-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"101",
+        "productOrderId":"1109"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification":{
+      "id":"c1b8052d-5de9-4719-b0e2-de327455884d",
+      "name":"SMS Option",
+      "@type":"ProductSpecificationRef"
+    },
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea"
+        }
+      }
+    ]
+  },
+  {
+    "@type": "Product",
+    "id":"649adsdsdsds-addSMSModifyRing",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649adsdsdsds-addSMSModifyRing",
+    "isBundle":false,
+    "productOrderItem":[
+      {
+        "orderItemAction":"add",
+        "orderItemId":"103",
+        "productOrderId":"1109"
+      }
+    ],
+    "statusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "status":"Active"
+      }
+    ],
+    "operationalStatusChange":[
+      {
+        "changeDate":"2023-07-03T10:13:07.247Z",
+        "Status":"Active"
+      }
+    ],
+    "productSpecification": {
+      "id": "abe401bc-76b8-4811-8fef-98d5d10d979c",
+      "name": "Ring Back Tone",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Created",
+    "operationalStatus":"Created",
+    "productRelationship":[
+      {
+        "relationshipType":"reliesOn",
+        "product":{
+          "@type": "ProductRef",
+          "id":"649aaf9f2b4b3225cb5737ea"
+        }
+      }
+    ]
+  }
+]

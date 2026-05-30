@@ -1,0 +1,25 @@
+{
+  "SelectRelatedParty" : {
+    "required" : [ "@referredType", "role" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "@referredType" : {
+          "type" : "string",
+          "enum" : [ "individual", "organization" ]
+        },
+        "role" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string",
+          "readOnly" : true
+        }
+      }
+    }
+  }
+}

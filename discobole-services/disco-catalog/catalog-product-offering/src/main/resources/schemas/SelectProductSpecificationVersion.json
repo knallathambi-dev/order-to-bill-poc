@@ -1,0 +1,12 @@
+{
+  "SelectProductSpecificationVersion" : {
+    "required" : [ "versionType" ],
+    "type" : "object",
+    "properties" : {
+      "versionType" : {
+        "type" : "string",
+        "enum" : [ "Minor", "Major", "NoVersion" ]
+      }
+    }
+  }
+}

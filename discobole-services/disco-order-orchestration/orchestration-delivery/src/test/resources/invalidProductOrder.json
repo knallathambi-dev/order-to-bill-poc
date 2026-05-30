@@ -1,0 +1,80 @@
+{
+  "id": "646c7cf0a567d501359e091d",
+  "orderDate": "2023-05-23T08:44:32.157581800Z",
+  "state": "accepted",
+  "requestedCompletionDate": "2023-05-23T08:44:32.157581800Z",
+  "productOrderItem": [
+    {
+      "quantity": 1,
+      "action": "add",
+      "state": "accepted",
+      "productOrderItemRelationship": [
+        {
+          "id": "9",
+          "relationshipType": "isSold"
+        }
+      ],
+      "@type": "ProductOrderItem"
+    },
+    {
+      "id": "6",
+      "quantity": 1,
+      "action": "add",
+      "state": "accepted",
+      "productOrderItemRelationship": [
+        {
+          "id": "5",
+          "relationshipType": "isSold"
+        }
+      ],
+      "@type": "ProductOrderItem"
+    },
+    {
+      "id": "4",
+      "quantity": 1,
+      "action": "add",
+      "state": "accepted",
+      "productOrderItemRelationship": [
+        {
+          "id": "3",
+          "relationshipType": "isSold"
+        }
+      ],
+      "@type": "ProductOrderItem"
+    },
+    {
+      "id": "8",
+      "quantity": 1,
+      "action": "add",
+      "state": "accepted",
+      "product": {
+        "@type": "Product",
+        "isBundle": false,
+        "productSpecification": {},
+        "productCharacteristic": [
+          {
+            "name": "volume",            "@type" : "StringCharacteristic",
+
+            "valueType": "string",
+            "value": "1h"
+          }
+        ],
+        "realizingResource": [
+          {
+            "id": "122",
+            "@type": "Resource"
+          }
+        ]
+      },
+      "productOrderItemRelationship": [
+        {
+          "id": "7",
+          "relationshipType": "isSold"
+        }
+      ],
+      "@type": "ProductOrderItem"
+    }
+  ],
+  "@type": "ProductOrder"
+}
+

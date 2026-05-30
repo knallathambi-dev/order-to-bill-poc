@@ -1,0 +1,50 @@
+meta {
+  name: Bulk add with Duplicates couple on productOrderItem
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+     {
+        "op":"add",
+        "path":"/productInventoryManagement/v1/product/6620eb0a66ff9c3903ca5f2a/productOrderItem/-",
+        "value":{
+           "productOrderId":"df65-gh12",
+           "productOrderHref":"https...",
+           "orderItemId":"2",
+           "orderItemAction":"change",
+           "@referredType":"ProductOrder",
+           "role":"change management order"
+        }
+     },
+     {
+        "op":"add",
+        "path":"/productInventoryManagement/v1/product/6620eb0a66ff9c3903ca5f2a/productOrderItem/-",
+        "value":
+           {
+              "productOrderId":"df65-gh12",
+              "productOrderHref":"https...",
+              "orderItemId":"2",
+              "orderItemAction":"add",
+              "@referredType":"ProductOrder",
+              "role":"Install order"
+           }
+     }
+  ]
+}

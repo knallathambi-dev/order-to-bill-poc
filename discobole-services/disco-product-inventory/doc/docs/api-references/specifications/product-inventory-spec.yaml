@@ -1,0 +1,4111 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+openapi: "3.0.0"
+info:
+  description: "The Product Inventory (PI) is considered as a standalone\
+    \ component that stores all Products and the subsequent Product Prices.\n\nIt\
+    \ exposes TMF open API interfaces to enable commercial installed base creation,\
+    \ consultation and update the Product Inventory Management API TMF637.\n\n"
+  version: "0.23.0"
+  title: "Product Inventory Management"
+security:
+  - bearerAuth: [ ]
+tags:
+  - name: "Product"
+  - name: "JobSpecification"
+  - name: "Job"
+  - name: "Status"
+  - name: "Version"
+  - name: "Configuration"
+  - name: "Reporting"
+
+servers:
+  - url: "https://serverRoot"
+
+paths:
+  /productInventoryManagement/v1/product:
+    get:
+      tags:
+        - "Product"
+      operationId: "listProduct"
+      summary: "List or find Product objects"
+      description: "This operation list or find Product entities.\nAttribute selection\
+        \ is enabled for all first level attributes.\nFiltering is enabled until third\
+        \ level attributes"
+      parameters:
+        - name: "relatedParty.partyOrPartyRole.id"
+          description: "id of related party"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "id of one of the related parties"
+        - name: "productCharacteristic.value"
+          description: "value of product Characteristic"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+        - name: "productCharacteristic.name"
+          description: "name of product Characteristic"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+        - name: "productCharacteristic.@type"
+          description: "Type of product Characteristic"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+        - name: "productOrderItem.productOrderId"
+          description: "productOrderId of one of the productOrderItem in the list"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "productOrderId of one of the productOrderItem in the list"
+        - name: "id"
+          description: "Identifier of the product"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "Identifier of the product"
+        - name: "productOrderItem.orderItemId"
+          description: "orderItemId of one of the productOrderItem in the list"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "orderItemId of one of the productOrderItem in the list"
+        - name: "status"
+          required: false
+          description: "status of product has to be one of ProductStatusType"
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/ProductStatusType"
+        - name: "operationalStatus"
+          required: false
+          description: "operationalStatus of product has to be one of ProductOperationalStatusType"
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/ProductOperationalStatusType"
+        - name: "startDate"
+          description: "startDate of product and has to follow a date time format"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "startDate of product and has to follow a date time format"
+              format: "date-time"
+        - name: "startDate.gte"
+          description: "startDate.gte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "startDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "startDate.lte"
+          description: "startDate.lte less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "startDate.lte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "productSpecification.id"
+          description: "Identifier of productSpecification from catalog"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "Identifier of productSpecification from catalog"
+        - name: "productOffering.id"
+          description: "Identifier of productOffering from catalog"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "Identifier of productOffering from catalog"
+        - name: "productRelationship.relationshipType"
+          description: "relationshipType of a product in a relation with another product"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        - name: "productOffering.@type"
+          description: "type of productOffering. Useful in filtering by Contract"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "type of productOffering"
+        - name: "productSpecification.@type"
+          description: "type of productSpecification"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "type of productSpecification"
+        - name: "relatedParty.partyOrPartyRole.name"
+          description: "name of relatedParty"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "name of relatedParty"
+        - name: "relatedParty.partyOrPartyRole.partyId"
+          description: "name of partyId"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "name of partyId"
+        - name: "relatedParty.partyOrPartyRole.partyName"
+          description: "name of partyName"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "name of partyName"
+        - name: "relatedParty.partyOrPartyRole.@referredType"
+          description: "name of atReferredType"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "name of atReferredType"
+        - name: "@type"
+          description: "type of product"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "type of product"
+        - name: "relatedParty.partyOrPartyRole.role"
+          description: "role of related party"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "role of related party"
+        - name: "productRelationship.product.id"
+          description: "the product related to the relationShip"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "the product related to the relationShip"
+              pattern: "^[0-9a-fA-F]{24}$"
+        - name: "productOffering.name"
+          description: "the name of productOffering Useful in filtering by Contract"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "the name of productOffering Useful in filtering by Contract"
+        - name: "terminationDate.gte"
+          description: "terminationDate greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "terminationDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "terminationDate.lte"
+          description: "terminationDate less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "terminationDate.lte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "creationDate.gte"
+          description: "creationDate greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "creationDate.lte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "creationDate.lte"
+          description: "creationDate less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "creationDate.lte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "name"
+          description: "name of product"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "name of product"
+        - name: "isRoot"
+          description: "isRoot product"
+          required: false
+          in: "query"
+          schema:
+            type: "boolean"
+        - name: "lastUpdateDate.gte"
+          description: "lastUpdateDate greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "lastUpdateDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "lastUpdateDate.lte"
+          description: "lastUpdateDate less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "lastUpdateDate.lte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "orderDate.gte"
+          description: "orderDate greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "orderDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "orderDate.lte"
+          description: "orderDate less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "orderDate.lte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "sort"
+          required: false
+          explode: false
+          in: "query"
+          description: "Comma-separated list of fields to sort on"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/SortEnum"
+      responses:
+        "200":
+          description: "Ok"
+          headers:
+            X-Result-Count:
+              description: "count of the returned documents"
+              schema:
+                type: "integer"
+                format: "int32"
+            X-Total-Count:
+              description: "total count of all matched documents"
+              schema:
+                type: "integer"
+                format: "int32"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Product"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      tags:
+        - "Product"
+      operationId: "createProduct"
+      summary: "Creates a Product"
+      description: "This operation creates a product entity."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+        description: "The Product to be created"
+      responses:
+        "201":
+          headers:
+            Location:
+              description: The URI of the created resource
+              schema:
+                type: string
+          description: "Created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      tags:
+        - "Product"
+      operationId: "patchProducts"
+      summary: "Updates partially Products"
+      description: |-
+        This operation allows a caller to send a list of patch operation to be applied to a list of products
+
+        **Required Properties:**
+
+        The body will be an array of objects, each object consists of:
+        - `op`: the operation to be applied on a property
+        - `path`: the path of the property to be updated in JSON Pointer format
+        - `value`: it is required for all operations except `remove` operation
+
+        **Non Patchable Fields**
+        - `id`
+        - `creationDate`
+        - `@type`
+        - `startDate`
+        - `statusChange`
+        - `operationalStatusChange`
+
+        Example:
+          ```js
+          [
+            { // this is to change `operationalStatus` to `Confirmed`
+              "op": "replace",
+              "path": "/productInventoryManagement/v1/product/{productId}/operationalStatus",
+              "value": "Confirmed"
+            },
+            { // this is to remove `isBundle` property
+              "op": "remove",
+              "path": "/productInventoryManagement/v1/product/{productId}/isBundle"
+            }
+          ]
+          ```
+
+        **References:**
+        - JSON Patch: https://datatracker.ietf.org/doc/html/rfc6902
+        - JSON Pointer: https://datatracker.ietf.org/doc/html/rfc6901
+      requestBody:
+        required: true
+        content:
+          application/json-patch+json:
+            schema:
+              type: "array"
+              items:
+                $ref: "#/components/schemas/ProductPatch"
+        description: "The patch products to be updated"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Product"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/product/{id}:
+    get:
+      tags:
+        - "Product"
+      operationId: "retrieveProduct"
+      summary: "Retrieves a Product by ID"
+      description: "This operation retrieves a product entity.\nAttribute selection\
+        \ is enabled for all first level attributes.\nFiltering is enabled until third\
+        \ level attributes."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          description: "identifier of product"
+          schema:
+            type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      tags:
+        - "Product"
+      operationId: "patchProduct"
+      summary: "Updates partially a Product"
+      description: |-
+        This operation does a json merge patch of a product
+
+        **Required Properties:**
+
+        `id`: The product id which will be patched. It should be provided as a path variable in the url.
+
+        The body will be an object consists of:
+        - `@type`: The type of the product which will be patched (e.g., Product, PhysicalProduct). It should be provided in the request body.
+        - The fields which should be updated.
+          - If there is a field which is a list, provide the full list after modification.
+          - If there is a field which is an object, provide the full object after modification.
+
+        Use the GET api to get the product type to provide it's value to the `@type` property in the request body of the PATCH api.
+
+        Or use one of the following types as a request body:
+
+          - `Product`
+          - `PhysicalProduct`
+          - `ShipmentProduct`
+          - `Offer`
+          - `SimCard`
+          - `MobileLine`
+          - `Service`
+
+        **Non Patchable Fields**
+        - `id`
+        - `creationDate`
+        - `@type`
+        - `startDate`
+        - `statusChange`
+        - `operationalStatusChange`
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          description: "identifier of product"
+          schema:
+            type: "string"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: "a product with values in attributes that needs to be patched"
+          application/merge-patch+json:
+            schema:
+              type: object
+              description: "a product with values in attributes that needs to be patched"
+        description: "The Product to be updated"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - "Product"
+      operationId: "deleteProduct"
+      summary: "Delete a Product by ID"
+      description: "This operation retrieves a product entity.\nAttribute selection\
+        \ is enabled for all first level attributes.\nFiltering is enabled until third\
+        \ level attributes."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          description: "identifier of product"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/product/export:
+    get:
+      tags:
+        - "Product"
+      operationId: "exportProduct"
+      summary: "export list Product objects"
+      description: "export the list of product"
+      parameters:
+        - name: "relatedParty.partyOrPartyRole.id"
+          description: "id of related party"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "id of one of the related parties"
+        - name: "status"
+          required: false
+          description: "status of product has to be one of ProductStatusType"
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/ProductStatusType"
+        - name: "startDate.gte"
+          description: "startDate.gte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "startDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "startDate.lte"
+          description: "startDate.lte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "creationDate.lte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "creationDate.gte"
+          description: "creationDate.gte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "creationDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "creationDate.lte"
+          description: "creationDate.lte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "creationDate.lte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "lastUpdateDate.gte"
+          description: "lastUpdateDate.gte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "lastUpdateDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "lastUpdateDate.lte"
+          description: "lastUpdateDate.lte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "lastUpdateDate.lte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "contentType"
+          description: "the content type of the exported file"
+          required: true
+          in: "query"
+          schema:
+            $ref: '#/components/schemas/ContentTypeEnum'
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: string
+                format: binary
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/job/uploadFileUrl/{JobId}:
+    get:
+      tags:
+        - "Job"
+      operationId: "getUploadFileUrl"
+      summary: "generates the Url to upload a file"
+      description: "This operation generates the Url to upload a file to s3"
+      parameters:
+        - name: "JobId"
+          description: "Identifier of the Job"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FileInformation"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/jobSpecification:
+    get:
+      tags:
+        - "JobSpecification"
+      operationId: "listJobSpecification"
+      summary: "List or find JobSpecification objects"
+      description: "This operation list or find JobSpecification entities.\nAttribute selection\
+        \ is enabled for all first level attributes.\nFiltering is enabled until third\
+        \ level attributes."
+      parameters:
+        - name: "id"
+          description: "Identifier of the JobSpecification"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "Identifier of the JobSpecification"
+        - name: "name"
+          description: "name of the JobSpecification"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "name of the JobSpecification"
+        - name: "lifecycleStatus"
+          required: false
+          description: "lifecycleStatus of job specification has to be one of JobSpecificationStatusType"
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/JobSpecificationStatusType"
+        - name: "@type"
+          required: false
+          description: "type of job specification has to be one of JobSpecificationType"
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/JobSpecificationType"
+        - name: "activePeriod.startDateTime"
+          description: "startDate of job specification and has to follow a date time format"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "startDate of job specification and has to follow a date time format"
+              format: "date-time"
+        - name: "activePeriod.startDateTime.gte"
+          description: "startDate.gte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "startDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "activePeriod.startDateTime.lte"
+          description: "startDate.Lte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "startDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "activePeriod.endDateTime"
+          description: "endDate of job specification and has to follow a date time format"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "endDate of job specification and has to follow a date time format"
+              format: "date-time"
+        - name: "activePeriod.endDateTime.gte"
+          description: "endDate greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "endDate greater than or equal value provided which could be date or date time"
+            format: "date-time"
+        - name: "activePeriod.endDateTime.lte"
+          description: "endDate less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "endDate less than or equal value provided which could be date or date time"
+            format: "date-time"
+        - name: "creationDate"
+          description: "creationDate of job specification and has to follow a date time format"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "creationDate of job specification and has to follow a date time format"
+              format: "date-time"
+        - name: "creationDate.gte"
+          description: "creationDate greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "creationDate.gte of job specification and has to follow a date time format"
+            format: "date-time"
+        - name: "creationDate.lte"
+          description: "creationDate less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "creationDate.lte of job specification and has to follow a date time format"
+            format: "date-time"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "sort"
+          required: false
+          explode: false
+          in: "query"
+          description: "Comma-separated list of fields to sort on"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/SortJobSpecificationEnum"
+      responses:
+        "200":
+          description: "Ok"
+          headers:
+            X-Result-Count:
+              description: "count of the returned documents"
+              schema:
+                type: "integer"
+                format: "int32"
+            X-Total-Count:
+              description: "total count of all matched documents"
+              schema:
+                type: "integer"
+                format: "int32"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/JobSpecification"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      tags:
+        - "JobSpecification"
+      operationId: "createJobSpecification"
+      summary: "create a job specification"
+      description: "create a job specification based on type, available types: export the list of product"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/JobSpecification"
+        description: "The Product to be created"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JobSpecification"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/jobSpecification/{id}:
+    get:
+      tags:
+        - "JobSpecification"
+      operationId: "retrieveJobSpecification"
+      summary: "Retrieves a JobSpecification by ID"
+      description: "This operation retrieves a JobSpecification entity.\nAttribute selection\
+        \ is enabled for all first level attributes.\nFiltering is enabled until third\
+        \ level attributes."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          description: "identifier of JobSpecification"
+          schema:
+            type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JobSpecification"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - "JobSpecification"
+      operationId: "deleteJobSpecification"
+      summary: "Delete a JobSpecification by ID"
+      description: "This operation delete job specification"
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          description: "identifier of JobSpecification"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "string"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: "Conflict\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/job/{id}:
+    get:
+      tags:
+        - "Job"
+      operationId: "retrieveJob"
+      summary: "Retrieves a Job by ID"
+      description: "This operation retrieves a Job entity."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          description: "identifier of Job"
+          schema:
+            type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Job"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/job:
+    get:
+      tags:
+        - "Job"
+      operationId: "listJob"
+      summary: "List or find Job objects"
+      description: "This operation list or find Job entities."
+      parameters:
+        - name: "id"
+          description: "Identifier of the Parent Job"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "Identifier of the Job"
+        - name: "jobSpecification.id"
+          description: "Identifier of the Parent JobSpecification"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "Identifier of the JobSpecification"
+        - name: "@type"
+          required: false
+          description: "type of job specification has to be one of JobSpecificationType"
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/JobTypeEnum"
+        - name: "status"
+          required: false
+          description: "status of job specification has to be one of JobStatusType"
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/JobStatusType"
+        - name: "executionPeriod.startDateTime"
+          description: "startDate of Job and has to follow a date time format"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "startDate of Job and has to follow a date time format"
+              format: "date-time"
+        - name: "executionPeriod.startDateTime.gte"
+          description: "startDate.gte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "startDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "executionPeriod.startDateTime.lte"
+          description: "startDate.Lte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "startDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "executionPeriod.endDateTime"
+          description: "endDate of Job and has to follow a date time format"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "endDate of Job and has to follow a date time format"
+              format: "date-time"
+        - name: "executionPeriod.endDateTime.gte"
+          description: "endDate greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "endDate greater than or equal value provided which could be date or date time"
+            format: "date-time"
+        - name: "executionPeriod.endDateTime.lte"
+          description: "endDate less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "endDate less than or equal value provided which could be date or date time"
+            format: "date-time"
+        - name: "plannedDate"
+          description: "plannedDate of Job and has to follow a date time format"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "plannedDate of Job and has to follow a date time format"
+              format: "date-time"
+        - name: "plannedDate.gte"
+          description: "plannedDate greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "plannedDate greater than or equal value provided which could be date or date time"
+            format: "date-time"
+        - name: "plannedDate.lte"
+          description: "plannedDate less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "plannedDate less than or equal value provided which could be date or date time"
+            format: "date-time"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "sort"
+          required: false
+          explode: false
+          in: "query"
+          description: "Comma-separated list of fields to sort on"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/SortJobEnum"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Job"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/jobSpecification/{jobSpecificationId}/Job:
+    get:
+      tags:
+        - "JobSpecification"
+      operationId: "listJobByjobSpecificationId"
+      summary: "List or find Job objects by jobSpecificationId"
+      description: "This operation list or find Job entities by jobSpecificationId."
+      parameters:
+        - name: "jobSpecificationId"
+          required: true
+          in: "path"
+          description: "identifier of Job parent JobSpecification"
+          schema:
+            type: "string"
+        - name: "id"
+          description: "Identifier of the Parent Job"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "Identifier of the Job"
+        - name: "status"
+          required: false
+          description: "status of job specification has to be one of JobStatusType"
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/JobStatusType"
+        - name: "executionPeriod.startDateTime"
+          description: "startDate of Job and has to follow a date time format"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "startDate of Job and has to follow a date time format"
+              format: "date-time"
+        - name: "executionPeriod.startDateTime.gte"
+          description: "startDate.gte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "startDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "executionPeriod.startDateTime.lte"
+          description: "startDate.Lte greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "startDate.gte of product and has to follow a date time format"
+            format: "date-time"
+        - name: "executionPeriod.endDateTime"
+          description: "endDate of Job and has to follow a date time format"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "endDate of Job and has to follow a date time format"
+              format: "date-time"
+        - name: "executionPeriod.endDateTime.gte"
+          description: "endDate greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "endDate greater than or equal value provided which could be date or date time"
+            format: "date-time"
+        - name: "executionPeriod.endDateTime.lte"
+          description: "endDate less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "endDate less than or equal value provided which could be date or date time"
+            format: "date-time"
+        - name: "plannedDate"
+          description: "plannedDate of Job and has to follow a date time format"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+              description: "plannedDate of Job and has to follow a date time format"
+              format: "date-time"
+        - name: "plannedDate.gte"
+          description: "plannedDate greater than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "plannedDate greater than or equal value provided which could be date or date time"
+            format: "date-time"
+        - name: "plannedDate.lte"
+          description: "plannedDate less than or equal value provided which could be date or date time"
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            description: "plannedDate less than or equal value provided which could be date or date time"
+            format: "date-time"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          schema:
+            type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "sort"
+          required: false
+          explode: false
+          in: "query"
+          description: "Comma-separated list of fields to sort on"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/components/schemas/SortJobEnum"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Job"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/job/{id}/exportFileInformation:
+    get:
+      tags:
+        - "Job"
+      operationId: "getExportFileInformation"
+      summary: "Retrieves export File Information by job ID"
+      description: "This operation retrieves the export File Information of a job."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          description: "identifier of the Job"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExportFileInformation"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "409":
+          description: "Conflict\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /configuration:
+    get:
+      tags:
+        - "Configuration"
+      operationId: "systemConfiguration"
+      summary: "List system configurations"
+      description: "This operation list different system configurations"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Config"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /status:
+    get:
+      tags:
+        - "Status"
+      operationId: "getServiceStatus"
+      summary: "Return the status of the service (health check)"
+      description: "This operation returns the status of the service."
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceStatus"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /version:
+    get:
+      tags:
+        - "Version"
+      operationId: "getServiceVersion"
+      summary: "Return the version of the service"
+      description: "This operation returns the version of the service."
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServiceVersion"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/reports:
+    get:
+      tags:
+        - "Reporting"
+      operationId: "listReports"
+      summary: "List Report objects"
+      description: "This operation lists Report entities."
+      parameters:
+        - name: "@type"
+          description: "Defines the sub-class entity name when sub-classing."
+          required: true
+          in: "query"
+          schema:
+            $ref: '#/components/schemas/ReportType'
+        - name: "collectDate"
+          description: "Filter to search by exact date."
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            format: "date"
+        - name: "collectDate.lte"
+          description: "The start date for the report period."
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            format: "date"
+        - name: "collectDate.gte"
+          description: "The end date for the report period."
+          required: false
+          in: "query"
+          schema:
+            type: "string"
+            format: "date"
+        - name: "granularity"
+          description: "The granularity of the report data (day, week, month, year). defaults to Day"
+          required: false
+          in: "query"
+          schema:
+            $ref: '#/components/schemas/ReportGranularity'
+        - name: "productOfferId"
+          description: "The productOfferId of the report"
+          required: false
+          in: "query"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Report"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable Entity"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/reports/{atType}/{id}:
+    get:
+      tags:
+        - "Reporting"
+      operationId: "retrievesReport"
+      summary: "retrieves Report entity"
+      description: "This operation retrieves a Report entity."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          description: "identifier of report"
+          schema:
+            type: "string"
+        - name: "atType"
+          required: true
+          in: "path"
+          description: "type of report"
+          schema:
+            $ref: '#/components/schemas/ReportType'
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Report"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable Entity"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productInventoryManagement/v1/reports/productOfferingOptions:
+    get:
+      tags:
+        - "Reporting"
+      operationId: "listProductOfferingOptions"
+      summary: "list ProductOffering options"
+      description: "This operation lists is ProductOfferings"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/ProductOfferingRef"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable Entity"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ExportJobSpecification:
+      description: "\n\n**Polymorphism**\n\n  Parent: JobSpecification\n\n  Discriminator:\
+        \ @type"
+      required:
+        - contentType
+        - query
+      allOf:
+        - $ref: "#/components/schemas/JobSpecification"
+        - type: "object"
+          properties:
+            '@type':
+              type: string
+              default: "ExportJobSpecification"
+            contentType:
+              $ref: '#/components/schemas/ContentTypeEnum'
+            query:
+              type: string
+            fields:
+              type: array
+              items:
+                type: string
+                description: fields selected.
+    TerminationJobSpecification:
+      description: "\n\n**Polymorphism**\n\n  Parent: JobSpecification\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/JobSpecification"
+        - type: "object"
+          properties:
+            '@type':
+              type: string
+              default: "TerminationJobSpecification"
+    PurgeJobSpecification:
+      description: "\n\n**Polymorphism**\n\n  Parent: JobSpecification\n\n  Discriminator:\
+        \ @type"
+      required:
+        - purgeType
+        - query
+      allOf:
+        - $ref: "#/components/schemas/JobSpecification"
+        - type: "object"
+          properties:
+            '@type':
+              type: string
+              default: "PurgeJobSpecification"
+            purgeType:
+              $ref: '#/components/schemas/PurgeTypeEnum'
+            query:
+              type: string
+    ImportJobSpecification:
+      description: "\n\n**Polymorphism**\n\n  Parent: JobSpecification\n\n  Discriminator:\
+        \ @type"
+      required:
+        - importType
+      allOf:
+        - $ref: "#/components/schemas/JobSpecification"
+        - type: "object"
+          properties:
+            '@type':
+              type: string
+              default: "ImportJobSpecification"
+            importType:
+              $ref: '#/components/schemas/ImportTypeEnum'
+            contentType:
+              $ref: '#/components/schemas/ContentTypeEnum'
+            checkCatalog:
+              type: boolean
+              default: false
+    JobSpecificationRef:
+      description: "reference to a jobSpecification"
+      discriminator:
+        propertyName: "@type"
+      required:
+        - "id"
+        - "@type"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Unique identifier of jobSpecification"
+        href:
+          type: "string"
+          description: "Reference of the jobSpecification"
+        '@type':
+          type: "string"
+          description: "When sub-classing, this defines the sub-class entity name"
+          default: null
+    JobSpecification:
+      description: "Represents a job specification entity, which encapsulates information about a specific job specification.\
+        \ job specifications are job specifications or processes that need to be executed, each with its own unique characteristics.\
+        \ This DTO includes details such as the job specification's unique identifier, name, type, status, start date, end date,\
+        \ and a list of processed Job Specifications associated with the job specification."
+      type: "object"
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the job specification.
+        name:
+          type: string
+          description: The name of the job specification.
+        '@type':
+          description: The type of the job specification.
+          type: string
+          default: null
+        '@baseType':
+          description: The base type of the job specification.
+          type: string
+          default: null
+        href:
+          type: string
+          description: The reference link to the job specification.
+        lifecycleStatus:
+          $ref: '#/components/schemas/JobSpecificationStatusType'
+        lifeCycleStatusChange:
+          type: array
+          items:
+            $ref: "#/components/schemas/JobSpecificationStatusChange"
+        activePeriod:
+          $ref: '#/components/schemas/TimePeriod'
+        creationDate:
+          type: string
+          format: date-time
+          description: The creation date and time of the job specification."
+        schedule:
+          $ref: '#/components/schemas/JobScheduler'
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          JobSpecification: "#/components/schemas/JobSpecification"
+          ExportJobSpecification: "#/components/schemas/ExportJobSpecification"
+          TerminationJobSpecification: "#/components/schemas/TerminationJobSpecification"
+          PurgeJobSpecification: "#/components/schemas/PurgeJobSpecification"
+          ImportJobSpecification: "#/components/schemas/ImportJobSpecification"
+    ProductCount:
+      description: Represents the product count
+      type: object
+      properties:
+        status:
+          type: string
+          description : status of Product Count
+        count:
+          type: integer
+          description : count of Product Count
+    JobScheduler:
+      description: "Represents a JobScheduler entity"
+      type: object
+      properties:
+        '@type':
+          type: string
+          description: type of JobScheduler
+      required:
+        - "@type"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          OneTimeJobScheduler: "#/components/schemas/OneTimeJobScheduler"
+          RecurringJobScheduler: "#/components/schemas/RecurringJobScheduler"
+          ImmediateJobScheduler: "#/components/schemas/ImmediateJobScheduler"
+    OneTimeJobScheduler:
+      description: "subType of job specification schedule, for a job specification that occurs only once in the future"
+      allOf:
+        - $ref: "#/components/schemas/JobScheduler"
+        - type: object
+          properties:
+            plannedDate:
+              type: string
+              format: date-time
+              description: Exact date and time when the job specification should be executed (for one-time job specifications).
+              example: 2024-09-01T12:00:00Z
+            '@type':
+              type: string
+              default: "OneTimeJobScheduler"
+          required:
+            - "plannedDate"
+    ImmediateJobScheduler:
+      description: "subType of job specification schedule, for a job specification that occurs only once and Immediately"
+      allOf:
+        - $ref: "#/components/schemas/JobScheduler"
+        - type: object
+          properties:
+            '@type':
+              type: string
+              default: "ImmediateJobScheduler"
+    RecurringJobScheduler:
+      description: "subType of job specification schedule, for a job specification that is recurring"
+      allOf:
+        - $ref: "#/components/schemas/JobScheduler"
+        - type: object
+          properties:
+            frequency:
+              $ref: "#/components/schemas/JobFrequency"
+            scheduledPeriod:
+              $ref: "#/components/schemas/DatePeriod"
+            executionTime:
+              type: string
+              format: time
+              description: Time of day when the job specification should be executed (in UTC).
+              example: 14:30:00
+            '@type':
+              type: string
+              default: "RecurringJobScheduler"
+          required:
+            - "frequency"
+            - "scheduledPeriod"
+            - "executionTime"
+    JobFrequency:
+      description: "job Frequency"
+      allOf:
+        - type: object
+          properties:
+            amount:
+              type: integer
+              description: Number of times the job specification should repeat within a period.
+              example: 3
+            timePeriod:
+              $ref: "#/components/schemas/TimePeriodType"
+          required:
+            - "amount"
+            - "period"
+    JobSpecificationStatusType:
+      description: Type JobSpecification Status Enum.
+      type: string
+      enum:
+        - "Created"
+        - "Active"
+        - "Suspended"
+        - "Terminated"
+    JobSchedulerType:
+      type: string
+      description: Type discriminator for the job specification schedule.
+      enum:
+        - "OneTimeJobScheduler"
+        - "RecurringJobScheduler"
+        - "ImmediateJobScheduler"
+    TimePeriodType:
+      type: string
+      description: Unit of time for the frequency.
+      enum:
+        - "Hour"
+        - "Day"
+        - "Week"
+        - "Month"
+        - "Year"
+    ContentTypeEnum:
+      type: string
+      enum:
+        - "json"
+        - "csv"
+      description:
+        Represents the content type of the export file.
+    ImportTypeEnum:
+      type: string
+      enum:
+        - "merge"
+        - "insert"
+      description:
+        Represents the content type of the export file.
+    JobSpecificationType:
+      type: string
+      enum:
+        - "TerminationJobSpecification"
+        - "ExportJobSpecification"
+        - "PurgeJobSpecification"
+        - "ImportJobSpecification"
+      description: >
+        Represents the type of a job specification.
+        Possible values include:
+        - `TerminationJobSpecification`: The job specification is a batch job specification.
+        - `ExportJobSpecification`: The job specification is an export job.
+        - `PurgeJobSpecification`: The job specification is a purge job.
+        - `ImportJobSpecification`: The job specification is an import job.
+    ProductRelationshipType:
+      type: string
+      enum:
+        - "bundles"
+        - "sells"
+        - "rootProduct"
+        - "isChild"
+        - "reliesOn"
+        - "hasParent"
+        - "reliesFrom"
+        - "bundlesMigrate"
+        - "reliesOnMigrate"
+        - "migrateFrom"
+      description: >
+        Represents the type of relationship between products, such as [bundled] if the\
+          \ product is a bundle and you want to describe the bundled products inside\
+          \ this bundle; [reliesOn] if the product needs another already owned product\
+          \ to rely on (e.g. an option on an already owned mobile access product)\
+          \ [targets] or [isTargeted] (depending on the way of expressing the link)\
+          \ for any other kind of links that may be useful
+    Job:
+      description: Represents the execution details of a specific job specification.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the job.
+        jobSpecification:
+          $ref: '#/components/schemas/JobSpecificationRef'
+        executionPeriod:
+          $ref: "#/components/schemas/TimePeriod"
+        plannedDate:
+          type: string
+          format: date-time
+          description: The planned start date and time for the job.
+        status:
+          $ref: '#/components/schemas/JobStatusType'
+        href:
+          description: "Reference of the related entity."
+          type: "string"
+        errorLog:
+          type: "string"
+        '@type':
+          description: The type of the job that reflect the same type as its parent job specification.
+          type: string
+          default: null
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          Job: "#/components/schemas/Job"
+          ExportJob: "#/components/schemas/ExportJob"
+          PurgeJob: "#/components/schemas/PurgeJob"
+          TerminationJob: "#/components/schemas/TerminationJob"
+          ImportJob: "#/components/schemas/ImportJob"
+    ExportJob:
+      description: "\n\n**Polymorphism**\n\n  Parent: Job\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Job"
+        - type: "object"
+          properties:
+            '@type':
+              type: string
+              default: "ExportJob"
+            'fileName':
+              type: string
+    PurgeJob:
+      description: "\n\n**Polymorphism**\n\n  Parent: Job\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Job"
+        - type: "object"
+          properties:
+            '@type':
+              type: string
+              default: "PurgeJob"
+    TerminationJob:
+      description: "\n\n**Polymorphism**\n\n  Parent: Job\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/JobWithReports"
+        - type: "object"
+          properties:
+            '@type':
+              type: string
+              default: "TerminationJob"
+    ImportJob:
+      description: "\n\n**Polymorphism**\n\n  Parent: Job\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/JobWithReports"
+        - type: "object"
+          properties:
+            '@type':
+              type: string
+              default: "ImportJob"
+            'fileName':
+              type: string
+    JobWithReports:
+      description: "\n\n**Polymorphism**\n\n  Parent: Job\n\n"
+      allOf:
+        - $ref: "#/components/schemas/Job"
+        - type: "object"
+          properties:
+            failureReport:
+              $ref: "#/components/schemas/JobExecutionReport"
+            successReport:
+              $ref: "#/components/schemas/JobExecutionReport"
+    JobExecutionReport:
+      description: "\n\n**Polymorphism**\n\n  Parent: Job\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - type: "object"
+          properties:
+            'status':
+              $ref: "#/components/schemas/ProductProcessStatusType"
+            'products':
+              type: array
+              items:
+                $ref: "#/components/schemas/JobReportProductRef"
+    JobStatusType:
+      type: string
+      enum:
+        - "NotStarted"
+        - "Running"
+        - "Succeeded"
+        - "Failed"
+      description: >
+        Represents the possible statuses of a job.
+        Possible values include:
+        - `NotStarted`: The job has not started yet.
+        - `Running`: The job is currently in progress.
+        - `Succeeded`: The job has successfully completed.
+        - `Failed`: The job was terminated due to an error.
+    ProductProcessStatusType:
+      type: string
+      enum:
+        - "Failed"
+        - "Succeeded"
+      description: >
+        Represents the status of a processed product.
+        Possible values include:
+        - `Failed`: The processed product is failed.
+        - `Completed`: the processed product is completed.
+    JobTypeEnum:
+      type: string
+      enum:
+        - "TerminationJob"
+        - "ExportJob"
+        - "PurgeJob"
+        - "ImportJob"
+      description: >
+        Represents the type of a job.
+    AgreementItemRef:
+      description: "Agreement reference. An agreement represents a contract or arrangement,\
+        \ either written or verbal and sometimes enforceable by law, such as a service\
+        \ level agreement or a customer price agreement. An agreement involves a number\
+        \ of other business entities, such as products, services, and resources and/or\
+        \ their specifications."
+      required:
+        - "id"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of a related entity."
+          type: "string"
+        href:
+          description: "Reference of the related entity."
+          type: "string"
+        agreementItemId:
+          description: "Identifier of the agreement"
+          type: "string"
+        name:
+          description: "Name of the related entity."
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    BillingAccountRef:
+      description: "BillingAccount reference. A BillingAccount is a detailed description\
+        \ of a bill structure."
+      required:
+        - "id"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of the billing account"
+          type: "string"
+          minLength: 1
+        href:
+          description: "Reference of the billing account"
+          type: "string"
+        name:
+          description: "Name of the billing account"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+        ratingType:
+          type: "string"
+          description: "type of rating"
+    BooleanArrayCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            value:
+              type: "array"
+              items:
+                type: "boolean"
+    BooleanCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            value:
+              type: "boolean"
+    Characteristic:
+      description: "Describes a given characteristic of an object or entity through\
+        \ a name/value pair.\n\n\n\n\n\n**Polymorphism**\n\n  Discriminator: @type\n\
+        \n  One of:\n  - BooleanCharacteristic\n  - IntegerCharacteristic\n  - ObjectCharacteristic\n\
+        \  - ObjectArrayCharacteristic\n  - StringCharacteristic\n  - StringArrayCharacteristic\n\
+        \  - NumberCharacteristic\n  - NumberArrayCharacteristic\n  - IntegerArrayCharacteristic\n\
+        \  - BooleanArrayCharacteristic    \  - ValidityCharacteristic"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          BooleanCharacteristic: "#/components/schemas/BooleanCharacteristic"
+          IntegerCharacteristic: "#/components/schemas/IntegerCharacteristic"
+          ObjectCharacteristic: "#/components/schemas/ObjectCharacteristic"
+          ObjectArrayCharacteristic: "#/components/schemas/ObjectArrayCharacteristic"
+          StringCharacteristic: "#/components/schemas/StringCharacteristic"
+          StringArrayCharacteristic: "#/components/schemas/StringArrayCharacteristic"
+          NumberCharacteristic: "#/components/schemas/NumberCharacteristic"
+          NumberArrayCharacteristic: "#/components/schemas/NumberArrayCharacteristic"
+          IntegerArrayCharacteristic: "#/components/schemas/IntegerArrayCharacteristic"
+          BooleanArrayCharacteristic: "#/components/schemas/BooleanArrayCharacteristic"
+          ValidityCharacteristic: "#/components/schemas/ValidityCharacteristic"
+          AddressCharacteristic: "#/components/schemas/AddressCharacteristic"
+          DateCharacteristic: "#/components/schemas/DateCharacteristic"
+      required:
+        - '@type'
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "identifier of characteristic"
+        name:
+          description: "Name of the characteristic"
+          type: "string"
+        valueType:
+          description: "Data type of the value of the characteristic"
+          type: "string"
+        productCharacteristicRelationships:
+          type: "array"
+          description: "array of characteristics in relation"
+          items:
+            $ref: "#/components/schemas/CharacteristicRelationship"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+    CharacteristicRelationship:
+      required:
+        - "id"
+      type: "object"
+      description: "represents a relation ship between characteristics"
+      properties:
+        id:
+          description: "Identifier of characteristic"
+          type: "string"
+        relationshipType:
+          description: "type of relationship"
+          type: "string"
+    Error:
+      description: "Used when an API throws an Error, typically with a HTTP error\
+        \ response-code (3xx, 4xx, 5xx)"
+      required:
+        - "code"
+        - "reason"
+      type: "object"
+      properties:
+        code:
+          description: "Application relevant detail, defined in the API or a common\
+            \ list."
+          type: "string"
+        reason:
+          description: "Explanation of the reason for the error which can be shown\
+            \ to a client user."
+          type: "string"
+        message:
+          description: "More details and corrective actions related to the error which\
+            \ can be shown to a client user."
+          type: "string"
+        status:
+          description: "HTTP Error code extension"
+          type: "string"
+        referenceError:
+          description: "URI of documentation describing the error."
+          type: "string"
+          format: "uri"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+          format: "uri"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name."
+          type: "string"
+    Config:
+      description: "Response object containing the system configuration details."
+      type: "object"
+      properties:
+        paginationLimit:
+          description: "The maximum number of products that can be fetched or counted in the product listing API. Requests for offsets exceeding this limit will result in an error."
+          type: "integer"
+          format: "int32"
+        exportLimit:
+          description: "The maximum number of products that can be exported."
+          type: "integer"
+          format: "int32"
+        productCatalogUrl:
+          description: "The URL of the product catalog service."
+          type: "string"
+        resourceInventoryManagementUrl:
+          description: "The URL of the resource inventory management service."
+          type: "string"
+        productCatalogEnabled:
+          description: "Indicates whether the product catalog service is enabled. Possible values are 'true' or 'false'."
+          type: "boolean"
+        resourceInventoryManagementEnabled:
+          description: "Indicates whether the resource inventory management service is enabled. Possible values are 'true' or 'false'."
+          type: "boolean"
+    ExternalIdentifier:
+      required:
+        - "id"
+      type: "object"
+      description: "external identifier"
+      properties:
+        id:
+          type: "string"
+          description: "identifier of an external reference"
+        owner:
+          type: "string"
+          description: "owner of an external reference"
+        externalIdentifierType:
+          type: "string"
+          description: "type of an external reference"
+    IntegerArrayCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            value:
+              type: "array"
+              items:
+                type: "integer"
+                format: "int32"
+    IntegerCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - required:
+            - "value"
+          type: "object"
+          properties:
+            value:
+              type: "integer"
+              format: "int32"
+    ValidityCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            value:
+              $ref: "#/components/schemas/Value"
+    DateCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+       \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            value:
+              type: "string"
+              description: "date of the characteristic"
+              format: "date-time"
+    AddressCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+           \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            addressId:
+              type: "string"
+            city:
+              type: "string"
+            country:
+              type: "string"
+            subUnitNumber:
+              type: "string"
+            streetName:
+              type: "string"
+            postcode:
+              type: "string"
+    Value:
+      description: "the value of ValidityCharacteristic"
+      type: "object"
+      properties:
+        value:
+          description: "The value of the validity of product"
+          type: "integer"
+        unitOfMeasure:
+         description: "The unite of the validity of product"
+         type: "string"
+        validTo:
+          description: "The validTo of the validity of product"
+          type: "string"
+          format: "date-time"
+        validFrom:
+          description: "The validFrom of the validity of product"
+          type: "string"
+          format: "date-time"
+    Money:
+      description: "A base / value business entity used to represent money"
+      type: "object"
+      properties:
+        unit:
+          description: "Currency (ISO4217 norm uses 3 letters to define the currency)"
+          type: "string"
+        value:
+          description: "A positive floating point number"
+          type: "number"
+          format: "float"
+    NumberArrayCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            value:
+              type: "array"
+              items:
+                type: "number"
+                format: "float"
+    NumberCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            value:
+              description: "Value of the characteristic"
+              type: "number"
+              format: "float"
+    ObjectArrayCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            value:
+              type: "array"
+              items:
+                type: "object"
+    ObjectCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - required:
+            - "value"
+          type: "object"
+          properties:
+            value:
+              type: "object"
+    OperationalStatusChange:
+      type: "object"
+      description: "represents an operational status change at some time"
+      properties:
+        changeDate:
+          description: "date that the change happened"
+          type: "string"
+          format: "date-time"
+        changeReason:
+          description: "reason that the change happened"
+          type: "string"
+        status:
+          $ref: "#/components/schemas/ProductOperationalStatusType"
+        '@type':
+          description: "type of OperationalStatusChange"
+          type: "string"
+        '@referredType':
+          description: "referredType type of OperationalStatusChange"
+          type: "string"
+    PatchOperationType:
+      description: "Patch Operation to be executed"
+      type: "string"
+      enum:
+        - "add"
+        - "copy"
+        - "move"
+        - "remove"
+        - "replace"
+        - "test"
+    Place:
+      description: "Place reference. Place defines the places where the products are\
+        \ sold or delivered."
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of the place"
+          type: "string"
+        href:
+          description: "Unique reference of the place"
+          type: "string"
+        name:
+          description: "A user-friendly name for the place, such as [Paris Store],\
+            \ [London Store], [Main Home]"
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+    PlaceRef:
+      description: "Place reference. PlaceRef defines the placeRefs where the products\
+        \ are sold or delivered."
+      required:
+        - "id"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of a related entity."
+          type: "string"
+        href:
+          description: "Reference of the related entity."
+          type: "string"
+        name:
+          description: "Name of the related entity."
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    Price:
+      description: "Provides all amounts (tax included, duty free, tax rate), used\
+        \ currency and percentage to apply for Price Alteration."
+      type: "object"
+      properties:
+        percentage:
+          description: "Percentage to apply for ProdOfferPriceAlteration"
+          type: "number"
+          format: "float"
+        taxRate:
+          description: "Tax rate"
+          type: "number"
+          format: "float"
+        dutyFreeAmount:
+          $ref: "#/components/schemas/Money"
+        taxIncludedAmount:
+          $ref: "#/components/schemas/Money"
+        '@type':
+          description: The type of the Price.
+          type: string
+          default: null
+        '@baseType':
+          description: The base type of the Price.
+          type: string
+          default: null
+    PriceAlteration:
+      description: "Is an amount, usually of money, that modifies the price charged\
+        \ for an order item."
+      required:
+        - "price"
+      type: "object"
+      properties:
+        applicationOffset:
+          description: "applicationOffset specify when the discount or price change should start relative to a certain point"
+          type: "integer"
+          format: "int32"
+        applicationDuration:
+          $ref: "#/components/schemas/Quantity"
+        description:
+          description: "A narrative that explains in detail the semantics of this\
+            \ order item price alteration"
+          type: "string"
+        name:
+          description: "Name of the order item price alteration"
+          type: "string"
+        priceType:
+          description: "A category that describes the price such as recurring, one\
+            \ time and usage."
+          type: "string"
+        priority:
+          description: "Priority level for applying this alteration among all the\
+            \ defined alterations on the order item price"
+          type: "integer"
+          format: "int32"
+        recurringChargePeriod:
+          $ref: "#/components/schemas/MeasuredValue"
+        validFor:
+          $ref: "#/components/schemas/TimePeriod"
+        unitOfMeasure:
+          description: "Could be minutes, GB..."
+          type: "string"
+        '@type':
+          description: The type of the PriceAlteration.
+          type: string
+          default: null
+        '@baseType':
+          description: The base type of the PriceAlteration.
+          type: string
+          default: null
+        productOfferingPrice:
+          $ref: "#/components/schemas/ProductOfferingPriceRef"
+        price:
+          $ref: "#/components/schemas/Price"
+    Product:
+      description: "A product offering procured by a customer or other interested\
+          \ party playing a party role. A product is realized as one or more service(s)\
+          \ and / or resource(s)."
+      discriminator:
+        propertyName: "@type"
+      required:
+        - "productOrderItem"
+        - "status"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of the product"
+          type: "string"
+        href:
+          description: "Reference of the product"
+          type: "string"
+        description:
+          description: "Is the description of the product. It could be copied from\
+              \ the description of the Product Offering."
+          type: "string"
+        isBundle:
+          description: "If true, the product is a ProductBundle which is an instantiation\
+              \ of a BundledProductOffering. If false, the product is a ProductComponent\
+              \ which is an instantiation of a SimpleProductOffering."
+          type: "boolean"
+        isCustomerVisible:
+          description: "If true, the product is visible by the customer."
+          type: "boolean"
+        name:
+          description: "Name of the product. It could be the same as the name of the\
+              \ product offering"
+          type: "string"
+        orderDate:
+          description: "Is the date when the product was ordered"
+          type: "string"
+          format: "date-time"
+        productSerialNumber:
+          description: "Is the serial number for the product. This is typically applicable\
+              \ to tangible products e.g. Broadband Router."
+          type: "string"
+        startDate:
+          description: "Is the date from which the product starts"
+          type: "string"
+          format: "date-time"
+        billingAccount:
+          $ref: "#/components/schemas/BillingAccountRef"
+        agreement:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/AgreementItemRef"
+        terminationDate:
+          description: "Is the date when the product was terminated"
+          type: "string"
+          format: "date-time"
+        place:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/RelatedPlaceRefOrValue"
+        productCharacteristic:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Characteristic"
+        productOffering:
+          $ref: "#/components/schemas/ProductOfferingRef"
+        productOrderItem:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/RelatedProductOrderItem"
+          minItems: 1
+        productPrice:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ProductPrice"
+        productRelationship:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ProductRelationship"
+        productSpecification:
+          $ref: "#/components/schemas/ProductSpecificationRef"
+        productTerm:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ProductTerm"
+        realizingResource:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ResourceRef"
+        realizingService:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ServiceRef"
+        relatedParty:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/RelatedPartyOrPartyRole"
+        status:
+          $ref: "#/components/schemas/ProductStatusType"
+        operationalStatus:
+          $ref: "#/components/schemas/ProductOperationalStatusType"
+        creationDate:
+          type: "string"
+          description: "date when the product was created"
+          format: "date-time"
+        lastUpdateDate:
+          type: "string"
+          description: "date when the product was last updated"
+          format: "date-time"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+          default: "Product"
+        statusChange:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/StatusChange"
+        operationalStatusChange:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/OperationalStatusChange"
+        externalIdentifier:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ExternalIdentifier"
+    ProductAttributeValueChangeEventPayload:
+      description: "The event data structure"
+      type: "object"
+      properties:
+        product:
+          $ref: "#/components/schemas/Product"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class"
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+    ProductOfferingPriceRef:
+      description: "ProductPriceOffering reference. An amount, usually of money, that\
+        \ is asked for or allowed when a ProductOffering is bought, rented, or leased"
+      required:
+        - "id"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of a related entity."
+          type: "string"
+        href:
+          description: "Reference of the related entity."
+          type: "string"
+        name:
+          description: "Name of the related entity."
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+        '@baseType':
+          type: "string"
+          description: "When sub-classing, this defines the super-class"
+        '@schemaLocation':
+          type: "string"
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+                      \ and relationships"
+    ProductOfferingRef:
+      description: "ProductOffering reference. A product offering represents entities\
+        \ that are orderable from the provider of the catalog, this resource includes\
+        \ pricing information."
+      required:
+        - "id"
+        - "@type"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of a related entity."
+          type: "string"
+        href:
+          description: "Reference of the related entity."
+          type: "string"
+        name:
+          description: "Name of the related entity."
+          type: "string"
+        version:
+          description: "version of the product offering."
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+          minLength: 1
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+        '@baseType':
+          description: "When sub-classing, this defines the super-class."
+          type: "string"
+        '@schemaLocation':
+          description: "A URI to a JSON-Schema file that defines additional attributes\
+            \ and relationships"
+          type: "string"
+    ProductOperationalStatusType:
+      description: "Possible values for the status of the product"
+      type: "string"
+      enum:
+        - "Aborted"
+        - "Active"
+        - "Cancelled"
+        - "Confirmed"
+        - "Created"
+        - "InDisturbance"
+        - "Locked"
+        - "LockedActive"
+        - "PendingActive"
+        - "PendingCancel"
+        - "PendingDelivery"
+        - "PendingModification"
+        - "PendingTerminate"
+        - "PendingMigrate"
+        - "Terminated"
+        - "Sold"
+    SortEnum:
+      description: "Possible values for the sort of the product"
+      type: "string"
+      enum:
+        - "startDate"
+        - "-startDate"
+        - "productRelationship.relationshipType"
+        - "-productRelationship.relationshipType"
+        - "creationDate"
+        - "-creationDate"
+    SortJobSpecificationEnum:
+      description: "Possible values for the sort of the product"
+      type: "string"
+      enum:
+        - "activePeriod.startDateTime"
+        - "-activePeriod.startDateTime"
+        - "activePeriod.endDateTime"
+        - "-activePeriod.endDateTime"
+        - "status"
+        - "-status"
+        - "creationDate"
+        - "-creationDate"
+    SortJobEnum:
+      description: "Possible values for the sort of the product"
+      type: "string"
+      enum:
+        - "executionPeriod.startDateTime"
+        - "-executionPeriod.startDateTime"
+        - "executionPeriod.endDateTime"
+        - "-executionPeriod.endDateTime"
+        - "status"
+        - "-status"
+        - "plannedDate"
+        - "-plannedDate"
+    ProductPatch:
+      description: "this is product patch object that will be applied on the specified\
+        \ product"
+      discriminator:
+        propertyName: "op"
+      required:
+        - "op"
+        - "path"
+      type: "object"
+      properties:
+        op:
+          $ref: "#/components/schemas/PatchOperationType"
+        path:
+          description: "Path of the product/field to be updated"
+          type: "string"
+        value:
+          description: "value of to be updated or added, it can be text or can be\
+            \ json object"
+          type: "object"
+    ProductPrice:
+      description: "An amount, usually of money, that represents the actual price\
+        \ paid by a Customer for a purchase, a rent or a lease of a Product. The price\
+        \ is valid for a defined period of time."
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          InstallmentCharge: "#/components/schemas/InstallmentCharge"
+      required:
+        - "price"
+        - "@type"
+      type: "object"
+      properties:
+        description:
+          description: "A narrative that explains in detail the semantics of this\
+            \ product price."
+          type: "string"
+        name:
+          description: "A short descriptive name such as \"Subscription price\"."
+          type: "string"
+        priceType:
+          description: "A category that describes the price, such as recurring, discount,\
+            \ allowance, penalty, and so forth."
+          type: "string"
+        recurringChargePeriod:
+          $ref: "#/components/schemas/MeasuredValue"
+        unitOfMeasure:
+          description: "Could be minutes, GB..."
+          type: "string"
+        billingAccount:
+          $ref: "#/components/schemas/BillingAccountRef"
+        productOfferingPrice:
+          $ref: "#/components/schemas/ProductOfferingPriceRef"
+        price:
+          $ref: "#/components/schemas/Price"
+        productPriceAlteration:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/PriceAlteration"
+        validFor:
+          $ref: "#/components/schemas/TimePeriod"
+        applicationDuration :
+          $ref: "#/components/schemas/Quantity"
+        '@type':
+          description: The type of the ProductPrice.
+          type: string
+          default: null
+        '@baseType':
+          description: The base type of the ProductPrice.
+          type: string
+          default: null
+    InstallmentCharge:
+      description:  "Product price paid through installments. Can be managed internally by Orange or externally by a partner."
+      allOf:
+        - $ref: "#/components/schemas/ProductPrice"
+        - type: object
+          properties:
+            interestRate:
+              description: Interest rate applied to the installment plan
+              type: number
+              format: float
+            downPayment:
+              description: Initial amount paid upfront
+              type: number
+              format: float
+            partner:
+              description: Partner managing the installment
+              type: string
+            externalId:
+              description: Identifier provided by external partner when applicable
+              type: string
+    ProductRef:
+      description: "reference to a product"
+      discriminator:
+        propertyName: "@type"
+      required:
+        - "id"
+        - "@type"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+          description: "Unique identifier of product"
+        name:
+          type: "string"
+          description: "The name of the product"
+        href:
+          type: "string"
+          description: "Reference of the product"
+        '@type':
+          type: "string"
+          description: "When sub-classing, this defines the sub-class entity name"
+          default: "ProductRef"
+    PhysicalProduct:
+      description: "A child of product representing a tangible product"
+      allOf:
+        - $ref: '#/components/schemas/Product'
+        - type: object
+          properties:
+            '@type':
+              type: "string"
+              default: "PhysicalProduct"
+    ShipmentProduct:
+      description: "A child of product representing a shipment offer that is related to a PhysicalProduct"
+      allOf:
+        - $ref: '#/components/schemas/Product'
+        - type: object
+          properties:
+            '@type':
+              type: "string"
+              default: "ShipmentProduct"
+    Offer:
+      description: "A child of product representing an offer."
+      allOf:
+        - $ref: '#/components/schemas/Product'
+        - type: object
+          properties:
+            '@type':
+              type: "string"
+              default: "Offer"
+    SimCard:
+      description: "A child of product representing a SimCard."
+      allOf:
+        - $ref: '#/components/schemas/Product'
+        - type: object
+          properties:
+            '@type':
+              type: "string"
+              default: "SimCard"
+    MobileLine:
+      description: "A child of product representing a MobileLine."
+      allOf:
+        - $ref: '#/components/schemas/Product'
+        - type: object
+          properties:
+            '@type':
+              type: "string"
+              default: "MobileLine"
+    Service:
+      description: "A child of product representing a Service"
+      allOf:
+        - $ref: '#/components/schemas/Product'
+        - type: object
+          properties:
+            '@type':
+              type: "string"
+              default: "Service"
+    ProductRefOrValue:
+      description: "A product to be created defined by value or existing defined by\
+        \ reference. The polymorphic attributes @type, @schemaLocation & @referredType\
+        \ are related to the product entity and not the RelatedProductRefOrValue class\
+        \ itself"
+      type: "object"
+      oneOf:
+        - $ref: "#/components/schemas/Product"
+        - $ref: "#/components/schemas/ProductRef"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          Product: "#/components/schemas/Product"
+          PhysicalProduct: "#/components/schemas/PhysicalProduct"
+          ShipmentProduct: "#/components/schemas/ShipmentProduct"
+          Offer: "#/components/schemas/Offer"
+          SimCard: "#/components/schemas/SimCard"
+          MobileLine: "#/components/schemas/MobileLine"
+          Service: "#/components/schemas/Service"
+          ProductRef: "#/components/schemas/ProductRef"
+    ProductRelationship:
+      description: "Linked products to the one instantiate, such as [bundled] if the\
+        \ product is a bundle and you want to describe the bundled products inside\
+        \ this bundle; [reliesOn] if the product needs another already owned product\
+        \ to rely on (e.g. an option on an already owned mobile access product) [targets]\
+        \ or [isTargeted] (depending on the way of expressing the link) for any other\
+        \ kind of links that may be useful"
+      required:
+        - "relationshipType"
+        - "product"
+      type: "object"
+      properties:
+        relationshipType:
+          type: "string"
+          description: Type of relation ship
+        product:
+          $ref: "#/components/schemas/ProductRefOrValue"
+    ProductSpecificationRef:
+      description: "Product specification reference: A ProductSpecification is a detailed\
+        \ description of a tangible or intangible object made available externally\
+        \ in the form of a ProductOffering to customers or other parties playing a\
+        \ party role."
+      required:
+        - "id"
+        - "@type"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of a related entity."
+          type: "string"
+        href:
+          description: "Reference of the related entity."
+          type: "string"
+        name:
+          description: "Name of the related entity."
+          type: "string"
+        version:
+          description: "Version of the product specification"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+          minLength: 1
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    ProductStatusType:
+      description: "Possible values for the status of the product"
+      type: "string"
+      enum:
+        - "Aborted"
+        - "Active"
+        - "Cancelled"
+        - "Created"
+        - "Terminated"
+        - "Sold"
+    ProductTerm:
+      description: "Description of a productTerm linked to this product. This represent\
+        \ a commitment with a duration"
+      type: "object"
+      properties:
+        description:
+          description: "Description of the productTerm"
+          type: "string"
+        name:
+          description: "Name of the productTerm"
+          type: "string"
+        duration:
+          $ref: "#/components/schemas/Duration"
+        validFor:
+          $ref: "#/components/schemas/TimePeriod"
+    Quantity:
+      description: "An amount in a given unit"
+      type: "object"
+      properties:
+        amount:
+          description: "Numeric value in a given unit"
+          type: "number"
+          format: "float"
+          default: 1
+        units:
+          description: "Unit"
+          type: "string"
+    Duration:
+      description: "An amount in a given unit"
+      type: "object"
+      properties:
+        amount:
+          description: "Numeric value in a given unit"
+          type: integer
+          format: int32
+        units:
+          description: "Unit"
+          type: "string"
+    RelatedPlaceRefOrValue:
+      description: "Related Entity reference. A related place defines a place described\
+        \ by reference or by value linked to a specific entity. The polymorphic attributes\
+        \ @type, @schemaLocation & @referredType are related to the place entity and\
+        \ not the RelatedPlaceRefOrValue class itself\n\n\n\n\n\n**Inheritance**\n\
+        \n  Children:\n  - GeographicAddress"
+      required:
+        - "role"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of the place"
+          type: "string"
+        href:
+          description: "Unique reference of the place"
+          type: "string"
+        name:
+          description: "A user-friendly name for the place, such as [Paris Store],\
+            \ [London Store], [Main Home]"
+          type: "string"
+        role:
+          type: "string"
+          description: "role of the place"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    RelatedProductOrderItem:
+      description: "RelatedProductOrderItem (ProductOrder item) .The product order\
+        \ item which triggered product creation/change/termination."
+      required:
+        - "orderItemId"
+        - "productOrderId"
+      type: "object"
+      properties:
+        orderItemAction:
+          description: "Action of the order item for this product"
+          type: "string"
+        orderItemId:
+          description: "Identifier of the order item where the product was managed"
+          type: "string"
+        productOrderHref:
+          description: "Reference of the related entity."
+          type: "string"
+        productOrderId:
+          description: "Unique identifier of a related entity."
+          type: "string"
+        role:
+          description: "role of the product order item for this product"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    ResourceRef:
+      required:
+        - "id"
+      type: "object"
+      description: "Reference to a resource"
+      properties:
+        id:
+          description: "Unique identifier of a related entity."
+          type: "string"
+        href:
+          description: "Reference of the related entity."
+          type: "string"
+        name:
+          description: "Name of the resource"
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    ServiceRef:
+      description: "Service reference, for when Service is used by other entities"
+      required:
+        - "id"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of a related entity."
+          type: "string"
+        href:
+          description: "Reference of the related entity."
+          type: "string"
+        name:
+          description: "Name of the related entity."
+          type: "string"
+        '@type':
+          description: "When sub-classing, this defines the sub-class entity name"
+          type: "string"
+        '@referredType':
+          description: "The actual type of the target instance when needed for disambiguation."
+          type: "string"
+    StatusChange:
+      type: "object"
+      description: "represents a status change at some time"
+      properties:
+        changeDate:
+          type: "string"
+          description: "date that the change happened"
+          format: "date-time"
+        changeReason:
+          type: "string"
+          description: "reason that the change happened"
+        status:
+          $ref: "#/components/schemas/ProductStatusType"
+        '@type':
+          type: "string"
+          description: "type of StatusChange"
+        '@referredType':
+          description: "referredType type of StatusChange"
+          type: "string"
+    JobSpecificationStatusChange:
+      type: "object"
+      description: "represents a status change at some time for JobSpecification"
+      properties:
+        changeDate:
+          type: "string"
+          description: "date that the change happened"
+          format: "date-time"
+        lifecycleStatus:
+          $ref: "#/components/schemas/JobSpecificationStatusType"
+        '@type':
+          type: "string"
+          description: "type of StatusChange"
+        '@referredType':
+          description: "referredType type of StatusChange"
+          type: "string"
+    StringArrayCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            value:
+              type: "array"
+              items:
+                type: "string"
+    StringCharacteristic:
+      description: "\n\n**Polymorphism**\n\n  Parent: Characteristic\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/Characteristic"
+        - type: "object"
+          properties:
+            value:
+              type: "string"
+    TimePeriod:
+      description: "A period of time, either as a deadline (endDateTime only) a startDateTime\
+        \ only, or both"
+      type: "object"
+      properties:
+        endDateTime:
+          description: "End of the time period, using IETF-RFC-3339 format"
+          type: "string"
+          format: "date-time"
+        startDateTime:
+          description: "Start of the time period, using IETF-RFC-3339 format. If you\
+            \ define a start, you must also define an end"
+          type: "string"
+          format: "date-time"
+    DatePeriod:
+      description: "A period of time, either as a deadline (endDateTime only) a startDateTime\
+        \ only, or both"
+      type: "object"
+      properties:
+        endDate:
+          description: "End of the time period"
+          type: "string"
+          format: "date"
+        startDate:
+          description: "Start of the time period"
+          type: "string"
+          format: "date"
+    ServiceStatus:
+      description: "An object representing the response status of the service"
+      type: "object"
+      properties:
+        serviceName:
+          description: "the Service Name"
+          type: "string"
+        version:
+          description: "the Service version"
+          type: "string"
+        message:
+          description: "the status response message "
+          type: "string"
+    ServiceVersion:
+      description: "An object containing the version of the  service"
+      type: "object"
+      properties:
+        version:
+          description: "the Service version"
+          type: "string"
+    JobReportProductRef:
+      description: "An object containing the download link of an export file"
+      type: "object"
+      allOf:
+        - $ref: "#/components/schemas/ProductRef"
+      properties:
+        externalIdentifier:
+          type: "string"
+          description: "Reference of the id of an entity from an external system "
+        failReason:
+          type: "string"
+          description: "the error mesage"
+    ExportFileInformation:
+      description: "An object containing the download link of an export file"
+      type: "object"
+      allOf:
+        - $ref: "#/components/schemas/FileInformation"
+      properties:
+        completionDate:
+          description: "The CompletionDate of the export"
+          type: "string"
+          format: "date-time"
+    FileInformation:
+      description: "An object containing File information"
+      type: "object"
+      properties:
+        url:
+          description: "The download url "
+          type: "string"
+        contentType:
+          $ref: '#/components/schemas/ContentTypeEnum'
+        validFor:
+          $ref: "#/components/schemas/TimePeriod"
+    PurgeTypeEnum:
+      type: string
+      enum:
+        - "PurgeProduct"
+        - "PurgeJob"
+      description: "Represents the type of what to purge. Depending on the `purgeType` value, different parameters and values of `query` attribute are required:\n
+         - For `PurgeProduct`: At least one of the query parameters (`creationDate.lte`, `creationDate.gte`,`terminationDate.lte`, `terminationDate.gte`, `startDate.lte`, `startDate.gte`, `status`) must be provided, and the status values must be one of `Cancelled`, `Aborted`, `Terminated`.\n
+        - For `PurgeJob`: At least one of the query parameters (`creationDate.lte`, `creationDate.gte`, `status`) must be provided, and the status values must be one of `Done`, `TerminatedWithError`."
+    RelatedPartyOrPartyRole:
+      description: "RelatedParty reference. A related party defines party or party role or its reference,linked to a specific entity"
+      type: "object"
+      properties:
+        '@type':
+          type: string
+          default: "RelatedPartyRefOrPartyRoleRef"
+        "role":
+          type: "string"
+          description: "Role played by the related party or party role in the context of the specific entity it is linked to. Such as 'initiator', 'customer',  'salesAgent', 'user'"
+          format: "string"
+        "partyOrPartyRole":
+          "$ref": '#/components/schemas/PartyOrPartyRole'
+    PartyOrPartyRole:
+      type: object
+      description: ''
+      oneOf:
+        - $ref: '#/components/schemas/PartyRef'
+        - $ref: '#/components/schemas/PartyRoleRef'
+      discriminator:
+        propertyName: '@type'
+        mapping:
+          PartyRef: '#/components/schemas/PartyRef'
+          PartyRoleRef: '#/components/schemas/PartyRoleRef'
+    PartyRef:
+      type: object
+      description: A Party reference
+      discriminator:
+        propertyName: '@type'
+        mapping:
+          PartyRef: '#/components/schemas/PartyRef'
+      properties:
+        '@type':
+          type: string
+          default: "PartyRef"
+        id:
+          type: string
+          description: The identifier of the PartyRef.
+        href:
+          type: string
+          description: The URI of the PartyRef.
+        name:
+          type: string
+          description: Name of the PartyRef.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+    PartyRoleRef:
+      type: object
+      description: Party role reference. A party role represents the part played by a party in a given context.
+      properties:
+        '@type':
+          type: string
+          default: "PartyRoleRef"
+        id:
+          type: string
+          description: The identifier of the PartyRef.
+        href:
+          type: string
+          description: The URI of the PartyRef.
+        name:
+          type: string
+          description: Name of the PartyRef.
+        '@referredType':
+          type: string
+          description: The actual type of the target instance when needed for disambiguation.
+        partyId:
+          type: string
+          description: The identifier of the engaged party that is linked to the PartyRole object.
+        partyName:
+          type: string
+          description: The name of the engaged party that is linked to the PartyRole object.
+      discriminator:
+        propertyName: '@type'
+        mapping:
+          PartyRoleRef: '#/components/schemas/PartyRoleRef'
+    Report:
+      description: "A generic report entity that can represent various types of reports."
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          ReportProductByStatus: "#/components/schemas/ReportProductByStatus"
+          ReportProductByOffer: "#/components/schemas/ReportProductByOffer"
+      type: "object"
+      properties:
+        id:
+          description: "Unique identifier of the report."
+          type: "string"
+        href:
+          description: "Reference URL of the report."
+          type: "string"
+        '@type':
+          description: "Defines the sub-class entity name when sub-classing."
+          type: "string"
+          default: "Report"
+        collectDate:
+          description: "The date for which the report is generated."
+          type: "string"
+          format: "date"
+        details:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ReportDetails"
+    ReportDetails:
+      description: "the report details."
+      type: "object"
+      properties:
+        count:
+          type: integer
+          format: int64
+          description: The count of the specific characteristic.
+        characteristic:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/ReportCharacteristic"
+    ReportCharacteristic:
+      description: "A name value report characteristic."
+      type: "object"
+      properties:
+        name:
+          type: string
+          description: ""
+        value:
+          type: string
+          description: ""
+    ReportProductByStatus:
+      description: "the status report type."
+      type: "object"
+      allOf:
+        - $ref: "#/components/schemas/Report"
+      properties:
+        '@type':
+          description: "Defines the sub-class entity name when sub-classing."
+          type: "string"
+          default: "ReportProductByStatus"
+    ReportProductByOffer:
+      description: "the offer report type."
+      type: "object"
+      allOf:
+        - $ref: "#/components/schemas/Report"
+      properties:
+        '@type':
+          description: "Defines the sub-class entity name when sub-classing."
+          type: "string"
+          default: "ReportProductByOffer"
+    ReportGranularity:
+      type: string
+      enum:
+        - "Day"
+        - "Week"
+        - "Month"
+        - "Year"
+      description:
+        The granularity of the report data (day, week, month, year)
+    ReportType:
+      type: string
+      enum:
+        - "ReportProductByStatus"
+        - "ReportProductByOffer"
+      description:
+        The type of the report data (StatusReport,...)
+    MeasuredValue:
+      description: "Represents a numeric value associated with a specific unit of measure."
+      type: "object"
+      properties:
+        amount:
+          description: "Numeric value in a given unit"
+          type: "number"
+          format: "float"
+        units:
+          description: "Unit of measure (e.g., months, USD, GB)"
+          type: "string"

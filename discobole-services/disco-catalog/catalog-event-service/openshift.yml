@@ -1,0 +1,115 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+kind: "Template"
+apiVersion: "template.openshift.io/v1"
+metadata:
+  name: "deploy-template"
+  annotations:
+    description: "Template for deployment"
+objects:
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: ${environment_name}
+      annotations:
+        description: Exposes and load balances the application pods
+      labels:
+        run: ${environment_name}
+    spec:
+      ports:
+        - name: http
+          port: 80
+          targetPort: 8080
+          protocol: TCP
+      selector:
+          app: ${environment_name}
+  - kind: Route
+    apiVersion: v1
+    metadata:
+      name: ${environment_name}
+      labels:
+        run: ${environment_name}
+    spec:
+      host: ${environment_name}-disco.apps.fr01.paas.tech.orange
+      port:
+        targetPort: 8080
+      to:
+        kind: Service
+        name: ${environment_name}
+      tls:
+        insecureEdgeTerminationPolicy: Redirect
+        termination: edge
+  - kind: DeploymentConfig
+    apiVersion: v1
+    metadata:
+      name: ${environment_name}
+      labels:
+       app: ${environment_name}
+    spec:
+      replicas: 1
+      revisionHistoryLimit: 1
+      selector:
+        app: ${environment_name}
+      strategy:
+        type: Recreate
+      template:
+        metadata:
+         labels:
+           app: ${environment_name}
+         name: ${environment_name}
+        spec:
+         containers:
+         - name: ${environment_name}
+           image: ${DOCKER_RELEASE_IMAGE_URL}/disco/event-service:${APP_VERSION}
+           imagePullPolicy: Always
+           env:
+           - name: "ENV"
+             value: ${env}
+           - name: SPRING_PROFILES_ACTIVE
+             value: openshift$-{env} 
+           ports:
+           - containerPort: 8080
+             protocol: TCP
+           
+          
+           resources:
+             requests:
+               cpu: "125m"
+               memory: "256Mi"
+             limits:
+               cpu: "250m"
+               memory: "512Mi"
+           imagePullSecrets:
+             - name: diodcentral-registry 
+        serviceAccountName: ci-cd
+        serviceAccount: ci-cd
+        securityContext: {}
+        schedulerName: default-scheduler
+
+parameters:
+  - name: environment_name
+    description: "the application target name to use in this environment (provided by GitLab CI template)"
+    required: true
+  - name: CI_COMMIT_SHORT_SHA
+    description: Tag for Docker image
+    required: true
+#    value: latest
+  - name: env
+    description: Environment for deployment
+    required: true
+#    value: int
+  - name: DOCKER_RELEASE_IMAGE_URL
+    description: Artifactory URL to download images
+    required: true
+#    value: $DOCKER_SNAPSHOT_IMAGE_URL
+  - name: APP_VERSION
+    description: Application Version for Docker Image
+    required: true
+#    value: $APP_VERSION

@@ -1,0 +1,82 @@
+{
+  "@type": "Product",
+  "id": "67c08a6d3e0a2f1fdb75e7e6",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e6",
+  "isBundle": false,
+  "name": "TV Channels",
+  "productCharacteristic": [
+    {
+      "@type": "StringCharacteristic",
+      "id": "da87beb0-ddca-45e0-922d-33f64f50741e.1",
+      "name": "Included Channels",
+      "value": "Basic channels"
+    }
+  ],
+  "productOffering": {
+    "id": "7d86a944-937e-4cca-8a46-e26773016f78",
+    "name": "TV Channels",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "30a616d0-1846-4b10-bc1e-ec69a4d2ba2c",
+      "productOrderId": "67c08a62311d586dbf8fe175"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e2",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+      }
+    },
+    {
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7ea",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ea"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "e7a8bcc3-9bfe-4bfe-8bb5-ba4c245aec9b",
+    "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=e7a8bcc3-9bfe-4bfe-8bb5-ba4c245aec9b",
+    "name": "TV Channels PS",
+    "version": "0.2",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "qwy2rhnix",
+        "name": "ii",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Confirmed",
+  "creationDate": "2025-02-27T15:53:17Z",
+  "lastUpdateDate": "2025-02-27T15:53:30Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    }
+  ]
+}

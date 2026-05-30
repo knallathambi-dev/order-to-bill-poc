@@ -1,0 +1,59 @@
+{
+  "auth": {
+    "loginFailed": "Ungültige E-Mail oder Passwort. Bitte versuchen Sie es erneut.",
+    "registrationFailed": "Konto konnte nicht erstellt werden. Bitte überprüfen Sie Ihre Angaben und versuchen Sie es erneut.",
+    "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an."
+  },
+  "common": {
+    "fetchConfigurationFailed": "Es tut uns leid, wir konnten Ihre Konfiguration nicht laden. Bitte versuchen Sie es erneut.",
+    "fetchOrderFailed": "Es tut uns leid, wir konnten Ihre Bestellung nicht laden. Bitte versuchen Sie es erneut.",
+    "processFlowCreateFailed": "Es tut uns leid, wir konnten Ihren Bestellvorgang nicht starten. Bitte versuchen Sie es erneut."
+  },
+  "completeOrder": {
+    "completeFailed": "Es tut uns leid, wir konnten Ihre Bestellung nicht abschließen. Bitte versuchen Sie es erneut."
+  },
+  "eligiblePlans": {
+    "fetchEligiblePlansFailed": "Es tut uns leid, wir konnten die verfügbaren Tarife nicht laden. Bitte versuchen Sie es erneut.",
+    "loadPlanDetailsFailed": "Es tut uns leid, wir konnten die Tarifdetails nicht laden. Bitte versuchen Sie es erneut.",
+    "proceedChangeFailed": "Es tut uns leid, wir konnten mit der Tarifänderung nicht fortfahren. Bitte versuchen Sie es erneut."
+  },
+  "eligibility": {
+    "updateAddressFailed": "Es tut uns leid, wir konnten Ihre Adresse nicht aktualisieren. Bitte versuchen Sie es erneut."
+  },
+  "home": {
+    "devices": {
+      "configureFailed": "Es tut uns leid, wir konnten dieses Gerät nicht einrichten. Bitte versuchen Sie es erneut.",
+      "loadFailed": "Es tut uns leid, wir konnten Ihre Geräte nicht laden. Bitte versuchen Sie es erneut."
+    },
+    "offers": {
+      "configureFailed": "Es tut uns leid, wir konnten dieses Angebot nicht einrichten. Bitte versuchen Sie es erneut.",
+      "loadFailed": "Es tut uns leid, wir konnten Ihre Angebote nicht laden. Bitte versuchen Sie es erneut."
+    }
+  },
+  "myOrders": {
+    "fetchOrderDetailsPartialFailed": "Einige Bestelldetails konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "fetchOrdersFailed": "Es tut uns leid, wir konnten Ihre Bestellungen nicht laden. Bitte versuchen Sie es erneut."
+  },
+  "myPlans": {
+    "fetchPlanDetailsFailed": "Einige Tarifdetails konnten nicht geladen werden. Bitte versuchen Sie es erneut.",
+    "fetchPlansFailed": "Es tut uns leid, wir konnten Ihre Tarife nicht laden. Bitte versuchen Sie es erneut.",
+    "modifyContractFailed": "Es tut uns leid, wir konnten Ihre Tarifänderung nicht vorbereiten. Bitte versuchen Sie es erneut."
+  },
+  "orderSummary": {
+    "cancelOrderFailed": "Es tut uns leid, wir konnten Ihre Bestellung nicht stornieren. Bitte versuchen Sie es erneut.",
+    "validateOrderFailed": "Es tut uns leid, wir konnten Ihre Bestellung nicht bestätigen. Bitte versuchen Sie es erneut."
+  },
+  "plan": {
+    "processFailed": "Es tut uns leid, wir konnten Ihren Tarif nicht verarbeiten. Bitte versuchen Sie es erneut.",
+    "terminateFailed": "Es tut uns leid, wir konnten Ihren Tarif nicht beenden. Bitte versuchen Sie es erneut.",
+    "updateCharacteristicFailed": "Es tut uns leid, wir konnten Ihre Auswahl nicht aktualisieren. Bitte versuchen Sie es erneut.",
+    "updateCommitmentFailed": "Es tut uns leid, wir konnten Ihre Vertragslaufzeit nicht aktualisieren. Bitte versuchen Sie es erneut."
+  },
+  "shipping": {
+    "createFailed": "Es tut uns leid, wir konnten Ihre Versandangaben nicht speichern. Bitte versuchen Sie es erneut.",
+    "updateShippingMethodFailed": "Es tut uns leid, wir konnten Ihre Lieferoption nicht anwenden. Bitte versuchen Sie es erneut."
+  },
+  "trackOrder": {
+    "fetchFailed": "Es tut uns leid, wir konnten Ihren Bestellstatus nicht laden. Bitte versuchen Sie es erneut."
+  }
+}

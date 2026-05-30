@@ -1,0 +1,28 @@
+{
+  "mappings": [
+    {
+      "name": "Get products - Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "productOrderItem.productOrderId": {
+            "matches": "1109.*"
+          },
+          "productOrderItem.orderItemId": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/createdAddProduct/AllProducts.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}
+

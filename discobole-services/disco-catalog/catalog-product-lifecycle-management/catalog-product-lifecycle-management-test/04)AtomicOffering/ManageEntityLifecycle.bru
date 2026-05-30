@@ -1,0 +1,49 @@
+meta {
+  name: ManageEntityLifecycle
+  type: http
+  seq: 17
+}
+
+post {
+  url: {{host}}/lifecycle/processManagement/v1/processFlow
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "processFlowSpecification": "ManageEntityLifecycle",
+      "@type": "ProcessFlow"
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 201
+}
+
+tests {
+  var jsonData =  res.body;
+  
+  
+  test("To verify that next task is selectProductEntity", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[0].title).to.equals("ManageEntityLifecycle.selectProductEntity");
+  });
+  
+  test("To verify that cancel task ispresent", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[1].title).to.equals("ManageEntityLifecycle.lifecycleCancel");
+  });
+  
+}

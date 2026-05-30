@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<configuration>
+    <include
+            resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <include
+            resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <root level="warn">
+        <appender-ref ref="CONSOLE" />
+    </root>
+    <logger name="ua.com.company" level="warn" />
+    <logger name="org.springframework.core " level="warn" />
+    <logger name="org.springframework.beans" level="warn" />
+    <logger name="org.springframework.context" level="warn" />
+    <logger name="org.flyway" level="debag" />
+    <logger name="org.springframework.transaction" level="warn" />
+    <logger name="org.springframework.web" level="debug" />
+    <logger name="org.springframework.test" level="warn" />
+    <logger name="org.hibernate" level="warn" />
+</configuration>

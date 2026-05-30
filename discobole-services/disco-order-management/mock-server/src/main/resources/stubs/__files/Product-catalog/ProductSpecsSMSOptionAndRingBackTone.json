@@ -1,0 +1,387 @@
+[
+  {
+    "id": "3f53cbde-73be-405a-8684-60c4993fe2ad",
+    "description": "SMS Option",
+    "isBundle": false,
+    "lastUpdate": "2023-11-07T09:40:19.043Z",
+    "lifecycleStatus": "active",
+    "name": "SMS Option",
+    "version": "1.0.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "f3da7f97-53ec-4d95-82fc-7154c41c578b.1",
+        "configurable": true,
+        "description": "random",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 2,
+        "minCardinality": 0,
+        "name": "Volume",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "1000SMS",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "a8200e9a-7f06-453a-b0a2-ca37b16ae6c7.2",
+        "configurable": true,
+        "description": "recurring",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 2,
+        "minCardinality": 0,
+        "name": "recurring",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "N",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "1be3aba0-64d8-4b95-9c97-29c388f91e0d.3",
+        "configurable": true,
+        "description": "blocked",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 2,
+        "minCardinality": 0,
+        "name": "blocked",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "Y",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "daf7ada4-3bfa-4eb7-963c-16e4d1e32f46.5",
+        "configurable": true,
+        "description": "Validity",
+        "extensible": false,
+        "isUnique": false,
+        "maxCardinality": 1,
+        "minCardinality": 1,
+        "name": "Validity",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": false,
+            "isSelectable": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": "days",
+            "valueFrom": "0",
+            "valueTo": "9999999",
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2025-01-01T23:20:50.520Z"
+            },
+            "timeRange": {
+              "validTo": null,
+              "validFrom": null
+            },
+            "value": "30",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": null,
+            "addressId": null,
+            "subUnitNumber": null,
+            "streetName": null,
+            "postcode": null,
+            "city": null,
+            "country": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2025-01-01T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ValidityCharacteristic"
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+        "href": null,
+        "relationshipType": "requires",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [],
+    "serviceSpecification": [
+      {
+        "id": "SMS Option",
+        "href": null,
+        "name": "Time bundle",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "relatedResource": [],
+    "operationSpecification": [
+      {
+        "id": "3c1eb802-c017-4be6-b572-a623575f6114.1",
+        "name": "Add a new time bundle",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "ADD",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "dd92e1ba-3981-42b5-a862-2f392735a39c.2",
+        "name": "Delete",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "Remove existing time bundle",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ]
+  },
+  {
+    "id": "abe401bc-76b8-4811-8fef-98d5d10d979c",
+    "description": "Ring Back Tone",
+    "isBundle": false,
+    "lastUpdate": "2023-11-07T16:50:22.756Z",
+    "lifecycleStatus": "active",
+    "name": "Ring Back Tone",
+    "version": "1.0.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "09aadef0-9aba-4c44-91b5-f190916ad476.1",
+        "configurable": true,
+        "description": "Tone",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 4,
+        "minCardinality": 0,
+        "name": "Tone",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "tone1",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          },
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "tone2",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          },
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "tone3",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "stockItem.stockItemCharacteristicValue.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+        "href": null,
+        "relationshipType": "requires",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [],
+    "serviceSpecification": [
+      {
+        "id": "Ring Back Tone_02",
+        "href": null,
+        "name": "Ring Back Tone",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "relatedResource": [],
+    "operationSpecification": [
+      {
+        "id": "72d48be1-5f04-4a9a-a567-cdecc10d4bb2.1",
+        "name": "Add a new Ring Back Tone",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "ADD",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "5d408afc-08ec-4af6-bcd4-0b8badb8ce2a.2",
+        "name": "Delete",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "Remove existing Ring Back Tone",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ]
+  }
+]

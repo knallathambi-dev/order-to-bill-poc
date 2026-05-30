@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="113.081" height="113.081"
+     viewBox="0 0 113.081 113.081">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path_15091" data-name="Path 15091"
+            d="M56.541,0a56.541,56.541,0,1,0,56.54,56.541A56.541,56.541,0,0,0,56.541,0Z" fill="#d9c2f0"/>
+    </clipPath>
+  </defs>
+  <g id="Group_7457" data-name="Group 7457" transform="translate(-772 -982.5)">
+    <path id="Path_15064" data-name="Path 15064"
+          d="M113.081,56.541A56.541,56.541,0,1,1,56.541,0a56.54,56.54,0,0,1,56.54,56.54"
+          transform="translate(772 982.5)" fill="#e5e6e5"/>
+    <path id="Icon_awesome-user" data-name="Icon awesome-user"
+          d="M27.964,31.959A15.979,15.979,0,1,0,11.985,15.979,15.978,15.978,0,0,0,27.964,31.959ZM39.15,35.954H37.065a21.732,21.732,0,0,1-18.2,0H16.778A16.783,16.783,0,0,0,0,52.732v5.193a5.994,5.994,0,0,0,5.992,5.992H49.936a5.994,5.994,0,0,0,5.992-5.992V52.732A16.783,16.783,0,0,0,39.15,35.954Z"
+          transform="translate(800.576 1007.082)" fill="#b8b8b8"/>
+  </g>
+</svg>

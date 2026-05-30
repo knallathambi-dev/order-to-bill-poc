@@ -1,0 +1,32 @@
+meta {
+  name: Modify_Channel
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{Admin_URL}}/channel/{{Channel_id}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Channel_mod_{{random}}",
+    "@type": "Channel",
+    "@baseType": "BaseChannel"
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.name: eq Channel_mod_{{random}}
+}
+
+script:pre-request {
+  var min = 1;
+  var max = 100;
+  var random = Math.floor(Math.random() * (max - min + 1)) + min;
+  bru.setEnvVar("random", random); 
+  
+}

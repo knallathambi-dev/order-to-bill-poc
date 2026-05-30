@@ -1,0 +1,4401 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+swagger: "2.0"
+info:
+  description: "### Release 1.0.0 December 2023\n\n#### Goal\n\n\nPolicy  API goal\
+    \ is to provide the ability to manage Policy rule and its components: policyEvent,\
+    \ policyCondition and policyAction and policyDomain.\n\n\n\n\n\n#### Operations\n\
+    \nPolicy rule API performs the following operations on the resources :\n\ncreate\n\
+    modify\nsearch\ndelete\n\n### TMF API Reference\n\nTMF723 Policy Rule  19.0.1\
+    \ (pre-production)\n\n| Policy Rule API version     |  TMF API version  |\n| ---------------------------\
+    \ |:-----------------:| \n| 1.0.0                       |  4.0.0            |\
+    \ \n| 2.2.0                       |  4.0.0            |"
+  version: "2.3.0_release"
+  title: "PolicyRule"
+host: "product-catalog-integration-disco.apps.fr01.paas.tech.orange"
+basePath: "/policyRule/v1"
+schemes:
+  - "https"
+produces:
+  - "application/json;charset=utf-8"
+tags:
+  - name: "policyRule"
+    description: "A policy rule definition."
+  - name: "policyEvent"
+  - name: "policyCondition"
+    description: "A policy condition definition."
+  - name: "policyAction"
+    description: "A policy action definition."
+  - name: "hub"
+  - name: "listener"
+paths:
+  /policyRule:
+    get:
+      tags:
+        - "policyRule"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listPolicyRule"
+      summary: "List or find PolicyRule objects"
+      description: "This operation list or find PolicyRule entities"
+      parameters:
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PolicyRule"
+          headers:
+            X-Total-Count:
+              description: "Total number of items matching criteria"
+              type: "integer"
+              format: "int32"
+            X-Result-Count:
+              description: "Actual number of items returned in the response body"
+              type: "integer"
+              format: "int32"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    post:
+      tags:
+        - "policyRule"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "createPolicyRule"
+      summary: "Creates a PolicyRule"
+      description: "This operation creates a PolicyRule entity."
+      parameters:
+        - name: "PolicyRule_Create"
+          required: true
+          in: "body"
+          description: "The PolicyRule to be created"
+          schema:
+            $ref: "#/definitions/PolicyRule_Create"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/PolicyRule"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /policyRule/{id}:
+    get:
+      tags:
+        - "policyRule"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "retrievePolicyRule"
+      summary: "Retrieves a PolicyRule by ID"
+      description: "This operation retrieves a PolicyRule entity. Attribute selection\
+        \ is enabled for all first level attributes."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to provide in response"
+          type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PolicyRule"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    delete:
+      tags:
+        - "policyRule"
+      operationId: "deletePolicyRule"
+      summary: "Deletes a PolicyRule"
+      description: "This operation deletes a PolicyRule entity."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    patch:
+      tags:
+        - "policyRule"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "patchPolicyRule"
+      summary: "Updates partially a PolicyRule"
+      description: "This operation updates partially a PolicyRule entity."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "PolicyRule_Update"
+          required: true
+          in: "body"
+          description: "The PolicyRule to be updated"
+          schema:
+            $ref: "#/definitions/PolicyRule_Update"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PolicyRule"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /policyEvent:
+    get:
+      tags:
+        - "policyEvent"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listPolicyEvent"
+      summary: "List or find PolicyEvent objects"
+      description: "This operation list or find PolicyEvent entities"
+      parameters:
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PolicyEvent"
+          headers:
+            X-Total-Count:
+              description: "Total number of items matching criteria"
+              type: "integer"
+              format: "int32"
+            X-Result-Count:
+              description: "Actual number of items returned in the response body"
+              type: "integer"
+              format: "int32"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    post:
+      tags:
+        - "policyEvent"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "createPolicyEvent"
+      summary: "Creates a PolicyEvent"
+      description: "This operation creates a PolicyEvent entity."
+      parameters:
+        - name: "PolicyEvent_Create"
+          required: true
+          in: "body"
+          description: "The PolicyEvent to be created"
+          schema:
+            $ref: "#/definitions/PolicyEvent_Create"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/PolicyEvent"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /policyEvent/{id}:
+    get:
+      tags:
+        - "policyEvent"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "retrievePolicyEvent"
+      summary: "Retrieves a PolicyEvent by ID"
+      description: "This operation retrieves a PolicyEvent entity. Attribute selection\
+        \ is enabled for all first level attributes."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to provide in response"
+          type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PolicyEvent"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    delete:
+      tags:
+        - "policyEvent"
+      operationId: "deletePolicyEvent"
+      summary: "Deletes a PolicyEvent"
+      description: "This operation deletes a PolicyEvent entity."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    patch:
+      tags:
+        - "policyEvent"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "patchPolicyEvent"
+      summary: "Updates partially a PolicyEvent"
+      description: "This operation updates partially a PolicyEvent entity."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "PolicyEvent_Update"
+          required: true
+          in: "body"
+          description: "The PolicyEvent to be updated"
+          schema:
+            $ref: "#/definitions/PolicyEvent_Update"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PolicyEvent"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /policyCondition:
+    get:
+      tags:
+        - "policyCondition"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listPolicyCondition"
+      summary: "List or find PolicyCondition objects"
+      description: "This operation list or find PolicyCondition entities"
+      parameters:
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PolicyCondition"
+          headers:
+            X-Total-Count:
+              description: "Total number of items matching criteria"
+              type: "integer"
+              format: "int32"
+            X-Result-Count:
+              description: "Actual number of items returned in the response body"
+              type: "integer"
+              format: "int32"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    post:
+      tags:
+        - "policyCondition"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "createPolicyCondition"
+      summary: "Creates a PolicyCondition"
+      description: "This operation creates a PolicyCondition entity."
+      parameters:
+        - name: "PolicyCondition_Create"
+          required: true
+          in: "body"
+          description: "The PolicyCondition to be created"
+          schema:
+            $ref: "#/definitions/PolicyCondition_Create"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/PolicyCondition"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /policyCondition/{id}:
+    get:
+      tags:
+        - "policyCondition"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "retrievePolicyCondition"
+      summary: "Retrieves a PolicyCondition by ID"
+      description: "This operation retrieves a PolicyCondition entity. Attribute selection\
+        \ is enabled for all first level attributes."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to provide in response"
+          type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PolicyCondition"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    delete:
+      tags:
+        - "policyCondition"
+      operationId: "deletePolicyCondition"
+      summary: "Deletes a PolicyCondition"
+      description: "This operation deletes a PolicyCondition entity."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    patch:
+      tags:
+        - "policyCondition"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "patchPolicyCondition"
+      summary: "Updates partially a PolicyCondition"
+      description: "This operation updates partially a PolicyCondition entity."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "PolicyCondition_Update"
+          required: true
+          in: "body"
+          description: "The PolicyCondition to be updated"
+          schema:
+            $ref: "#/definitions/PolicyCondition_Update"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PolicyCondition"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /policyAction:
+    get:
+      tags:
+        - "policyAction"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listPolicyAction"
+      summary: "List or find PolicyAction objects"
+      description: "This operation list or find PolicyAction entities"
+      parameters:
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/PolicyAction"
+          headers:
+            X-Total-Count:
+              description: "Total number of items matching criteria"
+              type: "integer"
+              format: "int32"
+            X-Result-Count:
+              description: "Actual number of items returned in the response body"
+              type: "integer"
+              format: "int32"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    post:
+      tags:
+        - "policyAction"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "createPolicyAction"
+      summary: "Creates a PolicyAction"
+      description: "This operation creates a PolicyAction entity."
+      parameters:
+        - name: "PolicyAction_Create"
+          required: true
+          in: "body"
+          description: "The PolicyAction to be created"
+          schema:
+            $ref: "#/definitions/PolicyAction_Create"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/PolicyAction"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /policyAction/{id}:
+    get:
+      tags:
+        - "policyAction"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "retrievePolicyAction"
+      summary: "Retrieves a PolicyAction by ID"
+      description: "This operation retrieves a PolicyAction entity. Attribute selection\
+        \ is enabled for all first level attributes."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to provide in response"
+          type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PolicyAction"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    delete:
+      tags:
+        - "policyAction"
+      operationId: "deletePolicyAction"
+      summary: "Deletes a PolicyAction"
+      description: "This operation deletes a PolicyAction entity."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+    patch:
+      tags:
+        - "policyAction"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "patchPolicyAction"
+      summary: "Updates partially a PolicyAction"
+      description: "This operation updates partially a PolicyAction entity."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "PolicyAction_Update"
+          required: true
+          in: "body"
+          description: "The PolicyAction to be updated"
+          schema:
+            $ref: "#/definitions/PolicyAction_Update"
+      responses:
+        "200":
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PolicyAction"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /hub:
+    post:
+      tags:
+        - "hub"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "registerListener"
+      summary: "Register a listener"
+      description: "Sets the communication endpoint address the service instance must\
+        \ use to deliver information about its health state, execution state, failures\
+        \ and metrics."
+      parameters:
+        - name: "EventSubscriptionInput"
+          required: true
+          in: "body"
+          description: "Data containing the callback endpoint to deliver the information"
+          schema:
+            $ref: "#/definitions/EventSubscriptionInput"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /hub/{id}:
+    delete:
+      tags:
+        - "hub"
+      operationId: "unregisterListener"
+      summary: "Unregister a listener"
+      description: "Resets the communication endpoint address the service instance\
+        \ must use to deliver information about its health state, execution state,\
+        \ failures and metrics."
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyRuleCreateEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyRuleCreateEvent"
+      summary: "Client listener for entity PolicyRuleCreateEvent"
+      description: "Example of a client listener for receiving the notification PolicyRuleCreateEvent"
+      parameters:
+        - name: "PolicyRuleCreateEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyRuleCreateEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyRuleInformationRequiredEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyRuleInformationRequiredEvent"
+      summary: "Client listener for entity PolicyRuleInformationRequiredEvent"
+      description: "Example of a client listener for receiving the notification PolicyRuleInformationRequiredEvent"
+      parameters:
+        - name: "PolicyRuleInformationRequiredEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyRuleInformationRequiredEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyRuleStateChangeEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyRuleStateChangeEvent"
+      summary: "Client listener for entity PolicyRuleStateChangeEvent"
+      description: "Example of a client listener for receiving the notification PolicyRuleStateChangeEvent"
+      parameters:
+        - name: "PolicyRuleStateChangeEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyRuleStateChangeEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyRuleDeleteEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyRuleDeleteEvent"
+      summary: "Client listener for entity PolicyRuleDeleteEvent"
+      description: "Example of a client listener for receiving the notification PolicyRuleDeleteEvent"
+      parameters:
+        - name: "PolicyRuleDeleteEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyRuleDeleteEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyRuleAttributeValueChangeEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyRuleAttributeValueChangeEvent"
+      summary: "Client listener for entity PolicyRuleAttributeValueChangeEvent"
+      description: "Example of a client listener for receiving the notification PolicyRuleAttributeValueChangeEvent"
+      parameters:
+        - name: "PolicyRuleAttributeValueChangeEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyRuleAttributeValueChangeEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyEventCreateEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyEventCreateEvent"
+      summary: "Client listener for entity PolicyEventCreateEvent"
+      description: "Example of a client listener for receiving the notification PolicyEventCreateEvent"
+      parameters:
+        - name: "PolicyEventCreateEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyEventCreateEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyEventInformationRequiredEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyEventInformationRequiredEvent"
+      summary: "Client listener for entity PolicyEventInformationRequiredEvent"
+      description: "Example of a client listener for receiving the notification PolicyEventInformationRequiredEvent"
+      parameters:
+        - name: "PolicyEventInformationRequiredEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyEventInformationRequiredEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyEventDeleteEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyEventDeleteEvent"
+      summary: "Client listener for entity PolicyEventDeleteEvent"
+      description: "Example of a client listener for receiving the notification PolicyEventDeleteEvent"
+      parameters:
+        - name: "PolicyEventDeleteEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyEventDeleteEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyConditionCreateEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyConditionCreateEvent"
+      summary: "Client listener for entity PolicyConditionCreateEvent"
+      description: "Example of a client listener for receiving the notification PolicyConditionCreateEvent"
+      parameters:
+        - name: "PolicyConditionCreateEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyConditionCreateEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyConditionInformationRequiredEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyConditionInformationRequiredEvent"
+      summary: "Client listener for entity PolicyConditionInformationRequiredEvent"
+      description: "Example of a client listener for receiving the notification PolicyConditionInformationRequiredEvent"
+      parameters:
+        - name: "PolicyConditionInformationRequiredEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyConditionInformationRequiredEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyConditionDeleteEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyConditionDeleteEvent"
+      summary: "Client listener for entity PolicyConditionDeleteEvent"
+      description: "Example of a client listener for receiving the notification PolicyConditionDeleteEvent"
+      parameters:
+        - name: "PolicyConditionDeleteEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyConditionDeleteEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyActionCreateEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyActionCreateEvent"
+      summary: "Client listener for entity PolicyActionCreateEvent"
+      description: "Example of a client listener for receiving the notification PolicyActionCreateEvent"
+      parameters:
+        - name: "PolicyActionCreateEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyActionCreateEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyActionInformationRequiredEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyActionInformationRequiredEvent"
+      summary: "Client listener for entity PolicyActionInformationRequiredEvent"
+      description: "Example of a client listener for receiving the notification PolicyActionInformationRequiredEvent"
+      parameters:
+        - name: "PolicyActionInformationRequiredEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyActionInformationRequiredEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+  /listener/policyActionDeleteEvent:
+    post:
+      tags:
+        - "listener"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listenToPolicyActionDeleteEvent"
+      summary: "Client listener for entity PolicyActionDeleteEvent"
+      description: "Example of a client listener for receiving the notification PolicyActionDeleteEvent"
+      parameters:
+        - name: "PolicyActionDeleteEvent"
+          required: true
+          in: "body"
+          description: "The event data"
+          schema:
+            $ref: "#/definitions/PolicyActionDeleteEvent"
+      responses:
+        "201":
+          description: "Created"
+          schema:
+            $ref: "#/definitions/EventSubscription"
+        "400":
+          description: "Bad Request\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "404":
+          description: "Not Found\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "422":
+          description: "Unprocessable entity\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  Addressable:
+    description: "Base schema for adressable entities"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      lastModifiedDate:
+        type: "string"
+        format: "date-time"
+  AffectedService:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      href:
+        description: "Provides the identifier of the service affected by the alarm"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Alarm:
+    description: "This resource represents an alarm supporting the information model\
+      \ defined in ITU-T X.733."
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the alarm, determined by the alarm owning system"
+        type: "integer"
+        format: "int32"
+      href:
+        description: "A reference to the alarm."
+        type: "string"
+      ackState:
+        description: "Provides the Acknowledgement State of the alarm"
+        type: "string"
+      ackSystemId:
+        description: "Provides the name of the system that last changed the ackState\
+          \ of an alarm, i.e. acknowledged or unacknowledged the alarm."
+        type: "string"
+      ackUserId:
+        description: "Provides the id of the user who has last changed the ack state\
+          \ of the alarm, i.e. acknowledged or unacknowledged the alarm."
+        type: "string"
+      alarmChangedTime:
+        description: "Indicates the last date and time when the alarm is changed on\
+          \ the alarm-owning system. Any change to the alarm whether coming from the\
+          \ alarmed resource, or triggered by a change from the client is changing\
+          \ this time."
+        type: "string"
+        format: "date-time"
+      alarmClearedTime:
+        description: "Indicates the time (as a date + time) at which the alarm is\
+          \ cleared at the source. "
+        type: "string"
+        format: "date-time"
+      alarmDetails:
+        description: "Contains further information on the alarm."
+        type: "string"
+      alarmEscalation:
+        description: "Indicates if this alarm has been escalated or not. "
+        type: "boolean"
+      alarmRaisedTime:
+        description: "Indicates the time (as a date + time) at which the alarm occurred\
+          \ at its source."
+        type: "string"
+        format: "date-time"
+      alarmReportingTime:
+        description: "Indicates the time (as a date + time) at which the alarm was\
+          \ reported by the owning OSS. It might be different from the alarmRaisedTime.\
+          \ For instance, if the alarm list is maintained by an EMS, the alarmRaisedtime\
+          \ would be the time the alarm\n  was detected by the NE, while the alarmReportingTime\
+          \ would be the time this alarm was stored in the alarm list of the EMS."
+        type: "string"
+        format: "date-time"
+      alarmType:
+        description: "Categorize the alarm. Should be one of the values defined in\
+          \ X.733 8.1.1 or 3GPP TS 32.111-2 Annex A:\n\tCommunications Alarm\n\tProcessing\
+          \ Error Alarm\n\tEnvironmental Alarm\n\tQuality of Service Alarm\n\tEquipment\
+          \ Alarm\n\tIntegrity Violation\n\tOperational Violation\n\tPhysical Violation\n\
+          \tSecurity Service or Mechanism Violation\n\tTime Domain Violation"
+        type: "string"
+      alarmedObjectType:
+        description: "The type (class) of the managed object associated with the event."
+        type: "string"
+      clearSystemId:
+        description: "Provides the id of the system where the user who invoked the\
+          \ alarmCleared operation is located. "
+        type: "string"
+      clearUserId:
+        description: "Provides the id of the user who invoked the alarmCleared operation"
+        type: "string"
+      externalAlarmId:
+        description: "An identifier of the alarm in the source system."
+        type: "string"
+      isRootCause:
+        description: "Indicates whether the alarm is a root cause alarm.. "
+        type: "boolean"
+      perceivedSeverity:
+        description: "Lists the possible severities that can be allocated to an Alarm.\
+          \ The values are consistent with ITU-T Recommendation X.733.\nOnce an alarm\
+          \ has been cleared, its perceived severity is set to 'cleared' and can no\
+          \ longer be set."
+        type: "string"
+      plannedOutageIndicator:
+        description: "Indicates that the Managed Object (related to this alarm) is\
+          \ in planned outage (in planned maintenance, or out-of-service). "
+        type: "string"
+      probableCause:
+        description: "Provides the probable cause of the alarm. The values are consistent\
+          \ with ITU-T Recommendation X.733 or 3GPP TS 32.111-2 Annex B."
+        type: "string"
+      proposedRepairedActions:
+        description: "Indicates proposed repair actions, if known to the system emitting\
+          \ the alarm."
+        type: "string"
+      reportingSystemId:
+        description: "Reporting system identity."
+        type: "string"
+      serviceAffecting:
+        description: "Indicates whether the alarm affects service or not."
+        type: "boolean"
+      sourceSystemId:
+        description: "Source system identity."
+        type: "string"
+      specificProblem:
+        description: "Provides more specific information about the alarm."
+        type: "string"
+      state:
+        description: "Defines the alarm state during its life cycle"
+        type: "string"
+      affectedService:
+        type: "array"
+        items:
+          $ref: "#/definitions/AffectedService"
+      alarmedObject:
+        $ref: "#/definitions/AlarmedObject"
+      comment:
+        type: "array"
+        items:
+          $ref: "#/definitions/Comment"
+      correlatedAlarm:
+        type: "array"
+        items:
+          $ref: "#/definitions/AlarmRef"
+      crossedThresholdInformation:
+        $ref: "#/definitions/CrossedThresholdInformation"
+      parentAlarm:
+        type: "array"
+        items:
+          $ref: "#/definitions/AlarmRef"
+      place:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedPlaceRefOrValue"
+      '@baseType':
+        description: "The base type of this alarm."
+        type: "string"
+      '@schemaLocation':
+        description: "A reference to the schema describing this alarm."
+        type: "string"
+      '@type':
+        description: "The type for this alarm."
+        type: "string"
+  AlarmRef:
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  AlarmedObject:
+    description: "Identifies the managed object instance associated with the alarm."
+    type: "object"
+    properties:
+      id:
+        description: "The identifier of the managed object associated with the event."
+        type: "string"
+      href:
+        description: "A reference to the managed object associated with the event."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Any: {}
+  Characteristic:
+    description: "Describes a given characteristic of an object or entity through\
+      \ a name/value pair."
+    required:
+      - "name"
+      - "value"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the characteristic"
+        type: "string"
+      name:
+        description: "Name of the characteristic"
+        type: "string"
+      valueType:
+        description: "Data type of the value of the characteristic"
+        type: "string"
+      characteristicRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/CharacteristicRelationship"
+      value:
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  CharacteristicRelationship:
+    description: "Another Characteristic that is related to the current Characteristic;"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the characteristic"
+        type: "string"
+      relationshipType:
+        description: "The type of relationship"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Comment:
+    description: "Indicates the comments entered on the alarm."
+    type: "object"
+    properties:
+      comment:
+        description: "Indicates the text of the comment."
+        type: "string"
+      systemId:
+        description: "Indicates the system identifier on which the client set the\
+          \ comment."
+        type: "string"
+      time:
+        description: "Indicates the time commenting the alarm"
+        type: "string"
+        format: "date-time"
+      userId:
+        description: "Indicates the user commenting the alarm."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  CrossedThresholdInformation:
+    description: "Identifies the details of the threshold that has been crossed."
+    type: "object"
+    properties:
+      direction:
+        description: "Indicates the threshold crossing direction: up or down."
+        type: "string"
+      granularity:
+        description: "Indicates the granularity at which the indicator is evaluated\
+          \ for threshold crossing"
+        type: "string"
+      indicatorName:
+        description: "Indicates the name of indicator which crossed the threshold."
+        type: "string"
+      indicatorUnit:
+        description: "Indicates the unit of the measurement of the indicator corresponding\
+          \ to the threshold that has been crossed."
+        type: "string"
+      observedValue:
+        description: "Indicates the value of the indicator which crossed the threshold."
+        type: "string"
+      thresholdCrossingDescription:
+        description: "Indicates further information on the threshold crossing alarm."
+        type: "string"
+      threshold:
+        $ref: "#/definitions/ThresholdRef"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  EntityRef:
+    description: "Entity reference schema to be use for all entityRef class."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  Error:
+    description: "Used when an API throws an Error, typically with a HTTP error response-code\
+      \ (3xx, 4xx, 5xx)"
+    required:
+      - "code"
+      - "reason"
+    type: "object"
+    properties:
+      code:
+        description: "Application relevant detail, defined in the API or a common\
+          \ list."
+        type: "string"
+      reason:
+        description: "Explanation of the reason for the error which can be shown to\
+          \ a client user."
+        type: "string"
+      message:
+        description: "More details and corrective actions related to the error which\
+          \ can be shown to a client user."
+        type: "string"
+      status:
+        description: "HTTP Error code extension"
+        type: "string"
+      referenceError:
+        description: "URI of documentation describing the error."
+        type: "string"
+        format: "uri"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class."
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name."
+        type: "string"
+  Event:
+    description: "event with common attributes."
+    type: "object"
+    properties:
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+      title:
+        description: "The title of the event."
+        type: "string"
+      analyticCharacteristic:
+        type: "array"
+        items:
+          $ref: "#/definitions/Characteristic"
+      event:
+        type: "object"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      reportingSystem:
+        $ref: "#/definitions/EntityRef"
+      source:
+        $ref: "#/definitions/EntityRef"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      lastUpdate:
+        type: "string"
+        format: "date-time"
+  EventRef:
+    description: "Events linked with service problem"
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "ID of the event"
+        type: "string"
+      href:
+        description: "event reference"
+        type: "string"
+      eventTime:
+        description: "Time the event occurred"
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "Type of the event"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  EventSubscription:
+    description: "Sets the communication endpoint address the service instance must\
+      \ use to deliver notification information"
+    required:
+      - "id"
+      - "callback"
+    type: "object"
+    properties:
+      id:
+        description: "Id of the listener"
+        type: "string"
+      callback:
+        description: "The callback being registered."
+        type: "string"
+      query:
+        description: "additional data to be passed"
+        type: "string"
+  EventSubscriptionInput:
+    description: "Sets the communication endpoint address the service instance must\
+      \ use to deliver notification information"
+    required:
+      - "callback"
+    type: "object"
+    properties:
+      callback:
+        description: "The callback being registered."
+        type: "string"
+      query:
+        description: "additional data to be passed"
+        type: "string"
+  Extensible:
+    description: "Base Extensible schema for use in TMForum Open-APIs"
+    type: "object"
+    properties:
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  Note:
+    description: "Extra information about a given entity"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the note within its containing entity (may or\
+          \ may not be globally unique, depending on provider implementation)"
+        type: "string"
+      author:
+        description: "Author of the note"
+        type: "string"
+      date:
+        description: "Date of the note"
+        type: "string"
+        format: "date-time"
+      text:
+        description: "Text of the note"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Place:
+    description: "Place reference. Place defines the places where the products are\
+      \ sold or delivered."
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the place"
+        type: "string"
+      href:
+        description: "Unique reference of the place"
+        type: "string"
+      name:
+        description: "A user-friendly name for the place, such as [Paris Store], [London\
+          \ Store], [Main Home]"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  PlaceRef:
+    description: "Place reference. PlaceRef defines the placeRefs where the products\
+      \ are sold or delivered."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  PolicyAction:
+    description: "A policy action definition."
+    required:
+      - "id"
+      - "lastUpdate"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      actionSequence:
+        description: "When several action has to be performed, the sequence is used\
+          \ to prioritize them"
+        type: "integer"
+        format: "int32"
+      actionStrategy:
+        description: "actionStrategy attribute defines the strategy to be used when\
+          \ executing the sequenced actions aggregated by this PolicyAction - example\
+          \ 1: Do until success, 2: do all, 3: Do until failure, 4: do all without\
+          \ failure or do nothing"
+        type: "string"
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy action"
+        type: "string"
+      name:
+        description: "Name of the policy action"
+        type: "string"
+      version:
+        description: "Policy action version"
+        type: "string"
+      actionCondition:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyConditionRef"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyAction:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyAction"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      lastUpdate:
+        type: "string"
+        format: "date-time"
+  PolicyActionAlarm:
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      actionSequence:
+        description: "When several action has to be performed, the sequence is used\
+          \ to prioritize them"
+        type: "integer"
+        format: "int32"
+      actionStrategy:
+        description: "actionStrategy attribute defines the strategy to be used when\
+          \ executing the sequenced actions aggregated by this PolicyAction - example\
+          \ 1: Do until success, 2: do all, 3: Do until failure, 4: do all without\
+          \ failure or do nothing"
+        type: "string"
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy action"
+        type: "string"
+      name:
+        description: "Name of the policy action"
+        type: "string"
+      version:
+        description: "Policy action version"
+        type: "string"
+      actionCondition:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyConditionRef"
+      alarm:
+        $ref: "#/definitions/Alarm"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyAction:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyAction"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  PolicyActionCreateEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      event:
+        $ref: "#/definitions/PolicyActionCreateEventPayload"
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+  PolicyActionCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyAction:
+        $ref: "#/definitions/PolicyAction"
+  PolicyActionDeleteEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      event:
+        $ref: "#/definitions/PolicyActionDeleteEventPayload"
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+  PolicyActionDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyAction:
+        $ref: "#/definitions/PolicyAction"
+  PolicyActionEvent:
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      actionSequence:
+        description: "When several action has to be performed, the sequence is used\
+          \ to prioritize them"
+        type: "integer"
+        format: "int32"
+      actionStrategy:
+        description: "actionStrategy attribute defines the strategy to be used when\
+          \ executing the sequenced actions aggregated by this PolicyAction - example\
+          \ 1: Do until success, 2: do all, 3: Do until failure, 4: do all without\
+          \ failure or do nothing"
+        type: "string"
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy action"
+        type: "string"
+      name:
+        description: "Name of the policy action"
+        type: "string"
+      version:
+        description: "Policy action version"
+        type: "string"
+      actionCondition:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyConditionRef"
+      event:
+        $ref: "#/definitions/Event"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyAction:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyAction"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  PolicyActionInformationRequiredEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+      fieldPath:
+        description: "The path identifying the object field concerned by this notification."
+        type: "string"
+      event:
+        $ref: "#/definitions/PolicyActionInformationRequiredEventPayload"
+  PolicyActionInformationRequiredEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyAction:
+        $ref: "#/definitions/PolicyAction"
+  PolicyActionInteger:
+    description: "A Policy Action which value is a integer"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the policy action value"
+        type: "string"
+      value:
+        description: "Value of the Policy action"
+        type: "integer"
+        format: "int32"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  PolicyActionObject:
+    description: "A Policy Action which value is an object"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the policy action value"
+        type: "string"
+      value:
+        description: "Value of the Policy action"
+        type: "object"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  PolicyActionOperation:
+    required:
+      - "lastUpdate"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      actionSequence:
+        description: "When several action has to be performed, the sequence is used\
+          \ to prioritize them"
+        type: "integer"
+        format: "int32"
+      actionStrategy:
+        description: "actionStrategy attribute defines the strategy to be used when\
+          \ executing the sequenced actions aggregated by this PolicyAction - example\
+          \ 1: Do until success, 2: do all, 3: Do until failure, 4: do all without\
+          \ failure or do nothing"
+        type: "string"
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy action"
+        type: "string"
+      fields:
+        description: "field to be considered for the operation"
+        type: "string"
+      filter:
+        description: "Filter to access the right field in case of array"
+        type: "string"
+      name:
+        description: "Name of the policy action"
+        type: "string"
+      operation:
+        description: "operation to be performed like add, remove, replace"
+        type: "string"
+      path:
+        description: "path to the field to be added/updated"
+        type: "string"
+      version:
+        description: "Policy action version"
+        type: "string"
+      actionCondition:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyConditionRef"
+      actionValue:
+        $ref: "#/definitions/PolicyActionValue"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyAction:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyAction"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      lastUpdate:
+        type: "string"
+        format: "date-time"
+  PolicyActionRef:
+    description: "A policy action reference."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  PolicyActionString:
+    description: "A Policy Action which value is a string"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the policy action value"
+        type: "string"
+      value:
+        description: "Value of the Policy action"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  PolicyActionValue:
+    description: "A Policy action value - use specialization per datatype"
+    required:
+      - "value"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the policy action value"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      value:
+        $ref: "#/definitions/value"
+  PolicyAction_Create:
+    description: "A policy action definition.\nSkipped properties: id,href"
+    required:
+      - "policyActionValue"
+      - "fields"
+    type: "object"
+    properties:
+      actionSequence:
+        description: "When several action has to be performed, the sequence is used\
+          \ to prioritize them"
+        type: "integer"
+        format: "int32"
+      actionStrategy:
+        description: "actionStrategy attribute defines the strategy to be used when\
+          \ executing the sequenced actions aggregated by this PolicyAction - example\
+          \ 1: Do until success, 2: do all, 3: Do until failure, 4: do all without\
+          \ failure or do nothing"
+        type: "string"
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy action"
+        type: "string"
+      name:
+        description: "Name of the policy action"
+        type: "string"
+      version:
+        description: "Policy action version"
+        type: "string"
+      actionCondition:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyConditionRef"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyAction:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyAction"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      policyActionValue:
+        $ref: "#/definitions/PolicyActionValue"
+      fields:
+        type: "string"
+  PolicyAction_Update:
+    description: "A policy action definition.\nSkipped properties: id,href"
+    type: "object"
+    properties:
+      actionSequence:
+        description: "When several action has to be performed, the sequence is used\
+          \ to prioritize them"
+        type: "integer"
+        format: "int32"
+      actionStrategy:
+        description: "actionStrategy attribute defines the strategy to be used when\
+          \ executing the sequenced actions aggregated by this PolicyAction - example\
+          \ 1: Do until success, 2: do all, 3: Do until failure, 4: do all without\
+          \ failure or do nothing"
+        type: "string"
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy action"
+        type: "string"
+      name:
+        description: "Name of the policy action"
+        type: "string"
+      version:
+        description: "Policy action version"
+        type: "string"
+      actionCondition:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyConditionRef"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyAction:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyAction"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  PolicyCondition:
+    description: "A policy condition definition."
+    required:
+      - "id"
+      - "lastUpdate"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy condition"
+        type: "string"
+      isConjustiveNormalForm:
+        description: "This is a Boolean attribute that, if TRUE, defines the condition\
+          \ clause of this rule to be represented in Conjunctive Normal Form (e.g.,\
+          \ an AND of ORs). If the value of this attribute is FALSE, then the condition\
+          \ clause will be represented in Disjunctive Normal Form (e.g., an OR of\
+          \ ANDs). "
+        type: "boolean"
+      name:
+        description: "Name of the policy condition"
+        type: "string"
+      policyConditionStrategy:
+        description: "executionStrategy attribute defines the strategy to be used\
+          \ when executing the sequenced actions aggregated by this PolicyCondition\
+          \ - example 1: Do until success, 2: do all, 3: Do until failure, 4: do all\
+          \ without failure or do nothing"
+        type: "string"
+      version:
+        description: "Policy condition version"
+        type: "string"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyCondition:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyCondition"
+      policyConditionStatement:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyConditionStatement"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      lastUpdate:
+        type: "string"
+        format: "date-time"
+  PolicyConditionCreateEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      event:
+        $ref: "#/definitions/PolicyConditionCreateEventPayload"
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+  PolicyConditionCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyCondition:
+        $ref: "#/definitions/PolicyCondition"
+  PolicyConditionDeleteEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      event:
+        $ref: "#/definitions/PolicyConditionDeleteEventPayload"
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+  PolicyConditionDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyCondition:
+        $ref: "#/definitions/PolicyCondition"
+  PolicyConditionInformationRequiredEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+      fieldPath:
+        description: "The path identifying the object field concerned by this notification."
+        type: "string"
+      event:
+        $ref: "#/definitions/PolicyConditionInformationRequiredEventPayload"
+  PolicyConditionInformationRequiredEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyCondition:
+        $ref: "#/definitions/PolicyCondition"
+  PolicyConditionInteger:
+    description: "A Policy Condition which value is a Integer"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the policy condition value"
+        type: "string"
+      value:
+        description: "Value of the PolicyCondition"
+        type: "integer"
+        format: "int32"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  PolicyConditionObject:
+    description: "A Policy Condition which value is an object"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the policy condition value"
+        type: "string"
+      value:
+        description: "Value of the PolicyCondition"
+        type: "object"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  PolicyConditionRef:
+    description: "A policy condition reference."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  PolicyConditionStatement:
+    description: "A policy condition statement definition."
+    required:
+      - "opType"
+    type: "object"
+    properties:
+      description:
+        description: "Description of the policy condition statement"
+        type: "string"
+      name:
+        description: "Name of the policy condition statement"
+        type: "string"
+      opType:
+        description: "Operand to be used between the variable and the value like =,\
+          \ >, =>, <, <=, <>, etc..."
+        type: "string"
+      PolicyConditionValue:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyConditionValue"
+      PolicyConditionVariable:
+        $ref: "#/definitions/PolicyConditionVariable"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  PolicyConditionString:
+    description: "A Policy Condition which value is a string"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the policy condition value"
+        type: "string"
+      value:
+        description: "Value of the PolicyCondition"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  PolicyConditionValue:
+    description: "A Policy Condition value - use specialization per datatype"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the policy condition value"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  PolicyConditionVariable:
+    description: "A Policy Condition variable"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the policy condition variable"
+        type: "string"
+      fields:
+        description: "field to be considered for the variable"
+        type: "string"
+      filter:
+        description: "Filter to access the right field in case of array"
+        type: "string"
+      path:
+        description: "path to the variable"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+  PolicyCondition_Create:
+    description: "A policy condition definition.\nSkipped properties: id,href"
+    required:
+      - "policyConditionStatement"
+    type: "object"
+    properties:
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy condition"
+        type: "string"
+      isConjustiveNormalForm:
+        description: "This is a Boolean attribute that, if TRUE, defines the condition\
+          \ clause of this rule to be represented in Conjunctive Normal Form (e.g.,\
+          \ an AND of ORs). If the value of this attribute is FALSE, then the condition\
+          \ clause will be represented in Disjunctive Normal Form (e.g., an OR of\
+          \ ANDs). "
+        type: "boolean"
+      name:
+        description: "Name of the policy condition"
+        type: "string"
+      policyConditionStrategy:
+        description: "executionStrategy attribute defines the strategy to be used\
+          \ when executing the sequenced actions aggregated by this PolicyCondition\
+          \ - example 1: Do until success, 2: do all, 3: Do until failure, 4: do all\
+          \ without failure or do nothing"
+        type: "string"
+      version:
+        description: "Policy condition version"
+        type: "string"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyCondition:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyCondition"
+      policyConditionStatement:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyConditionStatement"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  PolicyCondition_Update:
+    description: "A policy condition definition.\nSkipped properties: id,href"
+    type: "object"
+    properties:
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy condition"
+        type: "string"
+      isConjustiveNormalForm:
+        description: "This is a Boolean attribute that, if TRUE, defines the condition\
+          \ clause of this rule to be represented in Conjunctive Normal Form (e.g.,\
+          \ an AND of ORs). If the value of this attribute is FALSE, then the condition\
+          \ clause will be represented in Disjunctive Normal Form (e.g., an OR of\
+          \ ANDs). "
+        type: "boolean"
+      name:
+        description: "Name of the policy condition"
+        type: "string"
+      policyConditionStrategy:
+        description: "executionStrategy attribute defines the strategy to be used\
+          \ when executing the sequenced actions aggregated by this PolicyCondition\
+          \ - example 1: Do until success, 2: do all, 3: Do until failure, 4: do all\
+          \ without failure or do nothing"
+        type: "string"
+      version:
+        description: "Policy condition version"
+        type: "string"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyCondition:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyCondition"
+      policyConditionStatement:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyConditionStatement"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  PolicyDomainRef:
+    description: "A policy domain reference."
+    required:
+      - "id"
+      - "lastUpdate"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+      lastUpdate:
+        type: "string"
+        format: "date-time"
+  PolicyEvent:
+    description: "An event triggering the policy rule execution"
+    required:
+      - "id"
+      - "lastUpdate"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy action"
+        type: "string"
+      name:
+        description: "Name of the policy action"
+        type: "string"
+      query:
+        description: "Query is used to filter event like for example filtering on\
+          \ specific state for stateChange event."
+        type: "string"
+      event:
+        type: "array"
+        items:
+          $ref: "#/definitions/EventRef"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      lastUpdate:
+        type: "string"
+        format: "date-time"
+  PolicyEventCreateEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      event:
+        $ref: "#/definitions/PolicyEventCreateEventPayload"
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+  PolicyEventCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyEvent:
+        $ref: "#/definitions/PolicyEvent"
+  PolicyEventDeleteEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      event:
+        $ref: "#/definitions/PolicyEventDeleteEventPayload"
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+  PolicyEventDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyEvent:
+        $ref: "#/definitions/PolicyEvent"
+  PolicyEventInformationRequiredEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+      fieldPath:
+        description: "The path identifying the object field concerned by this notification."
+        type: "string"
+      event:
+        $ref: "#/definitions/PolicyEventInformationRequiredEventPayload"
+  PolicyEventInformationRequiredEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyEvent:
+        $ref: "#/definitions/PolicyEvent"
+  PolicyEventRef:
+    description: "A policy event reference."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  PolicyEvent_Create:
+    description: "An event triggering the policy rule execution\nSkipped properties:\
+      \ id,href"
+    required:
+      - "event"
+    type: "object"
+    properties:
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy action"
+        type: "string"
+      name:
+        description: "Name of the policy action"
+        type: "string"
+      query:
+        description: "Query is used to filter event like for example filtering on\
+          \ specific state for stateChange event."
+        type: "string"
+      event:
+        type: "array"
+        items:
+          $ref: "#/definitions/EventRef"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  PolicyEvent_Update:
+    description: "An event triggering the policy rule execution\nSkipped properties:\
+      \ id,href"
+    type: "object"
+    properties:
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy action"
+        type: "string"
+      name:
+        description: "Name of the policy action"
+        type: "string"
+      query:
+        description: "Query is used to filter event like for example filtering on\
+          \ specific state for stateChange event."
+        type: "string"
+      event:
+        type: "array"
+        items:
+          $ref: "#/definitions/EventRef"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  PolicyRule:
+    description: "A policy rule definition."
+    required:
+      - "id"
+      - "creationDate"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy rule"
+        type: "string"
+      executionStrategy:
+        description: "executionStrategy attribute defines the strategy to be used\
+          \ when executing the sequenced actions aggregated by this PolicyRule - example\
+          \ 1: Do until success, 2: do all, 3: Do until failure, 4: do all without\
+          \ failure or do nothing"
+        type: "string"
+      isConjustiveNormalForm:
+        description: "This is a Boolean attribute that, if TRUE, defines the condition\
+          \ clause of this rule to be represented in Conjunctive Normal Form (e.g.,\
+          \ an AND of ORs). If the value of this attribute is FALSE, then the condition\
+          \ clause will be represented in Disjunctive Normal Form (e.g., an OR of\
+          \ ANDs). "
+        type: "boolean"
+      name:
+        description: "Name of the policy rule"
+        type: "string"
+      sequencedAction:
+        description: "The sequencedAction attribute is an enumerated integer that\
+          \ defines how the ordering of the PolicyActions associated with this PolicyRule\
+          \ is to be interpreted. Values include: 1 Mandatory, 2 recommended, 3 best\
+          \ effort."
+        type: "integer"
+        format: "int32"
+      sequencedValue:
+        description: "Policy value sequence value when rules have to be executed in\
+          \ a specific order"
+        type: "integer"
+        format: "int32"
+      state:
+        description: "State of the policy rule - could be active/inactive"
+        type: "string"
+      version:
+        description: "Policy rule version"
+        type: "string"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyAction:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyActionRef"
+      policyCondition:
+        $ref: "#/definitions/PolicyConditionRef"
+      policyDomain:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyDomainRef"
+      policyEvent:
+        $ref: "#/definitions/PolicyEventRef"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      lastUpdate:
+        type: "string"
+        format: "date-time"
+  PolicyRuleAttributeValueChangeEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+      fieldPath:
+        description: "The path identifying the object field concerned by this notification."
+        type: "string"
+      event:
+        $ref: "#/definitions/PolicyRuleAttributeValueChangeEventPayload"
+  PolicyRuleAttributeValueChangeEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyRule:
+        $ref: "#/definitions/PolicyRule"
+  PolicyRuleCreateEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      event:
+        $ref: "#/definitions/PolicyRuleCreateEventPayload"
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+  PolicyRuleCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyRule:
+        $ref: "#/definitions/PolicyRule"
+  PolicyRuleDeleteEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      event:
+        $ref: "#/definitions/PolicyRuleDeleteEventPayload"
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+  PolicyRuleDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyRule:
+        $ref: "#/definitions/PolicyRule"
+  PolicyRuleInformationRequiredEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+      fieldPath:
+        description: "The path identifying the object field concerned by this notification."
+        type: "string"
+      event:
+        $ref: "#/definitions/PolicyRuleInformationRequiredEventPayload"
+  PolicyRuleInformationRequiredEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyRule:
+        $ref: "#/definitions/PolicyRule"
+  PolicyRuleStateChangeEvent:
+    description: "The notification data structure"
+    type: "object"
+    properties:
+      event:
+        $ref: "#/definitions/PolicyRuleStateChangeEventPayload"
+      eventId:
+        description: "The identifier of the notification."
+        type: "string"
+      eventTime:
+        description: "Time of the event occurrence."
+        type: "string"
+        format: "date-time"
+      eventType:
+        description: "The type of the notification."
+        type: "string"
+      correlationId:
+        description: "The correlation id for this event."
+        type: "string"
+      domain:
+        description: "The domain of the event."
+        type: "string"
+      title:
+        description: "The title of the event."
+        type: "string"
+      description:
+        description: "An explnatory of the event."
+        type: "string"
+      priority:
+        description: "A priority."
+        type: "string"
+      timeOcurred:
+        description: "The time the event occured."
+        type: "string"
+        format: "date-time"
+  PolicyRuleStateChangeEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      policyRule:
+        $ref: "#/definitions/PolicyRule"
+  PolicyRule_Create:
+    description: "A policy rule definition.\nSkipped properties: id,href,creationDate"
+    type: "object"
+    properties:
+      description:
+        description: "Description of the policy rule"
+        type: "string"
+      executionStrategy:
+        description: "executionStrategy attribute defines the strategy to be used\
+          \ when executing the sequenced actions aggregated by this PolicyRule - example\
+          \ 1: Do until success, 2: do all, 3: Do until failure, 4: do all without\
+          \ failure or do nothing"
+        type: "string"
+      isConjustiveNormalForm:
+        description: "This is a Boolean attribute that, if TRUE, defines the condition\
+          \ clause of this rule to be represented in Conjunctive Normal Form (e.g.,\
+          \ an AND of ORs). If the value of this attribute is FALSE, then the condition\
+          \ clause will be represented in Disjunctive Normal Form (e.g., an OR of\
+          \ ANDs). "
+        type: "boolean"
+      name:
+        description: "Name of the policy rule"
+        type: "string"
+      sequencedAction:
+        description: "The sequencedAction attribute is an enumerated integer that\
+          \ defines how the ordering of the PolicyActions associated with this PolicyRule\
+          \ is to be interpreted. Values include: 1 Mandatory, 2 recommended, 3 best\
+          \ effort."
+        type: "integer"
+        format: "int32"
+      sequencedValue:
+        description: "Policy value sequence value when rules have to be executed in\
+          \ a specific order"
+        type: "integer"
+        format: "int32"
+      state:
+        description: "State of the policy rule - could be active/inactive"
+        type: "string"
+      version:
+        description: "Policy rule version"
+        type: "string"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyAction:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyActionRef"
+      policyCondition:
+        $ref: "#/definitions/PolicyConditionRef"
+      policyDomain:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyDomainRef"
+      policyEvent:
+        $ref: "#/definitions/PolicyEventRef"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  PolicyRule_Update:
+    description: "A policy rule definition.\nSkipped properties: id,href"
+    type: "object"
+    properties:
+      creationDate:
+        type: "string"
+        format: "date-time"
+      description:
+        description: "Description of the policy rule"
+        type: "string"
+      executionStrategy:
+        description: "executionStrategy attribute defines the strategy to be used\
+          \ when executing the sequenced actions aggregated by this PolicyRule - example\
+          \ 1: Do until success, 2: do all, 3: Do until failure, 4: do all without\
+          \ failure or do nothing"
+        type: "string"
+      isConjustiveNormalForm:
+        description: "This is a Boolean attribute that, if TRUE, defines the condition\
+          \ clause of this rule to be represented in Conjunctive Normal Form (e.g.,\
+          \ an AND of ORs). If the value of this attribute is FALSE, then the condition\
+          \ clause will be represented in Disjunctive Normal Form (e.g., an OR of\
+          \ ANDs). "
+        type: "boolean"
+      name:
+        description: "Name of the policy rule"
+        type: "string"
+      sequencedAction:
+        description: "The sequencedAction attribute is an enumerated integer that\
+          \ defines how the ordering of the PolicyActions associated with this PolicyRule\
+          \ is to be interpreted. Values include: 1 Mandatory, 2 recommended, 3 best\
+          \ effort."
+        type: "integer"
+        format: "int32"
+      sequencedValue:
+        description: "Policy value sequence value when rules have to be executed in\
+          \ a specific order"
+        type: "integer"
+        format: "int32"
+      state:
+        description: "State of the policy rule - could be active/inactive"
+        type: "string"
+      version:
+        description: "Policy rule version"
+        type: "string"
+      note:
+        type: "array"
+        items:
+          $ref: "#/definitions/Note"
+      policyAction:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyActionRef"
+      policyCondition:
+        $ref: "#/definitions/PolicyConditionRef"
+      policyDomain:
+        type: "array"
+        items:
+          $ref: "#/definitions/PolicyDomainRef"
+      policyEvent:
+        $ref: "#/definitions/PolicyEventRef"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  RelatedParty:
+    description: "Related Entity reference. A related party defines party or party\
+      \ role linked to a specific entity."
+    required:
+      - "id"
+      - "@referredType"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      role:
+        description: "Role played by the related party"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  RelatedPlaceRefOrValue:
+    description: "Related Entity reference. A related place defines a place described\
+      \ by reference or by value linked to a specific entity. The polymorphic attributes\
+      \ @type, @schemaLocation & @referredType are related to the place entity and\
+      \ not the RelatedPlaceRefOrValue class itself"
+    required:
+      - "role"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the place"
+        type: "string"
+      href:
+        description: "Unique reference of the place"
+        type: "string"
+      name:
+        description: "A user-friendly name for the place, such as [Paris Store], [London\
+          \ Store], [Main Home]"
+        type: "string"
+      role:
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  ThresholdRef:
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "unique identifier"
+        type: "string"
+      href:
+        description: "Hyperlink reference"
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class Extensible name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  TimePeriod:
+    description: "A period of time, either as a deadline (endDateTime only) a startDateTime\
+      \ only, or both"
+    type: "object"
+    properties:
+      endDateTime:
+        description: "End of the time period, using IETC-RFC-3339 format"
+        type: "string"
+        format: "date-time"
+      startDateTime:
+        description: "Start of the time period, using IETC-RFC-3339 format. If you\
+          \ define a start, you must also define an end"
+        type: "string"
+        format: "date-time"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+        format: "uri"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  objectType:
+    type: "string"
+    enum:
+      - "ProductOfferingPrice"
+  value:
+    required:
+      - "objectType"
+      - "objectId"
+      - "objectName"
+    type: "object"
+    properties:
+      objectType:
+        $ref: "#/definitions/objectType"
+      objectId:
+        type: "string"
+      objectName:
+        type: "string"

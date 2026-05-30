@@ -1,0 +1,377 @@
+{
+  "access": {
+    "noPermission": "Nu ai permisiunea de a vizualiza această pagină",
+    "restricted": "Acces restricționat"
+  },
+  "actions": {
+    "accessRestricted": "Acces restricționat",
+    "addToOrder": "Adaugă la comandă",
+    "back": "Înapoi",
+    "backToHomepage": "Înapoi la pagina principală",
+    "backToLogin": "Înapoi la autentificare",
+    "cancel": "Anulează",
+    "cancelModify": "Anulează modificarea",
+    "cancelOrder": "Anulează comanda",
+    "cancelPayment": "Anulează plata",
+    "cancelTerminate": "Anulează rezilierea",
+    "changePlan": "Schimbă planul",
+    "checkEligibility": "Verifică eligibilitatea",
+    "close": "Închide",
+    "confirmOrder": "Confirmă comanda",
+    "continueToPayment": "Continuă la plată",
+    "edit": "Editează",
+    "editAddress": "Editează adresa",
+    "editPlan": "Editează planul",
+    "goToOffers": "Mergi la oferte",
+    "login": "Autentificare",
+    "logout": "Deconectare",
+    "modify": "Modifică",
+    "myOrders": "Comenzile mele",
+    "next": "Înainte",
+    "orderNow": "Comandă acum",
+    "placeOrder": "Plasează comanda",
+    "proceedToChange": "Continuă modificarea",
+    "proceedToOrder": "Continuă comanda",
+    "register": "Înregistrare",
+    "reload": "Reîncarcă",
+    "save": "Salvează",
+    "saveChanges": "Salvează modificările",
+    "terminate": "Reziliază",
+    "terminatePlan": "Reziliază planul",
+    "trackYourOrder": "Urmărește comanda",
+    "unlimited": "Nelimitat",
+    "viewDetails": "Vezi detalii"
+  },
+  "appointment": {
+    "description": "Te rugăm să selectezi data programării pentru instalarea fibrei",
+    "title": "Programează o întâlnire cu un agent"
+  },
+  "auth": {
+    "agreeToTerms": "Bifând această casetă, ești de acord cu Termenii și Condițiile noastre",
+    "greeting": "Salut!",
+    "logout": {
+      "confirmations": {
+        "confirm": "Da, deconectează-mă",
+        "message": "Urmează să te deconectezi",
+        "question": "Dorești să continui?",
+        "title": "Ești sigur?"
+      },
+      "title": "Deconectare"
+    },
+    "pleaseLoginOrRegister": "Te rugăm să te autentifici sau să te înregistrezi pentru a valida comanda",
+    "registerSuccessPleaseLogin": "Înregistrare reușită. Autentificați-vă pentru a continua."
+  },
+  "common": {
+    "addUpTo": "Adaugă până la",
+    "beforeDiscount": "Înainte de reducere",
+    "commitmentTerm": "Perioadă de angajament",
+    "confirm": "Confirmă",
+    "confirmPlacement": "Prin plasarea comenzii, ești de acord cu Termenii de serviciu și Politica de confidențialitate",
+    "creationDate": "Data creării",
+    "discount": "Reducere",
+    "installment": {
+      "info": {
+        "paymentNote": "Plătiți doar avansul acum. Prețurile lunare și totale sunt estimări ale costurilor dvs. viitoare."
+      },
+      "labels": {
+        "estimatedInstallments": "Rate (Est.)",
+        "estimatedTotalPrice": "Preț Total (Est.)",
+        "initialPayment": "Avans",
+        "monthlyAmount": "Plată Lunară",
+        "totalAmount": "Plată Totală",
+        "duration": "pentru",
+        "installmentPeriod": "Rate pe parcursul a",
+        "afterCompletion": "După finalizarea ratelor"
+      },
+      "tabs": {
+        "fullPrice": "Preț Integral",
+        "installment": "Plată în Rate"
+      },
+      "comparison": {
+        "title": "Compară Planurile de Plată",
+        "description": "Iată un simulator de rate pentru diferite opțiuni de plată în rate",
+        "loadingOptions": "Se încarcă opțiunile partenerilor...",
+        "tableHeaders": {
+          "durationMonths": "Număr de Luni",
+          "monthlyAmount": "Plată Lunară",
+          "totalAmount": "Plată Totală"
+        },
+        "interestTypes": {
+          "noInterest": "fără dobândă",
+          "withInterest": "cu rată a dobânzii"
+        }
+      }
+    },
+    "loading": "Se încarcă...",
+    "orderId": "ID comandă",
+    "orderPreview": "Previzualizare comandă",
+    "planPreview": "Previzualizare plan",
+    "selectAnotherOffer": "Selectează o altă ofertă",
+    "selectToOrder": "Selectează pentru a comanda",
+    "shipping": "Livrare",
+    "state": "Județ",
+    "subtotal": "Subtotal",
+    "taxExcluded": "Fără taxă",
+    "taxIncluded": "Taxe incluse",
+    "terminationDate": "Data rezilierii",
+    "total": "Total",
+    "unlimited": "Nelimitat",
+    "warning": "Avertizare",
+    "payment": "Plată"
+  },
+  "device": {
+    "title": "Configurați-vă Dispozitivul"
+  },
+  "eligibility": {
+    "description": "Testează adresa pentru a vedea dacă zona ta este acoperită și eligibilă pentru această ofertă",
+    "failure": {
+      "notEligibleFiber": "Adresa menționată nu este eligibilă pentru fibră",
+      "updateAddress": "Actualizează adresa sau selectează o altă ofertă"
+    },
+    "success": {
+      "message": "Ești eligibil pentru această ofertă",
+      "title": "Felicitări!"
+    },
+    "title": "Eligibilitatea ofertei",
+    "types": {
+      "basic": "De bază",
+      "satellite": "Satelit"
+    }
+  },
+  "footer": {
+    "accessibilityStatement": "Declarație de accesibilitate",
+    "cookiePolicy": "Politica de cookie-uri",
+    "privacy": "Confidențialitate",
+    "termsAndConditions": "Termeni și condiții"
+  },
+  "forms": {
+    "labels": {
+      "address": "Adresă",
+      "appointmentDate": "Data programării",
+      "city": "Oraș",
+      "contactNumber": "Număr de contact",
+      "country": "Țară",
+      "creditCardNumber": "Număr card de credit",
+      "cvv": "CVV",
+      "deliveryDate": "Data livrării",
+      "email": "E-mail",
+      "emailMobileNumber": "E-mail / Număr de telefon",
+      "expiration": "Data expirării",
+      "firstName": "Prenume",
+      "lastName": "Nume",
+      "nameOnCard": "Numele de pe card",
+      "password": "Parolă",
+      "pickUpFromStore": "Ridicare din magazin",
+      "postalCode": "Cod poștal",
+      "reEnterPassword": "Reintrodu parola",
+      "requestedDeliveryDate": "Data solicitată pentru livrare",
+      "shippingAddress": "Adresă de livrare",
+      "title": "Titlu"
+    },
+    "placeholders": {
+      "emailMobileNumber": "Introdu adresa de e-mail sau numărul de telefon",
+      "enterYourAddress": "Introdu adresa",
+      "enterYourPostalCode": "Introdu codul poștal",
+      "fullNameAsDisplayedOnCard": "Numele complet așa cum apare pe card",
+      "nameOnCard": "Numele de pe card",
+      "password": "Introdu parola",
+      "searchDevices": "Caută dispozitive...",
+      "searchOffers": "Caută oferte...",
+      "searchPlans": "Caută planuri...",
+      "selectACity": "Selectează un oraș",
+      "selectACountry": "Selectează o țară"
+    },
+    "titles": {
+      "mr": "Dl.",
+      "mrs": "Dna."
+    }
+  },
+  "home": {
+    "active": "Activ",
+    "greeting": "Salut,",
+    "noMatchesFound": "Nu s-au găsit rezultate pentru această căutare",
+    "subtitle": "Acum poți alege din varietatea de oferte și produse disponibile care îți satisfac nevoile"
+  },
+  "myPlans": {
+    "noProductsFound": "Nu s-au găsit produse",
+    "migrationInProgress": "Migrare în curs",
+    "migrationInProgressDesc": "Produsele dumneavoastră sunt în curs de migrare către acest contract. Vor apărea aici odată ce migrarea este finalizată."
+  },
+  "order": {
+    "confirmations": {
+      "cancel": {
+        "body": "Sigur dorești să anulezi această comandă?",
+        "confirm": "Da, anulează",
+        "decline": "Nu, mulțumesc",
+        "title": "Anulează comanda"
+      }
+    },
+    "notes": {
+      "terminationPenalty": "Reține că pachetul nu poate fi reziliat înainte de sfârșitul perioadei produsului fără a suporta taxe de penalizare"
+    },
+    "status": {
+      "cancelled": "anulată",
+      "confirmed": "confirmată"
+    },
+    "statusUpdate": {
+      "completedBy": "Comanda va fi finalizată până la {{date}}",
+      "title": "Comanda dumneavoastră a fost {{status}} cu succes"
+    },
+    "notEligibleInstallment": {
+      "ineligibleMessage": "Nu sunteți eligibil să achiziționați un dispozitiv cu opțiune de rate.",
+      "proceedUpfront": "Vă rugăm să continuați cu plata în avans."
+    },
+    "summary": {
+      "sections": {
+        "devices": "Dispozitive",
+        "includedItems": "Articole incluse",
+        "optionalItems": "Articole opționale",
+        "terminatedItems": "Articole reziliate"
+      }
+    }
+  },
+  "pageNotFound": {
+    "message": "Pagina pe care o cauți nu există sau este posibil să fi fost mutată"
+  },
+  "pages": {
+    "bookAppointment": "Programează întâlnire",
+    "changePlan": "Schimbă planul",
+    "checkEligibility": "Verifică eligibilitatea",
+    "completeOrder": "Finalizează comanda",
+    "deviceSetUp": "Configurare dispozitiv",
+    "devicesAndElectronics": "Dispozitive și electronice",
+    "editPlan": "Editează planul",
+    "eligiblePlans": "Planuri eligibile",
+    "home": "Acasă",
+    "migratePlan": "Migrează planul",
+    "myAccount": "Contul meu",
+    "myOrders": "Comenzile mele",
+    "myPlans": "Planurile mele",
+    "offers": "Oferte",
+    "orderStatusUpdate": "Actualizare stare comandă",
+    "orderSummary": "Rezumatul comenzii",
+    "pageNotFound": "Pagină negăsită",
+    "setUpPlan": "Configurează planul",
+    "shippingDetails": "Detalii livrare",
+    "terminatePlan": "Termină Planul",
+    "trackOrder": "Urmărește comanda"
+  },
+  "payment": {
+    "account": "cont",
+    "billableItems": "Articole facturabile",
+    "billableItemsNote": "Aceste articole vor fi decontate din contul dvs. de facturare",
+    "billedOn": "Această ofertă va fi facturată pe",
+    "billingDetails": "Detalii de facturare",
+    "byEndOfMonth": "până la sfârșitul lunii",
+    "methods": {
+      "creditCard": "Card de credit",
+      "eWallet": "Portofel electronic"
+    },
+    "paymentDetails": "Detalii de plată",
+    "purchasedItems": "Articole cumpărate",
+    "purchasedItemsNote": "Aceste articole trebuie plătite imediat",
+    "savePaymentMethod": "Salvează metoda de plată",
+    "selectPaymentMethod": "Selectează metoda de plată"
+  },
+  "plan": {
+    "confirmations": {
+      "general": {
+        "cancel": "Nu, mulțumesc",
+        "question": "Dorești să continui?",
+        "title": "Ești sigur?"
+      },
+      "incompatibleOffer": "Ne pare rău, nu te poți abona la această ofertă deoarece este incompatibilă cu una dintre ofertele la care ești deja abonat",
+      "modify": {
+        "confirm": "Da, modifică",
+        "message": "După confirmare, comanda ta va fi procesată",
+        "proceed": "Sigur dorești să continui cu această comandă?"
+      },
+      "terminate": {
+        "bundle": "Sigur dorești să reziliezi acest pachet?",
+        "confirm": "Da, reziliază",
+        "message": "Odată reziliat, acest plan va fi eliminat",
+        "plan": "Sigur dorești să reziliezi acest plan?"
+      }
+    },
+    "contract": "Contract",
+    "currentValue": "Valoare curentă",
+    "editAddress": "Editează adresa",
+    "migrate": {
+      "changeSelectedPlan": "Schimbă planul selectat",
+      "currentPlan": "Planul curent",
+      "planSelection": "Selecția planului",
+      "selectDescription": "Alege dintre planurile eligibile disponibile mai sus",
+      "yourPlanBenefits": "Beneficiile planului tău"
+    },
+    "modify": {
+      "includedOptions": "Aceste opțiuni sunt incluse în planul tău și nu pot fi reziliate decât dacă reziliezi întregul plan",
+      "modificationsNotAuthorized": "Modificările acestui contract nu sunt autorizate",
+      "noItemsToTerminate": "Nu există articole de reziliat"
+    },
+    "myPlanDetails": "Detalii despre planul meu",
+    "planPreview": {
+      "applicationOffset": "Aplicația pornește după {{offset}} {{unit}}",
+      "included": "Inclus",
+      "options": "Opțiuni"
+    },
+    "sections": {
+      "includedOffers": "Oferte incluse",
+      "optionalOffers": "Oferte opționale"
+    },
+    "selectionPreview": "Previzualizarea selecției",
+    "title": "Configurează-ți planul",
+    "warnings": {
+      "terminationPenalty": "Te rugăm să reții că rezilierea acestui contract înainte de sfârșitul perioadei produsului va atrage o taxă de penalizare",
+      "terminationPenaltyWithCharges": "Planul include o perioadă contractuală. Odată reziliat, planul va fi eliminat și se vor aplica penalități. Dorești să continui?"
+    }
+  },
+  "shipping": {
+    "edit": "Editează",
+    "itemCount": "{{count}} articol",
+    "itemCount_plural": "{{count}} articole",
+    "offerShipping": "{{count}} din oferta ta {{verb}} în curs de livrare",
+    "pickUpMessage": "Poți ridica articolele din magazinul selectat începând de mâine",
+    "shippingItems": "Articole pentru livrare",
+    "shippingMethod": "Metodă de livrare",
+    "verbs": {
+      "are": "sunt",
+      "is": "este"
+    }
+  },
+  "validation": {
+    "custom": {
+      "deliveryDateMinimum": "Selectează o dată de livrare peste cel puțin 3 zile de acum"
+    },
+    "invalid": {
+      "creditCardNumber": "Introdu un număr de card de credit valid din 16 cifre",
+      "cvv": "Introdu un cod de securitate valid din 3 cifre",
+      "email": "Introdu o adresă de e-mail validă",
+      "emailMobileNumber": "Furnizează un e-mail sau un număr de telefon valid",
+      "expirationDate": "Selectează o dată de expirare validă în viitor",
+      "nameOnCard": "Introdu un nume valid așa cum apare pe card",
+      "password": "Furnizează o parolă validă"
+    },
+    "length": {
+      "passwordMin": "Parola trebuie să aibă cel puțin 8 caractere"
+    },
+    "match": {
+      "passwordMismatch": "Parolele nu coincid",
+      "reEnterPassword": "Reintrodu parola"
+    },
+    "required": {
+      "address": "Adresa este obligatorie",
+      "city": "Orașul este obligatoriu",
+      "country": "Țara este obligatorie",
+      "creditCardNumber": "Numărul cardului de credit este obligatoriu",
+      "cvv": "Codul de securitate este obligatoriu",
+      "deliveryDate": "Data livrării este obligatorie",
+      "email": "E-mailul este obligatoriu",
+      "emailMobileNumber": "E-mailul sau numărul de telefon este obligatoriu",
+      "expirationDate": "Data expirării este obligatorie",
+      "firstName": "Prenumele este obligatoriu",
+      "nameOnCard": "Numele de pe card este obligatoriu",
+      "password": "Parola este obligatorie",
+      "postalCode": "Codul poștal este obligatoriu"
+    }
+  }
+}

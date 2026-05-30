@@ -1,0 +1,167 @@
+meta {
+  name: Invalid Relationship- product specification is of type physical Product- but Parent atomic product offering is not-
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  User-Agent: insomnia/2023.5.8
+}
+
+body:json {
+  {
+      "isBundle": "true",
+      "status": "Created",
+      "operationalStatus": "Confirmed",
+      "relatedParty": [
+           {
+      "role": "Seller",
+      "partyOrPartyRole": {
+        "id": "456-dd-df45",
+        "href": "https://host:port/partyManagement/v5/individual/456-dd-df45",
+        "name": "Joe Doe",
+        "@type": "PartyRef",
+        "@referredType": "Individual"
+      },
+      "@type": "RelatedPartyRefOrPartyRoleRef"
+    }
+      ],
+      "productOffering": {
+          "id": "5fe032f0-fa01-42ec-afeb-920f74c2eae3",
+          "name": "Mobile Package 1",
+          "@type": "Contract"
+      },
+      "productOrderItem": [
+          {
+              "productOrderId": "{{$randomInt}}",
+              "orderItemId": "{{$randomInt}}",
+              "orderItemAction": "add"
+          }
+      ],
+      "productRelationship": [
+          {
+              "relationshipType": "bundles",
+              "product": {
+                  "status": "Created",
+                  "operationalStatus": "Confirmed",
+                  "relatedParty": [
+                      {
+                          "id": "45hj-8888",
+                          "name": "Jean",
+                          "role": "Customer",
+                          "@referredType": "Individual"
+                      }
+                  ],
+                  "productOffering": {
+                      "id": "cb07fd83-8f41-4cd2-97f5-5989f3ab2bd8",
+                      "name": "Mobile Package 1",
+                      "@type": "BundleProductOffering"
+                  },
+                  "productOrderItem": [
+                      {
+                          "productOrderId": "{{$randomInt}}",
+                          "orderItemId": "{{$randomInt}}",
+                          "orderItemAction": "add"
+                      }
+                  ],
+                  "productRelationship": [
+                      {
+                          "relationshipType": "bundles",
+                          "product": {
+                              "status": "Created",
+                              "operationalStatus": "Confirmed",
+                              "relatedParty": [
+                                  {
+                                      "id": "45hj-8888",
+                                      "name": "Jean",
+                                      "role": "Customer",
+                                      "@referredType": "Individual"
+                                  }
+                              ],
+                              "productPrice": [
+                                  {
+                                      "description": "POP_5Euro",
+                                      "name": "POP_5Euro",
+                                      "priceType": "NRC",
+                                      "price": {
+                                          "taxRate": 0,
+                                          "dutyFreeAmount": {
+                                              "unit": "EUR",
+                                              "value": 5
+                                          },
+                                          "taxIncludedAmount": {
+                                              "unit": "EUR",
+                                              "value": 5
+                                          }
+                                      }
+                                  }
+                              ],
+                              "productOffering": {
+                                  "id": "c8846e4c-ecca-40b2-b7de-9c130f4f3466",
+                                  "name": "Mobile Handset",
+                                  "@type": "AtomicProductOffering"
+                              },
+                              "productOrderItem": [
+                                  {
+                                      "productOrderId": "{{$randomInt}}",
+                                      "orderItemId": "{{$randomInt}}",
+                                      "orderItemAction": "add"
+                                  }
+                              ],
+                              "productRelationship": [
+                                  {
+                                      "relationshipType": "sells",
+                                      "product": {
+                                          "id": "64a40073e597aa453b64662f",
+                                          "productSerialNumber": "5678",
+                                          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productInventoryManagement/v1/product/64a40073e597aa453b64662f",
+                                          "productOrderItem": [
+                                              {
+                                                  "orderItemAction": "add",
+                                                  "orderItemId": "{{$randomInt}}",
+                                                  "productOrderId": "{{$randomInt}}"
+                                              }
+                                          ],
+                                          "productSpecification": {
+                                              "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+                                              "name": "Connectivity",
+                                              "@type": "ProductSpecificationRef"
+                                          },
+                                          "realizingResource": [
+                                              {
+                                                  "id": "67x",
+                                                  "@type": "Resource"
+                                              }
+                                          ],
+                                          "relatedParty": [
+                                              {
+                                                  "id": "231-mf4",
+                                                  "name": "Abir",
+                                                  "role": "customer",
+                                                  "@referredType": "individual"
+                                              }
+                                          ],
+                                          "status": "Created",
+                                          "operationalStatus": "Created",
+                                          "@type": "PhysicalProduct"
+                                      }
+                                  }
+                              ],
+                              "@type": "Product"
+                          }
+                      }
+                  ],
+                  "@type": "Product"
+              }
+          }
+      ],
+      "@type": "Product"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "SelectEntityType" : {
+    "required" : [ "categoryType" ],
+    "type" : "object",
+    "properties" : {
+      "categoryType" : {
+        "type" : "string",
+        "enum" : [ "ProductSpecificationCategory", "ProductOfferingCategory", "ProductOfferingPriceCategory" ]
+      }
+    }
+  }
+}

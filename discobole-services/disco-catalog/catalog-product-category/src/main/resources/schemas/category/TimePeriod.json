@@ -1,0 +1,16 @@
+{
+  "TimePeriod" : {
+    "required" : [ "startDateTime" ],
+    "type" : "object",
+    "properties" : {
+      "endDateTime" : {
+        "type" : "string",
+        "format" : "date-time"
+      },
+      "startDateTime" : {
+        "type" : "string",
+        "format" : "date-time"
+      }
+    }
+  }
+}

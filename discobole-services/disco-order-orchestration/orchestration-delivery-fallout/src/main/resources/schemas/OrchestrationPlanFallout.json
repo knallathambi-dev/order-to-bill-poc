@@ -1,0 +1,20 @@
+{
+  "SelectResolutionStateWithReason" : {
+    "required" : [ "planId", "orderId", "receivedDate", "state"  ],
+    "type" : "object",
+    "properties" : {
+      "planId" : {
+        "type" : "string"
+      },
+      "orderId" : {
+        "type" : "string"
+      },
+      "receivedDate" : {
+        "type" : "string"
+      },
+      "reason" : {
+        "state" : "string"
+      }
+    }
+  }
+}

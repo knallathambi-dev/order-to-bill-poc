@@ -1,0 +1,67 @@
+meta {
+  name: get PS
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{query}}/productCatalogManagement/v1/productSpecification?lifecycleStatus=launched&limit=2
+  body: none
+  auth: none
+}
+
+params:query {
+  lifecycleStatus: launched
+  limit: 2
+  ~lastUpdate: 
+  ~limit: 
+  ~offset: 
+  ~relatedParty.id: 
+  ~relatedParty.name: 
+  ~relatedParty.role: 
+  ~sort: 
+  ~supportEntity: 
+  ~validFor.gt: 
+  ~validFor.lt: 
+  ~ProductSpecificationRelationship.id: 499d1e12-9f93-4a6e-b036-5d14c4bf246a
+  ~ServiceSpecification.id: access01b01
+  ~name: Csps3!
+  ~brand: Csps3+
+  ~cook: null
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  bru.setVar('flag',null);
+}
+
+script:post-response {
+  
+  var jsonData = res.getBody();
+  const activeItem = jsonData.find(item => item.lifecycleStatus === "launched");
+  
+    if (activeItem) {
+      bru.setEnvVar("active_id", activeItem.id); // Saves to environment variable
+      console.log("✅ Saved active_id:", activeItem.id);
+    } else 
+      {
+      throw new Error(" No item with lifecycleStatus = 'launched' found.");
+      }
+  
+}
+
+docs {
+  request to get the PS id for relationship step 
+}

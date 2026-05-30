@@ -1,0 +1,118 @@
+# SPDX-FileCopyrightText: 2025, 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# this template instantiates all required OpenShift objects
+#
+# the following variables will be dynamically replaced by the deployment script:
+#
+# - ${environment_name}
+# - ${hostname}
+# - ${docker_image}
+# - ${ENV_TYPE}
+#
+
+kind: Template
+apiVersion: template.openshift.io/v1
+metadata:
+  name: ${environment_name}-template
+objects:
+  # service
+  - kind: Service
+    apiVersion: v1
+    metadata:
+      name: ${environment_name}-service
+      labels:
+        app: ${environment_name}
+    spec:
+      ports:
+        - name: 8080-tcp
+          protocol: TCP
+          port: 8080
+          targetPort: 8080
+      selector:
+        app: ${environment_name}
+  # deployment
+  - kind: Deployment
+    apiVersion: apps/v1
+    metadata:
+      name: ${environment_name}-deployment
+      labels:
+        app: ${environment_name}
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: ${environment_name}
+      template:
+        metadata:
+          labels:
+            app: ${environment_name}
+        spec:
+          containers:
+            - name: ${environment_name}-server
+              image: ${docker_image}
+              imagePullPolicy: Always
+              ports:
+                - containerPort: 8080
+                  protocol: TCP
+              env:
+                - name: NODE_ENV
+                  value: ${ENV_TYPE}
+              resources:
+                limits:
+                  cpu: 5m
+                  memory: 40Mi
+                requests:
+                  cpu: 5m
+                  memory: 20Mi
+      strategy:
+        type: Recreate
+  # ingress
+  - kind: Ingress
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: ${environment_name}-ingress
+      labels:
+        app: ${environment_name}
+        network: gin
+      annotations:
+        route.openshift.io/insecureEdgeTerminationPolicy: "Allow"
+        route.openshift.io/termination: "edge"
+    spec:
+      rules:
+        - host: ${hostname}
+          http:
+            paths:
+              - path: /
+                pathType: Prefix
+                backend:
+                  service:
+                    name: ${environment_name}-service
+                    port:
+                      number: 8080
+
+# parameters
+parameters:
+  - description: the application target name to use in this environment
+      (provided by GitLab CI template)
+    displayName: application target name
+    name: environment_name
+    required: true
+  - description: the environment hostname (provided by GitLab CI template)
+    displayName: environment hostname
+    name: hostname
+    required: true
+  - description: the docker image name to deploy (provided by GitLab CI template)
+    displayName: docker image name
+    name: docker_image
+    required: true
+  - description: the type of environment used to retrieve the configuration
+    displayName: environment type
+    name: ENV_TYPE
+    required: true

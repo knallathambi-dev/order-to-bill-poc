@@ -1,0 +1,148 @@
+# Software Name: orchestration-delivery-management
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: ${PORT:8087}
+  tomcat:
+    accesslog:
+      enabled: true
+    mbeanregistry:
+      enabled: true
+  forward-headers-strategy: framework
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    default: dev
+    active: plaintextconsole,dev
+  data:
+    mongodb:
+      auto-index-creation: 'true'
+      uri: 'mongodb://localhost:27017/COOD?replicaSet=rs0'
+  devtools:
+    restart:
+      exclude: target/classes/**, build/**, bin/**
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.orange.discobole.orderorchestration.config.custom.CustomSerializer
+      retries: 0
+      properties:
+        spring.kafka.topic.auto-create: true
+    consumer:
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: com.orange.discobole.orderorchestration.config.custom.CustomDeserializer
+      auto-offset-reset: latest
+      max-poll-records: 300
+      enable-auto-commit: true
+      properties:
+        spring.json.trusted.packages: '*'
+        max.poll.interval.ms: 600000
+        session.timeout.ms: 45000
+        heartbeat.interval.ms: 3000
+        spring.json.remove.type.headers: true
+        spring.json.use.type.headers: false
+        spring.json.value.type.method: com.orange.discobole.orderorchestration.orchestrationdelivery.management.config.KafkaTyper.typer
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+
+  security:
+    ignored: /kafka/send
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_URI}/realms/SpringBootKeycloak
+          jwk-set-uri: ${KEYCLOAK_URI}/realms/SpringBootKeycloak/protocol/openid-connect/certs
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_URI}/realms/SpringBootKeycloak
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ${KEYCLOAK_CLIENT_ID}
+            authorization-grant-type: client_credentials
+            client-secret: ${KEYCLOAK_CLIENT_SECRET}
+
+
+config:
+  serviceCatalogManagementUrl: http://localhost:8082/serviceCatalogManagement/v1/serviceSpecification
+  serviceCatalogValidation:
+    enabled: true
+  serviceOrderingUrl: http://localhost:8082/serviceOrdering/v1/serviceOrder
+  shippingOrderUrl: http://localhost:8082/shippingOrder/v1/shippingOrder
+  serviceOrderBatching:
+    enabled: true
+    maxBatchSize: 20
+    batchCollectionSeconds: 30
+  scheduler:
+    resumePendingDeliveriesDelayDuration: PT10M
+  delivery:
+    timeout: PT10S
+    retry:
+      maxAttempts: 3
+      backoffDelay: PT1S
+
+mocks:
+  serviceOrderStateChangeScheduler:
+    jobDelayDuration: PT30S
+    enable: true
+    enableDelay: false
+    minDelay: PT30S
+    maxDelay: PT2M30S
+  shippingOrderStateChangeScheduler:
+    jobDelayDuration: PT30S
+    enable: true
+    enableDelay: false
+    minDelay: PT30S
+    maxDelay: PT2M30S
+  purgeNodeDeliveryTimeScheduler:
+    jobDelayDuration: PT30S
+
+app:
+  kafka:
+    group-id: input-group-1
+    retry:
+      attempts: 3
+      delay: 30000
+  security:
+    ssl:
+      enabled: true
+    userRoleRetrievalUrl: http://localhost:8089/userRolePermission/v1/userRole
+    keycloakEntitlements: x200
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: deliverymanagement
+    distribution: # This is used to calculate SLI metrics mentioned in the ADR
+      percentiles-histogram:
+        http.server.requests: true
+  server:
+    port: 9000
+
+retry:
+  maxAttempts: '3'
+  maxDelay: '1000'
+
+mongock:
+  migration-scan-package:
+    - com.orange.discobole.orderorchestration.orchestrationdelivery.management.db.migration
+
+otel:
+  service:
+    name: delivery-management-review

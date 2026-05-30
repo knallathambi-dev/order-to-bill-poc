@@ -1,0 +1,18 @@
+meta {
+  name: Get Product By productCharacteristic - creationDate
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{dev_url}}/productInventoryManagement/v1/product?productCharacteristic.value=IMSI&productCharacteristic.name=MSISDN
+  body: none
+  auth: none
+}
+
+query {
+  productCharacteristic.value: IMSI
+  productCharacteristic.name: MSISDN
+  ~creationDate.gte: 2023-03-27T11:31:35.991Z
+  ~productOffering.name: Mobile Handset
+}

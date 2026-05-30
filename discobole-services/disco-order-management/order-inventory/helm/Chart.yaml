@@ -1,0 +1,45 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+apiVersion: v2
+name: order-inventory
+description: A Helm chart for product order inventory service.
+sources:
+  - https://gitlab.ow2.org/discobole/disco-oda-components/disco-order-management/order-inventory
+icon: https://gitlab.ow2.org/uploads/-/system/group/avatar/5972/discobole_50_black.png?width=48
+
+
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+type: application
+
+keywords:
+  - orange
+  - discobole
+  - order-management
+  - order-inventory
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 1.14.0
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+appVersion: "10.0.0"
+
+dependencies:
+  - name: mongodb
+    version: 0.17.0
+    repository: oci://ghcr.io/cloudpirates-io/helm-charts
+    condition: mongo.enabled
+    alias: mongo
+    tags:
+      - spring-java-app-nosql-store

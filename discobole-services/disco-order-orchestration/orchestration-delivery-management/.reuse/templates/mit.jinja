@@ -1,0 +1,24 @@
+{#
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+#}
+
+Software Name: orchestration-delivery-management
+{% for copyright_line in copyright_lines %}
+{{ copyright_line }}
+{% endfor %}
+{% for expression in spdx_expressions %}
+SPDX-License-Identifier: {{ expression }}
+{% endfor %}
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt

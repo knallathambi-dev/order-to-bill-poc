@@ -1,0 +1,192 @@
+{
+  "mappings": [
+    {
+      "name": "Get Products",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "productOrderItem.productOrderId": {
+            "matches": "1111.*"
+          },
+          "productOrderItem.orderItemId": {
+            "matches": ".*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeDeleteProduct/AllProducts.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification sim card",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ed-delete"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeDeleteProduct/SimCardProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification time bundle",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ec-delete"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeDeleteProduct/TimeBundleProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification mobile line",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ea-delete"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeDeleteProduct/MobileLineProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get product specification connectivity",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737eb-delete"
+          },
+          "fields": {
+            "equalTo": "productSpecification.id"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeDeleteProduct/ConnectivityProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Bulk status sim card and time bundle statuses",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ed-delete"
+          },
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ec-delete"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeDeleteProduct/SimCardAndTimeBundleProducts.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get status mobile line",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ea-delete"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeDeleteProduct/MobileLineProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get status connectivity",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737eb-delete"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeDeleteProduct/ConnectivityProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,46 @@
+[
+  {
+    "@type": "Product",
+    "id":"649aaf9f2b4b3225cb5737echeldNoSpec",
+    "href":"https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ec",
+    "isBundle":false,
+    "productCharacteristic":[
+      {
+        "@type" : "StringCharacteristic",
+        "name":"volume",
+        "valueType":"string"
+      }
+    ],
+    "productOrderItem":[
+      {
+        "orderItemAction":"modify",
+        "orderItemId":"09",
+        "productOrderId":"1112"
+      }
+    ],
+    "relatedParty":[
+      {
+        "id":"231-mf4",
+        "name":"Abir",
+        "role":"customer",
+        "@referredType":"individual"
+      }
+    ],
+    "status":"Active",
+    "operationalStatus":"Active",
+    "realizingService":[
+      {
+        "id":"1109_09"
+      }
+    ],
+    "productRelationship":[
+  {
+    "relationshipType":"reliesOn",
+    "product":{
+      "@type": "ProductRef",
+      "id":"649aaf9f2b4b3225cb5737eaheldNoSpec"
+    }
+  }
+]
+  }
+]

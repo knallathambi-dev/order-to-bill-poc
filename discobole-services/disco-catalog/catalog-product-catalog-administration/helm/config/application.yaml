@@ -1,0 +1,59 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: catalog-product-catalog-administration
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  server:
+    port: 9000
+retry:
+  maxAttempts: '3'
+  maxDelay: '1000'
+
+app:
+  version: 1.0.0
+  name: ProductCatalogAdministration
+  description: ProductCatalogAdministration
+  ownerName: Herve Bouvier
+  ownerMail: herve.bouvier@orange.com
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift
+
+  data:
+    mongodb:
+      host: ${DB_SERVICE}
+      port: 27017
+      database: ${DB_NAME}
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+  keycloak: http://${KEYCLOAK_SERVICE}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/certs
+  keycloakAuthUrl: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/auth
+  keycloakRolesEntitlements: x26, admin_r, chan_w, ms_w, freq_w, unit_w, curr_w, pic_w
+  userRoleRetrievalUrl: http://${USERROLE-RETRIEVE-SERVICE-NAME}/userRolePermission/v1/userRole
+
+server:
+  servlet:
+    context-path: /productCatalogAdministration/v5

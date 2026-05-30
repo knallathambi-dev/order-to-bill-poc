@@ -1,0 +1,14 @@
+{
+  "urls": [
+    {
+      "url": "/api-docs/orchestration-delivery-spec.yaml",
+      "name": "Orchestration Delivery API"
+    },
+    {
+      "url": "/api-docs/lead-time-statistics.yaml",
+      "name": "Lead Time History API"
+    }
+  ],
+  "oauth2RedirectUrl": "/swagger-ui/oauth2-redirect.html",
+  "validatorUrl": ""
+}

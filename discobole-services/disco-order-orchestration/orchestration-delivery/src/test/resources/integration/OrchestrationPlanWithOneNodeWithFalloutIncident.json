@@ -1,0 +1,94 @@
+{
+  "id": "425da5a6-5143-495b-a774-7bf24571e15b",
+  "relatedProductOrder": {
+    "id": "1010912333",
+    "contractName": "Mobile Package 1 PRO MAX"
+  },
+  "relatedParty": [
+    {
+      "id": "227-mf30",
+      "role": "customer",
+      "name": "Lisa"
+    }
+  ],
+  "state": "Held",
+  "receivedDate": "2024-08-13T10:06:25.065Z",
+  "orchestrationPlanNodes": [
+    {
+      "id": "a3e29a3d-0863-4a32-bfba-7542ee786acb",
+      "state": "Held",
+      "relatedProductOrder": {
+        "id": "1010912333"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "f60fbfac-ce01-43d2-80f5-263ae55f1188",
+          "action": "add",
+          "quantity": 1
+        },
+        {
+          "id": "10",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedProduct": [
+        {
+          "relationshipType": "delivers",
+          "isInstallable": false,
+          "productCharacteristic": [
+            {
+              "name": "Shipping mode",
+              "valueType": "string",
+              "value": "In Shop",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "Shipping address",
+              "valueType": "string",
+              "value": "Lac Biwa",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "requested delivery date",
+              "valueType": "Date",
+              "value": "2024-02-14",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "shipmentProduct",
+          "productOrderItemId": "f60fbfac-ce01-43d2-80f5-263ae55f1188"
+        },
+        {
+          "id" : 1,
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+            "name": "SIM CARD"
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "IMSI",
+              "valueType": "string",
+              "value": "310478356879098",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "physicalProduct",
+          "productOrderItemId": "10"
+        }
+      ]
+    }
+  ],
+  "href": "https://adminui-review-disco.apps.fr01.paas.tech.orange/cood/orchestrationManagement/v1/orchestrationPlan/425da5a6-5143-495b-a774-7bf24571e15a",
+  "archived": false,
+  "errorMessage": [
+    {
+      "code": "HTTP_BAD_REQUEST",
+      "message": "{http://om-mock-server-review:8080/productManagement/v1/product?productOrderItem.productOrderId=1010912333&productOrderItem.orderItemId=10} responded with a 404 Not found and message {\n                                               Request was not matched\n                                               =======================\n\n-----------------------------------------------------------------------------------------------------------------------\n| Closest stub                                             | Request                                                  |\n-----------------------------------------------------------------------------------------------------------------------\n                                                           |\nGet Products                                               |\n                                                           |\nGET                                                        | GET\n[path] /productManagement/v1/product                       | /productManagement/v1/product?productOrderItem.productOrd\n                                                           | erId=1010912333&productOrderItem.orderItemId=10\n                                                           |\nQuery: productOrderItem.productOrderId [matches] 1111.*    | productOrderItem.productOrderId: 1010912333         <<<<< Query does not match\nQuery: productOrderItem.orderItemId [matches] .*           | productOrderItem.orderItemId: 10\n                                                           |\n                                                           |\n-----------------------------------------------------------------------------------------------------------------------\n}",
+      "reason": "The requested resource could not be found.",
+      "timeStamp": "2024-08-13T10:06:28.885Z"
+    }
+  ]
+}

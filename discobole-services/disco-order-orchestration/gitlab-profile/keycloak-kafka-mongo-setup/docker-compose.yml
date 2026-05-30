@@ -1,0 +1,141 @@
+version: '3.8'
+
+volumes:
+  keycloak_data:
+  zookeeper_data:
+  zookeeper_txns:
+  kafka_data:
+  mongo1_data:
+  mongo1_config:
+
+services:
+  zookeeper:
+    image: debezium/zookeeper:3.0.0.Final
+    container_name: zookeeper
+    ports:
+      - 2181:2181
+      - 2888:2888
+      - 3888:3888
+    volumes:
+      - zookeeper_data:/zookeeper/data
+      - zookeeper_txns:/zookeeper/txns
+    restart: always
+    healthcheck:
+      test: [ "CMD", "echo", "Bootstrapping..." ]
+      start_period: 30s
+
+  kafka:
+    image: debezium/kafka:3.0.0.Final
+    container_name: kafka
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:29092,OUTSIDE://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_HEAP_OPTS: -Xmx192m
+      KAFKA_MESSAGE_MAX_BYTES: 2202962
+    volumes:
+      - kafka_data:/kafka/data
+    restart: always
+
+  connect:
+    image: debezium/connect:3.0.0.Final
+    container_name: connect
+    ports:
+      - 8083:8083
+    links:
+      - kafka
+      - mongodb
+    depends_on:
+      - kafka
+      - mongodb
+    environment:
+      GROUP_ID: "1"
+      CONFIG_STORAGE_TOPIC: my_connect_configs
+      OFFSET_STORAGE_TOPIC: my_connect_offsets
+      STATUS_STORAGE_TOPIC: my_connect_statuses
+      BOOTSTRAP_SERVERS: kafka:29092
+    healthcheck:
+      test: curl -f http://localhost:8083/ || exit 1
+      interval: 5s
+      timeout: 2s
+      retries: 15
+
+  connector-setup:
+    image: curlimages/curl:latest
+    depends_on:
+      connect:
+        condition: service_healthy
+    volumes:
+      - ./kafka/configs:/kafka/configs  # mount your configs folder
+    command: >
+      sh -c "
+        echo 'Waiting for Kafka Connect to be ready...' &&
+        sleep 10 &&
+        echo 'Registering COOD connector...' &&
+        curl -X POST -H 'Content-Type: application/json' --data @/kafka/configs/orchestration_delivery.json http://connect:8083/connectors &&
+        echo 'Registering Fallout connector...' &&
+        curl -X POST -H 'Content-Type: application/json' --data @/kafka/configs/fallout.json http://connect:8083/connectors &&
+        echo 'Connectors registered successfully.'
+      "
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:master
+    container_name: kafka-ui
+    ports:
+      - "85:8080"
+    depends_on:
+      - zookeeper
+      - kafka
+    environment:
+      - KAFKA_CLUSTERS_0_NAME=dev
+      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:29092
+      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
+    restart: always
+
+  mongodb:
+    image: mongo:8.0
+    command: [ "--replSet", "rs0", "--bind_ip_all", "--port", "27017" ]
+    hostname: mongodb
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - 27017:27017
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'mongodb:27017'}]}) }" | mongosh --port 27017 --quiet
+      interval: 5s
+      timeout: 30s
+      start_period: 0s
+      start_interval: 1s
+      retries: 30
+    volumes:
+      - "mongo1_data:/data/db"
+      - "mongo1_config:/data/configdb"
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.8
+    container_name: keycloak
+    command: start-dev --import-realm
+    ports:
+      - "8080:8080"
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
+      - keycloak_data:/opt/keycloak/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+

@@ -1,0 +1,42 @@
+meta {
+  name: Patch product - Main status fail- line 12
+  type: http
+  seq: 1
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product/649aaf9f2b4b3225cb5737f3?fields=status,operationalStatus
+  body: text
+  auth: none
+}
+
+query {
+  fields: status,operationalStatus
+}
+
+body:text {
+  {
+      "productRelationship": [
+          {
+              "relationshipType": "bundles",
+              "product": {
+                  "id": "649aaf9f2b4b3225cb5737f2",
+                  "productRelationship": [
+                      {
+                          "relationshipType": "bundles",
+                          "product": {
+                              "id": "649aaf9f2b4b3225cb5737ee",
+                              "status": "Terminated",
+                              "operationalStatus": "Confirmed"
+                          }
+                      }
+                  ],
+                  "status": "Created",
+                  "operationalStatus": "Confirmed"
+              }
+          }
+      ],
+      "status": "Created",
+      "operationalStatus": "Confirmed"
+  }
+}

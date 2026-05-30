@@ -1,0 +1,10 @@
+#!/bin/sh
+
+CURRENT_REMOTE_BRANCH="origin/$(git rev-parse --abbrev-ref HEAD)"
+git branch -r | grep -q "${CURRENT_REMOTE_BRANCH}" || CURRENT_REMOTE_BRANCH="origin/develop"
+
+git diff --name-only ${CURRENT_REMOTE_BRANCH} | egrep -q '.java|.xml|.yml' || exit 0
+
+./mvnw clean verify || exit 1
+
+exit 0

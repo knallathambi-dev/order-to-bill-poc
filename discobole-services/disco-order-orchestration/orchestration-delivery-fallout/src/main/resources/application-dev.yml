@@ -1,0 +1,43 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: ${PORT:8090}
+spring:
+  keycloakAuthUrl: localhost:8089
+  data:
+    mongodb:
+      auto-index-creation: 'true'
+      uri: mongodb://localhost:27017/falloutManagement
+  cloud:
+    stream:
+      kafka.binder:
+        enableObservation: true
+        brokers: localhost
+        defaultBrokerPort: 9092
+        auto-create-topics: false
+        auto-add-partitions: false
+      default:
+        contentType: application/json
+      bindings:
+        productOrderCommand:
+          destination: disco.order-management.productOrderChange-command
+          producer:
+            partition-key-expression: headers['partitionKey']
+      default-binder: kafka
+
+app:
+  security:
+    ssl:
+      enabled: false
+    userRoleRetrievalUrl: https://auth-userrole-review-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRole
+
+cqrs:
+  command-enabled: true
+  query-enabled: true

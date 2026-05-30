@@ -1,0 +1,20 @@
+{
+  "mappings": [
+    {
+      "name": "Get product order - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/productOrderingManagement/v1/productOrder.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Order-Management/ProductOrderResource.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+
+  ]
+}

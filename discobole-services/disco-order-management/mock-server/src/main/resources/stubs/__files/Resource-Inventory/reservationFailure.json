@@ -1,0 +1,348 @@
+{
+  "href": "<string>",
+  "id": "444",
+  "category": "<string>",
+  "description": "<string>",
+  "endOperatingDate": "<dateTime>",
+  "name": "<string>",
+  "resourceVersion": "<string>",
+  "startOperatingDate": "<dateTime>",
+  "activationFeature": [
+    {
+      "featureCharacteristic": [
+        {
+          "name": "<string>",
+          "value": {},
+          "id": "<string>",
+          "valueType": "<string>",
+          "characteristicRelationship": [
+            {
+              "id": "<string>",
+              "href": "<uri>",
+              "relationshipType": "<string>",
+              "@baseType": "<string>",
+              "@schemaLocation": "<uri>",
+              "@type": "<string>"
+            }
+          ],
+          "@baseType": "<string>",
+          "@schemaLocation": "<uri>",
+          "@type": "<string>"
+        }
+      ],
+      "name": "<string>",
+      "id": "<string>",
+      "isBundle": true,
+      "isEnabled": true,
+      "constraint": [
+        {
+          "id": "<string>",
+          "href": "<uri>",
+          "name": "<string>",
+          "version": "<string>",
+          "@baseType": "<string>",
+          "@schemaLocation": "<uri>",
+          "@type": "<string>",
+          "@referredType": "<string>"
+        }
+      ],
+      "featureRelationship": [
+        {
+          "name": "<string>",
+          "relationshipType": "<string>",
+          "id": "<string>",
+          "validFor": {
+            "endDateTime": "<dateTime>",
+            "startDateTime": "<dateTime>"
+          }
+        }
+      ]
+    }
+  ],
+  "administrativeState": "unlocked",
+  "attachment": [
+    {
+      "id": "<string>",
+      "href": "<uri>",
+      "attachmentType": "<string>",
+      "content": "<string>",
+      "description": "<string>",
+      "mimeType": "<string>",
+      "name": "<string>",
+      "url": "<uri>",
+      "size": {
+        "amount": 1,
+        "units": "<string>"
+      },
+      "validFor": {
+        "endDateTime": "<dateTime>",
+        "startDateTime": "<dateTime>"
+      },
+      "@baseType": "<string>",
+      "@schemaLocation": "<uri>",
+      "@type": "<string>",
+      "@referredType": "<string>"
+    }
+  ],
+  "note": [
+    {
+      "id": "<string>",
+      "href": "<uri>",
+      "author": "<string>",
+      "date": "<dateTime>",
+      "text": "<string>",
+      "@baseType": "<string>",
+      "@schemaLocation": "<uri>",
+      "@type": "<string>"
+    }
+  ],
+  "operationalState": "disable",
+  "place": {
+    "role": "<string>",
+    "id": "<string>",
+    "href": "<string>",
+    "name": "<string>",
+    "@baseType": "<string>",
+    "@schemaLocation": "<uri>",
+    "@type": "<string>",
+    "@referredType": "<string>"
+  },
+  "relatedParty": [
+    {
+      "@referredType": "<string>",
+      "id": "<string>",
+      "href": "<uri>",
+      "name": "<string>",
+      "role": "<string>",
+      "@baseType": "<string>",
+      "@schemaLocation": "<uri>",
+      "@type": "<string>"
+    }
+  ],
+  "resourceCharacteristic": [
+    {
+      "name": "<string>",
+      "value": {},
+      "id": "<string>",
+      "valueType": "<string>",
+      "characteristicRelationship": [
+        {
+          "id": "<string>",
+          "href": "<uri>",
+          "relationshipType": "<string>",
+          "@baseType": "<string>",
+          "@schemaLocation": "<uri>",
+          "@type": "<string>"
+        }
+      ],
+      "@baseType": "<string>",
+      "@schemaLocation": "<uri>",
+      "@type": "<string>"
+    }
+  ],
+  "resourceRelationship": [
+    {
+      "relationshipType": "<string>",
+      "resource": {
+        "href": "<string>",
+        "id": "<string>",
+        "category": "<string>",
+        "description": "<string>",
+        "endOperatingDate": "<dateTime>",
+        "name": "<string>",
+        "resourceVersion": "<string>",
+        "startOperatingDate": "<dateTime>",
+        "activationFeature": [
+          {
+            "featureCharacteristic": [
+              {
+                "name": "<string>",
+                "value": {},
+                "id": "<string>",
+                "valueType": "<string>",
+                "characteristicRelationship": [
+                  {
+                    "id": "<string>",
+                    "href": "<uri>",
+                    "relationshipType": "<string>",
+                    "@baseType": "<string>",
+                    "@schemaLocation": "<uri>",
+                    "@type": "<string>"
+                  },
+                  {
+                    "id": "<string>",
+                    "href": "<uri>",
+                    "relationshipType": "<string>",
+                    "@baseType": "<string>",
+                    "@schemaLocation": "<uri>",
+                    "@type": "<string>"
+                  }
+                ],
+                "@baseType": "<string>",
+                "@schemaLocation": "<uri>",
+                "@type": "<string>"
+              }
+            ],
+            "name": "<string>",
+            "id": "<string>",
+            "isBundle": true,
+            "isEnabled": true,
+            "constraint": [
+              {
+                "id": "<string>",
+                "href": "<uri>",
+                "name": "<string>",
+                "version": "<string>",
+                "@baseType": "<string>",
+                "@schemaLocation": "<uri>",
+                "@type": "<string>",
+                "@referredType": "<string>"
+              }
+            ],
+            "featureRelationship": [
+              {
+                "name": "<string>",
+                "relationshipType": "<string>",
+                "id": "<string>",
+                "validFor": {
+                  "endDateTime": "<dateTime>",
+                  "startDateTime": "<dateTime>"
+                }
+              }
+            ]
+          }
+        ],
+        "administrativeState": "unlocked",
+        "attachment": [
+          {
+            "id": "<string>",
+            "href": "<uri>",
+            "attachmentType": "<string>",
+            "content": "<string>",
+            "description": "<string>",
+            "mimeType": "<string>",
+            "name": "<string>",
+            "url": "<uri>",
+            "size": {
+              "amount": 1,
+              "units": "<string>"
+            },
+            "validFor": {
+              "endDateTime": "<dateTime>",
+              "startDateTime": "<dateTime>"
+            },
+            "@baseType": "<string>",
+            "@schemaLocation": "<uri>",
+            "@type": "<string>",
+            "@referredType": "<string>"
+          }
+        ],
+        "note": [
+          {
+            "id": "<string>",
+            "href": "<uri>",
+            "author": "<string>",
+            "date": "<dateTime>",
+            "text": "<string>",
+            "@baseType": "<string>",
+            "@schemaLocation": "<uri>",
+            "@type": "<string>"
+          }
+        ],
+        "operationalState": "disable",
+        "place": {
+          "role": "<string>",
+          "id": "<string>",
+          "href": "<string>",
+          "name": "<string>",
+          "@baseType": "<string>",
+          "@schemaLocation": "<uri>",
+          "@type": "<string>",
+          "@referredType": "<string>"
+        },
+        "relatedParty": [
+          {
+            "@referredType": "<string>",
+            "id": "<string>",
+            "href": "<uri>",
+            "name": "<string>",
+            "role": "<string>",
+            "@baseType": "<string>",
+            "@schemaLocation": "<uri>",
+            "@type": "<string>"
+          }
+        ],
+        "resourceCharacteristic": [
+          {
+            "name": "<string>",
+            "value": {},
+            "id": "<string>",
+            "valueType": "<string>",
+            "characteristicRelationship": [
+              {
+                "id": "<string>",
+                "href": "<uri>",
+                "relationshipType": "<string>",
+                "@baseType": "<string>",
+                "@schemaLocation": "<uri>",
+                "@type": "<string>"
+              },
+              {
+                "id": "<string>",
+                "href": "<uri>",
+                "relationshipType": "<string>",
+                "@baseType": "<string>",
+                "@schemaLocation": "<uri>",
+                "@type": "<string>"
+              }
+            ],
+            "@baseType": "<string>",
+            "@schemaLocation": "<uri>",
+            "@type": "<string>"
+          }
+        ],
+        "resourceRelationship": [
+          {
+            "value": "<Circular reference to #/components/schemas/ResourceRelationship detected>"
+          }
+        ],
+        "resourceSpecification": {
+          "id": "<string>",
+          "href": "<uri>",
+          "name": "<string>",
+          "version": "<string>",
+          "@baseType": "<string>",
+          "@schemaLocation": "<uri>",
+          "@type": "<string>",
+          "@referredType": "<string>"
+        },
+        "resourceStatus": "alarm",
+        "usageState": "busy",
+        "@baseType": "<string>",
+        "@schemaLocation": "<uri>",
+        "@type": "<string>",
+        "@referredType": "<string>"
+      },
+      "id": "<string>",
+      "href": "<uri>",
+      "@baseType": "<string>",
+      "@schemaLocation": "<uri>",
+      "@type": "<string>"
+    }
+  ],
+  "resourceSpecification": {
+    "id": "<string>",
+    "href": "<uri>",
+    "name": "<string>",
+    "version": "<string>",
+    "@baseType": "<string>",
+    "@schemaLocation": "<uri>",
+    "@type": "<string>",
+    "@referredType": "<string>"
+  },
+  "resourceStatus": "notReserved",
+  "usageState": "idle",
+  "@baseType": "<string>",
+  "@schemaLocation": "<uri>",
+  "@type": "<string>"
+}

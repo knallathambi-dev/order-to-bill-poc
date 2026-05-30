@@ -1,0 +1,133 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "order_capture_mock_server.fullname" . }}
+  labels:
+    {{- include "order_capture_mock_server.labels" . | nindent 4 }}
+    {{- include "order_capture_mock_server.shutdownLabels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "order_capture_mock_server.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "order_capture_mock_server.selectorLabels" . | nindent 8 }}
+        {{- include "order_capture_mock_server.monitoringLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "order_capture_mock_server.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: mock-server
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env: #modified
+            - name: JDK_JAVA_OPTIONS
+              value: {{ .Values.jdkJavaOptions }}
+            - name: SPRING_CLOUD_KUBERNETES_ENABLED
+              value: "true"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLED
+              value: "true"
+            - name: SPRING_CLOUD_KUBERNETES_CONFIG_SOURCES_0_NAME
+              value: "{{ template "order_capture_mock_server.fullname" . }}"
+            - name: SPRING_PROFILES_ACTIVE
+              value: kubernetes{{- if .Values.fluentd.enabled }},fluentd{{- end }},logstash
+            - name: SERVER_SERVLET_CONTEXT_PATH
+              value: "{{ .Values.contextPath }}"
+            {{- if .Values.fluentd.enabled }}
+            - name: FLUENTD_TAG
+              value: "{{ default "disco-order_capture_mock_server" .Values.fluentd.tag }}"
+            - name: FLUENTD_CONTAINER_NAME
+              value: "disco-order_capture_mock_server"
+            - name: FLUENTD_HOST
+              value: "{{ default "localhost" .Values.fluentd.host }}"
+            - name: FLUENTD_PORT
+              value: "{{ default "24224" .Values.fluentd.port }}"
+            {{- end }}
+            {{- if .Values.otel.enabled }}
+            - name: JAVA_TOOL_OPTIONS
+              value: "-javaagent:/app/opentelemetry-javaagent.jar -Xlog:gc=debug:file=/tmp/gc.mockserver.log:time,uptime,level,tags:filecount=5,filesize=100m -XX:MaxMetaspaceSize=128m -XX:+UseG1GC -XX:+CrashOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump-mockserver.log{{- if .Values.mockServer.service.mxHeap }} -XX:MaxHeapSize={{ .Values.mockServer.service.mxHeap }}{{- end }}"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://{{ .Values.otel.sidecar.otlp.host }}:{{ .Values.otel.sidecar.otlp.port }}"
+            - name: OTEL_METRICS_EXPORTER
+              value: "none"
+            - name: OTEL_TRACES_EXPORTER
+              value: "otlp"
+            - name: OTEL_SERVICE_NAME
+              value: "{{ template "order_capture_mock_server.fullname" . }}"
+            - name: OTEL_RESOURCE_ATTRIBUTES
+              value: "service.name={{ include "order_capture_mock_server.fullname" . }},app=disco,env={{ default "default" .Values.monitoring.environment }},container_name=disco-order_capture_mock_server"
+            {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080 #modified
+              protocol: TCP
+          volumeMounts:
+            - name: {{ template "order_capture_mock_server.fullname" . }}-applog
+              mountPath: /tmp
+            - name: volume-keystore
+              mountPath: /mnt/keystore
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health/readiness
+              port: http
+            initialDelaySeconds: 65
+            failureThreshold: 3
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health/liveness
+              port: http
+            initialDelaySeconds: 200
+            failureThreshold: 1
+            periodSeconds: 20
+          startupProbe:
+            httpGet:
+              path: {{ .Values.contextPath }}/actuator/health
+              port: http
+            failureThreshold: 45
+            periodSeconds: 2
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sh", "-c", "sleep 10"]
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+      - name: {{ template "order_capture_mock_server.fullname" . }}-applog
+        emptyDir: {}
+      - name: volume-keystore  ## Name of secret to mount as volume
+        secret:
+          secretName: {{ include "order_capture_mock_server.fullname" . }}-keystore-p12
+          items:
+            - key: keystore-p12
+              path: keystore-p12
+          defaultMode: 420
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

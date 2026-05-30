@@ -1,0 +1,75 @@
+meta {
+  name: get PO
+  type: http
+  seq: 17
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/productOffering/{{APO_id}}
+  body: none
+  auth: none
+}
+
+params:query {
+  ~cook: null
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+vars:post-response {
+  po_version: res.body.version
+}
+
+assert {
+  res.status: eq 200
+  res.body.lifecycleStatus: eq inTest
+}
+
+script:pre-request {
+  await bru.sleep(3000);
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  var cat_id=bru.getVar('category_id');
+  var pop_id=bru.getVar('POPC_id');
+  var rel_id=bru.getEnvVar('PO_active_id');
+  
+  
+  test("To verify version is 0.1", function () {
+    expect(jsonData.version).to.equals("0.1");
+  });
+  
+  var cat_id=bru.getVar('category_id');
+  
+  
+  test("To verify channel is associated ", function () {
+    expect(jsonData.channel[0].id).to.equals("Shop");
+    expect(jsonData.channel[1].id).to.equals("Selfcare");
+    expect(jsonData.channel[2].id).to.equals("Web");
+  });
+  
+  
+  test("To verify marketsegment is associated ", function () {
+    expect(jsonData.marketSegment[0].id).to.equals("B2B");
+    
+  });
+  
+  test("To verify operation has POP associated to term ", function () {
+    expect(jsonData.productOfferingTerm[0].commercialOperation[0].carries[0].id).to.equals(pop_id);
+    
+  });
+  
+  test("To verify relationship is associated ", function () {
+    expect(jsonData.productOfferingRelationship[0].id).to.equals(rel_id);
+    
+  });
+}

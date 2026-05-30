@@ -1,0 +1,482 @@
+{
+  "id": "662f78b2a6c8a8cc56906ac6",
+  "relatedProductOrder": {
+    "id": "66279752b0085c043d90ee4b"
+  },
+  "relatedParty": [
+    {
+      "id": "c6w56bk71",
+      "role": "customer"
+    }
+  ],
+  "state": "Executed",
+  "receivedDate": "2024-04-23T15:12:16.091Z",
+  "orchestrationPlanNodes": [
+    {
+      "id": "e36c6967-50f3-42d9-a4b3-99efd1561ebd",
+      "state": "Completed",
+      "relatedServiceOrder": {
+        "id": "a136f238-14ff-4e77-b598-030f79cb2e60",
+        "orderItemId": "92",
+        "SOMRef": "https://om-mock-server-integration.apps.fr01.paas.tech.orange/serviceOrdering/v1/serviceOrder"
+      },
+      "relatedProductOrder": {
+        "id": "66279752b0085c043d90ee4b"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "a59b62a8-2507-4433-96f4-c6b0c6d640dd",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedProduct": [
+        {
+          "id": "66279772d974c4081f0e72aa",
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb"
+          },
+          "isInstallable": true
+        },
+        {
+          "id": "66279772d974c4081f0e72b4",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "10e9ee72-2aff-4f25-904c-e6003fa3718b",
+            "name": "Ring back Tone",
+            "serviceSpecification": [
+              {
+                "href": "https://om-mock-server-integration.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification",
+                "id": "Ring Back Tone",
+                "name": "Ring Back Tone"
+              }
+            ]
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "Tone",
+              "valueType": "string",
+              "value": "Free tone",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "CFS",
+          "productOrderItemId": "a59b62a8-2507-4433-96f4-c6b0c6d640dd"
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "2b6269dd-61ec-4318-ade4-ab3dc491d680",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    },
+    {
+      "id": "b4fd5bd9-db9f-46ef-b81b-a5dc80270067",
+      "state": "Completed",
+      "relatedServiceOrder": {
+        "id": "16ff84a5-a8ae-44e9-9960-6fab87cf1bf9",
+        "orderItemId": "85",
+        "SOMRef": "https://om-mock-server-integration.apps.fr01.paas.tech.orange/serviceOrdering/v1/serviceOrder"
+      },
+      "relatedProductOrder": {
+        "id": "66279752b0085c043d90ee4b"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "e1a5484c-06d6-45f6-aea4-0680437cc4dc",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedProduct": [
+        {
+          "id": "66279772d974c4081f0e72aa",
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb"
+          },
+          "isInstallable": true
+        },
+        {
+          "id": "66279772d974c4081f0e72b2",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "c1b8052d-5de9-4719-b0e2-de327455884d",
+            "name": "SMS",
+            "serviceSpecification": [
+              {
+                "href": "https://om-mock-server-integration.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification",
+                "id": "SMS Option",
+                "name": "SMS option"
+              }
+            ]
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "Volume",
+              "valueType": "string",
+              "value": "1000 SMS",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "CFS",
+          "productOrderItemId": "e1a5484c-06d6-45f6-aea4-0680437cc4dc"
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "2b6269dd-61ec-4318-ade4-ab3dc491d680",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    },
+    {
+      "id": "ab9d6717-9166-4290-a7de-0373be9c8a6f",
+      "state": "Completed",
+      "relatedProductOrder": {
+        "id": "66279752b0085c043d90ee4b"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "8c6c58de-e42d-4191-8326-6beac624f3ab",
+          "action": "add",
+          "quantity": 1
+        },
+        {
+          "id": "3b86e051-a8e2-4d76-b13b-670277258ce3",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedSupplyChainOrderItem": {
+        "id": "a31edd7c-ac32-403c-ad0f-457e66ecb2f7",
+        "orderItemId": "1"
+      },
+      "relatedProduct": [
+        {
+          "relationshipType": "delivers",
+          "isInstallable": false,
+          "productCharacteristic": [
+            {
+              "name": "Shipping mode",
+              "valueType": "string",
+              "value": "Home delivery",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "Shipping address",
+              "valueType": "string",
+              "value": "ezadeceaz",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "requested delivery date",
+              "valueType": "Date",
+              "value": "2024-04-26",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "shipmentProduct",
+          "productOrderItemId": "8c6c58de-e42d-4191-8326-6beac624f3ab"
+        },
+        {
+          "id": "66279772d974c4081f0e72b0",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "191424cb-6002-46aa-a5a9-0602cfba83c7",
+            "name": "SIM card"
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "IMSI",
+              "valueType": "string",
+              "value": "310478356879098",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "physicalProduct",
+          "productOrderItemId": "3b86e051-a8e2-4d76-b13b-670277258ce3"
+        },
+        {
+          "id": "66279772d974c4081f0e72aa",
+          "relationshipType": "reliesFrom"
+        },
+        {
+          "id": "66279772d974c4081f0e72ac",
+          "relationshipType": "reliesFrom"
+        }
+      ]
+    },
+    {
+      "id": "aff3b6d3-8be9-42ca-bb08-beea0d9a54ac",
+      "state": "Completed",
+      "relatedServiceOrder": {
+        "id": "f2c872c8-8df3-4bd0-8d6d-f343f0dc3ea4",
+        "orderItemId": "81",
+        "SOMRef": "https://om-mock-server-integration.apps.fr01.paas.tech.orange/serviceOrdering/v1/serviceOrder"
+      },
+      "relatedProductOrder": {
+        "id": "66279752b0085c043d90ee4b"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "cd16760f-ac2e-42e1-9758-e1e14bc8429e",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedProduct": [
+        {
+          "id": "66279772d974c4081f0e72b0",
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "191424cb-6002-46aa-a5a9-0602cfba83c7"
+          },
+          "isInstallable": true
+        },
+        {
+          "id": "66279772d974c4081f0e72ac",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "e90a1274-7dc0-4259-a344-362b55edfc58",
+            "name": "Connectivity",
+            "serviceSpecification": [
+              {
+                "href": "https://om-mock-server-integration.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification",
+                "id": "Connectivity_2",
+                "name": "Connectivity"
+              }
+            ]
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "ICCID",
+              "valueType": "string",
+              "value": "891004234814455936",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "CFS",
+          "productOrderItemId": "cd16760f-ac2e-42e1-9758-e1e14bc8429e"
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "ab9d6717-9166-4290-a7de-0373be9c8a6f",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    },
+    {
+      "id": "c6aec866-2344-4a2a-bb9d-9cdd5ad4d7ed",
+      "state": "Completed",
+      "relatedServiceOrder": {
+        "id": "e7d085ae-dbcd-4b83-bf7c-cc9c371c0a94",
+        "orderItemId": "55",
+        "SOMRef": "https://om-mock-server-integration.apps.fr01.paas.tech.orange/serviceOrdering/v1/serviceOrder"
+      },
+      "relatedProductOrder": {
+        "id": "66279752b0085c043d90ee4b"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "8bc9fdec-2d33-4214-985a-9c5f8047f61e",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedProduct": [
+        {
+          "id": "66279772d974c4081f0e72aa",
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb"
+          },
+          "isInstallable": true
+        },
+        {
+          "id": "66279772d974c4081f0e72ae",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "63d24f7e-c529-404c-911b-7c7926fd12ff",
+            "name": "Time Bundle",
+            "serviceSpecification": [
+              {
+                "href": "https://om-mock-server-integration.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification",
+                "id": "Time Bundle3",
+                "name": "Time Bundle"
+              }
+            ]
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "Volume",
+              "valueType": "string",
+              "value": "1h",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "CFS",
+          "productOrderItemId": "8bc9fdec-2d33-4214-985a-9c5f8047f61e"
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "2b6269dd-61ec-4318-ade4-ab3dc491d680",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    },
+    {
+      "id": "7ab665e4-6dc6-49d1-9489-c0028428a526",
+      "state": "Completed",
+      "relatedProductOrder": {
+        "id": "66279752b0085c043d90ee4b"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "8c6c58de-e42d-4191-8326-6beac624f3ab",
+          "action": "add",
+          "quantity": 1
+        },
+        {
+          "id": "aad34d26-a07f-4b3f-9c67-adace0b28c6c",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedSupplyChainOrderItem": {
+        "id": "7a7d36df-f74a-42a4-980f-a22230144f17",
+        "orderItemId": "1"
+      },
+      "relatedProduct": [
+        {
+          "relationshipType": "delivers",
+          "isInstallable": false,
+          "productCharacteristic": [
+            {
+              "name": "Shipping mode",
+              "valueType": "string",
+              "value": "Home delivery",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "Shipping address",
+              "valueType": "string",
+              "value": "ezadeceaz",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "requested delivery date",
+              "valueType": "Date",
+              "value": "2024-04-26",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "shipmentProduct",
+          "productOrderItemId": "8c6c58de-e42d-4191-8326-6beac624f3ab"
+        },
+        {
+          "id": "66279772d974c4081f0e72b6",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "cf81ad88-b800-4e88-a332-1841ec677f10",
+            "name": "Samsung galaxy S10 reconditioned"
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "Memory",
+              "valueType": "string",
+              "value": "128 GB",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "physicalProduct",
+          "productOrderItemId": "aad34d26-a07f-4b3f-9c67-adace0b28c6c"
+        }
+      ]
+    },
+    {
+      "id": "2b6269dd-61ec-4318-ade4-ab3dc491d680",
+      "state": "Completed",
+      "relatedServiceOrder": {
+        "id": "e5f57a66-3ce1-4c16-8244-fc36bd496068",
+        "orderItemId": "62",
+        "SOMRef": "https://om-mock-server-integration.apps.fr01.paas.tech.orange/serviceOrdering/v1/serviceOrder"
+      },
+      "relatedProductOrder": {
+        "id": "66279752b0085c043d90ee4b"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "615dcc8f-75cd-4f9a-aac7-f54cb6a607d1",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedProduct": [
+        {
+          "id": "66279772d974c4081f0e72b0",
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "191424cb-6002-46aa-a5a9-0602cfba83c7"
+          },
+          "isInstallable": true
+        },
+        {
+          "id": "66279772d974c4081f0e72aa",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+            "name": "MobileLine",
+            "serviceSpecification": [
+              {
+                "href": "https://om-mock-server-integration.apps.fr01.paas.tech.orange/serviceCatalogManagement/v1/serviceSpecification",
+                "id": "MobileLine",
+                "name": "Mobile Line"
+              }
+            ]
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "MSISDN",
+              "valueType": "string",
+              "value": "4152797439",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "CFS",
+          "productOrderItemId": "615dcc8f-75cd-4f9a-aac7-f54cb6a607d1"
+        },
+        {
+          "id": "66279772d974c4081f0e72ae",
+          "relationshipType": "reliesFrom"
+        },
+        {
+          "id": "66279772d974c4081f0e72b2",
+          "relationshipType": "reliesFrom"
+        },
+        {
+          "id": "66279772d974c4081f0e72b4",
+          "relationshipType": "reliesFrom"
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "ab9d6717-9166-4290-a7de-0373be9c8a6f",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    }
+  ],
+  "href": "http://localhost:8086/orchestrationManagement/v1/orchestrationPlan/662f78b2a6c8a8cc56906ac6"
+}

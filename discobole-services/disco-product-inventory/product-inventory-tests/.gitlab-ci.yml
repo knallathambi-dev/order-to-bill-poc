@@ -1,0 +1,269 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# ==================================================
+# Include pipeline templates
+# ==================================================
+
+include:
+  # Gitleaks template
+  #- remote: 'https://gitlab.com/to-be-continuous/gitleaks/-/raw/2.6.0/templates/gitlab-ci-gitleaks.yml'
+  # semantic-release template
+  - remote: 'https://gitlab.com/to-be-continuous/semantic-release/-/raw/3.11.3/templates/gitlab-ci-semrel.yml'
+
+# ==================================================
+# Pipelie variables
+# ==================================================
+
+variables:
+  # Gitleaks template parameters
+  GITLEAKS_IMAGE: "registry.hub.docker.com/zricethezav/gitleaks:v8.15.0"
+
+  TEST_PLAN_KEY:
+    value: ""
+    description: "JIRA key of the XRAY test plan to update. For example: TEST-0000 (must already exist in Jira)"
+
+  TEST_EXECUTION_KEY:
+    value: ""
+    description: "JIRA key for the XRAY test execution to be updated. For example: TEST-1111 (must already exist in Jira)."
+  VERSION:
+    value: ""
+    description: "Fix version to be included in the test execution with the XRAY connector (the version must already exist in Jira)."
+  ENVIRONNEMENT:
+    value: "Integration"
+    description: "The name of the environment to be reported in the test execution with the XRAY connector."
+
+# ==================================================
+# Stages
+# ==================================================
+
+stages:
+  #  - test
+  - trigger-fe
+  - System
+  - JobSpecification
+  - Product
+  - Reporting
+  - Job
+  - update-xray
+  - publish
+#  - eco
+
+# ==================================================
+# Pipeline jobs
+# ==================================================
+
+.default_robot_job: &robot_job
+  image: ppodgorsek/robot-framework:latest
+  script:
+    - robot $option $directory || true
+  artifacts:
+    expire_in: 72h
+    paths:
+      - result/
+    when: always
+  timeout: 1h
+#  after_script:
+#    - rebot --output ./result/output.xml ./result/*.xml
+
+# Product Tests
+
+POST-Product:
+  <<: *robot_job
+  stage: Product
+  parallel:
+    matrix:
+      - option: -l result/log_POST_Product.html -r result/Report_POST_Product.html -o result/Output_POST_Product.xml
+        directory: 'Test_Cases/Product/POST_Method/Scenarios/*.robot'
+
+GET-Product:
+  <<: *robot_job
+  stage: Product
+  parallel:
+    matrix:
+      - option: -l result/log_GET_Product.html -r result/Report_GET_Product.html -o result/Output_GET_Product.xml
+        directory: 'Test_Cases/Product/GET_Method/Scenarios/*.robot'
+
+PATCH-Product:
+  <<: *robot_job
+  stage: Product
+  parallel:
+    matrix:
+      - option: -l result/log_PATCH_Product.html -r result/Report_PATCH_Product.html -o result/Output_PATCH_Product.xml
+        directory: 'Test_Cases/Product/PATCH_Method/Scenarios/*.robot'
+
+DELETE-Product:
+  <<: *robot_job
+  stage: Product
+  parallel:
+    matrix:
+      - option: -l result/log_DELETE_Product.html -r result/Report_DELETE_Product.html -o result/Output_DELETE_Product.xml
+        directory: 'Test_Cases/Product/DELETE_Method/Scenarios/*.robot'
+
+# JobSpecification Tests
+
+POST-JobSpecification:
+  <<: *robot_job
+  stage: JobSpecification
+  parallel:
+    matrix:
+      - option: -l result/log_POST_JobSpecification.html -r result/Report_POST_JobSpecification.html -o result/Output_JobSpecification.xml
+        directory: 'Test_Cases/JobSpecification/POST_Method/Scenarios/*.robot'
+
+GET-JobSpecification:
+  <<: *robot_job
+  stage: JobSpecification
+  parallel:
+    matrix:
+      - option: -l result/log_GET_JobSpecification.html -r result/Report_GET_JobSpecification.html -o result/Output_GET_JobSpecification.xml
+        directory: 'Test_Cases/JobSpecification/GET_Method/Scenarios/*.robot'
+
+DELETE-JobSpecification:
+  <<: *robot_job
+  stage: JobSpecification
+  parallel:
+    matrix:
+      - option: -l result/log_DELETE_JobSpecification.html -r result/Report_DELETE_JobSpecification.html -o result/Output_DELETE_JobSpecification.xml
+        directory: 'Test_Cases/JobSpecification/DELETE_Method/Scenarios/*.robot'
+
+# System & Job Tests
+
+System:
+  <<: *robot_job
+  stage: System
+  parallel:
+    matrix:
+      - option: -l result/log_System.html -r result/Report_System.html -o result/Output_System.xml
+        directory: 'Test_Cases/System/Scenarios/*.robot'
+
+Job:
+  <<: *robot_job
+  stage: Job
+  parallel:
+    matrix:
+      - option: -l result/log_Job.html -r result/Report_Job.html -o result/Output_Job.xml
+        directory: 'Test_Cases/Job/GET_Method/Scenarios/*.robot'
+
+
+# ==================================================
+# Reporting
+# ==================================================
+Reporting:
+  <<: *robot_job
+  stage: Reporting
+  parallel:
+    matrix:
+      - option: -l result/log_Reporting.html -r result/Report_Reporting.html -o result/Output_Reporting.xml
+        directory: 'Test_Cases/Reporting/Scenarios/*.robot'
+  after_script:
+    - rebot --output ./result/output.xml ./result/*.xml
+## ==================================================
+## Frontend Trigger Pipeline
+## ==================================================
+#step1_backend_test:
+#  stage: trigger-fe
+#  image: ppodgorsek/robot-framework:latest
+#  script:
+#    - robot -d result tests/test_product.robot
+#  artifacts:
+#    paths:
+#      - ids.json
+#      - result/
+#    when: always
+#    expire_in: 72h
+#  timeout: 1h
+#
+#step2_generate_ids:
+#  stage: trigger-fe
+#  needs: ["step1_backend_test"]
+#  image: ppodgorsek/robot-framework:latest
+#  script:
+#    - robot -d result tests/test_product.robot
+#  artifacts:
+#    paths:
+#      - ids.json
+#      - result/
+#    when: always
+#    expire_in: 72h
+#  timeout: 1h
+#
+#step3_check_fe_variables:
+#  stage: trigger-fe
+#  needs: ["step2_generate_ids"]
+#  script:
+#    - echo "FE_PROJECT = $FE_PROJECT"
+#    - echo "BRANCH_FE = $BRANCH_FE"
+#    - |
+#      if [ -z "$FE_PROJECT" ] || [ -z "$BRANCH_FE" ]; then
+#        echo "Missing variables, aborting."
+#        exit 1
+#      fi
+#    - echo "Variables are set, ready to trigger."
+#
+#step4_trigger_fe_tests:
+#  stage: trigger-fe
+#  needs: ["step3_check_fe_variables"]
+#  trigger:
+#    project: "disco/disco-oda-components/disco-ui-portals/admin-ui-test"
+#    branch: "develop"
+#    strategy: depend
+#    forward:
+#      pipeline_variables: true
+#  variables:
+#    RUN_TESTS: "true"
+#    RUN_LINT: "false"
+#    PARENT_PIPELINE_ID: $CI_PIPELINE_ID
+#  allow_failure: true
+
+# ECO / Energy Estimation
+
+#estimate_energy:
+#  stage: eco
+#  image: python:3.10
+#  script:
+#    - pip install requests python-dateutil py-cpuinfo psutil urllib3
+#    - pip install psycopg2-binary
+#    - python mesure.py
+#  when: always
+#  artifacts:
+#    paths:
+#      - output/
+
+# Others
+
+reuse:
+  image:
+    name: fsfe/reuse:latest
+    entrypoint: []
+  stage: .pre
+  script:
+    - reuse lint
+    - if [ 0 != 0 ]; then log_error Fix the error with reuse annotate --copyright=\"Orange SA\" --template mit.jinja --license MIT --copyright-prefix spdx --skip-unrecognised --merge-copyrights --recursive ./; fi
+
+
+update-xray:
+  stage: update-xray
+  image: curlimages/curl:latest
+  dependencies:
+    - System
+    - Job
+    - DELETE-JobSpecification
+    - GET-JobSpecification
+    - POST-JobSpecification
+    - DELETE-Product
+    - GET-Product
+    - PATCH-Product
+    - POST-Product
+    - Reporting
+  rules:
+    - when: manual
+  script:
+    - 'curl --insecure  -H "Content-Type: multipart/form-data" -H "Authorization: Bearer ${JIRA_TOKEN}"  -F "file=@result/output.xml"  "https://portail.agir.orange.com/rest/raven/1.0/import/execution/robot?projectKey=${PROJECT_KEY}&testPlanKey=${TEST_PLAN_KEY}"' # gitleaks:allow
+  allow_failure: true
+

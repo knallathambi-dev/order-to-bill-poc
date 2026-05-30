@@ -1,0 +1,65 @@
+meta {
+  name: PolicyRuleAssociation
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{next_task_href}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "characteristic": [
+          {
+              "name": "PolicyRuleAssociation",
+              "valueType": "Object",
+              "value": {
+                 
+              "associatePolicyRuleRefMinCardinality":1,
+                  "associatePolicyRuleRef": [{
+      "id":"{{Policy_id}}",
+      "name":"{{Policy_name}}"
+        }                
+                  ]
+              },
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": "ObjectCharacteristic"
+          }
+      ]
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  var jsonData =  res.body;
+  
+  
+  bru.setVar("cancel_href", jsonData._links.nextTaskstoBePerformed[0].href);
+  console.log("cancel_href = " + bru.getVar("cancel_href"));
+  
+  bru.setVar("next_task_href", jsonData._links.nextTaskstoBePerformed[1].href);
+  console.log("next_task_href = " + bru.getVar("next_task_href"));
+  
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+}

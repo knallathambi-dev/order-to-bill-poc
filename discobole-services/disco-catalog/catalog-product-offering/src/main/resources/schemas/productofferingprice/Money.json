@@ -1,0 +1,14 @@
+{
+  "Money" : {
+    "required" : [ "unit", "value" ],
+    "type" : "object",
+    "properties" : {
+      "unit" : {
+        "type" : "string"
+      },
+      "value" : {
+        "type" : "number"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "ProductSpecUsageSpecification" : {
+    "required" : [ "serviceSpecification.usageSpecification.id", "name" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "serviceSpecification.usageSpecification.id" : {
+          "type" : "string",
+          "readOnly" : true
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "validFor" : {
+          "required" : [ "startDateTime" ],
+          "type" : "object",
+          "properties" : {
+            "endDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            },
+            "startDateTime" : {
+              "type" : "string",
+              "format" : "date-time"
+            }
+          }
+        }
+      }
+    }
+  }
+}

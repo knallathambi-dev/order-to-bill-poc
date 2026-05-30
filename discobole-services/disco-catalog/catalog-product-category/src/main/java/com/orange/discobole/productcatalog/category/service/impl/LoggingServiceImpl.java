@@ -1,0 +1,71 @@
+// SPDX-FileCopyrightText: 2025 Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT License,
+// the text of which is available at https://opensource.org/license/mit
+// or see the "LICENSE.txt" file for more details.
+//
+// Authors: See CONTRIBUTORS.txt
+
+package com.orange.discobole.productcatalog.category.service.impl;
+
+import java.util.Objects;
+
+
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
+import org.springframework.web.util.ContentCachingRequestWrapper;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.orange.discobole.productcatalog.category.service.LoggingService;
+
+@Service
+
+public class LoggingServiceImpl implements LoggingService {
+
+    @Resource
+    private ObjectMapper objectMapper;
+    private static final Logger LOGGER = LogManager.getLogger(LoggingServiceImpl.class);
+
+    @Override
+    public void logRequest(HttpServletRequest httpServletRequest, Object body) {
+        ContentCachingRequestWrapper requestWrapper = new ContentCachingRequestWrapper(httpServletRequest);
+
+        // Extract request details
+        String method = requestWrapper.getMethod();
+        String url = requestWrapper.getRequestURI();
+        String queryString = requestWrapper.getQueryString();
+        // Log request details
+        LOGGER.debug("Received {} request to {} ? {}",method, url, queryString);
+        String requestBody = getJsonFromObject(body);
+        LOGGER.debug("Request Body: {}", requestBody);
+    }
+
+    private String getJsonFromObject(Object body) {
+        if (Objects.nonNull(body)) {
+            try {
+                return objectMapper.writeValueAsString(body);
+            } catch (JsonProcessingException e) {
+            	LOGGER.error("Error while print request body {} ", e.getMessage(), e);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void logResponse(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object body) {
+        // Log responseBody
+        String responseBody = getJsonFromObject(body);
+        LOGGER.debug("Response Body: {}", responseBody);
+
+        // Log response status
+        int status = httpServletResponse.getStatus();
+        LOGGER.debug("Response Status: {}", status);
+    }
+
+}

@@ -1,0 +1,91 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+.custom-bg-body-tertiary th,
+.custom-bg-body-tertiary td {
+    background-color: #eee;
+    border-bottom: 1px solid #000;
+}
+
+.sub-bundle-table th,
+.sub-bundle-table td {
+    background-color: #eee;
+}
+
+.sub-bundle-table tr.info {
+    border-bottom: 2px solid #ccc !important;
+}
+
+.icon-disabled {
+    filter: grayscale(100%);
+}
+
+.order-header-btn {
+    border: none;
+}
+
+/* Order Items table column widths */
+.col-order-item-id {
+    width: 24%;
+}
+
+.col-order-item-num {
+    width: 2%;
+}
+
+.col-order-item-name {
+    width: 18%;
+}
+
+.col-order-item-term {
+    width: 15%;
+}
+
+.col-order-item-state {
+    width: 10%;
+}
+
+.col-order-item-action {
+    width: 10%;
+}
+
+.col-order-item-price {
+    width: 12%;
+}
+
+/* Bundle table column widths */
+.col-bundle-id {
+    width: 30%;
+}
+
+.col-bundle-name {
+    width: 25%;
+}
+
+.col-bundle-term {
+    width: 15%;
+}
+
+.col-bundle-state {
+    width: 15%;
+}
+
+.col-bundle-action {
+    width: 15%;
+}
+
+.col-bundle-price {
+    width: 19%;
+}
+
+.col-bundle-toggle {
+    width: 1%;
+}

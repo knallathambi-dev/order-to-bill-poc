@@ -1,0 +1,65 @@
+meta {
+  name: DefineProductOfferingPriceChargeIdentityData
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "characteristic": [
+          {
+              "name": "DefineCategoryIdentityData",
+              "valueType": "Object",
+              "value": {
+                  "categoryIdentityData": {
+                      "name": "test_Category",
+                      "description": "test_Category",
+                      "isRoot": true,
+                      "parentId": ""
+                  },
+                  "defineSubcategory": [
+                     
+                  ]
+              },
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": "ObjectCharacteristic"
+          }
+      ]
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[1].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  
+  test("to verify next task is defineEntity", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[1].title).to.equals("CategoryCreation.defineEntity");
+  });
+  
+  
+}

@@ -1,0 +1,62 @@
+meta {
+  name: 05_CheckNodeActionIs_Add&Modify
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{BASE_URL}}/orchestrationPlan/{{plan_id}}
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: {{token}}
+}
+
+script:pre-request {
+  const delay=async()=>{
+     return new Promise ((res)=>{
+       setTimeout(res, 20000)
+       
+     })
+  }
+  await delay()
+}
+
+tests {
+    test("Status code is 200", function () {
+        expect(res.getStatus()).to.equal(200);
+    });
+    
+    var jsonData = res.body; 
+    console.log("jsonData",jsonData);
+  
+  jsonData.orchestrationPlanNodes.forEach((data)=>{
+    console.log("debug related product of index 0", data.relatedProduct[0]);
+    console.log("debug related products of index 1", data.relatedProduct?.[1]);
+  });
+  
+    const indexOfRingBackTone= jsonData.orchestrationPlanNodes.findIndex((data)=>data.relatedProduct[0].productSpecification.name=="Ring Back Tone");
+  
+  
+  const indexOfSMSOption= jsonData.orchestrationPlanNodes.findIndex((data)=>data.relatedProduct?.[1]?.productSpecification.name=="SMS Option");
+  
+     test("Check Ring back tone node action is modify", function () { 
+       expect(jsonData.orchestrationPlanNodes[indexOfRingBackTone].relatedProductOrderItem[0].action).to.be.oneOf(["modify"]);
+    });
+  
+    test("Check SMS option node action is add", function () { 
+        expect(jsonData.orchestrationPlanNodes[indexOfSMSOption].relatedProductOrderItem[0].action).to.be.oneOf(["add"]);
+      
+      
+      
+  //console.log("Orchestration Node action = " + jsonData.orchestrationPlanNodes[0].relatedProductOrderItem[0].action);
+    });
+  
+   
+}
+
+docs {
+  this request for check orchestration plan node state 
+}

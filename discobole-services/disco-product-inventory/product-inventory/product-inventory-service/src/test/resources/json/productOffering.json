@@ -1,0 +1,1965 @@
+[
+  {
+    "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+    "description": "Connectivity",
+    "isInstallable": true,
+    "lastUpdate": "2024-06-03T09:14:36.614Z",
+    "lifecycleStatus": "active",
+    "name": "Connectivity",
+    "statusReason": "Product Offering initial creation",
+    "version": "1.0",
+    "category": [
+      {
+        "id": "805a8ca1-e39f-46cf-aa8c-c2b33aba0d95",
+        "href": null,
+        "name": "Akshay+09/07",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ProductOfferingCategory",
+        "@referredType": "ProductOfferingCategory"
+      },
+      {
+        "id": "2b6ae5ae-0208-4d5e-ad00-1d5edf6eb360",
+        "href": null,
+        "name": "31 May Category",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ProductOfferingCategory",
+        "@referredType": "ProductOfferingCategory"
+      },
+      {
+        "id": "aff88f59-dd54-4c04-bc0c-f0738e2a1fcc",
+        "href": null,
+        "name": "mkkn",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ProductOfferingCategory",
+        "@referredType": "ProductOfferingCategory"
+      }
+    ],
+    "channel": [
+      {
+        "id": "Web",
+        "href": null,
+        "name": "Web",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "Shop",
+        "href": null,
+        "name": "Shop",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "marketSegment": [
+      {
+        "id": "B2B",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "B2C",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "policyRuleRef": [
+      {
+        "id": "660cfd079fc10d5439a77807",
+        "href": null,
+        "name": "Policy Rule for Samsung Galaxy S10 Reconditioned_2",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "660d246486aa0a489cf38600",
+        "href": null,
+        "name": "Policy Rule for Samsung Galaxy S10 Reconditioned_3",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "660d3b2186aa0a489cf38601",
+        "href": null,
+        "name": "Policy Rule for Samsung Galaxy S10 Reconditioned_2",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "prodSpecCharValueUse": [
+      {
+        "description": " ICCID",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "ICCID",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": "ICCID",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "ICCID"
+          }
+        ],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-11-14T06:54:06.103Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productOfferingTerm": [],
+    "productSpecification": {
+      "id": "e90a1274-7dc0-4259-a344-362b55edfc58",
+      "href": null,
+      "name": "Connectivity",
+      "version": "1.0.0",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "ProductSpecification",
+      "@referredType": null
+    },
+    "brand": "Orange",
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "commercialOperation": [
+      {
+        "id": "b1814c08-c326-4db9-b00a-d8c6743c5903.1",
+        "name": "Add",
+        "description": "Create",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-13T09:14:19.163Z"
+        },
+        "carries": [
+          {
+            "id": "54502ea5-14a2-40fe-b42f-0b3afdb96f8a",
+            "href": null,
+            "name": "test_pop2",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": "ProductOfferingPriceCharge",
+            "@referredType": null
+          }
+        ],
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": null,
+        "name": "Add",
+        "description": null,
+        "validFor": null,
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "productOfferingRelationship": [
+      {
+        "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "@type": "AtomicProductOffering",
+    "relatedParty": []
+  },
+  {
+    "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+    "description": "MobileLine",
+    "isInstallable": true,
+    "lastUpdate": "2024-04-04T09:05:16.427Z",
+    "lifecycleStatus": "launched",
+    "name": "MobileLine",
+    "statusReason": "Product Offering initial creation",
+    "version": "2.0",
+    "category": [
+      {
+        "id": "805a8ca1-e39f-46cf-aa8c-c2b33aba0d95",
+        "href": null,
+        "name": "Akshay+09/07",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ProductOfferingCategory",
+        "@referredType": "ProductOfferingCategory"
+      },
+      {
+        "id": "2b6ae5ae-0208-4d5e-ad00-1d5edf6eb360",
+        "href": null,
+        "name": "31 May Category",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ProductOfferingCategory",
+        "@referredType": "ProductOfferingCategory"
+      },
+      {
+        "id": "0e14c725-8da4-4f3f-ba43-6520a5f1bf99",
+        "href": null,
+        "name": "Product_new11111",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ProductOfferingCategory",
+        "@referredType": "ProductOfferingCategory"
+      }
+    ],
+    "channel": [
+      {
+        "id": "Web",
+        "href": null,
+        "name": "Web",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "Shop",
+        "href": null,
+        "name": "Shop",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "marketSegment": [
+      {
+        "id": "B2B",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "B2C",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "policyRuleRef": [
+      {
+        "id": "2",
+        "href": null,
+        "name": "Policy Rule 2",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "prodSpecCharValueUse": [
+      {
+        "description": "MSISDN (Mobile Station ISDN Number) - number uniquely identifying a subscription in a Mobile Telecommunications network",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "MSISDN",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "description": "Enables Voice over Wifi feature",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "VoWifi",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "description": "Validity of Mobile Line",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Validity",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": "30",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "30"
+          }
+        ],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-04-12T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productOfferingTerm": [],
+    "productSpecification": {
+      "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+      "href": null,
+      "name": "MobileLine",
+      "version": "1.0.0",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "ProductSpecification",
+      "@referredType": null
+    },
+    "brand": "Orange",
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "commercialOperation": [
+      {
+        "id": "afdb5396-5a4e-41b9-9755-fc1510c70956.1",
+        "name": "Add",
+        "description": "add",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "carries": [
+          {
+            "id": "b1a14825-ffa7-4a27-841f-16f798650de3",
+            "href": null,
+            "name": "NRC 5 Euro",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": "ProductOfferingPriceCharge",
+            "@referredType": null
+          }
+        ],
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "fc5ab1a6-683d-4201-bf98-8c0e8637db8e.2",
+        "name": "Modify",
+        "description": "Modify",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "2eb27f15-cfad-4c6f-bf21-4bed18d23283.3",
+        "name": "Terminate",
+        "description": "Terminate",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "productOfferingRelationship": [
+      {
+        "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "@type": "AtomicProductOffering",
+    "relatedParty": []
+  },
+  {
+    "id": "414e3b5e-7fca-4b7e-bf73-51fa1e66b87f",
+    "description": "Mobile Package Basic is a prepaid mobile package allowing 1 hour of voice calls valid for one month. The total price is €10",
+    "isInstallable": true,
+    "lastUpdate": "2024-03-15T06:08:13.798Z",
+    "lifecycleStatus": "launched",
+    "name": "Mobile Package Basic",
+    "statusReason": "Product Offering initial creation",
+    "version": "1.0",
+    "bundledProductOffering": [
+      {
+        "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+        "href": null,
+        "lifecycleStatus": "active",
+        "name": "Mobile Line",
+        "bundledProductOfferingOption": {
+          "numberRelOfferDefault": 1,
+          "numberRelOfferLowerLimit": 1,
+          "numberRelOfferUpperLimit": 1,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "AtomicProductOffering"
+      },
+      {
+        "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+        "href": null,
+        "lifecycleStatus": "active",
+        "name": "Sim Card",
+        "bundledProductOfferingOption": {
+          "numberRelOfferDefault": 1,
+          "numberRelOfferLowerLimit": 1,
+          "numberRelOfferUpperLimit": 1,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "AtomicProductOffering"
+      },
+      {
+        "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+        "href": null,
+        "lifecycleStatus": "active",
+        "name": "Connectivity",
+        "bundledProductOfferingOption": {
+          "numberRelOfferDefault": 1,
+          "numberRelOfferLowerLimit": 1,
+          "numberRelOfferUpperLimit": 1,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "AtomicProductOffering"
+      },
+      {
+        "id": "95023bc2-151d-4bf2-bb87-1b7d6cd2e847",
+        "href": null,
+        "lifecycleStatus": "active",
+        "name": "Time Bundle",
+        "bundledProductOfferingOption": {
+          "numberRelOfferDefault": 1,
+          "numberRelOfferLowerLimit": 1,
+          "numberRelOfferUpperLimit": 1,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "AtomicProductOffering"
+      },
+      {
+        "id": "78bc2297-cb07-4161-babb-35fc6b55979f",
+        "href": null,
+        "lifecycleStatus": "active",
+        "name": "Shipment",
+        "bundledProductOfferingOption": {
+          "numberRelOfferDefault": 1,
+          "numberRelOfferLowerLimit": 1,
+          "numberRelOfferUpperLimit": 1,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "AtomicProductOffering"
+      },
+      {
+        "id": "8f3239c1-fad8-4936-88cf-49c2cd6b6bf7",
+        "href": null,
+        "lifecycleStatus": "launched",
+        "name": "GalaxyS10",
+        "bundledProductOfferingOption": {
+          "numberRelOfferDefault": 1,
+          "numberRelOfferLowerLimit": 1,
+          "numberRelOfferUpperLimit": 1,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "AtomicProductOffering"
+      }
+    ],
+    "category": [],
+    "channel": [
+      {
+        "id": "Web",
+        "href": null,
+        "name": "Web",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "Shop",
+        "href": null,
+        "name": "Shop",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "marketSegment": [
+      {
+        "id": "B2B",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "B2C",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "policyRuleRef": [],
+    "productOfferingTerm": [],
+    "brand": "Orange",
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "commercialOperation": [
+      {
+        "id": "1",
+        "name": "Add",
+        "description": "Add ",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "2",
+        "name": "Modify",
+        "description": "Modify ",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "3",
+        "name": "Terminate",
+        "description": "Terminate",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "productOfferingRelationship": [],
+    "globalMinCardinality": 4,
+    "globalMaxCardinality": 4,
+    "@type": "BundleProductOffering",
+    "relatedParty": []
+  },
+  {
+    "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+    "description": "SIM Card",
+    "isInstallable": true,
+    "lastUpdate": "2024-04-24T08:15:04.412Z",
+    "lifecycleStatus": "launched",
+    "name": "SIM Card",
+    "statusReason": "Product Offering initial creation",
+    "version": "1.0",
+    "category": [
+      {
+        "id": "805a8ca1-e39f-46cf-aa8c-c2b33aba0d95",
+        "href": null,
+        "name": "Akshay+09/07",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ProductOfferingCategory",
+        "@referredType": "ProductOfferingCategory"
+      },
+      {
+        "id": "2b6ae5ae-0208-4d5e-ad00-1d5edf6eb360",
+        "href": null,
+        "name": "31 May Category",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ProductOfferingCategory",
+        "@referredType": "ProductOfferingCategory"
+      },
+      {
+        "id": "aff88f59-dd54-4c04-bc0c-f0738e2a1fcc",
+        "href": null,
+        "name": "mkkn",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "ProductOfferingCategory",
+        "@referredType": "ProductOfferingCategory"
+      }
+    ],
+    "channel": [
+      {
+        "id": null,
+        "href": null,
+        "name": "Web",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": null,
+        "href": null,
+        "name": "Shop",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "marketSegment": [
+      {
+        "id": "B2B",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "B2C",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "policyRuleRef": [],
+    "prodSpecCharValueUse": [
+      {
+        "description": " IMSI",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "IMSI",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": "IMSI#123",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "IMSI#123"
+          }
+        ],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-06-14T06:54:06.103Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productOfferingTerm": [],
+    "productSpecification": {
+      "id": "14cf641e-eb3c-4007-be27-c57d22532fa7",
+      "href": null,
+      "name": "SIM card",
+      "version": "1.0.0",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "ProductSpecification",
+      "@referredType": null
+    },
+    "brand": "Orange",
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "commercialOperation": [
+      {
+        "id": "1",
+        "name": "Add",
+        "description": "Add ",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "carries": [
+          {
+            "id": null,
+            "href": null,
+            "name": "NRC 100 Euro",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "@referredType": null
+          }
+        ],
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "2",
+        "name": "Modify",
+        "description": "Modify ",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "3",
+        "name": "Terminate",
+        "description": "Terminate",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "productOfferingRelationship": [
+      {
+        "id": "78bc2297-cb07-4161-babb-35fc6b55979f",
+        "href": null,
+        "relationshipType": "requires",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "936fd4bc-c6b3-4196-acac-2a70c2851edc",
+        "href": null,
+        "relationshipType": "incompatible",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2024-04-24T08:07:12.021Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "AtomicProductOffering"
+      },
+      {
+        "id": "16b549b3-1219-4464-aca5-9fc07207a434",
+        "href": null,
+        "relationshipType": "incompatible",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2024-04-12T09:22:21.625Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "AtomicProductOffering"
+      }
+    ],
+    "@type": "AtomicProductOffering",
+    "relatedParty": []
+  },
+  {
+    "id": "772056cd-485b-4877-8453-1648a07c43f7",
+    "description": "Mobile Package Basic is a prepaid mobile package allowing 1 hour of voice calls valid for one month. The total price is €10",
+    "isInstallable": true,
+    "lastUpdate": "2024-03-15T06:38:39.596Z",
+    "lifecycleStatus": "launched",
+    "name": "Mobile Package Basic",
+    "statusReason": "Contract Product Offering initial description",
+    "version": "1.0",
+    "billingType": "prepaid",
+    "bundledProductOffering": [
+      {
+        "id": "414e3b5e-7fca-4b7e-bf73-51fa1e66b87f",
+        "href": null,
+        "lifecycleStatus": "launched",
+        "name": "Mobile Package basic",
+        "bundledProductOfferingOption": {
+          "numberRelOfferDefault": 1,
+          "numberRelOfferLowerLimit": 1,
+          "numberRelOfferUpperLimit": 1,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "BundleProductOffering"
+      },
+      {
+        "id": "8f3239c1-fad8-4936-88cf-49c2cd6b6bf7",
+        "href": null,
+        "lifecycleStatus": "launched",
+        "name": "GalaxyS10",
+        "bundledProductOfferingOption": {
+          "numberRelOfferDefault": 1,
+          "numberRelOfferLowerLimit": 1,
+          "numberRelOfferUpperLimit": 1,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "AtomicProductOffering"
+      }
+    ],
+    "category": [],
+    "channel": [
+      {
+        "id": "Web",
+        "href": null,
+        "name": "Web",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "Shop",
+        "href": null,
+        "name": "Shop",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "marketSegment": [
+      {
+        "id": "B2B",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "B2C",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "policyRuleRef": [],
+    "productOfferingTerm": [],
+    "brand": "Orange",
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "commercialOperation": [
+      {
+        "id": "1",
+        "name": "Add",
+        "description": "Add ",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "2",
+        "name": "Modify",
+        "description": "Modify ",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "3",
+        "name": "Terminate",
+        "description": "Terminate",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "productOfferingRelationship": [],
+    "globalMinCardinality": 1,
+    "globalMaxCardinality": 1,
+    "@type": "Contract",
+    "relatedParty": []
+  },
+  {
+    "id": "95023bc2-151d-4bf2-bb87-1b7d6cd2e847",
+    "description": "Time Bundle",
+    "isInstallable": true,
+    "lastUpdate": "2024-03-14T08:50:42.191Z",
+    "lifecycleStatus": "launched",
+    "name": "Time Bundle",
+    "statusReason": "Product Offering initial creation",
+    "version": "1.0",
+    "category": [],
+    "channel": [
+      {
+        "id": "Web",
+        "href": null,
+        "name": "Web",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "Shop",
+        "href": null,
+        "name": "Shop",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "marketSegment": [
+      {
+        "id": "B2B",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "B2C",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "policyRuleRef": [
+      {
+        "id": "PolId",
+        "href": null,
+        "name": "policy1",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "PolId2",
+        "href": null,
+        "name": "policy2",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "prodSpecCharValueUse": [
+      {
+        "description": " Volume",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Volume",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": "One hour",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "1hr"
+          }
+        ],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-06-14T06:54:06.103Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "description": " recurring",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "recurring",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": "N",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "N"
+          }
+        ],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-06-14T06:54:06.103Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "description": " blocked",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "blocked",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": "Y",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "Y"
+          }
+        ],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-06-14T06:54:06.103Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productOfferingTerm": [],
+    "productSpecification": {
+      "id": "63d24f7e-c529-404c-911b-7c7926fd12ff",
+      "href": null,
+      "name": "Time Bundle",
+      "version": "1.0.0",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "ProductSpecification",
+      "@referredType": null
+    },
+    "brand": "Orange",
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "commercialOperation": [
+      {
+        "id": "1",
+        "name": "Add",
+        "description": "Add ",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-07T23:21:00.520Z"
+        },
+        "carries": [
+          {
+            "id": null,
+            "href": null,
+            "name": "NRC 100 Euro",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "@referredType": null
+          }
+        ],
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "2",
+        "name": "Modify",
+        "description": "Modify ",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "3",
+        "name": "Terminate",
+        "description": "Terminate",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "productOfferingRelationship": [
+      {
+        "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "@type": "AtomicProductOffering",
+    "relatedParty": []
+  },
+  {
+    "id": "78bc2297-cb07-4161-babb-35fc6b55979f",
+    "description": "Shipment",
+    "isInstallable": true,
+    "lastUpdate": "2024-07-17T10:14:44.835Z",
+    "lifecycleStatus": "launched",
+    "name": "Shipping",
+    "statusReason": "Product Offering initial creation",
+    "version": "2.0",
+    "category": [],
+    "channel": [
+      {
+        "id": "Web",
+        "href": null,
+        "name": "Web",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "marketSegment": [
+      {
+        "id": "B2B",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "B2C",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "policyRuleRef": [
+      {
+        "id": "66977e609656491b07a6e3bd",
+        "href": null,
+        "name": "Policy rule for home delivery",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "prodSpecCharValueUse": [
+      {
+        "description": " Shipping mode",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Shipping mode",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": null,
+            "isSelectable": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": "Instore",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "Instore"
+          },
+          {
+            "isDefault": null,
+            "isSelectable": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": "Home delivery",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "Home delivery"
+          }
+        ],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-06-14T06:54:06.103Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "description": " requested delivery",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "requested delivery",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-06-14T06:54:06.103Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "description": " shipping",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "shipping",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-06-14T06:54:06.103Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productOfferingTerm": [],
+    "productSpecification": {
+      "id": "3e828676-7345-4ac9-92f3-7606857fa588",
+      "href": null,
+      "name": "Shipment",
+      "version": "1.0.0",
+      "@baseType": "ShippingProductSpecification",
+      "@schemaLocation": null,
+      "@type": "ProductSpecification",
+      "@referredType": null
+    },
+    "brand": "Orange",
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2024-05-20T07:50:41.270Z"
+    },
+    "commercialOperation": [
+      {
+        "id": "d41dec58-6fe3-4dae-bac7-9f45cc4f8145.1",
+        "name": "Create",
+        "description": "Create",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "productOfferingRelationship": [
+      {
+        "id": "d38215f7-d631-4949-b6a7-f206245b9880",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "@type": "AtomicProductOffering",
+    "relatedParty": []
+  },
+  {
+    "id": "8f3239c1-fad8-4936-88cf-49c2cd6b6bf7",
+    "description": "GalaxyS10",
+    "isInstallable": true,
+    "lastUpdate": "2024-04-18T15:14:34.711Z",
+    "lifecycleStatus": "inTest",
+    "name": "GalaxyS10",
+    "statusReason": "Product Offering initial creation",
+    "version": "1.0",
+    "category": [],
+    "channel": [],
+    "marketSegment": [
+      {
+        "id": "B2B",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "B2C",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "policyRuleRef": [
+      {
+        "id": "660cfd079fc10d5439a77807",
+        "href": null,
+        "name": "Policy Rule for Samsung Galaxy S10 Reconditioned_2",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "prodSpecCharValueUse": [
+      {
+        "description": " Memory",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Memory",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": null,
+            "isSelectable": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": "128",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "128GB"
+          },
+          {
+            "isDefault": null,
+            "isSelectable": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": null,
+            "value": "256",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "256GB"
+          }
+        ],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-06-14T06:54:06.103Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productOfferingTerm": [],
+    "productSpecification": {
+      "id": "14cf641e-eb3c-4007-be27-c57d22532fa7",
+      "href": null,
+      "name": "Mobile Headset_GalaxyS10",
+      "version": "1.0.0",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "ProductSpecification",
+      "@referredType": null
+    },
+    "brand": "Orange",
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "commercialOperation": [
+      {
+        "id": "1",
+        "name": "add",
+        "description": "add",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2021-04-08T12:21:35.303Z"
+        },
+        "carries": [
+          {
+            "id": "1457e754-730c-456d-9eb3-f1b04d9456ee",
+            "href": null,
+            "name": "NRC 100 Euro ",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": "ProductOfferingPriceCharge",
+            "@referredType": null
+          }
+        ],
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "productOfferingRelationship": [],
+    "@type": "AtomicProductOffering",
+    "relatedParty": []
+  },
+  {
+    "id": "772056cd-485b-4877-8453-1648a07c43f2",
+    "description": "Mobile Package Basic is a prepaid mobile package allowing 1 hour of voice calls valid for one month. The total price is €10",
+    "isInstallable": true,
+    "lastUpdate": "2024-03-15T06:38:39.596Z",
+    "lifecycleStatus": "launched",
+    "name": "Mobile Package Basic",
+    "statusReason": "Contract Product Offering initial description",
+    "version": "1.0",
+    "billingType": "prepaid",
+    "bundledProductOffering": [
+      {
+        "id": "c2c07f99-a99b-4e0d-9eff-eb76ad4600af",
+        "href": null,
+        "lifecycleStatus": "launched",
+        "name": "Add-on Netflix",
+        "bundledProductOfferingOption": {
+          "numberRelOfferDefault": 1,
+          "numberRelOfferLowerLimit": 1,
+          "numberRelOfferUpperLimit": 1,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "AtomicProductOffering"
+      },
+      {
+        "id": "414e3b5e-7fca-4b7e-bf73-51fa1e66b87f",
+        "href": null,
+        "lifecycleStatus": "launched",
+        "name": "Mobile Package basic",
+        "bundledProductOfferingOption": {
+          "numberRelOfferDefault": 1,
+          "numberRelOfferLowerLimit": 1,
+          "numberRelOfferUpperLimit": 1,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "BundleProductOffering"
+      }
+    ],
+    "category": [],
+    "channel": [
+      {
+        "id": "Selfcare",
+        "href": null,
+        "name": "Selfcare",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "Web",
+        "href": null,
+        "name": "Web",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "Shop",
+        "href": null,
+        "name": "Shop",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "marketSegment": [
+      {
+        "id": "B2B",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "B2C",
+        "href": null,
+        "name": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "policyRuleRef": [],
+    "productOfferingTerm": [],
+    "brand": "Orange",
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "commercialOperation": [
+      {
+        "id": "1",
+        "name": "Add",
+        "description": "Add ",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "2",
+        "name": "Modify",
+        "description": "Modify ",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "3",
+        "name": "Terminate",
+        "description": "Terminate",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2023-09-01T23:21:00.520Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "productOfferingRelationship": [],
+    "globalMinCardinality": 1,
+    "globalMaxCardinality": 1,
+    "@type": "Contract",
+    "relatedParty": []
+  },
+  {
+    "id": "c2c07f99-a99b-4e0d-9eff-eb76ad4600af",
+    "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productOffering?id=c2c07f99-a99b-4e0d-9eff-eb76ad4600af",
+    "description": "Add-on Netflix",
+    "isBundle": false,
+    "isSellable": false,
+    "isInstallable": true,
+    "lastUpdate": "2025-02-06T09:29:23.623Z",
+    "lifecycleStatus": "launched",
+    "name": "Add-on Netflix",
+    "statusReason": "Product Offering initial creation",
+    "version": "1.0",
+    "category": [],
+    "channel": [
+      {
+        "id": "Shop",
+        "href": null,
+        "name": "Shop",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "Selfcare",
+        "href": null,
+        "name": "Selfcare",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "Web",
+        "href": null,
+        "name": "Web",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "marketSegment": [
+      {
+        "id": "B2C",
+        "href": null,
+        "name": "B2C",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "policyRuleRef": [
+      {
+        "id": "79970941-3469-4587-bc1b-cb42a8eb6c93",
+        "href": null,
+        "name": "Policy Rule Pricing for Netflix PO with Basic Level",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      },
+      {
+        "id": "0003a007-ff91-4292-88e4-2d9b247d5927",
+        "href": null,
+        "name": "Policy Rule Pricing for Netflix PO with Standard Level",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "prodSpecCharValueUse": [
+      {
+        "id": "68e5f15c-e34d-469e-bdbe-523f66fe9826.1",
+        "description": "Level",
+        "maxCardinality": 1,
+        "minCardinality": 1,
+        "name": "Level",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "isSelectable": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": "string",
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2025-01-01T23:20:50.520Z"
+            },
+            "timeRange": null,
+            "value": "Basic",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "Basic"
+          },
+          {
+            "isDefault": false,
+            "isSelectable": null,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": "string",
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2025-01-01T23:20:50.520Z"
+            },
+            "timeRange": null,
+            "value": "Standard",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": "Standard"
+          }
+        ],
+        "productSpecification": null,
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2025-01-02T10:57:57.163Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": "StringCharacteristic"
+      }
+    ],
+    "productOfferingTerm": [],
+    "productSpecification": {
+      "id": "63d24f7e-c529-404c-911b-7c7926fd12ff",
+      "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=80adcad3-dbac-4e5e-8a5e-d9ec60a180db",
+      "name": "Add-on Netflix PS",
+      "version": "0.2",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "ProductSpecification",
+      "@referredType": null
+    },
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2025-02-06T09:29:23.052Z"
+    },
+    "commercialOperation": [
+      {
+        "id": "e71fccd4-9d85-4b25-9474-f650d70e2a3a.1",
+        "name": "add",
+        "description": "add",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2025-01-02T10:57:28.061Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "94abc5b9-e035-4908-8504-d8670cac56a3.3",
+        "name": "terminate",
+        "description": "terminate",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2025-01-02T10:57:28.061Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "bea32577-d9a3-4dd1-a699-c0ae75bd8430.5",
+        "name": "noChange",
+        "description": "noChange",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2025-01-02T10:57:28.061Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "4a61e3c7-12b2-4711-bc63-7c3c3ddb0f88.4",
+        "name": "migrate",
+        "description": "migrate",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2025-01-02T10:57:28.061Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "7b4da9b4-1220-47a9-b1b5-bf999b2b530f.2",
+        "name": "modify",
+        "description": "modify",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2025-01-02T10:57:28.061Z"
+        },
+        "carries": null,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "productOfferingRelationship": [],
+    "@type": "AtomicProductOffering",
+    "relatedParty": []
+  }
+]

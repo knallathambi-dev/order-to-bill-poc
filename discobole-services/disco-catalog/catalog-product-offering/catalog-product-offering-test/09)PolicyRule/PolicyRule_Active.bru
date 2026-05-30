@@ -1,0 +1,43 @@
+meta {
+  name: PolicyRule_Active
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{host}}/policyRule/v1/rule/{{Policy_id}}
+  body: json
+  auth: none
+}
+
+body:json {
+  {  "state":"active",
+      "description": "Policy {{random}}",
+      "executionStrategy": null,
+      "isConjustiveNormalForm": true,
+      "name": "Test_Policy {{random}}",
+      "note": [],
+      "policyAction": [
+          {
+              "id": "{{action_id}}"
+          }
+      ],
+      "policyCondition": {
+          "id": "{{condition_id}}"
+      },
+      "policyDomain": [
+          {
+              "id": "{{domain_id}}"
+          }
+      ],
+      "policyEvent": {
+          "id": "{{event_id}}"
+      },
+      "relatedParty": []
+  }
+}
+
+assert {
+  res.status: eq 200
+  res.body.state: eq active
+}

@@ -1,0 +1,115 @@
+[
+  {
+    "@type": "PhysicalProduct",
+    "id": "67ab50b537fe5a1967b9858e",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858e",
+    "isBundle": false,
+    "name": "SIM Card",
+    "productSerialNumber": "1234",
+    "productCharacteristic": [
+      {
+        "@type": "StringCharacteristic",
+        "id": "1",
+        "name": "IMSI",
+        "value": "IMSI#1234"
+      }
+    ],
+    "productOffering": {
+      "id": "af2b35d6-7556-4925-9788-bdf073d2fa39",
+      "name": "SIM Card",
+      "version": "2.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "3fa2acb9-e94c-4b97-8528-c7cb947bdc3b",
+        "productOrderId": "67ab50b3d636a24b72afc094"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858c",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b98591",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98591"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "73be51ab-af7c-4369-9298-3be3933a5d74",
+      "name": "SIM Card PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingResource": [
+      {
+        "id": "65x",
+        "href": "http://server:port/resourceInventoryManagement/physicalResource/65x",
+        "@type": "PhysicalResource"
+      }
+    ],
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Sold",
+    "operationalStatus": "Sold",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:30:32Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:02Z",
+        "status": "Sold"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:46Z",
+        "status": "PendingDelivery"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:02Z",
+        "status": "Sold"
+      }
+    ]
+  }
+]

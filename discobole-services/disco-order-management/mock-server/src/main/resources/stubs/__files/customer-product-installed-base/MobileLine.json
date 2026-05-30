@@ -1,0 +1,146 @@
+[{
+  "@type": "Product",
+  "id": "67f3fff127434975dbb90209",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209",
+  "isBundle": false,
+  "name": "Mobile Line",
+  "startDate": "2025-04-07T16:41:01Z",
+  "productCharacteristic": [
+    {
+      "@type": "ValidityCharacteristic",
+      "id": "519e569a-08a8-4e11-ad47-9997c3766a5e.4",
+      "name": "Validity",
+      "value": {
+        "value": 30,
+        "unitOfMeasure": "Days"
+      }
+    }
+  ],
+  "productOffering": {
+    "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+    "name": "Mobile Line",
+    "version": "2.7",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "ee753fd0-3586-4d23-919c-20a85abffdfe",
+      "productOrderId": "67f3ffef0651d05b5b35d893"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "MobileLine",
+      "name": "NRC 5 Euro",
+      "priceType": "nonRecurringCharge",
+      "unitOfMeasure": "units",
+      "productOfferingPrice": {
+        "id": "b1a14825-ffa7-4a27-841f-16f798650de3",
+        "name": "NRC 5 Euro",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 0
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 0
+        }
+      },
+      "productPriceAlteration": [
+        {
+          "description": "100% dicount",
+          "name": "100% dicount",
+          "priceType": "nonRecurringDiscount",
+          "priority": 1,
+          "price": {
+            "percentage": 100,
+            "taxRate": 0
+          }
+        }
+      ]
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90206",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+      }
+    },
+    {
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb9020b",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b"
+      }
+    },
+    {
+      "relationshipType": "reliesFrom",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb9020a",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020a"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+    "name": "Mobile Line",
+    "version": "1.0.0",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Active",
+  "operationalStatus": "Confirmed",
+  "creationDate": "2025-04-07T16:40:17Z",
+  "lastUpdateDate": "2025-04-07T16:41:01Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:01Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:22Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:32Z",
+      "status": "PendingActive"
+    },
+    {
+      "changeDate": "2025-04-07T16:41:01Z",
+      "status": "Active"
+    }
+  ]
+}]

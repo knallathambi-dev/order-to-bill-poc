@@ -1,0 +1,14 @@
+{
+  "DefineProductOfferingSaleChannel" : {
+    "required" : [ "channelId" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "channelId" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

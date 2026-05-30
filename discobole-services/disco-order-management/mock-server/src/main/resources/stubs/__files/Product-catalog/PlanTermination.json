@@ -1,0 +1,773 @@
+[
+  {
+    "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+    "brand": "Orange",
+    "description": "Connectivity",
+    "isBundle": false,
+    "lastUpdate": "2023-05-19T09:04:24.607Z",
+    "lifecycleStatus": "launched",
+    "name": "Connectivity",
+    "productNumber": "))1",
+    "version": "1.1.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "273f800e-cdbf-4fdf-bee4-21883d9fa5a8.1",
+        "configurable": true,
+        "description": "ICCID",
+        "extensible": false,
+        "isUnique": true,
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "ICCID",
+        "regex": "10[0,9]",
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "10001",
+        "href": null,
+        "name": null,
+        "role": "marketingContact",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "serviceSpecification": [
+      {
+        "id": "Connectivity",
+        "href": null,
+        "name": "Connectivity",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2017-10-11T23:20:50.520Z"
+    },
+    "relatedResource": [
+      {
+        "id": "1",
+        "href": null,
+        "name": "related resource",
+        "role": "abc",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "operationSpecification": [
+      {
+        "id": "3e70a9c7-ef35-4579-bad2-20f795fa8203.1",
+        "name": "Add connectivity",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "add ",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "@type": "ProductSpecification"
+  },
+  {
+    "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+    "brand": "Orange",
+    "description": "Time Bundle",
+    "isBundle": false,
+    "lastUpdate": "2023-10-04T10:52:56.799Z",
+    "lifecycleStatus": "launched",
+    "name": "Time Bundle",
+    "productNumber": "Time",
+    "version": "0.1.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "6a815c71-c6aa-434a-b81a-53bcab82e0be.1",
+        "configurable": true,
+        "description": "Volume",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Volume",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2020-10-11T23:20:50.520Z"
+            },
+            "value": "1hr",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "e1a48e12-c9a8-4e45-ba06-e418e3ee7182.2",
+        "configurable": true,
+        "description": "recurring",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Recurring",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2020-10-11T23:20:50.520Z"
+            },
+            "value": "N",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "81c5777f-4b54-4b7d-ac43-57a227f6aea3.3",
+        "configurable": true,
+        "description": "blocked",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Blocked",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2020-10-11T23:20:50.520Z"
+            },
+            "value": "Y",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "10001",
+        "href": null,
+        "name": null,
+        "role": "marketingContact",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "serviceSpecification": [
+      {
+        "id": "Time bundle",
+        "href": null,
+        "name": "Time bundle",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2017-10-11T23:20:50.520Z"
+    },
+    "relatedResource": [
+      {
+        "id": "1",
+        "href": null,
+        "name": "related resource",
+        "role": "abc",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "operationSpecification": [
+      {
+        "id": "8a1b5b78-f4c9-4a38-9e41-a5dec6ecd6b5.1",
+        "name": "Add a new time bundle",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "Provision a new time bundle",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "1d982af3-abb0-4d56-83dc-3f94b9f23155.2",
+        "name": "delete a  time bundle",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "delete  a  time bundle",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "@type": "ProductSpecification",
+    "usageSpecification": []
+  },
+  {
+    "id": "b0ad739d-57f8-4e2d-a891-0b9df12da1a3",
+    "description": "SMS OPTION 4",
+    "isBundle": false,
+    "lastUpdate": "2023-12-05T09:44:52.841Z",
+    "lifecycleStatus": "launched",
+    "name": "SMS OPTION 4",
+    "version": "1.0.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "3e5bba3a-6d5c-4a2c-a6db-078eb4a1800a.charvolume",
+        "configurable": true,
+        "description": "Volume of SMS provided",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 4,
+        "minCardinality": 0,
+        "name": "Volume",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "1000 SMS",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "ae4f8491-a360-408c-aabb-84dc662f3502.charrecur",
+        "configurable": false,
+        "description": "Makes SMS recurring",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 4,
+        "minCardinality": 0,
+        "name": "recurring",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "N",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      {
+        "id": "cce19cec-8047-408b-95a6-0b14c2fc2089.charablocked",
+        "configurable": false,
+        "description": "Blocks SMS usage after exhaustion of SMS Quota",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 4,
+        "minCardinality": 0,
+        "name": "blocked",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "Y",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [],
+    "serviceSpecification": [
+      {
+        "id": "SMS option 11",
+        "href": null,
+        "name": "SMS option 11",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "relatedResource": [],
+    "operationSpecification": [
+      {
+        "id": "d24c99dc-938a-4fe8-9b50-5c7620b142c2.SMS_OP01",
+        "name": "Create",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "provide sms feature",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "04912ddf-acd8-4833-b01f-3827aad38392.SMS_OP02",
+        "name": "Delete",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "Remove an existing sms option",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "@type": "ProductSpecification",
+    "usageSpecification": []
+  },
+  {
+    "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+    "brand": "Orange",
+    "description": "Mobile Line",
+    "isBundle": false,
+    "lastUpdate": "2023-12-05T10:13:23.041Z",
+    "lifecycleStatus": "launched",
+    "name": "Mobile Line",
+    "productNumber": "ML",
+    "version": "1.1.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "97f9e351-95b4-4f98-b845-fe8889688ce1.2",
+        "configurable": true,
+        "description": "MSISDN (Mobile Station ISDN Number) - number uniquely identifying a subscription in a Mobile Telecommunications network",
+        "extensible": false,
+        "isUnique": true,
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "MSISDN",
+        "regex": "10[0,9]",
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "10001",
+        "href": null,
+        "name": null,
+        "role": "marketingContact",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "serviceSpecification": [
+      {
+        "id": "MobileLine",
+        "href": null,
+        "name": "MobileLine",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2017-10-11T23:20:50.520Z"
+    },
+    "relatedResource": [
+      {
+        "id": "1",
+        "href": null,
+        "name": "related resource",
+        "role": "abc",
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": "individual"
+      }
+    ],
+    "operationSpecification": [
+      {
+        "id": "747f9607-fb77-403d-a34e-3e94607b5f1f.1",
+        "name": "Add a new mobile line on the network",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "Provision a new mobile line",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "@type": "ProductSpecification",
+    "usageSpecification": []
+  },
+  {
+    "id": "f6fe64ec-108a-4275-9f0e-12636acb6524",
+    "description": "RING BACK TONE",
+    "isBundle": false,
+    "lastUpdate": "2023-12-04T07:06:48.741Z",
+    "lifecycleStatus": "launched",
+    "name": "RING BACK TONE",
+    "version": "1.0.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "0324ddb9-d627-4d24-813e-e272440104ad.1",
+        "configurable": true,
+        "description": "tone",
+        "extensible": null,
+        "isUnique": null,
+        "maxCardinality": 4,
+        "minCardinality": 0,
+        "name": "tone",
+        "regex": null,
+        "valueType": "string",
+        "productSpecCharRelationship": [],
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "tone1",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": null
+          },
+          {
+            "isDefault": false,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "tone2",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": null
+          },
+          {
+            "isDefault": false,
+            "rangeInterval": null,
+            "regex": null,
+            "unitOfMeasure": null,
+            "valueFrom": null,
+            "valueTo": null,
+            "valueType": null,
+            "validFor": {
+              "endDateTime": null,
+              "startDateTime": "2023-04-12T23:20:50.520Z"
+            },
+            "value": "tone3",
+            "@baseType": null,
+            "@schemaLocation": null,
+            "@type": null,
+            "supportEntity.characteristic.value": null
+          }
+        ],
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2020-10-11T23:20:50.520Z"
+        },
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+        "href": null,
+        "relationshipType": "reliesOn",
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "relatedParty": [],
+    "serviceSpecification": [
+      {
+        "id": "Ring Back Tone_02",
+        "href": null,
+        "name": "Ring Back Tone",
+        "version": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null,
+        "@referredType": null
+      }
+    ],
+    "validFor": {
+      "endDateTime": null,
+      "startDateTime": "2023-09-01T23:21:00.520Z"
+    },
+    "relatedResource": [],
+    "operationSpecification": [
+      {
+        "id": "0246d338-5165-4578-a889-fcacbd3c0f69.RB01",
+        "name": "Add a new Ring Back Tone",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "ADD Ring back tone",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "bc99b042-76cc-487d-a29f-7ceaab36a6d4.RB02",
+        "name": "Delete",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "Remove existing Ring Back Tone",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      },
+      {
+        "id": "8147c399-6555-42c2-a5bb-1bf12b9c5200.RB03",
+        "name": "modify",
+        "validFor": {
+          "endDateTime": null,
+          "startDateTime": "2017-04-12T23:20:50.520Z"
+        },
+        "description": "modift the existing Ring Back Tone",
+        "isQualificationRequested": false,
+        "@type": null,
+        "@baseType": null,
+        "@schemaLocation": null
+      }
+    ],
+    "@type": "ProductSpecification",
+    "usageSpecification": []
+  }
+]

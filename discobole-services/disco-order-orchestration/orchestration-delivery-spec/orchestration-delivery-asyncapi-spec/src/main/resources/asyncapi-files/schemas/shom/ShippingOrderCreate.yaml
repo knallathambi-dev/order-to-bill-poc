@@ -1,0 +1,73 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+$id: "https://event.com/ShippingOrderStateChangeEvent.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "ShippingOrderCreate"
+description: "A Shipping Order is a document used by a business to specify what items are to be transferred from a storage location or warehouse to which person and to which new location. A Shipping Order can typically be sent along with a shipment of goods so that the person receiving them can verify that the document correctly reflects the items that they actually received. Skipped properties: id,href,creationDate,lastUpdateDate"
+type: "object"
+properties:
+  status:
+    example: active
+    type: string
+    description: status of shipping order e.g "active" , "savedForLater"
+  note:
+    type: array
+    items:
+      $ref: './ShippingOrder.yaml#/definitions/Note'
+    description: A list of notes made on this shipping shipment
+  placeFrom:
+    $ref: './ShippingOrder.yaml#/definitions/RelatedPlaceRefOrValue'
+    description: Source location of the item. E.g. warehouse or shop location. The location can be specified at the shipping order level or at the shipping order item level if multiple sources are specified part of the same shipping order.
+  placeTo:
+    $ref: './ShippingOrder.yaml#/definitions/RelatedPlaceRefOrValue'
+    description: Destination of the item. E.g. customer home address. The location can be specified at the shipping order level or at the shipping order item level if multiple destinations are specified part of the same shipping order.
+  productOrder:
+    $ref: './ShippingOrder.yaml#/definitions/ProductOrderRef'
+    description: The product order for which the shipping order is created, if supplied as input the attribute id must be populated
+  relatedParty:
+    type: array
+    items:
+      $ref: './ShippingOrder.yaml#/definitions/RelatedPartyWithContactInfo'
+    description: An existing related party that has some form of correlation with the given shipping order. It can be recipient, payer, etc.
+  relatedShippingOrder:
+    $ref: './ShippingOrder.yaml#/definitions/RelatedShippingOrder'
+    description: An existing shipping order that has some form of correlation with the given shipping order
+  shippingInstruction:
+    $ref: './ShippingOrder.yaml#/definitions/ShippingInstruction'
+    description: The product order for which the shipping order is created, if supplied as input the attribute id must be populated
+  shippingOrderCharacteristic:
+    type: array
+    items:
+      existingJavaType: "com.orange.discobole.orderorchestration.orchestrationdelivery.servicecharacteristic.model.Characteristic"
+    description: List of characteristics with values
+  shippingOrderItem:
+    type: array
+    items:
+      $ref: './ShippingOrder.yaml#/definitions/ShippingOrderItem'
+    minItems: 1
+    description: A list of shipping order items. Each shipping order item has a corresponding Shipment(e.g. parcel) which has one or multiple products in it
+  shippingOrderOffering:
+    $ref: './ShippingOrder.yaml#/definitions/ProductOfferingRef'
+    description: Shipping order can have a corresponding entry in the product catalog (product offering)
+  shippingOrderPrice:
+    $ref: './ShippingOrder.yaml#/definitions/ProductPrice'
+    description: Shipping Order price
+  '@baseType':
+    type: string
+    description: When sub-classing, this defines the super-class
+  '@schemaLocation':
+    type: string
+    format: uri
+    description: A URI to a JSON-Schema file that defines additional attributes and relationships
+  '@type':
+    type: string
+    description: When sub-classing, this defines the sub-class Extensible name
+required:
+  - "shippingOrderItem"

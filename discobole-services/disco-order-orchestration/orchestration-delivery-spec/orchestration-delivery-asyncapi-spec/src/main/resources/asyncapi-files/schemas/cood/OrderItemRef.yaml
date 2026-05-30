@@ -1,0 +1,138 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+$id: "https://orange.com/deliveryOrderEvent.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "OrderItemRef"
+type: "object"
+properties:
+  productOrderItemId:
+    type: string
+  factoryOrderItemId:
+    type: string
+  action:
+    type: string
+  quantity:
+    type: integer
+  orchestrationNodeId:
+    type: string
+  RealizingResourceRef:
+    $ref: '#/definitions/RealizingResourceRef'
+  DeliveryStatusMapping:
+    $ref: '#/definitions/DeliveryStatusMapping'
+  OrderItemCharacteristics:
+    type: array
+    items:
+      $ref: '#/definitions/OrderItemCharacteristics'
+  ProductSpecificationRef:
+    $ref: '#/definitions/ProductSpecificationRef'
+required:
+  - productOrderItemId
+  - factoryOrderItemId
+  - action
+  - quantity
+  - orchestrationNodeId
+  - RealizingResourceRef
+  - DeliveryStatusMapping
+
+definitions:
+  RealizingResourceRef:
+    type: object
+    properties:
+      id:
+        type: string
+      href:
+        type: string
+      '@referredType':
+        type: string
+      FactorySpecificationRef:
+        $ref: '#/definitions/FactorySpecificationRef'
+      DeliveryCharacteristics:
+        type: array
+        items:
+          existingJavaType: "com.orange.discobole.orderorchestration.orchestrationdelivery.servicecharacteristic.model.Characteristic"
+    required:
+      - id
+      - href
+      - '@referredType'
+      - FactorySpecificationRef
+
+  FactorySpecificationRef:
+    type: object
+    properties:
+      id:
+        type: string
+      href:
+        type: string
+      name:
+        type: string
+      version:
+        type: string
+      '@referredType':
+        type: string
+    required:
+      - id
+      - href
+      - name
+      - version
+      - '@referredType'
+
+  DeliveryStatusMapping:
+    type: object
+    properties:
+      deliveryStatus:
+        $ref: '#/definitions/deliveryStatusEnum'
+      nodeStatus:
+        $ref: '#/definitions/nodeStatusEnum'
+    required:
+      - deliveryStatus
+      - nodeStatus
+
+  OrderItemCharacteristics:
+    type: object
+    existingJavaType: "com.orange.discobole.orderorchestration.orchestrationdelivery.dto.v1.Characteristic"
+
+  deliveryStatusEnum:
+    type: string
+    enum:
+      - created
+      - inProgress
+      - held
+      - executed
+
+  nodeStatusEnum:
+    type: string
+    enum:
+      - Completed
+      - Failed
+      - Held
+      - InDelivery
+
+  ProductSpecificationRef:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      serviceSpecificationRef:
+        type: array
+        items:
+          $ref: '#/definitions/serviceSpecificationRef'
+
+  serviceSpecificationRef:
+    type: object
+    properties:
+      id:
+        type: string
+      href:
+        type: string
+      name:
+        type: string

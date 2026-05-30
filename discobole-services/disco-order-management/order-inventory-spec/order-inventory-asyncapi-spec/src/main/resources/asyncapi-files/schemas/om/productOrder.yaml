@@ -1,0 +1,1503 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+$id: "https://event.com/productorder.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "ProductOrder"
+description: "A Product Order is a type of order which can be used to place an order between a customer and a service provider or between a service provider and a partner and vice versa."
+required:
+  - "@type"
+type: "object"
+existingJavaType: "com.orange.discobole.ordermanagement.orderinventory.dto.v1.ProductOrder"
+properties:
+  id:
+    description: "Unique identifier."
+    type: "string"
+  href:
+    description: "Hyperlink reference."
+    type: "string"
+  cancellationDate:
+    description: "Date when the order is cancelled. This is used when order is cancelled."
+    type: "string"
+    format: "date-time"
+  cancellationReason:
+    description: "Reason why the order is cancelled. This is used when order is cancelled."
+    type: "string"
+  category:
+    description: "Used to categorize the order from a business perspective that can be useful for the OM system (e.g. \"enterprise\", \"residential\", ...)"
+    type: "string"
+  completionDate:
+    description: "Date when the ProductOrder was completed."
+    type: "string"
+    format: "date-time"
+  description:
+    description: "Description of the product order."
+    type: "string"
+  expectedCompletionDate:
+    description: "Expected delivery date amended by the provider."
+    type: "string"
+    format: "date-time"
+  notificationContact:
+    description: "Contact attached to the order to send back information regarding this order."
+    type: "string"
+  priority:
+    description: "A way that can be used by consumers to prioritize orders in OM system (from 0 to 4 : 0 is the highest priority, and 4 the lowest)"
+    type: "string"
+  requestedCompletionDate:
+    description: "Requested delivery date from the requestor perspective"
+    type: "string"
+    format: "date-time"
+  requestedStartDate:
+    description: "Order fulfillment start date wished by the requestor. This is used when, for any reason, requestor cannot allow seller to begin to operationally begin the fulfillment before a date."
+    type: "string"
+    format: "date-time"
+  billingAccount:
+    $ref: "#/BillingAccountRef"
+  channel:
+    type: "array"
+    items:
+      $ref: "#/RelatedChannel"
+  orderTotalPrice:
+    type: "array"
+    items:
+      $ref: "#/OrderPrice"
+  payment:
+    type: "array"
+    items:
+      $ref: "#/PaymentRef"
+  productOrderItem:
+    type: "array"
+    items:
+      $ref: "#/ProductOrderItem"
+    minItems: 1
+  relatedParty:
+    type: "array"
+    items:
+      $ref: "#/RelatedPartyRefOrPartyRoleRef"
+  state:
+    $ref: "#/ProductOrderStateType"
+  '@baseType':
+    description: "When sub-classing, this defines the super-class."
+    type: "string"
+  '@schemaLocation':
+    description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+    type: "string"
+    format: "uri"
+  '@type':
+    description: "When sub-classing, this defines the sub-class Extensible name."
+    type: "string"
+  creationDate:
+    description: "Date and time when the ProductOrder was created."
+    type: "string"
+    format: "date-time"
+
+AppointmentRef:
+  description: "Refers an appointment, such as a customer presentation or internal meeting or site visit."
+  required:
+    - "id"
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "The identifier of the referred appointment."
+      type: "string"
+    href:
+      description: "The reference of the appointment."
+      type: "string"
+    description:
+      description: "An explanatory text regarding the appointment made with a party."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+
+BillingAccountRef:
+  description: "BillingAccount reference. A BillingAccount is a detailed description of a bill structure."
+  required:
+    - "id"
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+    ratingType:
+      description: "Indicates whether the account follows a specific payment option such as prepaid or postpaid."
+      type: "string"
+
+Characteristic:
+  description: "Describes a given characteristic of an object or entity through a name/value pair."
+  discriminator: "@type"
+  oneOf:
+    - $ref: "#/BooleanCharacteristic"
+    - $ref: "#/IntegerCharacteristic"
+    - $ref: "#/StringCharacteristic"
+    - $ref: "#/FloatCharacteristic"
+    - $ref: "#/ObjectCharacteristic"
+    - $ref: "#/ValidityCharacteristic"
+    - $ref: "#/IntegerArrayCharacteristic"
+    - $ref: "#/StringArrayCharacteristic"
+    - $ref: "#/FloatArrayCharacteristic"
+    - $ref: "#/ObjectArrayCharacteristic"
+    - $ref: "#/BooleanArrayCharacteristic"
+    - $ref: "#/AddressCharacteristic"
+    - $ref: "#/DateCharacteristic"
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    id:
+      description: "Unique identifier of the characteristic."
+      type: "string"
+    name:
+      description: "Name of the characteristic."
+      type: "string"
+    valueType:
+      description: "Data type of the value of the characteristic."
+      type: "string"
+
+BooleanCharacteristic:
+  title: "BooleanCharacteristic"
+  description: "Represents a characteristic with a true/false value, used to describe binary states or conditions of an object or entity."
+  type: "object"
+  properties:
+    value:
+      description: "Value of the characteristic."
+      type: "boolean"
+
+IntegerCharacteristic:
+  title: "IntegerCharacteristic"
+  description: "Represents a characteristic with a whole number value, used to describe countable quantities, discrete measurements, or numeric identifiers."
+  type: "object"
+  properties:
+    value:
+      description: "Value of the characteristic."
+      type: "integer"
+      format: "int32"
+
+StringCharacteristic:
+  title: "StringCharacteristic"
+  description: "Represents a characteristic with a text value, used to describe textual attributes, labels, identifiers, or alphanumeric information."
+  type: "object"
+  properties:
+    value:
+      description: "Value of the characteristic."
+      type: "string"
+
+FloatCharacteristic:
+  title: "FloatCharacteristic"
+  description: "Represents a characteristic with a decimal numeric value, used to describe measurements, rates, or quantities requiring fractional precision."
+  type: "object"
+  properties:
+    value:
+      description: "Value of the characteristic."
+      type: "number"
+      format: "float"
+
+ObjectCharacteristic:
+  title: "ObjectCharacteristic"
+  description: "Represents a characteristic with a complex structured value containing nested properties, used to describe composite attributes that require multiple interrelated fields."
+  type: "object"
+  properties:
+    value:
+      description: "Value of the characteristic."
+      type: "object"
+
+ValidityCharacteristic:
+  title: "ValidityCharacteristic"
+  description: "Defines a characteristic with conditions and a time frame for its applicability."
+  type: "object"
+  properties:
+    value:
+      $ref: "#/ValidityValue"
+
+AddressCharacteristic:
+  title: "AddressCharacteristic"
+  description: "An object that stores the address details provided by the customer for a service. It helps keep track of the address information related to each product or service."
+  type: "object"
+  properties:
+    addressId:
+      type: "string"
+      description: "A unique identifier for the specific address. This helps in referencing and managing addresses within the system."
+    city:
+      type: "string"
+      description: "The name of the city where the address is located."
+    country:
+      type: "string"
+      description: "The name of the country for the address."
+    subUnitNumber:
+      type: "string"
+      description: "The specific unit or suite number within a larger building or complex, such as an apartment, office or retail unit."
+    streetName:
+      type: "string"
+      description: "The name of the street where the address is located."
+    postcode:
+      type: "string"
+      description: "The postal code or ZIP code used to identify a specific geographic area for mail delivery."
+
+DateCharacteristic:
+  title: "DateCharacteristic"
+  description: "An object that stores date-related details provided by the customer or generated by the system for a service. It helps keep track of important temporal information associated with a product, order, or any service."
+  type: "object"
+  properties:
+    value:
+      type: "string"
+      format: "date-time"
+      description: "Value of the characteristic."
+
+ValidityValue:
+  title: "ValidityCharacteristic"
+  description: "Represents the rules and time frame during which a characteristic is applicable."
+  type: "object"
+  properties:
+    value:
+      description: "Represents the actual value of the characteristic, typically a numeric or measurable quantity."
+      type: "integer"
+      format: "int32"
+    unitOfMeasure:
+      description: "Specifies the unit associated with the value (e.g., hours, days, gb) to provide context and standardization."
+      type: "string"
+    validTo:
+      description: "Indicates the date and time until which the characteristic is valid or applicable."
+      type: "string"
+      format: "date-time"
+    validFrom:
+      description: "Represents the date and time from which the characteristic becomes valid or applicable."
+      type: "string"
+      format: "date-time"
+
+IntegerArrayCharacteristic:
+  title: "IntegerArrayCharacteristic"
+  description: "Represents a characteristic containing multiple whole number values in an ordered collection, used to describe sets of countable quantities or sequences of discrete values."
+  type: "object"
+  properties:
+    value:
+      description: "Value of the characteristic."
+      type: "array"
+      items:
+        type: "integer"
+        format: "int32"
+
+StringArrayCharacteristic:
+  title: "StringArrayCharacteristic"
+  description: "Represents a characteristic containing multiple text values in an ordered collection, used to describe lists of textual attributes, tags, or categorical values."
+  type: "object"
+  properties:
+    value:
+      description: "Value of the characteristic."
+      type: "array"
+      items:
+        type: "string"
+
+FloatArrayCharacteristic:
+  title: "FloatArrayCharacteristic"
+  description: "Represents a characteristic containing multiple decimal numeric values in an ordered collection, used to describe series of measurements, coordinates, or sets of fractional data."
+  type: "object"
+  properties:
+    value:
+      description: "Value of the characteristic."
+      type: "array"
+      items:
+        type: "number"
+        format: "float"
+
+ObjectArrayCharacteristic:
+  title: "ObjectArrayCharacteristic"
+  description: "Represents a characteristic containing multiple complex structured values in an ordered collection, used to describe repeating composite attributes with consistent internal structure."
+  type: "object"
+  properties:
+    value:
+      description: "Value of the characteristic."
+      type: "array"
+      items:
+        type: "object"
+
+BooleanArrayCharacteristic:
+  title: "BooleanArrayCharacteristic"
+  description: "Represents a characteristic containing multiple true/false values in an ordered collection, used to describe sets of binary conditions or feature toggles."
+  type: "object"
+  properties:
+    value:
+      description: "Value of the characteristic."
+      type: "array"
+      items:
+        type: "boolean"
+
+Money:
+  description: "A base / value business entity used to represent money."
+  type: "object"
+  properties:
+    unit:
+      description: "Currency (ISO4217 norm uses 3 letters to define the currency)"
+      type: "string"
+    value:
+      description: "A signed floating point number, the meaning of the sign is according to the context of the API that uses this Data type."
+      type: "number"
+      format: "float"
+
+ItemActionType:
+  description: "Action to be performed on the entity managed by the item."
+  type: "string"
+  enum:
+    - "add"
+    - "delete"
+    - "modify"
+    - "noChange"
+    - "migrate"
+
+OrderItemRelationship:
+  description: "Used to describe relationship between Order item. These relationship could have an impact on pricing and conditions."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "Id of the related Order item (must be in the same Order)."
+      type: "string"
+    relationshipType:
+      $ref: "#/RelationshipType"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+
+OrderPrice:
+  description: "An amount, usually of money, that represents the actual price paid by the customer for this item or this order."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    description:
+      description: "A narrative that explains in detail the semantics of this order item price."
+      type: "string"
+    name:
+      description: "A short descriptive name such as \"Subscription price\"."
+      type: "string"
+    priceType:
+      description: "Indicate if the price is for recurrent or no-recurrent charge."
+      type: "string"
+    recurringChargePeriod:
+      $ref: "#/Quantity"
+    unitOfMeasure:
+      description: "Could be minutes, GB..."
+      type: "string"
+    billingAccount:
+      $ref: "#/BillingAccountRef"
+    price:
+      $ref: "#/Price"
+    productOfferingPrice:
+      $ref: "#/ProductOfferingPriceRefOrValue"
+    priceAlteration:
+      type: "array"
+      items:
+        $ref: "#/PriceAlteration"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    applicationDuration:
+      $ref: "#/Quantity"
+
+OrderTerm:
+  description: "Description of a productTerm linked to this orderItem. This represent a commitment with a duration."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    description:
+      description: "Description of the productOrderTerm."
+      type: "string"
+    name:
+      description: "Name of the productOrderTerm."
+      type: "string"
+    duration:
+      $ref: "#/Duration"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+
+PaymentRef:
+  description: "If an immediate payment has been done at the product order submission, the payment information are captured and stored (as a reference) in the order."
+  required:
+    - "id"
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+
+Price:
+  description: "Provides all amounts (tax included, duty free, tax rate), used currency and percentage to apply for Price and Price Alteration."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    percentage:
+      description: "Percentage to apply for ProdOfferPriceAlteration."
+      type: "number"
+      format: "float"
+    taxRate:
+      description: "Tax rate."
+      type: "number"
+      format: "float"
+    dutyFreeAmount:
+      $ref: "#/Money"
+    taxIncludedAmount:
+      $ref: "#/Money"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+
+PriceAlteration:
+  description: "A structure used to describe a price alteration."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    description:
+      description: "A narrative that explains in detail the semantics of this order item price alteration."
+      type: "string"
+    name:
+      description: "Name of the order item price alteration."
+      type: "string"
+    priceType:
+      description: "A category that describes the price such as recurring, one time and usage."
+      type: "string"
+    priority:
+      description: "Priority level for applying this alteration among all the defined alterations on the order item price."
+      type: "integer"
+      format: "int32"
+    applicationDuration:
+      $ref: "#/Quantity"
+    recurringChargePeriod:
+      $ref: "#/Quantity"
+    unitOfMeasure:
+      description: "Could be minutes, GB..."
+      type: "string"
+    price:
+      $ref: "#/Price"
+    productOfferingPrice:
+      $ref: "#/ProductOfferingPriceRefOrValue"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    applicationOffset:
+      description: "Number of months after the start of the recurring charge when the discount or price change begins"
+      type: "integer"
+      format: "int32"
+ProductOfferingPriceRefOrValue:
+  description: "ProductPriceOffering reference. An amount, usually of money, that is asked for or allowed when a ProductOffering is bought, rented or leased."
+  discriminator: "@type"
+  oneOf:
+    - $ref: "#/InstallmentCharge"
+    - $ref: "#/ProductOfferingPriceCharge"
+    - $ref: "#/ProductOfferingPriceRef"
+  type: "object"
+  properties:
+    '@type':
+      type: string
+ProductOfferingPriceRef:
+  title: "ProductOfferingPriceRef"
+  description: "An object that stores Product Offering Price Ref ."
+  required:
+    - "id"
+  type: "object"
+  properties:
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+ProductOfferingPriceCharge:
+  title: "ProductOfferingPriceCharge"
+  description: "An object that stores Product Offering Price Charge ."
+  required:
+    - "id"
+  type: "object"
+  properties:
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+    immediatePayment:
+      description: "Used to specify whether a payment should be processed instantly (\"true\") or if it allows for a delay (\"false\")"
+      type: "boolean"
+    version:
+      description: "ProductOfferingPrice version."
+      type: "string"
+    price:
+      $ref: "#/Money"
+    recurringChargePeriodLength:
+      description: "The period of the recurring charge: 1, 2, … .It sets to zero if it is not applicable."
+      type: "integer"
+      format: "int32"
+    recurringChargePeriodType:
+      description: "The period to repeat the application of the price. Could be month, week…"
+      type: "string"
+    applicationDuration:
+      $ref: "#/Quantity"
+    isBundle:
+      description: "A flag indicating if this ProductOfferingPrice is composite (bundle) or not."
+      type: "boolean"
+    lastUpdate:
+      description: "The last update time of this ProductOfferingPrice."
+      type: "string"
+      format: "date-time"
+    lifecycleStatus:
+      $ref: "#/ProductOfferingPriceLifecycle"
+    percentage:
+      description: "Percentage to apply if this Product Offering Price is an Alteration (such as a Discount)."
+      type: "number"
+      format: "float"
+    duration:
+      description: "A time interval in a given unit of time."
+      type: "integer"
+      format: "int32"
+    priority:
+      description: "Priority level for applying this alteration among all the defined alterations on the order item price."
+      type: "integer"
+      format: "int32"
+    priceType:
+      $ref: "#/PriceType"
+    unitOfMeasure:
+      $ref: "#/Quantity"
+    validFor:
+      $ref: "#/TimePeriod"
+    description:
+      description: "Description of the productOfferingPrice."
+      type: "string"
+    popRelationship:
+      type: "array"
+      items:
+        $ref: "#/ProductOfferingPriceRelationship"
+    tax:
+      type: "array"
+      items:
+        $ref: "#/TaxItem"
+
+InstallmentCharge:
+  title: "InstallmentCharge"
+  description: "An object that stores installment Charge."
+  required:
+    - "id"
+  type: "object"
+  properties:
+    interestRate:
+      type: "number"
+      format: "float"
+      description: "Interest rate applied to the installment charge."
+    downPayment:
+      type: "number"
+      format: "float"
+      description: "Down payment amount for the installment."
+    partner:
+      type: "string"
+      description: "Partner associated with the installment charge."
+    externalId:
+      type: "string"
+      description: "External identifier for the installment charge."
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+    immediatePayment:
+      description: "Used to specify whether a payment should be processed instantly (\"true\") or if it allows for a delay (\"false\")"
+      type: "boolean"
+    version:
+      description: "ProductOfferingPrice version."
+      type: "string"
+    price:
+      $ref: "#/Money"
+    recurringChargePeriodLength:
+      description: "The period of the recurring charge: 1, 2, … .It sets to zero if it is not applicable."
+      type: "integer"
+      format: "int32"
+    recurringChargePeriodType:
+      description: "The period to repeat the application of the price. Could be month, week…"
+      type: "string"
+    applicationDuration:
+      $ref: "#/Quantity"
+    isBundle:
+      description: "A flag indicating if this ProductOfferingPrice is composite (bundle) or not."
+      type: "boolean"
+    lastUpdate:
+      description: "The last update time of this ProductOfferingPrice."
+      type: "string"
+      format: "date-time"
+    lifecycleStatus:
+      $ref: "#/ProductOfferingPriceLifecycle"
+    percentage:
+      description: "Percentage to apply if this Product Offering Price is an Alteration (such as a Discount)."
+      type: "number"
+      format: "float"
+    duration:
+      description: "A time interval in a given unit of time."
+      type: "integer"
+      format: "int32"
+    priority:
+      description: "Priority level for applying this alteration among all the defined alterations on the order item price."
+      type: "integer"
+      format: "int32"
+    priceType:
+      $ref: "#/PriceType"
+    unitOfMeasure:
+      $ref: "#/Quantity"
+    validFor:
+      $ref: "#/TimePeriod"
+    description:
+      description: "Description of the productOfferingPrice."
+      type: "string"
+    popRelationship:
+      type: "array"
+      items:
+        $ref: "#/ProductOfferingPriceRelationship"
+    tax:
+      type: "array"
+      items:
+        $ref: "#/TaxItem"
+
+
+ProductOfferingPriceLifecycle:
+  description: "The lifecycle status of this ProductOfferingPrice."
+  type: "string"
+  enum:
+    - "launched"
+    - "unavailable"
+    - "retired"
+    - "obsolete"
+
+PriceType:
+  description: "A category that describes the price, such as recurring, discount, allowance, penalty and so forth."
+  type: "string"
+  enum:
+    - "RC"
+    - "NRC"
+    - "Usage"
+
+ProductOfferingPriceRelationship:
+  description: "Product Offering Prices related to this Product Offering Price, for example a price alteration such as allowance or discount."
+  required:
+    - "id"
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "Unique identifier."
+      type: "string"
+    href:
+      description: "Hyperlink reference."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    version:
+      description: "Version of the referred product offering price."
+      type: "string"
+    relationshipType:
+      $ref: "#/POPRelationshipType"
+    validFor:
+      $ref: "#/TimePeriod"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+
+POPRelationshipType:
+  description: "Type of the relationship, for example override, discount, etc."
+  type: "string"
+  enum:
+    - "alteredBy"
+    - "replacedBy"
+    - "taxedBy"
+
+TaxItem:
+  description: "An amount of money levied on the price of a Product by a legislative body."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    taxAmount:
+      $ref: "#/Money"
+    taxCategory:
+      description: "Tax category."
+      type: "string"
+    taxRate:
+      description: "Applied rate of the tax."
+      type: "number"
+      format: "float"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+
+ProductOfferingRef:
+  description: "ProductOffering reference. A product offering represents entities that are orderable from the provider of the catalog, this resource includes pricing information."
+  required:
+    - "id"
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+    version:
+      description: "Version of the product offering."
+      type: "string"
+
+ProductOrderItem:
+  description: "An identified part of the order. A product order is decomposed into one or more order items."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "Identifier of the ProductOrder item (generally it is a sequence number 01, 02, 03, ...)"
+      type: "string"
+    quantity:
+      description: "Quantity ordered."
+      type: "integer"
+      format: "int32"
+    action:
+      $ref: "#/ItemActionType"
+    billingAccount:
+      $ref: "#/BillingAccountRef"
+    itemPrice:
+      type: "array"
+      items:
+        $ref: "#/OrderPrice"
+    itemTerm:
+      type: "array"
+      items:
+        $ref: "#/OrderTerm"
+    payment:
+      type: "array"
+      items:
+        $ref: "#/PaymentRef"
+    product:
+      $ref: "#/ProductRefOrValue"
+    productOffering:
+      $ref: "#/ProductOfferingRef"
+    productOrderItemRelationship:
+      type: "array"
+      items:
+        $ref: "#/OrderItemRelationship"
+    state:
+      $ref: "#/ProductOrderItemStateType"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    appointment:
+      $ref: "#/AppointmentRef"
+    isInstallable:
+      type: "boolean"
+      description: "Indicates if the product will be installed when created."
+
+ProductOrderItemStateType:
+  description: "Possible values for the state of the product order item."
+  type: "string"
+  enum:
+    - "acknowledged"
+    - "assessingCancellation"
+    - "cancelled"
+    - "completed"
+    - "failed"
+    - "held"
+    - "inProgress"
+    - "pending"
+    - "pendingCancellation"
+    - "rejected"
+    - "partial"
+    - "accepted"
+    - "draft"
+
+ProductOrderStateType:
+  description: "Possible values for the state of the order."
+  type: "string"
+  enum:
+    - "acknowledged"
+    - "assessingCancellation"
+    - "cancelled"
+    - "completed"
+    - "failed"
+    - "held"
+    - "inProgress"
+    - "partial"
+    - "pending"
+    - "pendingCancellation"
+    - "rejected"
+    - "accepted"
+    - "draft"
+
+ProductRefOrValue:
+  description: "A product to be created defined by value or existing defined by reference."
+  discriminator: "@type"
+  oneOf:
+    - $ref: "#/ProductRef"
+    - $ref: "#/Product"
+  type: "object"
+  properties:
+    '@type':
+      description: "When sub-classing, this defines the sub-class entity name."
+      type: "string"
+
+ProductRef:
+  title: "ProductRef"
+  description: "A reference to a Product entity."
+  required:
+    - "id"
+  type: "object"
+  properties:
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+
+Product:
+  title: "Product"
+  description: "A product offering procured by a customer or other interested party playing a party role. A product is realized as one or more service(s) and / or resource(s)."
+  type: "object"
+  properties:
+    id:
+      description: "unique identifier."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    href:
+      description: "Hyperlink reference."
+      type: "string"
+    description:
+      description: "Is the description of the product. It could be copied from the description of the Product Offering."
+      type: "string"
+    isBundle:
+      description: "If true, the product is a ProductBundle which is an instantiation of a BundledProductOffering. If false, the product is a ProductComponent which is an instantiation of a SimpleProductOffering."
+      type: "boolean"
+    isCustomerVisible:
+      description: "If true, the product is visible by the customer."
+      type: "boolean"
+    name:
+      description: "Name of the product. It could be the same as the name of the product offering."
+      type: "string"
+    orderDate:
+      description: "Is the date when the product was ordered."
+      type: "string"
+      format: "date-time"
+    productSerialNumber:
+      description: "Is the serial number for the product. This is typically applicable to tangible products e.g. Broadband Router."
+      type: "string"
+    startDate:
+      description: "Is the date from which the product starts."
+      type: "string"
+      format: "date-time"
+    terminationDate:
+      description: "Is the date when the product was terminated."
+      type: "string"
+      format: "date-time"
+    product:
+      type: "array"
+      items:
+        $ref: "#/ProductRefOrValue"
+    productCharacteristic:
+      type: "array"
+      items:
+        $ref: "#/Characteristic"
+    productOffering:
+      $ref: "#/ProductOfferingRef"
+    productRelationship:
+      type: "array"
+      items:
+        $ref: "#/ProductRelationship"
+    productSpecification:
+      $ref: "#/ProductSpecificationRef"
+    productTerm:
+      type: "array"
+      items:
+        $ref: "#/ProductTerm"
+    realizingResource:
+      type: "array"
+      items:
+        $ref: "#/ResourceRef"
+    realizingService:
+      type: "array"
+      items:
+        $ref: "#/ServiceRef"
+    status:
+      $ref: "#/ProductStatusType"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    billingAccount:
+      $ref: "#/BillingAccountRef"
+    creationDate:
+      description: "Date and time when the product was created."
+      type: "string"
+      format: "date-time"
+
+ProductRelationship:
+  description: "Used to describe relationship between product."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "Id of the related product."
+      type: "string"
+    product:
+      $ref: "#/ProductRefOrValue"
+    relationshipType:
+      description: "Relationship type as relies on, bundles, etc..."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+
+ProductSpecificationRef:
+  description: "ProductSpecification reference. A product specification represents entities that are orderable from the provider of the catalog."
+  required:
+    - "id"
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    version:
+      description: "Version of the product specification."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+
+ProductStatusType:
+  description: "Possible values for the status of the product."
+  type: "string"
+  enum:
+    - "aborted"
+    - "active"
+    - "cancelled"
+    - "created"
+    - "terminated"
+    - "pendingActive"
+    - "pendingTerminate"
+    - "suspended"
+
+ProductTerm:
+  description: "Description of a productTerm linked to this product. This represent a commitment with a duration."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    description:
+      description: "Description of the productTerm."
+      type: "string"
+    name:
+      description: "Name of the productTerm."
+      type: "string"
+    duration:
+      $ref: "#/Duration"
+    validFor:
+      $ref: "#/TimePeriod"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+
+Quantity:
+  description: "An amount in a given unit."
+  type: "object"
+  properties:
+    amount:
+      description: "Numeric value in a given unit."
+      type: "number"
+      format: "float"
+      default: 1
+    units:
+      description: "Unit."
+      type: "string"
+
+Duration:
+  description: "A time interval in a given unit of time."
+  type: "object"
+  properties:
+    amount:
+      description: "Time interval (number of seconds, minutes, hours, etc...)"
+      type: "integer"
+      format: "int32"
+    units:
+      description: "Unit of time (seconds, minutes, hours, etc...)"
+      type: "string"
+
+RelatedChannel:
+  description: "Related channel to another entity. May be online web, mobile app, social ,etc.."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    role:
+      description: "Role playing by the channel."
+      type: "string"
+    channel:
+      $ref: "#/ChannelRef"
+
+ChannelRef:
+  description: "The channel to which the resource reference to. e.g. channel for selling product offerings, channel for opening a trouble ticket etc.."
+  required:
+    - "@type"
+    - "id"
+  type: "object"
+  properties:
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+
+RelatedPartyRefOrPartyRoleRef:
+  description: "RelatedParty reference. A related party defines party or party role or its reference, linked to a specific entity."
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    role:
+      description: "Role played by the related party or party role in the context of the specific entity it is linked to. Such as 'initiator', 'customer', 'salesAgent', 'user'."
+      type: "string"
+    partyOrPartyRole:
+      $ref: "#/PartyRefOrPartyRoleRef"
+
+PartyRefOrPartyRoleRef:
+  description: "A reference to either a Party or a PartyRole."
+  discriminator: "@type"
+  oneOf:
+    - $ref: "#/PartyRef"
+    - $ref: "#/PartyRoleRef"
+  required:
+    - "@type"
+  type: "object"
+  properties:
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+
+PartyRef:
+  title: "PartyRef"
+  description: "A Party reference."
+  required:
+    - "id"
+  type: "object"
+  properties:
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+
+PartyRoleRef:
+  title: "PartyRoleRef"
+  description: "Party role reference. A party role represents the part played by a party in a given context."
+  required:
+    - "id"
+  type: "object"
+  properties:
+    partyId:
+      description: "The identifier of the engaged party that is linked to the PartyRole object."
+      type: "string"
+    partyName:
+      description: "The name of the engaged party that is linked to the PartyRole object."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+
+ResourceRef:
+  description: "Resource reference, for when Resource is used by other entities."
+  required:
+    - "id"
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    value:
+      description: "The resource value that can be used to identify a resource with a public key (e.g.: a tel nr, an msisdn)"
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+
+ServiceRef:
+  description: "Service reference, for when Service is used by other entities."
+  required:
+    - "id"
+    - "@type"
+  type: "object"
+  properties:
+    id:
+      description: "The identifier of the referred entity."
+      type: "string"
+    href:
+      description: "The URI of the referred entity."
+      type: "string"
+    name:
+      description: "Name of the referred entity."
+      type: "string"
+    '@baseType':
+      description: "When sub-classing, this defines the super-class."
+      type: "string"
+    '@schemaLocation':
+      description: "A URI to a JSON-Schema file that defines additional attributes and relationships."
+      type: "string"
+      format: "uri"
+    '@type':
+      description: "When sub-classing, this defines the sub-class Extensible name."
+      type: "string"
+    '@referredType':
+      description: "The actual type of the target instance when needed for disambiguation."
+      type: "string"
+
+TimePeriod:
+  description: "A period of time, either as a deadline (endDateTime only) a startDateTime only or both."
+  type: "object"
+  properties:
+    endDateTime:
+      description: "End of the time period, using IETC-RFC-3339 format."
+      type: "string"
+      format: "date-time"
+    startDateTime:
+      description: "Start of the time period, using IETC-RFC-3339 format."
+      type: "string"
+      format: "date-time"
+
+RelationshipType:
+  description: "Relationship type as relies on, bundles, etc..."
+  type: "string"
+  enum:
+    - "bundles"
+    - "isChild"
+    - "sells"
+    - "isSold"
+    - "reliesOn"
+    - "reliesFrom"
+    - "migrateTo"
+    - "migrateFrom"
+    - "requires"

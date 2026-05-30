@@ -1,0 +1,618 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-5ths {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-5ths {
+        width: 20%;
+        float: left;
+    }
+}
+
+.icon-buy,
+.icon-avatar {
+    font-size: 24px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.clickable-card-wrapper {
+    text-decoration: none;
+}
+
+.clickable-card-wrapper:hover {
+    color: inherit;
+}
+
+.details-card:hover {
+    border-color: #000;
+}
+
+.benefit-items-wrapper {
+    margin-bottom: 1rem;
+}
+
+.benefit-item {
+    padding: 12px 0;
+    padding-left: 10px;
+    border: 0;
+    position: relative;
+}
+
+.type-badge {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.product-img {
+    width: 100%;
+    background-color: #fff;
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-origin: content-box;
+    padding: 20px;
+}
+
+.card.card-selection {
+    cursor: pointer;
+    text-align: center;
+}
+
+.card.card-selection:hover {
+    border: 2px solid #000;
+}
+
+.card.selected,
+.card.card-selection.selected:hover {
+    /* border: 3px solid #32c832; */
+    border: 3px solid #000;
+    background-color: #000;
+    color: #fff;
+}
+
+.card.selected,
+.card.selected.dismissable {
+    /* border: 3px solid #32c832; */
+    position: relative;
+}
+
+.card.card-selection.selected .card-body p.text-muted {
+    color: #999 !important;
+}
+
+.success-circle {
+    background-color: #32c832;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+}
+
+.success-circle .icon-checkbox_tick {
+    font-size: 40px;
+    color: #fff;
+}
+
+.accordion-item-button {
+    position: relative;
+    padding: 20px;
+    border: 2px solid #ccc;
+    margin-bottom: .625rem
+}
+
+.status-value {
+    padding: 6px 12px;
+    color: #fff;
+    border: 0;
+    background-color: #ccc;
+}
+
+.status-value.planned {
+    background-color: #A0A7A8;
+}
+
+.status-value.initialized {
+    background-color: #707C83;
+}
+
+.status-value.acknowledged {
+    background-color: #62BFF9;
+}
+
+.status-value.inprogress {
+    background-color: #527EDB;
+}
+
+.status-value.indelivery {
+    background-color: #7E62D9;
+}
+
+.status-value.rejected,
+.status-value.aborted,
+.status-value.failed {
+    background-color: #FD6161;
+}
+
+.status-value.executed,
+.status-value.completed,
+.status-value.active {
+    background-color: #67CB67;
+}
+
+.status-value.held {
+    background-color: #F28327;
+}
+
+.accordion-button::after {
+    display: none;
+}
+
+.accordion-button.item-btn {
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.accordion-button.item-btn::after {
+    display: block;
+}
+
+.steps.steps-vertical {
+    flex-direction: column;
+}
+
+.steps.steps-vertical .step {
+    display: flex;
+}
+
+.step {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    text-decoration: none;
+}
+
+.steps.steps-vertical .step-progress {
+    flex-shrink: 0;
+    width: 2rem;
+    height: auto;
+}
+
+.step-progress {
+    position: relative;
+    width: 100%;
+    height: 0.25rem;
+}
+
+.steps.steps-vertical .step-progress {
+    flex-shrink: 0;
+    width: 2rem;
+    height: auto;
+}
+
+.step .step-progress .step-progress-start,
+.step .step-progress .step-progress-end {
+    /* height: 0.25rem;
+    width: 0.25rem; */
+    background-image: linear-gradient(to bottom, #ccc 50%, rgba(255, 255, 255, 0) 0%);
+    background-position: left;
+    background-size: 1.5px 8px;
+    background-repeat: repeat-y;
+    /* background-color: #ccc; */
+}
+
+.step.active .step-progress .step-progress-start,
+.step.active .step-progress .step-progress-end {
+    height: 0.25rem;
+    background-color: #ff7900;
+    background-image: none;
+}
+
+.steps.steps-vertical .step.active .step-progress .step-progress-end {
+    width: 0.25rem;
+    height: 100%;
+}
+
+.step-progress-start::before,
+.step-progress-end::before {
+    display: block;
+    width: 62rem;
+    height: 100%;
+    content: "";
+}
+
+
+.steps.steps-vertical .step-progress-end {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0.125rem;
+    height: 100%;
+    transform: translateX(-50%);
+}
+
+.steps.steps-vertical .step-number {
+    position: relative;
+    top: initial;
+    left: 8px;
+    margin-top: -0.125rem;
+    margin-left: initial;
+}
+
+.step.active .step-number {
+    background-color: #ff7900;
+    color: #fff;
+    width: 2rem;
+    height: 2rem;
+    left: initial;
+}
+
+.step-number {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #ccc;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 2rem;
+}
+
+.steps.steps-vertical .step-label {
+    position: relative;
+    top: -4px;
+    margin-bottom: 2.5rem;
+    margin-left: 2.5rem;
+    padding-top: initial;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.select-category,
+.select-option {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.form-check .form-check-input.check-category {
+    width: 1.25em;
+    height: 1.25em;
+    cursor: pointer;
+}
+
+.form-check-input[type=radio] {
+    cursor: pointer;
+}
+
+.selection-options {
+    display: none;
+}
+
+/*.card.selected::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #272727;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    color: #fff;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-origin: content-box;
+    padding: 6px;
+    background-image: url(./src/assests/imgs/check.svg);
+}*/
+
+.modal-backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.orange-alert {
+    background-color: #ff7900;
+    margin-bottom: 0;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.orange-alert p {
+    margin-bottom: 0;
+}
+
+.profile-card {
+    min-height: calc(100vh - 4.8rem);
+    border-width: 1px;
+}
+
+.profile-card .card-body {
+    padding: 15px;
+}
+
+.nav-tabs.profile-nav {
+    border: 0;
+}
+
+.nav-tabs.profile-nav .nav-item {
+    margin: 0;
+}
+
+.nav-tabs.profile-nav .nav-link {
+    border: 0;
+    margin: 0;
+}
+
+.nav-tabs.profile-nav .nav-item.show .nav-link,
+.nav-tabs.profile-nav .nav-link.active {
+    border: 0;
+    margin: 0;
+}
+
+.nav-tabs.profile-nav .nav-link.active {
+    background-color: #ff7900;
+}
+
+.tab-content.profile-content {
+    border: 0;
+    padding: 0;
+}
+
+.btn-link.btn-inverse {
+    color: #fff;
+}
+
+.btn-link.btn-inverse:hover {
+    color: #ff7900;
+}
+
+.nav-link.radio-btn {
+    padding: 0;
+}
+
+.nav-link.radio-btn:hover {
+    color: inherit;
+}
+
+.nav-pills .nav-link.radio-btn.active,
+.nav-pills .show > .nav-link.radio-btn {
+    background-color: transparent;
+}
+
+.select-method .tab-content,
+.select-payment .tab-content {
+    padding: 0;
+    border: 0;
+}
+
+li.list-group-item.shipped-item {
+    border-width: 1px;
+    padding: 7px 10px;
+}
+
+li.list-group-item.shipped-item:last-child {
+    border-top-width: 0;
+}
+
+.accordion-button.order-item-wrapper {
+    font-size: 14px;
+    color: #000;
+    padding: 14px 20px;
+}
+
+.btn-link.text-primary:hover {
+    color: #e76f00 !important;
+}
+
+.select-payment .nav-pills .nav-link {
+    padding: 20px 10px;
+    border: 2px solid #ccc;
+}
+
+.select-payment .nav-pills .nav-link.active,
+.select-payment .nav-pills .show > .nav-link,
+.select-payment .nav-pills .nav-link:hover {
+    background-color: #fff;
+    border: 2px solid #000;
+    color: #000;
+}
+
+.plan-head {
+    position: relative;
+}
+
+.plan-head .positioned-label {
+    top: -2px;
+    right: 0;
+}
+
+.set-up-plan .accordion-body {
+    padding-right: 0;
+}
+
+.set-up-plan .accordion-header,
+.set-up-plan .accordion-item {
+    border: 0;
+}
+
+.set-up-plan .accordion-button::after {
+    display: block;
+}
+
+.set-up-plan .accordion-button:hover,
+.setup-item .accordion-button:hover {
+    background-color: transparent;
+}
+
+.setup-item .accordion-button:hover {
+    color: #000
+}
+
+.setup-item .accordion-button::after {
+    display: none;
+}
+
+.select-option {
+    right: 7px;
+}
+
+.check-option {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.action-type.positioned {
+    position: absolute;
+    right: 55px;
+    top: 10px;
+    margin-left: 10px;
+}
+
+.reload-btn:hover {
+    color: #ff7900;
+    border-color: transparent;
+}
+
+.reload-btn .icon-reload {
+    font-size: 24px;
+}
+
+.clickable-tab {
+    cursor: pointer;
+}
+
+.bg-black {
+    background-color: black;
+}
+
+.text-white {
+    color: white;
+}
+
+.border-thick {
+    border-width: 2px !important;
+    border-style: solid !important;
+}
+
+.range-container {
+    position: relative;
+}
+
+.custom-range {
+    width: 100%;
+}
+
+.range-ticks {
+    position: absolute;
+    width: 100%;
+    top: 15%;
+    left: 0;
+    right: 0;
+}
+
+.tick {
+    position: absolute;
+    width: 4px;
+    height: 10px;
+    background: #ff7900;
+    transform: translate(-50%, -50%);
+}
+
+.stepped-process-item {
+    height: 40px;
+}
+
+.bundle-offer-price {
+    position: absolute;
+    right: 8px;
+}
+
+/* ContractDisplay Styles */
+.contract-display-container {
+    margin-bottom: 2rem;
+}
+
+.contract-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.contract-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+.contract-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.commitment-section {
+    margin-bottom: 1rem;
+}
+
+.commitment-option-label {
+    border: 2px solid #ccc;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.commitment-option-label.selected {
+    border: 2px solid #000;
+    background-color: #000;
+    color: #fff;
+}

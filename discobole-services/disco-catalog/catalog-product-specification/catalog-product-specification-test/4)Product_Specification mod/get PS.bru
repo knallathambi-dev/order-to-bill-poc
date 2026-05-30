@@ -1,0 +1,60 @@
+meta {
+  name: get PS
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{query}}/productCatalogManagement/v1/productSpecification/{{PS_id}}
+  body: none
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  let st=bru.getVar("status");
+  
+  if(st == 'active')
+    {
+  test("to verify ps is active and version is incremented to 0.2", function(){
+      expect(jsonData.version).to.eql('0.2');
+  
+  });
+    }
+  
+  else
+    {
+  test("to verify ps is launched and version is incremented to 1.0", function(){
+      expect(jsonData.version).to.eql('1.0');
+  
+  });
+    }
+  let name1=bru.getEnvVar("Entity_name");
+  
+  
+  console.log(name1+"_mod");
+  
+  test("to verify name and desc is updated", function(){
+      expect(jsonData.name).to.eql(name1+"_mod");
+   expect(jsonData.description).to.eql(name1+"_mod");
+  });
+  
+}
+
+docs {
+  request to get the PS id for relationship step 
+}

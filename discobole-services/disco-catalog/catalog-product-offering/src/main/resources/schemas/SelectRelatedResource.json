@@ -1,0 +1,24 @@
+{
+  "SelectRelatedResource" : {
+    "required" : [ "role" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "role" : {
+          "type" : "string"
+        },
+        "@referredType" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string",
+          "readOnly" : true
+        }
+      }
+    }
+  }
+}

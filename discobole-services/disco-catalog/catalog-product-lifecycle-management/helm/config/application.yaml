@@ -1,0 +1,52 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  config:
+    activate:
+      on-profile: openshift
+  keycloak: http://${KEYCLOAK_SERVICE}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/certs
+  keycloakAuthUrl: ${KEYCLOAK_ISSUER_URI}/protocol/openid-connect/auth
+  keycloakRolesEntitlements: x100, x14, x15, x16, x17, x102, lc_w
+  userRoleRetrievalUrl: http://${USERROLE-RETRIEVE-SERVICE-NAME}/userRolePermission/v1/userRole
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: ${KAFKA}
+    config:
+      import-check:
+        enabled: false
+  data:
+    mongodb:
+      delete: true
+      host: ${DB_SERVICE}
+      port: 27017
+      database: ${DB_NAME}
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+
+
+config:
+  cfsQuery: http://${CATALOG-PRODUCT-SERVICE-NAME}/serviceCatalogManagement/v1/serviceSpecification
+  productSpecQuery: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/productSpecification
+  categoryUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/category
+  categoryEntityUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/categoryEntity
+  marketUrl: http://${MOCK-SERVICE-NAME}/market
+  channelUrl: http://${MOCK-SERVICE-NAME}/channel
+  productOfferingUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/productOffering
+  productOfferingPriceUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/productCatalogManagement/v1/productOfferingPrice
+  stockItemTypeUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/serviceCatalogManagement/v1/stockItemType
+  stockItemUrl: http://${CATALOG-PRODUCT-SERVICE-NAME}/serviceCatalogManagement/v1/stockItem
+  cpibProductUrl: https://${CPIB-NAME}/productInventoryManagement/v1/product
+  adminCPIBConfigUrl: http://${CATALOG-PRODUCT-CATALOG-ADMINISTRATION-NAME}/cpibConfiguration
+  #expression: 0 55 17 * * ?
+cqrs:
+  command-enabled: true
+  query-enabled: false
+  queryBaseUrl: http://${GATEWAY-SERVICE-NAME}

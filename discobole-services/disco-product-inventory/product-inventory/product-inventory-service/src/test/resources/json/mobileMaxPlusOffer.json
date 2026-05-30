@@ -1,0 +1,454 @@
+{
+  "@type": "Product",
+  "productOffering": {
+    "id": "dbbc92f9-faf2-4886-8749-0f07abfc1971",
+    "name": "Mobile Package Max Plus",
+    "@type": "Contract",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "a2f57485-bcb3-4b70-9125-120fca49b824",
+      "productOrderId": "6655b30b1396f501963ccf8c"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "bundles",
+      "product": {
+        "@type": "Product",
+        "productOffering": {
+          "id": "7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+          "name": "Mobile Package Max Plus",
+          "@type": "BundleProductOffering",
+          "@referredType": "ProductOfferingRef"
+        },
+        "productOrderItem": [
+          {
+            "orderItemAction": "add",
+            "orderItemId": "38748d98-f731-466c-84d3-602a3c0d1ab3",
+            "productOrderId": "6655b30b1396f501963ccf8c"
+          }
+        ],
+        "productRelationship": [
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "@type": "Product",
+              "productOffering": {
+                "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+                "name": "Mobile Line",
+                "@type": "AtomicProductOffering",
+                "@referredType": "ProductOfferingRef"
+              },
+              "productOrderItem": [
+                {
+                  "orderItemAction": "add",
+                  "orderItemId": "3d95a8da-54ea-432f-9c45-a2ef08255fd0",
+                  "productOrderId": "6655b30b1396f501963ccf8c"
+                }
+              ],
+              "productPrice": [
+                {
+                  "@type": "InstallmentCharge",
+                  "name": "NRC 5 Euro",
+                  "priceType": "NRC",
+                  "price": {
+                    "taxRate": 0.0,
+                    "dutyFreeAmount": {
+                      "unit": "EUR",
+                      "value": 5.0
+                    },
+                    "taxIncludedAmount": {
+                      "unit": "EUR",
+                      "value": 5.0
+                    }
+                  },
+                  "productOfferingPrice": {
+                    "id": "b1a14825-ffa7-4a27-841f-16f798650de3",
+                    "name": "NRC 5 Euro"
+                  }
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "@type": "Product",
+                    "productCharacteristic": [
+                      {
+                        "@type": "StringCharacteristic",
+                        "id": "5fb7ac6e-688f-43c0-acc6-e53b23a648d0.2",
+                        "name": "MSISDN",
+                        "value": "4152797439"
+                      }
+                    ],
+                    "productOrderItem": [
+                      {
+                        "orderItemAction": "add",
+                        "orderItemId": "06257d7e-7005-4a32-a49f-aae6eeb62d20",
+                        "productOrderId": "6655b30b1396f501963ccf8c"
+                      }
+                    ],
+                    "productSpecification": {
+                      "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+                      "name": "Mobile Line",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "realizingResource": [
+                      {
+                        "id": "12x",
+                        "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+                        "@type": "LogicalResource"
+                      },
+                      {
+                        "id": "12x",
+                        "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+                        "@type": "LogicalResource"
+                      }
+                    ],
+                    "relatedParty": [
+                      {
+                        "@type": "RelatedPartyRefOrPartyRoleRef",
+                        "role": "Customer",
+                        "partyOrPartyRole": {
+                          "@type": "PartyRef",
+                          "id": "227-mf30",
+                          "name": "Lisa",
+                          "@referredType": "Individual"
+                        }
+                      }
+                    ],
+                    "status": "Created",
+                    "operationalStatus": "Created"
+                  }
+                }
+              ],
+              "relatedParty": [
+                {
+                  "@type": "RelatedPartyRefOrPartyRoleRef",
+                  "role": "Customer",
+                  "partyOrPartyRole": {
+                    "@type": "PartyRef",
+                    "id": "227-mf30",
+                    "name": "Lisa",
+                    "@referredType": "Individual"
+                  }
+                }
+              ],
+              "status": "Created",
+              "operationalStatus": "Created"
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "@type": "Product",
+              "productOffering": {
+                "id": "13ee923a-8449-4f45-b81e-bb7ccb7b893e",
+                "name": "Connectivity",
+                "@type": "AtomicProductOffering",
+                "@referredType": "ProductOfferingRef"
+              },
+              "productOrderItem": [
+                {
+                  "orderItemAction": "add",
+                  "orderItemId": "91765095-6ea9-4b65-a1ae-e13b094b108d",
+                  "productOrderId": "6655b30b1396f501963ccf8c"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "@type": "Product",
+                    "productCharacteristic": [
+                      {
+                        "@type": "StringCharacteristic",
+                        "id": "5a5d753a-553b-49e7-81a5-83f9892ca7c1.1",
+                        "name": "ICCID",
+                        "value": "891004234814455936"
+                      }
+                    ],
+                    "productOrderItem": [
+                      {
+                        "orderItemAction": "add",
+                        "orderItemId": "cedfb028-770e-4ad2-933f-8b2443982640",
+                        "productOrderId": "6655b30b1396f501963ccf8c"
+                      }
+                    ],
+                    "productSpecification": {
+                      "id": "e90a1274-7dc0-4259-a344-362b55edfc58",
+                      "name": "Connectivity",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "realizingResource": [
+                      {
+                        "id": "12x",
+                        "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+                        "@type": "LogicalResource"
+                      },
+                      {
+                        "id": "12x",
+                        "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+                        "@type": "LogicalResource"
+                      }
+                    ],
+                    "relatedParty": [
+                      {
+                        "@type": "RelatedPartyRefOrPartyRoleRef",
+                        "role": "Customer",
+                        "partyOrPartyRole": {
+                          "@type": "PartyRef",
+                          "id": "227-mf30",
+                          "name": "Lisa",
+                          "@referredType": "Individual"
+                        }
+                      }
+                    ],
+                    "status": "Created",
+                    "operationalStatus": "Created"
+                  }
+                }
+              ],
+              "relatedParty": [
+                {
+                  "@type": "RelatedPartyRefOrPartyRoleRef",
+                  "role": "Customer",
+                  "partyOrPartyRole": {
+                    "@type": "PartyRef",
+                    "id": "227-mf30",
+                    "name": "Lisa",
+                    "@referredType": "Individual"
+                  }
+                }
+              ],
+              "status": "Created",
+              "operationalStatus": "Created"
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "@type": "Product",
+              "productOffering": {
+                "id": "95023bc2-151d-4bf2-bb87-1b7d6cd2e847",
+                "name": "Time Bundle",
+                "@type": "AtomicProductOffering",
+                "@referredType": "ProductOfferingRef"
+              },
+              "productOrderItem": [
+                {
+                  "orderItemAction": "add",
+                  "orderItemId": "9e0f937b-7e2d-4d51-bc97-60a3c8eebe06",
+                  "productOrderId": "6655b30b1396f501963ccf8c"
+                }
+              ],
+              "productPrice": [
+                {
+                  "@type": "InstallmentCharge",
+                  "name": "5 euro",
+                  "priceType": "NRC",
+                  "price": {
+                    "taxRate": 0.0,
+                    "dutyFreeAmount": {
+                      "unit": "EUR",
+                      "value": 5.0
+                    },
+                    "taxIncludedAmount": {
+                      "unit": "EUR",
+                      "value": 5.0
+                    }
+                  },
+                  "productOfferingPrice": {
+                    "id": "9202f373-8605-4890-9801-a779a183a89b",
+                    "name": "5 euro"
+                  }
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "@type": "Product",
+                    "productCharacteristic": [
+                      {
+                        "@type": "StringCharacteristic",
+                        "id": "6d8a4224-a0ca-4fd6-9655-05db9528683c.1",
+                        "name": "Volume",
+                        "value": "1h"
+                      }
+                    ],
+                    "productOrderItem": [
+                      {
+                        "orderItemAction": "add",
+                        "orderItemId": "f3524a11-86cf-45a3-b4fd-330c47d78602",
+                        "productOrderId": "6655b30b1396f501963ccf8c"
+                      }
+                    ],
+                    "productSpecification": {
+                      "id": "63d24f7e-c529-404c-911b-7c7926fd12ff",
+                      "name": "Time Bundle",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "realizingResource": [
+                      {
+                        "id": "12x",
+                        "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+                        "@type": "LogicalResource"
+                      },
+                      {
+                        "id": "12x",
+                        "href": "http://server:port/resourceInventoryManagement/logicalResource/12x",
+                        "@type": "LogicalResource"
+                      }
+                    ],
+                    "relatedParty": [
+                      {
+                        "@type": "RelatedPartyRefOrPartyRoleRef",
+                        "role": "Customer",
+                        "partyOrPartyRole": {
+                          "@type": "PartyRef",
+                          "id": "227-mf30",
+                          "name": "Lisa",
+                          "@referredType": "Individual"
+                        }
+                      }
+                    ],
+                    "status": "Created",
+                    "operationalStatus": "Created"
+                  }
+                }
+              ],
+              "relatedParty": [
+                {
+                  "@type": "RelatedPartyRefOrPartyRoleRef",
+                  "role": "Customer",
+                  "partyOrPartyRole": {
+                    "@type": "PartyRef",
+                    "id": "227-mf30",
+                    "name": "Lisa",
+                    "@referredType": "Individual"
+                  }
+                }
+              ],
+              "status": "Created",
+              "operationalStatus": "Created"
+            }
+          },
+          {
+            "relationshipType": "bundles",
+            "product": {
+              "@type": "PhysicalProduct",
+              "productOffering": {
+                "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+                "name": "SIM Card",
+                "@type": "AtomicProductOffering",
+                "@referredType": "ProductOfferingRef"
+              },
+              "productOrderItem": [
+                {
+                  "orderItemAction": "add",
+                  "orderItemId": "ad114eaf-43c7-4a8c-8432-760ceceb9916",
+                  "productOrderId": "6655b30b1396f501963ccf8c"
+                }
+              ],
+              "productRelationship": [
+                {
+                  "relationshipType": "sells",
+                  "product": {
+                    "@type": "PhysicalProduct",
+                    "productSerialNumber": "1234",
+                    "productCharacteristic": [
+                      {
+                        "@type": "StringCharacteristic",
+                        "name": "IMSI",
+                        "value": "310478356879098"
+                      }
+                    ],
+                    "productOrderItem": [
+                      {
+                        "orderItemAction": "add",
+                        "orderItemId": "15ecb43e-c298-4937-a404-4c62ca44f484",
+                        "productOrderId": "6655b30b1396f501963ccf8c"
+                      }
+                    ],
+                    "productSpecification": {
+                      "id": "14cf641e-eb3c-4007-be27-c57d22532fa7",
+                      "name": "SIM Card",
+                      "@type": "ProductSpecificationRef"
+                    },
+                    "realizingResource": [
+                      {
+                        "id": "66x",
+                        "href": "http://server:port/resourceInventoryManagement/physicalResource/66x",
+                        "@type": "PhysicalResource"
+                      }
+                    ],
+                    "relatedParty": [
+                      {
+                        "@type": "RelatedPartyRefOrPartyRoleRef",
+                        "role": "Customer",
+                        "partyOrPartyRole": {
+                          "@type": "PartyRef",
+                          "id": "227-mf30",
+                          "name": "Lisa",
+                          "@referredType": "Individual"
+                        }
+                      }
+                    ],
+                    "status": "Created",
+                    "operationalStatus": "Created"
+                  }
+                }
+              ],
+              "relatedParty": [
+                {
+                  "@type": "RelatedPartyRefOrPartyRoleRef",
+                  "role": "Customer",
+                  "partyOrPartyRole": {
+                    "@type": "PartyRef",
+                    "id": "227-mf30",
+                    "name": "Lisa",
+                    "@referredType": "Individual"
+                  }
+                }
+              ],
+              "status": "Created",
+              "operationalStatus": "Created"
+            }
+          }
+        ],
+        "relatedParty": [
+          {
+            "@type": "RelatedPartyRefOrPartyRoleRef",
+            "role": "Customer",
+            "partyOrPartyRole": {
+              "@type": "PartyRef",
+              "id": "227-mf30",
+              "name": "Lisa",
+              "@referredType": "Individual"
+            }
+          }
+        ],
+        "status": "Created",
+        "operationalStatus": "Created"
+      }
+    }
+  ],
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "Customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "Lisa",
+        "@referredType": "Individual"
+      }
+    }
+  ],
+  "status": "Created",
+  "operationalStatus": "Created"
+}

@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+services:
+  minio:
+    image: minio/minio
+    container_name: minio
+    environment:
+      - MINIO_ROOT_USER=KRCKDFUDV2NTIT04780U
+      - MINIO_ROOT_PASSWORD=Q6usDy36c5T8dS6c/0GE=klrxCdR4IvEagQjQeiV
+    ports:
+      - 127.0.0.1:9001:9000  # MinIO S3 API
+      - 127.0.0.1:9101:9101  # MinIO Web UI
+    volumes:
+      - minio-data:/data  # Data persistence
+    command: server /data --console-address ":9101"
+    restart: always
+
+volumes:
+  minio-data:
+    driver: local

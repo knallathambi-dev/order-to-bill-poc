@@ -1,0 +1,49 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  keycloakAuthUrl: http://localhost:8080
+  data:
+    mongodb:
+      username: ${TEST_MONGO_USERNAME}
+      password: ${TEST_MONGO_PASSWORD}
+      database: ${TEST_MONGODB_DATABASE}
+      auto-index-creation: true
+  cloud:
+    function:
+      definition: productOrderEvent;productOrderAttributeValueChangeEvent
+    stream:
+      kafka:
+        binder:
+          auto-create-topics: false
+          auto-add-partitions: false
+      bindings:
+        productOrderEvent-in-0:
+          destination: disco.order-management.productOrderStateChange-event
+          group: order-follow-up
+          content-type: application/json
+        productOrderAttributeValueChangeEvent-in-0:
+          destination: disco.order-management.productOrderAttributeValueChange-event
+          group: order-follow-up
+          content-type: application/json
+
+process-flow:
+  role:
+    admin: disco-admin
+
+config:
+  productInventoryUrl: http://localhost:8082/productInventoryManagement/v1/product
+
+app:
+  security:
+    ssl:
+      enabled: false
+
+cron:
+  expression: 0/10 * * * * *

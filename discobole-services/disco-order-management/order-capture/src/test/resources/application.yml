@@ -1,0 +1,70 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  keycloakAuthUrl: http://localhost:8080
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      username: ${TEST_MONGO_USERNAME}
+      password: ${TEST_MONGO_PASSWORD}
+      database: ${TEST_MONGODB_DATABASE}
+  cloud:
+    stream:
+      kafka:
+        binder:
+          enableObservation: true
+          auto-create-topics: false
+          auto-add-partitions: false
+      bindings:
+        productOrderCommand:
+          destination: disco.order-management.productOrderChange-command
+          producer:
+            partition-key-expression: headers['partitionKey']
+          content-type: application/json
+  security:
+    oauth2:
+      resourceServer:
+        jwt:
+          issuer-uri: http://localhost:8082/realms/SpringBootKeycloak
+app:
+  security:
+    ssl:
+      enabled: false
+  webclient:
+    connectTimeout: 30s
+    responseTimeout: 30s
+  cache:
+    caffeine:
+      spec:
+        maximumSize: 1000
+        expireAfterWrite: 15m
+
+process-flow:
+  role:
+    admin: order-capture-read
+
+config:
+  productOfferingUrl: http://localhost:8082/productCatalogManagement/v1/productOffering
+  productOfferingQualificationUrl: http://localhost:8082/productOfferingQualification/v1/productOfferingQualification
+  productConfigurationUrl: http://localhost:8082/v1/queryProductConfiguration
+  productConfigurationMockedUrl: http://localhost:8082/v1/QueryProductConfiguration
+  productSpecificationUrl: http://localhost:8082/productCatalogManagement/v1/productSpecification
+  productOfferingPriceUrl: http://localhost:8082/productCatalogManagement/v1/productOfferingPrice
+  inventoryManagementUrl: http://localhost:8082/api/resourceInventoryManagement/v1/resource
+  productInventoryUrl: http://localhost:8082/productInventoryManagement/v1/product
+  orderInventoryUrl: http://localhost:8081/productOrderingManagement/v1/productOrder
+  partyRoleManagementUrl: http://localhost:8082/api/partyRoleManagement/v5/partyRole
+  productStockManagementUrl: http://localhost:8082/api/stock/v4/productStock
+  paymentManagementUrl: http://localhost:8082/paymentManagement/v4/payment
+  accountManagementUrl: http://localhost:8082/accountManagement/v5/billingAccount
+  serviceQualificationManagementUrl: http://localhost:8082/api/serviceQualificationManagement/v5/checkServiceQualification
+  appointmentManagementUrl: http://localhost:8082/appointmentManagement/v4/appointment
+  partyManagementUrl: http://localhost:8082/partyManagement/v1/individual

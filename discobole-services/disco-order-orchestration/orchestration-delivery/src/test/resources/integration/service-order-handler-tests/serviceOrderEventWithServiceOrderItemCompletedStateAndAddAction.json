@@ -1,0 +1,10 @@
+{
+            "serviceCharacteristic": [
+              {
+                "id": "232-342",
+                "name": "ICCID",
+                "valueType": "string",
+                "value": 70.0
+              }
+              ]
+}

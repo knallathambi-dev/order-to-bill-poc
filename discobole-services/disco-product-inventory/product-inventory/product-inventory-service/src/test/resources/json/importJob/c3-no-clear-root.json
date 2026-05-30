@@ -1,0 +1,706 @@
+[
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4723",
+    "isBundle": false,
+    "name": "Smart Bundle",
+    "startDate": "2025-03-07T10:38:40Z",
+    "productOffering": {
+      "id": "c83a604c-c847-4d23-ab04-1706be6def04",
+      "name": "Smart Bundle",
+      "version": "1.0",
+      "@type": "BundleProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4724"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4725"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4726"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4727"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4729"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a472a"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a472b"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a472c"
+        }
+      },
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:40Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4724",
+    "isBundle": false,
+    "name": "Orange TV and Movie Go",
+    "startDate": "2025-03-07T10:38:31Z",
+    "productOffering": {
+      "id": "15b306a8-5fe6-4e48-bf3f-f6f8f32812b0",
+      "name": "Orange TV and Movie Go",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "e59abf2e-4ccd-4e6a-96b2-29e702d5c419",
+      "name": "Orange TV and Movie Go PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:31Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4725",
+    "isBundle": false,
+    "name": "Data Bundle National",
+    "startDate": "2025-03-07T10:38:31Z",
+    "productOffering": {
+      "id": "90f78fed-8af2-4012-bf2d-cedac38833ae",
+      "name": "Data Bundle National",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba",
+      "name": "Data Bundle National PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:31Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4726",
+    "isBundle": false,
+    "name": "Connectivity",
+    "startDate": "2025-03-07T10:38:01Z",
+    "productOffering": {
+      "id": "bf822979-e3c2-463d-aee8-bf53c0056d3e",
+      "name": "Connectivity",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a472a"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "12a34481-debc-4316-98d1-acc046f99416",
+      "name": "Connectivity PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:01Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4727",
+    "isBundle": false,
+    "name": "Unlimited Messaging Bundle National and Roaming EU",
+    "startDate": "2025-03-07T10:38:31Z",
+    "productOffering": {
+      "id": "bc4fdb83-81a4-478d-a07b-d09da4ac170c",
+      "name": "Unlimited Messaging Bundle National and Roaming EU",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "4034ea31-a688-406f-9576-4913cfbba18d",
+      "name": "Messaging Bundle National and Roaming EU PS",
+      "version": "0.3",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:31Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4728",
+    "isBundle": false,
+    "name": "Mobile Line",
+    "startDate": "2025-03-07T10:38:01Z",
+    "productOffering": {
+      "id": "87e81e5a-ce79-4b85-8183-d0f8733985da",
+      "name": "Mobile Line",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4724"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4725"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4727"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a472a"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4729"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a472b"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a472c"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "f18a3fe0-1e61-419a-b7d8-dd68215b3705",
+      "name": "Mobile Line PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:01Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4729",
+    "isBundle": false,
+    "name": "Time Bundle Roaming",
+    "startDate": "2025-03-07T10:38:31Z",
+    "productOffering": {
+      "id": "4bbaa24a-5f2a-4e00-b1c6-8be2531a8003",
+      "name": "Time Bundle Roaming",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "94780e6a-9e82-421a-8bc0-d83db169d132",
+      "name": "Time Bundle Roaming PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:31Z"
+  },
+  {
+    "@type": "PhysicalProduct",
+    "id": "67cacc5115aa38213b6a472a",
+    "isBundle": false,
+    "name": "SIM Card",
+    "productSerialNumber": "67890543219876511223",
+    "startDate": "2025-03-07T10:37:31Z",
+    "productOffering": {
+      "id": "af2b35d6-7556-4925-9788-bdf073d2fa39",
+      "name": "SIM Card",
+      "version": "2.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4726"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "73be51ab-af7c-4369-9298-3be3933a5d74",
+      "name": "SIM Card PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Sold",
+    "operationalStatus": "Sold",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:37:31Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a472b",
+    "isBundle": false,
+    "name": "Data Bundle EU Roaming",
+    "startDate": "2025-03-07T10:38:31Z",
+    "productOffering": {
+      "id": "b1999ad2-4ed7-464e-a608-328353a23f9c",
+      "name": "Data Bundle EU Roaming",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "923da03d-cd48-449e-9cec-43a73ebd9e6b",
+      "name": "Data Bundle EU Roaming PS",
+      "version": "0.4",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:31Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a472c",
+    "isBundle": false,
+    "name": "Time Bundle National Unlimited",
+    "startDate": "2025-03-07T10:38:31Z",
+    "productOffering": {
+      "id": "f78aaddd-7fc4-4ced-8c11-9e885456bd9e",
+      "name": "Time Bundle National Unlimited",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4728"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "e9dfa56a-44d4-4b1e-808c-ede65f32c3b8",
+      "name": "Time Bundle National Unlimited PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:38:31Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a472d",
+    "isBundle": false,
+    "name": "Add-on Netflix",
+    "startDate": "2025-03-07T10:37:31Z",
+    "billingAccount": {
+      "id": "13c49c-1711-8828-dc42-1b9f9b9ab494",
+      "@referredType": "BillingAccount"
+    },
+    "productOffering": {
+      "id": "c2c07f99-a99b-4e0d-9eff-eb76ad4600af",
+      "name": "Add-on Netflix",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4729"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "80adcad3-dbac-4e5e-8a5e-d9ec60a180db",
+      "name": "Add-on Netflix PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:37:31Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a472e",
+    "isBundle": false,
+    "name": "Samsung A55 and Accessories bundle",
+    "startDate": "2025-03-07T10:37:40Z",
+    "productOffering": {
+      "id": "8f840761-476d-42ed-9890-dc4fad7b3e1d",
+      "name": "Samsung A55 and Accessories bundle",
+      "version": "1.0",
+      "@type": "BundleProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a472f"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a472a"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4730"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4731"
+        }
+      },
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:37:40Z"
+  },
+  {
+    "@type": "PhysicalProduct",
+    "id": "67cacc5115aa38213b6a472f",
+    "isBundle": false,
+    "name": "SmartView Wallet Galaxy A55 case",
+    "productSerialNumber": "67890543219876511223",
+    "startDate": "2025-03-07T10:37:31Z",
+    "productOffering": {
+      "id": "6ee2efbe-8731-415c-9883-22273194c135",
+      "name": "SmartView Wallet Galaxy A55 case",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "d18467d7-8441-4781-8849-4e0ac91e58a2",
+      "name": "SmartView Wallet Galaxy A55 case PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Sold",
+    "operationalStatus": "Sold",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:37:31Z"
+  },
+  {
+    "@type": "PhysicalProduct",
+    "id": "67cacc5115aa38213b6a4730",
+    "isBundle": false,
+    "name": "Samsung Galaxy A55",
+    "productSerialNumber": "67890543219876511223",
+    "startDate": "2025-03-07T10:37:31Z",
+    "productOffering": {
+      "id": "bea0f233-f619-41cb-9797-0649a89e56bb",
+      "name": "Samsung Galaxy A55",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "8d5e0b3c-8c41-4690-8618-80e286e5b211",
+      "name": "Samsung A55 PS",
+      "version": "2.0",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Sold",
+    "operationalStatus": "Sold",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:37:31Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67cacc5115aa38213b6a4731",
+    "isBundle": false,
+    "name": "Device Insurance",
+    "startDate": "2025-03-07T10:37:31Z",
+    "billingAccount": {
+      "id": "135603-e273-e13a-4a3b-3edf34a548ef",
+      "@referredType": "BillingAccount"
+    },
+    "productOffering": {
+      "id": "611999ea-9b3e-4be6-a6af-b1e1c7af58bd",
+      "name": "Device Insurance",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67cacc5115aa38213b6a4722"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "582f8dac-e268-401e-ac83-a5df73f8a83f",
+      "name": "Device Insurance PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-03-07T10:37:05Z",
+    "lastUpdateDate": "2025-03-07T10:37:31Z"
+  }
+]

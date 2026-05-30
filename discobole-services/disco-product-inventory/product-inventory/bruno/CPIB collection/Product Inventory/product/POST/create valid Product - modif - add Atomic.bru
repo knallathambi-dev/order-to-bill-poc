@@ -1,0 +1,122 @@
+meta {
+  name: create valid Product - modif - add Atomic
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: inherit
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+      "status": "Created",
+      "operationalStatus": "Confirmed",
+      "relatedParty": [
+           {
+      "role": "Seller",
+      "partyOrPartyRole": {
+        "id": "456-dd-df45",
+        "href": "https://host:port/partyManagement/v5/individual/456-dd-df45",
+        "name": "Joe Doe",
+        "@type": "PartyRef",
+        "@referredType": "Individual"
+      },
+      "@type": "RelatedPartyRefOrPartyRoleRef"
+    }
+      ],
+      "productPrice": [
+          {
+              "description": "POP_5Euro",
+              "name": "POP_5Euro",
+              "priceType": "NRC",
+              "price": {
+                  "taxRate": 0,
+                  "dutyFreeAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                  },
+                  "taxIncludedAmount": {
+                      "unit": "EUR",
+                      "value": 5
+                  }
+              }
+          }
+      ],
+      "productOffering": {
+          "id": "95023bc2-151d-4bf2-bb87-1b7d6cd2e847",
+          "name": "Time Bundle",
+          "@type": "AtomicProductOffering"
+      },
+      "productOrderItem": [
+          {
+              "productOrderId": "{{productOrderID}}",
+              "orderItemId": "05",
+              "orderItemAction": "add"
+          }
+      ],
+      "productRelationship": [
+          {
+              "relationshipType": "sells",
+              "product": {
+                  "status": "Created",
+                  "operationalStatus": "Confirmed",
+                  "isBundle": false,
+                  "@type": "Product",
+                  "productCharacteristic": [
+                      {
+                          "id": "hh",
+                          "name": "volume",
+                          "@type": "StringCharacteristic",
+                          "valueType": "string",
+                          "value": "1h"
+                      }
+                  ],
+                  "productSpecification": {
+                      "id": "63d24f7e-c529-404c-911b-7c7926fd12ff",
+                      "name": "Time Bundle",
+                      "@type": "ProductSpecificationRef"
+                  },
+                  "productOrderItem": [
+                      {
+                          "productOrderId": "{{productOrderID}}",
+                          "orderItemId": "09",
+                          "orderItemAction": "add"
+                      }
+                  ],
+                  "relatedParty": [
+                      {
+                          "id": "45hj-8888",
+                          "name": "Jean",
+                          "role": "Customer",
+                          "@referredType": "Individual"
+                      }
+                  ]
+              }
+          },
+          {
+              "relationshipType": "hasParent",
+              "product": {
+                  "id": "662127970f2e301642218021",
+                  "@type": "ProductRef"
+              }
+          }
+      ],
+      "@type": "Product"
+  }
+}
+
+script:pre-request {
+  bru.setEnvVar("productOrderID", Math.floor((Math.random()*10000 +1)));
+}

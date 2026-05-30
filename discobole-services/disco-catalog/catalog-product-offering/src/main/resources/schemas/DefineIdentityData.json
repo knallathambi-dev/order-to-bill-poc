@@ -1,0 +1,36 @@
+{
+  "DefineIdentityData" : {
+    "required" : [ "name", "description" ],
+    "type" : "object",
+    "properties" : {
+      "name" : {
+        "type" : "string"
+      },
+      "description" : {
+        "type" : "string"
+      },
+      "brand" : {
+        "type" : "string",
+        "default" : "Orange"
+      },
+      "isSellable" : {
+        "type" : "boolean",
+        "default" : false
+      },
+      "isVisible" : {
+        "type" : "boolean",
+        "default" : true
+      },
+      "isBundle" : {
+        "type" : "boolean"
+      },
+      "productNumber" : {
+        "type" : "string"
+      },
+      "isInstallable" : {
+        "type" : "boolean",
+        "default" : true
+      }
+    }
+  }
+}

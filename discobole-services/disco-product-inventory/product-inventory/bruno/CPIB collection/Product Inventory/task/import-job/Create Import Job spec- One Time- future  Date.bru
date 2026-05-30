@@ -1,0 +1,27 @@
+meta {
+  name: Create Import Job spec- One Time- future  Date
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/jobSpecification
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "@type": "ImportJobSpecification",
+    "schedule": {
+      "plannedDate": "2025-06-20T11:00:00Z",
+      "@type": "OneTimeJobScheduler"
+    },
+    "importType": "insert",
+    "contentType": "json"
+  }
+}
+
+tests {
+  bru.setEnvVar("taskId", res.body.id);
+}

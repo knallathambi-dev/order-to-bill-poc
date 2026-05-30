@@ -1,0 +1,11 @@
+{
+  "@type": "PartyRole",
+  "engagedParty": {
+    "id": "{{jsonPath request.body '$.engagedParty.id'}}"
+  },
+  "name": "{{jsonPath request.body '$.name'}}",
+  "partyRoleSpecification": {
+    "id": "02",
+    "name": "{{jsonPath request.body '$.partyRoleSpecification.name'}}"
+  }
+}

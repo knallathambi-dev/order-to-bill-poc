@@ -1,0 +1,23 @@
+meta {
+  name: purge Job - empty query values
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{dev_url}}/productInventoryManagement/v1/jobSpecification
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "@type": "PurgeJobSpecification",
+    "query": {},
+    "schedule": {
+      "plannedDate": "2024-08-13T11:00:00+0100",
+      "@type": "OneTimeJobScheduler"
+    },
+    "purgeType": "PurgeJob"
+  }
+}

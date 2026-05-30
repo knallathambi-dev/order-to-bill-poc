@@ -1,0 +1,271 @@
+{
+  "id": "425da5a6-5143-495b-a774-7bf24571e15b",
+  "relatedProductOrder": {
+    "id": "1010912333",
+    "contractName": "Mobile Package 1 PRO MAX"
+  },
+  "relatedParty": [
+    {
+      "id": "227-mf30",
+      "role": "customer",
+      "name": "Lisa"
+    }
+  ],
+  "state": "Held",
+  "receivedDate": "2024-08-13T10:06:25.065Z",
+  "orchestrationPlanNodes": [
+    {
+      "id": "1fcbc6e8-0461-477d-8aae-896cdc908eb2",
+      "state": "Acknowledged",
+      "relatedServiceOrder": {
+        "orderItemId": "09",
+        "SOMRef": "http://om-mock-server-review:8080/tmf-api/serviceOrdering/v1/serviceOrder"
+      },
+      "relatedProductOrder": {
+        "id": "1010912333"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "09",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedProduct": [
+        {
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "c458d968-3718-4754-9408-7bd81526e7b2"
+          },
+          "isInstallable": true
+        },
+        {
+          "id": "1",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+            "name": "Time Bundle",
+            "serviceSpecification": [
+              {
+                "href": "http://om-mock-server-review:8080/serviceCatalogManagement/v1/serviceSpecification",
+                "id": "Time bundle",
+                "name": "Time bundle"
+              }
+            ]
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "volume",
+              "valueType": "string",
+              "value": "1h",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "CFS",
+          "productOrderItemId": "09"
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "feb220f3-770f-4233-9d6b-a89c0e71c93f",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    },
+    {
+      "id": "feb220f3-770f-4233-9d6b-a89c0e71c93f",
+      "state": "Acknowledged",
+      "relatedServiceOrder": {
+        "orderItemId": "07",
+        "SOMRef": "http://om-mock-server-review:8080/tmf-api/serviceOrdering/v1/serviceOrder"
+      },
+      "relatedProductOrder": {
+        "id": "1010912333"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "07",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedProduct": [
+        {
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "df32402e-ceb9-4467-aafd-fec0bbff3124"
+          },
+          "isInstallable": true
+        },
+        {
+          "id": "2",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+            "name": "Mobile Line",
+            "serviceSpecification": [
+              {
+                "href": "http://om-mock-server-review:8080/tmf-api/serviceCatalogManagement/v1/serviceSpecification",
+                "id": "MobileLine",
+                "name": "MobileLine"
+              }
+            ]
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "MSISDN",
+              "valueType": "string",
+              "value": "4152797439",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "CFS",
+          "productOrderItemId": "07"
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "a3e29a3d-0863-4a32-bfba-7542ee786acb",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    },
+    {
+      "id": "a3e29a3d-0863-4a32-bfba-7542ee786acb",
+      "state": "Held",
+      "relatedProductOrder": {
+        "id": "1010912333"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "f60fbfac-ce01-43d2-80f5-263ae55f1188",
+          "action": "add",
+          "quantity": 1
+        },
+        {
+          "id": "10",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedProduct": [
+        {
+          "relationshipType": "delivers",
+          "isInstallable": false,
+          "productCharacteristic": [
+            {
+              "name": "Shipping mode",
+              "valueType": "string",
+              "value": "In Shop",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "Shipping address",
+              "valueType": "string",
+              "value": "Lac Biwa",
+              "@type": "StringCharacteristic"
+            },
+            {
+              "name": "requested delivery date",
+              "valueType": "Date",
+              "value": "2024-02-14",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "shipmentProduct",
+          "productOrderItemId": "f60fbfac-ce01-43d2-80f5-263ae55f1188"
+        },
+        {
+          "id": "3",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+            "name": "SIM CARD"
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "IMSI",
+              "valueType": "string",
+              "value": "310478356879098",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "physicalProduct",
+          "productOrderItemId": "10"
+        }
+      ]
+    },
+    {
+      "id": "4f27a5e2-0798-4326-a7cc-bf7eda4b3725",
+      "state": "Acknowledged",
+      "relatedServiceOrder": {
+        "orderItemId": "08",
+        "SOMRef": "http://om-mock-server-review:8080/tmf-api/serviceOrdering/v1/serviceOrder"
+      },
+      "relatedProductOrder": {
+        "id": "1010912333"
+      },
+      "relatedProductOrderItem": [
+        {
+          "id": "08",
+          "action": "add",
+          "quantity": 1
+        }
+      ],
+      "relatedProduct": [
+        {
+          "relationshipType": "reliesOn",
+          "productSpecification": {
+            "id": "df32402e-ceb9-4467-aafd-fec0bbff3124"
+          },
+          "isInstallable": true
+        },
+        {
+          "id": "4",
+          "relationshipType": "delivers",
+          "productSpecification": {
+            "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+            "name": "Connectivity",
+            "serviceSpecification": [
+              {
+                "href": "http://om-mock-server-review:8080/serviceCatalogManagement/v1/serviceSpecification",
+                "id": "Connectivity",
+                "name": "Connectivity"
+              }
+            ]
+          },
+          "isInstallable": true,
+          "productCharacteristic": [
+            {
+              "name": "ICCID",
+              "valueType": "string",
+              "value": "891004234814455936",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "@type": "CFS",
+          "productOrderItemId": "08"
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "a3e29a3d-0863-4a32-bfba-7542ee786acb",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    }
+  ],
+  "href": "https://adminui-review-disco.apps.fr01.paas.tech.orange/cood/orchestrationManagement/v1/orchestrationPlan/425da5a6-5143-495b-a774-7bf24571e15a",
+  "archived": false,
+  "errorMessage": [
+    {
+      "code": "HTTP_BAD_REQUEST",
+      "message": "{http://om-mock-server-review:8080/productManagement/v1/product?productOrderItem.productOrderId=1010912333&productOrderItem.orderItemId=10} responded with a 404 Not found and message {\n                                               Request was not matched\n                                               =======================\n\n-----------------------------------------------------------------------------------------------------------------------\n| Closest stub                                             | Request                                                  |\n-----------------------------------------------------------------------------------------------------------------------\n                                                           |\nGet Products                                               |\n                                                           |\nGET                                                        | GET\n[path] /productManagement/v1/product                       | /productManagement/v1/product?productOrderItem.productOrd\n                                                           | erId=1010912333&productOrderItem.orderItemId=10\n                                                           |\nQuery: productOrderItem.productOrderId [matches] 1111.*    | productOrderItem.productOrderId: 1010912333         <<<<< Query does not match\nQuery: productOrderItem.orderItemId [matches] .*           | productOrderItem.orderItemId: 10\n                                                           |\n                                                           |\n-----------------------------------------------------------------------------------------------------------------------\n}",
+      "reason": "The requested resource could not be found.",
+      "timeStamp": "2024-08-13T10:06:28.885Z"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2025, 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+mkdocs==1.5.2
+mkdocs-material==9.2.4
+mkdocs-git-revision-date-plugin
+pymdown-extensions
+mdx_truly_sane_lists
+mkdocs_puml
+mkdocs-swagger-ui-tag

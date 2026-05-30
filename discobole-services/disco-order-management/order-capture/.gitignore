@@ -1,0 +1,75 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# Standard Java build directories
+/build/
+/dist/
+/target/
+/obj/
+/bin/
+/dependency-reduced-pom.xml
+
+# IDE-specific files (STS, IntelliJ, NetBeans, VS Code)
+# Eclipse/STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+build/
+
+# VS Code
+.vscode/
+
+# Maven-specific
+/.mvn/
+/mvn-*.log
+/pom.xml.tag
+!.mvn/wrapper/maven-wrapper.jar
+
+# Gradle-specific
+/gradle/
+.gradle/
+*.jar
+*.war
+*.ear
+
+# OS-generated files
+.DS_Store
+*.swp
+*~.tmp
+*.log
+*.lock
+
+# Temporary files
+*.tmp
+*.bak
+*.old
+
+# Spring Boot-specific exclusions
+!**/src/main/**
+!**/src/test/**
+!**/src/bin/**
+
+# Exclude build artifacts (e.g., compiled classes, JARs)
+*.class

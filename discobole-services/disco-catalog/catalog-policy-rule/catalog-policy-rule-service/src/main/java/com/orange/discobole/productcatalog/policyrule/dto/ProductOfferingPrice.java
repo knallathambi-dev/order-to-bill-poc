@@ -1,0 +1,639 @@
+// SPDX-FileCopyrightText: 2025 Orange SA
+// SPDX-License-Identifier: MIT
+//
+// This software is distributed under the MIT License,
+// the text of which is available at https://opensource.org/license/mit
+// or see the "LICENSE.txt" file for more details.
+//
+// Authors: See CONTRIBUTORS.txt
+
+package com.orange.discobole.productcatalog.policyrule.dto;
+
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.orange.discobole.admin.TimePeriod;
+import com.orange.discobole.productcatalog.policyrule.enums.PriceType;
+import com.orange.discobole.productcatalog.policyrule.enums.ProductOfferingPriceLifecycle;
+
+import com.orange.discobole.productcatalog.policyrule.enums.ProductOfferingPriceType;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import jakarta.annotation.Generated;
+
+/**
+ * Is based on both the basic cost to develop and produce products and the
+ * enterprises policy on revenue targets. This price may be further revised
+ * through discounting (productOfferPriceAlteration). The price, applied for a
+ * productOffering may also be influenced by the productOfferingTerm, the
+ * customer selected, eg: a productOffering can be offered with multiple terms,
+ * like commitment periods for the contract. The price may be influenced by this
+ * productOfferingTerm. A productOffering may be cheaper with a 24 month
+ * commitment than with a 12 month commitment.
+ */
+@ApiModel(description = "Is based on both the basic cost to develop and produce products and the enterprises policy on revenue targets. This price may be further revised through discounting (productOfferPriceAlteration). The price, applied for a productOffering may also be influenced by the productOfferingTerm, the customer selected, eg: a productOffering can be offered with multiple terms, like commitment periods for the contract. The price may be influenced by this productOfferingTerm. A productOffering may be cheaper with a 24 month commitment than with a 12 month commitment.")
+@Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2020-07-30T16:59:05.795+05:30")
+public class ProductOfferingPrice {
+    @JsonProperty("id")
+    private String id = null;
+
+    @JsonProperty("href")
+    private String href = null;
+
+    @JsonProperty("description")
+    private String description = null;
+
+    @JsonProperty("isBundle")
+    private Boolean isBundle = null;
+
+    @JsonProperty("lastUpdate")
+    private OffsetDateTime lastUpdate = null;
+
+    @JsonProperty("lifecycleStatus")
+    private ProductOfferingPriceLifecycle lifecycleStatus = null;
+
+    @JsonProperty("name")
+    private String name = null;
+
+    @JsonProperty("percentage")
+    private Float percentage = null;
+
+    @JsonProperty("duration")
+    private Integer duration=null;
+
+    @JsonProperty("priority")
+    private Integer priority=null;
+
+    @JsonProperty("priceType")
+    private PriceType priceType = null;
+
+    @JsonProperty("immediatePayment")
+    private Boolean immediatePayment = null;
+
+    @JsonProperty("recurringChargePeriodLength")
+    private Integer recurringChargePeriodLength = null;
+
+    @JsonProperty("recurringChargePeriodType")
+    private String recurringChargePeriodType = null;
+
+    @JsonProperty("version")
+    private String version = null;
+
+    @JsonProperty("popRelationship")
+    private List<ProductOfferingPriceRelationship> popRelationship = null;
+
+    @JsonProperty("price")
+    private Money price = null;
+
+    @JsonProperty("tax")
+    private List<TaxItem> tax = null;
+
+    @JsonProperty("unitOfMeasure")
+    private Quantity unitOfMeasure = null;
+
+    @JsonProperty("validFor")
+    private TimePeriod validFor = null;
+
+    @JsonProperty("@baseType")
+    private String baseType = null;
+
+    @JsonProperty("@schemaLocation")
+    private String schemaLocation = null;
+
+    @JsonProperty("@type")
+    private ProductOfferingPriceType type = null;
+
+    public ProductOfferingPrice() {
+    }
+
+    public ProductOfferingPrice(String id) {
+        this.id = id;
+    }
+
+    public ProductOfferingPrice id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * unique id of this resource
+     *
+     * @return id
+     **/
+    @ApiModelProperty(value = "unique id of this resource")
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ProductOfferingPrice href(String href) {
+        this.href = href;
+        return this;
+    }
+
+    /**
+     * Reference of the ProductOfferingPrice
+     *
+     * @return href
+     **/
+    @ApiModelProperty(value = "Reference of the ProductOfferingPrice")
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
+    }
+
+    public ProductOfferingPrice description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Description of the productOfferingPrice
+     *
+     * @return description
+     **/
+    @ApiModelProperty(value = "Description of the productOfferingPrice")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ProductOfferingPrice isBundle(Boolean isBundle) {
+        this.isBundle = isBundle;
+        return this;
+    }
+
+    /**
+     * A flag indicating if this ProductOfferingPrice is composite (bundle) or not
+     *
+     * @return isBundle
+     **/
+    @ApiModelProperty(value = "A flag indicating if this ProductOfferingPrice is composite (bundle) or not")
+    public Boolean isIsBundle() {
+        return isBundle;
+    }
+
+    public void setIsBundle(Boolean isBundle) {
+        this.isBundle = isBundle;
+    }
+
+    public ProductOfferingPrice lastUpdate(OffsetDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
+        return this;
+    }
+
+    /**
+     * the last update time of this ProductOfferingPrice
+     *
+     * @return lastUpdate
+     **/
+    @ApiModelProperty(value = "the last update time of this ProductOfferingPrice")
+    public OffsetDateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(OffsetDateTime lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    public ProductOfferingPrice lifecycleStatus(ProductOfferingPriceLifecycle lifecycleStatus) {
+        this.lifecycleStatus = lifecycleStatus;
+        return this;
+    }
+
+    /**
+     * Get lifecycleStatus
+     *
+     * @return lifecycleStatus
+     **/
+    @ApiModelProperty(value = "")
+    public ProductOfferingPriceLifecycle getLifecycleStatus() {
+        return lifecycleStatus;
+    }
+
+    public void setLifecycleStatus(ProductOfferingPriceLifecycle lifecycleStatus) {
+        this.lifecycleStatus = lifecycleStatus;
+    }
+
+    public ProductOfferingPrice name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Name of the productOfferingPrice
+     *
+     * @return name
+     **/
+    @ApiModelProperty(value = "Name of the productOfferingPrice")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ProductOfferingPrice percentage(Float percentage) {
+        this.percentage = percentage;
+        return this;
+    }
+
+    /**
+     * Percentage to apply for ProductOfferPriceAlteration (Discount)
+     *
+     * @return percentage
+     **/
+    @ApiModelProperty(value = "Percentage to apply for ProductOfferPriceAlteration (Discount)")
+    public Float getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(Float percentage) {
+        this.percentage = percentage;
+    }
+
+    public ProductOfferingPrice priceType(PriceType priceType) {
+        this.priceType = priceType;
+        return this;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public ProductOfferingPrice duration(Integer duration) {
+        this.duration = duration;
+        return this;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public ProductOfferingPrice priority(Integer priority) {
+        this.priority = priority;
+        return this;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    /**
+     * Get priceType
+     *
+     * @return priceType
+     **/
+    @ApiModelProperty(value = "")
+    public PriceType getPriceType() {
+        return priceType;
+    }
+
+    public void setPriceType(PriceType priceType) {
+        this.priceType = priceType;
+    }
+
+    public ProductOfferingPrice immediatePayment(Boolean immediatePayment) {
+        this.immediatePayment = immediatePayment;
+        return this;
+    }
+
+    /**
+     * Get immediatePayment
+     *
+     * @return immediatePayment
+     **/
+    @ApiModelProperty(value = "")
+    public Boolean getImmediatePayment() {
+        return immediatePayment;
+    }
+
+    public void setImmediatePayment(Boolean immediatePayment) {
+        this.immediatePayment = immediatePayment;
+    }
+
+
+    public ProductOfferingPrice recurringChargePeriodLength(Integer recurringChargePeriodLength) {
+        this.recurringChargePeriodLength = recurringChargePeriodLength;
+        return this;
+    }
+
+    /**
+     * the period of the recurring charge: 1, 2, ... .It sets to zero if it is not
+     * applicable
+     *
+     * @return recurringChargePeriodLength
+     **/
+    @ApiModelProperty(value = "the period of the recurring charge:  1, 2, ... .It sets to zero if it is not applicable")
+    public Integer getRecurringChargePeriodLength() {
+        return recurringChargePeriodLength;
+    }
+
+    public void setRecurringChargePeriodLength(Integer recurringChargePeriodLength) {
+        this.recurringChargePeriodLength = recurringChargePeriodLength;
+    }
+
+    public ProductOfferingPrice recurringChargePeriodType(String recurringChargePeriodType) {
+        this.recurringChargePeriodType = recurringChargePeriodType;
+        return this;
+    }
+
+    /**
+     * The period to repeat the application of the price Could be month, week...
+     *
+     * @return recurringChargePeriodType
+     **/
+    @ApiModelProperty(value = "The period to repeat the application of the price Could be month, week...")
+    public String getRecurringChargePeriodType() {
+        return recurringChargePeriodType;
+    }
+
+    public void setRecurringChargePeriodType(String recurringChargePeriodType) {
+        this.recurringChargePeriodType = recurringChargePeriodType;
+    }
+
+    public ProductOfferingPrice version(String version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * ProductOffering version
+     *
+     * @return version
+     **/
+    @ApiModelProperty(value = "ProductOffering version")
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    public ProductOfferingPrice popRelationship(List<ProductOfferingPriceRelationship> popRelationship) {
+        this.popRelationship = popRelationship;
+        return this;
+    }
+
+    public ProductOfferingPrice addPopRelationshipItem(ProductOfferingPriceRelationship popRelationshipItem) {
+        if (this.popRelationship == null) {
+            this.popRelationship = new ArrayList<ProductOfferingPriceRelationship>();
+        }
+        this.popRelationship.add(popRelationshipItem);
+        return this;
+    }
+
+    /**
+     * Get popRelationship
+     *
+     * @return popRelationship
+     **/
+    @ApiModelProperty(value = "")
+    public List<ProductOfferingPriceRelationship> getPopRelationship() {
+        return popRelationship;
+    }
+
+    public void setPopRelationship(List<ProductOfferingPriceRelationship> popRelationship) {
+        this.popRelationship = popRelationship;
+    }
+
+    public ProductOfferingPrice price(Money price) {
+        this.price = price;
+        return this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return price
+     **/
+    @ApiModelProperty(value = "")
+    public Money getPrice() {
+        return price;
+    }
+
+    public void setPrice(Money price) {
+        this.price = price;
+    }
+
+    public ProductOfferingPrice tax(List<TaxItem> tax) {
+        this.tax = tax;
+        return this;
+    }
+
+    public ProductOfferingPrice addTaxItem(TaxItem taxItem) {
+        if (this.tax == null) {
+            this.tax = new ArrayList<TaxItem>();
+        }
+        this.tax.add(taxItem);
+        return this;
+    }
+
+    /**
+     * Get tax
+     *
+     * @return tax
+     **/
+    @ApiModelProperty(value = "")
+    public List<TaxItem> getTax() {
+        return tax;
+    }
+
+    public void setTax(List<TaxItem> tax) {
+        this.tax = tax;
+    }
+
+    public ProductOfferingPrice unitOfMeasure(Quantity unitOfMeasure) {
+        this.unitOfMeasure = unitOfMeasure;
+        return this;
+    }
+
+    /**
+     * Get unitOfMeasure
+     *
+     * @return unitOfMeasure
+     **/
+    @ApiModelProperty(value = "")
+    public Quantity getUnitOfMeasure() {
+        return unitOfMeasure;
+    }
+
+    public void setUnitOfMeasure(Quantity unitOfMeasure) {
+        this.unitOfMeasure = unitOfMeasure;
+    }
+
+    public ProductOfferingPrice validFor(TimePeriod validFor) {
+        this.validFor = validFor;
+        return this;
+    }
+
+    /**
+     * Get validFor
+     *
+     * @return validFor
+     **/
+    @ApiModelProperty(value = "")
+    public TimePeriod getValidFor() {
+        return validFor;
+    }
+
+    public void setValidFor(TimePeriod validFor) {
+        this.validFor = validFor;
+    }
+
+    public ProductOfferingPrice baseType(String baseType) {
+        this.baseType = baseType;
+        return this;
+    }
+
+    /**
+     * the immediate base class type of this product offering
+     *
+     * @return baseType
+     **/
+    @ApiModelProperty(value = "the immediate base class type of this product offering")
+    public String getBaseType() {
+        return baseType;
+    }
+
+    public void setBaseType(String baseType) {
+        this.baseType = baseType;
+    }
+
+    public ProductOfferingPrice schemaLocation(String schemaLocation) {
+        this.schemaLocation = schemaLocation;
+        return this;
+    }
+
+    /**
+     * hyperlink reference to the schema describing this resource
+     *
+     * @return schemaLocation
+     **/
+    @ApiModelProperty(value = "hyperlink reference to the schema describing this resource")
+    public String getSchemaLocation() {
+        return schemaLocation;
+    }
+
+    public void setSchemaLocation(String schemaLocation) {
+        this.schemaLocation = schemaLocation;
+    }
+
+    public ProductOfferingPrice type(ProductOfferingPriceType type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return type
+     **/
+    @ApiModelProperty(required = true, value = "")
+    public ProductOfferingPriceType getType() {
+        return type;
+    }
+
+    public void setType(ProductOfferingPriceType type) {
+        this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ProductOfferingPrice productOfferingPrice = (ProductOfferingPrice) o;
+        return Objects.equals(this.id, productOfferingPrice.id) && Objects.equals(this.href, productOfferingPrice.href)
+                && Objects.equals(this.description, productOfferingPrice.description)
+                && Objects.equals(this.isBundle, productOfferingPrice.isBundle)
+                && Objects.equals(this.lastUpdate, productOfferingPrice.lastUpdate)
+                && Objects.equals(this.lifecycleStatus, productOfferingPrice.lifecycleStatus)
+                && Objects.equals(this.name, productOfferingPrice.name)
+                && Objects.equals(this.percentage, productOfferingPrice.percentage)
+                && Objects.equals(this.priceType, productOfferingPrice.priceType)
+                && Objects.equals(this.immediatePayment, productOfferingPrice.immediatePayment)
+                && Objects.equals(this.recurringChargePeriodLength, productOfferingPrice.recurringChargePeriodLength)
+                && Objects.equals(this.recurringChargePeriodType, productOfferingPrice.recurringChargePeriodType)
+                && Objects.equals(this.version, productOfferingPrice.version)
+                && Objects.equals(this.popRelationship, productOfferingPrice.popRelationship)
+                && Objects.equals(this.price, productOfferingPrice.price)
+                && Objects.equals(this.tax, productOfferingPrice.tax)
+                && Objects.equals(this.unitOfMeasure, productOfferingPrice.unitOfMeasure)
+                && Objects.equals(this.validFor, productOfferingPrice.validFor)
+                && Objects.equals(this.baseType, productOfferingPrice.baseType)
+                && Objects.equals(this.schemaLocation, productOfferingPrice.schemaLocation)
+                && Objects.equals(this.type, productOfferingPrice.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, href, description, isBundle, lastUpdate, lifecycleStatus, name, percentage, priceType,
+                immediatePayment, recurringChargePeriodLength, recurringChargePeriodType, version, popRelationship,
+                price, tax, unitOfMeasure, validFor, baseType, schemaLocation, type);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ProductOfferingPrice {\n");
+
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    href: ").append(toIndentedString(href)).append("\n");
+        sb.append("    description: ").append(toIndentedString(description)).append("\n");
+        sb.append("    isBundle: ").append(toIndentedString(isBundle)).append("\n");
+        sb.append("    lastUpdate: ").append(toIndentedString(lastUpdate)).append("\n");
+        sb.append("    lifecycleStatus: ").append(toIndentedString(lifecycleStatus)).append("\n");
+        sb.append("    name: ").append(toIndentedString(name)).append("\n");
+        sb.append("    percentage: ").append(toIndentedString(percentage)).append("\n");
+        sb.append("    priceType: ").append(toIndentedString(priceType)).append("\n");
+        sb.append("    immediatePayment: ").append(toIndentedString(immediatePayment)).append("\n");
+        sb.append("    recurringChargePeriodLength: ").append(toIndentedString(recurringChargePeriodLength))
+                .append("\n");
+        sb.append("    recurringChargePeriodType: ").append(toIndentedString(recurringChargePeriodType)).append("\n");
+        sb.append("    version: ").append(toIndentedString(version)).append("\n");
+        sb.append("    popRelationship: ").append(toIndentedString(popRelationship)).append("\n");
+        sb.append("    price: ").append(toIndentedString(price)).append("\n");
+        sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
+        sb.append("    unitOfMeasure: ").append(toIndentedString(unitOfMeasure)).append("\n");
+        sb.append("    validFor: ").append(toIndentedString(validFor)).append("\n");
+        sb.append("    baseType: ").append(toIndentedString(baseType)).append("\n");
+        sb.append("    schemaLocation: ").append(toIndentedString(schemaLocation)).append("\n");
+        sb.append("    type: ").append(toIndentedString(type)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+}

@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  config:
+    activate:
+      on-profile: openshift
+  data:
+    mongodb:
+      delete: true
+      host: ${DB_SERVICE}
+      port: 27017
+      database: ${DB_NAME}
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+      
+  keycloakUrl: ${KEYCLOAK_SERVICE_ROUTE}
+  keycloakclientId: ${KEYCLOAKCLIENTID}
+  realm: ${KEYCLOAK_REALM}
+  keycloakRolesEntitlements: x107
+  keycloakAuthUrl: ${KEYCLOAK_SERVICE_ROUTE}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/auth
+  userRoleRetrievalUrl: ${AUTH_USERROLE_ROUTE}/userRolePermission/v1/userRole
+  keycloak: ${KEYCLOAK_SERVICE_ROUTE}/realms/${KEYCLOAK_REALM}/protocol/openid-connect/auth
+  admin-role: authUserRoleAdmin
+logging:
+  level:
+    com.orange.role: DEBUG

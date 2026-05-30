@@ -1,0 +1,7 @@
+[
+  {{#each (jsonPath request.body '$') as |item|}}
+      {{> stubs/__files/Service-Ordering-Management/ServiceOrderItem}}
+  {{#unless @last}},{{/unless}}
+  {{/each}}
+]
+

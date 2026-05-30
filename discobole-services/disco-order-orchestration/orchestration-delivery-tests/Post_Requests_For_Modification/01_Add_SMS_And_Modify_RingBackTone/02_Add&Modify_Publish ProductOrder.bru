@@ -1,0 +1,215 @@
+meta {
+  name: 02_Add&Modify_Publish ProductOrder
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/api/cood/test/productOrderStatChange/sendMessage
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: {{token}}
+}
+
+body:json {
+  {
+    "id": "1113{{Random_number}}",
+    "orderDate": "2023-07-10T14:17:08.544Z",
+    "state": "accepted",
+    "relatedParty": [
+      {
+        "partyOrPartyRole": {
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@type": "PartyRef"
+        },
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer"
+      }
+    ],
+    "productOrderItem": [
+      {
+        "id": "100",
+        "quantity": 1,
+        "action": "add",
+        "itemPrice": [
+          {
+            "description": "100 euro NRC",
+            "name": "NRC 100 Euro",
+            "priceType": "nonRecurringCharge",
+            "unitOfMeasure": "units",
+            "price": {
+              "taxRate": 0.0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 100.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 100.0
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "026b31eb-51ab-4715-8b16-f57c8588575a",
+              "name": "NRC 100 Euro",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "productOffering": {
+          "id": "8740a910-38d9-4c6d-8150-8f840c3c3657",
+          "name": "SMS Option",
+          "@type": "AtomicProductOffering"
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "2",
+            "relationshipType": "sells",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "productOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "101",
+        "quantity": 1,
+        "action": "add",
+        "product": {
+          "isBundle": false,
+          "@type": "Product",
+          "productCharacteristic": [
+            {
+              "name": "Volume",
+              "valueType": "string",
+              "value": "500",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "productSpecification": {
+            "id": "3f53cbde-73be-405a-8684-60c4993fe2ad",
+            "name": "SMS Option",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "state": "accepted",
+        "@type": "productOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "102",
+        "action": "modify",
+        "productOffering": {
+          "id": "8740a910-38d9-4c6d-8150-8f840c3c3657",
+          "name": "Ring Back Tone",
+          "@type": "AtomicProductOffering"
+        },
+        "itemPrice": [
+          {
+            "description": "100 euro NRC",
+            "name": "NRC 100 Euro",
+            "priceType": "nonRecurringCharge",
+            "unitOfMeasure": "units",
+            "price": {
+              "taxRate": 0.0,
+              "dutyFreeAmount": {
+                "unit": "EUR",
+                "value": 100.0
+              },
+              "taxIncludedAmount": {
+                "unit": "EUR",
+                "value": 100.0
+              },
+              "@type": "Price"
+            },
+            "productOfferingPrice": {
+              "id": "026b31eb-51ab-4715-8b16-f57c8588575a",
+              "name": "NRC 100 Euro",
+              "@type": "ProductOfferingPriceRef",
+              "@referredType": "ProductOfferingPriceCharge"
+            },
+            "@type": "OrderPrice"
+          }
+        ],
+        "product": {
+          "@type": "Product",
+          "id": "1234567889",
+          "isBundle": false
+        },
+        "productOrderItemRelationship": [
+          {
+            "id": "4",
+            "relationshipType": "sells",
+            "@type": "OrderItemRelationship"
+          }
+        ],
+        "state": "accepted",
+        "@type": "productOrderItem",
+        "isInstallable": true
+      },
+      {
+        "id": "103",
+        "action": "modify",
+        "product": {
+          "id": "1234567889",
+          "isBundle": false,
+          "@type": "Product",
+          "productCharacteristic": [
+            {
+              "name": "Tone",
+              "valueType": "string",
+              "value": "ToneVIP",
+              "@type": "StringCharacteristic"
+            }
+          ],
+          "productSpecification": {
+            "id": "abe401bc-76b8-4811-8fef-98d5d10d979c",
+            "name": "Ring Back Tone",
+            "@type": "ProductSpecificationRef"
+          }
+        },
+        "state": "accepted",
+        "@type": "productOrderItem",
+        "isInstallable": true
+      }
+    ],
+    "@type": "ProductOrder"
+  }
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  bru.setVar("Random_number", Math.random()*Math.random()*100000);
+}
+
+script:post-response {
+  var jsonData = req.body ;
+  
+  //Get Order ID
+  bru.setVar("order_id", jsonData.id);
+   
+  console.log("order_id:"+bru.getVar("order_id"));
+}
+
+tests {
+  test("should plan created sucessfuly", function() {
+    const data = res.getBody();
+    expect(res.getStatus()).to.equal(200);
+  });
+}
+
+docs {
+  This request to create plan with two product items  
+  "RingBackTone" has action add 
+  and SMS option has action modify 
+}

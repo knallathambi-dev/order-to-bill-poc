@@ -1,0 +1,35 @@
+meta {
+  name: bulk modif product status
+  type: http
+  seq: 16
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: none
+}
+
+query {
+  ~status: Created
+  ~operationalStatus: Confirmed
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/65afc08309023b1a9a95cbeb/status",
+          "value": "Active"
+      },
+      {
+          "op": "replace",
+          "path": "/productInventoryManagement/v1/product/65afc08309023b1a9a95cbeb/operationalStatus",
+          "value": "Active"
+      }
+  ]
+}

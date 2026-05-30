@@ -1,0 +1,77 @@
+meta {
+  name: selectEntity_launch
+  type: http
+  seq: 22
+}
+
+patch {
+  url: {{Next_task}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  {
+      "characteristic": [
+          {
+              "name": "SelectLifecycleEntity",
+              "valueType": "Object",
+              "value": {
+                  "entity.id": "{{APO_id}}",
+                  "entityType": "AtomicOffer"
+              },
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": "ObjectCharacteristic"
+          }
+      ]
+  }
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  await bru.sleep(3000);
+}
+
+tests {
+  var jsonData = res.getBody();
+  
+  
+  
+  test("To verify that Next states values : launched", function () {
+      var state = jsonData._links.nextTaskstoBePerformed[0].taskFlowSpecificationCharacteristic[0].characteristicValueSpecification[0].value.DefineLifecycleState.properties.state.enum;
+  console.log(state);
+      expect(state[0]).to.eql("retired");
+    expect(state[1]).to.eql("launched");
+  
+  });
+  
+  test("Toverify that the  next task is to manage the entity lifecycle status", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[0].title).to.equals("ManageEntityLifecycle.updateStatus");
+  });
+  
+  test("To verify that cancel task is present in the nextTaskTobeperformed object", function () {
+    expect(jsonData._links.nextTaskstoBePerformed[1].title).to.equals("ManageEntityLifecycle.lifecycleCancel");
+  });
+  
+}
+
+docs {
+  Request to select the Product specification for which lifecyclestatus is needed to be changed
+}

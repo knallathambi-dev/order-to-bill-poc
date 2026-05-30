@@ -1,0 +1,128 @@
+{
+  "@type": "PhysicalProduct",
+  "id": "67ab50b537fe5a1967b98596",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98596",
+  "isBundle": false,
+  "name": "Samsung Galaxy A55",
+  "productSerialNumber": "8765",
+  "productCharacteristic": [
+    {
+      "@type": "StringCharacteristic",
+      "id": "1",
+      "name": "Memory",
+      "value": "512 GB"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "2",
+      "name": "Colour",
+      "value": "Lilac"
+    }
+  ],
+  "productOffering": {
+    "id": "bea0f233-f619-41cb-9797-0649a89e56bb",
+    "name": "Samsung Galaxy A55",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "d50a61f5-f707-4522-9a2d-5a9c6cb857d8",
+      "productOrderId": "67ab50b3d636a24b72afc094"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "Samsung A55 512 GB Charge",
+      "name": "Samsung A55 512 GB Charge",
+      "priceType": "nonRecurringCharge",
+      "productOfferingPrice": {
+        "id": "0cf6337c-00a5-47aa-a708-e2c6a508cf1a",
+        "name": "Samsung A55 512 GB Charge",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 600
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 600
+        }
+      },
+      "productPriceAlteration": []
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67ab50b537fe5a1967b9858a",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "8d5e0b3c-8c41-4690-8618-80e286e5b211",
+    "name": "Samsung A55 PS",
+    "version": "2.0",
+    "@type": "ProductSpecificationRef"
+  },
+  "realizingResource": [
+    {
+      "id": "68x",
+      "href": "http://server:port/resourceInventoryManagement/physicalResource/68x",
+      "@type": "PhysicalResource"
+    }
+  ],
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "Lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Sold",
+  "operationalStatus": "Sold",
+  "creationDate": "2025-02-11T13:29:25Z",
+  "lastUpdateDate": "2025-02-11T13:30:03Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:30:03Z",
+      "status": "Sold"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:29:42Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-02-11T13:29:46Z",
+      "status": "PendingDelivery"
+    },
+    {
+      "changeDate": "2025-02-11T13:30:03Z",
+      "status": "Sold"
+    }
+  ]
+}

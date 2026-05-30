@@ -1,0 +1,20 @@
+meta {
+  name: List product offering
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{catalog_base_url}}/productCatalogManagement/v1/productOffering?id=772056cd-485b-4877-8453-1648a07c43f7&id=414e3b5e-7fca-4b7e-bf73-51fa1e66b87f
+  body: none
+  auth: bearer
+}
+
+params:query {
+  id: 772056cd-485b-4877-8453-1648a07c43f7
+  id: 414e3b5e-7fca-4b7e-bf73-51fa1e66b87f
+}
+
+auth:bearer {
+  token: {{catalog_token}}
+}

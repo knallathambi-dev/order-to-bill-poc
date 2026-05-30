@@ -1,0 +1,784 @@
+{
+  "mappings": [
+    {
+      "name": "Create configuration session on acquisition - Success",
+      "priority": 1,
+      "request": {
+        "url": "/v1/QueryProductConfiguration",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.productOfferingId",
+            "operator": "exists"
+          },
+          {
+            "matchesJsonPath": {
+              "expression": "$.process",
+              "equalTo": "acquisition"
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Product-Configuration/ConfigurationCreatedAcquisition.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Create configuration session on modification - Success",
+      "priority": 2,
+      "request": {
+        "url": "/v1/QueryProductConfiguration",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.productId",
+            "operator": "exists"
+          },
+          {
+            "matchesJsonPath": {
+              "expression": "$.process",
+              "equalTo": "modification"
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 201,
+        "bodyFileName": "Product-Configuration/ConfigurationCreatedModification.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad request",
+      "priority": 3,
+      "request": {
+        "url": "/v1/QueryProductConfiguration",
+        "method": "POST"
+      },
+      "response": {
+        "status": 400,
+        "bodyFileName": "MissingRequestBody.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad url - Not Found",
+      "priority": 4,
+      "request": {
+        "urlPattern": "/productC.*",
+        "method": "POST"
+      },
+      "response": {
+        "status": 404,
+        "bodyFileName": "NotFound.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for Max Plus with included offers only - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxPlus.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxPlus.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for Max Plus with SMS - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxPlusSMS.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxPlusSMS.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for Max Plus with Ring Back Tone - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxPlusRing.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxPlusRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for Max Plus with Handset - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxPlusHandset.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxPlusHandset.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for Max Plus with SMS and Handset - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxPlusSMSHandset.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxPlusSMS_Handset.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for Max Plus with SMS and Ring Back Tone - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxPlusSMSRing.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxPlusSMS_Ring.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for Max Plus with Ring Back Tone and Handset - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxPlusRingHandset.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxPlusRing_Handset.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for Max Plus with SMS, Ring Back Tone and Handset - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxPlusSMSRingHandset.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxPlusSMS_Ring_Handset.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition - Success",
+      "priority": 2,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMax.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMax.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxRing.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxSMS.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxSMS.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKMaxSMSRing.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionMaxSMS_Ring.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKBasic.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionBasic.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for atomic accessory offers only - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKAtomicAccessory.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionForAtomicAccessory.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for bundle accessory offers only - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKBundleAccessory.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionForBundleAccessory.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for Basic FO with included offers only - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKBasicFO.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionBasicFO.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on acquisition for unqualified offer with included offers only - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/ACKUnqualified.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationAcquisitionUnqualified.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for add SMS and Ring - Success",
+      "priority": 4,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddSMSAddRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddSMS_AddRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for add SMS and modify Ring - Success",
+      "priority": 5,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddSMSModifyRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddSMS_ModifyRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for add SMS and delete Ring- Success",
+      "priority": 6,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddSMSDeleteRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddSMS_DeleteRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for add SMS - Success",
+      "priority": 7,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddSMS.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddSMS.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for add Ring - Success",
+      "priority": 8,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for modify Ring - Success",
+      "priority": 9,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODModifyRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationModifyRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for delete Ring - Success",
+      "priority": 10,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODDeleteRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationDeleteRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for adding  Handset & SMS and Delete Ring- Success",
+      "priority": 11,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddHandsetAddSMSDeleteRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddHandset_AddSMS_DeleteRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for adding  Handset & SMS & Ring- Success",
+      "priority": 12,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddHandsetAddSMSAddRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddHandset_AddSMS_AddRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for adding  Handset & SMS and modify Ring- Success",
+      "priority": 13,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddHandsetAddSMSModifyRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddHandset_AddSMS_ModifyRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for adding  Handset & SMS - Success",
+      "priority": 14,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddHandsetAddSMS.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddHandset_AddSMS.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for adding  Handset & Ring- Success",
+      "priority": 15,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddHandsetAddRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddHandset_AddRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for adding  Handset and delete Ring- Success",
+      "priority": 16,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddHandsetDeleteRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddHandset_DeleteRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for adding  Handset and modify Ring- Success",
+      "priority": 17,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddHandsetModifyRING.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddHandset_ModifyRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for adding  Handset - Success",
+      "priority": 18,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddHandset.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddHandset.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Retrieve configuration by ID upon termination to delete all products in the basic offer - Successful",
+      "priority": 19,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/DeleteBasic.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationDeleteBasic.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Retrieve configuration by ID upon termination to delete all products (excluding SMS and Ring Back Tone) in the Max offer - Successful",
+      "priority": 19,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/DeleteMax.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationDeleteMax.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Retrieve configuration by ID upon termination to delete all products (including Ring Back Tone) in the Max offer - Successful",
+      "priority": 19,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/DeleteMaxRing.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationDeleteMaxRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Retrieve configuration by ID upon termination to delete all products (including SMS) in the Max offer - Successful",
+      "priority": 19,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/DeleteMaxSMS.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationDeleteMaxSMS.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Retrieve configuration by ID upon termination to delete all products (including SMS and Ring Back Tone) in the Max offer - Successful",
+      "priority": 19,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/DeleteMaxSMSRing.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationDeleteMaxSMS_Ring.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Retrieve configuration by ID upon termination to delete all products (excluding SMS and Ring Back Tone) in the Max Plus offer - Successful",
+      "priority": 19,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/DeleteMaxPlus.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationDeleteMaxPlus.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Retrieve configuration by ID upon termination to delete all products (including SMS) in the Max Plus offer - Successful",
+      "priority": 19,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/DeleteMaxPlusSMS.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationDeleteMaxPlusSMS.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Retrieve configuration by ID upon termination to delete all products (including Ring Back Tone) in the Max Plus offer - Successful",
+      "priority": 19,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/DeleteMaxPlusRing.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationDeleteMaxPlusRing.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Retrieve configuration by ID upon termination to delete all products (including SMS and Ring Back Tone) in the Max Plus offer - Successful",
+      "priority": 19,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/DeleteMaxPlusSMSRing.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationDeleteMaxPlusSMS_Ring.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Post product configuration for migration use case- Success",
+      "priority": 1,
+      "request": {
+        "urlPath": "/v1/QueryProductConfiguration",
+        "method": "POST",
+        "bodyPatterns": [
+          {
+            "matchesJsonPath": "$.requestProductConfigurationItem",
+            "operator": "exists"
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationMigrationUseCase.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on modification for adding  Data Pass fro comfort offer - Success",
+      "priority":20,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/MODAddDataPass.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfModificationAddDataPass.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get configuration by Id on migration- Success",
+      "priority": 15,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/Migration.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-Configuration/ConfigurationMigrationUseCase.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad request",
+      "priority": 21,
+      "request": {
+        "urlPattern": "/v1/QueryProductConfiguration/.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 400,
+        "bodyFileName": "InvalidArgument.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Bad url - Not Found",
+      "priority": 22,
+      "request": {
+        "urlPattern": "/productC.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 404,
+        "bodyFileName": "NotFound.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

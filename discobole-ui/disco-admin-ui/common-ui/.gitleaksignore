@@ -1,0 +1,4 @@
+.gitlab-ci.yml:secrets-yaml-files:57
+.npmrc:gitlab-pat:2
+src/service/BffAuthService.js:generic-api-key:17
+src/service/KeycloakService.js:generic-api-key:63

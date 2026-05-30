@@ -1,0 +1,41 @@
+{
+  "completionMethod": "userInput",
+  "isMandatory": true,
+  "channel": [
+    {
+      "id": "001",
+      "name": "WEB"
+    }
+  ],
+  "relatedEntity": [
+    {
+      "id": "cefc74ce4-448d-4526-bfc8-7de99f835c86",
+      "href": null,
+      "name": null,
+      "role": null,
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": "OrchestrationPlanNode"
+    }
+  ],
+  "relatedParty": [
+    {
+      "id": "231-mf20",
+      "name": "HOMER",
+      "role": "customer",
+      "@referredType": "individual"
+    }
+  ],
+  "characteristic": [
+    {
+      "name": "SelectResolutionStateWithReason",
+      "valueType": "Object",
+      "value": {
+        "resolutionState": "resolved"
+      },
+      "@type": "ObjectCharacteristic"
+    }
+  ],
+  "@type": "TaskFlow"
+}

@@ -1,0 +1,72 @@
+{
+  "mappings": [
+    {
+      "name": "Get ring back tone product",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "productOrderItem.productOrderId": {
+            "matches": "1114.*"
+          },
+          "productOrderItem.orderItemId": {
+            "equalTo": "106"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/deleteRingBackTone/RingBackToneProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get status ring back tone",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649adsdsdsds-deleteRing"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/deleteRingBackTone/RingBackToneProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get status mobile line",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "649aaf9f2b4b3225cb5737ea-deleteRing"
+          },
+          "fields": {
+            "equalTo": "status"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/deleteRingBackTone/MobileLineProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+    ]}

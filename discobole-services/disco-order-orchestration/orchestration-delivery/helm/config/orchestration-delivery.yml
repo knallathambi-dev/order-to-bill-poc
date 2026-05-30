@@ -1,0 +1,63 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: cood-${ENV_TYPE}
+  profiles:
+    default: kubernetes
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVICE_NAME}:9092
+    producer:
+      properties:
+        spring.kafka.topic.auto-create: true
+    consumer:
+      properties:
+        spring.kafka.topic.auto-create: true
+
+retry:
+  maxDelay: '6000'
+config:
+  productSpecByIdCatalogUrl: http://${PRODUCT_CATALOG_SERVICE:catalog-product-catalog-review}/productCatalogManagement/v1/productSpecification
+  productManagementUrl: http://${CPIB_SERVICE:product-inventory-integration}/productInventoryManagement/v1/product
+  productOrderByIdUrl: http://${POI_SERVICE:poi-integration}/productOrderingManagement/v1/productOrder
+  serviceCatalogManagementUrl: http://${MOCK_SERVICE:mock-server-integration}/serviceCatalogManagement/v1/serviceSpecification
+  serviceOrderingUrl: http://${MOCK_SERVICE:mock-server-integration}/serviceOrdering/v1/serviceOrder
+  orchestrationPlanPurgeCronExpression: "*/30 * * * * *"
+  deletePlanThresholdDuration: ${DELETE_PLAN_THRESHOLD_DURATION} # P?DT?H?M = 0? -> count of days, 1? -> count of hours, 2? -> count of minutes
+  archivePlanThresholdDuration: P0DT0H10M
+  deleteArchivedPlanThresholdDuration: P0DT0H10M
+  eventPurgeCronExpression: "0 0 12 * * *" # every day at 12PM
+  deleteEventsThresholdDuration: ${DELETE_EVENTS_THRESHOLD_DURATION}
+  storePlanStatisticsDuration: ${STORE_PLAN_HISTORY_STATISTIC_DURATION}
+  storeNodeStatisticsDuration: ${STORE_NODE_HISTORY_STATISTIC_DURATION}
+  aggregateSpecIdAverageLeadTimeSchedulerDuration: ${AGGREGATE_SPEC_ID_AVERAGE_LEAD_TIME_SCHEDULER_DURATION}
+  aggregateSpecIdAverageLeadTimeWindow: ${AGGREGATE_SPEC_ID_AVERAGE_LEAD_TIME_WINDOW}
+  falloutUrl: http://${COOD_FALLOUT_SERVICE:orchestration-delivery-fallout-integration}/processManagement/v1/processFlow
+  enableUpdateCpibProduct: true
+  enablePrerequisiteValidation: true
+  plannedToAcknowledgedTransition:
+    recommendedBatchSize: 100
+    jobExecutionDelay: PT1H
+    windowStartTimeUtc: "01:00"
+    windowEndTimeUtc: "06:00"
+  adaptiveOrchestrationPlanScheduling: false
+  rootNodeStartTimeCronExpression: ${ROOT_NODE_START_TIME_CRON_EXPRESSION}
+
+app:
+  security:
+    userRoleRetrievalUrl: http://${USER_ROLE_RETRIEVAL}/userRolePermission/v1/userRole
+
+processFlowSpecification: Fallout
+
+otel:
+  service:
+    name: ${OTEL_SERVICE_NAME:disco-service}

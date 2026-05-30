@@ -1,0 +1,40 @@
+meta {
+  name: Patch Product -valid -
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product/649aaf9f2b4b3225cb5737f3
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+  	"productRelationship": [
+  		{
+  			"relationshipType": "bundles",
+  			"product": {
+  				"id": "649aaf9f2b4b3225cb5737f2",
+  				"productRelationship": [
+  					{
+  						"relationshipType": "bundles",
+  						"product": {
+  							"id": "649aaf9f2b4b3225cb5737ee",
+  							"status": "Active",
+  							"operationalStatus": "Active"
+  						}
+  					}
+  				]
+  			}
+  		}
+  	],
+  	"status": "Active",
+  	"operationalStatus": "Active"
+  }
+}

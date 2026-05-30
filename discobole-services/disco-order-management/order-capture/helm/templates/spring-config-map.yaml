@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "order_capture.fullname" . }}
+  labels:
+    {{- include "order_capture.labels" . | nindent 4 }}
+data:
+  {{- (.Files.Glob "config/order-capture.yml").AsConfig | nindent 2 }}

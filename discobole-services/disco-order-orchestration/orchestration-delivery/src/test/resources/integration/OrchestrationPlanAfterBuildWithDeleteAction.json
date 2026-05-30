@@ -1,0 +1,66 @@
+{
+  "id": "648077d13b328b176cd126eb",
+  "relatedProductOrder": {
+    "id": "646c7cf0a567d501359e091d"
+  },
+  "relatedParty": [
+    {
+      "id": "231-mf4",
+      "href": null,
+      "role": "customer",
+      "name": "Abir"
+    }
+  ],
+  "state": "Initialized",
+  "requestedDeliveryDate": "2023-06-23T08:44:32.157581800Z",
+  "orchestrationPlanNodes": [
+    {
+      "id": "a484f66c-1347-4022-9426-e85de294df5d",
+      "state": "Initialized",
+      "relatedServiceOrderItem": null,
+      "relatedProductOrderItem": {
+        "id": "4",
+        "action": "add"
+      },
+      "relatedProduct": [{
+        "id": null,
+        "realisingService": null,
+        "productSpecification": {
+          "id": "c458d968-3718-4754-9408-7bd81526e7b2",
+          "name": "Mobile line",
+          "href": null
+        },
+        "relationShipType": "reliesOn"
+      }],
+      "relatedOrchestrationPlanNode": []
+    },
+    {
+      "id": "e0ec244e-2a82-47e1-926e-df9751c39b46",
+      "state": "Initialized",
+      "relatedServiceOrderItem": null,
+      "relatedProductOrderItem": {
+        "id": "10",
+        "action": "add"
+      },
+      "relatedProduct": [
+        {
+          "id": null,
+          "realisingService": null,
+          "productSpecification": {
+            "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+            "name": "SIM CARD",
+            "href": null
+          },
+          "relationShipType": "reliesOn"
+        }
+      ],
+      "relatedOrchestrationPlanNode": [
+        {
+          "relatedNodeId": "a484f66c-1347-4022-9426-e85de294df5d",
+          "relationshipType": "DeliverAfter"
+        }
+      ]
+    }
+  ],
+  "receivedDate": "2023-06-07T12:28:01.046944100Z"
+}

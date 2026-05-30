@@ -1,0 +1,400 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# ==================================================
+# Include pipeline templates
+# ==================================================
+
+include:
+  # Gitleaks template
+  - remote: 'https://gitlab.com/to-be-continuous/gitleaks/-/raw/2.6.0/templates/gitlab-ci-gitleaks.yml'
+    # semantic-release template
+  - remote: 'https://gitlab.com/to-be-continuous/semantic-release/-/raw/3.11.3/templates/gitlab-ci-semrel.yml'
+
+# ==================================================
+# Pipeline variables
+# ==================================================
+
+# secret variables
+# (define the variables below in your GitLab group/project variables)
+# GITLAB_TOKEN: A GitLab 'project access token' or 'personal access token' with `api`, `read_repository` and `write repository` scopes.
+# SEMREL_GPG_SIGNKEY: Path to the GPG signkey exported with `gpg --armor --export-secret-key`.
+
+variables:
+  # Gitleaks template parameters
+  GITLEAKS_IMAGE: "registry.hub.docker.com/zricethezav/gitleaks:v8.15.0"
+
+  TEST_PLAN_KEY:
+    value: ""
+    description: "JIRA key of the XRAY test plan to update. For example: TEST-0000 (must already exist in Jira)"
+
+  TEST_EXECUTION_KEY:
+    value: ""
+    description: "JIRA key for the XRAY test execution to be updated. For example: TEST-1111 (must already exist in Jira)."
+  VERSION:
+    value: ""
+    description: "Fix version to be included in the test execution with the XRAY connector (the version must already exist in Jira)."
+  ENVIRONNEMENT:
+    value: "Integration"
+    description: "The name of the environment to be reported in the test execution with the XRAY connector."
+
+# ==================================================
+# Pipeline stages
+# ==================================================
+
+stages:
+  - test
+  - om-accessories
+  - om-package-basic
+  - om-package-comfort
+  - om-package-max
+  - om-package-max-plus
+  - om-package-relax
+  - om-package-smart-contract
+  - om-package-smart-contract-internet
+  - om-package-convergent-extra
+  - om-package-mobile-extra-convergent
+  - om-package-mobile-ftth-essential
+  - om-package-mobile-ftth-premium
+  - om-migration
+  - update-xray
+  - publish
+
+# ==================================================
+# Pipeline jobs
+# ==================================================
+
+.before_script: &before_script
+  - export KC_USERNAME_ID=$KC_USERNAME
+  - export KC_PASSWORD_ID=$KC_PASSWORD
+  - export KC_CLIENT_ID=$KC_CLIENT
+  - |
+    if [ "$CI_COMMIT_BRANCH" != "main" ]; then
+      export KC_CLIENT_SECRET=$KC_CLIENTSECRET
+      export KEYCLOAK_URL_VAR=$KEYCLOAK_VAR
+      export ENDPOINT_POI=$POI
+      export ENDPOINT_CONFIG=$CONFIG_URL
+      export ENDPOINT_OM_OC=$OM_END_POINT
+      export ENDPOINT_PI=$PI
+      export ENDPOINT_CATALOG=$CATALOG_URL
+      export ENDPOINT_SETTING=$SETTING_URL
+    else
+      export KC_CLIENT_SECRET=$KC_CLIENTSECRET_STAGING
+      export KEYCLOAK_URL_VAR=$KEYCLOAK_VAR_STAGING
+      export ENDPOINT_POI=$POI_STAGING
+      export ENDPOINT_CONFIG=$CONFIG_URL_STAGING
+      export ENDPOINT_OM_OC=$OM_END_POINT_STAGING
+      export ENDPOINT_PI=$PI_STAGING
+      export ENDPOINT_CATALOG=$CATALOG_URL_STAGING
+      export ENDPOINT_SETTING=$SETTING_URL_STAGING
+    fi
+
+.artifacts_common: &artifacts_common
+  when: always
+  expire_in: 72h
+  paths:
+    - result/
+
+package-samsung-buds:
+  stage: om-accessories
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Samsung_Buds_Aquisition -l result/log_Samsung_Buds_$TIMESTAMP.html -r result/Samsung_Buds_$TIMESTAMP.html -o result/Samsung_Buds_$TIMESTAMP.xml BDD_Nominal_case_Accessories/Aquisition_Samsung_Buds.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-samsung-case:
+  stage: om-accessories
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Samsung_Case_Aquisition -l result/log_Samsung_case_$TIMESTAMP.html -r result/Samsung_case_$TIMESTAMP.html -o result/Samsung_case_$TIMESTAMP.xml BDD_Nominal_case_Accessories/Aquisition_Samsung_case.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  needs: ["package-samsung-buds"]
+  timeout: 2h
+
+package-vr-headset:
+  stage: om-accessories
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_VR_Headset_Aquisition -l result/log_VR_headset_$TIMESTAMP.html -r result/VR_headset.html -o result/VR_headset_$TIMESTAMP.xml BDD_Nominal_case_Accessories/Aquisition_VR_headset.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  needs: ["package-samsung-case"]
+  timeout: 2h
+
+package-basic-acquisition:
+  stage: om-package-basic
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Basic_Aquisition -l result/log_Package_Basic_$TIMESTAMP.html -r result/Package_Basic_$TIMESTAMP.html -o result/Package_Basic_$TIMESTAMP.xml BDD_Nominal_case_Basic/*.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-comfort-acquisition:
+  stage: om-package-comfort
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Comfort_Aquisition -l result/log_Package_Comfort_$TIMESTAMP.html -r result/Package_Comfort_$TIMESTAMP.html -o result/Package_Comfort_$TIMESTAMP.xml BDD_Nominal_case_Comfort/Acquisition_Mobile_Package_Comfort.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-comfort-acquisition-modification:
+  stage: om-package-comfort
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Comfort_Aquisition_And_Modification -l result/log_prepaid_mobile_offer_Comfort_Mod_$TIMESTAMP.html -r result/prepaid_mobile_offer_Comfort_Mod_$TIMESTAMP.html -o result/prepaid_mobile_offer_Comfort_Mod_$TIMESTAMP.xml BDD_Nominal_case_Comfort/Acquisition_Modification_prepaid_mobile_offer_Comfort.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  needs: ["package-comfort-acquisition"]
+  timeout: 2h
+
+package-max-acquisition:
+  stage: om-package-max
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Max_Aquisition -l result/log_mobile_offer_Max_$TIMESTAMP.html -r result/mobile_offer_Max_$TIMESTAMP.html -o result/mobile_offer_Max_$TIMESTAMP.xml BDD_Nominal_case_Max/Acquisition_prepaid_mobile_offer_Max.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-max-acquisition-modification:
+  stage: om-package-max
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Max_Aquisition_And_Modification -l result/log_mobile_offer_Max_Mod_$TIMESTAMP.html -r result/mobile_offer_Max_Mod_$TIMESTAMP.html -o result/mobile_offer_Max_Mod_$TIMESTAMP.xml BDD_Nominal_case_Max/Acquisition_Modification_prepaid_mobile_offer_Max.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  needs: ["package-max-acquisition"]
+  timeout: 2h
+
+package-max-Plus-acquisition:
+  stage: om-package-max-plus
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_MaxPlus_Aquisition -l result/log_mobile_offer_MaxPlus_$TIMESTAMP.html -r result/mobile_offer_MaxPlus_$TIMESTAMP.html -o result/mobile_offer_MaxPlus_$TIMESTAMP.xml Offer_MaxPlus/Acquisition_Offer_Max_Plus.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-max-Plus-acquisition-modification:
+  stage: om-package-max-plus
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_MaxPlus_Aquisition_And_Modification -l result/log_Modif_mobile_offer_MaxPlus_$TIMESTAMP.html -r result/Modif_mobile_offer_MaxPlus_$TIMESTAMP.html -o result/Modif_mobile_offer_MaxPlus_$TIMESTAMP.xml Offer_MaxPlus/Acquisition_Modification_offer_MaxPlus.robot
+  artifacts: *artifacts_common
+  needs: ["package-max-Plus-acquisition"]
+  allow_failure: true
+  timeout: 2h
+
+package-relax-aquisition:
+  stage: om-package-relax
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Relax_Aquisition -l result/log_mobile_offer_relax_$TIMESTAMP.html -r result/mobile_offer_relax_$TIMESTAMP.html -o result/mobile_offer_relax_$TIMESTAMP.xml BDD_Nominal_case_Relax/Acquisition_prepaid_mobile_offer_Relax.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-relax-aquisition-modification:
+  stage: om-package-relax
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Relax_Aquisition_Modification -l result/log_mobile_offer_relax_Modif_$TIMESTAMP.html -r result/mobile_offer_relax_Modif_$TIMESTAMP.html -o result/mobile_offer_relax_Modif_$TIMESTAMP.xml BDD_Nominal_case_Relax/Acquisation_Modification_prepaid_mobile_offer_Relax.robot
+  artifacts: *artifacts_common
+  needs: ["package-relax-aquisition"]
+  allow_failure: true
+  timeout: 2h
+
+package-smart-contract-aquisition:
+  stage: om-package-smart-contract
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Smart_Contract_Aquisition -l result/log_mobile_smart_contract_$TIMESTAMP.html -r result/mobile_smart_contract_$TIMESTAMP.html -o result/mobile_smart_contract_$TIMESTAMP.xml BDD_Nominal_case_Smart_Contract/Acquisition_prepaid_mobile_Smart_Contract.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-smart-contract-aquisition-modification:
+  stage: om-package-smart-contract
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Smart_Contract_Aquisition_modification -l result/log_mobile_smart_contract_modification_$TIMESTAMP.html -r result/mobile_smart_contract_modification_$TIMESTAMP.html -o result/mobile_smart_contract_modification_$TIMESTAMP.xml BDD_Nominal_case_Smart_Contract/Acquisition_modification_prepaid_mobile_Smart_Contract.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-smart-contract-internet-aquisition:
+  stage: om-package-smart-contract-internet
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Smart_mobile_Internet_Aquisition -l result/log_mobile_smart_contract_internet_$TIMESTAMP.html -r result/mobile_smart_contract_internet_$TIMESTAMP.html -o result/mobile_smart_contract_internet_$TIMESTAMP.xml BDD_Nominal_case_Smart_Mobile_Internet/Acquisition_prepaid_Smart_Mobile_Internet.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-smart-contract-internet-aquisition-modificaton:
+  stage: om-package-smart-contract-internet
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Smart_Contract_Aquisition_modification -l result/log_mobile_smart_contract_internet_modif_$TIMESTAMP.html -r result/mobile_smart_contract_internet_modif_$TIMESTAMP.html -o result/mobile_smart_contract_internet_modif_$TIMESTAMP.xml BDD_Nominal_case_Smart_Mobile_Internet/Acquisition_Modification_prepaid_Smart_Mobile_Internet.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-convergent-extra:
+  stage: om-package-convergent-extra
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Convergent_Extra_Aquisition -l result/log_mobile_convergent-contract_$TIMESTAMP.html -r result/mobile_convergent-contract_$TIMESTAMP.html -o result/mobile_convergent-contract_$TIMESTAMP.xml BDD_Nominal_case_Convergent_Extra_Contract/Acquisition_prepaid_Convergent_Extra_Contract.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-convergent-extra-modification:
+  stage: om-package-convergent-extra
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Convergent_Extra_Aquisition_modification -l result/log_mobile_convergent-contract_modif_$TIMESTAMP.html -r result/mobile_convergent-contract_modif_$TIMESTAMP.html -o result/mobile_convergent-contract_modif_$TIMESTAMP.xml BDD_Nominal_case_Convergent_Extra_Contract/Acquisition_Modification_prepaid_Convergent_Extra_Contract.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-mobile-extra-convergent:
+  stage: om-package-mobile-extra-convergent
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Mobile_Extra_Convergent_Aquisition -l result/log_mobile_extra_convergent_$TIMESTAMP.html -r result/mobile_extra_convergent_$TIMESTAMP.html -o result/mobile_extra_convergent_$TIMESTAMP.xml BDD_Nominal_case_Mobile_Extra_Convergent/Acquisation_Mobile_Extra_Contract.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+package-mobile-extra-convergent_modification:
+  stage: om-package-mobile-extra-convergent
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_extra_Contract_Aquisition_modification -l result/log_mobile_extra_convergent_modif_$TIMESTAMP.html -r result/mobile_extra_convergent_modif_$TIMESTAMP.html -o result/mobile_extra_convergent_modif_$TIMESTAMP.xml BDD_Nominal_case_Mobile_Extra_Convergent/Acquisation_Modification_Mobile_Extra_Contract.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+mobile-package-ftth-essential:
+  stage: om-package-mobile-ftth-essential
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Ftth_Essential -l result/log_mobile_ffth_essential_$TIMESTAMP.html -r result/mobile_ffth_essential_$TIMESTAMP.html -o result/mobile_ffth_essential_$TIMESTAMP.xml BDD_Nominal_case_ftth_essentiel/Acquisition_prepaid_mobile_offer_FTTH_Essential.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+mobile-package-ftth-premium:
+  stage: om-package-mobile-ftth-premium
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Package_Ftth_Premium -l result/log_mobile_ffth_premium_$TIMESTAMP.html -r result/mobile_ffth_premium_$TIMESTAMP.html -o result/mobile_ffth_premium_$TIMESTAMP.xml BDD_Nominal_case_ftth_Premium/Acquisition_prepaid_mobile_offer_FTTH_Premium.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+
+Migration-use-case:
+  stage: om-migration
+  image: ppodgorsek/robot-framework:latest
+  before_script: *before_script
+  script:
+    - TIMESTAMP=$(date +"%Y_%m_%d_%H_%M_%S")
+    - robot --include Test_Suite_Migration_Aquisition -l result/log_migration_$TIMESTAMP.html -r result/migration_$TIMESTAMP.html -o result/migration_$TIMESTAMP.xml BDD_Nominal_case_Migration/Acquisation_Migration_use_case.robot
+  artifacts: *artifacts_common
+  allow_failure: true
+  timeout: 2h
+  after_script:
+    - rebot --output ./result/output.xml ./result/*.xml
+
+reuse:
+  image:
+    name: fsfe/reuse:latest
+    entrypoint: []
+  stage: .pre
+  script:
+    - reuse lint
+    - if [ 0 != 0 ]; then log_error Fix the error with reuse annotate --copyright=\"Orange SA\" --template mit.jinja --license MIT --copyright-prefix spdx --skip-unrecognised --merge-copyrights --recursive ./; fi
+
+update-xray:
+  stage: update-xray
+  image: curlimages/curl:latest
+  dependencies:
+    - package-samsung-buds
+    - package-samsung-case
+    - package-vr-headset
+    - package-basic-acquisition
+    - package-comfort-acquisition-modification
+    - package-comfort-acquisition
+    - package-max-acquisition
+    - package-max-acquisition-modification
+    - package-max-Plus-acquisition
+    - package-max-Plus-acquisition-modification
+    - package-relax-aquisition
+    - package-relax-aquisition-modification
+    - package-smart-contract-aquisition
+    - package-smart-contract-internet-aquisition
+    - package-convergent-extra
+    - Migration-use-case
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      when: manual
+    - when: never
+  script:
+    - 'curl --insecure  -H "Content-Type: multipart/form-data" -H "Authorization: Bearer ${JIRA_TOKEN}"  -F "file=@result/output.xml"  "https://portail.agir.orange.com/rest/raven/1.0/import/execution/robot?projectKey=${PROJECT_KEY}&testPlanKey=${TEST_PLAN_KEY}"' # gitleaks:allow
+  allow_failure: true

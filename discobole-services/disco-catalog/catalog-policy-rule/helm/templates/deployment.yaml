@@ -1,0 +1,203 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "catalog.fullname" . }}
+  labels:
+    {{- include "catalog.labels" . | nindent 4 }}
+    {{- include "catalog.shutdownLabels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ default "1" .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels:
+      {{- include "catalog.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "catalog.selectorLabels" . | nindent 8 }}
+        {{- include "catalog.monitoringLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "catalog.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: catalog-policy-rule
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "Always"}}
+          env: #modified
+          - name: "MONGODB_DATABASE"
+            value: catalog
+          - name: "DATABASE_USER"
+            value: mongo_user
+          - name: "DATABASE_PASSWORD"
+            valueFrom:
+              secretKeyRef:
+                name: {{ template "catalog.fullname" . }}-mongo-secret
+                key: MONGO_DB_PWD
+
+          - name: SPRING_CLOUD_KUBERNETES_ENABLED
+            value: "true"
+          - name: SPRING_CLOUD_KUBERNETES_CONFIG_ENABLED
+            value: "true" 
+          - name: JDK_JAVA_OPTIONS  
+            value: -Djavax.net.ssl.trustStore=/mnt/keystore/keystore-p12 -Djavax.net.ssl.trustStorePassword=changeit -Xlog:gc=debug:file=/tmp/gc.disco-catalog-policy-rule.log:time,uptime,level,tags:filecount=5,filesize=100m -XX:MaxMetaspaceSize=128m -XX:+UseG1GC -XX:+CrashOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/tmp/heapdump-disco-catalog-policy-rule.log -Xmx1572864000 -XX:+DisableExplicitGC
+          - name: SPRING_PROFILES_ACTIVE
+            value: openshift{{- if .Values.fluentd.enabled }},fluentd{{- end }},jsonconsole
+
+          - name: KAFKA
+            value: {{ .Values.services.kafka | default "kafka:9092" }}
+          - name: DB_SERVICE
+            value: {{ .Values.services.mongodb | default "catalog-mongo" }}
+          - name: DB_NAME
+            value: {{ .Values.services.dbname | default "catalog" }}       
+          - name: KEYCLOAK_SERVICE
+            value: {{ .Values.services.keycloak | default "keycloak:80" }}
+          - name: KEYCLOAK_REALM
+            value: {{ .Values.services.keycloakrealm | default "SpringBootKeycloak" }}
+          - name: CATALOG-UI-SERVICE-NAME
+            value: {{ .Values.services.catalogui | default "catalog-ui:80" }}
+          - name: CATALOG-PRODUCT-SERVICE-NAME
+            value: {{ .Values.services.productcatalog | default "catalog-product-catalog:8080" }}
+          - name: SPECIFICATION-SERVICE-NAME
+            value: {{ .Values.services.specification | default "catalog-product-specification:8080" }}
+          - name: OFFERING-SERVICE-NAME
+            value: {{ .Values.services.offering | default "catalog-product-offering:8080" }}
+          - name: OFFERING-PRICE-SERVICE-NAME
+            value: {{ .Values.services.offeringprice | default "catalog-product-offering-price:8080" }}
+          - name: CATEGORY-SERVICE-NAME
+            value: {{ .Values.services.category | default "catalog-product-category:8080" }}
+          - name: LIFECYCLE-SERVICE-NAME
+            value: {{ .Values.services.lifecycle | default "catalog-product-lifecycle-management:8080" }}
+          - name: USERROLE-RETRIEVE-SERVICE-NAME
+            value: {{ .Values.services.userroleretrieve | default "auth-userrole-retrieve:8080" }}
+          - name: MOCK-SERVICE-NAME
+            value: {{ .Values.services.mockservice | default "mock-service:8080" }}
+          - name: GATEWAY-SERVICE-NAME
+            value: {{ .Values.services.gateway | default "disco-gateway:8080" }}
+          - name: KEYCLOAK_ROUTE
+            value: {{ .Values.services.keycloakroute | default "keycloak" }}
+          - name: KEYCLOAK_ISSUER_URI
+            value: {{ .Values.keycloak.issuerURI | default "https://keycloak-disco.apps.prd1.c1.paas.tech.orange/realms/SpringBootKeycloak" }}
+          - name: CATALOG_POLICY_RULE
+            value: {{ .Values.services.policyrule | default "policyrule:8080" }}
+          - name: CAT-PROD-CAT-URL
+            value: {{ .Values.services.catprodcaturl | default "" }}
+          
+          {{- if .Values.fluentd.enabled }}
+          - name: FLUENTD_TAG
+            value: "{{ default "catalog-pop" .Values.fluentd.tag }}"
+
+          - name: FLUENTD_HOST
+            value: "{{ default "localhost" .Values.fluentd.host }}"
+          - name: FLUENTD_PORT
+            value: "{{ default "24224" .Values.fluentd.port }}"
+          {{- end }}
+
+          {{- if .Values.otel.enabled }}
+          - name: JAVA_TOOL_OPTIONS
+            value: "-javaagent:/app/opentelemetry-javaagent.jar"
+
+
+          - name: OTEL_EXPORTER_OTLP_ENDPOINT
+            value: "http://{{ .Values.otel.sidecar.otlp.host }}:{{ .Values.otel.sidecar.otlp.port }}"
+
+          - name: OTEL_METRICS_EXPORTER
+            value: "none"
+          - name: OTEL_TRACES_EXPORTER
+            value: "otlp"
+          - name: OTEL_SERVICE_NAME
+            value: "{{ template "catalog.fullname" . }}"
+          - name: OTEL_RESOURCE_ATTRIBUTES
+            value: "service.name={{ include "catalog.fullname" . }},app=catalog-policy-rule,deployment.environment={{ default "undefined" .Values.monitoring.environment }},cloud.platform={{ default "undefined" .Values.otel.attributes.platform }},cloud.region={{ default "undefined" .Values.otel.attributes.region }},host.name={{ default "undefined" .Values.otel.attributes.hostname }},k8s.cluster.name={{ default "undefined" .Values.otel.attributes.cluster }},k8s.namespace.name={{ default "undefined" .Values.otel.attributes.namespace }},container_name=catalog-catalog-policy-rule"
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+            - name: actuator
+              containerPort: 9000
+              protocol: TCP
+
+          volumeMounts:
+            - name: {{ template "catalog.fullname" . }}-applog
+              mountPath: /tmp
+            - name: config-volume
+              mountPath: /app/application.yaml
+              subPath: application.yaml
+              readOnly: true
+            - name: volume-keystore
+              mountPath: /mnt/keystore
+              readOnly: true
+          readinessProbe:
+             httpGet:
+               path: {{ .Values.contextPath }}/actuator/health/readiness
+               port: actuator
+             initialDelaySeconds: 300
+             failureThreshold: 10
+             periodSeconds: 10
+          livenessProbe:
+             httpGet:
+               path: {{ .Values.contextPath }}/actuator/health/liveness
+               port: actuator
+             initialDelaySeconds: 500
+             failureThreshold: 10
+             periodSeconds: 20
+          startupProbe:
+                httpGet:
+                  path: {{ .Values.contextPath }}/actuator/health
+                  port: actuator
+                failureThreshold: 300
+                periodSeconds: 20
+                initialDelaySeconds: 300
+          lifecycle:
+              preStop:
+                exec:
+                  command: ["sh", "-c", "sleep 10"]
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+       
+      
+      
+      volumes:
+      - name: config-volume  ## name of the ConfigMap to mount as volume
+        configMap:
+          name: {{ include "catalog.fullname" . }}-appconfig
+          defaultMode: 420
+
+      - name: volume-keystore  ## Name of secret to mount as volume
+        secret:
+          secretName: {{ include "catalog.fullname" . }}-keystore-p12 # modified
+          items:
+            - key: keystore-p12
+              path: keystore-p12
+          defaultMode: 420   
+
+
+      - name: {{ template "catalog.fullname" . }}-applog
+        emptyDir: {}
+  
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

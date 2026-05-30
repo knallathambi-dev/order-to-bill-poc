@@ -1,0 +1,19 @@
+meta {
+  name: check get product by ids with fields -check status - productOrderItem-
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/product?fields=status,operationalStatus,productOrderItem,productRelationship,productOffering.@type,productSpecification.@type&id=6499ec972b4b3225cb5737d8&id=6620ec2866ff9c3903ca5f43
+  body: none
+  auth: none
+}
+
+query {
+  fields: status,operationalStatus,productOrderItem,productRelationship,productOffering.@type,productSpecification.@type
+  id: 6499ec972b4b3225cb5737d8
+  id: 6620ec2866ff9c3903ca5f43
+  ~id: 
+  ~: 
+}

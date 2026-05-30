@@ -1,0 +1,47 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?xj5czy');
+    src: url('fonts/icomoon.eot?xj5czy#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?xj5czy') format('truetype'),
+    url('fonts/icomoon.woff?xj5czy') format('woff'),
+    url('fonts/icomoon.svg?xj5czy#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-orchestration:before {
+    content: "\e900";
+    color: #62BFF9;
+}
+
+.icon-contract:before {
+    content: "\e901";
+    color: #7E62D9;
+}

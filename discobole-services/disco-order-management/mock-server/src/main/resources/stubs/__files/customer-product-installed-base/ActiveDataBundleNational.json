@@ -1,0 +1,118 @@
+{
+  "@type": "Product",
+  "id": "67ab50b537fe5a1967b98593",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98593",
+  "isBundle": false,
+  "name": "Data Bundle National",
+  "productCharacteristic": [
+    {
+      "@type": "StringCharacteristic",
+      "id": "2aaa9981-e707-49ea-8148-c4cbd488b687.6",
+      "name": "Rollover",
+      "value": "No"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "055cc220-8487-4c8c-9f07-918412383618.3",
+      "name": "Frequency",
+      "value": "Month"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "5699d94b-d3d9-4086-bcab-653a20219ad8.2",
+      "name": "Recurring",
+      "value": "Yes"
+    },
+    {
+      "@type": "ObjectCharacteristic",
+      "id": "f358b5db-7684-49e6-8aee-f2e87837e92d.1",
+      "name": "Quantity",
+      "value": {
+        "unitOfMeasure": "GB",
+        "value": "999999"
+      }
+    }
+  ],
+  "productOffering": {
+    "id": "90f78fed-8af2-4012-bf2d-cedac38833ae",
+    "name": "Data Bundle National",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "69ca3eba-47ea-4801-9631-a126e93a6ade",
+      "productOrderId": "67ab50b3d636a24b72afc094"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67ab50b537fe5a1967b9858a",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+      }
+    },
+    {
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67ab50b537fe5a1967b9858c",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "d4c7f357-1cba-499c-8a7e-c8ae44c9c2ba",
+    "name": "Data Bundle National PS",
+    "version": "0.2",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "Lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Active",
+  "operationalStatus": "Active",
+  "creationDate": "2025-02-11T13:29:25Z",
+  "lastUpdateDate": "2025-02-11T13:31:32Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:32Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:29:42Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:04Z",
+      "status": "PendingActive"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:32Z",
+      "status": "Active"
+    }
+  ]
+}

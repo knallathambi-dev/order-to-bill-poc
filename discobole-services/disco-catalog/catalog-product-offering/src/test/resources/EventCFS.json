@@ -1,0 +1,86 @@
+{
+  "eventId": "1000",
+  "eventType": "ServiceSpecificationStateChange",
+  "correlationId": "1",
+  "domain": "ServiceCatalog",
+  "title": "Service Specification state change",
+  "description": "Event describing a Service specification state change",
+  "priority": "2",
+  "event": {
+    "id": "1",
+    "description": "Mobile Access",
+    "isBundle": false,
+    "lastUpdate": "2020-05-10T13:29:51.068Z",
+    "lifecycleStatus": "active",
+    "name": "MobileAccess",
+    "version": "1",
+    "operationSpecification": [
+      {
+        "id": "1",
+        "description": "Create",
+        "name": "Create",
+        "isQualificationRequested": false,
+        "validFor": {
+          "startDateTime": "1985-04-12T23:20:50.52Z"
+        }
+      },
+      {
+        "id": "2",
+        "description": "Modify",
+        "name": "Modify",
+        "isQualificationRequested": false,
+        "validFor": {
+          "startDateTime": "1985-04-12T23:20:50.52Z"
+        }
+      },
+      {
+        "id": "3",
+        "description": "Delete",
+        "name": "Delete",
+        "isQualificationRequested": false,
+        "validFor": {
+          "startDateTime": "1985-04-12T23:20:50.52Z"
+        }
+      }
+    ],
+    "relatedResource": [
+      {
+        "id": "SOM1",
+        "name": "SOM Application",
+        "role": "Service delivery"
+      }
+    ],
+    "serviceSpecCharacteristic": [
+      {
+        "configurable": true,
+        "description": "SIM Type",
+        "name": "string",
+        "regex": "string",
+        "valueType": "string",
+        "serviceSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "value": "SIM",
+            "validFor": {
+              "startDateTime": "1985-04-12T23:20:50.52Z"
+            }
+          },
+          {
+            "isDefault": false,
+            "value": "eSIM",
+            "validFor": {
+              "startDateTime": "1985-04-12T23:20:50.52Z"
+            }
+          }
+        ],
+        "validFor": {
+          "startDateTime": "1985-04-12T23:20:50.52Z"
+        }
+      }
+    ],
+    "validFor": {
+      "startDateTime": "1985-04-12T23:20:50.52Z"
+    },
+    "@type": "CFSSpec"
+  }
+}

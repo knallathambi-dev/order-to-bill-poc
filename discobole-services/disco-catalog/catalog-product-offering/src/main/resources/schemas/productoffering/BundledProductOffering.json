@@ -1,0 +1,35 @@
+{
+  "BundledProductOffering" : {
+    "required" : [ "productOffering.id" ],
+    "type" : "object",
+    "properties" : {
+      "productOffering.id" : {
+        "type" : "string",
+        "readOnly" : true
+      },
+      "bundledProductOfferingOption" : {
+        "type" : "object",
+        "properties" : {
+          "numberRelOfferDefault" : {
+            "type" : "number"
+          },
+          "numberRelOfferLowerLimit" : {
+            "type" : "number"
+          },
+          "numberRelOfferUpperLimit" : {
+            "type" : "number"
+          },
+          "@baseType" : {
+            "type" : "string"
+          },
+          "@schemaLocation" : {
+            "type" : "string"
+          },
+          "@type" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}

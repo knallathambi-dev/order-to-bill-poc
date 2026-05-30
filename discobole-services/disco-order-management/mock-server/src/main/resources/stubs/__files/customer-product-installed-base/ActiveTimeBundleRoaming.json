@@ -1,0 +1,124 @@
+{
+  "@type": "Product",
+  "id": "67ab50b537fe5a1967b98594",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98594",
+  "isBundle": false,
+  "name": "Time Bundle Roaming",
+  "productCharacteristic": [
+    {
+      "@type": "ObjectCharacteristic",
+      "id": "5d14abbe-3464-40d2-89f9-90814ec5a960.1",
+      "name": "Quantity",
+      "value": {
+        "unitOfMeasure": "min",
+        "value": "300"
+      }
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "dd378873-ca4e-4e25-8d62-67d1e97b4d01.2",
+      "name": "Recurring",
+      "value": "Yes"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "6f514a41-f105-4b3a-b623-22334335d11e.3",
+      "name": "Frequency",
+      "value": "Month"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "d8b02553-88ab-4f3e-85b1-6bce9fefeb8e.6",
+      "name": "Rollover",
+      "value": "No"
+    },
+    {
+      "@type": "StringCharacteristic",
+      "id": "f39f690c-39bb-4450-9082-2a32b1d477e1.10",
+      "name": "Blocked",
+      "value": "No"
+    }
+  ],
+  "productOffering": {
+    "id": "4bbaa24a-5f2a-4e00-b1c6-8be2531a8003",
+    "name": "Time Bundle Roaming",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "a915741a-c35d-4c17-bf6e-3e94b11ceb54",
+      "productOrderId": "67ab50b3d636a24b72afc094"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67ab50b537fe5a1967b9858a",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+      }
+    },
+    {
+      "relationshipType": "reliesOn",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67ab50b537fe5a1967b9858c",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "94780e6a-9e82-421a-8bc0-d83db169d132",
+    "name": "Time Bundle Roaming PS",
+    "version": "0.2",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "Lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Active",
+  "operationalStatus": "Active",
+  "creationDate": "2025-02-11T13:29:25Z",
+  "lastUpdateDate": "2025-02-11T13:31:32Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:32Z",
+      "status": "Active"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-11T13:29:25Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-11T13:29:42Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:04Z",
+      "status": "PendingActive"
+    },
+    {
+      "changeDate": "2025-02-11T13:31:32Z",
+      "status": "Active"
+    }
+  ]
+}

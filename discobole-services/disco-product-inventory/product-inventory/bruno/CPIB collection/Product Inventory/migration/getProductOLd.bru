@@ -1,0 +1,11 @@
+meta {
+  name: getProductOLd
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/product/{{newContractId}}
+  body: none
+  auth: inherit
+}

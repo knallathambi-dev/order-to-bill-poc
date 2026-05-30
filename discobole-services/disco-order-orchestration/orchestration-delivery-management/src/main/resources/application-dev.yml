@@ -1,0 +1,87 @@
+# Software Name: orchestration-delivery-management
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: 8087
+spring:
+  config:
+    activate:
+      on-profile: dev,plaintextconsole
+  main:
+    allow-bean-definition-overriding: true
+  data:
+    mongodb:
+      auto-index-creation: 'true'
+      uri: ${MONGO_URI:mongodb://localhost:27017/orchestration_delivery?replicaSet=rs0&directConnection=true}
+  devtools:
+    restart:
+      exclude: target/classes/**, build/**, bin/**
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.orange.discobole.orderorchestration.config.custom.CustomSerializer
+      retries: 0
+      properties:
+        spring.kafka.topic.auto-create: true
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.orange.discobole.orderorchestration.config.custom.CustomDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.kafka.consumer.auto-offset-reset: earliest
+        spring.kafka.topic.auto-create: true
+        spring.kafka.consumer.max-poll-interval-ms: 10000
+        spring.json.remove.type.headers: true
+        spring.json.use.type.headers: false
+        spring.json.value.type.method: com.orange.discobole.orderorchestration.orchestrationdelivery.management.config.KafkaTyper.typer
+
+  cloud:
+    kubernetes:
+      config:
+        enabled: false
+      enabled: false
+config:
+  serviceCatalogManagementUrl: http://localhost:8082/serviceCatalogManagement/v1/serviceSpecification
+  serviceOrderingUrl: http://localhost:8082/serviceOrdering/v1/serviceOrder
+  productOrderByIdUrl: http://localhost:8082/productOrderingManagement/v1/productOrder
+
+mocks:
+  serviceOrderStateChangeScheduler:
+    jobDelayDuration: PT30S
+    enable: true
+    enableDelay: false
+    minDelay: PT1M
+    maxDelay: PT4M
+  shippingOrderStateChangeScheduler:
+    jobDelayDuration: PT30S
+    enable: true
+    enableDelay: false
+    minDelay: PT1M
+    maxDelay: PT4M
+
+app:
+  kafka:
+    retry:
+      attempts: 1
+      delay: 1000
+  security:
+    ssl:
+      enabled: false
+    userRoleRetrievalUrl: http://localhost:8082/userRolePermission/v1/userRole
+    keycloakEntitlements: x200
+
+logging:
+  level:
+    root: info
+
+management:
+  server:
+    port: 0

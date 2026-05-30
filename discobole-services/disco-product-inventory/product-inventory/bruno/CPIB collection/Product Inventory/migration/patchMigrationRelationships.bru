@@ -1,0 +1,65 @@
+meta {
+  name: patchMigrationRelationships
+  type: http
+  seq: 5
+}
+
+patch {
+  url: {{base_url}}/productInventoryManagement/v1/product
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json-patch+json
+}
+
+body:json {
+  [
+  
+    {
+      "op": "add",
+      "path": "/productInventoryManagement/v1/product/{{newContractId}}/productRelationship/-",
+      "value": {
+        "relationshipType": "migrateFrom",
+        "product": {
+          "id": "{{oldContractId}}",
+          "@type": "ProductRef"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/productInventoryManagement/v1/product/{{newAtomicId2}}/productRelationship/-",
+      "value": {
+        "relationshipType": "reliesOn",
+        "product": {
+          "id": "{{newAtomicId}}",
+          "@type": "ProductRef"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/productInventoryManagement/v1/product/{{newBundleId}}/productRelationship/-",
+      "value": {
+        "relationshipType": "bundlesMigrate",
+        "product": {
+          "id": "{{oldBundleId}}",
+          "@type": "ProductRef"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/productInventoryManagement/v1/product/{{newAtomicId}}/productRelationship/-",
+      "value": {
+        "relationshipType": "reliesOnMigrate",
+        "product": {
+          "id": "{{oldAtomicId}}",
+          "@type": "ProductRef"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+# SPDX-FileCopyrightText: 2025, 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+## --- MkDocs configuration (https://www.mkdocs.org/user-guide/configuration/)
+
+site_name: DISCOBOLE - Product Catalog
+site_url: !ENV [SITE_URL, CI_PAGES_URL, 'https://discobole.ow2.io/disco-oda-components/disco-catalog/doc/']
+site_author: DISCOBOLE Team
+repo_url: !ENV [REPO_URL, CI_PROJECT_URL, 'https://gitlab.ow2.org/discobole/disco-oda-compoents/disco-catalog']
+site_dir: public
+# edit_uri: https://discobole.ow2.io/edit/main/docs/
+
+extra:
+  generator: false
+
+plugins:
+  - git-revision-date
+  - material/search:
+      separator: '[\s\-,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  - swagger-ui-tag
+  - plantuml: # visit https://medium.com/@michkravets/add-inline-plantuml-to-your-mkdocs-documentation-9a2acb7599a6
+      puml_url: https://www.plantuml.com/plantuml/
+      num_workers: 8
+  - swagger-ui-tag # visit https://github.com/blueswen/mkdocs-swagger-ui-tag
+
+markdown_extensions:
+  - toc:
+      toc_depth: 3
+      permalink: True
+  - mdx_truly_sane_lists
+  - md_in_html
+  - meta
+  - codehilite
+  - admonition
+  - attr_list
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.superfences
+
+  # enable extended formatting (https://squidfunk.github.io/mkdocs-material/reference/formatting/)
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+
+## --- Material theme for MkDocs configuration (https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
+
+theme:
+  name: material
+  favicon: img/logo.svg
+  logo: img/logo.svg
+  font: false
+  icon:
+    repo: fontawesome/brands/gitlab
+  palette:
+    primary: "black"
+    accent: "deep orange"
+  features:
+    - navigation.tabs
+    - navigation.top 
+    - navigation.instant
+    - navigation.indexes
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.action.edit
+  language: "en"
+
+## --- Orange specific
+
+extra_javascript:
+  - https://unpkg.com/zooming/build/zooming.min.js
+  - js/tracking.js
+  - js/discobole-custom.js
+  - js/zoom.js
+
+extra_css:
+  - css/orange.css
+  - css/custom-admonition.css
+
+nav:
+  - Get Started:
+    - Introduction: about/introduction.md
+    - Use Cases: about/use-cases.md
+    - Roadmap: about/roadmap.md
+    - Contacts: about/collaboration.md
+  - API Reference Guides:
+    - API Specifications:    
+      - About API Specifications: api-references/specification-apis.md
+      - API > catalog-event-service: api-references/specifications/event-service-api-spec.md
+      - API > catalog-policy-rule: api-references/specifications/policy-rule-api-spec.md
+      - API > catalog-product-catalog-administration: api-references/specifications/catalog-administration-api-spec.md
+      - API > catalog-product-catalog: api-references/specifications/catalog-api-spec.md
+      - API > catalog-product-category: api-references/specifications/category-api-spec.md
+      - API > catalog-product-lifecycle-management: api-references/specifications/lifecycle-management-api-spec.md
+      - API > catalog-product-offering: api-references/specifications/product-offering-api-spec.md
+      - API > catalog-product-offering-price: api-references/specifications/product-offering-price.md
+      - API > catalog-product-specification: api-references/specifications/product-specification-api-spec.md
+    - API User Guides: 
+      - About API User Guide: api-references/overall-apis.md
+      - API > catalog-policy-rule: api-references/user-guides/catalog-policy-rule.md
+      - API > catalog-product-catalog-administration: api-references/user-guides/catalog-product-catalog-administration.md
+      - API > catalog-product-catalog: api-references/user-guides/catalog-product-catalog.md
+      - API > catalog-product-lifecycle-management: api-references/user-guides/catalog-product-lifecycle-management.md
+      - API > process-flow: api-references/user-guides/process-flow.md      
+    - API Compliance: 
+      - About Compliance: api-references/compliance-apis.md
+      - API > catalog-policy-rule: api-references/compliance/catalog-policy-rule.pdf
+      - API > catalog-product-catalog: api-references/compliance/catalog-product-catalog.pdf
+    - API Conformance:
+      - About Conformance: api-references/conformance-apis.md
+      - API > catalog-product-catalog: api-references/conformance/catalog-product-catalog.html
+  - Architecture:
+    - Overall Architecture: architecture/overall-architecture.md
+    - Performance Benchmarks: architecture/performance.md
+    - Security: architecture/security.md
+    - Observability: architecture/observability.md
+    - Architecture Decisions:
+      - About Architecture Decisions Records: architecture/about-adr.md
+      - ADR-ADR 0009 language and framework for catalogue portal: architecture/decisions/0009-language-and-framework-for-catalogue-portal.md
+      - ADR-ADR 0018 product catalog software architecture: architecture/decisions/0018-product-catalog-software-architecture.md
+    - Detailed architecture:
+      - API > catalog-event-service: architecture/detailed-architecture/catalog-event-service.md
+      - API > catalog-performance-tests: architecture/detailed-architecture/catalog-performance-tests.md
+      - API > catalog-policy-rule: architecture/detailed-architecture/catalog-policy-rule.md
+      - API > catalog-product-catalog-administration: architecture/detailed-architecture/catalog-product-catalog-administration.md
+      - API > catalog-product-catalog: architecture/detailed-architecture/catalog-product-catalog.md
+      - API > catalog-product-category: architecture/detailed-architecture/catalog-product-category.md
+      - API > catalog-product-lifecycle-management: architecture/detailed-architecture/catalog-product-lifecycle-management.md
+      - API > catalog-product-offering: architecture/detailed-architecture/catalog-product-offering.md
+      - API > catalog-product-offering-price: architecture/detailed-architecture/catalog-product-offering-price.md
+      - API > catalog-product-specification: architecture/detailed-architecture/catalog-product-specification.md
+
+  - Frontend:
+    - Introduction: frontend/introduction.md
+    - Catalog Configuration:
+      - Bottom-up Approach: frontend/entities/bottom-up-approach.md
+      - CFS Specification Entity: frontend/entities/cfs-specification.md
+      - Stock Item Type Entity: frontend/entities/stock-item-type.md
+      - Product Specification Entity: frontend/entities/product-specification.md
+      - Category Entity: frontend/entities/category.md
+      - Product Offering Entity: frontend/entities/product-offering.md
+      - Product Offering Price Entity: frontend/entities/product-offering-price.md
+      - Policy Rule Entity: frontend/entities/policy-rule.md
+    - Catalog Administration: frontend/administration.md
+  - Deployment and Operations:
+    - Live Environments: deployments/live-environments.md
+    - Development Ecosystem: deployments/development-ecosystem.md
+    - Deployment Pipelines: deployments/deployment-pipelines.md
+    - Deploy your Product Catalog: deployments/deployment-component.md
+    - Guide for Product Catalog Project Set Up: deployments/guide-for-catalog.md

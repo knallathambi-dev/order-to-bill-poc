@@ -1,0 +1,29 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+.modal.show .modal-dialog {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    max-width: 90%;
+    width: var(--bs-modal-width, auto);
+    z-index: 1050 !important;
+}
+
+.logout-modal .modal-dialog {
+    --bs-modal-width: 32rem !important;
+}
+
+.login-modal .modal-dialog {
+    --bs-modal-width: 64rem !important;
+}

@@ -1,0 +1,140 @@
+[{
+  "@type": "PhysicalProduct",
+  "id": "67f3fff127434975dbb9020b",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb9020b",
+  "isBundle": false,
+  "name": "SIM Card",
+  "productSerialNumber": "67890543219876511223",
+  "startDate": "2025-04-07T16:40:31Z",
+  "productCharacteristic": [
+    {
+      "@type": "StringCharacteristic",
+      "id": "1",
+      "name": "IMSI",
+      "value": "IMSI#123"
+    }
+  ],
+  "productOffering": {
+    "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+    "name": "SIM Card",
+    "version": "2.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "d615a3f1-e45f-4b6a-8952-6f40d01da9d6",
+      "productOrderId": "67f3ffef0651d05b5b35d893"
+    }
+  ],
+  "productPrice": [
+    {
+      "description": "SIM",
+      "name": "NRC 0 Euro",
+      "priceType": "nonRecurringCharge",
+      "unitOfMeasure": "units",
+      "productOfferingPrice": {
+        "id": "2ec30651-981d-423b-87c6-90f9d5d65ca0",
+        "name": "NRC 0 Euro",
+        "@type": "ProductOfferingPriceRef",
+        "@referredType": "ProductOfferingPriceCharge"
+      },
+      "price": {
+        "taxRate": 0,
+        "dutyFreeAmount": {
+          "unit": "EUR",
+          "value": 0
+        },
+        "taxIncludedAmount": {
+          "unit": "EUR",
+          "value": 0
+        }
+      },
+      "productPriceAlteration": []
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90206",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90206"
+      }
+    },
+    {
+      "relationshipType": "reliesFrom",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90208",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90208"
+      }
+    },
+    {
+      "relationshipType": "reliesFrom",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67f3fff127434975dbb90209",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67f3fff127434975dbb90209"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "191424cb-6002-46aa-a5a9-0602cfba83c7",
+    "name": "SIM card",
+    "version": "1.0.0",
+    "@type": "ProductSpecificationRef"
+  },
+  "realizingResource": [
+    {
+      "id": "69x",
+      "href": "http://server:port/resourceInventoryManagement/physicalResource/69x",
+      "@type": "PhysicalResource"
+    }
+  ],
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "227-mf30",
+        "name": "lisa",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Sold",
+  "operationalStatus": "Sold",
+  "creationDate": "2025-04-07T16:40:17Z",
+  "lastUpdateDate": "2025-04-07T16:40:31Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:31Z",
+      "status": "Sold"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-04-07T16:40:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:22Z",
+      "status": "Confirmed"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:24Z",
+      "status": "PendingDelivery"
+    },
+    {
+      "changeDate": "2025-04-07T16:40:31Z",
+      "status": "Sold"
+    }
+  ]
+}]

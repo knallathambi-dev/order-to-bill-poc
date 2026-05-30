@@ -1,0 +1,298 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+---
+$id: "https://orange.com/orchestrationPlanNodeStateChangeEvent.yaml"
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "OrchestrationPlanNodeStateChangeEvent"
+type: "object"
+allOf:
+  - $ref: "../baseEvent.yaml"
+extends:
+  $ref: "../baseEvent.yaml"
+properties:
+  event:
+    $ref: "#/OrchestrationPlanNodeStateChangePayloadEvent"
+required:
+  - "event"
+OrchestrationPlanNodeStateChangePayloadEvent:
+  type: "object"
+  properties:
+    orchestrationPlanNode:
+      $ref: "#/OrchestrationPlanNode"
+  required:
+    - "orchestrationPlanNode"
+  title: "OrchestrationPlanNodeStateChangePayloadEvent"
+
+OrchestrationPlanNode:
+  description: "Orchestration Plan Node"
+  title: "OrchestrationPlanNode"
+  required:
+    - "relatedProductOrderItem"
+  type: "object"
+  properties:
+    id:
+      description: "Orchestration Plan Node's id"
+      type: "string"
+    state:
+      $ref: "#/OrchestrationPlanNodeStateEnum"
+    relatedServiceOrder:
+      $ref: "#/RelatedServiceOrder"
+    relatedProductOrder:
+      $ref: "#/RelatedProductOrder"
+    relatedProductOrderItem:
+      description: "Orchestration Plan Node's related product order item"
+      type: "array"
+      items:
+        $ref: "#/RelatedProductOrderItem"
+    relatedSupplyChainOrderItem:
+      $ref: "#/RelatedSupplyChainOrderItem"
+    relatedProduct:
+      description: "Orchestration Plan Node's related product"
+      type: "array"
+      items:
+        $ref: "#/RelatedProduct"
+    relatedOrchestrationPlanNode:
+      description: "Orchestration Plan Node's related orchestration plan nodes"
+      type: "array"
+      items:
+        $ref: "#/RelatedOrchestrationPlanNode"
+    errorMessage:
+      description: "Orchestration Plan Node's error message if exists"
+      type: "array"
+      items:
+        $ref: "#/OrchestrationNodeErrorMessage"
+
+OrchestrationPlanNodeStateEnum:
+  description: "Orchestration Plan Node States"
+  title: "OrchestrationPlanNodeStateEnum"
+  type: "string"
+  enum:
+    - "Initialized"
+    - "Acknowledged"
+    - "InProgress"
+    - "InDelivery"
+    - "Held"
+    - "Aborted"
+    - "Rejected"
+    - "Failed"
+    - "Completed"
+RelatedProductOrder:
+  title: "RelatedProductOrder"
+  description: "Related Product Order"
+  required:
+    - "id"
+  type: "object"
+  properties:
+    id:
+      description: "Related Product Order's id"
+      type: "string"
+RelatedProductOrderItem:
+  title: "RelatedProductOrderItem"
+  description: "Related Product Order Item"
+  required:
+    - "id"
+  type: "object"
+  properties:
+    id:
+      description: "Related Product Order Item's id"
+      type: "string"
+    action:
+      description: "Related Product Order Item's action"
+      type: "string"
+ObjectId:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+  title: "ObjectId"
+  required:
+    - "id"
+RelatedServiceOrder:
+  type: "object"
+  properties:
+    id:
+      type: "string"
+    orderItemId:
+      type: "string"
+    SOMRef:
+      type: "string"
+  title: "RelatedServiceOrder"
+
+RelatedSupplyChainOrderItem:
+  title: "RelatedSupplyChainOrderItem"
+  description: "Related Supply Chain Order Item"
+  type: "object"
+  properties:
+    id:
+      description: "Related Supply Chain Order Item's id"
+      type: "string"
+
+RelatedProduct:
+  title: "RelatedProduct"
+  description: "Related Product"
+  type: "object"
+  properties:
+    id:
+      description: "Related Product's id"
+      type: "string"
+    realisingService:
+      description: "Related Product's realising service"
+      type: "array"
+      items:
+        $ref: "#/RealisingService"
+    relationshipType:
+      $ref: "#/RelatedProductRelationTypeEnum"
+    productSpecification:
+      $ref: "#/ProductSpecification"
+    isInstallable:
+      type: "boolean"
+    '@type':
+      $ref: "#/RelatedProductTypeEnum"
+    productOrderItemId:
+      type: "string"
+    productCharacteristic:
+      type: "array"
+      items:
+        $ref: "#/ProductCharacteristic"
+ProductCharacteristic:
+  type: object
+  properties:
+    name:
+      type: "string"
+    valueType:
+      type: "string"
+    value:
+      type: "string"
+RelatedOrchestrationPlanNode:
+  title: "RelatedOrchestrationPlanNode"
+  description: "Related Orchestration Plan Node for specific node"
+  type: "object"
+  properties:
+    relatedNodeId:
+      description: "Related Orchestration Plan Node's id"
+      type: "string"
+    relationshipType:
+      $ref: "#/RelatedOrchestrationPlanNodeRelationTypeEnum"
+RelatedOrchestrationPlanNodeRelationTypeEnum:
+  title: "RelatedOrchestrationPlanNodeRelationTypeEnum"
+  description: "Related Orchestration Plan Node RelationType"
+  type: "string"
+  enum:
+    - "DeliverWith"
+    - "DeliverAfter"
+
+OrchestrationNodeErrorMessage:
+  title: "OrchestrationNodeErrorMessage"
+  description: "Orchestration Node Error Message"
+  type: "object"
+  properties:
+    code:
+      description: "error code"
+      type: "string"
+    message:
+      description: "error message"
+      type: "string"
+    reason:
+      description: "error reason"
+      type: "string"
+    timeStamp:
+      description: "time of error's occurrence"
+      type: "string"
+      format: "date-time"
+RealisingService:
+  title: "RealisingService"
+  description: "Realising Service"
+  type: "object"
+  properties:
+    id:
+      description: "Realising Service's id"
+      type: "string"
+    href:
+      description: "Realising Service's href"
+      type: "string"
+RelatedProductRelationTypeEnum:
+  title: "RelatedProductRelationTypeEnum"
+  description: "Related Product Relation Type Enum"
+  type: "string"
+  enum:
+    - "delivers"
+    - "reliesOn"
+    - "reliesFrom"
+RelatedProductTypeEnum:
+  type: "string"
+  enum:
+    - "CFS"
+    - "physicalProduct"
+    - "shipmentProduct"
+ProductSpecification:
+  title: "ProductSpecification"
+  description: "Product Specification"
+  type: "object"
+  properties:
+    id:
+      description: "Product Specification's id"
+      type: "string"
+    name:
+      description: "Product Specification's name"
+      type: "string"
+    href:
+      description: "Product Specification's href"
+      type: "string"
+    serviceSpecification:
+      description: "Product Specification's service specification"
+      type: "array"
+      items:
+        $ref: "#/ServiceSpecification"
+    stockItemType:
+      $ref: "#/StockItemType"
+
+ServiceSpecification:
+  title: "ServiceSpecification"
+  description: "Service Specification"
+  type: "object"
+  properties:
+    '@baseType':
+      description: "Service Specification's Base type"
+      type: "string"
+    '@referredType':
+      description: "Service Specification's referred type"
+      type: "string"
+    '@schemaLocation':
+      description: "Service Specification's schema location"
+      type: "string"
+    '@type':
+      description: "Service Specification's type"
+      type: "string"
+    href:
+      description: "Service Specification's href"
+      type: "string"
+    id:
+      description: "Service Specification's id"
+      type: "string"
+    name:
+      description: "Service Specification's name"
+      type: "string"
+    version:
+      description: "Service Specification's version"
+      type: "string"
+StockItemType:
+  title: "StockItemType"
+  description: "Stock Item Type"
+  type: "object"
+  properties:
+    id:
+      description: "Stock Item Type's id"
+      type: "string"
+    name:
+      description: "Stock Item Type's name"
+      type: "string"
+    EAN:
+      description: "Stock Item Type's EAN"
+      type: "string"

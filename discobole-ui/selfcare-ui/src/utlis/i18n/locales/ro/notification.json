@@ -1,0 +1,59 @@
+{
+  "auth": {
+    "loginFailed": "Email sau parolă invalidă. Vă rugăm să încercați din nou.",
+    "registrationFailed": "Nu s-a putut crea contul. Verificați informațiile și încercați din nou.",
+    "sessionExpired": "Sesiunea dumneavoastră a expirat. Vă rugăm să vă reconectați."
+  },
+  "common": {
+    "fetchConfigurationFailed": "Ne pare rău, nu am putut încărca configurația dvs. Încercați din nou.",
+    "fetchOrderFailed": "Ne pare rău, nu am putut încărca comanda dvs. Încercați din nou.",
+    "processFlowCreateFailed": "Ne pare rău, nu am putut începe comanda dvs. Încercați din nou."
+  },
+  "completeOrder": {
+    "completeFailed": "Ne pare rău, nu am putut finaliza comanda dvs. Încercați din nou."
+  },
+  "eligiblePlans": {
+    "fetchEligiblePlansFailed": "Ne pare rău, nu am putut încărca planurile disponibile. Încercați din nou.",
+    "loadPlanDetailsFailed": "Ne pare rău, nu am putut încărca detaliile planului. Încercați din nou.",
+    "proceedChangeFailed": "Ne pare rău, nu am putut continua schimbarea planului. Încercați din nou."
+  },
+  "eligibility": {
+    "updateAddressFailed": "Ne pare rău, nu am putut actualiza adresa dvs. Încercați din nou."
+  },
+  "home": {
+    "devices": {
+      "configureFailed": "Ne pare rău, nu am putut configura acest dispozitiv. Încercați din nou.",
+      "loadFailed": "Ne pare rău, nu am putut încărca dispozitivele dvs. Încercați din nou."
+    },
+    "offers": {
+      "configureFailed": "Ne pare rău, nu am putut configura această ofertă. Încercați din nou.",
+      "loadFailed": "Ne pare rău, nu am putut încărca ofertele dvs. Încercați din nou."
+    }
+  },
+  "myOrders": {
+    "fetchOrderDetailsPartialFailed": "Unele detalii ale comenzii nu au fost încărcate. Încercați din nou.",
+    "fetchOrdersFailed": "Ne pare rău, nu am putut încărca comenzile dvs. Încercați din nou."
+  },
+  "myPlans": {
+    "fetchPlanDetailsFailed": "Unele detalii ale planului nu au fost încărcate. Încercați din nou.",
+    "fetchPlansFailed": "Ne pare rău, nu am putut încărca planurile dvs. Încercați din nou.",
+    "modifyContractFailed": "Ne pare rău, nu am putut pregăti modificarea planului. Încercați din nou."
+  },
+  "orderSummary": {
+    "cancelOrderFailed": "Ne pare rău, nu am putut anula comanda dvs. Încercați din nou.",
+    "validateOrderFailed": "Ne pare rău, nu am putut confirma comanda dvs. Încercați din nou."
+  },
+  "plan": {
+    "processFailed": "Ne pare rău, nu am putut procesa planul dvs. Încercați din nou.",
+    "terminateFailed": "Ne pare rău, nu am putut încheia planul dvs. Încercați din nou.",
+    "updateCharacteristicFailed": "Ne pare rău, nu am putut actualiza selecția dvs. Încercați din nou.",
+    "updateCommitmentFailed": "Ne pare rău, nu am putut actualiza perioada de angajament. Încercați din nou."
+  },
+  "shipping": {
+    "createFailed": "Ne pare rău, nu am putut salva detaliile de livrare. Încercați din nou.",
+    "updateShippingMethodFailed": "Ne pare rău, nu am putut aplica opțiunea de livrare. Încercați din nou."
+  },
+  "trackOrder": {
+    "fetchFailed": "Ne pare rău, nu am putut încărca statusul comenzii dvs. Încercați din nou."
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "auth": {
+    "loginFailed": "Email ou mot de passe incorrect. Veuillez réessayer.",
+    "registrationFailed": "Impossible de créer le compte. Veuillez vérifier vos informations et réessayer.",
+    "sessionExpired": "Votre session a expiré. Veuillez vous reconnecter."
+  },
+  "common": {
+    "fetchConfigurationFailed": "Nous sommes désolés, nous n'avons pas pu charger votre configuration. Veuillez réessayer.",
+    "fetchOrderFailed": "Nous sommes désolés, nous n'avons pas pu charger votre commande. Veuillez réessayer.",
+    "processFlowCreateFailed": "Nous sommes désolés, nous n'avons pas pu démarrer votre commande. Veuillez réessayer."
+  },
+  "completeOrder": {
+    "completeFailed": "Nous sommes désolés, nous n'avons pas pu finaliser votre commande. Veuillez réessayer."
+  },
+  "eligiblePlans": {
+    "fetchEligiblePlansFailed": "Nous sommes désolés, nous n'avons pas pu charger les forfaits disponibles. Veuillez réessayer.",
+    "loadPlanDetailsFailed": "Nous sommes désolés, nous n'avons pas pu charger les détails du forfait. Veuillez réessayer.",
+    "proceedChangeFailed": "Nous sommes désolés, nous n'avons pas pu poursuivre la modification du forfait. Veuillez réessayer."
+  },
+  "eligibility": {
+    "updateAddressFailed": "Nous sommes désolés, nous n'avons pas pu mettre à jour votre adresse. Veuillez réessayer."
+  },
+  "home": {
+    "devices": {
+      "configureFailed": "Nous sommes désolés, nous n'avons pas pu configurer cet appareil. Veuillez réessayer.",
+      "loadFailed": "Nous sommes désolés, nous n'avons pas pu charger vos appareils. Veuillez réessayer."
+    },
+    "offers": {
+      "configureFailed": "Nous sommes désolés, nous n'avons pas pu configurer cette offre. Veuillez réessayer.",
+      "loadFailed": "Nous sommes désolés, nous n'avons pas pu charger vos offres. Veuillez réessayer."
+    }
+  },
+  "myOrders": {
+    "fetchOrderDetailsPartialFailed": "Certains détails de la commande n'ont pas pu être chargés. Veuillez réessayer.",
+    "fetchOrdersFailed": "Nous sommes désolés, nous n'avons pas pu charger vos commandes. Veuillez réessayer."
+  },
+  "myPlans": {
+    "fetchPlanDetailsFailed": "Certains détails du forfait n'ont pas pu être chargés. Veuillez réessayer.",
+    "fetchPlansFailed": "Nous sommes désolés, nous n'avons pas pu charger vos forfaits. Veuillez réessayer.",
+    "modifyContractFailed": "Nous sommes désolés, nous n'avons pas pu préparer la modification de votre forfait. Veuillez réessayer."
+  },
+  "orderSummary": {
+    "cancelOrderFailed": "Nous sommes désolés, nous n'avons pas pu annuler votre commande. Veuillez réessayer.",
+    "validateOrderFailed": "Nous sommes désolés, nous n'avons pas pu confirmer votre commande. Veuillez réessayer."
+  },
+  "plan": {
+    "processFailed": "Nous sommes désolés, nous n'avons pas pu traiter votre forfait. Veuillez réessayer.",
+    "terminateFailed": "Nous sommes désolés, nous n'avons pas pu résilier votre forfait. Veuillez réessayer.",
+    "updateCharacteristicFailed": "Nous sommes désolés, nous n'avons pas pu mettre à jour votre sélection. Veuillez réessayer.",
+    "updateCommitmentFailed": "Nous sommes désolés, nous n'avons pas pu mettre à jour votre durée d'engagement. Veuillez réessayer."
+  },
+  "shipping": {
+    "createFailed": "Nous sommes désolés, nous n'avons pas pu enregistrer vos informations de livraison. Veuillez réessayer.",
+    "updateShippingMethodFailed": "Nous sommes désolés, nous n'avons pas pu appliquer votre option de livraison. Veuillez réessayer."
+  },
+  "trackOrder": {
+    "fetchFailed": "Nous sommes désolés, nous n'avons pas pu charger le statut de votre commande. Veuillez réessayer."
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "mappings": [
+    {
+      "name": "Patch Product - Success",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/productInventoryManagement/v1/product/.*",
+        "method": "PATCH"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/ActiveConnectivityProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+
+    {
+      "name": "Patch Product - Success",
+      "priority": 12222,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product/.*",
+        "method": "PATCH"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeDeleteProduct/ConnectivityProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+
+    {
+      "name": "Patch Product - Success",
+      "priority": 12222,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product/.*",
+        "method": "PATCH"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeModifyProduct/ConnectivityProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+
+    {
+      "name": "Patch Product - Success",
+      "priority": 12222,
+      "request": {
+        "urlPath": "/productInventoryManagement/v1/product/.*",
+        "method": "PATCH"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/activeModifyHeldProduct/ConnectivityProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Patch Product - Success",
+      "priority": 134,
+      "request": {
+        "urlPattern": "/productInventoryManagement/v1/product/.*",
+        "method": "PATCH"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "customer-product-installed-base/createdAddProduct/ConnectivityProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

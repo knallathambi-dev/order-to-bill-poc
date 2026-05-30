@@ -1,0 +1,341 @@
+{
+  "mappings": [
+    {
+      "name": "Get MobileLine product",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification/c458d968-3718-4754-9408-7bd81526e7b2",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/MobileLine.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get MobileLine product",
+      "priority": 2,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productSpecification\\?id=c458d968-3718-4754-9408-7bd81526e7b2$",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/MobileLineList.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get TimeBundle product",
+      "priority": 2,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productSpecification/82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/TimeBundle.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get TimeBundle product",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification?id=82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/TimeBundleList.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Connectivity product",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification/5e18402d-c964-4d52-b362-22ef79c27c01",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/Connectivity.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Connectivity product",
+      "priority": 2,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productSpecification\\?id=5e18402d-c964-4d52-b362-22ef79c27c01$",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/ConnectivityList.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get SimCard product",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification/df32402e-ceb9-4467-aafd-fec0bbff3124",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/SimCard.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get SimCard product",
+      "priority": 0,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productSpecification\\?id=df32402e-ceb9-4467-aafd-fec0bbff3124$",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/SimCardList.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Product sim, mobileline, timebundle, connectivity",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "5e18402d-c964-4d52-b362-22ef79c27c01"
+          },
+          "id": {
+            "equalTo": "82f3bab6-63a1-4008-96a3-8d411d0c5b38"
+          },
+          "id": {
+            "equalTo": "c458d968-3718-4754-9408-7bd81526e7b2"
+          },
+          "id": {
+            "equalTo": "df32402e-ceb9-4467-aafd-fec0bbff3124"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/ProductSpecificationsForAllProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get SMSOption product",
+      "priority": 2,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification/82f3bab6-63a1-4008-96a3-8d411d0c5i33",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/SmsOption.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get SMSOption product",
+      "priority": 2,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productSpecification\\?id=82f3bab6-63a1-4008-96a3-8d411d0c5i33$",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/SmsOptionList.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Product Specifications Sms and ringbacktone",
+      "priority": 0,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "3f53cbde-73be-405a-8684-60c4993fe2ad"
+          },
+          "id": {
+            "equalTo": "abe401bc-76b8-4811-8fef-98d5d10d979c"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/ProductSpecsSMSOptionAndRingBackTone.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Product Specifications plan termination",
+      "priority": 9,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "contains": "c458d968-3718-4754-9408-7bd81526e7b2"
+          },
+          "id": {
+            "contains": "b0ad739d-57f8-4e2d-a891-0b9df12da1a3"
+          },
+          "id": {
+            "contains": "f6fe64ec-108a-4275-9f0e-12636acb6524"
+          },
+          "id": {
+            "contains": "82f3bab6-63a1-4008-96a3-8d411d0c5b38"
+          },
+          "id": {
+            "contains": "5e18402d-c964-4d52-b362-22ef79c27c01"
+          },
+          "id": {
+            "doesNotMatch": "df3240.*"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/PlanTermination.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Product  Sms option",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification",
+        "method": "GET",
+        "queryParameters": {
+          "id": {
+            "equalTo": "3f53cbde-73be-405a-8684-60c4993fe2ad"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/SMSOptionList.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Product  Sms option",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification/3f53cbde-73be-405a-8684-60c4993fe2ad",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/SMSOption.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Product Specifications ringbacktone",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productSpecification\\?id=abe401bc-76b8-4811-8fef-98d5d10d979c$",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/RingBackToneList.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Product Specifications ringbacktone",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification/abe401bc-76b8-4811-8fef-98d5d10d979c",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/RingBackTone.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Product Specifications handset",
+      "priority": 1,
+      "request": {
+        "urlPath": "/productCatalogManagement/v1/productSpecification/cf81ad88-b800-4e88-a332-1841ec677f10",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/Handset.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    },
+    {
+      "name": "Get Product sim, mobileline, timebundle, connectivity, mobile handset, sms option, ringback tone",
+      "priority": 0,
+      "request": {
+        "urlPattern": "/productCatalogManagement/v1/productSpecification.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "Product-catalog/ProductSpecificationsForAllProduct.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "transformerParameters": {
+          "fixFactoryPrefixUrl": "https://fix-factory-",
+          "mobileFactoryPrefixUrl": "https://mobile-factory-",
+          "partnerFactoryPrefixUrl" : "https://partner-factory-"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "AppointmentRef" : {
+    "type" : "object",
+    "properties" : {
+      "appRefId" : {
+        "type" : "string",
+        "readOnly" : true
+      }
+    }
+  }
+}

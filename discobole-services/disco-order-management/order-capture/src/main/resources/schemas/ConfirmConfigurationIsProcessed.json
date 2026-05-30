@@ -1,0 +1,16 @@
+{
+  "ConfirmConfigurationIsProcessed" : {
+    "required" : [ "configuration.id", "configuration.state" ],
+    "type" : "object",
+    "properties" : {
+      "configuration.id" : {
+        "type" : "string",
+        "readOnly" : true
+      },
+      "configuration.state" : {
+        "type" : "string",
+        "enum" : [ "confValidated", "confModified" ]
+      }
+    }
+  }
+}

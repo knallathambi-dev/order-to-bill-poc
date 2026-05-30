@@ -1,0 +1,104 @@
+# Software Name: orchestration-delivery-management
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: ${PORT:8086}
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: com.orange.discobole.orderorchestration.config.custom.CustomSerializer
+      properties:
+        spring.kafka.topic.auto-create: true
+    consumer:
+      key-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      value-deserializer: com.orange.discobole.orderorchestration.config.custom.CustomDeserializer
+      enable-auto-commit: true
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.json.remove.type.headers: true
+        spring.json.use.type.headers: false
+        spring.json.value.type.method: com.orange.discobole.orderorchestration.orchestrationdelivery.management.config.KafkaTyper.typer
+        spring.deserializer.key.delegate.class: org.apache.kafka.common.serialization.StringDeserializer
+  data:
+    mongodb:
+      auto-index-creation: 'true'
+      database: COOD
+      port: '27017'
+      host: localhost
+  devtools:
+    restart:
+      exclude: target/classes/**, build/**, bin/**
+  cloud:
+    function:
+      definition: productValidatedProcess;serviceValidatedProcess;orchestrationPlanProcess;orchestrationPlanNodeProcess
+  profiles:
+    active: test, plaintextconsole
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dummy-host/realms/SpringBootKeycloak
+          jwk-set-uri: https://dummy-host/realms/SpringBootKeycloak/protocol/openid-connect/certs
+
+mocks:
+  serviceOrderStateChangeScheduler:
+    jobDelayDuration: PT30S
+    enable: true
+    minDelay: PT30S
+    maxDelay: PT2M30S
+    deliverSingleNode: false
+  shippingOrderStateChangeScheduler:
+    jobDelayDuration: PT30S
+    enable: true
+    minDelay: PT30S
+    maxDelay: PT2M30S
+    deliverSingleNode: false
+  purgeNodeDeliveryTimeScheduler:
+    jobDelayDuration: PT30S
+
+config:
+  serviceCatalogManagementUrl: http://localhost:9997/serviceCatalogManagement/v1/serviceSpecification
+  productOrderByIdUrl: http://localhost:9997/orderManagement/v1/productOrder
+  serviceOrderingUrl: http://localhost:9997/serviceOrdering/v1/serviceOrder
+  shippingOrderUrl": http://localhost:9997/shippingOrder/v1/shippingOrder
+  serviceOrderBatching:
+    enabled: true
+    maxBatchSize: 3
+    batchCollectionSeconds: 5
+app:
+  kafka:
+    group-id: ${random.uuid}
+    retry:
+      attempts: 1
+      delay: 1000
+  security:
+    ssl:
+      enabled: false
+    userRoleRetrievalUrl: http://localhost:8089/userRolePermission/v1/userRole
+    keycloakEntitlements: x200
+retry:
+  maxAttempts: '1'
+  maxDelay: '6000'
+
+logging:
+  level:
+    root: ERROR
+
+
+mongock:
+  migration-scan-package:
+    - com.orange.discobole.orderorchestration.orchestrationdelivery.management.db.migration
+
+otel:
+  service:
+    name: delivery-management-review

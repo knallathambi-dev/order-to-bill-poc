@@ -1,0 +1,29 @@
+{
+  "BundledProductOfferings" : {
+    "required" : [ "id" ],
+    "type" : "object",
+    "properties" : {
+      "id" : {
+        "type" : "string",
+        "readOnly" : true
+      },
+      "bundledProductOfferingOption" : {
+        "type" : "object",
+        "properties" : {
+          "numberRelOfferLowerLimit" : {
+            "type" : "number",
+            "default" : 1
+          },
+          "numberRelOfferDefault" : {
+            "type" : "number",
+            "default" : 1
+          },
+          "numberRelOfferUpperLimit" : {
+            "type" : "number",
+            "default" : 1
+          }
+        }
+      }
+    }
+  }
+}

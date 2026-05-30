@@ -1,0 +1,310 @@
+{
+  "name": "UserRoleCreationCollection_OrderOrchestration",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Get Access TokenORO",
+      "filename": "Get Access TokenORO.bru",
+      "seq": 1,
+      "request": {
+        "url": "{{keycloak_url}}/realms/SpringBootKeycloak/protocol/openid-connect/token",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "formUrlEncoded",
+          "formUrlEncoded": [
+            {
+              "name": "username",
+              "value": "{{username}}",
+              "enabled": true
+            },
+            {
+              "name": "password",
+              "value": "{{password}}",
+              "enabled": true
+            },
+            {
+              "name": "grant_type",
+              "value": "password",
+              "enabled": true
+            },
+            {
+              "name": "client_id",
+              "value": "{{client_id}}",
+              "enabled": true
+            },
+            {
+              "name": "client_secret",
+              "value": "{{client_secret}}",
+              "enabled": true
+            },
+            {
+              "name": "scope",
+              "value": "openid",
+              "enabled": true
+            }
+          ],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {
+          "res": "bru.setEnvVar(\"token\", res.body.access_token);"
+        },
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "getRoles",
+      "filename": "getRoles.bru",
+      "seq": 2,
+      "request": {
+        "url": "https://auth-userrole-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRole",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "json": " {\n    \"involvementRole\": \"CreateProduct\",\n    \"@type\": \"UserRole\",\n    \"entitlement\": [\n      {\n        \"id\": \"x500\",\n        \"action\": \"Create\",\n        \"function\": \"Product\",\n        \"@type\": \"Entitlement\"\n      }\n    ]\n  }",
+          "formUrlEncoded": [],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "folder",
+      "name": "UserRole",
+      "filename": "UserRole",
+      "items": [
+        {
+          "type": "http",
+          "name": "userrole Fallout Read And Write ORO",
+          "filename": "userrole Fallout Read And Write ORO.bru",
+          "seq": 3,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"involvementRole\": \"FalloutIncidentAdminWrite\",\n  \"@type\": \"UserRole\",\n  \"entitlement\": [\n    {\n      \"id\": \"x601\",\n      \"action\": \"readAndWrite\",\n      \"function\": \"Fallout Incident\",\n      \"@type\": \"Entitlement\"\n    }\n  ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole Fallout Read ORO",
+          "filename": "userrole Fallout Read ORO.bru",
+          "seq": 2,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"involvementRole\": \"FalloutIncidentAdminRead\",\n  \"@type\": \"UserRole\",\n  \"entitlement\": [\n    {\n      \"id\": \"x600\",\n      \"action\": \"read\",\n      \"function\": \"Fallout Incident\",\n      \"@type\": \"Entitlement\"\n    }\n  ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole Read Orchestration Plans ORO",
+          "filename": "userrole Read Orchestration Plans ORO.bru",
+          "seq": 1,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"involvementRole\": \" Orchestration plans Admin\",\n  \"@type\": \"UserRole\",\n  \"entitlement\": [\n    {\n      \"id\": \"x200\",\n      \"action\": \"read\",\n      \"function\": \"Orchestration plan\",\n      \"@type\": \"Entitlement\"\n    }\n  ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "activeEnvironmentUid": "cp2v6uSw9mIa6pBdsJhXW",
+  "environments": [
+    {
+      "variables": [
+        {
+          "name": "base_uri",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "keycloak_url",
+          "value": "http://34.173.241.188",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "token",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_id",
+          "value": "gateway",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_secret",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "username",
+          "value": "admin",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "password",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        }
+      ],
+      "name": "local"
+    },
+    {
+      "variables": [
+        {
+          "name": "base_uri",
+          "value": "http://34.70.170.204:80",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "keycloak_url",
+          "value": "http://34.173.241.188",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "token",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_id",
+          "value": "gateway",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_secret",
+          "value": "EPQa1PeNXUgPStZ1O3djgVj1XvfSXoFX",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "username",
+          "value": "admin-test@orange.com",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "password",
+          "value": "abcd",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        }
+      ],
+      "name": "ORO"
+    }
+  ],
+  "root": {
+    "request": {
+      "auth": {
+        "mode": "bearer",
+        "bearer": {
+          "token": "{{token}}"
+        }
+      }
+    }
+  },
+  "brunoConfig": {
+    "version": "1",
+    "name": "UserRoleCreationCollection_OrderOrchestration",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}

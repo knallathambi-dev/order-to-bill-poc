@@ -1,0 +1,137 @@
+{
+  "id": "24b34407-3c7d-4228-ba45-feff73ec4f05",
+  "description": "Samsung galaxy S10 reconditioned",
+  "isInstallable": true,
+  "lastUpdate": "2024-03-17T18:15:37.842Z",
+  "lifecycleStatus": "launched",
+  "name": "Samsung galaxy S10 reconditioned",
+  "statusReason": "Product Offering initial creation",
+  "version": "1.2",
+  "isSellable": "true",
+  "category": [],
+  "channel": [],
+  "marketSegment": [
+    {
+      "id": "B2B",
+      "href": null,
+      "name": null,
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": null
+    },
+    {
+      "id": "B2C",
+      "href": null,
+      "name": null,
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": null
+    }
+  ],
+  "policyRuleRef": [],
+  "prodSpecCharValueUse": [
+    {
+      "description": " Memory",
+      "maxCardinality": 1,
+      "minCardinality": 0,
+      "name": "Memory",
+      "valueType": "string",
+      "productSpecCharacteristicValue": [
+        {
+          "isDefault": null,
+          "rangeInterval": null,
+          "regex": null,
+          "unitOfMeasure": null,
+          "valueFrom": null,
+          "valueTo": null,
+          "valueType": null,
+          "validFor": null,
+          "value": "128GB",
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null,
+          "supportEntity.characteristic.value": "128GB"
+        },
+        {
+          "isDefault": null,
+          "rangeInterval": null,
+          "regex": null,
+          "unitOfMeasure": null,
+          "valueFrom": null,
+          "valueTo": null,
+          "valueType": null,
+          "validFor": null,
+          "value": "256GB",
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null,
+          "supportEntity.characteristic.value": "256GB"
+        }
+      ],
+      "productSpecification": null,
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2021-06-14T06:54:06.103Z"
+      },
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null
+    }
+  ],
+  "productOfferingTerm": [],
+  "productSpecification": {
+    "id": "b8d35bcf-fab9-4fb0-b317-2c02a70bfd75",
+    "href": null,
+    "name": "Samsung galaxy S10 reconditioned",
+    "version": "1.0.0",
+    "@baseType": null,
+    "@schemaLocation": null,
+    "@type": "ProductSpecification",
+    "@referredType": null
+  },
+  "brand": "Orange",
+  "validFor": {
+    "endDateTime": null,
+    "startDateTime": "2023-09-01T23:21:00.520Z"
+  },
+  "commercialOperation": [
+    {
+      "id": "1",
+      "name": "Add",
+      "description": "Add ",
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2021-04-07T23:21:00.520Z"
+      },
+      "carries": [
+        {
+          "id": "026b31eb-51ab-4715-8b16-f57c8588575a",
+          "href": null,
+          "name": "NRC 100 Euro",
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": "ProductOfferingPriceCharge",
+          "@referredType": null
+        }
+      ],
+      "@type": null,
+      "@baseType": null,
+      "@schemaLocation": null
+    }
+  ],
+  "productOfferingRelationship": [
+    {
+      "id": "78bc2297-cb07-4161-babb-35fc6b55979f",
+      "href": null,
+      "relationshipType": "requires",
+      "validFor": null,
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null
+    }
+  ],
+  "@type": "AtomicProductOffering",
+  "relatedParty": []
+}

@@ -1,0 +1,40 @@
+{
+  "AssociatePOPtoOperationSpecification" : {
+    "required" : [ "operationSpecification.id", "productOfferingPrice.id" ],
+    "type" : "array",
+    "items" : {
+      "type" : "object",
+      "properties" : {
+        "operationSpecification.id" : {
+          "type" : "string",
+          "readOnly" : true
+        },
+        "productOfferingPrice.id" : {
+          "type" : "string",
+          "readOnly" : true
+        },
+        "productOfferingTerm" : {
+          "type" : "array",
+          "items" : {
+            "required" : [ "duration" ],
+            "type" : "object",
+            "properties" : {
+              "duration" : {
+                "required" : [ "amount", "units" ],
+                "type" : "object",
+                "properties" : {
+                  "amount" : {
+                    "type" : "number"
+                  },
+                  "units" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

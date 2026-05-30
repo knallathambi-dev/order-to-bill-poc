@@ -1,0 +1,92 @@
+{
+  "id": "cf81ad88-b800-4e88-a332-1841ec677f10",
+  "brand": "Orange",
+  "description": "Mobile Handse",
+  "isBundle": false,
+  "lastUpdate": "2023-10-04T09:46:16.804Z",
+  "lifecycleStatus": "active",
+  "name": "Mobile Handset",
+  "productNumber": "ML",
+  "version": "1.1.0",
+  "supportEntity": "CFSSpec",
+  "productSpecCharacteristic": [
+    {
+      "id": "97f9e351-95b4-4f98-b845-fe8889688ce1.3",
+      "configurable": true,
+      "description": "MSISDN (Mobile Station ISDN Number) - number uniquely identifying a subscription in a Mobile Telecommunications network",
+      "extensible": false,
+      "isUnique": true,
+      "maxCardinality": 1,
+      "minCardinality": 0,
+      "name": "Memory",
+      "regex": "10[0,9]",
+      "valueType": "string",
+      "productSpecCharRelationship": [],
+      "productSpecCharacteristicValue": [],
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2017-04-12T23:20:50.520Z"
+      },
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null
+    }
+  ],
+  "productSpecificationRelationship": [
+  ],
+  "relatedParty": [
+    {
+      "id": "10001",
+      "href": null,
+      "name": null,
+      "role": "marketingContact",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": "individual"
+    }
+  ],
+  "serviceSpecification": [
+    {
+      "id": "handset",
+      "href": null,
+      "name": "handset",
+      "version": null,
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": null
+    }
+  ],
+  "validFor": {
+    "endDateTime": null,
+    "startDateTime": "2017-10-11T23:20:50.520Z"
+  },
+  "relatedResource": [
+    {
+      "id": "1",
+      "href": null,
+      "name": "related resource",
+      "role": "abc",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": "individual"
+    }
+  ],
+  "operationSpecification": [
+    {
+      "id": "747f9607-fb77-403d-a34e-3e94607b5f1f.2",
+      "name": "Add a new mobile line on the network",
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2017-04-12T23:20:50.520Z"
+      },
+      "description": "Provision a new mobile line",
+      "isQualificationRequested": false,
+      "@type": null,
+      "@baseType": null,
+      "@schemaLocation": null
+    }
+  ]
+}

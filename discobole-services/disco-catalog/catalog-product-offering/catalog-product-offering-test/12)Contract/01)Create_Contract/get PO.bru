@@ -1,0 +1,44 @@
+meta {
+  name: get PO
+  type: http
+  seq: 17
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/productOffering/{{Contract_id}}
+  body: none
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  await bru.sleep(3000);
+}
+
+script:post-response {
+  bru.setVar('flag',null);
+}
+
+tests {
+  
+  var jsonData = res.getBody();
+  
+  
+  test("to verify Contract is active and version is incremented to 0.1", function(){
+      expect(jsonData.version).to.eql('0.1');
+  
+  });
+  
+}

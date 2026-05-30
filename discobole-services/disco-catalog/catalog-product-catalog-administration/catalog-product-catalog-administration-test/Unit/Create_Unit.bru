@@ -1,0 +1,36 @@
+meta {
+  name: Create_Unit
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Admin_URL}}/unit
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+     
+      "@type": "unit",
+  
+      "unitOfMeasure": "Unit_{{random}}"
+  }
+}
+
+vars:post-response {
+  Unit_id: res.body.id
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  var min = 1;
+  var max = 100;
+  var random = Math.floor(Math.random() * (max - min + 1)) + min;
+  bru.setEnvVar("random", random); 
+  
+}

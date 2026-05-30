@@ -1,0 +1,16 @@
+meta {
+  name: get processedProduct by jobId
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/productInventoryManagement/v1/processedProduct?jobId=6620eb9c66ff9c3903ca5f33&fields=none
+  body: none
+  auth: inherit
+}
+
+query {
+  jobId: 6620eb9c66ff9c3903ca5f33
+  fields: none
+}

@@ -1,0 +1,400 @@
+[
+  {
+    "@type": "Product",
+    "id": "660ecf93020e1b50f5698ad8",
+    "name": "Mobile Package 1",
+    "productOffering": {
+      "id": "5c1b0a6c-5ae4-4c1b-ac40-a3209aa63eee",
+      "name": "Mobile Package 1",
+      "@type": "Contract"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "BUNDLES",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf93020e1b50f5698ad7"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-04-04T16:04:33Z",
+    "lastUpdateDate": "2025-02-18T11:13:27Z"
+  },
+  {
+    "@type": "Product",
+    "id": "660ecf93020e1b50f5698ad0",
+    "name": "Mobile Line",
+    "productOffering": {
+      "id": "3d142e30-cab2-40d9-841b-70174df320d7",
+      "name": "Mobile Line",
+      "@type": "AtomicProductOffering"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "SELLS",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf92020e1b50f5698acf"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-04-04T16:04:33Z"
+  },
+  {
+    "@type": "Product",
+    "id": "660ecf93020e1b50f5698ad1",
+    "name": "Connectivity",
+    "productRelationship": [
+      {
+        "relationshipType": "RELIESON",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf93020e1b50f5698ad5"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "5e18402d-c964-4d52-b362-22ef79c27c01",
+      "name": "Connectivity",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-04-04T16:04:33Z"
+  },
+  {
+    "@type": "Product",
+    "id": "660ecf93020e1b50f5698ad2",
+    "name": "Connectivity",
+    "productOffering": {
+      "id": "0200ecae-4b1e-41c1-a177-750a2a266f09",
+      "name": "Connectivity",
+      "@type": "AtomicProductOffering"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "SELLS",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf93020e1b50f5698ad1"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-04-04T16:04:33Z"
+  },
+  {
+    "@type": "Product",
+    "id": "660ecf93020e1b50f5698ad3",
+    "name": "Time Bundle",
+    "productRelationship": [
+      {
+        "relationshipType": "RELIESON",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf92020e1b50f5698acf"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "82f3bab6-63a1-4008-96a3-8d411d0c5b38",
+      "name": "Time Bundle",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-04-04T16:04:33Z"
+  },
+  {
+    "@type": "Product",
+    "id": "660ecf93020e1b50f5698ad4",
+    "name": "Time Bundle",
+    "productOffering": {
+      "id": "3240b426-1b52-4680-aec2-1be06b34cc17",
+      "name": "Time Bundle",
+      "@type": "AtomicProductOffering"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "SELLS",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf93020e1b50f5698ad3"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-04-04T16:04:33Z"
+  },
+  {
+    "@type": "Product",
+    "id": "660ecf93020e1b50f5698ad5",
+    "name": "SIM Card",
+    "productRelationship": [
+      {
+        "relationshipType": "RELIESFROM",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf92020e1b50f5698acf"
+        }
+      },
+      {
+        "relationshipType": "RELIESFROM",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf93020e1b50f5698ad1"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+      "name": "SIM Card",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-04-04T16:04:33Z"
+  },
+  {
+    "@type": "Product",
+    "id": "660ecf93020e1b50f5698ad6",
+    "name": "SIM Card",
+    "productOffering": {
+      "id": "a52ed0ff-e1a1-45de-822a-9db878b0e4fc",
+      "name": "SIM Card",
+      "@type": "AtomicProductOffering"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "SELLS",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf93020e1b50f5698ad5"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-04-04T16:04:33Z"
+  },
+  {
+    "@type": "Product",
+    "id": "660ecf93020e1b50f5698ad7",
+    "name": "Mobile Package 1",
+    "productOffering": {
+      "id": "7533a186-dbde-475c-aa43-04889a95a272",
+      "name": "Mobile Package 1",
+      "@type": "BundleProductOffering"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "BUNDLES",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf93020e1b50f5698ad0"
+        }
+      },
+      {
+        "relationshipType": "BUNDLES",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf93020e1b50f5698ad2"
+        }
+      },
+      {
+        "relationshipType": "BUNDLES",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf93020e1b50f5698ad4"
+        }
+      },
+      {
+        "relationshipType": "BUNDLES",
+        "product": {
+          "@type": "ProductRef",
+          "id": "660ecf93020e1b50f5698ad6"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2024-04-04T16:04:33Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67b886a9bbfb4b42315918cf",
+    "isBundle": true,
+    "name": "Product generated by automation ツ",
+    "startDate": "2025-02-21T14:10:43Z",
+    "terminationDate": "2025-02-21T15:10:43Z",
+    "productOffering": {
+      "id": "dbbc92f9-faf2-4886-8749-0f07abfc1971",
+      "name": "Mobile Package 1",
+      "@type": "Contract"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67b886a9bbfb4b42315918d0"
+        }
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "PendingActive",
+    "creationDate": "2025-02-21T13:59:05Z",
+    "lastUpdateDate": "2025-02-21T14:10:43Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67b886a9bbfb4b42315918d0",
+    "name": "Product generated by automation ツ",
+    "productOffering": {
+      "id": "7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+      "name": "Mobile Package 1",
+      "@type": "BundleProductOffering"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67b886a9bbfb4b42315918d1"
+        }
+      },
+      {
+        "relationshipType": "bundles",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67b886a9bbfb4b42315918d3"
+        }
+      },
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67b886a9bbfb4b42315918cf"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2025-02-21T13:59:05Z",
+    "lastUpdateDate": "2025-02-21T13:59:06Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67b886a9bbfb4b42315918d1",
+    "name": "Product generated by automation ツ",
+    "productOffering": {
+      "id": "39d17453-6b6c-4902-9743-a50ec9ad5e67",
+      "name": "Mobile line",
+      "@type": "AtomicProductOffering"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "sells",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67b886a9bbfb4b42315918d2"
+        }
+      },
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67b886a9bbfb4b42315918cf"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2025-02-21T13:59:05Z",
+    "lastUpdateDate": "2025-02-21T13:59:06Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67b886a9bbfb4b42315918d2",
+    "isBundle": false,
+    "name": "Product generated by automation ツ",
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67b886a9bbfb4b42315918cf"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "9a2fb547-92ae-4fd0-afa7-6418e27d51cb",
+      "name": "Mobile line",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2025-02-21T13:59:05Z",
+    "lastUpdateDate": "2025-02-21T13:59:06Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67b886a9bbfb4b42315918d3",
+    "name": "Product generated by automation ツ",
+    "productOffering": {
+      "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+      "name": "SIM Card",
+      "@type": "AtomicProductOffering"
+    },
+    "productRelationship": [
+      {
+        "relationshipType": "sells",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67b886a9bbfb4b42315918d4"
+        }
+      },
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67b886a9bbfb4b42315918cf"
+        }
+      }
+    ],
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2025-02-21T13:59:05Z",
+    "lastUpdateDate": "2025-02-21T13:59:06Z"
+  },
+  {
+    "@type": "Product",
+    "id": "67b886a9bbfb4b42315918d4",
+    "isBundle": false,
+    "name": "Product generated by automation ツ",
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67b886a9bbfb4b42315918cf"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "191424cb-6002-46aa-a5a9-0602cfba83c7",
+      "name": "SIM CARD",
+      "@type": "ProductSpecificationRef"
+    },
+    "status": "Created",
+    "operationalStatus": "Confirmed",
+    "creationDate": "2025-02-21T13:59:05Z",
+    "lastUpdateDate": "2025-02-21T13:59:06Z"
+  }
+]

@@ -1,0 +1,228 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+# -- Application replica count
+replicaCount: 1
+
+# -- Enable or disable application daily shutdown
+scheduledshutdown: true
+
+# -- Keystore in P12 format, base64 encoded
+keyStoreP12: ""
+
+# -- Extra Java options to be set on the java command line, for instance to enable specific GC or set system properties. Default is blank.
+jdkJavaOptions: ""
+
+# Docker image parameters
+image:
+  #  -- docker image repository
+  repository: "${docker_repository}"
+  # -- image pull policy
+  pullPolicy: Always
+  # - overrides the image tag whose default is the chart appVersion.
+  tag: "${docker_tag}"
+
+# set create to true if you want this chart to create a secret for you. Default is false.
+registryCredentials:
+  # -- specifies whether a registry secret should be created
+  create: false
+  # -- docker registry server, for instance "https://index.docker.io/v1/" for docker hub.
+  url: ""
+  # -- the name of the secret to create if registryCredentials.create is true.
+  token:
+    userName: ""
+    password: ""
+
+# -- Override default fully qualified app name and chart name
+nameOverride: ""
+
+# -- Override fully qualified app name
+fullnameOverride: ""
+
+# Specifies whether a service account should be created
+serviceAccount:
+  # -- specifies whether a service account should be created
+  create: true
+  # -- annotations to add to the service account
+  annotations: {}
+  # -- the name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# remove curly braces and specify if necessary
+podAnnotations: {}
+  # example to enable monitoring and supervision of pods
+  # prometheus.io/port: '8080'
+  # prometheus.io/scrape: 'true'
+  # metrics: '/actuator/prometheus' # align with contextPath, if specified
+
+# remove curly braces and specify if necessary
+podSecurityContext: {}
+  #runAsUser: 1003170001
+  #runAsGroup: 1003170001
+  # runAsUser: 1000
+  # fsGroup: 2000
+
+# remove curly braces and specify if necessary
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  type: ClusterIP
+  port: 8080
+  # example to enable monitoring and supervision of service
+  # annotations:
+  #   prometheus.io/port: '8080'
+  #   prometheus.io/scrape: 'true'  
+
+# Ingress configuration
+ingress:
+  # -- Enable ingress controller
+  enabled: false
+  # -- Ingress annotations
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"   
+  # -- Hosts configuration    
+  hosts:
+    - host: ""
+      paths: [/] # align with contextPath
+  hostsMobile:
+    - host: ""
+      paths: [/]
+  hostsFiber:
+    - host: ""
+      paths: [/]
+  hostsPartner:
+    - host: ""
+      paths: [/]
+
+resources: 
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # -- Default resource requests 
+  requests:
+    cpu: 200m
+    memory: 500Mi
+  # -- Default resource limits    
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+
+# Horizontal Pod Autoscaler configuration  
+autoscaling:
+  # -- Enable Horizontal Pod Autoscaler
+  enabled: false
+  # -- Minimum number of pod replicas
+  minReplicas: 2
+  # -- Maximum number of pod replicas
+  maxReplicas: 5
+  # -- Target CPU utilization percentages for pod scaling
+  targetCPUUtilizationPercentage: 70
+  # -- Target Memory utilization percentages for pod scaling
+  targetMemoryUtilizationPercentage: ""
+
+# -- Node selectorfor pod assignment
+nodeSelector: {}
+
+# -- Node tolerations for pod assignment
+tolerations: []
+
+# -- Node affinity for pod assignment
+affinity: {}
+
+# OpenTelemetry configuration
+otel:
+  # -- activate Open Telemetry instrumentation
+  enabled: false
+  sidecar:
+    # -- use collector agent sidecar
+    enabled: false
+    # -- main collector address
+    jaeger:
+      # collector host
+      host: ""
+      # collector port
+      port: 14250
+    # main receiver address
+    otlp:
+      # receiver host
+      host: ""
+      # receiver port
+      port: 4317
+  # resource attributes to be set on telemetry data
+  attributes:
+    # -- resource attribute to be set on telemetry data
+    platform: ""
+    # -- resource attribute to be set on telemetry data
+    region: ""
+    # -- resource attribute to be set on telemetry data
+    cluster: ""
+    # -- resource attribute to be set on telemetry data
+    namespace: ""
+    # -- resource attribute to be set on telemetry data
+    hostname: ""
+
+# fluentd sidecar for logs forwarding
+fluentd:
+  # -- enable fluentd sidecar container
+  enabled: false
+  # -- tag value being set on log events and used by fluentd to route logs
+  tag: "" 
+  # -- hostname of the fluentd instance this application should send logs to. Defaults to localhost
+  host: ""
+  # -- port of the fluentd instance this application should send logs to. Defaults to localhost
+  port: ""
+  sidecar:
+    # -- use to enable fluentd sidecar container running logging agent
+    enabled: false
+    loki:
+      # -- URL of the Loki instance that the sidecar will output logs to
+      url: ""
+      # -- extra labels that the fluentd sidecar will set on log events for loki
+      extra_labels: "\"env\":\"sandbox\", \"app\": \"disco\""
+
+# Used to specify labels on pods and services (useful for monitoring)
+monitoring:
+  # -- label for exporter autodetection
+  application: ""
+  # -- label to application name
+  app: ""  
+  # -- label to specify product name (chart name by default)
+  productName: ""
+  # -- label for environment being deployed
+  environment: ""
+
+certManager:
+  # -- specifies whether a certificate should be created with cert-manager
+  create: false
+
+istio:
+  # -- enable istio sidecar injection
+  enabled: false
+
+# Default hostnames and ports of dependent services
+mockServer:
+  service:
+    # -- max heap size of the mock server service
+    mxHeap: ""
+
+# use if you want to change the api version in URL path. Defaults to the API version implemented by this version of the component
+api:
+  contextPath: "/api/v2/"
+  
+# use if you want to expose your service with a context path, for instance /mock-server. Default is blank
+contextPath: ""

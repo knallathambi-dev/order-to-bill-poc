@@ -1,0 +1,17 @@
+{
+  "id": "{{request.pathSegments.[3]}}",
+  "category": "intervention",
+  "status": "accepted",
+  "validFor": {
+    "endDateTime": "2025-07-08T09:01:03.116Z",
+    "startDateTime": "2025-07-08T09:01:03.116Z"
+  },
+  "relatedParty": [
+    {
+      "id": "12345",
+      "name": "Micheal",
+      "role": "IT department Engineering",
+      "@referredType": "Organization"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "ProductDeliveredEventBuilder" : {
+    "type" : "object",
+    "properties" : {
+      "productOrderId" : {
+        "type" : "string"
+      },
+      "productOrderItemId" : {
+        "type" : "string"
+      },
+      "productOrderItemEventId" : {
+        "type" : "string"
+      },
+      "relatedProductOrderState" : {
+        "type" : "string",
+        "enum" : [ "draft", "acknowledged", "accepted", "inProgress", "held", "pending", "pendingCancellation", "assessingCancellation", "cancelled", "rejected", "completed", "failed", "partial" ]
+      },
+      "productState" : {
+        "type" : "string",
+        "enum" : [ "draft", "acknowledged", "accepted", "inProgress", "held", "pending", "pendingCancellation", "assessingCancellation", "cancelled", "rejected", "completed", "failed", "partial" ]
+      }
+    }
+  }
+}

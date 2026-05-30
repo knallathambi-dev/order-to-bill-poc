@@ -1,0 +1,48 @@
+[
+  {
+    "@type": "Product",
+    "id": "649aaf9f2b4b3225cb5737ed",
+    "href": "https://cpib-integration.apps.fr01.paas.tech.orange/productManagement/v1/product/649aaf9f2b4b3225cb5737ed",
+    "isBundle": false,
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "10",
+        "productOrderId": "1108"
+      }
+    ],
+    "statusChange": [
+      {
+        "changeDate": "2023-07-03T10:13:07.247Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2023-07-03T10:13:07.247Z",
+        "Status": "Active"
+      }
+    ],
+    "productSpecification": {
+      "id": "df32402e-ceb9-4467-aafd-fec0bbff3124",
+      "name": "SIM CARD",
+      "@type": "ProductSpecificationRef"
+    },
+    "realizingService": [
+      {
+        "id": "a8529d5e-fea2-4c8a-a6e2-88e3e6cd8342",
+        "href": "http://serverlocation:port/serviceInventory/3153"
+      }
+    ],
+    "relatedParty": [
+      {
+        "id": "231-mf4",
+        "name": "Abir",
+        "role": "customer",
+        "@referredType": "individual"
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "Confirmed"
+  }
+]

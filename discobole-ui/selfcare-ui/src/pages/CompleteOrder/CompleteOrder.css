@@ -1,0 +1,58 @@
+/*
+ * SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+.input-group {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-control {
+    padding-right: 50px; /* Adjust padding to prevent text from being under the image */
+}
+
+.card-icons {
+    right: 20px; /* Adjust right to move image closer or further from the edge */
+    border-radius: 0 4px 4px 0; /* Match border-radius of input */
+    height: 2rem !important;
+
+    z-index: 10; /* Ensure the image stays on top */
+
+}
+
+/* Additional styles to handle the input group append */
+.input-group-append {
+    position: absolute;
+    right: 2px;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.card-icons-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 8px;
+}
+
+.card-icon {
+    filter: grayscale(100%);
+    opacity: 0.5;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.card-icon.active {
+    filter: none;
+    opacity: 1;
+}

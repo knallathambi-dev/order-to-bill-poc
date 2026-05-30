@@ -1,0 +1,175 @@
+{
+  "id": "7d66ed18-b9d2-44a5-81f5-6d89336544bc",
+  "description": "Mobile Package Max Plus is a prepaid mobile package",
+  "isInstallable": true,
+  "lastUpdate": "2024-03-18T05:13:52.269Z",
+  "lifecycleStatus": "launched",
+  "name": "Mobile Package Max Plus",
+  "isSellable": "true",
+  "statusReason": "Product Offering initial creation",
+  "version": "1.0.0",
+  "bundledProductOffering": [
+    {
+      "id": "24b34407-3c7d-4228-ba45-feff73ec4f05",
+      "href": null,
+      "lifecycleStatus": "active",
+      "name": "Samsung galaxy S10 reconditioned",
+      "bundledProductOfferingOption": {
+        "numberRelOfferDefault": 1,
+        "numberRelOfferLowerLimit": 1,
+        "numberRelOfferUpperLimit": 1,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "AtomicProductOffering"
+    },
+    {
+      "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+      "href": null,
+      "lifecycleStatus": "launched",
+      "name": "Shipment",
+      "bundledProductOfferingOption": {
+        "numberRelOfferDefault": 1,
+        "numberRelOfferLowerLimit": 1,
+        "numberRelOfferUpperLimit": 1,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "AtomicProductOffering"
+    },
+    {
+      "id": "24b34407-3c7d-4228-ba45-feff73ec4f05",
+      "href": null,
+      "lifecycleStatus": "active",
+      "name": "Samsung galaxy S10 reconditioned",
+      "bundledProductOfferingOption": {
+        "numberRelOfferDefault": 1,
+        "numberRelOfferLowerLimit": 1,
+        "numberRelOfferUpperLimit": 1,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "AtomicProductOffering"
+    },
+    {
+      "id": "73effd22-3bb1-4a35-8dbd-323d8cc46772",
+      "href": null,
+      "lifecycleStatus": "launched",
+      "name": "Shipment",
+      "bundledProductOfferingOption": {
+        "numberRelOfferDefault": 1,
+        "numberRelOfferLowerLimit": 1,
+        "numberRelOfferUpperLimit": 1,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      },
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": "AtomicProductOffering"
+    }
+  ],
+  "category": [],
+  "channel": [
+    {
+      "id": "Selfcare",
+      "href": null,
+      "name": "Selfcare",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": null
+    },
+    {
+      "id": "Shop",
+      "href": null,
+      "name": "Shop",
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": null
+    }
+  ],
+  "marketSegment": [
+    {
+      "id": "B2B",
+      "href": null,
+      "name": null,
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": null
+    },
+    {
+      "id": "B2C",
+      "href": null,
+      "name": null,
+      "@baseType": null,
+      "@schemaLocation": null,
+      "@type": null,
+      "@referredType": null
+    }
+  ],
+  "policyRuleRef": [],
+  "productOfferingTerm": [],
+  "brand": "Orange",
+  "validFor": {
+    "endDateTime": null,
+    "startDateTime": "2023-09-01T23:21:00.520Z"
+  },
+  "commercialOperation": [
+    {
+      "id": "1",
+      "name": "Add",
+      "description": "Add ",
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2023-09-01T23:21:00.520Z"
+      },
+      "carries": null,
+      "@type": null,
+      "@baseType": null,
+      "@schemaLocation": null
+    },
+    {
+      "id": "2",
+      "name": "Modify",
+      "description": "Modify ",
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2023-09-01T23:21:00.520Z"
+      },
+      "carries": null,
+      "@type": null,
+      "@baseType": null,
+      "@schemaLocation": null
+    },
+    {
+      "id": "3",
+      "name": "Terminate",
+      "description": "Terminate",
+      "validFor": {
+        "endDateTime": null,
+        "startDateTime": "2023-09-01T23:21:00.520Z"
+      },
+      "carries": null,
+      "@type": null,
+      "@baseType": null,
+      "@schemaLocation": null
+    }
+  ],
+  "productOfferingRelationship": [],
+  "globalMinCardinality": 5,
+  "globalMaxCardinality": 5,
+  "@type": "BundleProductOffering",
+  "relatedParty": []
+}

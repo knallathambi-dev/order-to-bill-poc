@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "orderorchestrationui.fullname" . }}
+  labels:
+    {{- include "orderorchestrationui.labels" . | nindent 4 }}
+    {{- include "orderorchestrationui.shutdownLabels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "orderorchestrationui.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+      {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "orderorchestrationui.selectorLabels" . | nindent 8 }}
+        {{- include "orderorchestrationui.monitoringLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "orderorchestrationui.serviceAccountName" . }}
+      containers:
+        - name: order-orchestration-ui
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "orderorchestrationui.fullname" . }}-config
+          env:
+            - name: ENV_TYPE
+              value: {{ .Values.environmentType }}
+            - name: GATEWAY
+              value: {{ .Values.orderorchestrationui.service.gatewayUrl }}
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}

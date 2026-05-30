@@ -1,0 +1,164 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: catalog-product-catalog-administration
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+ # server:
+  #  port: 9000
+retry:
+  maxAttempts: '3'
+  maxDelay: '1000'
+
+app:
+  version: @project.version@
+  name: @project.name@
+  description: @project.description@
+  ownerName: Herve Bouvier
+  ownerMail: herve.bouvier@orange.com
+
+logging:
+  level:
+    root: INFO
+    com.orange.disco.admin.discoadminservice: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.http.converter: TRACE
+    java.util.logging: OFF
+    org.apache.catalina: OFF
+    org.apache.juli.logging.DirectJDKLog: OFF
+    org.springframework.web.servlet.DispatcherServlet: WARN
+    org.springframework.web.servlet.FrameworkServlet: WARN
+    org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor: WARN
+
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  cloud:
+    config:
+      import-check:
+        enabled: false
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: catalog
+      username: root
+      password: root
+  keycloak: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x26, admin_r, chan_w, ms_w, freq_w, unit_w, curr_w, pic_w
+  userRoleRetrievalUrl: https://auth-userrole-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRole
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+
+server:
+  port: 8080
+  tomcat:
+    mbeanregistry:
+      enabled: true
+    accesslog:
+      enabled: true
+  servlet:
+    context-path: /productCatalogAdministration/v5
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-review
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-review
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+  keycloak: https://keycloak-review-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x26
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-review-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-review-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+
+server:
+  servlet:
+    context-path: /productCatalogAdministration/v5
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-integration
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-integration
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+  keycloak: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x26
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-integration-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-staging
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-staging
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+  keycloak: https://keycloak-staging-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x26
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-staging-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-staging-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+
+server:
+  servlet:
+    context-path: /productCatalogAdministration/v5
+---
+spring:
+  config:
+    activate:
+      on-profile: openshift-production
+  data:
+    mongodb:
+      delete: true
+      host: catalog-mongo-production
+      port: 27017
+      database: catalog
+      username: ${DATABASE_USER}
+      password: ${DATABASE_PASSWORD}
+  keycloak: https://keycloak-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/certs
+  keycloakRolesEntitlements: x26
+  userRoleRetrievalUrl: https://auth-userrole-retrieve-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRoles
+  keycloakAuthUrl: https://keycloak-disco.apps.fr01.paas.tech.orange/realms/SpringBootKeycloak/protocol/openid-connect/auth
+
+server:
+  servlet:
+    context-path: /productCatalogAdministration/v5

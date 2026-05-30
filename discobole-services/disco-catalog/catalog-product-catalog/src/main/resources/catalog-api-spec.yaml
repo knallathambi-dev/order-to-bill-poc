@@ -1,0 +1,3510 @@
+# SPDX-FileCopyrightText: 2025, 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+swagger: "2.0"
+info:
+  description: |
+    ### Release 2.0.0 - March 2026
+
+    #### Goal
+    Product Catalog API is one of Catalog Management API Family.  
+    It provides a catalog of products.
+
+    #### Operations
+    Product Catalog API performs the following operations on the resources:
+    - Retrieve an entity or a collection of entities depending on filter criteria
+    - For the implementation of DISCO, product catalog API supports retrieve operations only.
+
+    ### TMF API Reference
+    TMF620 Product Catalog Management Release 2.0.0 March 2026
+
+    | Product Catalog API version | TMF API version | Description |
+    |----------------------------|-----------------|-------------|
+    | 1.1.0 | 4.0.1 | Basic implementation |
+    | 1.2.0 | 4.0.1 | Added Export job |
+    | 1.3.0 | 4.0.1 | Rating & billing (rollovers, proration) |
+    | 1.4.0 | 4.0.1 | Tax implementation |
+    | 1.5.0 | 4.0.1 | Commitment Term |
+    | 2.0.0 | 4.0.1 | Adapted allowedAction from v5 |
+  version: "2.0.0"
+  title: "Product Catalog"
+  x-logo:
+    url: "/redoc/logo.png"
+    backgroundColor: "#FFFFFF"
+produces:
+  - "application/json;charset=utf-8"
+tags:
+  - name: "ProductOffering"
+  - name: "ProductOfferingPrice"
+  - name: "ProductSpecification"
+  - name: "ProductConfigurationSpec"
+    description: "A Product Specification configuration to be associated with a stock\
+    \ item if selleable."
+paths:
+  /productOffering:
+    get:
+      tags:
+        - "ProductOffering"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listProductOffering"
+      summary: "List or find ProductOffering objects"
+      deprecated: false
+      parameters:
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProductOffering"
+    post:
+      tags:
+        - "ProductOffering"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "createProductOffering"
+      summary: "Creates a ProductOffering"
+      deprecated: false
+      parameters:
+        - name: "productOffering"
+          required: true
+          in: "body"
+          description: "The ProductOffering to be created"
+          schema:
+            $ref: "#/definitions/ProductOffering_Create"
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/ProductOffering"
+  /productOffering/{id}:
+    get:
+      tags:
+        - "ProductOffering"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "retrieveProductOffering"
+      summary: "Retrieves a ProductOffering by ID"
+      deprecated: false
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to provide in response"
+          type: "string"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ProductOffering"
+    patch:
+      tags:
+        - "ProductOffering"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "patchProductOffering"
+      summary: "Updates partially a ProductOffering"
+      deprecated: false
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "productOffering"
+          required: true
+          in: "body"
+          description: "The ProductOffering to be updated"
+          schema:
+            $ref: "#/definitions/ProductOffering_Update"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ProductOffering"
+    delete:
+      tags:
+        - "ProductOffering"
+      operationId: "deleteProductOffering"
+      summary: "Deletes a ProductOffering"
+      deprecated: false
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        204:
+          description: "No Content"
+  /productOfferingPrice:
+    get:
+      tags:
+        - "ProductOfferingPrice"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listProductOfferingPrice"
+      summary: "List or find ProductOfferingPrice objects"
+      deprecated: false
+      parameters:
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProductOfferingPrice"
+    post:
+      tags:
+        - "ProductOfferingPrice"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "createProductOfferingPrice"
+      summary: "Creates a ProductOfferingPrice"
+      deprecated: false
+      parameters:
+        - name: "productOfferingPrice"
+          required: true
+          in: "body"
+          description: "The ProductOfferingPrice to be created"
+          schema:
+            $ref: "#/definitions/ProductOfferingPrice_Create"
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/ProductOfferingPrice"
+  /productOfferingPrice/{id}:
+    get:
+      tags:
+        - "ProductOfferingPrice"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "retrieveProductOfferingPrice"
+      summary: "Retrieves a ProductOfferingPrice by ID"
+      deprecated: false
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to provide in response"
+          type: "string"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ProductOfferingPrice"
+    patch:
+      tags:
+        - "ProductOfferingPrice"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "patchProductOfferingPrice"
+      summary: "Updates partially a ProductOfferingPrice"
+      deprecated: false
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "productOfferingPrice"
+          required: true
+          in: "body"
+          description: "The ProductOfferingPrice to be updated"
+          schema:
+            $ref: "#/definitions/ProductOfferingPrice_Update"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ProductOfferingPrice"
+    delete:
+      tags:
+        - "ProductOfferingPrice"
+      operationId: "deleteProductOfferingPrice"
+      summary: "Deletes a ProductOfferingPrice"
+      deprecated: false
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        204:
+          description: "No Content"
+  /productSpecification:
+    get:
+      tags:
+        - "ProductSpecification"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "listProductSpecification"
+      summary: "List or find ProductSpecification objects"
+      deprecated: false
+      parameters:
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to be provided in response"
+          type: "string"
+        - name: "offset"
+          required: false
+          in: "query"
+          description: "Requested index for start of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+        - name: "limit"
+          required: false
+          in: "query"
+          description: "Requested number of resources to be provided in response"
+          type: "integer"
+          format: "int32"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProductSpecification"
+    post:
+      tags:
+        - "ProductSpecification"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "createProductSpecification"
+      summary: "Creates a ProductSpecification"
+      deprecated: false
+      parameters:
+        - name: "productSpecification"
+          required: true
+          in: "body"
+          description: "The ProductSpecification to be created"
+          schema:
+            $ref: "#/definitions/ProductSpecification_Create"
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/ProductSpecification"
+  /productSpecification/{id}:
+    get:
+      tags:
+        - "ProductSpecification"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "retrieveProductSpecification"
+      summary: "Retrieves a ProductSpecification by ID"
+      deprecated: false
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "fields"
+          required: false
+          in: "query"
+          description: "Comma-separated properties to provide in response"
+          type: "string"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ProductSpecification"
+    patch:
+      tags:
+        - "ProductSpecification"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "patchProductSpecification"
+      summary: "Updates partially a ProductSpecification"
+      deprecated: false
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+        - name: "productSpecification"
+          required: true
+          in: "body"
+          description: "The ProductSpecification to be updated"
+          schema:
+            $ref: "#/definitions/ProductSpecification_Update"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ProductSpecification"
+    delete:
+      tags:
+        - "ProductSpecification"
+      operationId: "deleteProductSpecification"
+      summary: "Deletes a ProductSpecification"
+      deprecated: false
+      parameters:
+        - name: "id"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        204:
+          description: "No Content"
+  /productConfigurationSpec:
+    post:
+      tags:
+        - "ProductConfigurationSpec"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "productConfigurationSpecCreate"
+      summary: "create productConfigurationSpec"
+      deprecated: false
+      parameters:
+        - name: "ProductConfigurationSpec"
+          required: true
+          in: "body"
+          schema:
+            $ref: "#/definitions/ProductConfigurationSpec"
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/ProductConfigurationSpec"
+    get:
+      tags:
+        - "ProductConfigurationSpec"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "productConfigurationSpecFind"
+      summary: "find productConfigurationSpec"
+      deprecated: false
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ProductConfigurationSpec"
+  /productConfigurationSpec/{ProductConfigurationSpecId}:
+    get:
+      tags:
+        - "ProductConfigurationSpec"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "productConfigurationSpecGet"
+      summary: "get productConfigurationSpec"
+      deprecated: false
+      parameters:
+        - name: "ProductConfigurationSpecId"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ProductConfigurationSpec"
+    patch:
+      tags:
+        - "ProductConfigurationSpec"
+      consumes:
+        - "application/json;charset=utf-8"
+      produces:
+        - "application/json;charset=utf-8"
+      operationId: "productConfigurationSpecPatch"
+      summary: "patch productConfigurationSpec"
+      deprecated: false
+      parameters:
+        - name: "ProductConfigurationSpec"
+          required: true
+          in: "body"
+          schema:
+            $ref: "#/definitions/ProductConfigurationSpec"
+        - name: "ProductConfigurationSpecId"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/ProductConfigurationSpec"
+    delete:
+      tags:
+        - "ProductConfigurationSpec"
+      operationId: "productConfigurationSpecDelete"
+      summary: "delete productConfigurationSpec"
+      deprecated: false
+      parameters:
+        - name: "ProductConfigurationSpecId"
+          required: true
+          in: "path"
+          type: "string"
+      responses:
+        204:
+          description: "No Content"
+definitions:
+  JobStateType:
+    description: "Valid values for the state of a batch job (e.g. catalog import)"
+    type: "string"
+    enum:
+      - "Not Started"
+      - "Running"
+      - "Succeeded"
+      - "Failed"
+  SupportEntity:
+    type: "string"
+    enum:
+      - "CFSSpec"
+      - "StockItem"
+      - "SupplierProduct"
+  ProductSpecificationLifecycle:
+    description: "ProductSpecification lifecycle status enum"
+    type: "string"
+    enum:
+      - "inStudy"
+      - "inDesign"
+      - "rejected"
+      - "inTest"
+      - "active"
+      - "launched"
+      - "unavailable"
+      - "retired"
+      - "obsolete"
+  ProductSpecRelationshipType:
+    description: "Relationship type for Product Specification"
+    type: "string"
+    enum:
+      - "prerequisite"
+      - "incompatible"
+      - "reliesOn"
+      - "reliesFrom"
+  ProductOfferingRelationshipType:
+    type: "string"
+    enum:
+      - "prerequisite"
+      - "incompatible"
+      - "add"
+      - "nonPersistentBrings"
+      - "brings"
+      - "onSelect"
+      - "onDeselect"
+      - "onLoad"
+      - "onRestore"
+      - "aggregates"
+      - "reliesOn"
+      - "reliesFrom"
+      - "diesWith"
+      - "reincarnates"
+  ProductOfferingType:
+    type: "string"
+    enum:
+      - "Contract"
+      - "BundleProductOffering"
+      - "AtomicOffer"
+  ProductOfferingLifecycle:
+    description: "Product Offering Lifecycle status"
+    type: "string"
+    enum:
+      - "inStudy"
+      - "inDesign"
+      - "rejected"
+      - "inTest"
+      - "active"
+      - "launched"
+      - "unavailable"
+      - "retired"
+      - "obsolete"
+  PartyType:
+    description: "Type of party"
+    type: "string"
+    enum:
+      - "individual"
+      - "organization"
+  ProductOfferingPriceType:
+    description: "Type of ProductOfferingPrice"
+    type: "string"
+    enum:
+      - "ProductOfferingPriceCharge"
+      - "ProductOfferingPriceAlteration"
+  POPRelationshipType:
+    type: "string"
+    enum:
+      - "alteredBy"
+      - "replacedBy"
+  PriceType:
+    type: "string"
+    enum:
+      - "RC"
+      - "NRC"
+      - "usage"
+  ProductOfferingPriceLifecycle:
+    description: "Product Offering Price lifecycle status"
+    type: "string"
+    enum:
+      - "launched"
+      - "unavailable"
+      - "retired"
+      - "obsolete"
+  AgreementRef:
+    description: "Agreement reference. An agreement represents a contract or arrangement,\
+      \ either written or verbal and sometimes enforceable by law, such as a service\
+      \ level agreement or a customer price agreement. An agreement involves a number\
+      \ of other business entities, such as products, services, and resources and/or\
+      \ their specifications."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the agreement"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  Attachment:
+    description: "Complements the description of an element (for instance a product)\
+      \ through video, pictures..."
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier for this particular attachment"
+        type: "string"
+      href:
+        description: "URI for this Attachment"
+        type: "string"
+      attachmentType:
+        description: "Attachment type such as video, picture"
+        type: "string"
+      content:
+        description: "The actual contents of the attachment object, if embedded, encoded\
+          \ as base64"
+        type: "string"
+      description:
+        description: "A narrative text describing the content of the attachment"
+        type: "string"
+      mimeType:
+        description: "Attachment mime type such as extension file for video, picture\
+          \ and document"
+        type: "string"
+      name:
+        description: "The name of the attachment"
+        type: "string"
+      url:
+        description: "Uniform Resource Locator, is a web page address (a subset of\
+          \ URI)"
+        type: "string"
+      size:
+        $ref: "#/definitions/Quantity"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  AttachmentRef:
+    description: "Attachment reference. An attachment complements the description\
+      \ of an element (for instance a product) through video, pictures"
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique-Identifier for this attachment"
+        type: "string"
+      href:
+        description: "URL serving as reference for the attachment resource"
+        type: "string"
+      description:
+        description: "A narrative text describing the content of the attachment"
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      url:
+        description: "Link to the attachment media/content"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  AttachmentRefOrValue:
+    description: "An attachment by value or by reference. For AttachmentRefOrValue,\
+      \ the attribute type,schemaLocation and referredType are related to the contained\
+      \ entity and not to AttchmentRefOrValue itself"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier for this particular attachment"
+        type: "string"
+      href:
+        description: "URI for this Attachment"
+        type: "string"
+      attachmentType:
+        description: "Attachment type such as video, picture"
+        type: "string"
+      content:
+        description: "The actual contents of the attachment object, if embedded, encoded\
+          \ as base64"
+        type: "string"
+      description:
+        description: "A narrative text describing the content of the attachment"
+        type: "string"
+      mimeType:
+        description: "Attachment mime type such as extension file for video, picture\
+          \ and document"
+        type: "string"
+      name:
+        description: "The name of the attachment"
+        type: "string"
+      url:
+        description: "Uniform Resource Locator, is a web page address (a subset of\
+          \ URI)"
+        type: "string"
+      size:
+        $ref: "#/definitions/Quantity"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  BundledProductOffering:
+    description: "A type of ProductOffering that belongs to a grouping of ProductOfferings\
+      \ made available to the market. It inherits of all attributes of ProductOffering."
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the BundledProductOffering"
+        type: "string"
+      href:
+        description: "Unique reference of the BundledProductOffering"
+        type: "string"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the BundledProductOffering"
+        type: "string"
+      bundledProductOfferingOption:
+        $ref: "#/definitions/BundledProductOfferingOption"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  BundledProductOfferingOption:
+    description: "A set of numbers that specifies the lower and upper limits for a\
+      \ ProductOffering that can be procured as part of the related BundledProductOffering.\
+      \ Values can range from 0 to unbounded"
+    type: "object"
+    properties:
+      numberRelOfferDefault:
+        description: "Default number of produc offereings that should be procured\
+          \ as part of the related BundledProductOffering"
+        type: "integer"
+        format: "int32"
+      numberRelOfferLowerLimit:
+        description: "lower limit for a product offering that can be procured as part\
+          \ of the related BundledProductOffering"
+        type: "integer"
+        format: "int32"
+      numberRelOfferUpperLimit:
+        description: "upper limit for a product offering that can be procured as part\
+          \ of the related BundledProductOffering"
+        type: "integer"
+        format: "int32"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  BundledProductOfferingPriceRelationship:
+    description: "This represents a bundling pricing relationship, allowing a price\
+      \ to be composed of multiple other prices (e.g. a recurring charge and a onetime\
+      \ charge)."
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the bundled product offering price"
+        type: "string"
+      href:
+        description: "hyperlink reference of the bundled product offering price"
+        type: "string"
+      name:
+        description: "Name of the bundled product offering price"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  BundledProductSpecification:
+    description: "A type of ProductSpecification that belongs to a grouping of ProductSpecifications\
+      \ made available to the market. It inherits of all attributes of ProductSpecification."
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the product specification"
+        type: "string"
+      href:
+        description: "Reference of the product specification"
+        type: "string"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the product specification"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Catalog:
+    description: "A collection of Product Offerings, intended for a specific DistributionChannel,\
+      \ enhanced with additional information such as SLA parameters, invoicing and\
+      \ shipping details"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the Catalog"
+        type: "string"
+      href:
+        description: "Unique reference of the catalog"
+        type: "string"
+      catalogType:
+        description: "Indicates if the catalog is a product, service or resource catalog"
+        type: "string"
+      description:
+        description: "Description of this catalog"
+        type: "string"
+      lastUpdate:
+        description: "Date and time of the last update"
+        type: "string"
+        format: "date-time"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the catalog"
+        type: "string"
+      version:
+        description: "Catalog version"
+        type: "string"
+      category:
+        type: "array"
+        items:
+          $ref: "#/definitions/CategoryRef"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Catalog_Create:
+    description: "A collection of Product Offerings, intended for a specific DistributionChannel,\
+      \ enhanced with additional information such as SLA parameters, invoicing and\
+      \ shipping details. \nSkipped properties: id,href"
+    required:
+      - "name"
+    type: "object"
+    properties:
+      catalogType:
+        description: "Indicates if the catalog is a product, service or resource catalog"
+        type: "string"
+      description:
+        description: "Description of this catalog"
+        type: "string"
+      lastUpdate:
+        description: "Date and time of the last update"
+        type: "string"
+        format: "date-time"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the catalog"
+        type: "string"
+      version:
+        description: "Catalog version"
+        type: "string"
+      category:
+        type: "array"
+        items:
+          $ref: "#/definitions/CategoryRef"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Catalog_Update:
+    description: "A collection of Product Offerings, intended for a specific DistributionChannel,\
+      \ enhanced with additional information such as SLA parameters, invoicing and\
+      \ shipping details. \nSkipped properties: id,href,lastUpdate"
+    type: "object"
+    properties:
+      catalogType:
+        description: "Indicates if the catalog is a product, service or resource catalog"
+        type: "string"
+      description:
+        description: "Description of this catalog"
+        type: "string"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the catalog"
+        type: "string"
+      version:
+        description: "Catalog version"
+        type: "string"
+      category:
+        type: "array"
+        items:
+          $ref: "#/definitions/CategoryRef"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  CatalogBatchEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      catalog:
+        $ref: "#/definitions/Catalog"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  CatalogCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      catalog:
+        $ref: "#/definitions/Catalog"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  CatalogDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      catalog:
+        $ref: "#/definitions/Catalog"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Category:
+    description: "The category resource is used to group product offerings, service\
+      \ and resource candidates in logical containers. Categories can contain other\
+      \ categories and/or product offerings, resource or service candidates."
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the category"
+        type: "string"
+      href:
+        description: "Reference of the category"
+        type: "string"
+      description:
+        description: "Description of the category"
+        type: "string"
+      isRoot:
+        description: "If true, this Boolean indicates that the category is a root\
+          \ of categories"
+        type: "boolean"
+      lastUpdate:
+        description: "Date and time of the last update"
+        type: "string"
+        format: "date-time"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the category"
+        type: "string"
+      parentId:
+        description: "Unique identifier of the parent category"
+        type: "string"
+      version:
+        description: "Category version"
+        type: "string"
+      productOffering:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingRef"
+      subCategory:
+        type: "array"
+        items:
+          $ref: "#/definitions/CategoryRef"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Category_Create:
+    description: "The category resource is used to group product offerings, service\
+      \ and resource candidates in logical containers. Categories can contain other\
+      \ categories and/or product offerings, resource or service candidates.\nSkipped\
+      \ properties: id,href"
+    required:
+      - "name"
+    type: "object"
+    properties:
+      description:
+        description: "Description of the category"
+        type: "string"
+      isRoot:
+        description: "If true, this Boolean indicates that the category is a root\
+          \ of categories"
+        type: "boolean"
+      lastUpdate:
+        description: "Date and time of the last update"
+        type: "string"
+        format: "date-time"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the category"
+        type: "string"
+      parentId:
+        description: "Unique identifier of the parent category"
+        type: "string"
+      version:
+        description: "Category version"
+        type: "string"
+      productOffering:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingRef"
+      subCategory:
+        type: "array"
+        items:
+          $ref: "#/definitions/CategoryRef"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Category_Update:
+    description: "The category resource is used to group product offerings, service\
+      \ and resource candidates in logical containers. Categories can contain other\
+      \ categories and/or product offerings, resource or service candidates.\nSkipped\
+      \ properties: id,href,lastUpdate"
+    type: "object"
+    properties:
+      description:
+        description: "Description of the category"
+        type: "string"
+      isRoot:
+        description: "If true, this Boolean indicates that the category is a root\
+          \ of categories"
+        type: "boolean"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the category"
+        type: "string"
+      parentId:
+        description: "Unique identifier of the parent category"
+        type: "string"
+      version:
+        description: "Category version"
+        type: "string"
+      productOffering:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingRef"
+      subCategory:
+        type: "array"
+        items:
+          $ref: "#/definitions/CategoryRef"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  CategoryCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      category:
+        $ref: "#/definitions/Category"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  CategoryDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      category:
+        $ref: "#/definitions/Category"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  CategoryRef:
+    description: "The category for grouping recommendations"
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      version:
+        description: "Category version"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  ChannelRef:
+    description: "The channel to which the resource reference to. e.g. channel for\
+      \ selling product offerings, channel for opening a trouble ticket etc.."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  ConstraintRef:
+    description: "Constraint reference. The Constraint resource represents a policy/rule\
+      \ applied to an entity or entity spec."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "reference id to the target constraint"
+        type: "string"
+      href:
+        description: "Hyperlink reference to the target constraint"
+        type: "string"
+      name:
+        description: "Name given to the constraint"
+        type: "string"
+      version:
+        description: "constraint version"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The (class) type of the referred constraint"
+        type: "string"
+  EntityRef:
+    description: "Entity reference schema to be use for all entityRef class."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  ExportJob:
+    description: "Represents a task used to export resources to a file"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the export job"
+        type: "string"
+      href:
+        description: "Reference of the export job"
+        type: "string"
+      completionDate:
+        description: "Data at which the job was completed"
+        type: "string"
+        format: "date-time"
+      contentType:
+        description: "The format of the exported data"
+        type: "string"
+      creationDate:
+        description: "Date at which the job was created"
+        type: "string"
+        format: "date-time"
+      errorLog:
+        description: "Reason for failure"
+        type: "string"
+      path:
+        description: "URL of the root resource acting as the source for streaming\
+          \ content to the file specified by the export job"
+        type: "string"
+      query:
+        description: "Used to scope the exported data"
+        type: "string"
+      url:
+        description: "URL of the file containing the data to be exported"
+        type: "string"
+      status:
+        $ref: "#/definitions/JobStateType"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ExportJob_Create:
+    description: "Represents a task used to export resources to a file. \nSkipped\
+      \ properties: id,href"
+    required:
+      - "url"
+    type: "object"
+    properties:
+      completionDate:
+        description: "Data at which the job was completed"
+        type: "string"
+        format: "date-time"
+      contentType:
+        description: "The format of the exported data"
+        type: "string"
+      creationDate:
+        description: "Date at which the job was created"
+        type: "string"
+        format: "date-time"
+      errorLog:
+        description: "Reason for failure"
+        type: "string"
+      path:
+        description: "URL of the root resource acting as the source for streaming\
+          \ content to the file specified by the export job"
+        type: "string"
+      query:
+        description: "Used to scope the exported data"
+        type: "string"
+      url:
+        description: "URL of the file containing the data to be exported"
+        type: "string"
+      status:
+        $ref: "#/definitions/JobStateType"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ImportJob:
+    description: "Represents a task used to import resources from a file"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the import job"
+        type: "string"
+      href:
+        description: "Reference of the import job"
+        type: "string"
+      completionDate:
+        description: "Date at which the job was completed"
+        type: "string"
+        format: "date-time"
+      contentType:
+        description: "Indicates the format of the imported data"
+        type: "string"
+      creationDate:
+        description: "Date at which the job was created"
+        type: "string"
+        format: "date-time"
+      errorLog:
+        description: "Reason for failure if status is failed"
+        type: "string"
+      path:
+        description: "URL of the root resource where the content of the file specified\
+          \ by the import job must be applied"
+        type: "string"
+      url:
+        description: "URL of the file containing the data to be imported"
+        type: "string"
+      status:
+        $ref: "#/definitions/JobStateType"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ImportJob_Create:
+    description: "Represents a task used to import resources from a file. \nSkipped\
+      \ properties: id,href"
+    required:
+      - "url"
+    type: "object"
+    properties:
+      completionDate:
+        description: "Date at which the job was completed"
+        type: "string"
+        format: "date-time"
+      contentType:
+        description: "Indicates the format of the imported data"
+        type: "string"
+      creationDate:
+        description: "Date at which the job was created"
+        type: "string"
+        format: "date-time"
+      errorLog:
+        description: "Reason for failure if status is failed"
+        type: "string"
+      path:
+        description: "URL of the root resource where the content of the file specified\
+          \ by the import job must be applied"
+        type: "string"
+      url:
+        description: "URL of the file containing the data to be imported"
+        type: "string"
+      status:
+        $ref: "#/definitions/JobStateType"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  MarketSegmentRef:
+    description: "provides references to the corresponding market segment as target\
+      \ of product offerings. A market segment is grouping of Parties, GeographicAreas,\
+      \ SalesChannels, and so forth."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the market segment"
+        type: "string"
+      href:
+        description: "Reference of the market segment"
+        type: "string"
+      name:
+        description: "Name of the market segment"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "(Class) type of the referred market segment"
+        type: "string"
+  Money:
+    description: "A base / value business entity used to represent money"
+    type: "object"
+    properties:
+      unit:
+        description: "Currency (ISO4217 norm uses 3 letters to define the currency)"
+        type: "string"
+      value:
+        description: "A positive floating point number"
+        type: "number"
+        format: "float"
+  PlaceRef:
+    description: "Place reference. PlaceRef defines the placeRefs where the products\
+      \ are sold or delivered."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  PricingLogicAlgorithm:
+    description: "The PricingLogicAlgorithm entity represents an instantiation of\
+      \ an interface specification to external rating function (without a modeled\
+      \ bahavior in SID). Some of the parameters of the interface definiition may\
+      \ be already set (such as price per unit) and some may be gathered during the\
+      \ rating process from the event (such as call duration) or from ProductCharacteristicValues\
+      \ (such as assigned bandwidth)"
+    type: "object"
+    properties:
+      id:
+        description: "unique id of the PricingLogicAlgorithm"
+        type: "string"
+      href:
+        description: "hyperlink reference of this PricingLogicAlgorithm"
+        type: "string"
+      description:
+        description: "Description of the PricingLogicAlgorithm"
+        type: "string"
+      name:
+        description: "Name given to the PricingLogicAlgorithm"
+        type: "string"
+      plaSpecId:
+        description: "id of corresponding PricingLogicAlgorithm specification"
+        type: "string"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductOffering:
+    description: "Represents entities that are orderable from the provider of the\
+      \ catalog, this resource includes pricing information."
+    required:
+      - "isInstallable"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the productOffering"
+        type: "string"
+      href:
+        description: "Reference of the ProductOffering"
+        type: "string"
+      description:
+        description: "Description of the productOffering"
+        type: "string"
+      isBundle:
+        description: "isBundle determines whether a productOffering represents a single\
+          \ productOffering (false), or a bundle of productOfferings (true)."
+        type: "boolean"
+      isSellable:
+        description: "A flag indicating if this product offer can be sold stand-alone\
+          \ for sale or not. If this flag is false it indicates that the offer can\
+          \ only be sold within a bundle."
+        type: "boolean"
+      isInstallable:
+        description: "A flag indicating if this product offer must be stored in product\
+          \ inventory when ordered. If this flag is false it indicates that the offer\
+          \ must not be stored."
+        type: "boolean"
+        default: true
+      lastUpdate:
+        description: "Date and time of the last update"
+        type: "string"
+        format: "date-time"
+      lifecycleStatus:
+        $ref: "#/definitions/ProductOfferingLifecycle"
+      name:
+        description: "Name of the productOffering"
+        type: "string"
+      statusReason:
+        description: "A string providing a complementary information on the value\
+          \ of the lifecycle status attribute."
+        type: "string"
+      version:
+        description: "ProductOffering version"
+        type: "string"
+      bundledProductOffering:
+        type: "array"
+        items:
+          $ref: "#/definitions/BundledProductOffering"
+      category:
+        type: "array"
+        items:
+          $ref: "#/definitions/CategoryRef"
+      channel:
+        type: "array"
+        items:
+          $ref: "#/definitions/ChannelRef"
+      marketSegment:
+        type: "array"
+        items:
+          $ref: "#/definitions/MarketSegmentRef"
+      prodSpecCharValueUse:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationCharacteristicValueUse"
+      productOfferingPrice:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingPriceRef"
+      productOfferingTerm:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingTerm"
+      productSpecification:
+        $ref: "#/definitions/ProductSpecificationRef"
+      brand:
+        description: "The manufacturer or trademark of the product offering"
+        type: "string"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      commercialOperation:
+        type: "array"
+        items:
+          $ref: "#/definitions/CommercialOperation"
+      productOfferingRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingRelationship"
+      numberBundledOfferLowerLimit:
+        description: "Minimum of bundled offer that this bundle product offer must\
+          \ get once instantied"
+        type: "integer"
+        format: "int32"
+      numberBundledOfferUpperLimit:
+        description: "Maximum of bundled offer that this bundle product offer must\
+          \ get once instantied"
+        type: "integer"
+        format: "int32"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        $ref: "#/definitions/ProductOfferingType"
+  ProductOffering_Create:
+    description: "Represents entities that are orderable from the provider of the\
+      \ catalog, this resource includes pricing information.\nSkipped properties:\
+      \ id,href."
+    required:
+      - "name"
+      - "isInstallable"
+      - "@type"
+    type: "object"
+    properties:
+      description:
+        description: "Description of the productOffering"
+        type: "string"
+      isBundle:
+        description: "isBundle determines whether a productOffering represents a single\
+          \ productOffering (false), or a bundle of productOfferings (true)."
+        type: "boolean"
+      isSellable:
+        description: "A flag indicating if this product offer can be sold stand-alone\
+          \ for sale or not. If this flag is false it indicates that the offer can\
+          \ only be sold within a bundle."
+        type: "boolean"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the productOffering"
+        type: "string"
+      statusReason:
+        description: "A string providing a complementary information on the value\
+          \ of the lifecycle status attribute."
+        type: "string"
+      version:
+        description: "ProductOffering version"
+        type: "string"
+      bundledProductOffering:
+        type: "array"
+        items:
+          $ref: "#/definitions/BundledProductOffering"
+      category:
+        type: "array"
+        items:
+          $ref: "#/definitions/CategoryRef"
+      channel:
+        type: "array"
+        items:
+          $ref: "#/definitions/ChannelRef"
+      marketSegment:
+        type: "array"
+        items:
+          $ref: "#/definitions/MarketSegmentRef"
+      prodSpecCharValueUse:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationCharacteristicValueUse"
+      productOfferingPrice:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingPriceRef"
+      productOfferingTerm:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingTerm"
+      productSpecification:
+        $ref: "#/definitions/ProductSpecificationRef"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      commercialOperation:
+        type: "array"
+        items:
+          $ref: "#/definitions/CommercialOperation"
+      productOfferingRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingRelationship"
+      brand:
+        description: "The manufacturer or trademark of the product offering"
+        type: "string"
+      isInstallable:
+        description: "A flag indicating if this product offer must be stored in product\
+          \ inventory when ordered. If this flag is false it indicates that the offer\
+          \ must not be stored."
+        type: "boolean"
+      numberBundledOfferLowerLimit:
+        description: "Minimum of bundled offer that this bundle product offer must\
+          \ get once instantied"
+        type: "integer"
+        format: "int32"
+      numberBundledOfferUpperLimit:
+        description: "Maximum of bundled offer that this bundle product offer must\
+          \ get once instantied"
+        type: "integer"
+        format: "int32"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+        default: "ProductOffering"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        $ref: "#/definitions/ProductOfferingType"
+  ProductOffering_Update:
+    description: "Represents entities that are orderable from the provider of the\
+      \ catalog, this resource includes pricing information.\nSkipped properties:\
+      \ id,href,lastUpdate"
+    type: "object"
+    properties:
+      description:
+        description: "Description of the productOffering"
+        type: "string"
+      isBundle:
+        description: "isBundle determines whether a productOffering represents a single\
+          \ productOffering (false), or a bundle of productOfferings (true)."
+        type: "boolean"
+      isSellable:
+        description: "A flag indicating if this product offer can be sold stand-alone\
+          \ for sale or not. If this flag is false it indicates that the offer can\
+          \ only be sold within a bundle."
+        type: "boolean"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the productOffering"
+        type: "string"
+      statusReason:
+        description: "A string providing a complementary information on the value\
+          \ of the lifecycle status attribute."
+        type: "string"
+      version:
+        description: "ProductOffering version"
+        type: "string"
+      bundledProductOffering:
+        type: "array"
+        items:
+          $ref: "#/definitions/BundledProductOffering"
+      category:
+        type: "array"
+        items:
+          $ref: "#/definitions/CategoryRef"
+      channel:
+        type: "array"
+        items:
+          $ref: "#/definitions/ChannelRef"
+      marketSegment:
+        type: "array"
+        items:
+          $ref: "#/definitions/MarketSegmentRef"
+      prodSpecCharValueUse:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationCharacteristicValueUse"
+      productOfferingPrice:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingPriceRef"
+      productOfferingTerm:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingTerm"
+      productSpecification:
+        $ref: "#/definitions/ProductSpecificationRef"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      numberBundledOfferLowerLimit:
+        type: "integer"
+        format: "int32"
+      numberBundledOfferUpperLimit:
+        type: "integer"
+        format: "int32"
+      brand:
+        type: "string"
+      commercialOperation:
+        type: "array"
+        items:
+          $ref: "#/definitions/CommercialOperation"
+      productOfferingRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingRelationship"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        $ref: "#/definitions/ProductOfferingType"
+  ProductOfferingAttributeValueChangeEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      productOffering:
+        $ref: "#/definitions/ProductOffering"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductOfferingCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      productOffering:
+        $ref: "#/definitions/ProductOffering"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductOfferingDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      productOffering:
+        $ref: "#/definitions/ProductOffering"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductOfferingPrice:
+    description: "Is based on both the basic cost to develop and produce products\
+      \ and the enterprises policy on revenue targets. This price may be further revised\
+      \ through discounting (productOfferPriceAlteration). The price, applied for\
+      \ a productOffering may also be influenced by the productOfferingTerm, the customer\
+      \ selected, eg: a productOffering can be offered with multiple terms, like commitment\
+      \ periods for the contract. The price may be influenced by this productOfferingTerm.\
+      \ A productOffering may be cheaper with a 24 month commitment than with a 12\
+      \ month commitment."
+    required:
+      - "@type"
+    type: "object"
+    properties:
+      id:
+        description: "unique id of this resource"
+        type: "string"
+      href:
+        description: "Reference of the ProductOfferingPrice"
+        type: "string"
+      description:
+        description: "Description of the productOfferingPrice"
+        type: "string"
+      isBundle:
+        description: "A flag indicating if this ProductOfferingPrice is composite\
+          \ (bundle) or not"
+        type: "boolean"
+      lastUpdate:
+        description: "the last update time of this ProductOfferingPrice"
+        type: "string"
+        format: "date-time"
+      lifecycleStatus:
+        $ref: "#/definitions/ProductOfferingPriceLifecycle"
+      name:
+        description: "Name of the productOfferingPrice"
+        type: "string"
+      percentage:
+        description: "Percentage to apply for ProductOfferPriceAlteration (Discount)"
+        type: "number"
+        format: "float"
+      priceType:
+        $ref: "#/definitions/PriceType"
+      recurringChargePeriodLength:
+        description: "the period of the recurring charge:  1, 2, ... .It sets to zero\
+          \ if it is not applicable"
+        type: "integer"
+        format: "int32"
+      recurringChargePeriodType:
+        description: "The period to repeat the application of the price\nCould be\
+          \ month, week..."
+        type: "string"
+      version:
+        description: "ProductOffering version"
+        type: "string"
+      popRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingPriceRelationship"
+      price:
+        $ref: "#/definitions/Money"
+      tax:
+        type: "array"
+        items:
+          $ref: "#/definitions/TaxItem"
+      unitOfMeasure:
+        $ref: "#/definitions/Quantity"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "the immediate base class type of this product offering"
+        type: "string"
+      '@schemaLocation':
+        description: "hyperlink reference to the schema describing this resource"
+        type: "string"
+      '@type':
+        $ref: "#/definitions/ProductOfferingPriceType"
+  ProductOfferingPrice_Create:
+    description: "Is based on both the basic cost to develop and produce products\
+      \ and the enterprises policy on revenue targets. This price may be further revised\
+      \ through discounting (productOfferPriceAlteration). The price, applied for\
+      \ a productOffering may also be influenced by the productOfferingTerm, the customer\
+      \ selected, eg: a productOffering can be offered with multiple terms, like commitment\
+      \ periods for the contract. The price may be influenced by this productOfferingTerm.\
+      \ A productOffering may be cheaper with a 24 month commitment than with a 12\
+      \ month commitment.\nSkipped properties: id,href"
+    required:
+      - "name"
+      - "@type"
+    type: "object"
+    properties:
+      description:
+        description: "Description of the productOfferingPrice"
+        type: "string"
+      isBundle:
+        description: "A flag indicating if this ProductOfferingPrice is composite\
+          \ (bundle) or not"
+        type: "boolean"
+        default: false
+      lifecycleStatus:
+        $ref: "#/definitions/ProductOfferingPriceLifecycle"
+      name:
+        description: "Name of the productOfferingPrice"
+        type: "string"
+      percentage:
+        description: "Percentage to apply for ProductOfferPriceAlteration (Discount)"
+        type: "number"
+        format: "float"
+      priceType:
+        $ref: "#/definitions/PriceType"
+      recurringChargePeriodLength:
+        description: "the period of the recurring charge:  1, 2, ... .It sets to zero\
+          \ if it is not applicable"
+        type: "integer"
+        format: "int32"
+      recurringChargePeriodType:
+        description: "The period to repeat the application of the price\nCould be\
+          \ month, week..."
+        type: "string"
+      version:
+        description: "ProductOffering version"
+        type: "string"
+      popRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingPriceRelationship"
+      price:
+        $ref: "#/definitions/Money"
+      tax:
+        type: "array"
+        items:
+          $ref: "#/definitions/TaxItem"
+      unitOfMeasure:
+        $ref: "#/definitions/Quantity"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "the immediate base class type of this product offering"
+        type: "string"
+        default: "ProductOfferingPrice"
+      '@schemaLocation':
+        description: "hyperlink reference to the schema describing this resource"
+        type: "string"
+      '@type':
+        $ref: "#/definitions/ProductOfferingPriceType"
+  ProductOfferingPrice_Update:
+    description: "Is based on both the basic cost to develop and produce products\
+      \ and the enterprises policy on revenue targets. This price may be further revised\
+      \ through discounting (productOfferPriceAlteration). The price, applied for\
+      \ a productOffering may also be influenced by the productOfferingTerm, the customer\
+      \ selected, eg: a productOffering can be offered with multiple terms, like commitment\
+      \ periods for the contract. The price may be influenced by this productOfferingTerm.\
+      \ A productOffering may be cheaper with a 24 month commitment than with a 12\
+      \ month commitment.\nSkipped properties: id,href,lastUpdate"
+    type: "object"
+    properties:
+      description:
+        description: "Description of the productOfferingPrice"
+        type: "string"
+      lifecycleStatus:
+        $ref: "#/definitions/ProductOfferingPriceLifecycle"
+      name:
+        description: "Name of the productOfferingPrice"
+        type: "string"
+      percentage:
+        description: "Percentage to apply for ProductOfferPriceAlteration (Discount)"
+        type: "number"
+        format: "float"
+      recurringChargePeriodLength:
+        description: "the period of the recurring charge:  1, 2, ... .It sets to zero\
+          \ if it is not applicable"
+        type: "integer"
+        format: "int32"
+      recurringChargePeriodType:
+        description: "The period to repeat the application of the price\nCould be\
+          \ month, week..."
+        type: "string"
+      version:
+        description: "ProductOffering version"
+        type: "string"
+      popRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingPriceRelationship"
+      price:
+        $ref: "#/definitions/Money"
+      tax:
+        type: "array"
+        items:
+          $ref: "#/definitions/TaxItem"
+      unitOfMeasure:
+        $ref: "#/definitions/Quantity"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+  ProductOfferingPriceAttributeValueChangeEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      productOfferingPrice:
+        $ref: "#/definitions/ProductOfferingPrice"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductOfferingPriceCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      productOfferingPrice:
+        $ref: "#/definitions/ProductOfferingPrice"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductOfferingPriceDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      productOfferingPrice:
+        $ref: "#/definitions/ProductOfferingPrice"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductOfferingPriceRef:
+    description: "ProductPriceOffering reference. An amount, usually of money, that\
+      \ is asked for or allowed when a ProductOffering is bought, rented, or leased"
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  ProductOfferingPriceRelationship:
+    description: "Describes a non-composite relationship between product offering\
+      \ prices. For example one price might be an discount alteration for another\
+      \ price."
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the associated product offering price"
+        type: "string"
+      href:
+        description: "hyperlink reference of the associated product offering price"
+        type: "string"
+      name:
+        description: "Name of the associated product offering price"
+        type: "string"
+      relationshipType:
+        $ref: "#/definitions/POPRelationshipType"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductOfferingPriceStateChangeEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      productOfferingPrice:
+        $ref: "#/definitions/ProductOfferingPrice"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductOfferingRef:
+    description: "ProductOffering reference. A product offering represents entities\
+      \ that are orderable from the provider of the catalog, this resource includes\
+      \ pricing information."
+    required:
+      - "id"
+      - "@referredType"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        $ref: "#/definitions/ProductOfferingPriceType"
+  ProductOfferingStateChangeEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      productOffering:
+        $ref: "#/definitions/ProductOffering"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductOfferingTerm:
+    description: "A condition under which a ProductOffering is made available to Customers.\
+      \ For instance, a productOffering can be offered with multiple commitment periods."
+    type: "object"
+    properties:
+      description:
+        description: "Description of the productOfferingTerm"
+        type: "string"
+      name:
+        description: "Name of the productOfferingTerm"
+        type: "string"
+      duration:
+        $ref: "#/definitions/Quantity"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductSpecification:
+    description: "Is a detailed description of a tangible or intangible object made\
+      \ available externally in the form of a ProductOffering to customers or other\
+      \ parties playing a party role."
+    required:
+      - "supportEntity"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the product specification"
+        type: "string"
+      href:
+        description: "Reference of the product specification"
+        type: "string"
+      brand:
+        description: "The manufacturer or trademark of the specification"
+        type: "string"
+      description:
+        description: "A narrative that explains in detail what the product specification\
+          \ is"
+        type: "string"
+      isBundle:
+        description: "isBundle determines whether a productSpecification represents\
+          \ a single productSpecification (false), or a bundle of productSpecification\
+          \ (true)."
+        type: "boolean"
+        default: false
+      lastUpdate:
+        description: "Date and time of the last update"
+        type: "string"
+        format: "date-time"
+      lifecycleStatus:
+        $ref: "#/definitions/ProductSpecificationLifecycle"
+      name:
+        description: "Name of the product specification"
+        type: "string"
+      productNumber:
+        description: "An identification number assigned to uniquely identity the specification"
+        type: "string"
+      version:
+        description: "Product specification version"
+        type: "string"
+      supportEntity:
+        $ref: "#/definitions/SupportEntity"
+      productSpecCharacteristic:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationCharacteristic"
+      productSpecificationRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationRelationship"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      resourceSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/ResourceSpecificationRef"
+      serviceSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/ServiceSpecificationRef"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      productUsageSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/UsageSpecification"
+      relatedResource:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedResource"
+      operationSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/OperationSpecification"
+      stockItemType:
+        $ref: "#/definitions/StockItemType"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductSpecification_Create:
+    description: "Is a detailed description of a tangible or intangible object made\
+      \ available externally in the form of a ProductOffering to customers or other\
+      \ parties playing a party role.\nSkipped properties: id,href"
+    required:
+      - "name"
+      - "supportEntity"
+    type: "object"
+    properties:
+      brand:
+        description: "The manufacturer or trademark of the specification"
+        type: "string"
+      description:
+        description: "A narrative that explains in detail what the product specification\
+          \ is"
+        type: "string"
+      isBundle:
+        description: "isBundle determines whether a productSpecification represents\
+          \ a single productSpecification (false), or a bundle of productSpecification\
+          \ (true)."
+        type: "boolean"
+        default: false
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the product specification"
+        type: "string"
+      productNumber:
+        description: "An identification number assigned to uniquely identity the specification"
+        type: "string"
+      version:
+        description: "Product specification version"
+        type: "string"
+      productSpecCharacteristic:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationCharacteristic"
+      productSpecificationRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationRelationship"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      resourceSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/ResourceSpecificationRef"
+      serviceSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/ServiceSpecificationRef"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      usageSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/UsageSpecification"
+      relatedResource:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedResource"
+      operationSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/OperationSpecification"
+      stockItemType:
+        $ref: "#/definitions/StockItemType"
+      supportEntity:
+        $ref: "#/definitions/SupportEntity"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+        default: "ProductSpecification"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductSpecification_Update:
+    description: "Is a detailed description of a tangible or intangible object made\
+      \ available externally in the form of a ProductOffering to customers or other\
+      \ parties playing a party role.\nSkipped properties: id,href,lastUpdate"
+    type: "object"
+    properties:
+      brand:
+        description: "The manufacturer or trademark of the specification"
+        type: "string"
+      description:
+        description: "A narrative that explains in detail what the product specification\
+          \ is"
+        type: "string"
+      lifecycleStatus:
+        description: "Used to indicate the current lifecycle status"
+        type: "string"
+      name:
+        description: "Name of the product specification"
+        type: "string"
+      productNumber:
+        description: "An identification number assigned to uniquely identity the specification"
+        type: "string"
+      version:
+        description: "Product specification version"
+        type: "string"
+      productSpecCharacteristic:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationCharacteristic"
+      productSpecificationRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationRelationship"
+      relatedParty:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedParty"
+      resourceSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/ResourceSpecificationRef"
+      serviceSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/ServiceSpecificationRef"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      usageSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/UsageSpecification"
+      relatedResource:
+        type: "array"
+        items:
+          $ref: "#/definitions/RelatedResource"
+      operationSpecification:
+        type: "array"
+        items:
+          $ref: "#/definitions/OperationSpecification"
+      stockItemType:
+        type: "string"
+  ProductSpecificationCharacteristic:
+    description: "A characteristic quality or distinctive feature of a ProductSpecification.\
+      \  The characteristic can be take on a discrete value, such as color, can take\
+      \ on a range of values, (for example, sensitivity of 100-240 mV), or can be\
+      \ derived from a formula (for example, usage time (hrs) = 30 - talk time *3).\
+      \ Certain characteristics, such as color, may be configured during the ordering\
+      \ or some other process."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the Product Specification characteristic"
+        type: "string"
+      configurable:
+        description: "If true, the Boolean indicates that the ProductSpecificationCharacteristic\
+          \ is configurable"
+        type: "boolean"
+      description:
+        description: "A narrative that explains in detail what the ProductSpecificationCharacteristic\
+          \ is"
+        type: "string"
+      extensible:
+        description: "An indicator that specifies that the values for the characteristic\
+          \ can be extended by adding new values when instantiating a characteristic\
+          \ for a product"
+        type: "boolean"
+      isUnique:
+        description: "An indicator that specifies if a value is unique for the specification.\
+          \ Possible values are; \"unique while value is in effect\" and \"unique\
+          \ whether value is in effect or not\""
+        type: "boolean"
+      maxCardinality:
+        description: "The maximum number of instances a CharacteristicValue can take\
+          \ on. For example, zero to five phone numbers in a group calling plan, where\
+          \ five is the value for the maxCardinality"
+        type: "integer"
+        format: "int32"
+      minCardinality:
+        description: "The minimum number of instances a CharacteristicValue can take\
+          \ on. For example, zero to five phone numbers in a group calling plan, where\
+          \ zero is the value for the minCardinality"
+        type: "integer"
+        format: "int32"
+      name:
+        description: "Name of the ProductSpecificationCharacteristic"
+        type: "string"
+      regex:
+        description: "A rule or principle represented in regular expression used to\
+          \ derive the value of a characteristic value"
+        type: "string"
+      valueType:
+        description: "A kind of value that the characteristic can take on, such as\
+          \ numeric, text and so forth"
+        type: "string"
+      productSpecCharRelationship:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationCharacteristicRelationship"
+      productSpecCharacteristicValue:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationCharacteristicValue"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductSpecificationCharacteristicRelationship:
+    description: "An aggregation, migration, substitution, dependency or exclusivity\
+      \ relationship between/among productSpecificationCharacteristics."
+    type: "object"
+    properties:
+      id:
+        description: "the identifier of the associated product specification"
+        type: "string"
+      href:
+        description: "Hyperlink reference to the target product specification"
+        type: "string"
+      charSpecSeq:
+        description: "The order in which a CharacteristicSpecification appears within\
+          \ another CharacteristicSpecification that defines a grouping of CharacteristicSpecifications.\n\
+          \nFor example, a grouping may represent the name of an individual. The given\
+          \ name is first, the middle name is second, and the last name is third."
+        type: "integer"
+        format: "int32"
+      name:
+        description: "Name of the target product specification characteristic"
+        type: "string"
+      relationshipType:
+        description: "Type of relationship such as aggregation, migration, substitution,\
+          \ dependency, exclusivity"
+        type: "string"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductSpecificationCharacteristicValue:
+    description: "A ProductSpecificationCharacteristicValue object is used to define\
+      \ a set of attributes, each of which can be assigned to a corresponding set\
+      \ of attributes in a ProductSpecificationCharacteristic object. The values of\
+      \ the attributes in the ProductSpecificationCharacteristicValue object describe\
+      \ the values of the attributes that a corresponding ProductSpecificationCharacteristic\
+      \ object can take on."
+    type: "object"
+    properties:
+      isDefault:
+        description: "Indicates if the value is the default value for a characteristic"
+        type: "boolean"
+      rangeInterval:
+        description: "An indicator that specifies the inclusion or exclusion of the\
+          \ valueFrom and valueTo attributes. If applicable, possible values are \"\
+          open\", \"closed\", \"closedBottom\" and \"closedTop\"."
+        type: "string"
+      regex:
+        description: "Regular expression to define constraint on the allowed value"
+        type: "string"
+      unitOfMeasure:
+        description: "A length, surface, volume, dry measure, liquid measure, money,\
+          \ weight, time, and the like. In general, a determinate quantity or magnitude\
+          \ of the kind designated, taken as a standard of comparison for others of\
+          \ the same kind, in assigning to them numerical values, as 1 foot, 1 yard,\
+          \ 1 mile, 1 square foot."
+        type: "string"
+      valueFrom:
+        description: "The low range value that a characteristic can take on"
+        type: "string"
+      valueTo:
+        description: "The upper range value that a characteristic can take on"
+        type: "string"
+      valueType:
+        description: "A kind of value that the characteristic can take on, such as\
+          \ numeric, text, and so forth"
+        type: "string"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      value:
+        description: "A discrete value that the characteristic can take on, or the\
+          \ actual value of the characteristic"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductSpecificationCharacteristicValueUse:
+    description: "A use of the ProductSpecificationCharacteristicValue by a ProductOffering\
+      \ to which additional properties (attributes) apply or override the properties\
+      \ of similar properties contained in ProductSpecificationCharacteristicValue.\
+      \ It should be noted that characteristics which their value(s) addressed by\
+      \ this object must exist in corresponding product specification. The available\
+      \ characteristic values for a ProductSpecificationCharacteristic in a Product\
+      \ specification can be modified at the ProductOffering level. For example, a\
+      \ characteristic 'Color' might have values White, Blue, Green, and Red. But,\
+      \ the list of values can be restricted to e.g. White and Blue in an associated\
+      \ product offering. It should be noted that the list of values in 'ProductSpecificationCharacteristicValueUse'\
+      \ is a strict subset of the list of values as defined in the corresponding product\
+      \ specification characteristics."
+    type: "object"
+    properties:
+      description:
+        description: "A narrative that explains in detail what the productSpecificationCharacteristic\
+          \ is"
+        type: "string"
+      maxCardinality:
+        description: "The maximum number of instances a CharacteristicValue can take\
+          \ on. For example, zero to five phone numbers in a group calling plan, where\
+          \ five is the value for the maxCardinality."
+        type: "integer"
+        format: "int32"
+      minCardinality:
+        description: "The minimum number of instances a CharacteristicValue can take\
+          \ on. For example, zero to five phone numbers in a group calling plan, where\
+          \ zero is the value for the minCardinality."
+        type: "integer"
+        format: "int32"
+      name:
+        description: "Name of the associated productSpecificationCharacteristic"
+        type: "string"
+      valueType:
+        description: "A kind of value that the characteristic can take on, such as\
+          \ numeric, text and so forth"
+        type: "string"
+      productSpecCharacteristicValue:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductSpecificationCharacteristicValue"
+      productSpecification:
+        $ref: "#/definitions/ProductSpecificationRef"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductSpecificationCreateEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      productSpecification:
+        $ref: "#/definitions/ProductSpecification"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductSpecificationDeleteEventPayload:
+    description: "The event data structure"
+    type: "object"
+    properties:
+      productSpecification:
+        $ref: "#/definitions/ProductSpecification"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductSpecificationRef:
+    description: "Product specification reference: A ProductSpecification is a detailed\
+      \ description of a tangible or intangible object made available externally in\
+      \ the form of a ProductOffering to customers or other parties playing a party\
+      \ role."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      version:
+        description: "Version of the product specification"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  ProductSpecificationRelationship:
+    description: "A migration, substitution, dependency or exclusivity relationship\
+      \ between/among product specifications."
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the productSpecification"
+        type: "string"
+      href:
+        description: "Reference of the productSpecification"
+        type: "string"
+      relationshipType:
+        $ref: "#/definitions/ProductSpecRelationshipType"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  Quantity:
+    description: "An amount in a given unit"
+    type: "object"
+    properties:
+      amount:
+        description: "Numeric value in a given unit"
+        type: "number"
+        format: "float"
+        default: 1
+      units:
+        description: "Unit"
+        type: "string"
+  RelatedParty:
+    description: "Related Entity reference. A related party defines party or party\
+      \ role linked to a specific entity."
+    required:
+      - "id"
+      - "@referredType"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of a related entity."
+        type: "string"
+      href:
+        description: "Reference of the related entity."
+        type: "string"
+      name:
+        description: "Name of the related entity."
+        type: "string"
+      role:
+        description: "Role played by the related party"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        $ref: "#/definitions/PartyType"
+  ResourceCandidateRef:
+    description: "ResourceCandidate reference: A resource candidate is an entity that\
+      \ makes a ResourceSpecification available to a catalog."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the resource candidate"
+        type: "string"
+      href:
+        description: "Reference of the resource candidate"
+        type: "string"
+      name:
+        description: "Name of the resource candidate"
+        type: "string"
+      version:
+        description: "Version of the resource candidate"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  ResourceSpecificationRef:
+    description: "Resource Specification reference: The ResourceSpecification is required\
+      \ to realize a ProductSpecification."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the resource specification"
+        type: "string"
+      href:
+        description: "Reference of the resource specification"
+        type: "string"
+      name:
+        description: "Name of the requiredResourceSpecification"
+        type: "string"
+      version:
+        description: "Resource specification version"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  SLARef:
+    description: "ServiceLevelAgreement reference: A service level agreement (SLA)\
+      \ is a type of agreement that represents a formal negotiated agreement between\
+      \ two parties designed to create a common understanding about products, services,\
+      \ priorities, responsibilities, and so forth. The SLA is a set of appropriate\
+      \ procedures and targets formally or informally agreed between parties in order\
+      \ to achieve and maintain specified Quality of Service."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of service level agreement"
+        type: "string"
+      href:
+        description: "Reference of the service level agreement"
+        type: "string"
+      name:
+        description: "Name of the service level agreement"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  ServiceCandidateRef:
+    description: "ServiceCandidate reference. ServiceCandidate is an entity that makes\
+      \ a ServiceSpecification available to a catalog."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the service candidate"
+        type: "string"
+      href:
+        description: "Unique reference of the service candidate"
+        type: "string"
+      name:
+        description: "Name of the service candidate"
+        type: "string"
+      version:
+        description: "Version of the service candidate"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  ServiceSpecificationRef:
+    description: "Service specification reference: ServiceSpecification(s) required\
+      \ to realize a ProductSpecification."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the service specification"
+        type: "string"
+      href:
+        description: "Reference of the serviceSpecification"
+        type: "string"
+      name:
+        description: "Name of the requiredServiceSpecification"
+        type: "string"
+      version:
+        description: "Service specification version"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  TargetProductSchema:
+    description: "The reference object to the schema and type of target product which\
+      \ is described by product specification"
+    required:
+      - "@schemaLocation"
+      - "@type"
+    type: "object"
+    properties:
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "This field provides a link to the schema describing the target\
+          \ product"
+        type: "string"
+      '@type':
+        description: "Class type of the target product"
+        type: "string"
+  TargetServiceSchema:
+    description: "The reference object to the schema and type of target service which\
+      \ is described by service specification"
+    required:
+      - "@schemaLocation"
+      - "@type"
+    type: "object"
+    properties:
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "This field provides a link to the schema describing the target\
+          \ service"
+        type: "string"
+      '@type':
+        description: "Class type of the target service"
+        type: "string"
+  TaxItem:
+    description: "A tax item is created for each tax rate and tax type used in the\
+      \ bill."
+    type: "object"
+    properties:
+      taxCategory:
+        description: "Tax category"
+        type: "string"
+      taxRate:
+        description: "Applied rate of the tax"
+        type: "number"
+        format: "float"
+      taxAmount:
+        $ref: "#/definitions/Money"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  TimePeriod:
+    description: "A period of time, either as a deadline (endDateTime only) a startDateTime\
+      \ only, or both"
+    type: "object"
+    properties:
+      endDateTime:
+        description: "End of the time period, using IETC-RFC-3339 format"
+        type: "string"
+        format: "date-time"
+      startDateTime:
+        description: "Start of the time period, using IETC-RFC-3339 format. If you\
+          \ define a start, you must also define an end"
+        type: "string"
+        format: "date-time"
+  RelatedResource:
+    description: "Related Entity reference. A related resource defines a resource\
+      \ and a role linked to a specific entity."
+    required:
+      - "id"
+      - "role"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the resource specification"
+        type: "string"
+      href:
+        description: "Reference of the resource specification"
+        type: "string"
+      name:
+        description: "Name of the requiredResourceSpecification"
+        type: "string"
+      role:
+        description: "Role played by the related resource."
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@referredType':
+        description: "The actual type of the target instance when needed for disambiguation."
+        type: "string"
+  UsageSpecification:
+    description: "Specification for resource, service or product Usages."
+    required:
+      - "id"
+      - "validFor"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the Usage specification. Must be locally unique\
+          \ within the containing specification, thus allowing direct access to the\
+          \ Usage spec."
+        type: "string"
+      name:
+        description: "Unique name given to the Usage specification"
+        type: "string"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+  OperationSpecification:
+    description: "An operation specification for an entity."
+    required:
+      - "id"
+      - "validFor"
+      - "isQualificationRequested"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the Operation specification."
+        type: "string"
+      name:
+        description: "Name of the operation as add, migrate,change, terminate, etc..."
+        type: "string"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      description:
+        description: "Description of the operation."
+        type: "string"
+      isQualificationRequested:
+        description: "An indicator to specify if a qualification request must be done\
+          \ for this operation."
+        type: "boolean"
+        default: false
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+  StockItemType:
+    description: "Stock item type allows to regroup all stock item linked from same\
+      \ 'tangible' product type - like for example all stock item for a handset model\
+      \ whatever color & memory size."
+    required:
+      - "id"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the stock item type."
+        type: "string"
+      name:
+        description: "Name of the stock item type."
+        type: "string"
+  ProductConfSpecCharacteristic:
+    description: "This class defines a characteristic for a product configuration\
+      \ specification."
+    required:
+      - "id"
+      - "productSpecification"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the Product Configuration Specification\
+          \ characteristic"
+        type: "string"
+      description:
+        description: "A narrative that explains in detail what the ProductConfSpecCharacteristic\
+          \ is"
+        type: "string"
+      name:
+        description: "Name of the ProductConfSpecCharacteristic"
+        type: "string"
+      valueType:
+        description: "A kind of value that the characteristic can take on, such as\
+          \ numeric, text and so forth"
+        type: "string"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      productSpecification:
+        $ref: "#/definitions/ProductSpecificationRef"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+  ProductConfSpecCharacteristicValue:
+    description: "Specification of a enum value that can be assigned to a Product\
+      \ configuration specification Characteristic."
+    required:
+      - "enumerated"
+    type: "object"
+    properties:
+      valueType:
+        description: "A kind of value that the characteristic can take on, such as\
+          \ numeric, text, and so forth"
+        type: "string"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      value:
+        description: "A discrete value that the characteristic can take on, or the\
+          \ actual value of the characteristic"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      enumerated:
+        $ref: "#/definitions/ProductConfSpecCharacteristic"
+  StockItemRef:
+    description: "StockItemRef is an entity managed by supply chain. This is the abstract\
+      \ representation of a group of resource specification representing 'the same\
+      \ thing' for the order managemnt."
+    required:
+      - "id"
+      - "validFor"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the Stock Item Reference"
+        type: "string"
+      name:
+        description: "Name of the Stock Item Reference"
+        type: "string"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+  AllowedProductAction:
+    description: "Allowed action for a product offering, specifying the action and the channels where it is allowed."
+    type: "object"
+    properties:
+      action:
+        description: "Reference to the commercial operation/action."
+        $ref: "#/definitions/CommercialOperation"
+      channelRef:
+        description: "Channels where this action is allowed."
+        type: "array"
+        items:
+          $ref: "#/definitions/ChannelRef"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes and relationships"
+        type: "string"
+  ProductConfigurationSpec:
+    description: "Describes a product specification configuration for a 'tangible'\
+      \ product specification. A configuration is a combination instance."
+    required:
+      - "id"
+      - "isSellable"
+    type: "object"
+    properties:
+      id:
+        description: "Unique identifier of the Product Configuration Specification"
+        type: "string"
+      isSellable:
+        description: "Indicates if this product configuration could be sold."
+        type: "boolean"
+        default: true
+      stockItem:
+        $ref: "#/definitions/StockItemRef"
+      productSpecification:
+        $ref: "#/definitions/ProductSpecificationRef"
+      definedBy:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductConfSpecCharacteristicValue"
+  CommercialOperation:
+    description: "An operation specification for an entity."
+    required:
+      - "id"
+      - "validFor"
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the commercial operation."
+        type: "string"
+      name:
+        description: "Name of the commercial operation as add, migrate,change, terminate,\
+          \ etc..."
+        type: "string"
+      description:
+        description: "Description of the commercial operation."
+        type: "string"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      carries:
+        type: "array"
+        items:
+          $ref: "#/definitions/ProductOfferingPriceRef"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+  ProductOfferingRelationship:
+    description: "A commercial relationship between/among product Offerings."
+    type: "object"
+    properties:
+      id:
+        description: "Identifier of the targeted product offering"
+        type: "string"
+      href:
+        description: "uri to the targeted product offering"
+        type: "string"
+      relationshipType:
+        $ref: "#/definitions/ProductOfferingRelationshipType"
+      validFor:
+        $ref: "#/definitions/TimePeriod"
+      '@baseType':
+        description: "When sub-classing, this defines the super-class"
+        type: "string"
+      '@schemaLocation':
+        description: "A URI to a JSON-Schema file that defines additional attributes\
+          \ and relationships"
+        type: "string"
+      '@type':
+        description: "When sub-classing, this defines the sub-class entity name"
+        type: "string"

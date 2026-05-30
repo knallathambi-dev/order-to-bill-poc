@@ -1,0 +1,208 @@
+/*
+ * SPDX-FileCopyrightText: 2025, 2026 Orange SA
+ * SPDX-License-Identifier: MIT
+ *
+ * This software is distributed under the MIT License,
+ * the text of which is available at https://opensource.org/license/mit
+ * or see the "LICENSE.txt" file for more details.
+ *
+ * Authors: See CONTRIBUTORS.txt
+ */
+
+/* https://squidfunk.github.io/mkdocs-material/reference/admonitions/#custom-admonitions */
+
+
+/* admonition "success" */
+:root {
+  /* Solaris Icon "form-tick" */ 
+  --md-admonition-icon--success: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill-rule="evenodd" d="M729.667 250 396.333 583.333l-125-125L188 541.667l125 125L396.333 750l83.334-83.333L813 333.333z"/></svg>')
+}
+
+/* admonition "info" */
+:root {
+  /* Solaris Icon "info" */ 
+  --md-admonition-icon--info: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill-rule="evenodd" d="M500 75.5c-234.72 0-425 190.28-425 425s190.28 425 425 425 425-190.28 425-425-190.28-425-425-425Zm0 100a75 75 0 1 1-75 75 75 75 0 0 1 75-75Zm125 600H400v-25.737l5.287-.167c15.555-.5 27.115-4.919 34.368-13.136 2.576-2.972 6.956-13.1 6.956-47.153v-227.2c0-32.392-4.523-44.6-8.311-49.141-5.359-6.391-16.516-10.147-33.17-11.156l-5.13-.31v-26h175v313.807c0 32.415 8.457 44.618 12.24 49.142 5.34 6.389 15.68 10.142 32.625 11.152l5.135.3v25.6Z"/></svg>')
+}
+
+/* admonition "warning" */
+:root {
+  /* Solaris Icon "warning" */ 
+  --md-admonition-icon--warning: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill-rule="evenodd" d="M500.497 125a93.94 93.94 0 0 1 81.09 46.517l328.62 562.5-.008.005a93.709 93.709 0 0 1-81.09 140.983H171.887a93.71 93.71 0 0 1-81.09-140.983l.765-1.326.036-.062 327.8-561.117C436.254 142.707 467.122 125 500.497 125Zm1.01 555.005c-26.233-.002-47.5 21.262-47.502 47.495-.003 26.233 21.26 47.5 47.493 47.505a47.5 47.5 0 0 0 47.507-47.5c0-26.233-21.265-47.5-47.498-47.5Zm-.01-380.007c-26.238 0-47.507 21.27-47.507 47.507 0 .967.037 1.918.094 2.867l15.74 258.716.004.52c.288 17.092 14.355 23.53 31.667 23.53 17.486 0 31.662-6.568 31.67-24.05l15.7-258.121.057-.86a43.7 43.7 0 0 0 .082-2.602c0-26.238-21.27-47.507-47.507-47.507Z"/></svg>')
+}
+
+/* admonition "abstract" */
+:root {
+  /* Solaris Icon "document" */ 
+  --md-admonition-icon--abstract: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill-rule="evenodd" d="M625 75v150c0 27.614 19.9 50 44.444 50H825Zm50 250a100 100 0 0 1-100-100V75H175v799.773h.006c0 .076-.006.151-.006.227a50 50 0 0 0 50 50h600V325H675Zm-350 50h350a25 25 0 0 1 0 50H325a25 25 0 0 1 0-50Zm0 100h350a25 25 0 0 1 0 50H325a25 25 0 0 1 0-50Zm0 100h350a25 25 0 0 1 0 50H325a25 25 0 0 1 0-50Zm100 150H325a25 25 0 0 1 0-50h100a25 25 0 0 1 0 50Z"/></svg>')
+}
+
+/* admonition "note" */
+:root {
+  /* Solaris Icon "pencil" */ 
+  --md-admonition-icon--note: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill-rule="evenodd" d="m876.2 238.316-51.077-51.108-63.846-63.884a81.085 81.085 0 0 0-68.3-23.078c-.712.095-1.421.2-2.131.32a81.16 81.16 0 0 0-13.825 3.471c-.03.011-.061.019-.091.03a80.92 80.92 0 0 0-30.578 19.257L186.663 583.292l-53.526 176.424-13.253 43.678-18.684 61.59a28.53 28.53 0 0 0-.485 1.827c-.045.192-.078.383-.119.575-.087.415-.17.83-.238 1.242-.037.227-.066.453-.1.68a25.987 25.987 0 0 0-.245 2.931c-.006.23-.012.46-.013.689 0 .376.01.75.025 1.123.008.211.013.422.027.632.027.425.069.847.116 1.267.018.152.028.305.048.456q.111.855.276 1.693c.021.108.05.214.072.322.095.448.2.894.313 1.334.051.191.11.379.165.568.1.354.207.705.323 1.053.07.207.145.412.219.617a26.864 26.864 0 0 0 .629 1.586q.207.473.431.935c.095.2.188.393.288.587.164.322.339.638.516.952.095.171.188.343.287.511.227.385.467.761.713 1.134.059.09.114.183.175.273q.464.685.969 1.341c.1.127.2.248.3.373.246.308.493.614.752.911.135.156.277.307.415.46.234.257.47.512.713.76.155.158.313.312.472.467.241.234.486.465.736.69a26.197 26.197 0 0 0 1.292 1.098c.167.132.331.266.5.395.3.228.6.445.912.66.147.1.29.21.438.309.459.308.926.605 1.405.885.021.013.043.024.065.036q.687.4 1.4.759c.162.082.329.156.494.235.337.163.677.323 1.022.472.2.084.395.162.592.241a26.305 26.305 0 0 0 1.61.591q.493.162.995.306c.212.061.424.122.638.177.352.092.706.172 1.062.249.2.044.4.091.6.129.415.08.835.145 1.256.206.147.021.291.048.438.067q.856.106 1.726.159c.117.007.236.006.353.011.4.019.8.037 1.208.037.056 0 .113-.006.169-.006.358 0 .719-.023 1.08-.04.283-.013.565-.019.85-.041.377-.03.758-.081 1.137-.127.272-.033.542-.056.814-.1.421-.064.845-.153 1.269-.237.233-.047.466-.082.7-.135q.963-.219 1.93-.51c.017 0 .034-.008.051-.014l21.618-6.566 83.587-25.391 176.317-53.56 262.68-262.838L876.2 353.308a80.927 80.927 0 0 0 22.163-41.279q.136-.669.26-1.338.611-3.294.95-6.62c.026-.248.053-.5.076-.744q.342-3.7.35-7.422v-.093a81.083 81.083 0 0 0-23.799-57.496ZM359.047 755.779l37.419 37.442-176.318 53.559-66.969-67.01 53.527-176.424 37.419 37.441 459.69-459.967 19.154 19.165-459.691 459.968 76.615 76.661 459.691-459.968 19.154 19.166Z"/></svg>')
+}
+
+/* admonition "community" */
+:root {
+  /* Solaris Icon "gathering" */
+  --md-admonition-icon--community: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill-rule="evenodd" d="M722.5 197.857a115.579 115.579 0 0 0-52.6 12.581 179.7 179.7 0 0 1-32.039 175.282 269.533 269.533 0 0 1 54.055 39.932c.139.123.272.254.409.378A116.081 116.081 0 1 0 722.5 197.857ZM230 590a20.011 20.011 0 0 1 .637-5.025 239.069 239.069 0 0 1 36.23-110.7c3.916-6.179 8.129-12.128 12.575-17.868-.647.008-1.293.023-1.942.023a151.211 151.211 0 0 1-101.254-38.719 151.83 151.83 0 0 0-85.977 128H90V697.5a62.5 62.5 0 0 0 62.5 62.5H230V590Zm77.675-163.97c.138-.124.27-.255.409-.378a269.533 269.533 0 0 1 54.055-39.932 180.158 180.158 0 0 1-32.033-175.283 116.065 116.065 0 1 0-22.431 215.593Zm602.056 119.685a151.832 151.832 0 0 0-85.976-128A151.213 151.213 0 0 1 722.5 456.43c-.649 0-1.295-.015-1.942-.023 4.446 5.74 8.659 11.689 12.575 17.868a239.069 239.069 0 0 1 36.23 110.7A20.011 20.011 0 0 1 770 590v170h140V545.715h-.269ZM749.643 590c-4.278-77.4-48.008-143.663-110.383-176.99a211.649 211.649 0 0 1-134.349 51.93q-2.448.06-4.911.06h-.019q-2.454 0-4.892-.06a211.641 211.641 0 0 1-134.349-51.93C298.365 446.337 254.635 512.6 250.357 590H250v212.5c0 48.326 37.31 87.5 83.334 87.5H750V590h-.357ZM660 270a160 160 0 1 1-160-160 160 160 0 0 1 160 160Z"/></svg>')
+}
+.md-typeset .admonition.community,
+.md-typeset details.community {
+  border-color: rgb(207, 113, 36);
+}
+.md-typeset .community > .admonition-title,
+.md-typeset .community > summary {
+  background-color: rgba(207, 113, 36, 0.1);
+  border-color: rgb(207, 113, 36);
+}
+.md-typeset .community > .admonition-title::before,
+.md-typeset .community > summary::before {
+  background-color: rgb(207, 113, 36);
+  -webkit-mask-image: var(--md-admonition-icon--community);
+          mask-image: var(--md-admonition-icon--community);
+}
+
+/* admonition "support" */
+:root {
+  /* Solaris Icon "hand-shake" */
+  --md-admonition-icon--support: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill-rule="evenodd" d="m528.726 192.181-9.691 9.693-19.381 19.387L344.6 376.354l19.381 19.387a54.81 54.81 0 0 0 77.527 0L557.8 279.421l9.691-9.693 9.691-9.694L829.141 512.06l9.69-9.693a123.4 123.4 0 0 0 0-174.479L703.16 192.181a123.321 123.321 0 0 0-174.434 0ZM276.765 599.3l38.764-38.773a41.133 41.133 0 0 0 0-58.16 41.108 41.108 0 0 0-58.145 0l-38.763 38.773a41.132 41.132 0 0 0 0 58.16 41.105 41.105 0 0 0 58.144 0Zm77.527 77.547 38.763-38.774a41.132 41.132 0 0 0 0-58.159 41.107 41.107 0 0 0-58.145 0l-38.763 38.773a41.133 41.133 0 0 0 0 58.16 41.108 41.108 0 0 0 58.145 0Zm77.526 77.546 38.763-38.773a41.133 41.133 0 0 0 0-58.16 41.108 41.108 0 0 0-58.145 0l-38.763 38.773a41.133 41.133 0 0 0 0 58.16 41.106 41.106 0 0 0 58.145 0Zm58.145-19.386L451.2 773.78a41.132 41.132 0 0 0 0 58.16 41.107 41.107 0 0 0 58.144 0l38.764-38.774a41.132 41.132 0 0 0 0-58.159 41.106 41.106 0 0 0-58.145 0Zm-29.073-319.88a82.213 82.213 0 0 1-116.289 0l-38.763-38.773 174.434-174.48-8.144-8.146a125.51 125.51 0 0 0-177.528 0L162.022 326.34a125.588 125.588 0 0 0 0 177.574l28.5 28.508a68.138 68.138 0 0 1 4.046-5.5c.061-.075.127-.146.188-.22a69.631 69.631 0 0 1 2.066-2.406q1.169-1.293 2.414-2.54L238 482.98a68.5 68.5 0 0 1 116.256 58.194 68.462 68.462 0 0 1 77.526 77.547 68.461 68.461 0 0 1 77.527 77.546 69.113 69.113 0 0 1 21.375.3q1.927.33 3.837.77t3.8.989q.942.274 1.879.577a68.09 68.09 0 0 1 27.291 16.716l19.382 19.387a41.12 41.12 0 0 0 58.145-58.16l-19.384-19.386-135.671-135.706a13.707 13.707 0 0 1 19.381-19.387l135.672 135.706L664.4 657.46a41.12 41.12 0 0 0 58.145-58.16l-19.385-19.386-135.671-135.707a13.707 13.707 0 0 1 19.382-19.386l135.671 135.706 19.382 19.387a41.12 41.12 0 1 0 58.144-58.16l-50-50.014L577.18 298.808l-58.145 58.159Z"/></svg>')
+}
+.md-typeset .admonition.support,
+.md-typeset details.support {
+  border-color: rgb(221, 61, 213);
+}
+.md-typeset .support > .admonition-title,
+.md-typeset .support > summary {
+  background-color: rgba(221, 61, 213, 0.1);
+  border-color: rgb(221, 61, 213);
+}
+.md-typeset .support > .admonition-title::before,
+.md-typeset .support > summary::before {
+  background-color: rgb(221, 61, 213);
+  -webkit-mask-image: var(--md-admonition-icon--support);
+          mask-image: var(--md-admonition-icon--support);
+}
+
+/* admonition "training" */
+:root {
+  /* Solaris Icon "expert" */
+  --md-admonition-icon--training: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill-rule="evenodd" d="m500.009 326-175-58.333V375a175 175 0 0 0 350 0V267.666ZM750 216.666 800 200 500 100 200 200l300 100 225-75v175l-10 50h45l-10-50V216.666ZM750 675a174.878 174.878 0 0 0-83.185-149 225.03 225.03 0 0 1-333.63 0A174.88 174.88 0 0 0 250 675v200a75 75 0 0 0 75 75c1.682 0 3.346-.075 5-.185V950h420V678h-.038c.017-1 .038-2 .038-3Zm-107.5-31c17.95 0 32.5 14.308 32.5 31.957s-14.55 31.961-32.5 31.961S610 693.61 610 675.957 624.55 644 642.5 644ZM702 907H598v-12h3v-.025c.332.014.665.025 1 .025a23 23 0 0 0 23-23c0-.335-.011-.668-.025-1H625V760h-.064A22.821 22.821 0 0 0 603 739.024V739h-5v-12h77v144h.025c-.014.332-.025.665-.025 1a23 23 0 0 0 23 23c.335 0 .668-.011 1-.025V895h3v12Z"/></svg>')
+}
+.md-typeset .admonition.training,
+.md-typeset details.training {
+  border-color: rgb(3, 134, 127);
+}
+.md-typeset .training > .admonition-title,
+.md-typeset .training > summary {
+  background-color: rgba(3, 134, 127, 0.1);
+  border-color: rgb(3, 134, 127);
+}
+.md-typeset .training > .admonition-title::before,
+.md-typeset .training > summary::before {
+  background-color: rgb(3, 134, 127);
+  -webkit-mask-image: var(--md-admonition-icon--training);
+          mask-image: var(--md-admonition-icon--training);
+}
+
+/* admonition "reco" */
+:root {
+  /* Solaris Icon 'ethics' */
+  --md-admonition-icon--reco: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path fill-rule="evenodd" d="M275 875h450a25 25 0 0 0 25-25 25 25 0 0 0-25-25H275a25 25 0 0 0-25 25 25 25 0 0 0 25 25Zm525-625H200a25 25 0 0 0-25 25 25 25 0 0 0 25 25h37.5L125 525a125 125 0 0 0 125 125 125 125 0 0 0 125-125L262.5 300H475v450H350a25 25 0 0 0-25 25 25 25 0 0 0 25 25h300a25 25 0 0 0 25-25 25 25 0 0 0-25-25H525V300h212.5L625 525a125 125 0 0 0 125 125 125 125 0 0 0 125-125L762.5 300H800a25 25 0 0 0 25-25 25 25 0 0 0-25-25ZM175 500l75-150 75 150H175Zm500 0 75-150 75 150H675ZM500 225a50 50 0 1 0-50-50 50 50 0 0 0 50 50Z"/></svg>')
+}
+.md-typeset .admonition.reco,
+.md-typeset details.reco {
+  border-color: rgb(147, 16, 173);
+}
+.md-typeset .reco > .admonition-title,
+.md-typeset .reco > summary {
+  background-color: rgba(147, 16, 173, 0.1);
+  border-color: rgb(147, 16, 173);
+}
+.md-typeset .reco > .admonition-title::before,
+.md-typeset .reco > summary::before {
+  background-color: rgb(147, 16, 173);
+  -webkit-mask-image: var(--md-admonition-icon--reco);
+          mask-image: var(--md-admonition-icon--reco);
+}
+
+/* admonition "alternative" */
+:root {
+  /* Solaris Icon 'synchronise' */
+  --md-admonition-icon--alternative: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M782.843 217.174A398.736 398.736 0 0 0 500 100c-195.291 0-357.892 139.936-393 325h154.391a250.117 250.117 0 0 1 415.4-101.776L575.005 425H825.02a50 50 0 0 0 50-50V125ZM738.609 575a250.117 250.117 0 0 1-415.4 101.777L425 575H174.98a50 50 0 0 0-50 50v250l92.18-92.174A398.736 398.736 0 0 0 500 900c195.291 0 357.892-139.936 393-325H738.609Z"/></svg>')
+}
+.md-typeset .admonition.alternative,
+.md-typeset details.alternative {
+  border-color: rgb(0,200,83);
+}
+.md-typeset .alternative > .admonition-title,
+.md-typeset .alternative > summary {
+  background-color: rgb(0,200,83,0.1);
+  border-color:  rgb(0,200,83);
+}
+.md-typeset .alternative > .admonition-title::before,
+.md-typeset .alternative > summary::before {
+  background-color: rgb(0,200,83);
+  -webkit-mask-image: var(--md-admonition-icon--alternative);
+          mask-image: var(--md-admonition-icon--alternative);
+}
+
+/* fake admonition "graphical-convention"
+   only used in "graphical conventions" section, into the best practices page*/
+.md-typeset .graphical-convention > .admonition-title,
+.md-typeset .graphical-convention > summary {
+  background-color: white;
+  border-color:  white;
+}
+.md-typeset .graphical-convention > .admonition-title::before,
+.md-typeset .graphical-convention > summary::before {
+  background-color: rgb(0,200,83,0); /* render a transparent default "note" icon, to see the must/should/could/dont icon behind*/
+}
+.md-typeset .graphical-convention.must > summary,
+.md-typeset .graphical-convention.should > summary,
+.md-typeset .graphical-convention.could > summary,
+.md-typeset .graphical-convention.dont > summary {
+  background-position:  top 0.2em left 0.2em;
+  text-indent: 1em;
+}
+
+/* admonition "must sould could dont" */
+
+.md-typeset .success.must > summary,
+.md-typeset .success.should > summary,
+.md-typeset .success.could > summary
+{
+  text-indent: 3.5em;
+}
+
+.md-typeset .alternative.must > summary,
+.md-typeset .alternative.should > summary,
+.md-typeset .alternative.could > summary {
+  text-indent: 3.5em;
+}
+
+.md-typeset .must > summary,
+.md-typeset .should > summary,
+.md-typeset .could > summary,
+.md-typeset .dont > summary
+{
+  background-repeat: no-repeat;
+  background-position:  top 0.15em left 3.05em;
+}
+
+.md-typeset .must > summary {
+  background-image: url('../img/icons/best-practices-1-must.svg');
+}
+
+.md-typeset .should > summary {
+  background-image: url('../img/icons/best-practices-2-should.svg');
+}
+
+.md-typeset .could > summary {
+  background-image: url('../img/icons/best-practices-3-could.svg');
+}
+
+.md-typeset .dont > summary {
+  background-image: url('../img/icons/best-practices-4-dont.svg');
+}
+

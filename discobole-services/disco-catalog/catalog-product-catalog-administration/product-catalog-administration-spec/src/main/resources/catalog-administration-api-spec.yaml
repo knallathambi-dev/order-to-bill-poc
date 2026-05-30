@@ -1,0 +1,2874 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+openapi: "3.0.0"
+info:
+  description: "The productCatalogAdministration API provides for management which\
+    \ includes CRUD operations for entities that are referred in product catalog like\
+    \ catalog constants. These may be currencies, units of measures, frequencyTypes\
+    \ etc. The API is not a TMF prescribed API and supports the following operations:\n\
+    1.POST\n2.PATCH\n3.PUT\n4.DELETE"
+  version: "5.7.0_inProgress"
+  title: "ProductCatalogAdministration"
+tags:
+  - name: "CpibConfiguration"
+    description: "Identifies if product inventory is to be checked before change in\
+    \ lifecycle"
+  - name: "Currency"
+    description: "Identifies the currency format"
+  - name: "ProductCatalogAdministration"
+    description: "Main resource for administration of the product catalog"
+  - name: "FrequencyTypes"
+    description: "Identifies the types of ffrequencies defined in the product catalog\
+    \ entities"
+  - name: "Unit"
+    description: "Identifies the units of measure configured in the product catalog"
+  - name: "Channel"
+    description: "Channels supported by the front ends."
+  - name: "Version"
+    description: "Identifies the version of the API"
+  - name: "Status"
+    description: "Identifies the health of the API"
+  - name: "MarketSegment"
+    description: "Supported market segment"
+  - name: "CFSRelationshipRestriction"
+    description: "Enables/disables the relationship restriction from CFS level to PS."
+  - name: "TaxItem"
+    description: "taxItem is used to define tax rates and amounts."
+paths:
+  /cpibConfiguration:
+    post:
+      tags:
+        - "CpibConfiguration"
+      operationId: "cpibConfigurationCreate"
+      summary: "create productInventoryConfiguration"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductInventoryConfiguration"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ProductInventoryConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - "CpibConfiguration"
+      operationId: "cpibConfigurationFind"
+      summary: "find productInventoryConfiguration"
+      description: "List the current product inventory check configuration."
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/ProductInventoryConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /cpibConfiguration/{cpibConfigurationId}:
+    get:
+      tags:
+        - "CpibConfiguration"
+      operationId: "cpibConfigurationGet"
+      summary: "get productInventoryConfiguration"
+      description: "Get the current product inventory configuration"
+      parameters:
+        - name: "cpibConfigurationId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ProductInventoryConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - "CpibConfiguration"
+      operationId: "cpibConfigurationUpdate"
+      summary: "update productInventoryConfiguration"
+      description: "Update the product configuration check values"
+      parameters:
+        - name: "cpibConfigurationId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductInventoryConfiguration"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ProductInventoryConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      tags:
+        - "CpibConfiguration"
+      operationId: "cpibConfigurationPatch"
+      summary: "patch productInventoryConfiguration"
+      parameters:
+        - name: "cpibConfigurationId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/ProductInventoryConfiguration"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/ProductInventoryConfiguration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /currency:
+    post:
+      tags:
+        - "Currency"
+      operationId: "currencyCreate"
+      summary: "create currency"
+      description: "Create a new currency."
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/currency"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/currency"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - "Currency"
+      operationId: "currencyFind"
+      summary: "find currency"
+      description: "List of all currencies"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/currency"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /currency/{currencyId}:
+    get:
+      tags:
+        - "Currency"
+      operationId: "currencyGet"
+      summary: "get currency"
+      description: "Get currencies by ID."
+      parameters:
+        - name: "currencyId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/currency"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - "Currency"
+      operationId: "currencyUpdate"
+      summary: "update currency"
+      description: "Update a currency by ID."
+      parameters:
+        - name: "currencyId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/currency"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/currency"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - "Currency"
+      operationId: "currencyDelete"
+      summary: "delete currency"
+      description: "Delete a currency."
+      parameters:
+        - name: "currencyId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productCatalogAdministration:
+    post:
+      tags:
+        - "ProductCatalogAdministration"
+      operationId: "productCatalogAdministrationCreate"
+      summary: "create productCatalogAdministration"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/productCatalogAdministration"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/productCatalogAdministration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - "ProductCatalogAdministration"
+      operationId: "productCatalogAdministrationFind"
+      summary: "find productCatalogAdministration"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/productCatalogAdministration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /productCatalogAdministration/{productCatalogAdministrationId}:
+    get:
+      tags:
+        - "ProductCatalogAdministration"
+      operationId: "productCatalogAdministrationGet"
+      summary: "get productCatalogAdministration"
+      parameters:
+        - name: "productCatalogAdministrationId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/productCatalogAdministration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - "ProductCatalogAdministration"
+      operationId: "productCatalogAdministrationUpdate"
+      summary: "update productCatalogAdministration"
+      parameters:
+        - name: "productCatalogAdministrationId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/productCatalogAdministration"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/productCatalogAdministration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    patch:
+      tags:
+        - "ProductCatalogAdministration"
+      operationId: "productCatalogAdministrationPatch"
+      summary: "patch productCatalogAdministration"
+      parameters:
+        - name: "productCatalogAdministrationId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/productCatalogAdministration"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/productCatalogAdministration"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - "ProductCatalogAdministration"
+      operationId: "productCatalogAdministrationDelete"
+      summary: "delete productCatalogAdministration"
+      parameters:
+        - name: "productCatalogAdministrationId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /frequencyTypes:
+    post:
+      tags:
+        - "FrequencyTypes"
+      operationId: "frequencyTypesCreate"
+      summary: "create frequencyTypes"
+      description: "Create a new frequency type"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/frequencyTypes"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/frequencyTypes"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - "FrequencyTypes"
+      operationId: "frequencyTypesFind"
+      summary: "find frequencyTypes"
+      description: "List all frequency types"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/frequencyTypes"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /frequencyTypes/{frequencyTypesId}:
+    get:
+      tags:
+        - "FrequencyTypes"
+      operationId: "frequencyTypesGet"
+      summary: "get frequencyTypes"
+      description: "Get a frequency by ID."
+      parameters:
+        - name: "frequencyTypesId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/frequencyTypes"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - "FrequencyTypes"
+      operationId: "frequencyTypesUpdate"
+      summary: "update frequencyTypes"
+      description: "Update a existing frequency type"
+      parameters:
+        - name: "frequencyTypesId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/frequencyTypes"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/frequencyTypes"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - "FrequencyTypes"
+      operationId: "frequencyTypesDelete"
+      summary: "delete frequencyTypes"
+      description: "Delete a frequency."
+      parameters:
+        - name: "frequencyTypesId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /unit:
+    post:
+      tags:
+        - "Unit"
+      operationId: "unitCreate"
+      summary: "create unit"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/unit"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/unit"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - "Unit"
+      operationId: "unitFind"
+      summary: "find unit"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/unit"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /unit/{unitId}:
+    get:
+      tags:
+        - "Unit"
+      operationId: "unitGet"
+      summary: "get unit"
+      parameters:
+        - name: "unitId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/unit"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - "Unit"
+      operationId: "unitUpdate"
+      summary: "update unit"
+      parameters:
+        - name: "unitId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/unit"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/unit"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - "Unit"
+      operationId: "unitDelete"
+      summary: "delete unit"
+      parameters:
+        - name: "unitId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /channel:
+    post:
+      tags:
+        - "Channel"
+      operationId: "channelCreate"
+      summary: "create channel"
+      description: "Create a new channel"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Channel"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Channel"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - "Channel"
+      operationId: "channelFind"
+      summary: "find channel"
+      description: "List existing channels"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Channel"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /channel/{channelId}:
+    get:
+      tags:
+        - "Channel"
+      operationId: "channelGet"
+      summary: "get channel"
+      description: "Get a channel by ID"
+      parameters:
+        - name: "channelId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Channel"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - "Channel"
+      operationId: "channelUpdate"
+      summary: "update channel"
+      description: "Update an existing channel"
+      parameters:
+        - name: "channelId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/Channel"
+        description: "Update a channel name"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Channel"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - "Channel"
+      operationId: "channelDelete"
+      summary: "delete channel"
+      parameters:
+        - name: "channelId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /version:
+    get:
+      tags:
+        - "Version"
+      operationId: "versionFind"
+      summary: "find version"
+      description: "Get the version of the API"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Version"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /status:
+    get:
+      tags:
+        - "Status"
+      operationId: "statusFind"
+      summary: "find status"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/Status"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /marketSegment:
+    post:
+      tags:
+        - "MarketSegment"
+      operationId: "marketSegmentCreate"
+      summary: "create marketSegment"
+      description: "Create a new market segment"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/MarketSegment"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/MarketSegment"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - "MarketSegment"
+      operationId: "marketSegmentFind"
+      summary: "find marketSegment"
+      description: "Get list of market segments"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/MarketSegment"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /marketSegment/{marketSegmentId}:
+    get:
+      tags:
+        - "MarketSegment"
+      operationId: "marketSegmentGet"
+      summary: "get marketSegment"
+      description: "Get a market segment by ID."
+      parameters:
+        - name: "marketSegmentId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/MarketSegment"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - "MarketSegment"
+      operationId: "marketSegmentUpdate"
+      summary: "update marketSegment"
+      description: "Update a market segment object."
+      parameters:
+        - name: "marketSegmentId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/MarketSegment"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/MarketSegment"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - "MarketSegment"
+      operationId: "marketSegmentDelete"
+      summary: "delete marketSegment"
+      description: "Delete a market segment by ID."
+      parameters:
+        - name: "marketSegmentId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /cfsRelationshipRestriction:
+    post:
+      tags:
+        - "CFSRelationshipRestriction"
+      operationId: "cfsRelationshipRestrictionCreate"
+      summary: "create cFSRelationshipRestriction"
+      description: "Create a resource for CFS restriction"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/CFSRelationshipRestriction"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/CFSRelationshipRestriction"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - "CFSRelationshipRestriction"
+      operationId: "cfsRelationshipRestrictionFind"
+      summary: "find cFSRelationshipRestriction"
+      description: "Find a resource for CFS restriction"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/CFSRelationshipRestriction"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /cfsRelationshipRestriction/{cfsRelationshipRestrictionId}:
+    get:
+      tags:
+        - "CFSRelationshipRestriction"
+      operationId: "cfsRelationshipRestrictionGet"
+      summary: "get cFSRelationshipRestriction"
+      description: "Get a resource for CFS restriction"
+      parameters:
+        - name: "cfsRelationshipRestrictionId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/CFSRelationshipRestriction"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - "CFSRelationshipRestriction"
+      operationId: "cfsRelationshipRestrictionUpdate"
+      summary: "update cFSRelationshipRestriction"
+      description: "Update a resource for CFS restriction"
+      parameters:
+        - name: "cfsRelationshipRestrictionId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/CFSRelationshipRestriction"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/CFSRelationshipRestriction"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /taxItem:
+    post:
+      tags:
+        - "TaxItem"
+      operationId: "taxItemCreate"
+      summary: "create taxItem"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/taxItem"
+      responses:
+        "201":
+          description: "Created"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/taxItem"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    get:
+      tags:
+        - "TaxItem"
+      operationId: "taxItemFind"
+      summary: "find taxItem"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/taxItem"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /taxItem/{taxItemId}:
+    get:
+      tags:
+        - "TaxItem"
+      operationId: "taxItemGet"
+      summary: "get taxItem"
+      parameters:
+        - name: "taxItemId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/taxItem"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      tags:
+        - "TaxItem"
+      operationId: "taxItemUpdate"
+      summary: "update taxItem"
+      parameters:
+        - name: "taxItemId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json;charset=utf-8:
+            schema:
+              $ref: "#/components/schemas/taxItem"
+      responses:
+        "200":
+          description: "Ok"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/taxItem"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      tags:
+        - "TaxItem"
+      operationId: "taxItemDelete"
+      summary: "delete taxItem"
+      parameters:
+        - name: "taxItemId"
+          required: true
+          in: "path"
+          schema:
+            type: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "400":
+          description: "Bad Request\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
+          description: "Not Found\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "405":
+          description: "Method Not Allowed\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "422":
+          description: "Unprocessable entity\n\nBusiness error"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "500":
+          description: "Internal Server Error\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "503":
+          description: "Service Unavailable\n\n"
+          content:
+            application/json;charset=utf-8:
+              schema:
+                $ref: "#/components/schemas/Error"
+servers:
+  - url: "https://catalog-product-catalog-administration-integration-disco.apps.fr01.paas.tech.orange/productCatalogAdministration/v5/"
+components:
+  schemas:
+    CFSRelationshipRestriction:
+      description: "\n\n**Polymorphism**\n\n  Parent: productCatalogAdministration\n\
+        \n  Discriminator: @type"
+      allOf:
+        - $ref: "#/components/schemas/productCatalogAdministration"
+        - required:
+            - "isRelationshipRestricted"
+          type: "object"
+          properties:
+            isRelationshipRestricted:
+              type: "boolean"
+    Channel:
+      description: "Object to define the channels supported for customer interactions.\n\
+        \n**Polymorphism**\n\n  Parent: productCatalogAdministration\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/productCatalogAdministration"
+        - required:
+            - "name"
+          type: "object"
+          properties:
+            name:
+              description: "Name of the channel"
+              type: "string"
+    Error:
+      description: "See [Orange recommendation](https://recommendations.innov.intraorange/designing-orange-api/#error-format)"
+      required:
+        - "code"
+        - "message"
+      type: "object"
+      properties:
+        code:
+          description: "An integer coding the error type. This is given to caller\
+            \ so he can translate them if required."
+          type: "integer"
+          format: "int32"
+        message:
+          description: "A short localized string that describes the error."
+          type: "string"
+        description:
+          description: "(optional) A long localized error description if needed. It\
+            \ can contain precise information about which parameter is missing, or\
+            \ what are the identifier acceptable values."
+          type: "string"
+        infoURL:
+          description: "(optional) A URL to online documentation that provides more\
+            \ information about the error."
+          type: "string"
+        '@baseType':
+          type: "string"
+        schemaLocation:
+          type: "string"
+          format: "uri"
+        '@referredType':
+          type: "string"
+    MarketSegment:
+      description: "Describes the market segments defined in the product catalog\n\
+        \n**Polymorphism**\n\n  Parent: productCatalogAdministration\n\n  Discriminator:\
+        \ @type"
+      allOf:
+        - $ref: "#/components/schemas/productCatalogAdministration"
+        - required:
+            - "name"
+          type: "object"
+          properties:
+            name:
+              type: "string"
+    ProductInventoryConfiguration:
+      description: "Describe the configuration whether checks to product inventory\
+        \ are to be instantiated.\n\n**Polymorphism**\n\n  Parent: productCatalogAdministration\n\
+        \n  Discriminator: @type"
+      allOf:
+        - $ref: "#/components/schemas/productCatalogAdministration"
+        - required:
+            - "cpibCheck"
+          type: "object"
+          properties:
+            cpibCheck:
+              type: "boolean"
+    Status:
+      description: "Provides the health of the service"
+      required:
+        - "name"
+        - "status"
+      type: "object"
+      properties:
+        name:
+          description: "Name of the service"
+          type: "string"
+        status:
+          description: "API version"
+          type: "string"
+        version:
+          description: "API version"
+          type: "string"
+        tmfVersion:
+          description: "TMF version of the API"
+          type: "string"
+        designVersion:
+          description: "Your API design version"
+          type: "string"
+        productionVersion:
+          description: "API version delivered by the dev team or the country."
+          type: "string"
+    Version:
+      description: "Version of the service"
+      required:
+        - "version"
+        - "deprecated"
+      type: "object"
+      properties:
+        version:
+          description: "Identifies the version of the service in major.minor.patch\
+            \ format"
+          $ref: "#/components/schemas/VersionNumber"
+        deprecated:
+          description: "Identifies if the service version is deprecated"
+          type: "boolean"
+          default: false
+        retirementDate:
+          description: "The retirement of the API."
+          type: "string"
+    VersionNumber:
+      description: "The version in format of major.minor.patch"
+      required:
+        - "major"
+        - "minor"
+        - "patch"
+      type: "object"
+      properties:
+        major:
+          description: "major version of the service"
+          type: "integer"
+          format: "int32"
+          default: 0
+        minor:
+          description: "Minor version of the service"
+          type: "integer"
+          format: "int32"
+          default: 0
+        patch:
+          description: "Patch version of the service"
+          type: "integer"
+          format: "int32"
+          default: 0
+    currency:
+      description: "This class is used to specify currencies for product catalog application.\
+        \ The format follows the ISO4217 standard for currencies.\n\n**Polymorphism**\n\
+        \n  Parent: productCatalogAdministration\n\n  Discriminator: @type"
+      allOf:
+        - $ref: "#/components/schemas/productCatalogAdministration"
+        - required:
+            - "label"
+            - "code"
+          type: "object"
+          properties:
+            label:
+              description: "ISO4217 code for managing currencies"
+              type: "string"
+            code:
+              description: "ISO4217 code for managing currencies"
+              type: "string"
+            isDefault:
+              description: "Flag used by UI to indicate default selection"
+              type: "boolean"
+    frequencyTypes:
+      description: "This class is used to identify frequency types associated with\
+        \ time. These can be day(s), months(s) etc. which are to be used in the product\
+        \ catalog while administering/creating product catalog entities.\n\n**Polymorphism**\n\
+        \n  Parent: productCatalogAdministration\n\n  Discriminator: @type"
+      allOf:
+        - $ref: "#/components/schemas/productCatalogAdministration"
+        - required:
+            - "frequencyCode"
+            - "frequencyLabel"
+            - "numberOfDays"
+          type: "object"
+          properties:
+            frequencyCode:
+              type: "string"
+            frequencyLabel:
+              type: "string"
+            numberOfDays:
+              type: "integer"
+              format: "int32"
+    productCatalogAdministration:
+      description: "\n\n**Polymorphism**\n\n  Discriminator: @type\n\n  One of:\n\
+        \  - currency\n  - frequencyTypes\n  - unit\n  - ProductInventoryConfiguration\n\
+        \  - Channel\n  - MarketSegment\n  - CFSRelationshipRestriction\n  - taxItem"
+      discriminator:
+        propertyName: "@type"
+        mapping:
+          currency: "#/components/schemas/currency"
+          frequencyTypes: "#/components/schemas/frequencyTypes"
+          unit: "#/components/schemas/unit"
+          ProductInventoryConfiguration: "#/components/schemas/ProductInventoryConfiguration"
+          Channel: "#/components/schemas/Channel"
+          MarketSegment: "#/components/schemas/MarketSegment"
+          CFSRelationshipRestriction: "#/components/schemas/CFSRelationshipRestriction"
+          taxItem: "#/components/schemas/taxItem"
+      required:
+        - "lastUpdate"
+      type: "object"
+      properties:
+        id:
+          type: "string"
+        '@type':
+          type: "string"
+        '@baseType':
+          type: "string"
+        schemaLocation:
+          type: "string"
+        href:
+          type: "string"
+        lastUpdate:
+          type: "string"
+          format: "date-time"
+    taxItem:
+      description: "\n\n**Polymorphism**\n\n  Parent: productCatalogAdministration\n\
+        \n  Discriminator: @type"
+      allOf:
+        - $ref: "#/components/schemas/productCatalogAdministration"
+        - required:
+            - "description"
+          type: "object"
+          properties:
+            taxAmount:
+              type: "number"
+              format: "float"
+            taxRate:
+              type: "integer"
+              format: "int32"
+            description:
+              type: "string"
+    unit:
+      description: "The units of measurement describe the units for valued items.\
+        \ Like Mb/s, GB/s etc.\n\n**Polymorphism**\n\n  Parent: productCatalogAdministration\n\
+        \n  Discriminator: @type"
+      allOf:
+        - $ref: "#/components/schemas/productCatalogAdministration"
+        - required:
+            - "unitOfMeasure"
+          type: "object"
+          properties:
+            unitOfMeasure:
+              type: "string"

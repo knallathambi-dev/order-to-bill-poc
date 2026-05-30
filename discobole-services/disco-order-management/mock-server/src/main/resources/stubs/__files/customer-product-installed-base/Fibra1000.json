@@ -1,0 +1,110 @@
+[{
+  "@type": "Product",
+  "id": "67c08a6d3e0a2f1fdb75e7ea",
+  "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7ea",
+  "isBundle": false,
+  "name": "Fibra 1000",
+  "productCharacteristic": [
+    {
+      "@type": "ObjectCharacteristic",
+      "id": "acfc59e7-7816-46b4-9255-5c0ef52140a7.1",
+      "name": "Upstream Max Throughput",
+      "value": {
+        "unitOfMeasure": "Mbps",
+        "value": "480"
+      }
+    },
+    {
+      "@type": "ObjectCharacteristic",
+      "id": "06c65d8a-bb44-49d1-9ae6-66669247e567.2",
+      "name": "Downstream Max Throughput",
+      "value": {
+        "unitOfMeasure": "Mbps",
+        "value": "940"
+      }
+    }
+  ],
+  "productOffering": {
+    "id": "0a6e1498-2cbe-4aa1-b06d-2a1f5c38a224",
+    "name": "Fibra 1000",
+    "version": "1.0",
+    "@type": "AtomicProductOffering",
+    "@referredType": "ProductOfferingRef"
+  },
+  "productOrderItem": [
+    {
+      "orderItemAction": "add",
+      "orderItemId": "2b868bf8-c34b-4d54-a0ad-f6192cfe0817",
+      "productOrderId": "67c08a62311d586dbf8fe175"
+    }
+  ],
+  "productRelationship": [
+    {
+      "relationshipType": "rootProduct",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e2",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e2"
+      }
+    },
+    {
+      "relationshipType": "reliesFrom",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7e6",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7e6"
+      }
+    },
+    {
+      "relationshipType": "reliesFrom",
+      "product": {
+        "@type": "ProductRef",
+        "id": "67c08a6d3e0a2f1fdb75e7eb",
+        "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67c08a6d3e0a2f1fdb75e7eb"
+      }
+    }
+  ],
+  "productSpecification": {
+    "id": "307db8b2-bdec-4062-a27a-f0e881b5d84b",
+    "href": "https://catalog-product-catalog-integration-disco.apps.fr01.paas.tech.orange/productCatalogManagement/v1/productSpecification?id=307db8b2-bdec-4062-a27a-f0e881b5d84b",
+    "name": "Fibra 1000 PS",
+    "version": "0.3",
+    "@type": "ProductSpecificationRef"
+  },
+  "relatedParty": [
+    {
+      "@type": "RelatedPartyRefOrPartyRoleRef",
+      "role": "customer",
+      "partyOrPartyRole": {
+        "@type": "PartyRef",
+        "id": "qwy2rhnix",
+        "name": "ii",
+        "@referredType": "individual"
+      }
+    }
+  ],
+  "status": "Active",
+  "operationalStatus": "Locked",
+  "creationDate": "2025-02-27T15:53:17Z",
+  "lastUpdateDate": "2025-02-27T15:53:35Z",
+  "statusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    }
+  ],
+  "operationalStatusChange": [
+    {
+      "changeDate": "2025-02-27T15:53:17Z",
+      "status": "Created"
+    },
+    {
+      "changeDate": "2025-02-27T15:53:33Z",
+      "status": "PendingActive"
+    },
+    {
+      "changeDate": "2025-02-27T15:53:35Z",
+      "status": "Locked"
+    }
+  ]
+}]

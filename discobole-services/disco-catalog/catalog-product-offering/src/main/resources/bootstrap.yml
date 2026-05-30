@@ -1,0 +1,51 @@
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+spring:
+  application:
+    name: catalog-configurator
+  cloud:
+    config:
+      enabled: false
+      #uri: http://localhost:8888 #uncomment spring.cloud.config.uri then comment spring.cloud.config.enabled property in case of local config-server
+    kubernetes:
+      config:
+        enabled: false
+
+---
+#spring:
+#  profiles: cloud
+#  cloud:
+#    config:
+#      enabled: true
+#      uri: ${vcap.services.config-server.credentials.uri}
+#
+#---
+#spring:
+#  profiles: kubernetes
+#  cloud:
+#    kubernetes:
+#      config:
+#        enabled: true
+#      secrets:
+#        enabled: true
+#      reload:
+#        enabled: true
+#        period: 15000
+#management:
+#  endpoint:
+#    restart:
+#      enabled: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: cloud

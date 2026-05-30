@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2025 Orange SA
+SPDX-License-Identifier: MIT
+
+This software is distributed under the MIT License,
+the text of which is available at https://opensource.org/license/mit
+or see the "LICENSE.txt" file for more details.
+
+Authors: See CONTRIBUTORS.txt
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+	<packaging>pom</packaging>
+
+    <groupId>com.orange.discobole.orderorchestration</groupId>
+    <artifactId>discobole-orderorchestration-orchestration-delivery-spec</artifactId>
+    <name>ODA - COOD - Orchestration Delivery API Specifications</name>
+    <version>1.6.0</version>
+
+    <url>https://gitlab.ow2.org/discobole/disco-oda-components/disco-order-orchestration/orchestration-delivery-spec</url>
+    
+    <licenses>
+      <license>
+        <name>MIT License</name>
+        <url>https://opensource.org/license/mit</url>
+        <distribution>repo</distribution>
+      </license>
+    </licenses>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <discobole-orderorchestration-orchestration-delivery-commons-pojo.version>3.3.0</discobole-orderorchestration-orchestration-delivery-commons-pojo.version>
+        <discobole-orderorchestration-orchestration-delivery-commons-exception.version>3.3.0</discobole-orderorchestration-orchestration-delivery-commons-exception.version>
+        <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
+    </properties>
+
+    <modules>
+        <module>orchestration-delivery-restapi-spec</module>
+        <module>orchestration-delivery-asyncapi-spec</module>
+    </modules>
+
+    <repositories>
+    	<repository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/groups/${GROUP_ID}/-/packages/maven</url>
+    	</repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+        </repository>
+         <snapshotRepository>
+            <id>gitlab-maven</id>
+            <url>${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/maven</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.orange.discobole.orderorchestration</groupId>
+                <artifactId>discobole-orderorchestration-orchestration-delivery-commons-exception</artifactId>
+                <version>${discobole-orderorchestration-orchestration-delivery-commons-exception.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.orange.discobole.orderorchestration</groupId>
+                <artifactId>discobole-orderorchestration-orchestration-delivery-commons-pojo</artifactId>
+                <version>${discobole-orderorchestration-orchestration-delivery-commons-pojo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations-jakarta</artifactId>
+                <version>2.2.15</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>jackson-databind-nullable</artifactId>
+                <version>0.2.6</version>
+            </dependency> 
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>2.2.19</version>
+            </dependency>   
+            <dependency>
+                <groupId>io.swagger.parser.v3</groupId>
+                <artifactId>swagger-parser</artifactId>
+                <version>2.1.18</version>
+            </dependency>                        
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${sonar-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <configuration>
+                    <outputDirectory>./</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>aggregate-add-third-party</id>
+                        <goals>
+                            <goal>aggregate-add-third-party</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jsonschema2pojo</groupId>
+                    <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                    <version>1.2.1</version>   
+                </plugin>             
+                <plugin>
+                    <groupId>org.openapitools</groupId>
+                    <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <version>7.0.1</version>
+                </plugin>                
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

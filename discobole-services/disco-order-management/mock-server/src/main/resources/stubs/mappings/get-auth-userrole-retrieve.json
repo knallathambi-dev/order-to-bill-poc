@@ -1,0 +1,19 @@
+{
+  "mappings": [
+    {
+      "name": "Get User roles",
+      "priority": 1,
+      "request": {
+        "urlPattern": "/userRolePermission/v1/userRole.*",
+        "method": "GET"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "auth-userrole-retrieve.json",
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        }
+      }
+    }
+  ]
+}

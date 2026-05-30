@@ -1,0 +1,112 @@
+meta {
+  name: DefineProductOfferingIdentityData
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{next_task_href}}
+  body: json
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:json {
+  
+  
+  
+  {
+      "characteristic": [
+          {
+              "name": "DefineContractProductOfferingIdentityData",
+              "valueType": "Object",
+              "value": {
+                  "defineData": {
+                      "name": "Test_Contract{{Entity_name}}_Mod",
+                      "brand": "Orange",
+                      "description": "Po_{{Entity_desc}}",
+                                         "billingType":"postpaid",
+                      
+                      "isInstallable": true
+                  },"lifecycleStatus":"active",
+                 
+                  "channels": [{
+                          "channelId": "Web"
+                      },
+                      {
+                          "channelId": "Shop"
+                      },
+                               {
+                          "channelId": "Selfcare"
+                      }
+                    
+                  ],
+                  "marketSegments": [
+                      {
+                          "segmentId": "B2B"
+                      },
+                      {
+                          "segmentId": "B2C"
+                      }
+                  ],
+                  "relatedParties": [],
+                    "poTerms": [
+            {
+              "name": "term3",
+              "description": "term3",
+              "validFor": null,
+              "duration": {
+                "amount": 12,
+                "units": "Month"
+              }
+            },
+            {
+              "name": "term2",
+              "description": "term2",
+              "validFor": {
+                "endDateTime": null,
+                "startDateTime": "2025-07-17T14:45:00.000Z"
+              },
+              "duration": {
+                "amount": 24,
+                "units": "Month"
+              }
+            }
+          ],
+                  "validityPeriod": {
+                      "validFor": {
+                          "endDateTime": null,
+                          "startDateTime": "2023-09-01T23:21:00.520Z"
+                      }
+                  }
+              },
+              "@baseType": null,
+              "@schemaLocation": null,
+              "@type": "ObjectCharacteristic"
+          }
+      ]
+  }
+  
+}
+
+vars:post-response {
+  Next_task: res.body._links.nextTaskstoBePerformed[0].href
+  Apo_name: res.body.name
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  var jsonData =  res.body;
+  bru.setVar("next_task_href", jsonData._links.nextTaskstoBePerformed[9].href);
+}

@@ -1,0 +1,426 @@
+{
+  "name": "UserRoleCreationCollection_ProductInventory",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Step 1 Generate Token",
+      "filename": "Step 1 Generate Token.bru",
+      "seq": 1,
+      "request": {
+        "url": "{{keycloak_url}}/realms/SpringBootKeycloak/protocol/openid-connect/token",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "formUrlEncoded",
+          "formUrlEncoded": [
+            {
+              "name": "username",
+              "value": "{{username}}",
+              "enabled": true
+            },
+            {
+              "name": "password",
+              "value": "{{password}}",
+              "enabled": true
+            },
+            {
+              "name": "grant_type",
+              "value": "password",
+              "enabled": true
+            },
+            {
+              "name": "client_id",
+              "value": "{{client_id}}",
+              "enabled": true
+            },
+            {
+              "name": "client_secret",
+              "value": "{{client_secret}}",
+              "enabled": true
+            },
+            {
+              "name": "scope",
+              "value": "openid",
+              "enabled": true
+            }
+          ],
+          "multipartForm": [],
+          "file": []
+        },
+        "script": {
+          "res": "bru.setEnvVar(\"token\", res.body.access_token);"
+        },
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "docs": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "folder",
+      "name": "UserRole",
+      "filename": "UserRole",
+      "items": [
+        {
+          "type": "http",
+          "name": "userrole CreateProduct",
+          "filename": "userrole CreateProduct.bru",
+          "seq": 1,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": " {\n    \"involvementRole\": \"CreateProduct\",\n    \"@type\": \"UserRole\",\n    \"entitlement\": [\n      {\n        \"id\": \"x500\",\n        \"action\": \"Create\",\n        \"function\": \"Product\",\n        \"@type\": \"Entitlement\"\n      }\n    ]\n  }",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole DeleteProduct",
+          "filename": "userrole DeleteProduct.bru",
+          "seq": 4,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"involvementRole\": \"DeleteProduct\",\n  \"@type\": \"UserRole\",\n  \"entitlement\": [\n    {\n      \"id\": \"x503\",\n      \"action\": \"readAndWrite\",\n      \"function\": \"Product\",\n      \"@type\": \"Entitlement\"\n    }\n  ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole ExportProduct",
+          "filename": "userrole ExportProduct.bru",
+          "seq": 5,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"involvementRole\": \"ExportProduct\",\n  \"@type\": \"UserRole\",\n  \"entitlement\": [\n    {\n      \"id\": \"x504\",\n      \"action\": \"readAndWrite\",\n      \"function\": \"Product\",\n      \"@type\": \"Entitlement\"\n    }\n  ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole PurgeProduct",
+          "filename": "userrole PurgeProduct.bru",
+          "seq": 6,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"involvementRole\": \"PurgeProduct\",\n  \"@type\": \"UserRole\",\n  \"entitlement\": [\n    {\n      \"id\": \"x505\",\n      \"action\": \"readAndWrite\",\n      \"function\": \"Product\",\n      \"@type\": \"Entitlement\"\n    }\n  ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole PurgeTask",
+          "filename": "userrole PurgeTask.bru",
+          "seq": 7,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"involvementRole\": \"PurgeTask\",\n  \"@type\": \"UserRole\",\n  \"entitlement\": [\n    {\n      \"id\": \"x506\",\n      \"action\": \"readAndWrite\",\n      \"function\": \"Product\",\n      \"@type\": \"Entitlement\"\n    }\n  ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole ReadProduct",
+          "filename": "userrole ReadProduct.bru",
+          "seq": 2,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "  {\n    \"involvementRole\": \"ReadProduct\",\n    \"@type\": \"UserRole\",\n    \"entitlement\": [\n      {\n        \"id\": \"x501\",\n        \"action\": \"readAndWrite\",\n        \"function\": \"Product\",\n        \"@type\": \"Entitlement\"\n      }\n    ]\n  }",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole UpdateProduct",
+          "filename": "userrole UpdateProduct.bru",
+          "seq": 3,
+          "request": {
+            "url": "{{base_uri}}/userRolePermission/v1/userRole",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"involvementRole\": \"UpdateProduct\",\n  \"@type\": \"UserRole\",\n  \"entitlement\": [\n    {\n      \"id\": \"x502\",\n      \"action\": \"readAndWrite\",\n      \"function\": \"Product\",\n      \"@type\": \"Entitlement\"\n    }\n  ]\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "userrole",
+          "filename": "userrole.bru",
+          "seq": 8,
+          "request": {
+            "url": "https://auth-userrole-integration-disco.apps.fr01.paas.tech.orange/userRolePermission/v1/userRole",
+            "method": "GET",
+            "headers": [],
+            "params": [
+              {
+                "name": "entitlement.id",
+                "value": "x503",
+                "type": "query",
+                "enabled": false
+              }
+            ],
+            "body": {
+              "mode": "none",
+              "json": " {\n    \"involvementRole\": \"CreateProduct\",\n    \"@type\": \"UserRole\",\n    \"entitlement\": [\n      {\n        \"id\": \"x500\",\n        \"action\": \"Create\",\n        \"function\": \"Product\",\n        \"@type\": \"Entitlement\"\n      }\n    ]\n  }",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "none"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "environments": [
+    {
+      "variables": [
+        {
+          "name": "base_uri",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "keycloak_url",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "token",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_id",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_secret",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "username",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "password",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        }
+      ],
+      "name": "integration"
+    },
+    {
+      "variables": [
+        {
+          "name": "base_uri",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "keycloak_url",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "token",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_id",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "client_secret",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "username",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        },
+        {
+          "name": "password",
+          "value": "",
+          "enabled": true,
+          "secret": false,
+          "type": "text"
+        }
+      ],
+      "name": "local"
+    }
+  ],
+  "root": {
+    "request": {
+      "auth": {
+        "mode": "bearer",
+        "bearer": {
+          "token": "{{token}}"
+        }
+      }
+    }
+  },
+  "brunoConfig": {
+    "version": "1",
+    "name": "UserRoleCreationCollection_ProductInventory",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "size": 0.0038776397705078125,
+    "filesCount": 12
+  }
+}

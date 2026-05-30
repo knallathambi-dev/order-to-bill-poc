@@ -1,0 +1,55 @@
+# Software Name: orchestration-delivery-management
+# SPDX-FileCopyrightText: 2025 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: dm-${ENV_TYPE}
+  profiles:
+    default: kubernetes
+  kafka:
+    bootstrap-servers: ${KAFKA_SERVICE_NAME}:9092
+    producer:
+      properties:
+        spring.kafka.topic.auto-create: true
+    consumer:
+      properties:
+        spring.kafka.topic.auto-create: true
+
+retry:
+  maxDelay: '6000'
+config:
+  productOrderByIdUrl: http://${POI_SERVICE:poi-integration}/productOrderingManagement/v1/productOrder
+  serviceCatalogManagementUrl: http://${MOCK_SERVICE:mock-server-integration}/serviceCatalogManagement/v1/serviceSpecification
+  serviceOrderingUrl: http://${MOCK_SERVICE:mock-server-integration}/serviceOrdering/v1/serviceOrder
+  shippingOrderUrl": http://${MOCK_SERVICE:mock-server-integration}/shippingOrder/v1/shippingOrder
+
+app:
+  security:
+    userRoleRetrievalUrl: http://${USER_ROLE_RETRIEVAL}/userRolePermission/v1/userRole
+
+otel:
+  service:
+    name: ${OTEL_SERVICE_NAME:disco-service}
+
+mocks:
+  serviceOrderStateChangeScheduler:
+    cronExpression: "*/30 * * * * *"
+    enable: true
+    enableDelay: ${ENABLE_DELIVERY_DELAY}
+    minDelay: ${MIN_DELIVERY_DELAY_EXPRESSION}
+    maxDelay: ${MAX_DELIVERY_DELAY_EXPRESSION}
+  shippingOrderStateChangeScheduler:
+    cronExpression: "*/30 * * * * *"
+    enable: true
+    enableDelay: ${ENABLE_DELIVERY_DELAY}
+    minDelay: ${MIN_DELIVERY_DELAY_EXPRESSION}
+    maxDelay: ${MAX_DELIVERY_DELAY_EXPRESSION}

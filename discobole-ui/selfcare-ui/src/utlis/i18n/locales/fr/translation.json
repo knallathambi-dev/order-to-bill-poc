@@ -1,0 +1,377 @@
+{
+  "access": {
+    "noPermission": "Vous n'avez pas la permission de voir cette page",
+    "restricted": "Accès restreint"
+  },
+  "actions": {
+    "accessRestricted": "Accès restreint",
+    "addToOrder": "Ajouter à la commande",
+    "back": "Retour",
+    "backToHomepage": "Retour à l'accueil",
+    "backToLogin": "Retour à la connexion",
+    "cancel": "Annuler",
+    "cancelModify": "Annuler la modification",
+    "cancelOrder": "Annuler la commande",
+    "cancelPayment": "Annuler le paiement",
+    "cancelTerminate": "Annuler la résiliation",
+    "changePlan": "Changer de forfait",
+    "checkEligibility": "Vérifier l'éligibilité",
+    "close": "Fermer",
+    "confirmOrder": "Confirmer la commande",
+    "continueToPayment": "Continuer vers le paiement",
+    "edit": "Modifier",
+    "editAddress": "Modifier l'adresse",
+    "editPlan": "Modifier le forfait",
+    "goToOffers": "Voir les offres",
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
+    "modify": "Modifier",
+    "myOrders": "Mes commandes",
+    "next": "Suivant",
+    "orderNow": "Commander maintenant",
+    "placeOrder": "Passer la commande",
+    "proceedToChange": "Procéder au changement",
+    "proceedToOrder": "Procéder à la commande",
+    "register": "S'inscrire",
+    "reload": "Recharger",
+    "save": "Enregistrer",
+    "saveChanges": "Enregistrer les modifications",
+    "terminate": "Résilier",
+    "terminatePlan": "Résilier le forfait",
+    "trackYourOrder": "Suivre votre commande",
+    "unlimited": "Illimité",
+    "viewDetails": "Voir les détails"
+  },
+  "appointment": {
+    "description": "Veuillez sélectionner votre date de rendez-vous pour installer votre fibre",
+    "title": "Prendre rendez-vous avec un technicien"
+  },
+  "auth": {
+    "agreeToTerms": "En cochant cette case, vous acceptez nos Conditions Générales d'Utilisation",
+    "greeting": "Bonjour !",
+    "logout": {
+      "confirmations": {
+        "confirm": "Oui, se déconnecter",
+        "message": "Vous êtes sur le point de vous déconnecter",
+        "question": "Voulez-vous continuer ?",
+        "title": "Êtes-vous sûr ?"
+      },
+      "title": "Déconnexion"
+    },
+    "pleaseLoginOrRegister": "Veuillez vous connecter ou vous inscrire pour valider votre commande",
+    "registerSuccessPleaseLogin": "Inscription réussie. Veuillez vous connecter pour continuer."
+  },
+  "common": {
+    "addUpTo": "Ajouter jusqu'à",
+    "beforeDiscount": "Avant remise",
+    "commitmentTerm": "Durée d'engagement",
+    "confirm": "Confirmer",
+    "confirmPlacement": "En passant votre commande, vous acceptez nos Conditions d'utilisation et notre Politique de confidentialité",
+    "creationDate": "Date de création",
+    "discount": "Remise",
+    "installment": {
+      "info": {
+        "paymentNote": "Payez uniquement l'acompte maintenant. Les prix mensuels et totaux sont des estimations de vos coûts futurs."
+      },
+      "labels": {
+        "estimatedInstallments": "Mensualités (Est.)",
+        "estimatedTotalPrice": "Prix Total (Est.)",
+        "initialPayment": "Acompte",
+        "monthlyAmount": "Paiement Mensuel",
+        "totalAmount": "Paiement Total",
+        "duration": "pendant",
+        "installmentPeriod": "Mensualités sur",
+        "afterCompletion": "Après la fin des mensualités"
+      },
+      "tabs": {
+        "fullPrice": "Prix Complet",
+        "installment": "Paiement Échelonné"
+      },
+      "comparison": {
+        "title": "Comparer les Plans de Paiement",
+        "description": "Voici un simulateur de taux pour différentes options de paiement échelonné",
+        "loadingOptions": "Chargement des options partenaires...",
+        "tableHeaders": {
+          "durationMonths": "Nombre de Mois",
+          "monthlyAmount": "Paiement Mensuel",
+          "totalAmount": "Paiement Total"
+        },
+        "interestTypes": {
+          "noInterest": "sans intérêt",
+          "withInterest": "avec taux d'intérêt"
+        }
+      }
+    },
+    "loading": "Chargement...",
+    "orderId": "Numéro de commande",
+    "orderPreview": "Aperçu de la commande",
+    "planPreview": "Aperçu du forfait",
+    "selectAnotherOffer": "Veuillez sélectionner une autre offre",
+    "selectToOrder": "Sélectionner pour commander",
+    "shipping": "Livraison",
+    "state": "État",
+    "subtotal": "Sous-total",
+    "taxExcluded": "Hors taxe",
+    "taxIncluded": "Taxes comprises",
+    "terminationDate": "Date de résiliation",
+    "total": "Total",
+    "unlimited": "Illimité",
+    "warning": "Avertissement",
+    "payment": "Paiement"
+  },
+  "device": {
+    "title": "Configurez Votre Appareil"
+  },
+  "eligibility": {
+    "description": "Testez votre adresse pour voir si votre zone est couverte et éligible à cette offre",
+    "failure": {
+      "notEligibleFiber": "L'adresse mentionnée n'est pas éligible à la fibre",
+      "updateAddress": "Veuillez mettre à jour l'adresse ou sélectionner une autre offre"
+    },
+    "success": {
+      "message": "Vous êtes éligible à cette offre",
+      "title": "Félicitations !"
+    },
+    "title": "Éligibilité à l'offre",
+    "types": {
+      "basic": "Basique",
+      "satellite": "Satellite"
+    }
+  },
+  "footer": {
+    "accessibilityStatement": "Déclaration d'accessibilité",
+    "cookiePolicy": "Politique relative aux cookies",
+    "privacy": "Confidentialité",
+    "termsAndConditions": "Conditions Générales"
+  },
+  "forms": {
+    "labels": {
+      "address": "Adresse",
+      "appointmentDate": "Date du rendez-vous",
+      "city": "Ville",
+      "contactNumber": "Numéro de contact",
+      "country": "Pays",
+      "creditCardNumber": "Numéro de carte bancaire",
+      "cvv": "Cryptogramme",
+      "deliveryDate": "Date de livraison",
+      "email": "E-mail",
+      "emailMobileNumber": "E-mail / Numéro de mobile",
+      "expiration": "Date d'expiration",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "nameOnCard": "Nom sur la carte",
+      "password": "Mot de passe",
+      "pickUpFromStore": "Retrait en magasin",
+      "postalCode": "Code postal",
+      "reEnterPassword": "Confirmer le mot de passe",
+      "requestedDeliveryDate": "Date de livraison souhaitée",
+      "shippingAddress": "Adresse de livraison",
+      "title": "Civilité"
+    },
+    "placeholders": {
+      "emailMobileNumber": "Entrez votre e-mail ou numéro de mobile",
+      "enterYourAddress": "Entrez votre adresse",
+      "enterYourPostalCode": "Entrez votre code postal",
+      "fullNameAsDisplayedOnCard": "Nom complet tel qu'affiché sur la carte",
+      "nameOnCard": "Nom sur la carte",
+      "password": "Entrez votre mot de passe",
+      "searchDevices": "Rechercher des appareils...",
+      "searchOffers": "Rechercher des offres...",
+      "searchPlans": "Rechercher des forfaits...",
+      "selectACity": "Sélectionner une ville",
+      "selectACountry": "Sélectionner un pays"
+    },
+    "titles": {
+      "mr": "M.",
+      "mrs": "Mme"
+    }
+  },
+  "home": {
+    "active": "Actif",
+    "greeting": "Bonjour,",
+    "noMatchesFound": "Aucun résultat trouvé pour cette recherche",
+    "subtitle": "Vous pouvez maintenant choisir parmi la variété d'offres et de produits disponibles qui répondent à vos besoins"
+  },
+  "myPlans": {
+    "noProductsFound": "Aucun produit trouvé",
+    "migrationInProgress": "Migration en cours",
+    "migrationInProgressDesc": "Vos produits sont en cours de migration vers ce contrat. Ils apparaîtront ici une fois la migration terminée."
+  },
+  "order": {
+    "confirmations": {
+      "cancel": {
+        "body": "Êtes-vous sûr de vouloir annuler cette commande ?",
+        "confirm": "Oui, annuler",
+        "decline": "Non, merci",
+        "title": "Annuler la commande"
+      }
+    },
+    "notes": {
+      "terminationPenalty": "Veuillez noter que le forfait ne peut pas être résilié avant la fin de la durée du produit sans encourir de frais de pénalité"
+    },
+    "status": {
+      "cancelled": "annulée",
+      "confirmed": "confirmée"
+    },
+    "statusUpdate": {
+      "completedBy": "La commande sera terminée le {{date}}",
+      "title": "Votre commande a été {{status}} avec succès"
+    },
+    "notEligibleInstallment": {
+      "ineligibleMessage": "Vous n'êtes pas éligible à l'achat d'un appareil avec option de paiement en plusieurs fois.",
+      "proceedUpfront": "Veuillez procéder au paiement comptant."
+    },
+    "summary": {
+      "sections": {
+        "devices": "Appareils",
+        "includedItems": "Articles inclus",
+        "optionalItems": "Articles optionnels",
+        "terminatedItems": "Articles résiliés"
+      }
+    }
+  },
+  "pageNotFound": {
+    "message": "La page que vous recherchez n'existe pas ou a peut-être été déplacée"
+  },
+  "pages": {
+    "bookAppointment": "Prendre rendez-vous",
+    "changePlan": "Changer de forfait",
+    "checkEligibility": "Vérifier l'éligibilité",
+    "completeOrder": "Finaliser la commande",
+    "deviceSetUp": "Configuration de l'appareil",
+    "devicesAndElectronics": "Appareils et électronique",
+    "editPlan": "Modifier le forfait",
+    "eligiblePlans": "Forfaits éligibles",
+    "home": "Accueil",
+    "migratePlan": "Migrer le forfait",
+    "myAccount": "Mon compte",
+    "myOrders": "Mes commandes",
+    "myPlans": "Mes forfaits",
+    "offers": "Offres",
+    "orderStatusUpdate": "Mise à jour du statut de commande",
+    "orderSummary": "Récapitulatif de commande",
+    "pageNotFound": "Page non trouvée",
+    "setUpPlan": "Configurer le forfait",
+    "shippingDetails": "Détails de livraison",
+    "terminatePlan": "Terminer le Plan",
+    "trackOrder": "Suivre votre commande"
+  },
+  "payment": {
+    "account": "compte",
+    "billableItems": "Articles facturables",
+    "billableItemsNote": "Ces articles seront facturés sur votre compte de facturation",
+    "billedOn": "Cette offre sera facturée le",
+    "billingDetails": "Détails de facturation",
+    "byEndOfMonth": "d'ici la fin du mois",
+    "methods": {
+      "creditCard": "Carte bancaire",
+      "eWallet": "Portefeuille électronique"
+    },
+    "paymentDetails": "Détails de paiement",
+    "purchasedItems": "Articles achetés",
+    "purchasedItemsNote": "Ces articles doivent être payés immédiatement",
+    "savePaymentMethod": "Enregistrer le mode de paiement",
+    "selectPaymentMethod": "Sélectionnez votre mode de paiement"
+  },
+  "plan": {
+    "confirmations": {
+      "general": {
+        "cancel": "Non, merci",
+        "question": "Voulez-vous continuer ?",
+        "title": "Êtes-vous sûr ?"
+      },
+      "incompatibleOffer": "Nous sommes désolés, vous ne pouvez pas souscrire à cette offre car elle est incompatible avec l'une de vos offres actuelles",
+      "modify": {
+        "confirm": "Oui, modifier",
+        "message": "Une fois confirmée, votre commande sera traitée",
+        "proceed": "Êtes-vous sûr de vouloir procéder à cette commande ?"
+      },
+      "terminate": {
+        "bundle": "Êtes-vous sûr de vouloir résilier ce forfait ?",
+        "confirm": "Oui, résilier",
+        "message": "Une fois résilié, ce forfait sera supprimé",
+        "plan": "Êtes-vous sûr de vouloir résilier ce forfait ?"
+      }
+    },
+    "contract": "Contrat",
+    "currentValue": "Valeur actuelle",
+    "editAddress": "Modifier l'adresse",
+    "migrate": {
+      "changeSelectedPlan": "Changer le forfait sélectionné",
+      "currentPlan": "Forfait actuel",
+      "planSelection": "Sélection du forfait",
+      "selectDescription": "Veuillez choisir parmi les forfaits éligibles disponibles ci-dessus",
+      "yourPlanBenefits": "Les avantages de votre forfait"
+    },
+    "modify": {
+      "includedOptions": "Ces options sont incluses dans votre forfait et ne peuvent pas être résiliées à moins de résilier l'ensemble du forfait",
+      "modificationsNotAuthorized": "Les modifications de ce contrat ne sont pas autorisées",
+      "noItemsToTerminate": "Aucun article à résilier"
+    },
+    "myPlanDetails": "Détails de mon forfait",
+    "planPreview": {
+      "applicationOffset": "Application à partir de {{unit}}#{{offset}}",
+      "included": "Inclus",
+      "options": "Options"
+    },
+    "sections": {
+      "includedOffers": "Offres incluses",
+      "optionalOffers": "Offres optionnelles"
+    },
+    "selectionPreview": "Aperçu de la sélection",
+    "title": "Configurez votre forfait",
+    "warnings": {
+      "terminationPenalty": "Veuillez noter que la résiliation de ce contrat avant la fin de la durée du produit entraînera des frais de pénalité",
+      "terminationPenaltyWithCharges": "Le forfait comprend une durée d'engagement. Une fois résilié, le forfait sera supprimé et entraînera des frais de pénalité. Voulez-vous continuer ?"
+    }
+  },
+  "shipping": {
+    "edit": "Modifier",
+    "itemCount": "{{count}} article",
+    "itemCount_plural": "{{count}} articles",
+    "offerShipping": "{{count}} de votre offre {{verb}} être expédié",
+    "pickUpMessage": "Vous pouvez récupérer vos articles dans le magasin sélectionné à partir de demain",
+    "shippingItems": "Articles à expédier",
+    "shippingMethod": "Mode de livraison",
+    "verbs": {
+      "are": "vont",
+      "is": "va"
+    }
+  },
+  "validation": {
+    "custom": {
+      "deliveryDateMinimum": "Veuillez sélectionner une date de livraison d'au moins 3 jours à partir de maintenant"
+    },
+    "invalid": {
+      "creditCardNumber": "Veuillez entrer un numéro de carte bancaire valide à 16 chiffres",
+      "cvv": "Veuillez entrer un cryptogramme valide à 3 chiffres",
+      "email": "Veuillez entrer une adresse e-mail valide",
+      "emailMobileNumber": "Veuillez fournir un e-mail ou un numéro de mobile valide",
+      "expirationDate": "Veuillez sélectionner une date d'expiration valide dans le futur",
+      "nameOnCard": "Veuillez entrer un nom valide tel qu'il apparaît sur la carte",
+      "password": "Veuillez fournir un mot de passe valide"
+    },
+    "length": {
+      "passwordMin": "Le mot de passe doit contenir au moins 8 caractères"
+    },
+    "match": {
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "reEnterPassword": "Veuillez confirmer votre mot de passe"
+    },
+    "required": {
+      "address": "L'adresse est requise",
+      "city": "La ville est requise",
+      "country": "Le pays est requis",
+      "creditCardNumber": "Le numéro de carte bancaire est requis",
+      "cvv": "Le code de sécurité est requis",
+      "deliveryDate": "La date de livraison est requise",
+      "email": "L'e-mail est requis",
+      "emailMobileNumber": "L'e-mail ou le numéro de mobile est requis",
+      "expirationDate": "La date d'expiration est requise",
+      "firstName": "Le prénom est requis",
+      "nameOnCard": "Le nom sur la carte est requis",
+      "password": "Le mot de passe est requis",
+      "postalCode": "Le code postal est requis"
+    }
+  }
+}

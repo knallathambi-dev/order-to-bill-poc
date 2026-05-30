@@ -1,0 +1,63 @@
+meta {
+  name: get_PS
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/productSpecification/{{PS_id}}
+  body: none
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+vars:pre-request {
+  ~Char_id: res.body.productSpecCharacteristic[0].id
+}
+
+vars:post-response {
+  ~PS_id: res.body.id
+}
+
+script:post-response {
+  
+  var jsonData = res.getBody();
+  /////// characterstics variable
+  var ch_len=jsonData.productSpecCharacteristic.length;
+  
+  var op_len=jsonData.operationSpecification.length;
+  
+  
+  ////char variables
+  
+  for (let i=0 ;i<ch_len;i++)
+    
+  {
+    bru.setEnvVar("char_id"+i, jsonData.productSpecCharacteristic[i].id);
+    
+  bru.setEnvVar("char_value"+i, jsonData.productSpecCharacteristic[i].productSpecCharacteristicValue[0].value);
+  bru.setEnvVar("uom"+i, jsonData.productSpecCharacteristic[i].productSpecCharacteristicValue[0].unitOfMeasure);
+  bru.setEnvVar("char_name"+i, jsonData.productSpecCharacteristic[i].name);
+  }
+  
+  
+  ///////////// operations variables  
+  
+  for (let i=0 ;i<op_len;i++)
+  {
+  bru.setEnvVar("Op_id"+i, jsonData.operationSpecification[i].id);
+  bru.setEnvVar("Op_name"+i, jsonData.operationSpecification[i].name);
+  }
+  
+  
+  
+  
+}

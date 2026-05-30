@@ -1,0 +1,139 @@
+[
+  {
+    "@type": "Product",
+    "id": "67ab50b537fe5a1967b9858c",
+    "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858c",
+    "isBundle": false,
+    "name": "Mobile Line",
+    "productOffering": {
+      "id": "87e81e5a-ce79-4b85-8183-d0f8733985da",
+      "name": "Mobile Line",
+      "version": "1.0",
+      "@type": "AtomicProductOffering",
+      "@referredType": "ProductOfferingRef"
+    },
+    "productOrderItem": [
+      {
+        "orderItemAction": "add",
+        "orderItemId": "02a47d8f-4f01-40a6-82e4-8c8e48492d48",
+        "productOrderId": "67ab50b3d636a24b72afc094"
+      }
+    ],
+    "productRelationship": [
+      {
+        "relationshipType": "rootProduct",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858a",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858a"
+        }
+      },
+      {
+        "relationshipType": "reliesOn",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858e",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858e"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858d",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858d"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b9858f",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b9858f"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b98590",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98590"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b98592",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98592"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b98593",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98593"
+        }
+      },
+      {
+        "relationshipType": "reliesFrom",
+        "product": {
+          "@type": "ProductRef",
+          "id": "67ab50b537fe5a1967b98594",
+          "href": "https://product-inventory-integration-disco.apps.fr01.paas.tech.orange/productManagement/v1/product/67ab50b537fe5a1967b98594"
+        }
+      }
+    ],
+    "productSpecification": {
+      "id": "f18a3fe0-1e61-419a-b7d8-dd68215b3705",
+      "name": "Mobile Line PS",
+      "version": "0.2",
+      "@type": "ProductSpecificationRef"
+    },
+    "relatedParty": [
+      {
+        "@type": "RelatedPartyRefOrPartyRoleRef",
+        "role": "customer",
+        "partyOrPartyRole": {
+          "@type": "PartyRef",
+          "id": "227-mf30",
+          "name": "Lisa",
+          "@referredType": "individual"
+        }
+      }
+    ],
+    "status": "Active",
+    "operationalStatus": "Active",
+    "creationDate": "2025-02-11T13:29:25Z",
+    "lastUpdateDate": "2025-02-11T13:31:02Z",
+    "statusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:02Z",
+        "status": "Active"
+      }
+    ],
+    "operationalStatusChange": [
+      {
+        "changeDate": "2025-02-11T13:29:25Z",
+        "status": "Created"
+      },
+      {
+        "changeDate": "2025-02-11T13:29:42Z",
+        "status": "Confirmed"
+      },
+      {
+        "changeDate": "2025-02-11T13:30:33Z",
+        "status": "PendingActive"
+      },
+      {
+        "changeDate": "2025-02-11T13:31:02Z",
+        "status": "Active"
+      }
+    ]
+  }
+]

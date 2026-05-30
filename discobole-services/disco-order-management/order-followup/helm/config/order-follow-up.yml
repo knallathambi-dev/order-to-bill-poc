@@ -1,0 +1,229 @@
+# SPDX-FileCopyrightText: 2025 - 2026 Orange SA
+# SPDX-License-Identifier: MIT
+#
+# This software is distributed under the MIT License,
+# the text of which is available at https://opensource.org/license/mit
+# or see the "LICENSE.txt" file for more details.
+#
+# Authors: See CONTRIBUTORS.txt
+
+server:
+  port: 8080
+  shutdown: graceful
+  tomcat:
+    accesslog:
+      enabled: true
+    mbeanregistry:
+      enabled: true
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: order-follow-up-${ENV_TYPE}
+  keycloakAuthUrl: ${KEYCLOAK_URL}
+  cloud:
+    function:
+      definition: productOrderEvent;productOrderAttributeValueChangeEvent
+    stream:
+      kafka:
+        binder:
+          enableObservation: true
+          brokers: ${KAFKA_SERVICE}
+          auto-create-topics: false
+          auto-add-partitions: false
+      bindings:
+        productOrderEvent-in-0:
+          destination: disco.order-management.productOrderStateChange-event
+          group: order-follow-up
+          content-type: application/json
+        productOrderAttributeValueChangeEvent-in-0:
+          destination: disco.order-management.productOrderAttributeValueChange-event
+          group: order-follow-up
+          content-type: application/json
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_URL}/realms/SpringBootKeycloak
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ${ORDER_KEYCLOAK_CLIENT_ID}
+            authorization-grant-type: client_credentials
+            client-secret: ${ORDER_KEYCLOAK_CLIENT_SECRET}
+      resourceServer:
+        jwt:
+          issuer-uri: ${KEYCLOAK_URL}/realms/SpringBootKeycloak
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  main:
+    allow-bean-definition-overriding: true
+  task:
+    execution:
+      thread-name-prefix: order-flow-up-task-
+      pool:
+        core-size: 10
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: order-flow-up-task--scheduling-
+
+# Metrics config
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web.exposure.include: health, metrics, prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+    distribution:
+      percentiles-histogram:
+        http.server.requests: true
+  server:
+    port: 9000
+
+logging:
+  level:
+    root: INFO
+    com.orange.discobole.ordermanagement.orderfollowup: INFO
+
+cqrs:
+  command-enabled: true
+  query-enabled: true
+  error-enabled: false
+
+app:
+  version: 1.11.0
+  name: order-follow-up
+  description: order-follow-up-description
+  ownerName: Herve Bouvier
+  ownerMail: herve.bouvier@orange.com
+  app:
+    security:
+      ssl:
+        enabled: true
+  webclient:
+    connectTimeout: 30s
+    responseTimeout: 30s
+
+process-flow:
+  role:
+    admin: disco-admin
+
+config:
+  productInventoryUrl: http://${PRODUCT_INVENTORY_SERVICE:product-inventory-integration}:8080/productInventoryManagement/v1/product
+
+cron:
+  expression: 0/10 * * * * *
+
+package-element:
+  state-machines:
+    - name: OrderFollowUp
+      states:
+        - name: receiveNewProductStateChangeEvent
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: MainRegion
+          pseudoStateKind: INITIAL
+          editable: false
+          hidden: true
+        - name: checkProductStateUpdatedChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkProductOrderStateCompletionChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: checkIfProductOrderStateIsPartialChoice
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: MainRegion
+          pseudoStateKind: CHOICE
+        - name: chooseOperationalOnContract
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: MainRegion
+          pseudoStateKind:
+          editable: false
+        - name: endMainRegion
+          entryActions:
+          exitActions:
+          stateActions:
+          initialAction:
+          parentState:
+          regionId: MainRegion
+          pseudoStateKind: END
+          editable: false
+      transitions:
+        - event: ProductDeliveredEvent
+          source: receiveNewProductStateChangeEvent
+          target: checkProductStateUpdatedChoice
+          actions:
+            - updateProductStateAction
+          guard:
+          kind: EXTERNAL
+        - event: ProductStateUpdatedEvent
+          source: checkProductStateUpdatedChoice
+          target: checkProductOrderStateCompletionChoice
+          actions:
+          guard: isProductUpdatedGuard
+          kind: EXTERNAL
+        - event: ProductStateNotUpdatedEvent
+          source: checkProductStateUpdatedChoice
+          target: receiveNewProductStateChangeEvent
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: AllProductDeliveredEvent
+          source: checkProductOrderStateCompletionChoice
+          target: checkIfProductOrderStateIsPartialChoice
+          actions:
+          guard: isAllProductsProcessedGuard
+          kind: EXTERNAL
+        - event: NotAllProductDeliveredEvent
+          source: checkProductOrderStateCompletionChoice
+          target: receiveNewProductStateChangeEvent
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: ProductOrderStatePartialEvent
+          source: checkIfProductOrderStateIsPartialChoice
+          target: chooseOperationalOnContract
+          actions:
+          guard: isProductOrderStatePartialGuard
+          kind: EXTERNAL
+        - event: NotProductOrderStatePartialEvent
+          source: checkIfProductOrderStateIsPartialChoice
+          target: endMainRegion
+          actions:
+          guard:
+          kind: EXTERNAL
+        - event: OperationalOnContractChooseEvent
+          source: chooseOperationalOnContract
+          target: endMainRegion
+          actions:
+          guard:
+          kind: EXTERNAL

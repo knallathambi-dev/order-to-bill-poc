@@ -1,0 +1,100 @@
+{
+  "id": "19fbb001-3455-4e8e-b8a8-b6db8778ddb5",
+  "href": "https://host/tmf-api/shippingOrder/v4/shippingOrder/fbc3a5a7-f80b-4243-809d-eb3fefa7ebed",
+  "creationDate": "2023-11-02T11:02:26.480Z",
+  "status": "open",
+  "productOrder": {
+    "id": "7800",
+    "href": "http://host/productOrderingManagement/v4/productOrder/7800"
+  },
+  "relatedParty": [
+    {
+      "name": "John Doe",
+      "role": "Recepient",
+      "@referredType": "Individual",
+      "contactMedium": [
+        {
+          "mediumType": "Phone",
+          "preferred": true,
+          "characteristic": {
+            "phoneNumber": "00447766000111"
+          }
+        },
+        {
+          "mediumType": "Address",
+          "characteristic": {
+            "postCode": "OX11 6TR",
+            "city": "Oxford",
+            "street1": "23 Borney Road"
+          }
+        }
+      ]
+    }
+  ],
+  "shippingInstruction": {
+    "deliveryAttempts": 3,
+    "deliverySpeed": "SameDay",
+    "labelMessage": "FAO Ink Industries",
+    "packageType": "Bottle",
+    "receiptConfirmation": "SignatureRequired",
+    "shippingType": "largePackage",
+    "signatureRequired": true,
+    "signatureRequiredBy": "adult",
+    "instructionCharacteristic": []
+  },
+  "shippingOrderItem": [
+    {
+      "id": "1",
+      "action": "add",
+      "productOrderItem": {
+        "id": "100",
+        "name": "Maker XPhone",
+        "href": "https://host/tmf-api/productOrder/v4/productOrder/7800",
+        "productOrderId": "7800"
+      },
+      "product": {
+        "id": "100",
+        "name": "Maker XPhone",
+        "href": "https://host/tmf-api/productInventoryManagement/v4/product/100"
+      },
+      "productOffering": {
+        "id": "4500",
+        "name": "Maker XPhone",
+        "href": "https://host/tmf-api/productCatalogManagement/v4/productOffering/4500"
+      },
+      "quantity": "1"
+    }
+  ],
+  "placeTo": {
+    "id": "9979",
+    "href": "https://host/tmf-api/geographicAddressManagement/v4/geographicAddress/9979",
+    "role": "DeliveryAddress",
+    "@baseType": "Place",
+    "@referredType": "GeographicAddress",
+    "streetNr": "23",
+    "streetName": "Borney Road",
+    "streetType": "Road",
+    "postcode": "OX11 6TR",
+    "locality": "Oxford",
+    "city": "Oxford",
+    "stateOrProvince": "Oxfordshire",
+    "country": "United Kingdom"
+  },
+  "shippingOrderOffering": {
+    "id": "8000",
+    "href": "https://host/tmf-api/productCatalogManagement/v4/productOffering/8000"
+  },
+  "shippingOrderPrice": {
+    "priceType": "Dicounted 10%",
+    "price": {
+      "dutyFreeAmount": {
+        "unit": "EUR",
+        "value": 5
+      },
+      "taxIncludedAmount": {
+        "unit": "EUR",
+        "value": 10
+      }
+    }
+  }
+}

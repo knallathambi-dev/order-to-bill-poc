@@ -1,0 +1,24 @@
+meta {
+  name: category
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{host}}/productCatalogManagement/v1/category/{{category_id}}
+  body: none
+  auth: none
+}
+
+auth:basic {
+  username: 
+  password: 
+}
+
+auth:bearer {
+  token: 
+}
+
+assert {
+  res.status: eq 200
+}

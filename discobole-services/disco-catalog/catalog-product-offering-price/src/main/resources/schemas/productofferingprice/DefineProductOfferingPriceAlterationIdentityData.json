@@ -1,0 +1,70 @@
+{
+  "DefineProductOfferingPriceAlterationIdentityData" : {
+    "required" : [ "name", "priceType", "priority", "priceAlterationType" ],
+    "type" : "object",
+    "properties" : {
+      "name" : {
+        "type" : "string"
+      },
+      "description" : {
+        "type" : "string"
+      },
+      "priceType" : {
+        "type" : "string",
+        "enum" : [ "RC", "NRC" ]
+      },
+      "prorationType" : {
+        "type" : "string",
+        "enum" : [ "subscription", "subscriptionAndTermination", "noProration", "termination" ]
+      },
+      "applicationDuration" : {
+        "required" : [ "amount", "units" ],
+        "type" : "object",
+        "properties" : {
+          "amount" : {
+            "type" : "number"
+          },
+          "units" : {
+            "type" : "string"
+          }
+        }
+      },
+      "priority" : {
+        "type" : "number"
+      },
+      "percentage" : {
+        "type" : "number"
+      },
+      "price" : {
+        "type" : "object",
+        "properties" : {
+          "unit" : {
+            "type" : "string"
+          },
+          "value" : {
+            "type" : "number"
+          }
+        }
+      },
+      "unitOfMeasure" : {
+        "type" : "object",
+        "properties" : {
+          "amount" : {
+            "type" : "number",
+            "default" : 1.0
+          },
+          "units" : {
+            "type" : "string"
+          }
+        }
+      },
+      "priceAlterationType" : {
+        "type" : "string",
+        "enum" : [ "Price", "Percentage" ]
+      },
+      "applicationOffset" : {
+        "type" : "number"
+      }
+    }
+  }
+}
