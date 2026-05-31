@@ -1,0 +1,41 @@
+meta {
+  name: Phase 6 - Create fiber broadband offer
+  type: http
+  seq: 23
+}
+
+post {
+  url: {{catalog_base_url}}/productCatalogManagement/v1/productOffering
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{catalog_token}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "a1f8e6c2-9c6f-4d7b-8a1e-fiber-broadband-offer",
+    "description": "Primary broadband bundle for the POC order flow.",
+    "isBundle": true,
+    "isInstallable": true,
+    "isSellable": true,
+    "lifecycleStatus": "active",
+    "name": "Fiber Broadband 300 Mbps",
+    "statusReason": "Phase 6 seed",
+    "version": "1.0",
+    "brand": "Orange",
+    "productSpecification": {
+      "id": "1d7f3c2a-5ef5-4fb2-a6b7-fiber-broadband-spec",
+      "name": "Broadband Service",
+      "@type": "ProductSpecification"
+    },
+    "type": "BundleProductOffering",
+    "@type": "BundleProductOffering"
+  }
+}

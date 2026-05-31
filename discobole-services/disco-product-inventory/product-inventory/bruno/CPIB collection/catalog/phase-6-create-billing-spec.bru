@@ -1,0 +1,44 @@
+meta {
+  name: Phase 6 - Create billing specification
+  type: http
+  seq: 22
+}
+
+post {
+  url: {{catalog_base_url}}/productCatalogManagement/v1/productSpecification
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{catalog_token}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "7f218bd4-0d3a-4f56-9d36-billing-init-spec",
+    "brand": "Orange",
+    "description": "Billing initiation node represented as a product specification so COOD can place billing after service activation.",
+    "isBundle": false,
+    "lifecycleStatus": "launched",
+    "name": "Billing Initiation",
+    "productNumber": "BILL-INIT",
+    "version": "1.0.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [],
+    "serviceSpecification": [
+      {
+        "id": "billing-initiation-service",
+        "name": "Billing Initiation Service",
+        "@referredType": "ServiceSpecification"
+      }
+    ],
+    "validFor": {
+      "startDateTime": "2026-05-31T00:00:00.000Z"
+    }
+  }
+}

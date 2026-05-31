@@ -1,0 +1,47 @@
+meta {
+  name: Phase 6 - Create static IP offer
+  type: http
+  seq: 24
+}
+
+post {
+  url: {{catalog_base_url}}/productCatalogManagement/v1/productOffering
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{catalog_token}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "b7a7c7f1-2d6f-4e4d-9a5f-static-ip-offer",
+    "description": "Static IP add-on bundled with broadband activation.",
+    "isBundle": false,
+    "isInstallable": true,
+    "isSellable": true,
+    "lifecycleStatus": "active",
+    "name": "Static IP Add-on",
+    "statusReason": "Phase 6 seed",
+    "version": "1.0",
+    "brand": "Orange",
+    "productSpecification": {
+      "id": "6b5a24b4-37b9-4e37-bf2a-static-ip-spec",
+      "name": "Static IP Service",
+      "@type": "ProductSpecification"
+    },
+    "productOfferingRelationship": [
+      {
+        "id": "depends-on-broadband-offer",
+        "relationshipType": "reliesOn"
+      }
+    ],
+    "type": "AtomicProductOffering",
+    "@type": "AtomicProductOffering"
+  }
+}

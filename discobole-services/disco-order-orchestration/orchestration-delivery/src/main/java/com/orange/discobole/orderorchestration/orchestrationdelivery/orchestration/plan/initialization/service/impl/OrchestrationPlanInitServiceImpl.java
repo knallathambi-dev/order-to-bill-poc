@@ -402,7 +402,7 @@ public class OrchestrationPlanInitServiceImpl implements OrchestrationPlanInitSe
     }
 
     private void setRelatedServiceOrderIfExist(com.orange.discobole.orderorchestration.orchestrationdelivery.dto.common.ProductSpecification productSpecification, OrchestrationPlanNode orchestrationPlanNode) {
-        if (!productSpecification.getRelatedResource().isEmpty() && Objects.nonNull(productSpecification.getRelatedResource().get(0).getHref())) {
+        if (Objects.nonNull(productSpecification.getRelatedResource()) && !productSpecification.getRelatedResource().isEmpty() && Objects.nonNull(productSpecification.getRelatedResource().get(0).getHref())) {
             RelatedServiceOrder relatedServiceOrder = RelatedServiceOrder.builder()
                     .somRef(productSpecification.getRelatedResource().get(0).getHref()).build();
             orchestrationPlanNode.setRelatedServiceOrder(relatedServiceOrder);

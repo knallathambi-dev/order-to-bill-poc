@@ -46,6 +46,16 @@ spring:
         spring.json.remove.type.headers: true
         spring.json.use.type.headers: false
         spring.json.value.type.method: com.orange.discobole.orderorchestration.orchestrationdelivery.config.KafkaTyper.typer
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8080/realms/discobole}
+          jwk-set-uri: ${KEYCLOAK_JWK_SET_URI:http://localhost:8080/realms/discobole/protocol/openid-connect/certs}
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_ISSUER_URI:http://localhost:8080/realms/discobole}
 
 retry:
   maxAttempts: '1'

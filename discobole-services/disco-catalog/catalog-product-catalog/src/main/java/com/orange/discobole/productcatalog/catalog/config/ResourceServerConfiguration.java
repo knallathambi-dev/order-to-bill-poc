@@ -16,6 +16,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
@@ -42,6 +43,9 @@ public class ResourceServerConfiguration {
 	@Value("${spring.keycloakRolesEntitlements}")
 	private String[] keycloakRolesEntitlements;
 
+	@Value("${app.security.disabled:false}")
+	private boolean securityDisabled;
+
 	private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
 			// -- Swagger UI(OpenAPI)
 			"/monitoring/**", "/v2/api-docs", "/swagger-resources", "/swagger-resources/**", "/swagger-ui.html",
@@ -49,6 +53,12 @@ public class ResourceServerConfiguration {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		if (securityDisabled) {
+			return http.authorizeHttpRequests(requests -> requests.anyRequest().permitAll())
+					.csrf(AbstractHttpConfigurer::disable)
+					.build();
+		}
+
 		http.authorizeHttpRequests(requests -> requests.requestMatchers(CLASSPATH_RESOURCE_LOCATIONS).permitAll()
 				.requestMatchers("/productCatalogManagement/v1/**", "/serviceCatalogManagement/v1/**")
 				.hasAnyAuthority(keycloakRolesEntitlements).anyRequest().authenticated());

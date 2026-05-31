@@ -17,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -48,8 +49,23 @@ public class SecurityServiceImpl implements SecurityService {
             return false;
         }
 
-        return authentication.getAuthorities().stream()
-                .anyMatch(a -> this.securityConfigProperties.getDiscoAdminRole().equals(a.getAuthority()));
+        if (authentication.getAuthorities().stream()
+                .anyMatch(a -> this.securityConfigProperties.getDiscoAdminRole().equals(a.getAuthority()))) {
+            return true;
+        }
+
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof Jwt jwt) {
+            Object realmAccess = jwt.getClaim("realm_access");
+            if (realmAccess instanceof Map<?, ?> realmAccessMap) {
+                Object roles = realmAccessMap.get("roles");
+                if (roles instanceof List<?> realmRoles) {
+                    return realmRoles.contains("OTB_ADMIN");
+                }
+            }
+        }
+
+        return false;
     }
 
     @Override

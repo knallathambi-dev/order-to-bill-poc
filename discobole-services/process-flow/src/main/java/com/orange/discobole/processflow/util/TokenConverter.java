@@ -43,6 +43,11 @@ public  class TokenConverter {
                 }
             }
         }
+
+        Map<String, Object> realmAccess = (Map<String, Object>) claims.get("realm_access");
+        if (realmAccess != null && realmAccess.containsKey("roles")) {
+            clientRole.addAll((List<String>) realmAccess.get("roles"));
+        }
         return clientRole;
     }
 

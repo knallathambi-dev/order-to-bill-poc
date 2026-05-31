@@ -3,18 +3,33 @@ name: order-to-bill-poc
 x-discobole-service-env: &discobole-service-env
   SERVER_PORT: "8080"
   MANAGEMENT_SERVER_PORT: "9000"
-  SPRING_PROFILES_ACTIVE: "dev"
+  SPRING_PROFILES_ACTIVE: "dev,plaintextconsole"
+  SPRING_PROFILES_GROUP_DEV: "default"
   SPRING_CLOUD_KUBERNETES_ENABLED: "false"
   SPRING_CLOUD_KUBERNETES_CONFIG_ENABLED: "false"
   SPRING_CLOUD_CONFIG_ENABLED: "false"
   SPRING_DATA_MONGODB_HOST: "mongodb"
   SPRING_DATA_MONGODB_PORT: "27017"
   SPRING_DATA_MONGODB_DATABASE: "otb_poc"
+  SPRING_DATA_MONGODB_USERNAME: ""
+  SPRING_DATA_MONGODB_PASSWORD: ""
   SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/otb_poc?replicaSet=rs0"
+  MONGODB_USERNAME: ""
+  MONGODB_PASSWORD: ""
+  MONGODB_DATABASE: "otb_poc"
+  AWS_ACCESS_KEY_ID: "local-access-key"
+  AWS_SECRET_ACCESS_KEY: "local-secret-key"
+  BUCKET_HOST: "localhost"
+  BUCKET_PORT: "9000"
+  BUCKET_NAME: "product-bucket"
+  BUCKET_REGION: "us-east-1"
+  ACCESS_KEY_ID: "local-access-key"
+  SECRET_ACCESS_KEY: "local-secret-key"
+  LINK_EXPIRATION_MINUTES: "15"
   SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
   SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: "kafka:9092"
-  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: "http://keycloak:8080/realms/discobole"
   SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: "http://keycloak:8080/realms/discobole/protocol/openid-connect/certs"
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: "http://localhost:8080/realms/discobole"
   SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI: "http://keycloak:8080/realms/discobole"
   KEYCLOAK_URL: "http://keycloak:8080"
   KEYCLOAK_URI: "http://keycloak:8080"
@@ -29,7 +44,7 @@ services:
     profiles: ["infra"]
     command: ["mongod", "--replSet", "${MONGODB_REPLICA_SET:-rs0}", "--bind_ip_all"]
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     cpus: 1.0
     ports:
       - "${MONGODB_PORT:-27017}:27017"
@@ -58,7 +73,7 @@ services:
     image: ${KAFKA_IMAGE:-apache/kafka:4.3.0}
     profiles: ["infra"]
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     cpus: 1.0
     ports:
       # Host port 9092 maps to the dedicated host listener inside the container.
@@ -114,7 +129,7 @@ services:
     image: ${DEBEZIUM_CONNECT_IMAGE:-quay.io/debezium/connect:3.0}
     profiles: ["infra"]
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     cpus: 1.0
     depends_on:
       kafka:
@@ -149,7 +164,7 @@ services:
     profiles: ["infra"]
     command: ["start-dev", "--import-realm"]
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     cpus: 1.0
     ports:
       - "${KEYCLOAK_PORT:-8080}:8080"
@@ -158,6 +173,7 @@ services:
       KC_BOOTSTRAP_ADMIN_PASSWORD: "${KEYCLOAK_ADMIN_PASSWORD:-admin}"
       KC_HEALTH_ENABLED: "true"
       KC_METRICS_ENABLED: "true"
+      KC_HOSTNAME_URL: "http://keycloak:8080"
     volumes:
       - ./infrastructure/keycloak/import:/opt/keycloak/data/import:ro
     healthcheck:
@@ -171,7 +187,7 @@ services:
     image: ${AUTH_USERROLE_IMAGE:-otb-poc/auth-userrole}
     profiles: ["core"]
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     cpus: 1.0
     depends_on:
       mongodb:
@@ -205,7 +221,7 @@ services:
     image: ${ORDER_CAPTURE_IMAGE:-otb-poc/order-capture}
     profiles: ["core"]
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     cpus: 1.0
     depends_on:
       mongodb:
@@ -224,6 +240,13 @@ services:
       SPRING_APPLICATION_NAME: "order-capture"
       SPRING_DATA_MONGODB_DATABASE: "order_capture"
       SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/order_capture?replicaSet=rs0"
+      APP_SECURITY_ROLEENTITLEMENTS: "ENT_ORDER_CREATE,ENT_ORDER_UPDATE"
+      PRODUCT_CATALOG_SERVICE: "http://product-catalog:8080"
+      PRODUCT_INVENTORY_SERVICE: "http://product-inventory:8080"
+      ORDER_INVENTORY_SERVICE: "http://order-inventory:8080"
+      PRODUCT_CONFIGURATOR_SERVICE: "http://product-catalog:8080"
+      MOCK_SERVER_SERVICE: "http://product-catalog:8080"
+      PROCESS_FLOW_ROLE_ADMIN: "OTB_ADMIN"
       ORDER_KEYCLOAK_CLIENT_ID: "order-capture"
     healthcheck:
       test: ["CMD-SHELL", "cat /proc/1/cmdline | tr '\\0' ' ' | grep -q java"]
@@ -236,7 +259,7 @@ services:
     image: ${ORDER_INVENTORY_IMAGE:-otb-poc/order-inventory}
     profiles: ["core"]
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     cpus: 1.0
     depends_on:
       mongodb:
@@ -266,7 +289,7 @@ services:
     image: ${PRODUCT_CATALOG_IMAGE:-otb-poc/catalog-product-catalog}
     profiles: ["core"]
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     cpus: 1.0
     depends_on:
       mongodb:
@@ -284,6 +307,10 @@ services:
       SPRING_DATA_MONGODB_DATABASE: "catalog"
       SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/catalog?replicaSet=rs0"
       SPRING_KEYCLOAK: "http://keycloak:8080/realms/discobole/protocol/openid-connect/certs"
+      SPRING_USERROLERETRIEVALURL: "http://auth-userrole:8080/userRolePermission/v1/userRole"
+      SPRING_KEYCLOAKROLESENTITLEMENTS: "ENT_CATALOG_MANAGE"
+      APP_SECURITY_DISABLED: "true"
+      CQRS_COMMAND_ENABLED: "true"
     healthcheck:
       test: ["CMD-SHELL", "cat /proc/1/cmdline | tr '\\0' ' ' | grep -q java"]
       interval: 15s
@@ -295,7 +322,7 @@ services:
     image: ${PRODUCT_SPECIFICATION_IMAGE:-otb-poc/catalog-product-specification}
     profiles: ["core"]
     restart: unless-stopped
-    mem_limit: 1g
+    mem_limit: 2g
     cpus: 1.0
     depends_on:
       mongodb:
@@ -312,6 +339,9 @@ services:
       SPRING_APPLICATION_NAME: "product-specification"
       SPRING_DATA_MONGODB_DATABASE: "catalog"
       SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/catalog?replicaSet=rs0"
+      SPRING_KEYCLOAK: "http://keycloak:8080/realms/discobole/protocol/openid-connect/certs"
+      SPRING_USERROLERETRIEVALURL: "http://auth-userrole:8080/userRolePermission/v1/userRole"
+      SPRING_KEYCLOAKROLESENTITLEMENTS: "ENT_CATALOG_MANAGE"
     healthcheck:
       test: ["CMD-SHELL", "cat /proc/1/cmdline | tr '\\0' ' ' | grep -q java"]
       interval: 15s
@@ -340,6 +370,9 @@ services:
       SPRING_APPLICATION_NAME: "product-offering"
       SPRING_DATA_MONGODB_DATABASE: "catalog"
       SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/catalog?replicaSet=rs0"
+      SPRING_KEYCLOAK: "http://keycloak:8080/realms/discobole/protocol/openid-connect/certs"
+      SPRING_USERROLERETRIEVALURL: "http://auth-userrole:8080/userRolePermission/v1/userRole"
+      SPRING_KEYCLOAKROLESENTITLEMENTS: "ENT_CATALOG_MANAGE"
     healthcheck:
       test: ["CMD-SHELL", "cat /proc/1/cmdline | tr '\\0' ' ' | grep -q java"]
       interval: 15s
@@ -368,6 +401,11 @@ services:
       SPRING_APPLICATION_NAME: "product-inventory"
       SPRING_DATA_MONGODB_DATABASE: "product_inventory"
       SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/product_inventory?replicaSet=rs0"
+      CONFIG_TEMP_PATH: "/tmp/product-inventory"
+      CONFIG_TEMPPATH: "/tmp/product-inventory"
+      CONFIG_WEBCLIENT_USE_SERVICE_ACCOUNT: "false"
+      CONFIG_WEBCLIENT_USESERVICEACCOUNT: "false"
+      SPRING_AUTOCONFIGURE_EXCLUDE: "org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration,org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration,org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration,org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration,org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration,org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration"
     healthcheck:
       test: ["CMD-SHELL", "cat /proc/1/cmdline | tr '\\0' ' ' | grep -q java"]
       interval: 15s
@@ -401,10 +439,14 @@ services:
       <<: *discobole-service-env
       PORT: "8080"
       SPRING_APPLICATION_NAME: "orchestration-delivery"
+      SPRING_PROFILES_ACTIVE: "dev,plaintextconsole,no-security"
       SPRING_DATA_MONGODB_DATABASE: "orchestration_delivery"
       SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/orchestration_delivery?replicaSet=rs0"
       KEYCLOAK_CLIENT_ID: "orchestration-delivery"
-      CONFIG_PRODUCT_SPEC_BY_ID_CATALOG_URL: "http://product-specification:8080/productCatalogManagement/v1/productSpecification"
+      APP_SECURITY_USER_ROLE_RETRIEVAL_URL: "http://auth-userrole:8080/userRolePermission/v1/userRole"
+      APP_SECURITY_USERROLERETRIEVALURL: "http://auth-userrole:8080/userRolePermission/v1/userRole"
+      APP_SECURITY_KEYCLOAKENTITLEMENTS: "ENT_ORCHESTRATION_READ,ENT_ORCHESTRATION_RETRY"
+      CONFIG_PRODUCT_SPEC_BY_ID_CATALOG_URL: "http://product-catalog:8080/productCatalogManagement/v1/productSpecification"
       CONFIG_PRODUCT_MANAGEMENT_URL: "http://product-inventory:8080/productInventoryManagement/v1/product"
       CONFIG_PRODUCT_ORDER_BY_ID_URL: "http://order-inventory:8080/api/productOrderingManagement/v1/productOrder"
       CONFIG_FALLOUT_URL: "http://orchestration-delivery-fallout:8080/processManagement/v1/processFlow"
@@ -469,6 +511,7 @@ services:
       - "${DELIVERY_FALLOUT_MANAGEMENT_PORT:-19084}:9000"
     environment:
       <<: *discobole-service-env
+      SPRING_PROFILES_ACTIVE: "dev,plaintextconsole,no-security"
       PORT: "8080"
       SPRING_APPLICATION_NAME: "orchestration-delivery-fallout"
       SPRING_DATA_MONGODB_DATABASE: "falloutmanagement"

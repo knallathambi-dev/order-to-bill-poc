@@ -1,0 +1,66 @@
+meta {
+  name: Phase 6 - Create static IP specification
+  type: http
+  seq: 21
+}
+
+post {
+  url: {{catalog_base_url}}/productCatalogManagement/v1/productSpecification
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{catalog_token}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "6b5a24b4-37b9-4e37-bf2a-static-ip-spec",
+    "brand": "Orange",
+    "description": "Static IP service specification used as an add-on to the broadband offer.",
+    "isBundle": false,
+    "lifecycleStatus": "launched",
+    "name": "Static IP Service",
+    "productNumber": "IP-STATIC",
+    "version": "1.0.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "static-ip-address",
+        "configurable": false,
+        "description": "Customer-assigned public IP address",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Static IP",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "value": "1 public IPv4 address"
+          }
+        ]
+      }
+    ],
+    "serviceSpecification": [
+      {
+        "id": "static-ip-service",
+        "name": "Static IP Access Service",
+        "@referredType": "ServiceSpecification"
+      }
+    ],
+    "productSpecificationRelationship": [
+      {
+        "id": "requires-broadband-service",
+        "relationshipType": "requires"
+      }
+    ],
+    "validFor": {
+      "startDateTime": "2026-05-31T00:00:00.000Z"
+    }
+  }
+}

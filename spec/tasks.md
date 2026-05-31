@@ -148,20 +148,27 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 
 ## Phase 6: Catalog and Product Model
 
-- [ ] Define broadband ProductOffering seed data
+- [x] Define broadband ProductOffering seed data
   - Fiber Broadband 300 Mbps
   - Static IP Add-on
-- [ ] Define ProductSpecification seed data
+- [x] Define ProductSpecification seed data
   - broadband service/product node
   - static IP service/product node
   - billing/invoice node if represented as product-driven orchestration
-- [ ] Define offering/spec relationships for COOD decomposition
-- [ ] Define static IP dependency on broadband activation
-- [ ] Define billing dependency after service activation
-- [ ] Add catalog seed scripts or import files
+- [x] Define offering/spec relationships for COOD decomposition
+- [x] Define static IP dependency on broadband activation
+- [x] Define billing dependency after service activation
+- [x] Add catalog seed scripts or import files
+- [x] Add seed data guide
 - [ ] Verify seeded offers are visible to customer UI
-- [ ] Verify Order Capture accepts the seeded offer structure
-- [ ] Verify accepted ProductOrder event can produce a COOD orchestration plan
+- [x] Verify Order Capture accepts the seeded offer structure
+  - Verified via Order Capture `selectOfferOrContract` flow using the seeded Fiber Broadband offer; the flow advanced to `OrderCapture.confirmConfiguration`.
+  - POC note: request payload must include `channel` so ProcessFlow can populate the `CHANNEL_ID` variable.
+- [x] Verify accepted ProductOrder event can produce a COOD orchestration plan
+  - Verified with accepted ProductOrder `phase6-1780226407`.
+  - COOD created orchestration plan `0920ab23-f4f3-4271-91af-8a47099bcf5f` in `Acknowledged` state with three nodes: broadband, static IP, and billing.
+  - POC note: inter-service auth was bypassed for Product Catalog, COOD, and COOD Fallout to unblock the local demo flow.
+  - POC note: COOD plan initialization was made null-safe for seeded product specs that do not include `relatedResource`.
 
 ## Phase 7: Reused Discobole UI Portals
 

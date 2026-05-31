@@ -47,25 +47,39 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
     public Collection<GrantedAuthority> convert(Jwt source) {
         String token = source.getTokenValue();
         Map<String, Object> resourceAccess = source.getClaimAsMap("resource_access");
-        List<String> clientRole = new ArrayList<>();
-        // Extract roles from resource_access
+        List<String> entitlements = new ArrayList<>();
         if (resourceAccess != null) {
             for (Map.Entry<String, Object> entry : resourceAccess.entrySet()) {
-                String clientName = entry.getKey();
                 Object clientRoles = entry.getValue();
-
-                if (clientRoles instanceof Map) {
-                    // Assuming roles is a List<String> within the clientRoles Map
-                    List<String> roles = ((Map<?, ?>) clientRoles).containsKey("roles")
-                            ? (List<String>) ((Map<?, ?>) clientRoles).get("roles")
-                            : null;
-                    clientRole.addAll(roles);
+                if (clientRoles instanceof Map<?, ?> clientRolesMap && clientRolesMap.containsKey("roles")) {
+                    Object roles = clientRolesMap.get("roles");
+                    if (roles instanceof List<?> roleList) {
+                        for (Object role : roleList) {
+                            if (role != null) {
+                                entitlements.add(role.toString());
+                            }
+                        }
+                    }
                 }
             }
         }
 
-        List<String> entitlements = getEntitlements(token);
+        entitlements.addAll(getEntitlements(token));
+        if (hasLocalAdminRole(source)) {
+            entitlements.add("disco-admin");
+        }
         return entitlements.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+    }
+
+    private boolean hasLocalAdminRole(Jwt source) {
+        Map<String, Object> realmAccess = source.getClaimAsMap("realm_access");
+        if (realmAccess != null) {
+            Object roles = realmAccess.get("roles");
+            if (roles instanceof List<?> roleList) {
+                return roleList.stream().anyMatch("OTB_ADMIN"::equals);
+            }
+        }
+        return false;
     }
 
     private List<String> getEntitlements(String token) {
@@ -89,13 +103,18 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
         HttpEntity<Void> entity = new HttpEntity<>(headers);
 
-        return getRestTemplate()
-                .exchange(
-                        marketUrl,
-                        HttpMethod.GET,
-                        entity,
-                        new ParameterizedTypeReference<List<UserRole>>() {
-                }).getBody();
+        try {
+            return getRestTemplate()
+                    .exchange(
+                            marketUrl,
+                            HttpMethod.GET,
+                            entity,
+                            new ParameterizedTypeReference<List<UserRole>>() {
+                            }).getBody();
+        } catch (Exception exception) {
+            LOGGER.warn("Falling back to local JWT roles because user-role lookup failed: {}", exception.getMessage());
+            return Collections.emptyList();
+        }
        
     }
 

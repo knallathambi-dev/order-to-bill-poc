@@ -1,0 +1,60 @@
+meta {
+  name: Phase 6 - Create broadband specification
+  type: http
+  seq: 20
+}
+
+post {
+  url: {{catalog_base_url}}/productCatalogManagement/v1/productSpecification
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{catalog_token}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "id": "1d7f3c2a-5ef5-4fb2-a6b7-fiber-broadband-spec",
+    "brand": "Orange",
+    "description": "Broadband service specification used to decompose the Fiber Broadband 300 Mbps offer.",
+    "isBundle": false,
+    "lifecycleStatus": "launched",
+    "name": "Broadband Service",
+    "productNumber": "BB-300",
+    "version": "1.0.0",
+    "supportEntity": "CFSSpec",
+    "productSpecCharacteristic": [
+      {
+        "id": "bb-bandwidth",
+        "configurable": true,
+        "description": "Access bandwidth",
+        "maxCardinality": 1,
+        "minCardinality": 0,
+        "name": "Bandwidth",
+        "valueType": "string",
+        "productSpecCharacteristicValue": [
+          {
+            "isDefault": true,
+            "value": "300 Mbps"
+          }
+        ]
+      }
+    ],
+    "serviceSpecification": [
+      {
+        "id": "fiber-broadband-service",
+        "name": "Fiber Broadband Access Service",
+        "@referredType": "ServiceSpecification"
+      }
+    ],
+    "validFor": {
+      "startDateTime": "2026-05-31T00:00:00.000Z"
+    }
+  }
+}

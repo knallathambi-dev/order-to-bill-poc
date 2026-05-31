@@ -1,0 +1,44 @@
+meta {
+  name: Phase 6 - Link offering relationships
+  type: http
+  seq: 25
+}
+
+patch {
+  url: {{catalog_base_url}}/productCatalogManagement/v1/productOffering/a1f8e6c2-9c6f-4d7b-8a1e-fiber-broadband-offer
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{catalog_token}}
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "productOfferingRelationship": [
+      {
+        "id": "bundle-static-ip-addon",
+        "relationshipType": "bundles",
+        "product": {
+          "id": "b7a7c7f1-2d6f-4e4d-9a5f-static-ip-offer",
+          "name": "Static IP Add-on",
+          "@type": "AtomicProductOffering"
+        }
+      },
+      {
+        "id": "billing-after-activation",
+        "relationshipType": "reliesOn",
+        "product": {
+          "id": "7f218bd4-0d3a-4f56-9d36-billing-init-spec",
+          "name": "Billing Initiation",
+          "@type": "ProductSpecificationRef"
+        }
+      }
+    ]
+  }
+}

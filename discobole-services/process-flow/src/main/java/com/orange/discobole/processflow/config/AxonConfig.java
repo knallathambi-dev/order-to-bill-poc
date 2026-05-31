@@ -33,6 +33,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
+import org.springframework.util.StringUtils;
 import reactor.core.publisher.Flux;
 
 import java.util.function.Supplier;
@@ -61,8 +62,9 @@ private String mongoPassword;
 
     @Bean
     public MongoClient mongo() {
-        final ConnectionString connectionString = new ConnectionString("mongodb://" + mongoUser + ":" + mongoPassword
-                + "@" + mongoHost + ":" + mongoPort + "/" + mongoDatabase);
+        final String credentials = StringUtils.hasText(mongoUser) ? mongoUser + ":" + mongoPassword + "@" : "";
+        final ConnectionString connectionString = new ConnectionString("mongodb://" + credentials + mongoHost + ":"
+                + mongoPort + "/" + mongoDatabase);
         final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
                 .applyConnectionString(connectionString).build();
         return MongoClients.create(mongoClientSettings);
