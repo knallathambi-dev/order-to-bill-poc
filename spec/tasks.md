@@ -160,7 +160,8 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 - [x] Define billing dependency after service activation
 - [x] Add catalog seed scripts or import files
 - [x] Add seed data guide
-- [ ] Verify seeded offers are visible to customer UI
+- [x] Verify seeded offers are visible to customer UI
+  - Verified through the Phase 7 selfcare bridge/catalog route and selfcare offer-loader fallback for `Fiber Broadband 300 Mbps` and `Static IP Add-on`.
 - [x] Verify Order Capture accepts the seeded offer structure
   - Verified via Order Capture `selectOfferOrContract` flow using the seeded Fiber Broadband offer; the flow advanced to `OrderCapture.confirmConfiguration`.
   - POC note: request payload must include `channel` so ProcessFlow can populate the `CHANNEL_ID` variable.
@@ -174,14 +175,14 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 
 ### Customer UI: `selfcare-ui`
 
-- [ ] Decide whether to run from reference monorepo or copy/adapt into this repo
-- [ ] Configure `selfcare-ui` environment URLs through POC gateway
-- [ ] Configure `selfcare-ui/server` if used as the gateway/session proxy
-- [ ] Replace mobile/demo offer content with broadband content
-- [ ] Adapt labels for broadband order capture
+- [x] Decide whether to run from reference monorepo or copy/adapt into this repo
+- [x] Configure `selfcare-ui` environment URLs through POC gateway
+- [x] Configure `selfcare-ui/server` if used as the gateway/session proxy
+- [x] Replace mobile/demo offer content with broadband content
+- [x] Adapt labels for broadband order capture
 - [ ] Ensure order completion posts to Discobole Order Capture
 - [ ] Ensure track-order reads Discobole Order Inventory
-- [ ] Add/adapt customer-visible status labels
+- [x] Add/adapt customer-visible status labels
   - qualification
   - broadband activation
   - static IP activation
@@ -191,21 +192,24 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 
 ### Operator UI: `order-inventory-ui`
 
-- [ ] Decide whether to run standalone or through `hostmode-ui`
-- [ ] Configure service URLs through POC gateway
-- [ ] Verify product order list
+- [x] Decide whether to run standalone or through `hostmode-ui`
+- [x] Configure service URLs through POC gateway
+- [x] Verify product order list
+  - Bridge route authorizes and returns a valid list response; the current local inventory dataset was empty after service recreate.
 - [ ] Verify product order details
 - [ ] Verify order-to-orchestration-plan linkage
 
 ### Orchestration UI: `order-orchestration-ui`
 
-- [ ] Decide whether to run standalone or through `hostmode-ui`
-- [ ] Configure COOD, Fallout, Product Inventory, and Order Inventory URLs
-- [ ] Verify orchestration plan list
+- [x] Decide whether to run standalone or through `hostmode-ui`
+- [x] Configure COOD, Fallout, Product Inventory, and Order Inventory URLs
+- [x] Verify orchestration plan list
+  - Bridge route returns current COOD plan data.
 - [ ] Verify plan detail
 - [ ] Verify orchestration node graph
 - [ ] Verify timeline
-- [ ] Verify fallout incidents
+- [x] Verify fallout incidents
+  - Bridge route returns a valid fallout incident list response.
 
 ## Phase 8: POC Gateway
 

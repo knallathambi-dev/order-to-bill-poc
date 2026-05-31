@@ -21,6 +21,8 @@ import {getDisplayableOrderItems} from "../../utlis/utils";
 import {fetchOrder} from "../../services";
 import {ReloadButton} from "../../components/utils/ReloadButton";
 
+const statusLabel = (state) => ORDER_STATUSES[state] || state || "-";
+
 export default function TrackOrder() {
     useTitlePage("trackOrder");
 
@@ -94,7 +96,7 @@ export default function TrackOrder() {
                     <p>
                         {t("common.state")}:
                         <span
-                            className={`tag tag-sm status-value ms-2 ${order?.state?.toLowerCase()}`}>{ORDER_STATUSES[order.state]}</span>
+                            className={`tag tag-sm status-value ms-2 ${order?.state?.toLowerCase()}`}>{statusLabel(order.state)}</span>
                     </p>
                 </div>
             </div>
@@ -121,7 +123,7 @@ export default function TrackOrder() {
                                                     {formatActionName(item.action)}
                                                 </span>
                                                 <span
-                                                    className={`tag tag-sm status-value m-0 ${item?.state?.toLowerCase()}`}>{ORDER_STATUSES[item.state]}</span>
+                                                    className={`tag tag-sm status-value m-0 ${item?.state?.toLowerCase()}`}>{statusLabel(item.state)}</span>
                                             </p>
                                         </button>
                                     </div>

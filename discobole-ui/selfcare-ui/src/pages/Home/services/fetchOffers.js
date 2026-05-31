@@ -26,6 +26,13 @@ const QUERY_PARAMS = {
     "MarketSegmentRef.id": "B2C,B2B",
     sort: "-lastUpdate",
 };
+const PHASE7_BROADBAND_OFFER_NAMES = [
+    "Fiber Broadband 300 Mbps",
+    "Static IP Add-on",
+];
+const PHASE7_BROADBAND_OFFER_NAME_KEYS = new Set(
+    PHASE7_BROADBAND_OFFER_NAMES.map((name) => name.toLowerCase())
+);
 
 const pickImage = (index) => offerImages[index % offerImages.length];
 
@@ -34,7 +41,25 @@ const fetchOffers = async (dispatch, tNotification) => {
 
     try {
         const {data} = await apiClient.get(productCatalogUrl, {params: QUERY_PARAMS});
-        const list = Array.isArray(data) ? data : [];
+        let list = Array.isArray(data) ? data : [];
+
+        const hasPhase7Offers = list.some((offer) =>
+            PHASE7_BROADBAND_OFFER_NAME_KEYS.has(String(offer?.name || "").toLowerCase())
+        );
+
+        if (!hasPhase7Offers) {
+            const fallbackResponse = await apiClient.get(productCatalogUrl, {
+                params: {
+                    lifecycleStatus: "launched,active",
+                    sort: "-lastUpdate",
+                },
+            });
+            const fallbackList = Array.isArray(fallbackResponse.data) ? fallbackResponse.data : [];
+            const broadbandOffers = fallbackList.filter((offer) =>
+                PHASE7_BROADBAND_OFFER_NAME_KEYS.has(String(offer?.name || "").toLowerCase())
+            );
+            list = [...broadbandOffers, ...list];
+        }
 
         return list.map((offer, index) => ({
             ...offer,

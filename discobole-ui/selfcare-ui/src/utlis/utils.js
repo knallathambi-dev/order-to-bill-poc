@@ -235,6 +235,9 @@ export const getFormattedValue = (inputValue, t) =>
     inputValue >= 9999 ? t("common.unlimited") : inputValue;
 
 export const isFiberOrConvergentOffer = (offer) => {
+    const offerName = (offer?.name ?? '').trim().toLowerCase();
+    if (offerName.includes('fiber') || offerName.includes('broadband')) return true;
+
     const categories = offer?.category;
     if (!Array.isArray(categories)) return false;
     return categories.some((cat) => {

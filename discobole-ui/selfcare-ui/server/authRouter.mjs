@@ -224,6 +224,33 @@ router.get("/me", async (req, res) => {
     return res.status(401).json({error: "Not authenticated"});
 });
 
+router.get("/status", async (req, res) => {
+    const accessToken = req.session.tokens?.accessToken;
+
+    if (accessToken && !isTokenExpired(accessToken)) {
+        return res.json({
+            authenticated: true,
+            username: req.session.user?.username,
+            name: req.session.user?.username,
+            email: req.session.user?.email,
+            serviceSession: req.session.serviceSession ?? false,
+        });
+    }
+
+    const established = await establishServiceSession(req);
+    if (established) {
+        return res.json({
+            authenticated: true,
+            username: "phase7-bridge",
+            name: "Phase 7 Bridge",
+            email: null,
+            serviceSession: true,
+        });
+    }
+
+    return res.status(401).json({authenticated: false});
+});
+
 router.post("/logout", requireCsrf, (req, res) => {
     req.session.destroy((err) => {
         if (err) {

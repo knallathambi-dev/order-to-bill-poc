@@ -38,7 +38,24 @@ export const ORDER_STATUSES = {
     pendingCancellation: 'Pending cancellation',
     assessingCancellation: 'Assessing cancellation',
     pending: 'Pending',
-    terminated: 'Terminated'
+    terminated: 'Terminated',
+    qualification: 'Qualification',
+    qualified: 'Qualified',
+    activation: 'Activation',
+    broadbandActivation: 'Broadband activation',
+    staticIpActivation: 'Static IP activation',
+    billing: 'Billing',
+    invoice: 'Invoice',
+    invoiced: 'Invoice generated',
+    inDelivery: 'In delivery',
+    InDelivery: 'In delivery',
+    InProgress: 'In progress',
+    Completed: 'Completed',
+    Acknowledged: 'Acknowledged',
+    Held: 'Held',
+    Failed: 'Failed',
+    Rejected: 'Rejected',
+    Initialized: 'Initialized'
 };
 
 export const PRICE_TYPES = {

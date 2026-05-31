@@ -18,13 +18,13 @@ class KeycloakUtil {
 
     async implicitLogin() {
         const keycloakConfig = {
-            realm: "SpringBootKeycloak",
+            realm: process.env.EXPRESS_APP_KEYCLOAK_REALM || "discobole",
             url: process.env.EXPRESS_APP_KEYCLOAK_URL,
-            clientId: "gateway",
+            clientId: process.env.EXPRESS_APP_CLIENT_ID || "poc-gateway",
         };
 
-        if (!keycloakConfig.url || !process.env.EXPRESS_APP_CLIENT_SECRET ||
-            !process.env.EXPRESS_APP_USERNAME || !process.env.EXPRESS_APP_PASSWORD) {
+        const hasPasswordCredentials = process.env.EXPRESS_APP_USERNAME && process.env.EXPRESS_APP_PASSWORD;
+        if (!keycloakConfig.url || (!hasPasswordCredentials && !process.env.EXPRESS_APP_CLIENT_SECRET)) {
             const error = new Error("Missing Keycloak configuration");
             console.error("[Keycloak] Configuration error");
             return Promise.reject(error);
@@ -37,14 +37,19 @@ class KeycloakUtil {
         const uri = `/realms/${keycloakConfig.realm}/protocol/openid-connect/token`;
         const tokenEndpoint = `${keycloakConfig.url.replace(/\/+$/, "")}${uri}`;
 
+        const grantType = hasPasswordCredentials ? "password" : "client_credentials";
         const urlencoded = new URLSearchParams({
-            username: process.env.EXPRESS_APP_USERNAME,
-            password: process.env.EXPRESS_APP_PASSWORD,
-            grant_type: "password",
+            grant_type: grantType,
             client_id: keycloakConfig.clientId,
-            client_secret: process.env.EXPRESS_APP_CLIENT_SECRET,
             scope: "openid",
         });
+        if (process.env.EXPRESS_APP_CLIENT_SECRET) {
+            urlencoded.set("client_secret", process.env.EXPRESS_APP_CLIENT_SECRET);
+        }
+        if (grantType === "password") {
+            urlencoded.set("username", process.env.EXPRESS_APP_USERNAME);
+            urlencoded.set("password", process.env.EXPRESS_APP_PASSWORD);
+        }
 
         this._loginInFlight = (async () => {
             try {

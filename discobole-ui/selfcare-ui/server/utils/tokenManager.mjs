@@ -36,11 +36,13 @@ export const isRefreshTokenExpired = (refreshToken, bufferSeconds = 0) => {
 
 export const buildUserFromToken = (accessToken) => {
     const payload = decodeJwtPayload(accessToken) || {};
+    const email = payload.email || null;
+    const stableFallbackId = email ? email.replace(/[^A-Za-z0-9_-]/g, "-") : null;
     return {
         username: payload.given_name || null,
-        email: payload.email || null,
-        relatedPartyId: payload.relatedPartyId || null,
-        relatedPartyRole: payload.relatedPartyRole || null,
+        email,
+        relatedPartyId: payload.relatedPartyId || stableFallbackId,
+        relatedPartyRole: payload.relatedPartyRole || "customer",
     };
 };
 

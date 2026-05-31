@@ -1,4 +1,4 @@
-.PHONY: help verify-phase1 verify-phase2 verify-phase3 verify-phase4 verify-phase5 list-discobole-images package-core-services build-core-service-images list-core-service-images infra-up infra-bootstrap infra-verify infra-down core-up core-verify core-down security-verify-keycloak security-seed-auth-userrole status
+.PHONY: help verify-phase1 verify-phase2 verify-phase3 verify-phase4 verify-phase5 verify-phase7 phase7-ui-build list-discobole-images package-core-services build-core-service-images list-core-service-images infra-up infra-bootstrap infra-verify infra-down core-up core-verify core-down security-verify-keycloak security-seed-auth-userrole status
 
 help:
 	@printf '%s\n' 'Order-to-Bill POC commands'
@@ -9,6 +9,8 @@ help:
 	@printf '%s\n' '  make verify-phase3  Verify infrastructure files and scripts'
 	@printf '%s\n' '  make verify-phase4  Verify security seed files and scripts'
 	@printf '%s\n' '  make verify-phase5  Verify core service Compose/build files'
+	@printf '%s\n' '  make verify-phase7  Verify Phase 7 UI portal implementation files'
+	@printf '%s\n' '  make phase7-ui-build Build Phase 7 UI packages where possible'
 	@printf '%s\n' '  make list-discobole-images  List local Discobole Docker image targets'
 	@printf '%s\n' '  make package-core-services  Package copied Discobole core services'
 	@printf '%s\n' '  make build-core-service-images Build copied Discobole core images'
@@ -169,7 +171,7 @@ verify-phase5: verify-phase4
 	@grep -q 'SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"' docker-compose.yml
 	@grep -q 'http://keycloak:8080/realms/discobole' docker-compose.yml
 	@grep -q 'mongodb://mongodb:27017' docker-compose.yml
-	@grep -q 'RUN addgroup java && adduser -D javauser java' discobole-services/disco-security/auth-userrole/Dockerfile
+	@grep -Eq 'RUN (addgroup java && adduser -D javauser java|groupadd java && useradd -r -g java javauser)' discobole-services/disco-security/auth-userrole/Dockerfile
 	@printf '%s\n' 'Phase 5 core service files verified.'
 
 core-up:
@@ -180,6 +182,12 @@ core-verify:
 
 core-down:
 	@docker compose --profile infra --profile core stop auth-userrole order-capture order-inventory product-catalog product-specification product-offering product-inventory orchestration-delivery orchestration-delivery-management orchestration-delivery-fallout
+
+verify-phase7: verify-phase5
+	@scripts/verify-phase7-ui.sh
+
+phase7-ui-build:
+	@scripts/verify-phase7-ui.sh --build
 
 status:
 	@git status --short

@@ -9,11 +9,11 @@
 
 import axios from "../utils/axios.mjs";
 
-const KEYCLOAK_REALM = "SpringBootKeycloak";
+const KEYCLOAK_REALM = process.env.EXPRESS_APP_KEYCLOAK_REALM || "discobole";
 const KEYCLOAK_MASTER_REALM = "master";
-const KEYCLOAK_CLIENT_ID = "gateway";
+const KEYCLOAK_CLIENT_ID = process.env.EXPRESS_APP_USER_CLIENT_ID || "selfcare-ui";
 const KEYCLOAK_ADMIN_CLIENT_ID = "admin-cli";
-const DEFAULT_CLIENT_ROLE = "SelfCareAdmin";
+const DEFAULT_CLIENT_ROLE = process.env.EXPRESS_APP_DEFAULT_CLIENT_ROLE || "OTB_CUSTOMER";
 
 const generateRandomId = (length = 9) => {
     return Math.random().toString(36).slice(2, 2 + length);
@@ -144,9 +144,11 @@ const getUserTokensFromKeycloak = async (email, password) => {
         password: password,
         grant_type: "password",
         client_id: KEYCLOAK_CLIENT_ID,
-        client_secret: process.env.EXPRESS_APP_CLIENT_SECRET,
         scope: "openid",
     });
+    if (process.env.EXPRESS_APP_CLIENT_SECRET) {
+        credentials.set("client_secret", process.env.EXPRESS_APP_CLIENT_SECRET);
+    }
 
     try {
         const {data} = await axios.post(tokenEndpoint, credentials.toString(), {
@@ -265,8 +267,10 @@ export const authService = {
             grant_type: "refresh_token",
             refresh_token: refreshToken,
             client_id: KEYCLOAK_CLIENT_ID,
-            client_secret: process.env.EXPRESS_APP_CLIENT_SECRET,
         });
+        if (process.env.EXPRESS_APP_CLIENT_SECRET) {
+            credentials.set("client_secret", process.env.EXPRESS_APP_CLIENT_SECRET);
+        }
 
         try {
             const {data} = await axios.post(tokenEndpoint, credentials.toString(), {

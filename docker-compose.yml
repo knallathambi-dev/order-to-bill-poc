@@ -246,7 +246,7 @@ services:
       ORDER_INVENTORY_SERVICE: "http://order-inventory:8080"
       PRODUCT_CONFIGURATOR_SERVICE: "http://product-catalog:8080"
       MOCK_SERVER_SERVICE: "http://product-catalog:8080"
-      PROCESS_FLOW_ROLE_ADMIN: "OTB_ADMIN"
+      PROCESS_FLOW_ROLE_ADMIN: "OTB_CUSTOMER"
       ORDER_KEYCLOAK_CLIENT_ID: "order-capture"
     healthcheck:
       test: ["CMD-SHELL", "cat /proc/1/cmdline | tr '\\0' ' ' | grep -q java"]
@@ -278,6 +278,9 @@ services:
       SPRING_APPLICATION_NAME: "order-inventory"
       SPRING_DATA_MONGODB_DATABASE: "order_inventory"
       SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/order_inventory?replicaSet=rs0"
+      APP_SECURITY_DISCOADMINROLE: "ENT_ORDER_READ_ALL"
+      APP_SECURITY_DEFAULTROLES_READPRODUCTORDERENTITLEMENT: "ENT_ORDER_READ_ALL"
+      APP_SECURITY_DEFAULTROLES_CREATEPRODUCTORDERENTITLEMENT: "ENT_ORDER_CREATE"
     healthcheck:
       test: ["CMD-SHELL", "cat /proc/1/cmdline | tr '\\0' ' ' | grep -q java"]
       interval: 15s

@@ -19,6 +19,62 @@ const BEARER_PREFIX = "Bearer ";
 const BLOCKED_RESPONSE_HEADERS_PREFIX = "access-control-";
 const TOKEN_EXPIRY_BUFFER_SECONDS = 60;
 
+const DEFAULT_ROUTE_TARGETS = [
+    ["productCatalogManagement", "http://localhost:18086"],
+    ["orderCapture", "http://localhost:18080", true],
+    ["productOrderingManagement", "http://localhost:18081"],
+    ["productInventory", "http://localhost:18089"],
+    ["cood", "http://localhost:18082", true],
+    ["fallout", "http://localhost:18084", true],
+    ["userRolePermission", "http://localhost:18085"],
+    ["productOfferingQualification", "http://localhost:18080"],
+    ["processManagement", "http://localhost:18080"],
+    ["v1", "http://localhost:18080"],
+];
+
+const normalizePath = (path) => {
+    if (!path) return "/";
+    return path.startsWith("/") ? path : `/${path}`;
+};
+
+const routeEnvName = (prefix) => `EXPRESS_APP_ROUTE_${prefix.replace(/[^A-Z0-9]/gi, "_").toUpperCase()}_URL`;
+
+const routeTargets = DEFAULT_ROUTE_TARGETS.map(([prefix, defaultTarget, stripPrefix]) => ({
+    prefix,
+    target: (process.env[routeEnvName(prefix)] || defaultTarget).replace(/\/+$/, ""),
+    stripPrefix: stripPrefix === true,
+}));
+
+const resolveRoute = (originalUrl) => {
+    const requestPath = normalizePath(originalUrl.replace(/^\/api/, ""));
+    const route = routeTargets.find(({prefix}) =>
+        requestPath === `/${prefix}` || requestPath.startsWith(`/${prefix}/`)
+    );
+
+    if (route) {
+        const upstreamPath = route.stripPrefix
+            ? requestPath.replace(new RegExp(`^/${route.prefix}`), "") || "/"
+            : requestPath;
+
+        return {
+            upstreamUrl: `${route.target}${upstreamPath}`,
+            requestPath,
+        };
+    }
+
+    const proxyBaseUrl = (process.env.EXPRESS_APP_PROXY_URL || "").replace(/\/+$/, "");
+    if (!proxyBaseUrl) {
+        const error = new Error(`No Phase 7 bridge route configured for ${requestPath}`);
+        error.status = 502;
+        throw error;
+    }
+
+    return {
+        upstreamUrl: `${proxyBaseUrl}${requestPath}`,
+        requestPath,
+    };
+};
+
 const requireInternalSecret = (req, res, next) => {
     const isProd = process.env.NODE_ENV === "production";
     if (!isProd) return next();
@@ -87,12 +143,10 @@ const copyResponseHeaders = (upstreamHeaders, clientResponse) => {
 };
 
 router.use(async (req, res) => {
-    const proxyBaseUrl = (process.env.EXPRESS_APP_PROXY_URL || "").replace(/\/+$/, "");
-    const requestPath = req.originalUrl.replace(/^\/api/, "");
-    const upstreamUrl = `${proxyBaseUrl}${requestPath}`;
     const requestBody = req.body;
 
     try {
+        const {upstreamUrl} = resolveRoute(req.originalUrl);
         const {token, isUserSession, wasRefreshed} = await getAuthToken(req);
         const upstreamHeaders = buildUpstreamHeaders(req.headers, token);
 
