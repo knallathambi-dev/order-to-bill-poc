@@ -73,8 +73,40 @@ ensure_auth_userrole_permissions() {
     --data "[$REALM_ADMIN_ROLE]" >/dev/null
 }
 
+ensure_service_account_client_role() {
+  client_id="$1"
+  role_name="$2"
+  ADMIN_TOKEN=$(get_admin_token)
+  CLIENT_UUID=$(curl -fsS \
+    "$KEYCLOAK_ADMIN_URL/clients?clientId=$client_id" \
+    -H "Authorization: Bearer $ADMIN_TOKEN" | jq -r '.[0].id')
+  SERVICE_ACCOUNT_ID=$(curl -fsS \
+    "$KEYCLOAK_ADMIN_URL/clients/$CLIENT_UUID/service-account-user" \
+    -H "Authorization: Bearer $ADMIN_TOKEN" | jq -r '.id')
+
+  if ! curl -fsS \
+    "$KEYCLOAK_ADMIN_URL/clients/$CLIENT_UUID/roles/$role_name" \
+    -H "Authorization: Bearer $ADMIN_TOKEN" >/tmp/otb-poc-client-role.json 2>/dev/null; then
+    curl -fsS -X POST \
+      "$KEYCLOAK_ADMIN_URL/clients/$CLIENT_UUID/roles" \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer $ADMIN_TOKEN" \
+      --data "{\"name\":\"$role_name\"}" >/dev/null
+    curl -fsS \
+      "$KEYCLOAK_ADMIN_URL/clients/$CLIENT_UUID/roles/$role_name" \
+      -H "Authorization: Bearer $ADMIN_TOKEN" >/tmp/otb-poc-client-role.json
+  fi
+
+  curl -fsS -X POST \
+    "$KEYCLOAK_ADMIN_URL/users/$SERVICE_ACCOUNT_ID/role-mappings/clients/$CLIENT_UUID" \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer $ADMIN_TOKEN" \
+    --data "[$(cat /tmp/otb-poc-client-role.json)]" >/dev/null || true
+}
+
 TOKEN=$(get_keycloak_token)
 ensure_auth_userrole_permissions
+ensure_service_account_client_role "order-capture" "OTB_CUSTOMER"
 
 post_each() {
   endpoint="$1"

@@ -29,7 +29,7 @@ x-discobole-service-env: &discobole-service-env
   SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
   SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: "kafka:9092"
   SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: "http://keycloak:8080/realms/discobole/protocol/openid-connect/certs"
-  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: "http://localhost:8080/realms/discobole"
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: "http://keycloak:8080/realms/discobole"
   SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER_URI: "http://keycloak:8080/realms/discobole"
   KEYCLOAK_URL: "http://keycloak:8080"
   KEYCLOAK_URI: "http://keycloak:8080"
@@ -244,7 +244,7 @@ services:
       PRODUCT_CATALOG_SERVICE: "http://product-catalog:8080"
       PRODUCT_INVENTORY_SERVICE: "http://product-inventory:8080"
       ORDER_INVENTORY_SERVICE: "http://order-inventory:8080"
-      PRODUCT_CONFIGURATOR_SERVICE: "http://product-catalog:8080"
+      PRODUCT_CONFIGURATOR_SERVICE: "http://poc-gateway:8088"
       MOCK_SERVER_SERVICE: "http://product-catalog:8080"
       PROCESS_FLOW_ROLE_ADMIN: "OTB_CUSTOMER"
       ORDER_KEYCLOAK_CLIENT_ID: "order-capture"
@@ -527,6 +527,62 @@ services:
       timeout: 5s
       retries: 30
       start_period: 60s
+
+  poc-gateway:
+    image: ${POC_GATEWAY_IMAGE:-otb-poc/poc-gateway}
+    build:
+      context: ./gateway
+    profiles: ["gateway"]
+    restart: unless-stopped
+    mem_limit: 512m
+    cpus: 0.5
+    depends_on:
+      keycloak:
+        condition: service_healthy
+      product-catalog:
+        condition: service_healthy
+      order-capture:
+        condition: service_healthy
+      order-inventory:
+        condition: service_healthy
+      product-inventory:
+        condition: service_healthy
+      orchestration-delivery:
+        condition: service_healthy
+      orchestration-delivery-fallout:
+        condition: service_healthy
+      auth-userrole:
+        condition: service_healthy
+    ports:
+      - "${POC_GATEWAY_PORT:-8088}:8088"
+    environment:
+      NODE_ENV: "production"
+      PORT: "8088"
+      SECURE_COOKIES: "${POC_GATEWAY_SECURE_COOKIES:-false}"
+      SESSION_SECRET: "${POC_GATEWAY_SESSION_SECRET:-change-me-local-session-secret}"
+      INTERNAL_SECRET: "${POC_GATEWAY_INTERNAL_SECRET:-local-gateway-secret}"
+      ALLOWED_ORIGINS: "${POC_GATEWAY_ALLOWED_ORIGINS:-http://localhost:3000,http://localhost:3004,http://localhost:3006}"
+      KEYCLOAK_URL: "http://keycloak:8080"
+      KEYCLOAK_REALM: "${KEYCLOAK_REALM:-discobole}"
+      GATEWAY_CLIENT_ID: "${POC_GATEWAY_CLIENT_ID:-poc-gateway}"
+      GATEWAY_CLIENT_SECRET: "${POC_GATEWAY_CLIENT_SECRET:-change-me}"
+      SELFCARE_CLIENT_ID: "${SELFCARE_UI_CLIENT_ID:-selfcare-ui}"
+      ROUTE_PRODUCT_CATALOG_MANAGEMENT_URL: "http://product-catalog:8080"
+      ROUTE_ORDER_CAPTURE_URL: "http://order-capture:8080"
+      ROUTE_PRODUCT_ORDERING_MANAGEMENT_URL: "http://order-inventory:8080"
+      ROUTE_PRODUCT_INVENTORY_URL: "http://product-inventory:8080"
+      ROUTE_COOD_URL: "http://orchestration-delivery:8080"
+      ROUTE_FALLOUT_URL: "http://orchestration-delivery-fallout:8080"
+      ROUTE_USER_ROLE_PERMISSION_URL: "http://auth-userrole:8080"
+      ROUTE_PRODUCT_OFFERING_QUALIFICATION_URL: "http://order-capture:8080"
+      ROUTE_PROCESS_MANAGEMENT_URL: "http://order-capture:8080"
+      ROUTE_V1_URL: "http://order-capture:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:8088/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
 
 volumes:
   mongodb-data:

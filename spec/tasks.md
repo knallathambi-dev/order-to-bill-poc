@@ -213,16 +213,20 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 
 ## Phase 8: POC Gateway
 
-- [ ] Scaffold selected gateway implementation from scratch
-- [ ] Add health endpoint
-- [ ] Add reverse proxy routes to Discobole APIs
-- [ ] Add token/session forwarding
-- [ ] Add CSRF/CORS handling compatible with reused portals
-- [ ] Add service-token support for backend-to-backend calls only
-- [ ] Add optional customer timeline projection only if reused Discobole UI cannot show the required flow
-- [ ] Add Dockerfile
-- [ ] Add Compose service
-- [ ] Add gateway smoke tests
+- [x] Scaffold selected gateway implementation from scratch
+- [x] Add health endpoint
+- [x] Add reverse proxy routes to Discobole APIs
+- [x] Add token/session forwarding
+- [x] Add CSRF/CORS handling compatible with reused portals
+- [x] Add service-token support for backend-to-backend calls only
+- [x] Add optional customer timeline projection only if reused Discobole UI cannot show the required flow
+  - Decision: do not add a timeline projection in Phase 8. Reused `selfcare-ui` should continue to read Discobole Order Inventory directly unless Phase 7 browser testing proves a projection is needed.
+- [x] Add Dockerfile
+- [x] Add Compose service
+- [x] Add gateway smoke tests
+  - Added `gateway/` as a standalone Node/Express service with Selfcare-safe auth behavior.
+  - Added route normalization for both `/api/*` and non-`/api` portal paths.
+  - Added `scripts/verify-phase8-gateway.sh`, `scripts/smoke-gateway.sh`, and gateway unit tests.
 
 ## Phase 9: Simulator Services From Scratch
 

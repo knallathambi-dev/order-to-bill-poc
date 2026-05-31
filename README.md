@@ -22,8 +22,9 @@ Current implementation scope:
 - Phase 3: local infrastructure stack
 - Phase 4: security seed data
 - Phase 5: Discobole core service Compose profile
+- Phase 8: standalone POC gateway for Selfcare-safe routing/authentication
 
-Later phases will add security seed data, catalog data, UI adaptations, gateway implementation, simulator services, event integration, fallout/retry flows, and tests.
+Later phases will add simulator services, event integration, fallout/retry flows, end-to-end verification, and the remaining browser-based UI acceptance checks.
 
 ## Repository Layout
 
@@ -101,9 +102,15 @@ make verify-phase2
 make verify-phase3
 make verify-phase4
 make verify-phase5
+make verify-phase7
+make verify-phase8
 make list-discobole-images
 make package-core-services
 make build-core-service-images
+make gateway-install
+make gateway-test
+make gateway-up
+make gateway-verify
 make infra-up
 make infra-bootstrap
 make infra-verify

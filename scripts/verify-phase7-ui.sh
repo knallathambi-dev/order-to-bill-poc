@@ -44,7 +44,7 @@ require_grep "http://localhost:18085" "discobole-ui/selfcare-ui/server/proxyRout
 require_grep "/api/auth" "discobole-ui/selfcare-ui/server/app.mjs"
 require_grep "queryProductConfiguration" "discobole-ui/selfcare-ui/server/app.mjs"
 require_grep "/status" "discobole-ui/selfcare-ui/server/authRouter.mjs"
-require_grep "http://localhost:5000" "discobole-ui/selfcare-ui/src/setupProxy.js"
+require_grep "http://localhost:8088" "discobole-ui/selfcare-ui/src/setupProxy.js"
 require_grep "Fiber Broadband 300 Mbps" "discobole-ui/selfcare-ui/src/pages/Home/services/fetchOffers.js"
 require_grep "Static IP Add-on" "discobole-ui/selfcare-ui/src/pages/Home/services/fetchOffers.js"
 require_grep "Broadband activation" "discobole-ui/selfcare-ui/src/utlis/constants.js"
