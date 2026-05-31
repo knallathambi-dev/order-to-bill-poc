@@ -21,6 +21,7 @@ Current implementation scope:
 - Phase 2: copied Discobole service/UI source and runtime strategy
 - Phase 3: local infrastructure stack
 - Phase 4: security seed data
+- Phase 5: Discobole core service Compose profile
 
 Later phases will add security seed data, catalog data, UI adaptations, gateway implementation, simulator services, event integration, fallout/retry flows, and tests.
 
@@ -80,7 +81,7 @@ Reference:
 Expected local tools for later phases:
 
 - Docker Desktop or compatible Docker Engine with Compose v2
-- Java 21 or the version required by the selected Discobole modules
+- Java 17 for copied Discobole core service packaging; `scripts/use-java17.sh` is sourced by `make package-core-services`
 - Node.js LTS for reused Discobole UI portals and gateway/session proxy work
 - Maven or Gradle, matching the Discobole module build system
 - `make`
@@ -99,12 +100,18 @@ make verify-phase1
 make verify-phase2
 make verify-phase3
 make verify-phase4
+make verify-phase5
 make list-discobole-images
+make package-core-services
+make build-core-service-images
 make infra-up
 make infra-bootstrap
 make infra-verify
 make infra-down
 make security-verify-keycloak
+make core-up
+make core-verify
+make core-down
 ```
 
 Most runtime commands are placeholders until the owning implementation phases add Compose files, service projects, and tests.

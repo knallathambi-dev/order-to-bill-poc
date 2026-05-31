@@ -7,9 +7,8 @@
 #
 # Authors: See CONTRIBUTORS.txt
 
-FROM eclipse-temurin:17-jdk-alpine
-# hadolint ignore=DL3018
-RUN apk add --no-cache curl
+FROM eclipse-temurin:17-jdk-ubi9-minimal AS builder
+
 ARG MAVEN_REPOSITORY_URL="https://repo1.maven.org/maven2"
 
 
@@ -26,7 +25,7 @@ RUN wget -q ${MAVEN_REPOSITORY_URL}/io/opentelemetry/javaagent/opentelemetry-jav
     && mv -T ./opentelemetry-javaagent-*.jar opentelemetry-javaagent.jar \
     && ls -lh && pwd
 
-RUN addgroup java && adduser -D javauser java
+RUN groupadd java && useradd -r -g java javauser
 
 
 EXPOSE 8080 9000

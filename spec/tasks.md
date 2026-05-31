@@ -128,19 +128,23 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 
 ## Phase 5: Discobole Core Services
 
-- [ ] Add/run `auth-userrole`
-- [ ] Add/run Order Capture
-- [ ] Add/run Order Inventory
-- [ ] Add/run Product Catalog/Product Specification services or a documented POC substitute
-- [ ] Add/run COOD / orchestration-delivery
-- [ ] Add/run Delivery Management
-- [ ] Add/run Fallout/ProcessFlow
-- [ ] Configure service URLs for local Docker networking
-- [ ] Configure Kafka bootstrap servers and topics
-- [ ] Configure MongoDB databases and credentials
-- [ ] Configure Keycloak issuer/client settings
-- [ ] Verify each service health endpoint
-- [ ] Verify OpenAPI/Swagger endpoints where available
+- [x] Add/run `auth-userrole`
+- [x] Add/run Order Capture
+- [x] Add/run Order Inventory
+- [x] Add/run Product Catalog/Product Specification services or a documented POC substitute
+  - Added product catalog, product specification, product offering, and product inventory services to the `core` Compose profile.
+- [x] Add/run COOD / orchestration-delivery
+- [x] Add/run Delivery Management
+- [x] Add/run Fallout/ProcessFlow
+  - ProcessFlow is packaged as a library dependency; fallout service is included as the runtime process/fallout component.
+- [x] Configure service URLs for local Docker networking
+- [x] Configure Kafka bootstrap servers and topics
+- [x] Configure MongoDB databases and credentials
+- [x] Configure Keycloak issuer/client settings
+- [x] Verify each service health endpoint
+  - Added `scripts/verify-core-services.sh`.
+- [x] Verify OpenAPI/Swagger endpoints where available
+  - `scripts/verify-core-services.sh` probes selected `/v3/api-docs` endpoints and reports availability.
 
 ## Phase 6: Catalog and Product Model
 

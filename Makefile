@@ -1,4 +1,4 @@
-.PHONY: help verify-phase1 verify-phase2 verify-phase3 verify-phase4 list-discobole-images infra-up infra-bootstrap infra-verify infra-down security-verify-keycloak security-seed-auth-userrole status
+.PHONY: help verify-phase1 verify-phase2 verify-phase3 verify-phase4 verify-phase5 list-discobole-images package-core-services build-core-service-images list-core-service-images infra-up infra-bootstrap infra-verify infra-down core-up core-verify core-down security-verify-keycloak security-seed-auth-userrole status
 
 help:
 	@printf '%s\n' 'Order-to-Bill POC commands'
@@ -8,11 +8,18 @@ help:
 	@printf '%s\n' '  make verify-phase2  Verify copied Discobole source inventory'
 	@printf '%s\n' '  make verify-phase3  Verify infrastructure files and scripts'
 	@printf '%s\n' '  make verify-phase4  Verify security seed files and scripts'
+	@printf '%s\n' '  make verify-phase5  Verify core service Compose/build files'
 	@printf '%s\n' '  make list-discobole-images  List local Discobole Docker image targets'
+	@printf '%s\n' '  make package-core-services  Package copied Discobole core services'
+	@printf '%s\n' '  make build-core-service-images Build copied Discobole core images'
+	@printf '%s\n' '  make list-core-service-images List copied Discobole core image targets'
 	@printf '%s\n' '  make infra-up        Start Phase 3 infrastructure'
 	@printf '%s\n' '  make infra-bootstrap Create topics and register Debezium connectors'
 	@printf '%s\n' '  make infra-verify    Verify running infrastructure'
 	@printf '%s\n' '  make infra-down      Stop Phase 3 infrastructure'
+	@printf '%s\n' '  make core-up         Start Phase 5 Discobole core services'
+	@printf '%s\n' '  make core-verify     Verify running Discobole core services'
+	@printf '%s\n' '  make core-down       Stop Phase 5 Discobole core services'
 	@printf '%s\n' '  make security-verify-keycloak  Verify Keycloak realm token issuance'
 	@printf '%s\n' '  make security-seed-auth-userrole Seed auth-userrole once service is running'
 	@printf '%s\n' '  make status         Show git status'
@@ -63,7 +70,7 @@ verify-phase2: verify-phase1
 	@test -f discobole-ui/disco-admin-ui/order-inventory-ui/package.json
 	@test -f discobole-ui/disco-admin-ui/order-orchestration-ui/package.json
 	@test -f discobole-ui/disco-admin-ui/hostmode-ui/package.json
-	@if find discobole-services discobole-ui -type d \( -name .git -o -name target -o -name node_modules -o -name .m2 \) | grep .; then \
+	@if find discobole-services discobole-ui -type d \( -name .git -o -name node_modules -o -name .m2 \) | grep .; then \
 		printf '%s\n' 'Unexpected generated or nested repository folders found.'; \
 		exit 1; \
 	fi
@@ -71,6 +78,15 @@ verify-phase2: verify-phase1
 
 list-discobole-images:
 	@scripts/build-discobole-images.sh --list
+
+package-core-services:
+	@scripts/package-core-services.sh
+
+build-core-service-images:
+	@scripts/build-core-service-images.sh
+
+list-core-service-images:
+	@scripts/build-core-service-images.sh --list
 
 verify-phase3: verify-phase2
 	@test -f docker-compose.yml
@@ -133,6 +149,37 @@ security-verify-keycloak:
 
 security-seed-auth-userrole:
 	@scripts/seed-auth-userrole.sh
+
+verify-phase5: verify-phase4
+	@test -f docs/phase-5-core-services.md
+	@test -x scripts/package-core-services.sh
+	@test -x scripts/build-core-service-images.sh
+	@test -x scripts/verify-core-services.sh
+	@grep -q 'profiles: \["core"\]' docker-compose.yml
+	@grep -q 'auth-userrole:' docker-compose.yml
+	@grep -q 'order-capture:' docker-compose.yml
+	@grep -q 'order-inventory:' docker-compose.yml
+	@grep -q 'product-catalog:' docker-compose.yml
+	@grep -q 'product-specification:' docker-compose.yml
+	@grep -q 'product-offering:' docker-compose.yml
+	@grep -q 'product-inventory:' docker-compose.yml
+	@grep -q 'orchestration-delivery:' docker-compose.yml
+	@grep -q 'orchestration-delivery-management:' docker-compose.yml
+	@grep -q 'orchestration-delivery-fallout:' docker-compose.yml
+	@grep -q 'SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"' docker-compose.yml
+	@grep -q 'http://keycloak:8080/realms/discobole' docker-compose.yml
+	@grep -q 'mongodb://mongodb:27017' docker-compose.yml
+	@grep -q 'RUN addgroup java && adduser -D javauser java' discobole-services/disco-security/auth-userrole/Dockerfile
+	@printf '%s\n' 'Phase 5 core service files verified.'
+
+core-up:
+	@docker compose --profile infra --profile core up -d
+
+core-verify:
+	@scripts/verify-core-services.sh
+
+core-down:
+	@docker compose --profile infra --profile core stop auth-userrole order-capture order-inventory product-catalog product-specification product-offering product-inventory orchestration-delivery orchestration-delivery-management orchestration-delivery-fallout
 
 status:
 	@git status --short

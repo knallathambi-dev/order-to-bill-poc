@@ -42,8 +42,8 @@ Authors: See CONTRIBUTORS.txt
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <discobole-orderorchestration-orchestration-delivery-commons-pojo.version>3.3.0</discobole-orderorchestration-orchestration-delivery-commons-pojo.version>
-        <discobole-orderorchestration-orchestration-delivery-commons-exception.version>3.3.0</discobole-orderorchestration-orchestration-delivery-commons-exception.version>
+        <discobole-orderorchestration-orchestration-delivery-commons-pojo.version>3.5.0-SNAPSHOT</discobole-orderorchestration-orchestration-delivery-commons-pojo.version>
+        <discobole-orderorchestration-orchestration-delivery-commons-exception.version>3.5.0-SNAPSHOT</discobole-orderorchestration-orchestration-delivery-commons-exception.version>
         <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
     </properties>
 

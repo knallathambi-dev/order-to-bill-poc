@@ -97,28 +97,6 @@ public class UserRoleController {
         }
     }
 
-    @GetMapping("/entitlement")
-    public ResponseEntity<?> getEntitlements() {
-        try {
-            List<Entitlement> entitlements = userRoleService.getEntitlements();
-            return ResponseEntity.ok(entitlements);
-        } catch (Exception e) {
-            LOGGER.error("Failed to fetch entitlements: {}", e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-        }
-    }
-
-    @PostMapping("/entitlement")
-    public ResponseEntity<?> createEntitlements(@RequestBody List<Entitlement> entitlements) {
-        try {
-            List<Entitlement> entitlementList = userRoleService.createEntitlements(entitlements);
-            return ResponseEntity.status(HttpStatus.CREATED).body(entitlementList);
-        } catch (Exception e) {
-            LOGGER.error(UNEXPECTED_ERROR, e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
-        }
-    }
-
     @GetMapping("/userRole")
     public ResponseEntity<List<UserRole>> findUserRoles(
             @RequestParam(name = "id", required = false) String id,

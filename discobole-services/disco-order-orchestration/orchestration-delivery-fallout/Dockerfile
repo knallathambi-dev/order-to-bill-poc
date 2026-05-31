@@ -8,7 +8,7 @@
 # Authors: See CONTRIBUTORS.txt
 
 # Normal startup: 20/25sec, optimized startup: 11 sec on 4CPU
-FROM eclipse-temurin:17-jdk-alpine as builder
+FROM eclipse-temurin:17-jdk-ubi9-minimal AS builder
 
 ARG MAVEN_REPOSITORY_URL="https://repo1.maven.org/maven2"
 
@@ -27,7 +27,7 @@ LABEL name="orchestration-delivery-fallout" \
       maintainer="aelhoseiny.ext@orange.com"
 
 # make our image running with non root user, files are read-only
-RUN addgroup java && adduser -D javauser java
+RUN groupadd java && useradd -r -g java javauser
 # hadolint ignore=DL3002
 USER root
 EXPOSE 8080

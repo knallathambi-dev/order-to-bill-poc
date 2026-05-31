@@ -8,11 +8,11 @@
 # Authors: See CONTRIBUTORS.txt
 
 # Normal startup: 20/25sec, optimized startup: 11 sec on 4CPU
-FROM eclipse-temurin:17-jdk-alpine AS builder
+FROM eclipse-temurin:17-jdk-ubi9-minimal AS builder
 
 ARG MAVEN_REPOSITORY_URL="https://repo1.maven.org/maven2"
 
-RUN apk add --no-cache gnutls=3.8.12-r0 libexpat=2.7.5-r0 libpng=1.6.57-r0 zlib=1.3.2-r0
+RUN microdnf update -y && microdnf install -y gnutls expat libpng zlib && microdnf clean all
 
 HEALTHCHECK --interval=15s --timeout=3s --retries=3 CMD curl --silent --fail http://localhost:9000/actuator/health | grep "UP" || exit 1
 WORKDIR /app
@@ -29,7 +29,7 @@ LABEL name="product-inventory" \
       maintainer="aelhoseiny.ext@orange.com"
 
 # make our image running with non root user, files are read-only
-RUN addgroup java && adduser -D javauser java
+RUN groupadd java && useradd -r -g java javauser
 # hadolint ignore=DL3002
 USER javauser
 EXPOSE 8080 9000

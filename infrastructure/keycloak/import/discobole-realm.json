@@ -141,6 +141,16 @@
   ],
   "users": [
     {
+      "username": "service-account-auth-userrole",
+      "enabled": true,
+      "emailVerified": false,
+      "serviceAccountClientId": "auth-userrole",
+      "realmRoles": ["default-roles-discobole"],
+      "clientRoles": {
+        "realm-management": ["realm-admin"]
+      }
+    },
+    {
       "username": "customer@otb.com",
       "email": "customer@otb.com",
       "firstName": "OTB",
@@ -184,4 +194,3 @@
     }
   ]
 }
-

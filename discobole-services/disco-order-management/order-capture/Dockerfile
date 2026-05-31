@@ -7,7 +7,7 @@
 #
 # Authors: See CONTRIBUTORS.txt
 
-FROM eclipse-temurin:17-jdk-alpine as builder
+FROM eclipse-temurin:17-jdk-ubi9-minimal AS builder
 
 ARG MAVEN_REPOSITORY_URL="https://repo1.maven.org/maven2"
 
@@ -24,7 +24,7 @@ RUN mv -T ./discobole-ordermanagement-order-capture*-exec.jar app.jar \
       && wget -q ${MAVEN_REPOSITORY_URL}/io/opentelemetry/javaagent/opentelemetry-javaagent/1.24.0/opentelemetry-javaagent-1.24.0.jar \
       && mv -T ./opentelemetry-javaagent-*.jar opentelemetry-javaagent.jar
 
-RUN addgroup java && adduser -D javauser java
+RUN groupadd java && useradd -r -g java javauser
 USER javauser
 EXPOSE 8080 9000
 

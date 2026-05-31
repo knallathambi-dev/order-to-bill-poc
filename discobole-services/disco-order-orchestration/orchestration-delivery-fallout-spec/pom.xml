@@ -41,7 +41,7 @@ Authors: See CONTRIBUTORS.txt
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  
-        <process-flow.version>2.0.0</process-flow.version>
+        <process-flow.version>3.0.1</process-flow.version>
         <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
     </properties>
 

@@ -1,13 +1,13 @@
 [
-  { "id": "ENT_ORDER_CREATE", "action": "create", "function": "order.create" },
+  { "id": "ENT_ORDER_CREATE", "action": "readAndWrite", "function": "order.create" },
   { "id": "ENT_ORDER_READ_OWN", "action": "read", "function": "order.read.own" },
   { "id": "ENT_ORDER_READ_ALL", "action": "read", "function": "order.read.all" },
-  { "id": "ENT_ORDER_UPDATE", "action": "update", "function": "order.update" },
+  { "id": "ENT_ORDER_UPDATE", "action": "readAndWrite", "function": "order.update" },
   { "id": "ENT_ORCHESTRATION_READ", "action": "read", "function": "orchestration.read" },
-  { "id": "ENT_ORCHESTRATION_RETRY", "action": "execute", "function": "orchestration.retry" },
+  { "id": "ENT_ORCHESTRATION_RETRY", "action": "readAndWrite", "function": "orchestration.retry" },
   { "id": "ENT_FALLOUT_READ", "action": "read", "function": "fallout.read" },
-  { "id": "ENT_FALLOUT_RESOLVE", "action": "update", "function": "fallout.resolve" },
-  { "id": "ENT_CATALOG_MANAGE", "action": "manage", "function": "catalog.manage" },
-  { "id": "ENT_SECURITY_MANAGE", "action": "manage", "function": "security.manage" }
+  { "id": "ENT_FALLOUT_RESOLVE", "action": "readAndWrite", "function": "fallout.resolve" },
+  { "id": "ENT_CATALOG_MANAGE", "action": "readAndWrite", "function": "catalog.manage" },
+  { "id": "ENT_SECURITY_MANAGE", "action": "readAndWrite", "function": "security.manage" }
 ]
 

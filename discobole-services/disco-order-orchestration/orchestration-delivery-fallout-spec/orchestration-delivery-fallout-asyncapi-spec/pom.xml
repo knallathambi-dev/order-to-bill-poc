@@ -19,7 +19,7 @@ Authors: See CONTRIBUTORS.txt
     </parent>
 
     <properties>
-        <discobole-orderorchestration-orchestration-delivery-commons-pojo.version>3.3.0</discobole-orderorchestration-orchestration-delivery-commons-pojo.version>
+        <discobole-orderorchestration-orchestration-delivery-commons-pojo.version>3.5.0-SNAPSHOT</discobole-orderorchestration-orchestration-delivery-commons-pojo.version>
     </properties>
 
     <artifactId>discobole-orderorchestration-orchestration-delivery-fallout-asyncapi-spec</artifactId>

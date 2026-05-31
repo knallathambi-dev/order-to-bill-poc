@@ -67,7 +67,7 @@ public class UserRoleServiceImpl implements UserRoleService {
 
         try {
             validateEntitlementActions(userRole);
-            createRoleCall(userRole, token);
+            createRoleCall(userRole);
             userRole.setId(UUID.randomUUID().toString());
             UserRole user = mongoTemplate.save(userRole);
             return user;
@@ -128,23 +128,102 @@ public class UserRoleServiceImpl implements UserRoleService {
         }
     }
 
-    private void createRoleCall(UserRole userRole, String accessToken) {
+    private String getServiceAccessToken() {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            String keycloakAuthUrl = keycloakUrl + "/realms/master/protocol/openid-connect/token";
+            LOGGER.info("Requesting Keycloak service token from {}", keycloakAuthUrl);
+            String body = "grant_type=password"
+                    + "&client_id=admin-cli"
+                    + "&username=admin"
+                    + "&password=admin";
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(keycloakAuthUrl))
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .POST(BodyPublishers.ofString(body))
+                    .build();
+
+            HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+            LOGGER.info("Service token response status={}", response.statusCode());
+            if (response.statusCode() != 200) {
+                throw new RuntimeException("Failed to obtain service token: " + response.body());
+            }
+
+            ObjectMapper mapper = new ObjectMapper();
+            Map<String, Object> json = mapper.readValue(response.body(), Map.class);
+            Object accessToken = json.get("access_token");
+            if (accessToken == null || accessToken.toString().isBlank()) {
+                throw new RuntimeException("Keycloak token response did not include an access token");
+            }
+            return accessToken.toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to obtain Keycloak service token: " + e.getMessage(), e);
+        }
+    }
+
+    private String bearer(String token) {
+        return token.startsWith("Bearer ") ? token : "Bearer " + token;
+    }
+
+    private String getClientUuid(String accessToken) {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            LOGGER.info("Resolving Keycloak client UUID for clientId={} realm={}", clientId, realm);
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(keycloakUrl + ADMIN_REALMS + realm + "/clients?clientId=" + clientId))
+                    .header(AUTHORIZATION, bearer(accessToken))
+                    .header("Content-Type", "application/json")
+                    .GET()
+                    .build();
+
+            HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+            LOGGER.info("Client UUID lookup response status={}", response.statusCode());
+            if (response.statusCode() != 200) {
+                throw new RuntimeException("Failed to resolve Keycloak client UUID: " + response.body());
+            }
+
+            ObjectMapper mapper = new ObjectMapper();
+            List<Map<String, Object>> clients = mapper.readValue(response.body(), new TypeReference<List<Map<String, Object>>>() {});
+            if (clients.isEmpty() || clients.get(0).get("id") == null) {
+                throw new RuntimeException("Keycloak client not found: " + clientId);
+            }
+            return clients.get(0).get("id").toString();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to resolve Keycloak client UUID: " + e.getMessage(), e);
+        }
+    }
+
+    private void createRoleCall(UserRole userRole) {
         LOGGER.info("Creating User Role in keycloak");
         HttpResponse<String> response;
         try {
             HttpClient client = HttpClient.newHttpClient();
             ObjectMapper mapper = new ObjectMapper();
+            String accessToken = getServiceAccessToken();
+            LOGGER.info("Obtained service token with length={}", accessToken == null ? 0 : accessToken.length());
+            String clientUuid = getClientUuid(accessToken);
+            LOGGER.info("Resolved Keycloak client UUID for {}: {}", clientId, clientUuid);
 
             Map<String, Object> role = new HashMap<>();
             role.put("name", userRole.getInvolvementRole());
 
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(keycloakUrl + ADMIN_REALMS + realm + "/clients/" + clientId + "/roles"))
-                    .header(AUTHORIZATION, accessToken).header("Content-Type", "application/json")
+                    .uri(new URI(keycloakUrl + ADMIN_REALMS + realm + "/clients/" + clientUuid + "/roles"))
+                    .header(AUTHORIZATION, bearer(accessToken)).header("Content-Type", "application/json")
                     .POST(BodyPublishers.ofString(mapper.writeValueAsString(role))).build();
 
             response = client.send(request, BodyHandlers.ofString());
+            LOGGER.info("Keycloak role create response status={}", response.statusCode());
+            if (response.statusCode() == 201) {
+                return;
+            }
+            if (response.statusCode() == 409 && response.body() != null && response.body().contains("already exists")) {
+                LOGGER.info("Keycloak role already exists, continuing with Mongo save: {}", userRole.getInvolvementRole());
+                return;
+            }
             if (response.statusCode() != 201) {
+                LOGGER.error("Keycloak role creation failed. status={}, body={}", response.statusCode(), response.body());
                 throw new RuntimeException("Failed to create role: " + response.body());
             }
         } catch (Exception e) {
@@ -202,7 +281,7 @@ public class UserRoleServiceImpl implements UserRoleService {
             String deleteRoleUrl = keycloakUrl + ADMIN_REALMS + realm + "/roles-by-id/" + keycloakRoleId;
 
             HttpRequest request = HttpRequest.newBuilder().uri(new URI(deleteRoleUrl))
-                    .header(AUTHORIZATION, accessToken).DELETE().build();
+                    .header(AUTHORIZATION, bearer(accessToken)).DELETE().build();
 
             HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
             if (response.statusCode() == 204) {
@@ -221,12 +300,12 @@ public class UserRoleServiceImpl implements UserRoleService {
 
         String getRolesUrl = keycloakUrl + ADMIN_REALMS + realm + "/clients/" + clientId + "/roles";
 
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(new URI(getRolesUrl))
-                .header(AUTHORIZATION, accessToken)
-                .header("Content-Type", "application/json")
-                .GET()
-                .build();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(getRolesUrl))
+                    .header(AUTHORIZATION, bearer(accessToken))
+                    .header("Content-Type", "application/json")
+                    .GET()
+                    .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         ObjectMapper mapper = new ObjectMapper();

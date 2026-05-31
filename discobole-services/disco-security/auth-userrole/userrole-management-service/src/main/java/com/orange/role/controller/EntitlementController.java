@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,8 @@ import java.util.List;
 import java.util.Map;
 
 @Tag(name = "Entitlement")
+@RestController
+@RequestMapping(value = "/userRolePermission/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EntitlementController {
     private static final Logger LOGGER = LogManager.getLogger(EntitlementController.class);
 

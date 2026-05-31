@@ -10,6 +10,18 @@
           "properties" : {
             "id" : {
               "type" : "string"
+            },
+            "name" : {
+              "type" : "string"
+            },
+            "@type" : {
+              "type" : "string"
+            },
+            "@baseType" : {
+              "type" : "string"
+            },
+            "@schemaLocation" : {
+              "type" : "string"
             }
           }
         },

@@ -40,10 +40,10 @@ Authors: See CONTRIBUTORS.txt
 
     <properties>
         <java.version>17</java.version>
-        <discobole-process-flow.version>3.0.0</discobole-process-flow.version>
-        <discobole-orderorchestration-orchestration-delivery-commons.version>3.4.0</discobole-orderorchestration-orchestration-delivery-commons.version>
-        <discobole-orderorchestration-orchestration-delivery-fallout-restapi-spec.version>1.0.2</discobole-orderorchestration-orchestration-delivery-fallout-restapi-spec.version>
-        <discobole-orderorchestration-orchestration-delivery-fallout-asyncapi-spec.version>1.0.2</discobole-orderorchestration-orchestration-delivery-fallout-asyncapi-spec.version>
+        <discobole-process-flow.version>3.0.1</discobole-process-flow.version>
+        <discobole-orderorchestration-orchestration-delivery-commons.version>3.5.0-SNAPSHOT</discobole-orderorchestration-orchestration-delivery-commons.version>
+        <discobole-orderorchestration-orchestration-delivery-fallout-restapi-spec.version>1.1.0-SNAPSHOT</discobole-orderorchestration-orchestration-delivery-fallout-restapi-spec.version>
+        <discobole-orderorchestration-orchestration-delivery-fallout-asyncapi-spec.version>1.1.0-SNAPSHOT</discobole-orderorchestration-orchestration-delivery-fallout-asyncapi-spec.version>
         <cucumber.version>7.14.0</cucumber.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>2022.0.3</spring-cloud.version>
