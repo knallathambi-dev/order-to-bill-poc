@@ -184,7 +184,7 @@ services:
       start_period: 45s
 
   auth-userrole:
-    image: ${AUTH_USERROLE_IMAGE:-otb-poc/auth-userrole}
+    image: ${AUTH_USERROLE_IMAGE:-saraswathiraj/auth-userrole:latest}
     profiles: ["core"]
     restart: unless-stopped
     mem_limit: 2g
@@ -218,7 +218,7 @@ services:
       start_period: 60s
 
   order-capture:
-    image: ${ORDER_CAPTURE_IMAGE:-otb-poc/order-capture}
+    image: ${ORDER_CAPTURE_IMAGE:-saraswathiraj/order-capture:latest}
     profiles: ["core"]
     restart: unless-stopped
     mem_limit: 2g
@@ -256,7 +256,7 @@ services:
       start_period: 60s
 
   order-inventory:
-    image: ${ORDER_INVENTORY_IMAGE:-otb-poc/order-inventory}
+    image: ${ORDER_INVENTORY_IMAGE:-saraswathiraj/order-inventory:latest}
     profiles: ["core"]
     restart: unless-stopped
     mem_limit: 2g
@@ -289,7 +289,7 @@ services:
       start_period: 60s
 
   product-catalog:
-    image: ${PRODUCT_CATALOG_IMAGE:-otb-poc/catalog-product-catalog}
+    image: ${PRODUCT_CATALOG_IMAGE:-saraswathiraj/catalog-product-catalog:latest}
     profiles: ["core"]
     restart: unless-stopped
     mem_limit: 2g
@@ -322,7 +322,7 @@ services:
       start_period: 60s
 
   product-specification:
-    image: ${PRODUCT_SPECIFICATION_IMAGE:-otb-poc/catalog-product-specification}
+    image: ${PRODUCT_SPECIFICATION_IMAGE:-saraswathiraj/catalog-product-specification:latest}
     profiles: ["core"]
     restart: unless-stopped
     mem_limit: 2g
@@ -353,7 +353,7 @@ services:
       start_period: 60s
 
   product-offering:
-    image: ${PRODUCT_OFFERING_IMAGE:-otb-poc/catalog-product-offering}
+    image: ${PRODUCT_OFFERING_IMAGE:-saraswathiraj/catalog-product-offering:latest}
     profiles: ["core"]
     restart: unless-stopped
     mem_limit: 1g
@@ -384,7 +384,7 @@ services:
       start_period: 60s
 
   product-inventory:
-    image: ${PRODUCT_INVENTORY_IMAGE:-otb-poc/product-inventory}
+    image: ${PRODUCT_INVENTORY_IMAGE:-saraswathiraj/product-inventory:latest}
     profiles: ["core"]
     restart: unless-stopped
     mem_limit: 1g
@@ -418,7 +418,7 @@ services:
       start_period: 60s
 
   orchestration-delivery:
-    image: ${ORCHESTRATION_DELIVERY_IMAGE:-otb-poc/orchestration-delivery}
+    image: ${ORCHESTRATION_DELIVERY_IMAGE:-saraswathiraj/orchestration-delivery:latest}
     profiles: ["core"]
     restart: unless-stopped
     mem_limit: 1g
@@ -462,7 +462,7 @@ services:
       start_period: 60s
 
   orchestration-delivery-management:
-    image: ${DELIVERY_MANAGEMENT_IMAGE:-otb-poc/orchestration-delivery-management}
+    image: ${DELIVERY_MANAGEMENT_IMAGE:-saraswathiraj/orchestration-delivery-management:latest}
     profiles: ["core"]
     restart: unless-stopped
     mem_limit: 1g
@@ -498,7 +498,7 @@ services:
       start_period: 60s
 
   qualification-service:
-    image: ${QUALIFICATION_SERVICE_IMAGE:-otb-poc/qualification-service}
+    image: ${QUALIFICATION_SERVICE_IMAGE:-saraswathiraj/qualification-service:latest}
     build:
       context: ./custom-services/qualification-service
     profiles: ["simulators"]
@@ -527,7 +527,7 @@ services:
       start_period: 20s
 
   activation-service:
-    image: ${ACTIVATION_SERVICE_IMAGE:-otb-poc/activation-service}
+    image: ${ACTIVATION_SERVICE_IMAGE:-saraswathiraj/activation-service:latest}
     build:
       context: ./custom-services/activation-service
     profiles: ["simulators", "core"]
@@ -559,7 +559,7 @@ services:
       start_period: 20s
 
   billing-service:
-    image: ${BILLING_SERVICE_IMAGE:-otb-poc/billing-service}
+    image: ${BILLING_SERVICE_IMAGE:-saraswathiraj/billing-service:latest}
     build:
       context: ./custom-services/billing-service
     profiles: ["simulators", "core"]
@@ -588,7 +588,7 @@ services:
       start_period: 20s
 
   orchestration-delivery-fallout:
-    image: ${DELIVERY_FALLOUT_IMAGE:-otb-poc/orchestration-delivery-fallout}
+    image: ${DELIVERY_FALLOUT_IMAGE:-saraswathiraj/orchestration-delivery-fallout:latest}
     profiles: ["core"]
     restart: unless-stopped
     mem_limit: 1g
@@ -622,7 +622,7 @@ services:
       start_period: 60s
 
   poc-gateway:
-    image: ${POC_GATEWAY_IMAGE:-otb-poc/poc-gateway}
+    image: ${POC_GATEWAY_IMAGE:-saraswathiraj/poc-gateway:latest}
     build:
       context: ./gateway
     profiles: ["gateway"]
@@ -678,7 +678,7 @@ services:
       start_period: 20s
 
   selfcare-ui:
-    image: ${SELFCARE_UI_IMAGE:-otb-poc/selfcare-ui}
+    image: ${SELFCARE_UI_IMAGE:-saraswathiraj/selfcare-ui:latest}
     build:
       context: ./discobole-ui/selfcare-ui
     profiles: ["ui"]
@@ -736,7 +736,7 @@ services:
       start_period: 20s
 
   order-inventory-ui:
-    image: ${ORDER_INVENTORY_UI_IMAGE:-otb-poc/order-inventory-ui}
+    image: ${ORDER_INVENTORY_UI_IMAGE:-saraswathiraj/order-inventory-ui:latest}
     build:
       context: ./discobole-ui/disco-admin-ui/order-inventory-ui
     profiles: ["ui"]
@@ -760,7 +760,7 @@ services:
       start_period: 10s
 
   order-orchestration-ui:
-    image: ${ORDER_ORCHESTRATION_UI_IMAGE:-otb-poc/order-orchestration-ui}
+    image: ${ORDER_ORCHESTRATION_UI_IMAGE:-saraswathiraj/order-orchestration-ui:latest}
     build:
       context: ./discobole-ui/disco-admin-ui/order-orchestration-ui
     profiles: ["ui"]
