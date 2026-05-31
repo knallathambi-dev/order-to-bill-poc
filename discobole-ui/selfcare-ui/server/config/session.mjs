@@ -15,6 +15,9 @@ const FileStore = FileStoreFactory(session);
 
 const isProd = process.env.NODE_ENV === "production";
 const secret = process.env.SESSION_SECRET || crypto.randomBytes(32).toString("hex");
+const cookieSecure = process.env.SESSION_COOKIE_SECURE
+    ? ["1", "true", "yes"].includes(process.env.SESSION_COOKIE_SECURE.toLowerCase())
+    : isProd;
 
 if (!process.env.SESSION_SECRET && isProd) {
     console.warn("[Session] WARNING: SESSION_SECRET not set. Using random value — sessions will not survive restarts.");
@@ -38,7 +41,7 @@ export const sessionConfig = {
     rolling: true,
     cookie: {
         httpOnly: true,
-        secure: isProd,
+        secure: cookieSecure,
         sameSite: isProd ? "strict" : "lax",
         maxAge: 60 * 60 * 1000,
         path: "/",

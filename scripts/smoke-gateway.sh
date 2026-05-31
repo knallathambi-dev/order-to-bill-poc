@@ -5,7 +5,18 @@ GATEWAY_URL="${GATEWAY_URL:-http://localhost:${POC_GATEWAY_PORT:-8088}}"
 INTERNAL_SECRET="${INTERNAL_SECRET:-${POC_GATEWAY_INTERNAL_SECRET:-local-gateway-secret}}"
 
 printf 'Checking gateway health at %s\n' "$GATEWAY_URL"
-curl -fsS "$GATEWAY_URL/health" | grep -q '"status":"healthy"'
+for attempt in $(seq 1 60); do
+  if curl -fsS "$GATEWAY_URL/health" 2>/dev/null | grep -q '"status":"healthy"'; then
+    break
+  fi
+
+  if [ "$attempt" -eq 60 ]; then
+    printf 'Gateway did not become healthy after 60 attempts.\n' >&2
+    exit 1
+  fi
+
+  sleep 2
+done
 
 printf 'Checking CSRF issuance\n'
 curl -fsS -c /tmp/otb-poc-gateway-cookies.txt "$GATEWAY_URL/api/auth/csrf" | grep -q 'csrfToken'

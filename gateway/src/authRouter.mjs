@@ -7,7 +7,104 @@ import {refreshUserSession, saveUserSession} from "./tokenManager.mjs";
 
 const router = express.Router();
 
+const escapeHtml = (value = "") => String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll("\"", "&quot;")
+    .replaceAll("'", "&#39;");
+
+const safeRedirectUri = (redirectUri) => {
+    if (!redirectUri) return "/";
+    try {
+        const parsed = new URL(redirectUri);
+        if (["http://localhost:3000", "http://localhost:3004", "http://localhost:3006"].includes(parsed.origin)) {
+            return parsed.toString();
+        }
+    } catch (_error) {
+        if (String(redirectUri).startsWith("/")) return redirectUri;
+    }
+    return "/";
+};
+
+const renderLoginPage = (redirectUri = "/") => `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>POC Gateway Login</title>
+  <style>
+    :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; }
+    body { min-height: 100vh; margin: 0; display: grid; place-items: center; background: #f4f6f8; color: #1f2933; }
+    main { width: min(420px, calc(100vw - 32px)); background: white; border: 1px solid #d8dee4; border-radius: 8px; padding: 28px; box-shadow: 0 12px 36px rgba(15, 23, 42, 0.08); }
+    h1 { font-size: 22px; margin: 0 0 8px; }
+    p { margin: 0 0 22px; color: #52606d; }
+    label { display: block; font-weight: 600; margin: 14px 0 6px; }
+    input { width: 100%; box-sizing: border-box; border: 1px solid #bcccdc; border-radius: 6px; padding: 11px 12px; font-size: 15px; }
+    button { width: 100%; margin-top: 20px; border: 0; border-radius: 6px; padding: 12px; background: #f16e00; color: white; font-weight: 700; font-size: 15px; cursor: pointer; }
+    button:disabled { opacity: 0.65; cursor: wait; }
+    .error { min-height: 20px; margin-top: 14px; color: #ba2525; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Sign in</h1>
+    <p>Use your local Order-to-Bill POC account.</p>
+    <form id="login-form">
+      <input type="hidden" id="redirect-uri" value="${escapeHtml(safeRedirectUri(redirectUri))}">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="username" value="admin@otb.com" required autofocus>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <button type="submit">Sign in</button>
+      <div class="error" id="error" role="alert"></div>
+    </form>
+  </main>
+  <script>
+    const form = document.getElementById("login-form");
+    const errorBox = document.getElementById("error");
+    const button = form.querySelector("button");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      errorBox.textContent = "";
+      button.disabled = true;
+      try {
+        const csrfResponse = await fetch("/auth/csrf", { credentials: "include" });
+        const { csrfToken } = await csrfResponse.json();
+        const response = await fetch("/auth/login", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-Token": csrfToken,
+          },
+          body: JSON.stringify({
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+          }),
+        });
+        if (!response.ok) {
+          const payload = await response.json().catch(() => ({}));
+          throw new Error(payload.error || "Login failed");
+        }
+        window.location.href = document.getElementById("redirect-uri").value || "/";
+      } catch (error) {
+        errorBox.textContent = error.message || "Login failed";
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>`;
+
 router.get("/csrf", issueCsrf);
+
+router.get("/login", (req, res) => {
+    res
+        .set("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'")
+        .type("html")
+        .send(renderLoginPage(req.query.redirect_uri));
+});
 
 router.post("/login", requireCsrf, async (req, res) => {
     try {
@@ -112,6 +209,16 @@ router.post("/logout", requireCsrf, (req, res) => {
         res.clearCookie("poc-gateway.sid", {path: "/"});
         res.clearCookie("XSRF-TOKEN", {path: "/"});
         res.json({success: true});
+    });
+});
+
+router.get("/logout", (req, res) => {
+    const redirectUri = safeRedirectUri(req.query.redirect_uri);
+    req.session.destroy((err) => {
+        if (err) console.error("[GatewayAuth] Session destruction failed:", err);
+        res.clearCookie("poc-gateway.sid", {path: "/"});
+        res.clearCookie("XSRF-TOKEN", {path: "/"});
+        res.redirect(redirectUri);
     });
 });
 

@@ -15,7 +15,7 @@ WORKDIR /app
 
 # Install client dependencies (cached layer)
 COPY package*.json ./
-RUN --mount=type=cache,target=/root/.npm npm ci
+RUN --mount=type=cache,target=/root/.npm npm ci --legacy-peer-deps
 
 # Build React app
 COPY . .
@@ -23,7 +23,7 @@ RUN npm run build
 
 # Install server dependencies
 WORKDIR /app/server
-RUN --mount=type=cache,target=/root/.npm npm ci --only=production
+RUN --mount=type=cache,target=/root/.npm npm ci --omit=dev
 
 ## =============================================================================
 ## Stage 2: Production image with Nginx + Node.js + s6-overlay

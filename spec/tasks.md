@@ -232,37 +232,37 @@ Phase 0 decision record: `spec/phase-0-decisions.md`.
 
 ### qualification-service
 
-- [ ] Scaffold Spring Boot service
-- [ ] Add MongoDB persistence
-- [ ] Add REST endpoint for serviceability debug/testing
+- [x] Scaffold Spring Boot service
+- [x] Add MongoDB persistence
+- [x] Add REST endpoint for serviceability debug/testing
 - [ ] Integrate with Discobole qualification/order-capture or delivery flow
-- [ ] Emit Discobole-compatible completion/failure status
-- [ ] Add deterministic success/failure modes
-- [ ] Add Dockerfile
-- [ ] Add unit tests
+- [x] Emit Discobole-compatible completion/failure status
+- [x] Add deterministic success/failure modes
+- [x] Add Dockerfile
+- [x] Add unit tests
 
 ### activation-service
 
-- [ ] Scaffold Spring Boot service
-- [ ] Add MongoDB persistence
-- [ ] Implement broadband activation simulator
-- [ ] Implement static IP activation simulator
-- [ ] Emit Discobole-compatible service/delivery status
-- [ ] Add forced failure mode
-- [ ] Add retry-safe/idempotent behavior
-- [ ] Add Dockerfile
-- [ ] Add unit tests
+- [x] Scaffold Spring Boot service
+- [x] Add MongoDB persistence
+- [x] Implement broadband activation simulator
+- [x] Implement static IP activation simulator
+- [x] Emit Discobole-compatible service/delivery status
+- [x] Add forced failure mode
+- [x] Add retry-safe/idempotent behavior
+- [x] Add Dockerfile
+- [x] Add unit tests
 
 ### billing-service
 
-- [ ] Scaffold Spring Boot service
-- [ ] Add MongoDB persistence
-- [ ] Implement billing account creation simulator
-- [ ] Implement invoice generation simulator
-- [ ] Emit Discobole-compatible service/delivery status
-- [ ] Add debug lookup endpoints
-- [ ] Add Dockerfile
-- [ ] Add unit tests
+- [x] Scaffold Spring Boot service
+- [x] Add MongoDB persistence
+- [x] Implement billing account creation simulator
+- [x] Implement invoice generation simulator
+- [x] Emit Discobole-compatible service/delivery status
+- [x] Add debug lookup endpoints
+- [x] Add Dockerfile
+- [x] Add unit tests
 
 ## Phase 10: Event-Driven Flow Integration
 

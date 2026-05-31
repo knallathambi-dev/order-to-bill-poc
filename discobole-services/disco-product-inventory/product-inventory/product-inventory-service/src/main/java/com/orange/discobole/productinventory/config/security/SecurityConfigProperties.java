@@ -34,6 +34,8 @@ public class SecurityConfigProperties {
 
     private boolean enableTmf627Validation;
 
+    private boolean allowUnauthenticatedSystemAccess;
+
     public void setDefaultRoles(Map<String, String> roles) {
         this.defaultRoles = Collections.unmodifiableMap(roles);
     }

@@ -1,4 +1,4 @@
-.PHONY: help verify-phase1 verify-phase2 verify-phase3 verify-phase4 verify-phase5 verify-phase7 verify-phase8 phase7-ui-build gateway-install gateway-test gateway-up gateway-verify list-discobole-images package-core-services build-core-service-images list-core-service-images infra-up infra-bootstrap infra-verify infra-down core-up core-verify core-down security-verify-keycloak security-seed-auth-userrole status
+.PHONY: help verify-phase1 verify-phase2 verify-phase3 verify-phase4 verify-phase5 verify-phase7 verify-phase8 verify-phase9 phase7-ui-build build-ui-images list-ui-images ui-up gateway-install gateway-test gateway-up gateway-verify list-discobole-images package-core-services build-core-service-images list-core-service-images package-simulator-services build-simulator-service-images list-simulator-service-images simulator-up simulator-verify infra-up infra-bootstrap infra-verify infra-down core-up core-verify core-down security-verify-keycloak security-seed-auth-userrole status
 
 help:
 	@printf '%s\n' 'Order-to-Bill POC commands'
@@ -11,7 +11,11 @@ help:
 	@printf '%s\n' '  make verify-phase5  Verify core service Compose/build files'
 	@printf '%s\n' '  make verify-phase7  Verify Phase 7 UI portal implementation files'
 	@printf '%s\n' '  make verify-phase8  Verify Phase 8 POC gateway files'
+	@printf '%s\n' '  make verify-phase9  Verify Phase 9 simulator service files'
 	@printf '%s\n' '  make phase7-ui-build Build Phase 7 UI packages where possible'
+	@printf '%s\n' '  make build-ui-images Build selfcare and admin UI Docker images'
+	@printf '%s\n' '  make list-ui-images  List local UI Docker image targets'
+	@printf '%s\n' '  make ui-up           Start Dockerized UI portals'
 	@printf '%s\n' '  make gateway-install Install POC gateway Node dependencies'
 	@printf '%s\n' '  make gateway-test    Run POC gateway unit tests'
 	@printf '%s\n' '  make gateway-up      Start POC gateway with infra/core profiles'
@@ -20,6 +24,11 @@ help:
 	@printf '%s\n' '  make package-core-services  Package copied Discobole core services'
 	@printf '%s\n' '  make build-core-service-images Build copied Discobole core images'
 	@printf '%s\n' '  make list-core-service-images List copied Discobole core image targets'
+	@printf '%s\n' '  make package-simulator-services Package Phase 9 simulator services'
+	@printf '%s\n' '  make build-simulator-service-images Build Phase 9 simulator images'
+	@printf '%s\n' '  make list-simulator-service-images List Phase 9 simulator image targets'
+	@printf '%s\n' '  make simulator-up    Start Phase 9 simulator services'
+	@printf '%s\n' '  make simulator-verify Run Phase 9 simulator runtime smoke checks'
 	@printf '%s\n' '  make infra-up        Start Phase 3 infrastructure'
 	@printf '%s\n' '  make infra-bootstrap Create topics and register Debezium connectors'
 	@printf '%s\n' '  make infra-verify    Verify running infrastructure'
@@ -194,6 +203,15 @@ verify-phase7: verify-phase5
 phase7-ui-build:
 	@scripts/verify-phase7-ui.sh --build
 
+build-ui-images:
+	@scripts/build-ui-images.sh
+
+list-ui-images:
+	@scripts/build-ui-images.sh --list
+
+ui-up:
+	@docker compose --profile infra --profile core --profile gateway --profile ui up -d selfcare-ui order-inventory-ui order-orchestration-ui
+
 verify-phase8:
 	@scripts/verify-phase8-gateway.sh
 
@@ -208,6 +226,24 @@ gateway-up:
 
 gateway-verify:
 	@scripts/smoke-gateway.sh
+
+verify-phase9: verify-phase8
+	@scripts/verify-phase9-simulators.sh
+
+package-simulator-services:
+	@scripts/package-simulator-services.sh
+
+build-simulator-service-images:
+	@scripts/build-simulator-service-images.sh
+
+list-simulator-service-images:
+	@scripts/build-simulator-service-images.sh --list
+
+simulator-up:
+	@docker compose --profile infra --profile simulators up -d qualification-service activation-service billing-service
+
+simulator-verify:
+	@scripts/smoke-simulators.sh
 
 status:
 	@git status --short

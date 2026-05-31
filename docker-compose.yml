@@ -406,6 +406,7 @@ services:
       SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/product_inventory?replicaSet=rs0"
       CONFIG_TEMP_PATH: "/tmp/product-inventory"
       CONFIG_TEMPPATH: "/tmp/product-inventory"
+      CONFIG_SECURITY_ALLOW_UNAUTHENTICATED_SYSTEM_ACCESS: "true"
       CONFIG_WEBCLIENT_USE_SERVICE_ACCOUNT: "false"
       CONFIG_WEBCLIENT_USESERVICEACCOUNT: "false"
       SPRING_AUTOCONFIGURE_EXCLUDE: "org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration,org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration,org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration,org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration,org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration,org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientAutoConfiguration"
@@ -475,6 +476,8 @@ services:
         condition: service_healthy
       auth-userrole:
         condition: service_healthy
+      activation-service:
+        condition: service_healthy
     ports:
       - "${DELIVERY_MANAGEMENT_PORT:-18083}:8080"
       - "${DELIVERY_MANAGEMENT_MANAGEMENT_PORT:-19083}:9000"
@@ -493,6 +496,96 @@ services:
       timeout: 5s
       retries: 30
       start_period: 60s
+
+  qualification-service:
+    image: ${QUALIFICATION_SERVICE_IMAGE:-otb-poc/qualification-service}
+    build:
+      context: ./custom-services/qualification-service
+    profiles: ["simulators"]
+    restart: unless-stopped
+    mem_limit: 512m
+    cpus: 0.5
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    ports:
+      - "${QUALIFICATION_SERVICE_PORT:-18101}:8080"
+      - "${QUALIFICATION_SERVICE_MANAGEMENT_PORT:-19101}:9000"
+    environment:
+      SERVER_PORT: "8080"
+      MANAGEMENT_SERVER_PORT: "9000"
+      SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/qualification_service?replicaSet=rs0"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SIMULATOR_FAILURE_MODE: "${QUALIFICATION_SIMULATOR_FAILURE_MODE:-success}"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:9000/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  activation-service:
+    image: ${ACTIVATION_SERVICE_IMAGE:-otb-poc/activation-service}
+    build:
+      context: ./custom-services/activation-service
+    profiles: ["simulators", "core"]
+    restart: unless-stopped
+    mem_limit: 512m
+    cpus: 0.5
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      billing-service:
+        condition: service_healthy
+    ports:
+      - "${ACTIVATION_SERVICE_PORT:-18102}:8080"
+      - "${ACTIVATION_SERVICE_MANAGEMENT_PORT:-19102}:9000"
+    environment:
+      SERVER_PORT: "8080"
+      MANAGEMENT_SERVER_PORT: "9000"
+      SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/activation_service?replicaSet=rs0"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      BILLING_SERVICE_URL: "http://billing-service:8080"
+      SIMULATOR_FAILURE_MODE: "${ACTIVATION_SIMULATOR_FAILURE_MODE:-success}"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:9000/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  billing-service:
+    image: ${BILLING_SERVICE_IMAGE:-otb-poc/billing-service}
+    build:
+      context: ./custom-services/billing-service
+    profiles: ["simulators", "core"]
+    restart: unless-stopped
+    mem_limit: 512m
+    cpus: 0.5
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    ports:
+      - "${BILLING_SERVICE_PORT:-18103}:8080"
+      - "${BILLING_SERVICE_MANAGEMENT_PORT:-19103}:9000"
+    environment:
+      SERVER_PORT: "8080"
+      MANAGEMENT_SERVER_PORT: "9000"
+      SPRING_DATA_MONGODB_URI: "mongodb://mongodb:27017/billing_service?replicaSet=rs0"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "kafka:9092"
+      SIMULATOR_FAILURE_MODE: "${BILLING_SIMULATOR_FAILURE_MODE:-success}"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:9000/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
 
   orchestration-delivery-fallout:
     image: ${DELIVERY_FALLOUT_IMAGE:-otb-poc/orchestration-delivery-fallout}
@@ -583,6 +676,112 @@ services:
       timeout: 5s
       retries: 30
       start_period: 20s
+
+  selfcare-ui:
+    image: ${SELFCARE_UI_IMAGE:-otb-poc/selfcare-ui}
+    build:
+      context: ./discobole-ui/selfcare-ui
+    profiles: ["ui"]
+    restart: unless-stopped
+    mem_limit: 512m
+    cpus: 0.5
+    depends_on:
+      keycloak:
+        condition: service_healthy
+      product-catalog:
+        condition: service_healthy
+      order-capture:
+        condition: service_healthy
+      order-inventory:
+        condition: service_healthy
+      product-inventory:
+        condition: service_healthy
+      orchestration-delivery:
+        condition: service_healthy
+      orchestration-delivery-fallout:
+        condition: service_healthy
+      poc-gateway:
+        condition: service_healthy
+    ports:
+      - "${SELFCARE_UI_PORT:-3000}:8080"
+    environment:
+      NODE_ENV: "production"
+      PORT: "5000"
+      SESSION_SECRET: "${SELFCARE_UI_SESSION_SECRET:-selfcare-local-session-secret}"
+      SESSION_COOKIE_SECURE: "${SELFCARE_UI_SESSION_COOKIE_SECURE:-false}"
+      GATEWAY: "http://poc-gateway:8088"
+      INTERNAL_SECRET: "${POC_GATEWAY_INTERNAL_SECRET:-local-gateway-secret}"
+      ALLOWED_ORIGINS: "http://localhost:${SELFCARE_UI_PORT:-3000}"
+      EXPRESS_APP_KEYCLOAK_URL: "http://keycloak:8080"
+      EXPRESS_APP_KEYCLOAK_REALM: "${KEYCLOAK_REALM:-discobole}"
+      EXPRESS_APP_CLIENT_ID: "${POC_GATEWAY_CLIENT_ID:-poc-gateway}"
+      EXPRESS_APP_CLIENT_SECRET: "${POC_GATEWAY_CLIENT_SECRET:-change-me}"
+      EXPRESS_APP_USER_CLIENT_ID: "${SELFCARE_UI_CLIENT_ID:-selfcare-ui}"
+      EXPRESS_APP_DEFAULT_CLIENT_ROLE: "OTB_CUSTOMER"
+      EXPRESS_APP_ROUTE_PRODUCT_CATALOG_MANAGEMENT_URL: "http://poc-gateway:8088"
+      EXPRESS_APP_ROUTE_ORDER_CAPTURE_URL: "http://order-capture:8080"
+      EXPRESS_APP_ROUTE_PRODUCT_ORDERING_MANAGEMENT_URL: "http://poc-gateway:8088"
+      EXPRESS_APP_ROUTE_PRODUCT_INVENTORY_URL: "http://poc-gateway:8088"
+      EXPRESS_APP_ROUTE_COOD_URL: "http://poc-gateway:8088"
+      EXPRESS_APP_ROUTE_FALLOUT_URL: "http://poc-gateway:8088"
+      EXPRESS_APP_ROUTE_USER_ROLE_PERMISSION_URL: "http://poc-gateway:8088"
+      EXPRESS_APP_ROUTE_PRODUCT_OFFERING_QUALIFICATION_URL: "http://poc-gateway:8088"
+      EXPRESS_APP_ROUTE_PROCESS_MANAGEMENT_URL: "http://order-capture:8080"
+      EXPRESS_APP_ROUTE_V1_URL: "http://poc-gateway:8088"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  order-inventory-ui:
+    image: ${ORDER_INVENTORY_UI_IMAGE:-otb-poc/order-inventory-ui}
+    build:
+      context: ./discobole-ui/disco-admin-ui/order-inventory-ui
+    profiles: ["ui"]
+    restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.25
+    depends_on:
+      poc-gateway:
+        condition: service_healthy
+    ports:
+      - "${ORDER_INVENTORY_UI_PORT:-3004}:8080"
+    environment:
+      GATEWAY: "http://poc-gateway:8088"
+      GATEWAY_URL: "${POC_GATEWAY_BROWSER_URL:-http://localhost:8088}"
+      STANDALONE_MODE: "true"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:8080/"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+
+  order-orchestration-ui:
+    image: ${ORDER_ORCHESTRATION_UI_IMAGE:-otb-poc/order-orchestration-ui}
+    build:
+      context: ./discobole-ui/disco-admin-ui/order-orchestration-ui
+    profiles: ["ui"]
+    restart: unless-stopped
+    mem_limit: 256m
+    cpus: 0.25
+    depends_on:
+      poc-gateway:
+        condition: service_healthy
+    ports:
+      - "${ORDER_ORCHESTRATION_UI_PORT:-3006}:8080"
+    environment:
+      GATEWAY: "http://poc-gateway:8088"
+      GATEWAY_URL: "${POC_GATEWAY_BROWSER_URL:-http://localhost:8088}"
+      STANDALONE_MODE: "true"
+    healthcheck:
+      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:8080/"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
 
 volumes:
   mongodb-data:

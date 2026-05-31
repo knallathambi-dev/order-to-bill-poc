@@ -37,7 +37,13 @@ const normalizePath = (path) => {
     return path.startsWith("/") ? path : `/${path}`;
 };
 
-const routeEnvName = (prefix) => `EXPRESS_APP_ROUTE_${prefix.replace(/[^A-Z0-9]/gi, "_").toUpperCase()}_URL`;
+const routeEnvName = (prefix) => {
+    const snakePrefix = prefix
+        .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
+        .replace(/[^A-Z0-9]/gi, "_")
+        .toUpperCase();
+    return `EXPRESS_APP_ROUTE_${snakePrefix}_URL`;
+};
 
 const routeTargets = DEFAULT_ROUTE_TARGETS.map(([prefix, defaultTarget, stripPrefix]) => ({
     prefix,
@@ -131,6 +137,7 @@ const buildUpstreamHeaders = (requestHeaders, authToken) => {
     };
     if (requestHeaders["content-type"]) headers["content-type"] = requestHeaders["content-type"];
     if (requestHeaders["user-agent"]) headers["user-agent"] = requestHeaders["user-agent"];
+    if (requestHeaders["x-internal-secret"]) headers["x-internal-secret"] = requestHeaders["x-internal-secret"];
     return headers;
 };
 

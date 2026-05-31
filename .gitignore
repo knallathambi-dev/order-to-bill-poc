@@ -47,3 +47,6 @@ tmp/
 reports/
 test-results/
 
+# playwright
+.playwright-cli/
+

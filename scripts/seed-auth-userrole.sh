@@ -107,6 +107,7 @@ ensure_service_account_client_role() {
 TOKEN=$(get_keycloak_token)
 ensure_auth_userrole_permissions
 ensure_service_account_client_role "order-capture" "OTB_CUSTOMER"
+ensure_service_account_client_role "poc-gateway" "OTB_ORDER_OPERATOR"
 
 post_each() {
   endpoint="$1"

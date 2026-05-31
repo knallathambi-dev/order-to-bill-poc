@@ -9,6 +9,7 @@
 
 package com.orange.discobole.productinventory.service.impl;
 
+import com.orange.discobole.productinventory.config.security.SecurityConfigProperties;
 import com.orange.discobole.productinventory.dto.v1.PartyRef;
 import com.orange.discobole.productinventory.dto.v1.PartyRoleRef;
 import com.orange.discobole.productinventory.dto.v1.Product;
@@ -35,12 +36,17 @@ public class AuthorizationService {
 
     private final SecurityService securityService;
     private final ProductRepository productRepository;
+    private final SecurityConfigProperties securityConfigProperties;
 
     /**
      * Validates query parameters when fetching a list of products.
      * For non-admin users, replaces the related party filter with the one from the security token.
      */
     public void validateFetchRequest(final MultiValueMap<String, Object> multiValueMap, final String relatedPartyParamName) {
+        if (shouldBypassAuthorization()) {
+            return;
+        }
+
         if (securityService.isAdmin()) {
             return;
         }
@@ -59,6 +65,10 @@ public class AuthorizationService {
      * Validates that the given product belongs to the related party of the current user.
      */
     public void validateByIdRequest(final String productId) {
+        if (shouldBypassAuthorization()) {
+            return;
+        }
+
         if (securityService.isAdmin()) {
             return;
         }
@@ -80,6 +90,10 @@ public class AuthorizationService {
      * @throws AccessDeniedException if user tries to create a product for another user
      */
     public void validateProductCreation(final Product product) {
+        if (shouldBypassAuthorization()) {
+            return;
+        }
+
         if (securityService.isAdmin()) {
             return;
         }
@@ -136,5 +150,9 @@ public class AuthorizationService {
     public void validateProductUpdate(final String productId) {
         // Same validation as read - user must own the product to update it
         validateByIdRequest(productId);
+    }
+
+    private boolean shouldBypassAuthorization() {
+        return securityConfigProperties.isAllowUnauthenticatedSystemAccess();
     }
 }

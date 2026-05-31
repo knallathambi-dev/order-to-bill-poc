@@ -141,22 +141,24 @@ const buildPhase7Configuration = (body = {}) => {
     };
 };
 
-app.post(["/v1/queryProductConfiguration", "/api/v1/queryProductConfiguration"], (req, res) => {
-    const configuration = buildPhase7Configuration(req.body);
-    phase7Configurations.set(configuration.id, configuration);
-    res.json(configuration);
-});
-
-app.get(["/v1/queryProductConfiguration/:id", "/api/v1/queryProductConfiguration/:id"], (req, res) => {
-    const configuration = phase7Configurations.get(req.params.id);
-    if (!configuration) {
-        return res.status(404).json({error: "Configuration not found"});
-    }
-    res.json(configuration);
-});
-
 const isProd = process.env.NODE_ENV === "production";
 const basePath = isProd ? "/api" : "";
+
+if (!isProd) {
+    app.post(["/v1/queryProductConfiguration", "/api/v1/queryProductConfiguration"], (req, res) => {
+        const configuration = buildPhase7Configuration(req.body);
+        phase7Configurations.set(configuration.id, configuration);
+        res.json(configuration);
+    });
+
+    app.get(["/v1/queryProductConfiguration/:id", "/api/v1/queryProductConfiguration/:id"], (req, res) => {
+        const configuration = phase7Configurations.get(req.params.id);
+        if (!configuration) {
+            return res.status(404).json({error: "Configuration not found"});
+        }
+        res.json(configuration);
+    });
+}
 
 app.use(`${basePath}/auth`, authRouter);
 if (!isProd) {

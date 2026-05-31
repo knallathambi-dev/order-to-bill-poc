@@ -7,6 +7,7 @@ disco.order-orchestration.orchestrationPlanStateChange-event:3:1
 disco.order-orchestration.orchestrationPlanNodeStateChange-event:3:1
 disco.delivery-management.deliveryStart-event:3:1
 disco.delivery-management.deliveryStatus-event:3:1
+disco.delivery-management.deliveryOrder-event:3:1
+disco.delivery-management.deliveryOrderItemStatus-event:3:1
 disco.service-order-management.serviceOrderStateChange-event:3:1
 disco.order-orchestration.falloutIncidentStateChange-event:3:1
-

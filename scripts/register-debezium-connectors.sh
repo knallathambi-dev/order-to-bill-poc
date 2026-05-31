@@ -4,6 +4,20 @@ set -eu
 CONNECT_URL="${CONNECT_URL:-http://localhost:8083}"
 CONNECTOR_DIR="${CONNECTOR_DIR:-infrastructure/kafka/connectors}"
 
+printf 'Waiting for Kafka Connect at %s\n' "$CONNECT_URL"
+for attempt in $(seq 1 60); do
+  if curl -fsS "$CONNECT_URL/connectors" >/dev/null 2>&1; then
+    break
+  fi
+
+  if [ "$attempt" -eq 60 ]; then
+    printf 'Kafka Connect did not become ready after 60 attempts.\n' >&2
+    exit 1
+  fi
+
+  sleep 2
+done
+
 for connector in "$CONNECTOR_DIR"/*.json; do
   [ -f "$connector" ] || continue
   name="$(sed -n 's/.*"name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$connector" | head -n 1)"

@@ -9,15 +9,21 @@ dotenv.config({path: path.join(__dirname, "../env/.env")});
 
 const truthy = (value) => ["1", "true", "yes", "on"].includes(String(value || "").toLowerCase());
 
-export const config = {
-    env: process.env.NODE_ENV || "development",
-    port: Number(process.env.PORT || process.env.POC_GATEWAY_PORT || 8088),
-    sessionSecret: process.env.SESSION_SECRET || "otb-poc-local-session-secret",
-    internalSecret: process.env.INTERNAL_SECRET || "",
-    allowedOrigins: (process.env.ALLOWED_ORIGINS || "http://localhost:3000,http://localhost:3004,http://localhost:3006")
+const port = Number(process.env.PORT || process.env.POC_GATEWAY_PORT || 8088);
+const allowedOrigins = [
+    ...(process.env.ALLOWED_ORIGINS || "http://localhost:3000,http://localhost:3004,http://localhost:3006")
         .split(",")
         .map((origin) => origin.trim())
         .filter(Boolean),
+    `http://localhost:${port}`,
+];
+
+export const config = {
+    env: process.env.NODE_ENV || "development",
+    port,
+    sessionSecret: process.env.SESSION_SECRET || "otb-poc-local-session-secret",
+    internalSecret: process.env.INTERNAL_SECRET || "",
+    allowedOrigins: [...new Set(allowedOrigins)],
     requestTimeoutMs: Number(process.env.GATEWAY_REQUEST_TIMEOUT_MS || 60000),
     tokenExpiryBufferSeconds: Number(process.env.TOKEN_EXPIRY_BUFFER_SECONDS || 60),
     trustProxy: truthy(process.env.TRUST_PROXY) || process.env.NODE_ENV === "production",
