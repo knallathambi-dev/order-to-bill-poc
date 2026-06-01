@@ -9,6 +9,22 @@ if [ ! -f "$TOPICS_FILE" ]; then
   exit 1
 fi
 
+printf '%s\n' 'Waiting for Kafka broker...'
+for attempt in $(seq 1 60); do
+  if $COMPOSE exec -T kafka /opt/kafka/bin/kafka-topics.sh \
+    --bootstrap-server kafka:9092 \
+    --list >/dev/null 2>&1; then
+    break
+  fi
+
+  if [ "$attempt" -eq 60 ]; then
+    printf '%s\n' 'Kafka broker did not become ready after 60 attempts.' >&2
+    exit 1
+  fi
+
+  sleep 2
+done
+
 while IFS=: read -r topic partitions replication; do
   case "$topic" in
     ""|\#*) continue ;;

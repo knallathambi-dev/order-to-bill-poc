@@ -139,7 +139,7 @@ curl -fsS -X POST \
   -H "Token: $TOKEN" \
   -H "Authorization: Bearer $TOKEN" \
   --data-binary "@$SEED_DIR/entitlements.json" \
-  "$BASE_URL/entitlement" >/dev/null || true
+  "$BASE_URL/entitlement" >/dev/null 2>&1 || true
 
 printf '%s\n' 'Seeding auth-userrole user roles...'
 node -e '

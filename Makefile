@@ -1,4 +1,4 @@
-.PHONY: help verify-phase1 verify-phase2 verify-phase3 verify-phase4 verify-phase5 verify-phase7 verify-phase8 verify-phase9 phase7-ui-build build-ui-images list-ui-images ui-up gateway-install gateway-test gateway-up gateway-verify list-discobole-images package-core-services build-core-service-images list-core-service-images package-simulator-services build-simulator-service-images list-simulator-service-images simulator-up simulator-verify infra-up infra-bootstrap infra-verify infra-down core-up core-verify core-down security-verify-keycloak security-seed-auth-userrole status
+.PHONY: help verify-phase1 verify-phase2 verify-phase3 verify-phase4 verify-phase5 verify-phase7 verify-phase8 verify-phase9 phase7-ui-build build-ui-images list-ui-images ui-up ui-verify gateway-install gateway-test gateway-up gateway-verify list-discobole-images package-core-services build-core-service-images list-core-service-images package-simulator-services build-simulator-service-images list-simulator-service-images simulator-up simulator-verify infra-up infra-bootstrap infra-verify infra-down core-up core-verify core-down all-up all-down security-verify-keycloak security-seed-auth-userrole status
 
 help:
 	@printf '%s\n' 'Order-to-Bill POC commands'
@@ -16,6 +16,7 @@ help:
 	@printf '%s\n' '  make build-ui-images Build selfcare and admin UI Docker images'
 	@printf '%s\n' '  make list-ui-images  List local UI Docker image targets'
 	@printf '%s\n' '  make ui-up           Start Dockerized UI portals'
+	@printf '%s\n' '  make ui-verify       Verify Dockerized UI portals'
 	@printf '%s\n' '  make gateway-install Install POC gateway Node dependencies'
 	@printf '%s\n' '  make gateway-test    Run POC gateway unit tests'
 	@printf '%s\n' '  make gateway-up      Start POC gateway with infra/core profiles'
@@ -36,6 +37,8 @@ help:
 	@printf '%s\n' '  make core-up         Start Phase 5 Discobole core services'
 	@printf '%s\n' '  make core-verify     Verify running Discobole core services'
 	@printf '%s\n' '  make core-down       Stop Phase 5 Discobole core services'
+	@printf '%s\n' '  make all-up          Start all OTB POC services'
+	@printf '%s\n' '  make all-down        Stop and remove all OTB POC services'
 	@printf '%s\n' '  make security-verify-keycloak  Verify Keycloak realm token issuance'
 	@printf '%s\n' '  make security-seed-auth-userrole Seed auth-userrole once service is running'
 	@printf '%s\n' '  make status         Show git status'
@@ -129,7 +132,10 @@ verify-phase3: verify-phase2
 	@printf '%s\n' 'Phase 3 infrastructure files verified.'
 
 infra-up:
-	@docker compose --profile infra up -d
+	@docker compose --profile infra up -d mongodb mongo-init kafka keycloak
+	@scripts/create-kafka-topics.sh
+	@docker compose --profile infra up -d kafka-connect kafka-ui
+	@scripts/register-debezium-connectors.sh
 
 infra-bootstrap:
 	@scripts/create-kafka-topics.sh
@@ -189,13 +195,29 @@ verify-phase5: verify-phase4
 	@printf '%s\n' 'Phase 5 core service files verified.'
 
 core-up:
+	@$(MAKE) infra-up
 	@docker compose --profile infra --profile core up -d
+	@$(MAKE) core-verify
+	@$(MAKE) security-seed-auth-userrole
 
 core-verify:
 	@scripts/verify-core-services.sh
 
 core-down:
 	@docker compose --profile infra --profile core stop auth-userrole order-capture order-inventory product-catalog product-specification product-offering product-inventory orchestration-delivery orchestration-delivery-management orchestration-delivery-fallout
+
+all-up:
+	@$(MAKE) core-up
+	@docker compose --profile infra --profile simulators up -d qualification-service activation-service billing-service
+	@docker compose --profile infra --profile core --profile gateway up -d poc-gateway
+	@docker compose --profile infra --profile core --profile gateway --profile ui up -d selfcare-ui order-inventory-ui order-orchestration-ui
+	@$(MAKE) infra-verify
+	@$(MAKE) simulator-verify
+	@$(MAKE) gateway-verify
+	@$(MAKE) ui-verify
+
+all-down:
+	@docker compose --profile infra --profile core --profile simulators --profile gateway --profile ui down
 
 verify-phase7: verify-phase5
 	@scripts/verify-phase7-ui.sh
@@ -210,7 +232,11 @@ list-ui-images:
 	@scripts/build-ui-images.sh --list
 
 ui-up:
+	@$(MAKE) gateway-up
 	@docker compose --profile infra --profile core --profile gateway --profile ui up -d selfcare-ui order-inventory-ui order-orchestration-ui
+
+ui-verify:
+	@scripts/verify-ui.sh
 
 verify-phase8:
 	@scripts/verify-phase8-gateway.sh
@@ -222,6 +248,7 @@ gateway-test:
 	@cd gateway && npm test
 
 gateway-up:
+	@$(MAKE) core-up
 	@docker compose --profile infra --profile core --profile gateway up -d poc-gateway
 
 gateway-verify:
@@ -240,6 +267,7 @@ list-simulator-service-images:
 	@scripts/build-simulator-service-images.sh --list
 
 simulator-up:
+	@$(MAKE) infra-up
 	@docker compose --profile infra --profile simulators up -d qualification-service activation-service billing-service
 
 simulator-verify:
